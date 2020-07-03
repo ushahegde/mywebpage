@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+              android:background="@drawable/simon_actvt_background"
+              android:orientation="vertical">
+    <!--    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/ad_unit_banner_id"
+        />-->
+
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/classictitle"
+        android:orientation="horizontal"
+
+        >
+
+
+        <TextView
+            android:id="@+id/highscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/classictitle"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="TextView"/>
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/classictitle"
+            android:gravity="center"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="5"
+            android:text=" "
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:typeface="serif"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:background="@drawable/simonbg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.hegdeapps.memoryace.SimonCell
+                android:id="@+id/cell1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:elevation="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/green"/>
+
+            <com.hegdeapps.memoryace.SimonCell
+                android:id="@+id/cell2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:elevation="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/red"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:orientation="horizontal">
+
+            <com.hegdeapps.memoryace.SimonCell
+                android:id="@+id/cell3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:elevation="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/yellow"/>
+
+            <com.hegdeapps.memoryace.SimonCell
+                android:id="@+id/cell4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:elevation="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/blue"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+ <!--       <ImageButton
+            android:id="@+id/soundonoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/sound_off"
+            />-->
+        <ImageButton
+            android:id="@+id/btnstart"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/play"
+            android:src="@android:drawable/ic_media_play"
+
+            android:elevation="3dp"
+
+        />
+        <ImageButton
+            android:id="@+id/howto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="right"
+            android:background="@drawable/play"
+            android:src="@android:drawable/ic_menu_help"
+
+            />
+
+      <!--  <Button
+            android:id="@+id/howto"
+            style="@android:style/Widget.Holo.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="How To Play"
+            android:typeface="serif"
+            />-->
+
+    </LinearLayout>
+
+</LinearLayout>

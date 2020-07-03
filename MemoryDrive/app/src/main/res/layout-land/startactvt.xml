@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/mainlayout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:layout_gravity="center"
+              android:background="@drawable/peachbg"
+    >
+    <!--    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/ad_unit_banner_id" />-->
+
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+    style="@style/Widget.AppCompat.ActionBar">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="Memory Ace"/>
+</android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/firstlyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSimon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:background="@drawable/simonbtn"
+            android:text="Simon"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#ffffff"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnFaces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+            android:background="@drawable/facebtn"
+            android:elevation="10dp"
+
+            android:text="Faces"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondlyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPattern"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:background="@drawable/patternbtn"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+            android:text="Pattern"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnCards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+
+            android:background="@drawable/cardsbtn"
+            android:text="Cards"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+
+    <!--        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Sharpen your memory!!!"
+            android:textColor="#e88cff"/>-->
+</LinearLayout>
+
+    <!--   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+
+
+
+    </LinearLayout>-->
+
