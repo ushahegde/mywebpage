@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+<p>  Prime Factors of a given number
+ </p>
+<h3>Write a program to find all prime factors of a given number. </h3>
+
+<p>The program should print the factors of a number which are prime. 
+</p>
+One way of writing this is 
+<ul>
+   <li> If the number is divisible by 2, repeatedly divide the number by 2 until it is no longer divisible by 2.
+  </li>   <li>Print 2 as a factor if number is divisible.
+     </li>
+    <li> In a loop for values of i from 3 to n in steps of 2, find if a number is divisible by i. </li>
+    <li> If yes repeatedly divide by i as long as number is divisible.</li> 
+</ul>
+   
+   here is the code for it
+   <pre>
+   <code> void printFactors(int num){
+          if(num%2==0){
+            System.out.println("2 ");
+            while (num%2==0)
+             num = num/2;
+          }
+        
+          for(int i=3;i<=num;i+=2){
+               if(num%i==0){
+                    System.out.println(i);
+                  while(num%i==0)
+                     num = num/i;
+               }
+          }
+
+     }
+   </code>         
+      </pre>     
+        
+
+
+</body>
+</html>
