@@ -1,0 +1,25 @@
+<resources>
+	<string name="app_name">Memory Ace</string>
+
+	<string name="menu_settings">Settings</string>
+	<string name="title_activity_main">MemoryPro</string>
+
+    <string name="cleared_level">You have cleared level</string>
+    <string name="read_words">Read these words carefully</string>
+    <string name="number_help">Read the numbers in first screen. Tap the same numbers in <b>same order</b> in next screen. Wrong number will end game\n Correct answer will give you 100 points.</string>
+
+    <string name="word_help">Read the words in first screen. Tap the same words in <b>same order</b> in next screen. Wrong word will end game\nCorrect answer will give you 100 points.</string>
+	<string name="classic_help">Tap on 2 cards to show their faces. If they match- in suit and number, they are cleared, you get points. If they dont they are kept back.</string>
+	<string name="gamelostmessage">Sorry! You have lost the game!</string>
+	<string name="gamewonmessage">Congratulations. You have cleared this level!!</string>
+    <string name="ad_unit_banner_id">"ca-app-pub-2080283086957033/1813362431"</string>
+    <string name="simon_how_to_play">Game has four colored buttons each producing different note. \n\nOne or more buttons light up producing a series of notes. You should repeat the same pattern by pressing the buttons.</string>
+    <string name="face_how_to_play">Faces are shown for a few seconds. \n\nThen one of the faces is replaced with a new face. You should identify and tap on changed face.</string>
+    <string name="pattern_how_to_play">A pattern of red cells is shown for few seconds. Then these cells are covered. You should repeat that pattern by pressing the cells. </string>
+    <string name="simon_title">Simon game</string>
+    <string name="ad_mob_app_id">"ca-app-pub-2080283086957033~8981406019"</string>
+    <string name="about_app">Memory Ace 1.0\nBy Hegdeapps\nFor bouquets and brickbats write to hegdeapps.adm@gmail.com</string>
+    <string name="mail_id">hegdeapps.adm@gmail.com</string>
+    <string name="playurl"> "https://play.google.com/store/apps/details?id=com.hegdeapps.memoryace"</string>
+    <string name="otherappurl">"https://play.google.com/store/apps/developer?id=Hegdeapps"</string>
+</resources>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/mainlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/peachbg"
+
+    >
+
+
+ <android.support.v7.widget.Toolbar
+     android:id="@+id/toolbar"
+     style="@style/Widget.AppCompat.ActionBar"
+
+     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:rotationX="20"
+        android:lineSpacingExtra="10dp"
+        android:text="Memory Ace"/>
+ </android.support.v7.widget.Toolbar>
+    <!--        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Sharpen your memory!!!"
+            android:textColor="#e88cff"/>-->
+    <!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btnSimon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/simonbtn"
+            android:clickable="true"
+
+            android:focusable="true"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:text="Simon"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="#fff"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnFaces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/facebtn"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+            android:drawablePadding="6dp"
+            android:elevation="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:text="Faces"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
+
+
+        <Button
+            android:id="@+id/btnPattern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/patternbtn"
+
+            android:drawablePadding="6dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:text="Pattern"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/cardsbtn"
+            android:shadowColor="#5c5c5c"
+            android:shadowDy="2"
+            android:shadowDx="2"
+            android:shadowRadius="5"
+            android:drawablePadding="6dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:text="Cards"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

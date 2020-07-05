@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ads="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/faceactbg"
+              android:id="@+id/parentlayout">
+<!--    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/ad_unit_banner_id"
+        />-->
+
+   <!-- <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="22sp"
+        android:id="@+id/grid_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:textStyle="bold"
+
+        />-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/facetitlebg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/highscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/facetitlebg"
+            android:gravity="center"
+            android:layout_margin="8dp"
+            android:textColor="@android:color/white"
+            android:text=" "/>
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/facetitlebg"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="8dp"
+            android:textColor="@android:color/white"
+            android:text=" "/>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/facegrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+
+        android:animateLayoutChanges="true"
+        android:background="@drawable/faceactbg"
+        android:horizontalSpacing="2dp"
+        android:numColumns="6"
+        android:padding="5dp"
+
+        android:verticalSpacing="2dp">
+    </GridView>
+    <TextView
+        android:id="@+id/missingfacetextview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textStyle="italic"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+
+       android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_margin="20dp"
+
+        android:text="Select the missing face"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:elevation="3dp"
+        android:background="#4431608f"
+        android:layout_margin="10dp"
+        android:id="@+id/options_layout"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ans0"
+            android:background="@drawable/faceborder"
+            android:layout_margin="5dp"
+            android:layout_width="@dimen/ans_image_size"
+            android:layout_height="@dimen/ans_image_size"
+            android:scaleType="fitXY"
+            android:padding="2dp"
+            android:elevation="3dp"
+           />
+        <ImageButton
+            android:id="@+id/ans1"
+
+            android:layout_margin="5dp"
+            android:background="@drawable/faceborder"
+            android:layout_width="@dimen/ans_image_size"
+            android:layout_height="@dimen/ans_image_size"
+            android:scaleType="fitXY"
+            android:padding="2dp"
+
+            />
+        <ImageButton
+            android:id="@+id/ans2"
+            android:layout_margin="5dp"
+            android:layout_width="@dimen/ans_image_size"
+            android:layout_height="@dimen/ans_image_size"
+            android:scaleType="fitXY"
+            android:padding="2dp"
+
+            android:background="@drawable/faceborder"
+
+           />
+        <ImageButton
+            android:id="@+id/ans3"
+            android:layout_margin="5dp"
+            android:layout_width="@dimen/ans_image_size"
+            android:layout_height="@dimen/ans_image_size"
+            android:scaleType="fitXY"
+            android:padding="2dp"
+
+            android:background="@drawable/faceborder"
+
+       />
+    </LinearLayout>
+
+<!--    TODO where to add howto play button usha 22/2/19-->
+<!--<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_weight="0">
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="How To Play"
+    android:typeface="serif"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:gravity="center"
+    android:id="@+id/howto"/>
+</LinearLayout>-->
+</LinearLayout>

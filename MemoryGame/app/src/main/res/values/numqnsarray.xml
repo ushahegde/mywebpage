@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="NumberQuestionArray">
+        <item >Which was the last number displayed?</item>
+        <item >Which was the second number displayed?</item>
+        <item >Which was the biggest number displayed?</item>
+        <item >Which was the smallest number displayed?</item>
+        <item >Which of the numbers was not displayed?</item>
+        <item >Which of the numbers was displayed?</item>         
+        <item >Which number came after -----?</item>
+        <item >Which number was displayed before ----?</item>
+        <item>How many negative numbers were shown?</item>
+    </string-array>
+    
+</resources>
