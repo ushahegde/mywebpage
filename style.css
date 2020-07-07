@@ -14,10 +14,8 @@ body {
  
 .grid h1 {
     font-family: "sans-serif";
-    background-color: #01BBFF;
     font-size: 60px;
     text-align: center;
-    color: #ffffff;
     padding: 2px 0px;
     
 }
@@ -39,7 +37,7 @@ body {
 }
  
 #btn0, #btn1, #btn2, #btn3 {
-    background-color: #444444;
+    background-color:  #2987b0
     width: 250px;
     font-size: 20px;
     color: #fff;
