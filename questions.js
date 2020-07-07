@@ -77,11 +77,11 @@ function showScores() {
  
 // create questions here
 var questions = [
-    new Question("Hyper Text Markup Language Stand For?", ["JavaScript", "XHTML","CSS", "HTML"], "HTML"),
-    new Question("Which language is used for styling web pages?", ["HTML", "JQuery", "CSS", "XML"], "CSS"),
-    new Question("Which is not a JavaScript Framework?", ["Python Script", "JQuery","Django", "NodeJS"], "Django"),
-    new Question("Which is used for Connect To Database?", ["PHP", "HTML", "JS", "All"], "PHP"),
-    new Question("Webdevtrick.com is about..", ["Web Design", "Graphic Design", "SEO & Development", "All"], "All")
+    new Question("Size of int in Java language is ---", ["8", "16","32", "64"], "32"),
+    new Question("Which of the following is Long literal?", ["1234", "34L", "ABCDE", "All"], "34L"),
+    new Question("Which of the following statements is correct way of initialising an int array.,?", ["int arr[] = {1,2,3,45};", "int arr[] = new int[]{1,2,3,4,5};","int arr = new int {1,2,3,4,5};", "Both 1 and 2"], "Both 1 and 2"),
+    new Question("What does a void function return?", ["null", "Nothing", "0", "None of the above"], "Nothing"),
+    new Question("Which type of operators return boolean values", ["Arithmetic", "Relational", "Bitwise", "All"], "Relational")
 ];
  
 // create quiz
