@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<title></title>
+<style>
+.courier{
+    color=#333;
+    font-family: "Courier New";
+    font-size: 12px;
+}
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+  width: auto;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+	padding: 0 18px;
+	display: none;
+	overflow: hidden;
+	background-color: #f1f1f1;
+	border-color: #DFDFDF;
+}
+
+</style>
+</head>
+<body>
+<h1 align="center">Java classes and objects </h1>
+<p>What are the different access specifiers in Java?
+</p>
+<button class="accordion">Answer</button>
+ <div class="panel">Access specifiers are <ol><li>
+  public, - these class/methods/variables can be accessed by any class or method.</li><li>
+ private - class, methods, or variables defined as private can be accessed within the class only.</li><li>
+protected -  these can be accessed by the classes of the same package, or by the sub-class of this class 
+in other packages also. </li><li>
+default - Default  are accessible by classes within the package only. </li><li>
+
+ There is no <i> default</i> specifier, if no specifier is given, the class will have default access specifier. 
+
+<pre class="courier">
+   class A{
+       <em>private</em> int a;
+       <em>public</em> boolean bl;
+       float c;
+       <em>protected</em> double d;
+       <em>public</em> void print(){
+        ....
+       }
+       <em>protected</em> int geta(){
+        ....
+      }
+   }
+</pre>
+ </div>
+ 
+ <hr color="#eee"/>
+ <p>What is a constructor?	</p>
+ <button class="accordion">Answer</button>
+ <div class="panel">
+ Constructor is a special method in a class which is used to initialize the object. It is invoked when an object is created.<br>
+ 
+Note :<ol><li> Name of the constructor must be same as class name. </li><li>>
+And constructor must not have an explicit return type. </li></ol>
+
+ </div>
+ 
+ 
+ <hr color="#eee"/>
+ <p>Can a constructor be final? Is the constructor inherited by sub-classes?		
+	</p>
+ <button class="accordion">Answer</button>
+ <div class="panel">
+  No. The constructor of a class can't be final. And constructor is not inherited. 
+ </div>
+ 
+ 
+  
+ <hr color="#eee"/>
+ <p>Write a class with 2 parameter constructor and a default constructor. 	 
+	</p>
+ <button class="accordion">Answer</button>
+ <div class="panel">
+    
+    <pre class="courier">
+    
+    public class constructors {
+	constructors(int a,int b){
+		System.out.println(""I am a constructor with ""+a+b);
+	}
+	constructors( ){
+		System.out.println(""I am default constructor "");
+	}
+	public static void main(String args[]) {
+		constructors c1 = new constructors(10,20);
+		constructors c2 = new constructors();
+	}       
+    </pre>     
+  
+ </div>
+ 
+  <hr color="#eee"/>
+ <p>What is the output of the following program?
+ <pre class="courier">
+ 
+  class Test   
+    {  
+        int i;      
+        public static void main (String args[])   
+        {  
+            Test test = new Test();   
+            System.out.println(test.i);  
+        }  
+    } 
+   
+ </pre> 
+	</p>
+ <button class="accordion">Answer</button>
+ <div class="panel">
+ 0
+ <br>
+ Instance variables of an object are initialized to 0 automatically. So the output is 0. </div>
+ 
+ 
+ <hr color="#eee">
+ <p>
+What is the output of the following program?	</p>
+ <pre  class="courier"> 
+public class Test {
+	 
+        int i;   
+        Test(int n){
+        	System.out.println(""Hello world"");
+        }
+    
+        public static void main (String args[])   
+        {  
+            Test test = new Test();   
+            System.out.println(test.i);  
+        }     
+
+}  
+</pre>
+<button class="accordion">Answer</button>
+<div class="panel">
+<p>Compiler error	</p>
+<p>
+The class has only a parameterized constructor. It has no default constructor.
+That is why class instantiation with default constructor gives an error.</p>
+
+ </p>
+</div> 
+ <hr color = "#eee"/><p>
+ What are the differences between local variables and instance variables?	</p>
+ 
+<button class="accordion">Answer</button>
+<div class="panel">
+ 
+Local variables are defined in the method. Scope of the local variables is  inside the method itself. 
+ An instance variable is defined inside the class and outside any methods. 
+Scope of instance variable is  throughout the class.	 
+</div>
+
+<hr color="#eee"/>
+<p>What is the use of keyword final in Java?
+</p>
+<button class="accordion">Answer</button>
+<div class="panel">
+<p>final keyword is used with a Class to make sure no other class can extend it. A final class can not be sub-classed. </p>
+e.g.
+<pre class="courier">
+final class A{
+...
+}
+class B extends A{ //gives error 
+....
+}
+
+ 
+</pre>
+<p>final keyword with methods ensures that child classes can’t override it. A final method can not be overridden. </p>
+<pre  class="courier"> 
+class A{
+   final void printHello(){
+   .....
+   }
+}
+class B extends A{
+   void printHello(){<font color="#BFBFBF">//gives error</font>
+   }
+}
+ </pre>
+<p>final keyword  used with variables  means it
+ can be assigned only once. A final variable once defined can't be modified.	</p>
+ 
+<pre  class="courier"> 
+ 
+    class A{
+        final int m = 0;
+        void method1(){
+        m = 100;<font color="#BFBFBF">//gives error</font>
+        }        
+        }
+      
+ </pre>
+</div>
+
+<hr color="#eee"/>
+<p>What is a static block in Java?	</p>
+<button class="accordion">Answer</button>
+<div class="panel">
+Java static block or static initializer block is the group of statements 
+that gets executed when the class is loaded  Java ClassLoader. 
+<br>
+Static block is used to initialize static variables of the class. 
+<br>
+A class can have multiple static blocks which are executed in the same order they are defined in the class. 
+<br>
+<pre  class="courier"> 
+e.g.
+   class A{
+       static int m;
+        int n;
+        static{
+          m = 1;
+       }
+       A(int num){
+           n = num;
+      }
+   } 
+</pre>
+<p>
+Here the  <font color="#A52A2A"> static { m = 1;} </font>is the static initializer block. 
+Unlike the constructor, this block gets executed only once. It initiailizes the static variable m
+
+</p>
+</div>
+<hr color="#eee"/>
+<p>What is constructor overloading in Java?</p>
+<button class="accordion">Answer</button>
+<div class="panel">
+Defining multiple constructors for a class is called constructor overloading. 
+<br>
+e.g.
+<br><pre  class="courier"> 
+public class Test
+{
+     Test(int n){
+         ...
+    }
+    Test(){
+        ...
+    }
+   public static void main(String arg[]){
+      Test t1 = new Test(10);
+      Test t2 = new Test();
+      ....
+  
+}
+}
+ 
+
+</pre>
+ <p>Here Test class has two constructors <em>Test(int n)</em>, <em>Test()</em>. 
+ <em>t1</em> calls first constructor with one parameter and <em>t2</em> calls second constructor.</p>
+
+</div>
+
+<hr color="#eee"/>
+<p>Write a program to read names and times taken by n runners and find the fastest runner. 	 </p>
+<button class="accordion">Answer</button>
+<div class="panel">
+<pre  class="courier"> 
+class Runner{
+     String name;
+     int runTime;
+     Runner(String n, int t){
+         name = n;
+         runTime = t;
+     }
+     int getTime(){
+         return runTime;
+     }
+     String getName(){
+         return name;
+     }
+}
+class Demo{
+     public static void main(String args[]){
+            int n;
+            System.out.println(""Number of runners "");
+            Scanner scanner = new Scanner(System.in);
+            n = scanner.nextInt();
+            Runner arr[] = new Runner[n];
+            for(int i=0;i&lt;n;i++)
+            {
+                System.out.println(""Name and time taken"");
+                String name = scanner.next();
+                int time = scanner.nextInt();
+                arr[i] = new Runner(name,time);
+            }
+            int fastest = 0;
+            for(int i=1;i&lt;n;i++){
+                 int time = arr[i].getTime();
+                 if(time&lt;arr[fastest].getTime()) 
+                        fastest = i;
+            }
+            System.out.println(""the fastest runner is ""+arr[fastest].getName());      }
+}
+ 
+
+</pre>
+<p>We are using a class Runner with 2 fields- name and time taken. Next we create an array of Runner objects. </p>
+ 
+<p>Find the smallest element in the array. And then find the corresponding Name.</p>
+ 
+<p>We could even use a comparator or comparable interfaces. </p>
+
+</div>
+
+<hr color="#eee"/>
+<p>What is the output of the program?</p>
+<pre class="courier">
+class ABC
+{
+   private ABC(){
+        System.out.println(""Constructor"");
+   }
+   private ABC(int n)  {
+     System.out.println(""Constructor and n is""+n);
+  }
+  public static void main(String args[]){
+      ABC obj = new ABC(10);
+  }
+}
+</pre>
+<button class="accordion">Answer</button>
+<div class="panel">
+<p>The output is Constructor and n is 10. </p>
+
+<p>Though the constructor is private, it is accessible from methods of the same class. So there will not be any errors</p>
+</div>
+
+<hr color="#eee"/>
+<p>What are the differences between default and protected access specifiers.</p>
+<button class="accordion">Answer</button>
+<div class="panel">
+<p>If no access specifier is used, the default access is used - which is package private. That is the fields are accessible from within the same package. Y</p>
+
+<pre class="courier">class A
+{
+    int m;//default access
+}</pre>
+
+<p>Protected access specifier makes the fields accessible only from the same class and its derived classes. </p>
+<pre class="courier">class A{
+   protected int m;
+}
+class B extends B{
+    void printM(){
+         System.out.println(m+"""");//no error
+   }
+}
+class Demo{
+    public static void main(String args[]){
+         A obj = new A();
+         A.m=10;//error
+   }
+}</pre>
+</div>
+<script >
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+} 
+</script>
+
+</body>
+</html>

@@ -25,13 +25,13 @@
 .panel {
   padding: 0 18px;
   display: none;
-  background-color: white;
+  background-color: #ddd;
   overflow: hidden;
 }
 </style>
 </head>
-<body >
- 
+<body  >
+ <h1 align="center">Java fundamentals </h1>
 <p>What is auto boxing and unboxing?</p>
  <button class="accordion">Answer</button>
 <div class="panel">
@@ -58,21 +58,21 @@ public class ReadNumber {
 }</pre>
 </font>
 </p>
-</div><hr>
-<p>What are the basic data types in Java</p>
+</div><hr color="#eee">
+<p>What are the primitive data types in Java</p>
 <button class="accordion">Answer</button>
 <div class="panel">
   <p><ol><li>byte: The byte data type is an 8-bit signed two's complement integer.</li>
 <li>short: The short data type is a 16-bit signed two's complement integer.</li><li>
-3)int: By default, the int data type is a 32-bit signed two's complement integer, which has a minimum value of -2^31 and a maximum value of 2^31  -1.</li><li>
-4) long: The long data type is a 64-bit two's complement integer. The signed long has a minimum value of -2^63 and a maximum value of 2^63  -1</li><li>
-5) float: The float data type is a single-precision 32-bit   floating point.</li><li> 
-6) double: The double data type is a double-precision 64-bit IEEE 754 floating point.</li><li>
-7)boolean: The boolean data type has only two possible values: true and false.</li><li>
-8)char: The char data type is a single 16-bit Unicode character. It has a minimum value of '\u0000' (or 0) and a maximum value of '\uffff' (or 65,535 inclusive).
+int: By default, the int data type is a 32-bit signed two's complement integer, which has a minimum value of -2^31 and a maximum value of 2^31  -1.</li><li>
+long: The long data type is a 64-bit two's complement integer. The signed long has a minimum value of -2^63 and a maximum value of 2^63  -1</li><li>
+float: The float data type is a single-precision 32-bit   floating point.</li><li> 
+double: The double data type is a double-precision 64-bit IEEE 754 floating point.</li><li>
+boolean: The boolean data type has only two possible values: true and false.</li><li>
+char: The char data type is a single 16-bit Unicode character. It has a minimum value of '\u0000' (or 0) and a maximum value of '\uffff' (or 65,535 inclusive).
 </li></ol></p>
 </div> 
-<hr>
+<hr color="#eee">
 <p>What are the differences between String and StringBuffer classes in Java?</p>
 <button class="accordion">Answer</button>
 <div class="panel">
@@ -80,11 +80,11 @@ public class ReadNumber {
 <li>Modification:	String object is immutable.	StringBuffer object is mutable.</li><li>
 Performance:	String  is slower during concatenation.	StringBuffer is faster during concatenation. </li><li>
 Memory: 	String Consumes more memory.  StringBuffer Consumes less memory.</li>
-<li>Storage: String uses string constant pool. String buffere uses heap Memory."
+<li>Storage: String uses string constant pool. String buffer uses heap Memory.
  </li></ul>
  </p>
 </div> 
-<hr>
+<hr color="#eee">
 <p>What are the rules for variable names in Java?,
 </p>
 <button class="accordion">Answer</button>
@@ -138,6 +138,122 @@ Also note that variable names are case sensitive. And Java names follow camel ca
    </font>
    </p>
    </div>
+   
+   <hr color="#eee">
+<p>What are the differences between break and continue?
+</p>
+<button class="accordion">Answer</button>
+<div class ="panel"> 
+<p>"break and continue are two statements used within loops.
+</p><p>
+break will stop the loop and exit it. 
+But continue will skip the current iteration of the loop and go to next iteration. </p>
+</div>
+
+<hr color="#eee">
+<p>When can a Java program use a return statement with no values - return; ? What is the use of such a statement?
+</p>
+<button class="accordion">Answer</button>
+<div class ="panel"> 
+<p>A return statement without values can be used within void functions.Such a statement is used for exiting the function.
+</p><p>
+e.g.
+  <font face="courier">
+  <pre >
+      void printSquareRoot(int num){
+           if(num<0)
+             return;
+          ....
+    }
+    </pre></font>
+</p> 
+</div>
+
+<hr color="#eee">
+<p>Write a Java program to add two binary numbers. 
+</p>
+<button class="accordion">Answer</button>
+<div class ="panel"> 
+<p>
+e.g.
+  <font face="courier">
+  <pre >
+ public class Demo {
+    public static void main(String args[]) {
+       int m = 0b110011;
+       int n = 0b101100;
+       int ans = m+n;
+       System.out.println(""The sum of two numbers is ""+Integer.toBinaryString(ans));
+    }
+}
+    </pre></font>
+</p> <p>In Java 7, a binary number is written by prefixing it with 0b. We have defined two binary numbers m and n. Then we add these using simple integer addition. Next the answer is printed using toBinaryString() method of integer class. 
+</p>
+</div>
+
+<hr color="#eee">
+<p>Write a recursive function to find factorial of a number . 
+</p>
+<button class="accordion">Answer</button>
+<div class ="panel"> 
+<p>
+e.g.
+  <font face="courier">
+  <pre >
+  int factorial(int n){
+        if(n==0)
+            return 1;
+        return n*factorial(n-1);
+    }
+    </pre></font>
+</p> <p>
+According to definition, a factorial of a number 
+<br>
+n! = n* (n-1)!
+<br>
+and 0! = 1
+<br>
+So if n is greater than 1, we are recursively calling factorial function with n-1. The base condition is n=0. If n=0, we are returning 1. "
+
+</p>
+</div>
+
+<hr color="#eee">
+<p>What is overloading of functions? Explain with the help of an example.	</p>
+
+<button class="accordion">Answer</button>
+<div class ="panel"> 
+<p>Overloading is the process where in two functions will have same name but different number of parameters or different types of parameters.</p>
+<p> During compilation,
+  the compiler will select the correct method based on the parameters passed to method.</p>
+  <br>
+  e.g.
+    
+  <pre>
+
+int sumNumbers(int n1,int n2)
+{
+   return n1+n2;
+}
+float sumNumbers(int n1,float n2,int n3)
+{
+    return n1+n2+n3;
+}
+
+
+  </pre>
+<br>
+
+<p>Now if we call the method as
+<br><br>
+int s = sumNumbers(10,20)<br>
+first method will be called.</p>
+ 
+
+<p>And if we call it as<br>
+int s2 = sumNumbers(10,1.4,88) <br>
+second method will be called.</p>
+</div>
 <script >
 var acc = document.getElementsByClassName("accordion");
 var i;
