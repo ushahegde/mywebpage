@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<title></title>
+<style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+  width: auto;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+</style>
+</head>
+<body >
+ 
+<p>What is auto boxing and unboxing?</p>
+ <button class="accordion">Answer</button>
+<div class="panel">
+  <p>Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called unboxing.
+</p>
+</div>
+<hr>
+<p>Write a program to read two numbers and print their sum.</p>
+<button class="accordion">Answer</button>
+<div class="panel">
+  <p>
+  <font face="courier">
+  <pre >
+package helloworld;
+import java.util.Scanner;
+public class ReadNumber {	
+	public static void main(String args[]) {
+		int num;
+		Scanner sc = new Scanner(System.in);
+		num = sc.nextInt();
+		int num2 = sc.nextInt();
+		System.out.println(""The sum is ""+(num+num2)); 
+	}
+}</pre>
+</font>
+</p>
+</div><hr>
+<p>What are the basic data types in Java</p>
+<button class="accordion">Answer</button>
+<div class="panel">
+  <p><ol><li>byte: The byte data type is an 8-bit signed two's complement integer.</li>
+<li>short: The short data type is a 16-bit signed two's complement integer.</li><li>
+3)int: By default, the int data type is a 32-bit signed two's complement integer, which has a minimum value of -2^31 and a maximum value of 2^31  -1.</li><li>
+4) long: The long data type is a 64-bit two's complement integer. The signed long has a minimum value of -2^63 and a maximum value of 2^63  -1</li><li>
+5) float: The float data type is a single-precision 32-bit   floating point.</li><li> 
+6) double: The double data type is a double-precision 64-bit IEEE 754 floating point.</li><li>
+7)boolean: The boolean data type has only two possible values: true and false.</li><li>
+8)char: The char data type is a single 16-bit Unicode character. It has a minimum value of '\u0000' (or 0) and a maximum value of '\uffff' (or 65,535 inclusive).
+</li></ol></p>
+</div> 
+<hr>
+<p>What are the differences between String and StringBuffer classes in Java?</p>
+<button class="accordion">Answer</button>
+<div class="panel">
+  <p><ul><li>Basic: The length of the String object is fixed.	The length of the StringBuffer can be increased.</li>
+<li>Modification:	String object is immutable.	StringBuffer object is mutable.</li><li>
+Performance:	String  is slower during concatenation.	StringBuffer is faster during concatenation. </li><li>
+Memory: 	String Consumes more memory.  StringBuffer Consumes less memory.</li>
+<li>Storage: String uses string constant pool. String buffere uses heap Memory."
+ </li></ul>
+ </p>
+</div> 
+<hr>
+<p>What are the rules for variable names in Java?,
+</p>
+<button class="accordion">Answer</button>
+<div class ="panel"> 
+<ol><li>
+ Begin with alphabet or underscore</li><li>
+ can contain only alphabets, digits and </li><li>
+can not be a keyword</li></ol>
+Also note that variable names are case sensitive. And Java names follow camel case. class Names begin with upper case letter
+ method names and field names begin with lower case.
+</div>
+<hr>
+<p>Write a Java  program to display first n Fibonacci numbers.
+</p>
+
+<button class="accordion">Answer</button>
+<div class ="panel"> 
+ <p>
+  <font face="courier">
+  <pre >
+  class Demo{
+    public static void main(String args[]){
+       Demo obj = new Demo();
+       int n;
+       System.out.println(""n="");
+       Scanner scanner  = new Scanner(System.in);
+       n = scanner.nextInt(); 
+       obj.printFib(n);	
+    }
+    void printFib(int n){
+        int fn1 = 0;
+        int fn2 = 1;
+        int fn;
+        for(int i=0;i&lt;n;i++)
+        {
+            if(i==0)
+               System.out.println("" ""+fn1);
+            else if(i==1)
+               System.out.println("" ""+fn2);
+            else
+             {
+                fn = fn1+fn2;
+                fn2 = fn1;
+                fn1 = fn;
+                System.out.println("" ""+fn);
+             }
+         }
+     }
+   }
+   </pre>
+   </font>
+   </p>
+   </div>
+<script >
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+} 
+</script>
+</body>
+</html>
