@@ -79,7 +79,7 @@ function populate() {
             var element = document.getElementById("choice" + i);
             element.innerHTML = choices[i];
             var bt = document.getElementById("btn"+i);
-            element.checked = false;
+            bt.checked = false;
             guess("btn" + i, choices[i]);
         }
  

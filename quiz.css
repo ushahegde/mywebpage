@@ -1,0 +1,25 @@
+body{
+  margin:0;
+  font-size: 16px;
+  background-color: #009688;
+  font-family: "Monteserrat";
+}
+
+ *{
+    outline:none;
+ 
+    box-shadow:auto; 
+ }
+
+.home-box{
+   border:0;
+   background-color: #ffffff; 
+   margin: 30px auto;
+   padding:30px;
+   width:300px;
+   border-radius: 30px;
+   
+}
+.btn{
+   background
+}
