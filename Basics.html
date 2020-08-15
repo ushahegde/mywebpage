@@ -1,14 +1,7 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion 
-{  background-color: #eee;  color: #444;  cursor: pointer;  padding: 10px;  width: auto;  border:none; 
- text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,
-  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none; 
-   background-color: #ddd;  overflow: hidden;}</style></head><body  >
-   <div style="background-color: #46619F; padding:10px;color: white; margin:auto;"><h1> Java Questions on Basics
-   </div></h1><hr color='#eee'>
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #eee;  color: #444; cursor: pointer;  padding: 10px;  width: auto;  border:none;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #ddd;  overflow: hidden;}.heading{ padding:20px; background-color:#38a8C3; color:white; margin:0; }</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body style="font-family:'roboto',sans-serif;"><h2 class='heading'> Java Basics Questions </h1><hr color='#eee'>
 <p>What are the basic data types in Java? </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >8 basic data types in Java are<br><br>1) byte: The byte data type is an 8-bit signed two's complement integer.<br>2)short: The short data type is a 16-bit signed two's complement integer.<br>3)int: By default, the int data type is a 32-bit signed two's complement integer, which has a minimum value of -2^31 and a maximum value of 2^31  -1.<br>4) long: The long data type is a 64-bit two's complement integer. The signed long has a minimum value of -2^63 and a maximum value of 2^63  -1<br>5) float: The float data type is a single-precision 32-bit   floating point. <br>6) double: The double data type is a double-precision 64-bit IEEE 754 floating point.<br>7)boolean: The boolean data type has only two possible values: true and false.<br>8)char: The char data type is a single 16-bit Unicode character. It has a minimum value of '\u0000' (or 0) and a maximum value of '\uffff' (or 65,535 inclusive).<br><br><br></p></div><hr color='#eee'>
-<p>What is auto boxing and unboxing?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p > Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called unboxing.<br><br>Here is the simplest example of autoboxing:<br><br>Character ch = 'a';<br></p></div><hr color='#eee'>
-<p>Write a program to read two numbers and print their sum.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>package helloworld;
-import java.util.Scanner;
+<p>What is auto boxing and unboxing?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p > Autoboxing is the automatic conversion that the Java compiler performs between the primitive types and their corresponding object wrapper classes. <br><br>For example, converting an int to an Integer, a double to a Double, and so on. The conversion of wrapper class objects to primitive types is called unboxing.<br><br>Here is the simplest example of autoboxing:<br><br>Character ch = 'a';<br><br>Here primitive value a char is converted to an object of Character class. <br></p></div><hr color='#eee'>
+<p>Write a program to read two numbers and print their sum.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 public class ReadNumber {	
 	public static void main(String args[]) {
 		int num;
@@ -18,7 +11,7 @@ public class ReadNumber {
 		System.out.println("The sum is "+(num+num2)); 
 	}
 }</pre><p>Scanner is a class which allows us to read data from a stream. The other method is to use BufferedReader.<br><br>Scanner sc = new Scanner(System.in) <br> <br>is for reading from console.<br><br>Another program but using BufferedReader is<br> ;<br>import java.io.BufferedReader;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br> <br><br>public class ReadNumber {<br>	<br>	public static void main(String args[]) {<br>		int num;<br>		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));<br>		String str;<br>		try {<br>			str = reader.readLine();<br>			num = Integer.parseInt(str);<br>            str = reader.readLine();		<br>			int num2 = Integer.parseInt(str);<br>			System.out.println("The sum is "+(num+num2)); <br>		} catch (IOException e) {<br>			// TODO Auto-generated catch block<br>			e.printStackTrace();<br>		}<br>		<br>	}<br><br>}</p></div><hr color='#eee'>
-<p>Write a Java program where a class has print method overloaded for integer and float parameters. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>public class OverloadedPrint{
+<p>Write a Java program where a class has a method called  print which is overloaded for integer and float parameters. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>public class OverloadedPrint{
      void print(int num)
      {
         System.out.println("intger number is "+num);
@@ -80,7 +73,7 @@ public class MatrixSum
    }
 }
 </pre></div><hr color='#eee'>
-<p>A magic square of order n is an arrangement of n × n numbers, usually distinct integers, in a square, such that the n numbers in all rows, all columns, and both diagonals sum to the same constant
+<p>A magic square of order n is an arrangement of n × n numbers in a square, such that the n numbers in all rows, all columns, and both diagonals add to the same constant.
 
 Write a program to read nXn numbers and find if these numbers form a magic square. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 class maginsquare{
@@ -136,15 +129,15 @@ class maginsquare{
 }
 </pre><p>We have defined a two dimensional array matrix and read its elements. We have used a function called isMagicSquare which returns false whenever any of the conditions is false - if rowsums are not equal, if column sums are not equal or if diagonal sums are not equal.<br><br>The program is a good example for the use of 2d arrays and functions with 2d array parameters.<br></p></div><hr color='#eee'>
 <p>What is the output of this code?</p><pre class='courier'>class evaluate {
-public static void main(String args[]) {
-int arr[] = new int[] {0 , 1, 2, 3, 4, 5, 6, 7, 8, 9};
-int n = 6;
-n = arr[arr[n] / 2];
-System.out.println(arr[n] / 2);
-} 
+   public static void main(String args[]) {
+        int arr[] = new int[] {0 , 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int n = 6;
+        n = arr[arr[n] / 2];
+        System.out.println(arr[n] / 2);
+   } 
 }</pre><button class='accordion'>Answer</button><div class='panel'><p >Output is 1</p></div><hr color='#eee'>
-<p>What are the differences between String and StringBuffer classes</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Basic: The length of the String object is fixed.	The length of the StringBuffer can be increased.<br><br>Modification:	String object is immutable.	StringBuffer object is mutable.<br><br>Performance:	String  is slower during concatenation.	StringBuffer is faster during concatenation. <br><br>Memory: 	String Consumes more memory.  StringBuffer Consumes less memory.<br><br>Storage: String uses string constant pool. String buffere uses heap Memory.</p></div><hr color='#eee'>
-<p>What are the rules for variable names in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >1) Begin with alphabet or underscore<br>2) can contain only alphabets, digits and _<br>3) can not be a keyword<br><br>Also not that variable names are case sensitive. And Java names follow camel case. <br><br>1) class Names begin with upper case letter<br>2) method names and field names begin with lower case. </p></div><hr color='#eee'>
+<p>What are the differences between String and StringBuffer classes</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >length: The length of the String object is fixed.	The length of the StringBuffer can be increased.<br><br>Modification:	String object is immutable.	StringBuffer object is mutable.<br><br>Performance:	String  is slower during concatenation.	StringBuffer is faster during concatenation. <br><br>Memory: 	String Consumes more memory.  StringBuffer Consumes less memory.<br><br>Storage: String uses string constant pool. String buffere uses heap Memory.</p></div><hr color='#eee'>
+<p>What are the rules for variable names in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >1) Begin with alphabet or underscore<br>2) can contain only alphabets, digits and _<br>3) can not be a keyword<br><br>Also note that variable names are case sensitive. And Java names follow camel case - capitalizing first letter of each word.<br><br>1) class Names begin with upper case letter<br>2) method names and field names begin with lower case. </p></div><hr color='#eee'>
 <p>Write a Java  program to display first n Fibonacci numbers.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 class Demo{
     public static void main(String args[]){
@@ -175,8 +168,8 @@ class Demo{
          }
      }
    }
-</pre><p>A Fibonacci number fn is equal to fn-1 + fn-2. The first two elements are 0 and 1.</p></div><hr color='#eee'>
-<p>How is a package created in Java program? </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >To create a package, you choose a name for the package and put a package statement with that name at the top of every source file that contains the types (classes, interfaces, enumerations, and annotation types) that you want to include in the package. <br><br>e.g.<br>package calc;<br>public class ABC{<br>    ....<br>}<br><br><br><br>If you do not use a package statement, your type ends up in an unnamed package.</p></div><hr color='#eee'>
+</pre><p>A Fibonacci number fn is equal to fn-1 + fn-2. The first two fibonacci numbers are are 0 and 1.</p></div><hr color='#eee'>
+<p>How is a package created in Java program? </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >To create a package, you choose a name for the package and put a package statement with that name at the top of every source file that contains the types (classes, interfaces, enumerations, and annotation types) <br><br>e.g.<br>package calc;<br>public class ABC{<br>    ....<br>}<br><br><br><br>If you do not use a package statement, your type ends up in an unnamed package.<br><br>The standard practice is to use inverted company name in the begining of package. <br><br>e.g.<br> package com.google.somepackage;</p></div><hr color='#eee'>
 <p>Write a Java program to find the median of an array. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Arrays;
 import java.util.Scanner;
 
@@ -202,9 +195,9 @@ public class ArrayMedian {
     }
 }
 </pre><p>A median is an element of an array which as equal number of values which are greater and smaller than itself.  <br><br>For a sorted array median is just the middle element. But if the array has even number of elements the median is half of sum of two middle elements. </p></div><hr color='#eee'>
-<p>What are the differences between break and continue.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >break and continue are two statements used within loops.<br><br>break will stop the loop and exit it. But continue will skip the current iteration of the loop and go to next iteration. </p></div><hr color='#eee'>
+<p>What are the differences between break and continue statements?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >break and continue are two statements used within loops.<br><br>break will stop the loop and exit it. But continue will skip the current iteration of the loop and go to next iteration. <br><br>for(int i=0;i&lt;10;i++){<br>    if(i==2)<br>       continue;<br>    if(i==5)<br>        break;<br>    System.out.println(i);<br>}<br><br>The code will print 0 1 3 4. continue will skip the i value of 2. And break will terminate the loop when i is 5.<br><br><br>break is also used to exit a case in switch statement.<br><br>e.g.<br>   switch(m){<br>      case 1: System.out.println("one");<br>                   break;<br>       case 2: System.out.println("two");<br>                   break;<br>   }<br><br>If we omit break, then for m = 1, the output will be both one and two. </p></div><hr color='#eee'>
 <p>With an example, explain static block.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A static block or static initializer block is executed only once when the class is loaded. It is a block of code used to initialize static variables. <br><br>A static block is written in a class with the keyword static. <br><br>e.g.<br>class A{<br>   static int m;<br>   static {<br>     m = 100;<br>   }<br>  int getM(){<br>     return m;<br>  }<br>}<br>class Demo{<br>    public static void main(String args[]){<br>       A obj = new A();<br>       System.out.println(obj.getM());<br>   }<br>}<br><br>In the above class, static block is used to initialize static variable m. <br><br>Also note that you can also have instance block in a class. It is written similar to static block, but without static keyword. And an instance block is added by the compiler to all the constructors of the class. </p></div><hr color='#eee'>
-<p>What are wrapper classes?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Wrappers are classes which enclose primitive data types into objects. <br><br>Many classes - e.g. collection frame work, do not work with primitive data types. In such cases, we can use wrapper classes which are compatible with primitive types. These are Integer, Float, Double etc. They can be typecast to their primitive counterparts. <br></p></div><hr color='#eee'>
+<p>What are wrapper classes?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Wrappers are classes which enclose primitive data types into objects. <br><br>These are Integer, Float, Double etc. They can be typecast to their primitive counterparts. <br><br>e.g.<br>  Integer m = 1;<br>  <br>Here m is not a primitive variable but an object of Integer class.<br><br>Many classes - e.g. collection frame work, do not work with primitive data types. In such cases, we can use wrapper classes which are compatible with primitive types. <br></p></div><hr color='#eee'>
 <p>Write a program to read a line and find out how many vowels and consonants are present in the line.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 
 public class StringTest {
@@ -233,25 +226,24 @@ public class StringTest {
     }
 }
 </pre></div><hr color='#eee'>
-<p>When can a Java program use a return statement with no values - return; ? What is the use of such a statement?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A return statement without values cab be used within void functions.<br><br>Such a statement is used for exiting the function.<br><br>e.g.<br>      void printSquareRoot(int num){<br>           if(num&lt;0)<br>             return;<br>          ....<br>    }</p></div><hr color='#eee'>
+<p>When can a Java program use a return statement with no values? What is the use of such a statement?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A return statement without values cab be used within void functions.<br><br>Such a statement is used for exiting the function.<br><br>e.g.<br>      void printSquareRoot(int num){<br>           if(num&lt;0)<br>             return;<br>          ....<br>    }</p></div><hr color='#eee'>
 <p>The following code does not compile. Why?</p><pre class='courier'>public class StringyThing {
-public static void main(String[] args) {
-String s = new String("Hello world");
-System.out.println(s);
-}
+   public static void main(String[] args) {
+      String s = new String("Hello world");
+      System.out.println(s);
+   }
 }
  
 class String {
-private final java.lang.String s;
- 
-public String(java.lang.String s) {
-this.s = s;
-}
-public java.lang.String toString() {
-return s;
-}
- 
-}</pre><button class='accordion'>Answer</button><div class='panel'><p >main() method which is the starting point of execution of Java program requires an array of String objects. But as the String class is redefined, the program tries to uses main function with this new String class. That is the reason the program does not compile. </p></div><hr color='#eee'>
+    private final java.lang.String s; 
+    public String(java.lang.String s) {
+         this.s = s;
+    }
+    public java.lang.String toString() {
+        return s;
+    }
+ }</pre><button class='accordion'>Answer</button><div class='panel'><p >main() method which is the starting point of execution of Java program requires an array of String objects. But as the String class is redefined, the program tries to use main function with this new String class. That is the reason the program does not compile. </p></div><hr color='#eee'>
+<p>What is a recursion? What is tail call recursion?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Recursion is the process in which a function calls itself. <br><br>A typical example of recursion in Mathemetics is factorial function.<br>  <br>    n! = n * n-1!<br><br>A recursive method has a statement which calls itself. <br><br>Infinite loop : If there is no base condition where there is no recursive call in a recursive method, then the execution never ends. At some point, there will be a crash because of stack overflow. <br><br>Every recursive method must have a base condition which if true, there is no recursive call.<br><br>e.g.<br>int factorial(){<br>     if(n==0)//base condition<br>        return 1;<br>    else<br>       return n* factorial(n-1);<br>}<br><br>Tail call recursion is a method where recursive call is the last statement in the method. <br></p></div><hr color='#eee'>
 <p>Write a program to add two binary numbers in Java. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>public class OnlyDigits {
     public static void main(String args[]) {
        int m = 0b110011;
@@ -276,7 +268,7 @@ n! = n* (n-1)!
 and 0! = 1
 
 So if n is greater than 1, we are recursively calling factorial function with n-1. The base condition is n=0. If n=0, we are returning 1. </pre></div><hr color='#eee'>
-<p>Does Java send values to functions using call by value or call by reference?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Values are sent to functions using call by value method. <br><br>Which means that if the parameters are modified in the function, the arguments in caller will not be modified. </p></div><hr color='#eee'>
+<p>Does Java send arguments to functions using call by value method or call by reference method?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Arguments are sent to functions using call by value method. <br><br>Which means that if the parameters are modified in the function, the arguments in caller will not be modified. <br><br>e.g.<br>class Demo{<br>    static void changeNumber(int n){<br>         n = n+100;<br>         System.out.println(n);<br>    }<br>    public static void main(String args[]){ <br>       int a= 10;<br>       changeNumber(a);<br>       System.out.println(a);<br>   }<br>}<br><br>The output is 110 10 <br><br>As a is passed using call by value, a is not changed in main function and remains 10 only. </p></div><hr color='#eee'>
 <p>Write a program to find LCM of two numbers.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 class Demo{
   int gcd(int n1,int n2){
@@ -301,7 +293,18 @@ class Demo{
    
   }
  }
-</pre><p>LCM is least common multiple of two numbers. You can find LCM by finding the GCD (greatest common divisor - the largest number which divides both given numbers) and then dividing the product by this GCD. <br><br>Because n1 * n2 = LCM *GCD<br><br>GCD can be found using recursive algorithm<br><br>gcd of n1, n2 = n2 if n1 is divisible by n2<br>                     = gcd of n2, n1%n2 if not divisible<br><br></p></div><hr color='#eee'>
+
+
+LCM is least common multiple of two numbers. You can find LCM by finding the GCD (greatest common divisor - the largest number which divides both given numbers) and then dividing the product by this GCD. 
+
+Because n1 * n2 = LCM *GCD
+
+GCD can be found using recursive algorithm
+
+gcd of n1, n2 = n2 if n1 is divisible by n2
+                     = gcd of n2, n1%n2 if not divisible
+
+</pre></div><hr color='#eee'>
 <p>Write a program to find all the prime factors of a given number.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 import java.lang.Math;
 class PrimeFactors{
@@ -347,56 +350,6 @@ class PrimeFactors{
 }
  
 </pre></div><hr color='#eee'>
-<p>Write a program to demonstrate the serialization process. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.io.*;
-class A implements java.io.Serializable{
-    String name;
-    int num;
-    A(String name,int num){
-       this.name = name;
-       this.num = num;
-    }
-    String getName(){
-      return name;
-    }
-}
-class Serialize {
-
-      static void deserialize(){
-          A obj = null;
-          try{
-          FileInputStream instream = new FileInputStream("employee.ser");
-          ObjectInputStream objStream = new ObjectInputStream(instream);
-          obj = (A ) objStream.readObject();
-          System.out.println("name is"+obj.getName());
-          objStream.close();
-          instream.close();
-          }
-          catch(IOException e){
-               e.printStackTrace();
-               return;
-          }
-          catch(ClassNotFoundException e){
-              e.printStackTrace();
-              return;
-          }
-      }
-      public static void main(String args[]){
-           A obj = new A("Mark",100);
-             try {
-               FileOutputStream fileOut =
-                   new FileOutputStream("employee.ser");
-               ObjectOutputStream out = new ObjectOutputStream(fileOut);
-               out.writeObject(obj);
-               out.close();
-               fileOut.close();
-               System.out.printf("Serialized data is saved in employee.ser");
-      } catch (IOException i) {
-         i.printStackTrace();
-      }
-      deserialize();
-     }
-}
-</pre></div><hr color='#eee'>
 <p>Write a program to read a number and print whether the number is prime or not.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 class prime{
    boolean isPrime(int n){
@@ -421,7 +374,7 @@ class prime{
    }
 }
 </pre></div><hr color='#eee'>
-<p>Can we declare main() method as private?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >main() method is the starting point of execution of java program. So JVM needs to have access to the main method. If it is private, outside programs can not access the method. That is the reason, main() method should be public.<br><br>If we make the method as private, there won't be any compile timer error - there will be a run time error. </p></div><hr color='#eee'>
-<p>Is String a primitive data type in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >No.<br><br>String is not a primitive data type. But it is a library class java.lang.String.<br><br>Java has char as primitive data type, which stores one character. </p></div><hr color='#eee'>
-<p>Why Strings in Java are called immutable?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Because once defined a String object can not be changed. If the String variable is changed, a new object is created. </p></div><hr color='#eee'>
-<p>Explain break statement in Java program.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >break is used after each case in a switch so that code breaks after the matching case and doesn't continue the execution of subsequent cases as well. <br><br>e.g.<br>   switch(option){<br>       case 1: ans = num1+num2;<br>                    break;<br>       case 2: ans = num1 - num2;<br>                    break;<br>   }<br><br>break in a loop - for loop, while loop or do-while loop, will terminate the loop. It is used for stopping the loop execution in the middle when certain condition is met. <br><br>for(int i=0;i&lt;10;i++){<br>     int n = scanner.nextInt();<br>     if(n==-1)<br>       break;<br>     sum+=n;<br>}</p></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+<p>Can we declare main() method as private?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >No.<br><br>main() method is the starting point of execution of java program. So JVM needs to have access to the main method. If it is private, outside programs can not access the method. That is the reason, main() method should be public.<br><br>If we make the method as private, there won't be any compile timer error - there will be a run time error. </p></div><hr color='#eee'>
+<p>Is String a primitive data type in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >No.<br><br>String is not a primitive data type. But it is a library class java.lang.String.<br><br>Java has char as primitive data type, which stores one character. You can use an array of chars to store a string. </p></div><hr color='#eee'>
+<p>Why Strings in Java are called immutable?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Because once defined, a String object can not be changed. If the String variable is changed, a new object is created. </p></div><hr color='#eee'>
+<p>Explain break statement in Java program.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >break is used after each case in a switch so that code breaks after the matching case and doesn't continue the execution of subsequent cases as well. <br><br>e.g.<br>   switch(option){<br>       case 1: ans = num1+num2;<br>                    break;<br>       case 2: ans = num1 - num2;<br>                    break;<br>   }<br><br>break in a loop: In for loop, while loop or do-while loop, break statement will terminate the loop. It is used for stopping the loop execution in the middle when certain condition is met. <br><br>for(int i=0;i&lt;10;i++){<br>     int n = scanner.nextInt();<br>     if(n==-1)<br>       break;<br>     sum+=n;<br>}</p></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

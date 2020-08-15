@@ -1,15 +1,21 @@
  function Quiz(questions) {
     this.score = 0;
-    this.questions = questions;
+    this.questions = shuffle(questions);
+    this.totalQuestions = 10;
     this.questionIndex = 0;
  
 }
- 
- function showNextQuestion() {
- 	console.log("in next question");
-   quiz.questionIndex++;
-   populate();
- }
+  function shuffle(arra1) {
+    var ctr = arra1.length, temp, index; 
+    while (ctr > 0) { 
+        index = Math.floor(Math.random() * ctr); 
+        ctr--; 
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
+}
 Quiz.prototype.getQuestionIndex = function() {
     return this.questions[this.questionIndex];
 }
@@ -39,7 +45,7 @@ Quiz.prototype.guess = function(answer,button) {
 }
  
 Quiz.prototype.isEnded = function() {
-    return this.questions.length==this.questionIndex;
+    return this.totalQuestions==this.questionIndex;
 }
  
  
@@ -98,7 +104,7 @@ function showProgress() {
     var currentQuestionNumber = quiz.questionIndex + 1;  
     var element = document.getElementById("progress");
    
-    element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.questions.length;
+    element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.totalQuestions;
    
 };
  
@@ -109,6 +115,10 @@ function showScores() {
     element.innerHTML = gameOverHTML;
 };
 
+function showNextQuestion() { 	
+   quiz.questionIndex++;
+   populate();
+ }
 var questions = [new Question("In Java, the data types byte, short, long, int all these data types are <br><br><div class='codetext'><br></div>",["signed","unsigned","both","None of the above"],1),
 new Question("Size of int in Java language is <br><br><div class='codetext'><br></div>",["16 bit","32 bit","64 bit","None of the above"],2),
 new Question("What is the output of the following program?<br><br><div class='codetext'>public&nbsp;class&nbsp;Test&nbsp;{	<br>		public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;args[])&nbsp;{<br>			int&nbsp;x&nbsp;=&nbsp;10;<br>			if&nbsp;(x>10)&nbsp;{<br>				int&nbsp;y=5;<br>			}<br>			System.out.println('The&nbsp;values&nbsp;of&nbsp;x&nbsp;and&nbsp;y&nbsp;are&nbsp;'+x+'and&nbsp;'+y);<br>		}<br>}<br></div>",["10 5","10 0","10 10","Compilation error"],4),
