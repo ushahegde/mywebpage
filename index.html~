@@ -95,9 +95,9 @@ Java MCQ questions
  		 <a href="objBasics.html">Basics</a>	
  	 <a href="objClasses.html">Classes</a>			 
 		<a href="objInheritance.html">Inheritance</a>		
-		<a href="objFileHandling.html">File Handling</a>		
+		<a href="objFilehandling.html">File Handling</a>		
 		<a href="objExceptionHandling.html">Exception Handling</a>		
-		<a href="objThreadHandling.html">Threads</a>		
+		<a href="objThreadhandling.html">Threads</a>		
 		<a href="objStrings.html">Strings</a>	
 		<a href="objAdvanced.html">Advanced</a>			
 		 
