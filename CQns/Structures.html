@@ -1,0 +1,387 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Structures Questions </h1><div class='main'><div class='question'>1. Consider the following C declaration
+
+struct {
+    short s [5]
+    union {
+         float y;
+         long z;
+    }u;
+} t;
+Assume that objects of the type short, float and long occupy 2 bytes, 4 bytes and 8 bytes, respectively. The memory requirement for variable t, ignoring alignment considerations, is -------</p><button class='accordion'>Answer</button><div class='panel'><p >18</p></div></div> <div class='question'>2. What will be output when you will execute following c code?
+
+#include&lt;stdio.h&gt;
+const enum Alpha{
+      X,
+      Y=5,
+      Z
+}p=10;
+int main(){
+    enum Alpha a,b;
+    a= X;
+    b= Z;
+    printf("%d",a+b-p);
+    return 0;
+}
+</p><button class='accordion'>Answer</button><div class='panel'><p >-4</p></div></div> <div class='question'>3. Write output of the following program
+
+#include‹stdio.h›
+int main()
+{
+    struct st
+    {
+        char name[] = "hello world";
+        int num = 200;
+    };
+    struct st *ptr;
+    printf("%d ", ptr-&gt;num);
+    printf("%s", ptr-&gt;name);
+
+    return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Compilation error</pre></div></div> <div class='question'>4. Assume that size of an integer is 32 bit. What is the output of following program?
+
+#include&lt;stdio.h&gt;
+struct st
+{
+    int x;
+    static int y;
+};
+
+int main()
+{
+    printf("%d", sizeof(struct st));
+    return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >Compilation error</p></div></div> <div class='question'>5. struct node
+{
+   int i;
+   float j;
+};
+struct node *s[10];
+
+What is the type of s in the above code?</p><button class='accordion'>Answer</button><div class='panel'><p >s is an array of 10 pointers to structure node. </p></div></div> <div class='question'>6.  What will be output of following c code?
+
+int  main()
+{
+struct bitfield
+{
+signed int a:3;
+unsigned int b:13;
+unsigned int c:1;
+};
+struct bitfield bit1={2,14,1};
+printf("%d",sizeof(bit1));
+}</p><button class='accordion'>Answer</button><div class='panel'><p >4 </p></div></div> <div class='question'>7. What is the output of following C code?
+
+main()
+{
+   struct emp
+   {
+     char name[20];
+     int age;
+     float sal;
+   };
+   struct emp e ={"Tiger"}
+   printf("%d %f",e.age,e.sal);
+}</p><button class='accordion'>Answer</button><div class='panel'><p >0 0.00000</p></div></div> <div class='question'>8. What is the output of this C code?
+
+        #include &lt;stdio.h&gt;
+        struct student
+        {
+            char *name;
+        };
+        struct student s[2], r[2];
+        int  main()
+        {
+            s[0].name = "alan";
+            s[1] = s[0];
+            r = s;
+            printf("%s%s", r[0].name, r[1].name);
+        }
+</p><button class='accordion'>Answer</button><div class='panel'><p >Compilation Error</p></div></div> <div class='question'>9. struct p
+{int a;
+  char b;
+};
+int main()
+{
+    struct p p1[] = {1, 92, 3, 94, 5, 96};
+    struct p *ptr1 = p1;
+}
+
+What are p1 and ptr in the above program?</p><button class='accordion'>Answer</button><div class='panel'><p >p1 is an array of 3 structures because it has totally 6 initial values.<br><br>ptr is a pointer pointing to p1[0]</p></div></div> <div class='question'>10. What is the output of this C code?
+
+        #include &lt;stdio.h&gt;
+        struct student
+        {
+            char *c;
+        };
+        int  main()
+        {
+            struct student *s;
+            s-&gt;c = "hello";
+            printf("%s", s-&gt;c);
+       }
+</p><button class='accordion'>Answer</button><div class='panel'><p >Run time error. Segmentation fault</p></div></div> <div class='question'>11. What is the output of the following program?
+    struct q
+    {
+        int *x;
+    };
+    int main()
+    {
+
+        struct q *ptr;
+        ptr = (struct q*)malloc(sizeof(struct q));
+        *(ptr-&gt;x)=15;
+        printf("%d",*(ptr-&gt;x));
+        return 0;
+      }</p><button class='accordion'>Answer</button><div class='panel'><p >Run time error. Segmentation fault</p></div></div> <div class='question'>12. What is a self referential stucture? Where is it used?</p><button class='accordion'>Answer</button><div class='panel'><p >The structure with one of the members as pointer to same structure is called self referential structure.<br><br>struct node<br>{<br>   int val;<br>   struct node *ptr;<br>};<br><br>node is a self referential structure.<br><br>Self referential structures are building blocks of linked lists, trees, queues etc. </p></div></div> <div class='question'>13. What is the output of the following program?
+
+        #include &lt;stdio.h&gt;
+        struct student
+        {
+            char *c;
+            struct student *pointer;
+        };
+        int  main()
+        {
+            struct student s;
+            struct student m;
+            m.pointer = &s;
+            (m.pointer)-&gt;c = "hey";
+            printf("%s", s.c);
+       }</p><button class='accordion'>Answer</button><div class='panel'><p >hey</p></div></div> <div class='question'>14.  #include &lt;stdio.h&gt;
+  union temp
+   {
+      int a;
+      float b;
+      char c;
+    };
+   union temp t1 ; t1.a=66;
+
+What will be the value of temp.c after the above statements?</p><button class='accordion'>Answer</button><div class='panel'><p >66</p></div></div> <div class='question'>15. What's the difference between these two declarations?
+
+	struct X1 { ... };
+	typedef struct { ... } X2;</p><button class='accordion'>Answer</button><div class='panel'><p >X1 is a structure tag. So a variable should be declared as<br><br>sturct X1 s1;<br><br>X2 is a type. Hence a structure using X2 can be defined without using struct keyword<br><br>X2 s1;</p></div></div> <div class='question'>16. What is the size of
+ struct a{int i;char c}?
+
+ Why is it not 5 bytes?</p><button class='accordion'>Answer</button><div class='panel'><p >Because of structure padding.<br><br>For faster access, each member of structure is aligned to word boundaries. This causes padding to be added in between members.<br><br>So after c of the structure 3 bytes are padded  in a 32 bit machine. Hence size of struct is 8 bytes.<br><br>Avoidance of padding is implementation dependant. In gcc compiler it is done using<br>__attribute__((__packed__))<br></p></div></div> <div class='question'>17. Can the members of union be initialized? If yes, how? </p><button class='accordion'>Answer</button><div class='panel'><p >In ANSI 89 standard, only first member of union be initialized. But in C99 standard, different members can be initialized using a syntax such as<br><br>union  aaa<br>{<br>int val;char ch;<br>} ;<br>union aaa temp =<br> {.ch='P',.val=44};<br><br>And union will have the value assigned last.</p></div></div> <div class='question'>18. Can we initialize members of struct in any order? If yes, how?</p><button class='accordion'>Answer</button><div class='panel'><p >In C99 standard it is possible using initializer of the type<br><br>struct st s1 = {.val = 600,.ch='A'};</p></div></div> <div class='question'>19. What is the output of the following program?
+
+#include&lt;stdio.h&gt;
+enum m {a=6,b,c,d=3,e};
+int main()
+{
+   enum m temp;
+   temp = e;
+   printf("%d",temp);
+   return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >4</p></div></div> <div class='question'>20. What are bit fields? How are they used?</p><button class='accordion'>Answer</button><div class='panel'><p >A structure or a union may contain small fields which occupy n number of bits. Their usefulness is limited.<br><br>struct aa<br>{<br>    int a:3;<br>    unsigned int b:2;<br>    int m;<br>};<br><br>Here a is occupying 3 bits and b occupies 2 bits.<br><br>The only types allowed for bit fields are signed or unsigned ints. <br><br>You can not take address of a bit field.</p></div></div> <div class='question'>21. What is the output of the program?
+
+#include&lt;stdio.h&gt;
+int main()
+{
+    enum color{red, green, blue};
+    typedef enum color mycolor;
+    mycolor m = red;
+    printf("%d", m);
+    return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >0</p></div></div> <div class='question'>22. What will be the output of the program?
+
+#include&lt;stdio.h&gt;
+typedef struct error
+ {
+int warning, err, exception;
+} ERROR;
+int main()
+{
+    ERROR e;
+    e.err=1;
+    printf("%d\n", e.err);
+    return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >1</p></div></div> <div class='question'>23. In the following code snippet can we declare a new typedef named ptr even though struct employee has not been completely declared while using typedef?
+
+typedef struct employee *ptr;
+struct employee
+{
+    char name[20];
+    int age;
+    ptr next;
+};</p><button class='accordion'>Answer</button><div class='panel'><p >yes</p></div></div> <div class='question'>24. Is the following code valid? If yes what are n and p?
+
+typedef long no, *ptrtono;
+no n;
+ptrtono p;
+</p><button class='accordion'>Answer</button><div class='panel'><p >n is long integer and p is a pointer to long integer.</p></div></div> <div class='question'>25. Write a program to check if two rectangles overlap</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+struct rect
+{
+   int x,y;
+   int len,wid;
+};
+int overlap(struct rect r1,struct rect r2);
+int main()
+{
+    struct rect r1,r2;
+    printf("Enter rectangle 1 x,y,length and width:");
+    scanf("%d %d %d %d",&r1.x,&r1.y,&r1.len,&r1.wid);
+    printf("Enter rectangle 2 x,y,length and width:");
+    scanf("%d %d %d %d",&r2.x,&r2.y,&r2.len,&r2.wid);
+    if(overlap(r1,r2))
+       printf("The rectangles overlap");
+    else
+       printf("They don't overlap");
+    return 0;
+}
+
+int overlap(struct rect r1,struct rect r2)
+{
+    if(r1.x&gt;r2.x  && (r1.x-r2.x) &lt; r1.len)
+       return 1;
+    if(r1.x==r2.x)
+       return 1;
+    if(r2.x &gt;r1.x && (r2.x-r1.x) &lt; r2.len)
+      return 1;
+    if(r1.y&gt;r2.y  && (r1.y-r2.y) &lt; r1.wid)
+       return 1;
+    if(r1.y==r2.y)
+       return 1;
+    if(r2.y &gt;r1.y && (r2.y-r1.y) &lt; r2.wid)
+      return 1;
+   return 0;
+}
+</pre></div></div> <div class='question'>26. Write a fucntion to find if two triangles are equal. Two triangles are equal if they have same 3 vertices.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+struct point
+{
+   int x;
+   int y;
+};
+struct triangle
+{
+   struct point p1;
+   struct point p2;
+   struct point p3;
+};
+int equal_points(struct point p1,struct point p2)
+{
+    if(p1.x==p2.x && p1.y == p2.y)
+      return 1;
+    return 0;
+}
+int equal_triangles(struct triangle t1, struct triangle t2)
+{
+   if( equal_points(t1.p1,t2.p1)
+       &&  (   (equal_points(t1.p2,t2.p2) &&  equal_points(t1.p3,t2.p3))
+              || (equal_points(t1.p3,t2.p2) &&  equal_points(t1.p2,t2.p3) )
+           )
+       )
+            return 1;
+
+   if( equal_points(t1.p1,t2.p2)
+       &&  (   (equal_points(t1.p2,t2.p3) &&  equal_points(t1.p3,t2.p1))
+              || (equal_points(t1.p2,t2.p1) &&  equal_points(t1.p3,t2.p3) )
+           )
+      )
+           return 1;
+
+ if( equal_points(t1.p1,t2.p3)
+       &&  (   (equal_points(t1.p2,t2.p1) &&  equal_points(t1.p3,t2.p2))
+              || (equal_points(t1.p2,t2.p1) &&  equal_points(t1.p3,t2.p2) )
+           )
+     )
+            return 1;
+   return 0;
+}
+
+
+int main()
+{
+    struct triangle t1, t2;
+    printf("Enter the points  of the triangle 1:");
+    scanf("%d %d %d %d %d %d",&t1.p1.x,&t1.p1.y,
+                              &t1.p2.x,&t1.p2.y,
+                              &t1.p3.x,&t1.p3.y);
+    printf("Enter the points  of the triangle 2:");
+    scanf("%d %d %d %d %d %d",&t2.p1.x,&t2.p1.y,
+                              &t2.p2.x,&t2.p2.y,
+                              &t2.p3.x,&t2.p3.y);
+
+     equal_triangles(t1,t2)?printf("equal triangles"):
+                printf("not equal triangles");
+    return 0;
+}</pre></div></div> <div class='question'>27. Write a function to read the structure point with two members x and y. Use this function to read two points and find the distance between them.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+struct point
+{
+   float x;
+   float y;
+};
+void read_point(struct point *ptr)
+{
+    printf("Enter point:");
+    scanf("%f %f",&ptr-&gt;x,&ptr-&gt;y);
+}
+int main()
+{
+   struct point p1,p2;
+   float distance ;
+   read_point(&p1);
+   read_point(&p2);
+   distance = sqrt( (p2.x-p1.x)*(p2.x-p1.x) + (p2.y-p1.y)*(p2.y-p1.y));
+   printf("The distance between ( %.2f,%.2f) and ( %.2f,%.2f) is %.2f\n",p1.x,p1.y,p2.x,p2.y,distance);
+   return 0;
+}</pre></div></div> <div class='question'>28. Write a function to read name and id of a student and return these.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+struct student
+{
+   int id;
+   char name[40];
+};
+struct student read_info()
+{
+    struct student temp;
+    printf("Enter id and name:");
+    scanf("%d %s",&temp.id,temp.name);
+    return temp;
+}
+int main()
+{
+    struct student s1 = read_info();
+    printf("Student's name is %s and id is %d",s1.name,s1.id);
+    return 0;
+}
+</pre></div></div> <div class='question'>29. Write a program to read names and salaries of 10 employees and print the name of employee who gets highest salary.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+typedef struct  
+{
+   char name[40];
+   float salary;
+}  EMPL;
+EMPL read_empl()
+{
+   EMPL temp;
+   printf("Enter name:");
+   scanf("%s",temp.name);
+   printf("Enter salary:");
+   scanf("%f",&temp.salary);
+   return temp;
+}
+
+EMPL find_largest_salary(EMPL arr[],int size)
+{
+    int i;
+    int l = 0; 
+    for(i=1;i&lt;size;i++)
+       if(arr[i].salary&gt;arr[l].salary)
+          l = i;
+    return arr[l];
+}
+
+int main()
+{
+    EMPL arr[10];
+    EMPL rich;
+    int i;
+    for(i=0;i&lt;10;i++)
+       arr[i] = read_empl();
+ 
+    rich = find_largest_salary(arr,10);
+    printf("%s gets highest salary and his salary is %.2f\n",rich.name,rich.salary);
+    return 0;
+}
+
+    </pre></div></div> <div class='question'>30. How do you define a structure variable? How do you access members of a structure?</p><button class='accordion'>Answer</button><div class='panel'><p >First a structure is declared using the syntax<br><br>struct tag-name<br>{<br>    data-type var-name;<br>    data-type var-name;<br>    ....<br>};<br><br>This is declaration of a data type.<br><br>e.g<br>  struct student<br>  {<br>      int id;<br>      char name[30];<br>      float marks;<br>   };<br><br>Here we are declarating a data type called struct student. We have not yet defined any variable.<br><br>To define a variable of struct type, we use struct keyword , tag and variable name.<br><br>e.g.<br>  struct student s1;<br><br>s1 is a variable of type struct student.<br><br>To access members of structure variable, dot operator is used(.)<br><br>s1.id = 3;<br>strcpy(s1.name,"Richie");<br><br></p></div></div> <div class='question'>31. How do you send a structure to a function? Can a function return a structure?</p><button class='accordion'>Answer</button><div class='panel'><p >A structure is sent to a function as a parameter by specifying struct its tag and variable name.<br><br>void print_details(struct student s1)<br>{<br>    printf("Name is %s\n",s1.name);<br>    ....<br>}<br><br>But structure parameter is sent using call by value method.<br><br>If the function must modify the structure, it can be sent using pointer.<br><br>void read_details(struct student *sptr)<br>{<br>    scanf("%d",&sptr-&gt;id);<br>    scanf("%s",sptr-&gt;name);<br>   ...<br>}<br><br>int main()<br>{<br>    struct student s1;<br>     read_details(&s1);<br>    print_details(s1);<br>}<br><br><br>A function can return a structure.<br><br>struct student read()<br>{<br>   struct student temp;<br>   ....<br>   return temp;<br>}</p></div></div> <div class='question'>32. How do you define a union?</p><button class='accordion'>Answer</button><div class='panel'><p >A union is similar to a structure. It can have different fields of different types. But at any time, only one field is active. And size of union is not sum of sizes of members but size of largest member.<br><br>union tag<br>{<br>   type field;<br>   type field;<br>   ..<br>};<br><br>e.g.<br> <br>union abc<br>{<br>    int n1;<br>    float n2;<br>    double n3;<br>};<br><br>union abc s1;<br>    </p></div></div> <div class='question'>33. Define a type which is an array of 10 integers as INTARR. Define a data type pointer to pointer to integer as DBLPTR. </p><button class='accordion'>Answer</button><div class='panel'><p >typedef int [10] INTARR;<br>typedef int **DBLPTR;<br></p></div></div> <div class='question'>34. How do you initialize a structure? </p><button class='accordion'>Answer</button><div class='panel'><p >A structure is initialized at the time of definition by giving values in curly brackets. <br><br>Partially initialized structure is 0 filled.<br><br>struct point<br>{<br>    float x,y;<br>};<br>int main()<br>{<br>   struct point p1 = {1.4,2.1};<br>   struct point p2 = {9.1};<br> <br>   printf("p1 is (%f,%f)",p1.x,p1.y);<br>   printf("p2 is (%f,%f)",p2.x,p2.y);<br>}<br>}<br></p></div></div> <div class='question'>35. What is an enum? How do you use it?</p><button class='accordion'>Answer</button><div class='panel'><p >An enum is a data type which consists of named values which can be used as constants in program.<br><br>enum color {black,white,red,green};<br>int c = black;<br><br>Here black,white etc. are all enumerated values. enum values start with 0 and continue from there. <br><br>So here black = 0, white =1, red = 2 and green=3<br><br>We can assign values to these named values. Once a value is assigned the subsequent values continue from there.<br><br>enum color {black, white=5,red,green};<br><br>Here black = 0, white=5, red=6 and green=7</p></div></div> <div class='question'>36. What are bit fields? How do we use them? What are the restrictions on them?</p><button class='accordion'>Answer</button><div class='panel'><p >A bit field is a field of a structure or a union whose width is specified in number of bits. <br><br>Bit fields are useful in saving memory for fields which has a very small range.<br><br>e.g.<br>   struct employee<br>   {<br>       int id;<br>       char name[40];<br>       unsigned int married:1;<br>       unsigned int dept:2;<br>       float salary;<br>   };<br><br>Here married and dept are bit fields which occupy 1 and 2 bits respectively. So we are saving one byte for one struct variable.<br><br>We can not have a pointer to bit field as they do not end at word boundaries. </p></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

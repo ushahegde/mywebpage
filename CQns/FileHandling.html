@@ -1,0 +1,381 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C FileHandling Questions </h1><div class='main'><div class='question'>1. Write a function, which reads a binary file with n numbers , stores the even items of file (2nd, 4th,6th..)  in one binary file and odd items (1st, 3rd, 5th...)  in second binary file.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void read_file(FILE *fptr,FILE *fptrout1,FILE *fptrout2)
+{
+    int i=1;
+    int n;
+    while(!feof(fptr))
+    {
+        fread(&n,sizeof(n),1,fptr);//fread used for binary files
+        if(i%2==0)
+        {
+          fwrite(&n,sizeof(n),1,fptrout2);
+        }
+        else
+          {
+             fwrite(&n,sizeof(n),1,fptrout1 );
+          }
+       i++;
+    }
+    fclose(fptr);
+    fclose(fptrout1);
+    fclose(fptrout2);
+}</pre></div></div> <div class='question'>2. Write a program to count the number of characters, words and lines present in a file. If filename is not given, it should take from standard input</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int num_words(char *line)
+{
+    int num = 0;
+    while(*line!='\n')
+    {
+      while(*line==' '|| *line=='\t')
+         line++;
+      while(*line!='\n' && *line!=' '&&*line!='\t')
+         line++;
+      num++;
+    }
+    return num;
+}
+int num_chars(char *line)
+{
+     int n=0;
+     while(*line!='\n')
+     {  
+        n++;
+        line++;
+     }
+    return n+1;
+}
+    
+void readfile(FILE *fptr)
+{
+    int lines = 0,words=0,count=0;
+    char ch;
+    while(!feof(fptr))
+    {
+       char line[100];
+       int nc,nw;
+       char *ptr = fgets(line,99,fptr);
+       if(ptr==NULL)
+           break;
+       nc = num_chars(line);
+       nw = num_words(line);
+       
+       words+=nw;
+      count+=nc;
+      lines++;
+
+     /*  ch = fgetc(fptr);
+       count++;
+       if(ch=='\n')
+         {
+           lines++;words++;
+         }
+       else if (ch==' ' || ch=='\t')
+          words++;*/
+      }  
+    printf("words = %d lines=%d chars = %d",words,lines,count);
+}
+int main(int argc,char *argv[])
+{
+
+    FILE *fptr;
+    char filename[25];
+    if(argc&gt;1)
+       strcpy(filename,argv[1]);
+    else
+     {
+         printf("Enter file name:");
+         scanf("%s",filename);
+     }
+    fptr = fopen(filename,"r");
+    if(fptr==NULL)
+    {
+       printf("File open error");
+
+     }
+     else
+     {
+         readfile(fptr);
+         fclose(fptr);
+     }
+     return 0;
+}
+</pre></div></div> <div class='question'>3. Write a program to print the size of a text file in bytes where filename is given with command line.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+int main(int argc,char *argv[])
+{
+
+    FILE *fptr;
+    int n;
+    if(argc&lt;=1)
+    {
+          printf("Syntax is 'filesize filename'");
+          return 0;
+     }
+     fptr = fopen(argv[1],"r");
+     if(fptr==NULL)
+     {
+        printf("Unable to open file");
+        return 0;
+      }
+      fseek(fptr,0L,SEEK_END);
+      n = ftell(fptr);
+      printf("Size of file is %d bytes\n",n);
+      return 0;
+}</pre></div></div> <div class='question'>4. Write a program to read a file name and a word and print all lines in the file which contain that word. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+void searchword(FILE *fptr,char *word)
+{
+
+    while(!feof(fptr))
+    {
+       char str[100];
+       if(fgets(str,99,fptr)==NULL)
+          break;
+       if(strstr(str,word)!=NULL)
+          printf("%s",str);
+      }
+
+}
+int main(int argc,char *argv[])
+{
+
+    FILE *fptr;
+    char filename[25];
+    char word[30];
+    if(argc&lt;2) 
+     {
+        printf("Please provide file name as command line parameter");
+       return 1;
+     }
+
+    fptr = fopen(argv[1],"r");
+    if(fptr==NULL)
+    {
+       printf("File open error");
+
+     }
+     else
+     {
+        searchword(fptr,argv[2]);
+         fclose(fptr);
+     }
+     return 0;
+}</pre></div></div> <div class='question'>5. Write a function to print last 10 lines of a text file.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void read_n_lines(FILE *fptr,int num_lines)
+{
+     int count = 0;
+     char str[81];
+     fseek(fptr,-1,SEEK_END);
+     do
+     {
+         char ch ;
+         fseek(fptr,-2,SEEK_CUR);
+         ch = fgetc(fptr);
+         if(ch=='\n')
+            count++;
+     } while(count&lt;num_lines);
+     while(!feof(fptr))
+     {
+        fgets(str,80,fptr);
+        puts(str);
+      }
+   }
+      
+Call this function with 10 as second parameter. </pre></div></div> <div class='question'>6. Write a program to store 3  structures to a binary file. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+struct book
+{
+    char name[200];
+    char author[100];
+    float price;
+};
+int main()
+{
+    struct book bk_array[]={ {"C programming language","Kernighan & Ritchie",214},
+                    {"Let us C","Yeshawant Kanetkar",189},
+                    {"Teach yourself C in 21 days","ABCD",329} };
+    struct book b2[3];
+    FILE *fptr;
+    char filename[40];
+    int i;
+    printf("Filename=");
+    scanf("%s",filename);
+    fptr = fopen(filename,"wb");
+    if(fptr==NULL)
+       {
+          printf("File open error");
+          return 1;
+        }
+
+    fwrite(bk_array,sizeof(bk_array[0]),3,fptr);
+    fclose(fptr);
+    return 0;
+
+}</pre></div></div> <div class='question'>7. Write a program to read the filename from user and display the contents of that file</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+int main()
+{
+   FILE *fptr;
+   char *filename;
+   filename = (char*)malloc(30);
+   printf("Filename :");
+   scanf("%s",filename);
+   fptr = fopen(filename,"r");
+   if(fptr==NULL)
+     printf("file open error");
+   else
+   {
+      while(!feof(fptr))
+      {
+        char ch = fgetc(fptr);
+        putchar(ch);
+      }
+      fclose(fptr);
+   }
+   return 0;
+}</pre></div></div> <div class='question'>8. Write a program to read names,ids and salaries of 10 people and store them in a binary file</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+struct emp
+{
+   int id;
+   char name[30];
+   float salary;
+};
+void readEmpDetails(struct emp arr[],int size)
+{
+   int i;
+   for(i=0;i&lt;size;i++)
+   {
+     printf("Details of employee%d:",i);
+     scanf("%d %s %f",&arr[i].id,arr[i].name,&arr[i].salary);
+   }
+}
+
+int main()
+{
+    struct emp arr[20];
+    int size,nItems;
+    FILE *fptr;
+    printf("Enter number of employees:");
+    scanf("%d",&size);
+    readEmpDetails(arr,size);
+    
+    fptr = fopen("empl.txt","rb");
+    if (fptr!=NULL){
+    /* you can give an option of reading filename*/
+    nItems = fread((void*)arr,sizeof(struct emp),size,fptr);     
+    if(nItems!=0)
+        printf("File successfully written");
+    fclose(fptr);
+    }
+    else
+      printf("File open error");
+   return 0;
+}</pre></div></div> <div class='question'>9. Write a program to copy one file to another using fputc command. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt; 
+int main()
+{  
+    FILE *fptr1,*fptr2;
+    char filename1[30],filename2[30];
+    printf("Enter source file:");
+    scanf("%s",filename1);
+    printf("Enter destination file:");
+    scanf("%s",filename2);
+    if( (fptr1 =fopen(filename1,"r"))==NULL)
+        printf("Error opening %s",filename1);
+    else if( (fptr2=fopen(filename2,"w"))==NULL)
+        printf("Error opening %s",filename2);
+    else
+    {
+       /*both files are opened*/
+        char ch;
+        while ( (ch=fgetc(fptr1))!=EOF)
+           fputc(ch,fptr2);
+        fclose(fptr1);
+        fclose(fptr2);
+     
+    }  
+   return 0;
+}</pre></div></div> <div class='question'>10. Write a program to read two files and print the first lines which are different in these files.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+void compareFiles(FILE *f1,FILE *f2)
+{
+    while(!feof(f1)&& !feof(f2))
+    {
+       char str1[80],str2[80];
+       fgets(str1,79,f1);
+       fgets(str2,79,f2);
+       if(str1==NULL &&str2==NULL)
+         {
+           printf("The two files are similar");
+           return;
+         }
+       if( strcmp(str1,str2)!=0)
+       {
+          printf("The different lines are %s %s",str1,str2);
+          return;
+       }
+   }
+}
+int main()
+{  
+    FILE *fptr1,*fptr2;
+    char filename1[30],filename2[30];
+    printf("Enter first file:");
+    scanf("%s",filename1);
+    printf("Enter second file:");
+    scanf("%s",filename2);
+    if( (fptr1 =fopen(filename1,"r"))==NULL)
+        printf("Error opening %s",filename1);
+    else if( (fptr2=fopen(filename2,"r"))==NULL)
+        printf("Error opening %s",filename2);
+    else
+    {
+        compareFiles(fptr1,fptr2);     
+    }  
+   return 0;
+}</pre></div></div> <div class='question'>11. What are different modes of opening a file? What does file open command return?</p><button class='accordion'>Answer</button><div class='panel'><p >A file can be opened in read, write and append modes. <br>   <br>    fopen(char *file-name,char *mode)<br> <br>   mode --     r - reading<br>                    w - writing<br>                    a - appending<br>                    r+ w+ a+ - read and write<br><br>The file open function (fopen) returns a file pointer - a pointer to FILE type. If the the file open is not successful, then fopen() returns NULL. </p></div></div> <div class='question'>12. How do you read from a file? How do you write to a file?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>After opening a file, to read from a file, we can use these following functions.
+
+ 1)   fscanf(FILE *ptr,const char *format,...)
+
+e.g.
+
+   FILE *fptr = fopen("a.txt","r");
+   fscanf(fptr,"%d %d %f",&a,&b,&c);
+
+2) char fgetc(FILE *ptr)
+
+  char ch = fgetc(fptr)
+
+This reads one character from a file. And it returns the character read or EOF.
+
+3) fgets(FILE *ptr,int len,char *string)
+
+This reads one line or maximum len characters from the file and stores it in string.
+
+char s[80];
+fgets(fptr,79,s);
+
+4) fread(&a,sizeof(a),n,fptr)
+
+This reads n values from a "binary" file.
+</pre></div></div> <div class='question'>13. How do you write to a file?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>To write to a file, we can use the following functions.
+
+fprintf(FILE *ptr,char *format,...)
+fputs(FILE*ptr, char *string);
+fputc(FILE *ptr,char ch)
+size_t fwrite(const void *ptr, size_t size, size_t nmemb,FILE *stream);
+
+fprintf() is similar to printf - it stores the values in formatted way. First parameter must be FILE pointer
+
+fprintf(fptr,"%d %d are values",a,b);
+
+fputs() writes a string to the file followed by a newline character.
+
+char *s="Hello world";
+fputs(s,fptr);
+
+fputc() writes one character to the file.
+
+char ch = 'a';
+fputc(ch,fptr);
+
+fwrite() writes values to a binary file.
+
+int a = 10
+fwrite(&a,sizeof(a),1,fptr);
+</pre></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

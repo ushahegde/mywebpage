@@ -1,0 +1,127 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C CommandLineArguments Questions </h1><div class='main'><div class='question'>1. Write a C program to find the largest of command line arguments.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+int main(int argc,char *argv[])
+{
+    int i,largest=0;
+    if(argc&lt;=1)
+       printf("No numbers provided");
+    else
+   {
+        largest = atoi(argv[1]);/*argv[0] is command name*/
+       for(i=2;i&lt;argc;i++)
+       {
+             int n = atoi(argv[i]);
+             if(n&gt;largest)
+                 largest = n;
+       }
+      printf("Largest number is %d\n",largest);
+   }
+  return 0;
+}</pre></div></div> <div class='question'>2. Write a program to read command line arguments and find the sum and product of them. If no arguments are given the program should print that.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+int main(int argc,char *argv[])
+{
+   int arr[20],i,len,sum=0,prod=1;
+   if(argc&lt;2)
+     {
+        printf("No command line arguments\n");
+        return 0;
+      }
+   len = argc-1; //0th element is program name
+   for(i=0;i&lt;len;i++)
+   {
+       int temp = atoi(argv[i+1]);
+       sum+=temp;
+       prod*=temp;
+   }
+   printf("Sum is %d and product is %d\n",sum,prod);
+   return 0;
+}</pre></div></div> <div class='question'>3. Write a program to print gcd of first two command line arguments provided. Calculate gcd using recursive function.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+int gcd(int a,int b);
+int main(int argc,char *argv[])
+{
+   int a,b,answer;
+   if(argc&lt;3)
+     {
+        printf("No command line arguments\n");
+        return 0;
+      }
+
+    a = atoi(argv[1]);
+    b = atoi(argv[2]);
+    if(b&gt;a)
+    {
+      int t = a;
+      a = b;
+      b = t;
+     }
+    answer = gcd(a,b);
+   printf("Gcd of %d and  %d is %d\n",a,b,answer);
+   return 0;
+}
+
+int gcd(int a,int b)
+{
+   if(a%b &gt;0)
+     return gcd(b,a%b);
+   else
+     return b;
+}
+</pre></div></div> <div class='question'>4. What will be the output of the program (myprog.c) given below if it is executed from the command line?
+cmd&gt; myprog one two three
+
+ /* myprog.c */
+#include&lt;stdio.h&gt;
+ int main(int argc, char **argv)
+ {
+ printf("%c\n", **++argv);
+return 0;
+ }
+
+</p><button class='accordion'>Answer</button><div class='panel'><p >Output : o</p></div></div> <div class='question'>5. Write a program to implement "cat". The program should accept text file name as command line argument and print the content of the file.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+void print_file(FILE *fptr)
+{
+    int ch;
+    while ( (ch=fgetc(fptr))!=EOF)
+       putchar(ch);
+}
+int main(int argc,char **argv)
+{
+   int i,num1,num2,ans=0;
+   char operator;
+   FILE *fptr;
+   if(argc&lt;2)
+   {
+       printf("filename is not given at command line");
+       return 0;
+   }
+   fptr = fopen(argv[1],"r");
+   if(fptr==NULL)
+   {
+      printf("Can not open %s\n",argv[1]);
+      return 0;
+    }
+    print_file(fptr);
+    fclose(fptr);
+    return 0;
+
+} </pre></div></div> <div class='question'>6. Write a program to accept a number as command line argument and print its cube.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+int main(int argc, char *argv[])
+{
+   int n;
+   if(argc&lt;2)
+   {
+     printf("Please supply a number as command line argument\n");
+     exit(1);
+   }
+   n = atoi(argv[1]);
+   printf("The cube of %d is %d\n",n,n*n*n);
+   return 0;
+}</pre></div></div> <div class='question'>7. Write a program to print all command line arguments.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt; 
+int main(int argc, char *argv[])
+{
+   int n;
+   for(n=0;n&lt;argc;n++)
+     printf("Argument %d is %s\n",n,argv[n]);
+   return 0;
+}</pre></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

@@ -1,0 +1,227 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Pointers Questions </h1><div class='main'><div class='question'>1. What is the difference between int(*ptr)[10],int *ptr,int (*ptr)(int)?</p><button class='accordion'>Answer</button><div class='panel'><p >int (*ptr)[10] is a pointer to array of 10 integers.<br><br>e.g.<br>int arr[10]={1,2,3};<br>int (*ptr)[10];<br>ptr = &arr;//ptr points to array arr<br><br>int *ptr is a pointer to an integer<br>e.g.<br>int a = 12;<br>int *b;<br>b = &a;<br><br>int (*ptr)(int) is a pointer to a function which takes one integer parameter and returns an integer<br>e.g.<br>int cube(int n);<br>int (*ptr2)(int);<br>ptr2 = cube;<br></p></div></div> <div class='question'>2. What is the difference between malloc and calloc? What is realloc?</p><button class='accordion'>Answer</button><div class='panel'><p >Both malloc and calloc allocate memory and return a pointer to begining of block.<br><br>But the difference is malloc allocates memory block, but does not initialize the values inside the block.<br><br>Calloc initializes stores 0 in the allocated locations after allocating the block.<br><br>Calloc takes two parameters - number of elements to be allocated and size of one element and malloc takes only one parameter - total size to be allocated.<br><br>int *ptr1,*ptr2;<br>ptr1 = (int*)malloc(20*sizeof(int));<br>ptr2 = (int*)calloc(20,sizeof(int));/*the block has all 0 values*/<br><br>realloc is used to change the size of memory block allocated. If there is insufficient place, it moves the block to a different address. <br><br>It takes two parameters - pointer and its new size. <br><br>realloc(ptr1,40*sizeof(int));<br><br>Here the memory block is expanded to hold 40 integers and ptr1 points to begining of block.<br><br>Note that<br>1. if ptr1 in the above example is NULL, realloc works exactly like malloc.<br>2. if second parameter (new size) is 0, realloc works like free<br>  </p></div></div> <div class='question'>3. Can we have a void function?A void variable? A void pointer?</p><button class='accordion'>Answer</button><div class='panel'><p >Yes, no and yes.<br><br>void function : If a function does not return anything, its return type should be void. Such a function still can contain empty return statement.<br><br>e.g.<br>void print_larger(int a,int b)<br>{<br>   if(a&gt;b)<br>   {<br>       printf("%d",a);<br>       return;<br>   }<br>  printf("%d",b);<br>}<br><br>Void variable : We can not have a void variable.<br><br>void pointer: We can have a void pointer which is a generic pointer. Void pointer can be type cast and used to point at any type of variable. <br><br>But it is an error to dereference the void pointer directly (without type casting).<br><br>e.g.<br>      void *ptr;<br>      int a =12;<br>      ptr = (int*)&a;//ok<br>      a = *ptr+10;/*error. typecasting should be used*/<br></p></div></div> <div class='question'>4. Consider the following three C functions :
+
+[P1] 
+int * g (void)
+{
+  int x = 10;  return (&x);
+}
+
+[P2] 
+int * g (void)
+{
+  int * px;  *px = 10;
+  return px;
+}
+
+[P3] 
+int *g (void)
+{
+  int *px;
+  px = (int *) malloc (sizeof(int));
+  *px = 10;  return px;
+}
+Which of the above three functions are likely to cause problems with pointers?
+
+</p><button class='accordion'>Answer</button><div class='panel'><p >Both P1 and P2<br><br>P1 may not behave correctly because the function returns address of a local automatic variable which will not exist once the function terminates.<br><br>P2 causes run time error because px is derefernced without initializing it.<br></p></div></div> <div class='question'>5. What does the following program print?
+
+#include&lt;stdio.h&gt;
+void f(int *p, int *q)
+{
+p = q;
+*p = 2;
+}
+ int i=0, j=1;
+int main()
+{
+f(&i, &j);
+printf("%d %d \n", i, j);
+return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >Output : 0 2</p></div></div> <div class='question'>6.  What does the following fragment of C program print?
+
+char c[] = "c tricky Questions";
+char *p =c;
+printf("%s", p + p[2] -p[3]) ;
+ </p><button class='accordion'>Answer</button><div class='panel'><p >Output : tricky Questions</p></div></div> <div class='question'>7. What would be the output of the following program
+
+void func(int ( *p)[3]);
+int main(){
+     int x[2][3] = { {4,5,6},{7,8,9}};
+    func(x);
+    func(x+1);
+}
+
+void func(int (*p)[3])
+{
+    printf("%d %d %d\n",(*p)[0],(*p)[1],(*p)[2]);
+}</p><button class='accordion'>Answer</button><div class='panel'><p >Output:<br>4 5 6<br>7 8 9</p></div></div> <div class='question'>8. What is the difference between const char * and char * const?</p><button class='accordion'>Answer</button><div class='panel'><p >const char *p1;<br>char * const p2;<br><br>p1 is a pointer to a character constant. Which means character pointed by p1 is constant. But the pointer is not constant.<br><br>*p1 = 'z' ;<br>would be wrong.<br>p1 = "aaa" ;<br> - is fine<br><br>p2 is a constant pointer to a character. Here pointer is constant. But character is not. Which means we can not assign another value to p2. But we can change the character pointed by p2<br><br>p2 = "mnop" ;<br>is wrong<br><br>*p2 = 'a' ;<br>is fine<br><br>We can even have<br><br>const char  * const p3 = "Hello world";<br><br>p3 is a constant pointer to constant character. Here neither address nor character can be modified.<br><br>Another point of interest is all pointers assigned to string literals are pointers to char constants. Which means the strings they are pointing to can not be modified.</p></div></div> <div class='question'>9. Write a function to insertion sort of an array using pointers.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int insertionsort(int *arr,int n)
+{
+    int i,j,temp;
+    for(i=1;i&lt;n;i++)
+    {
+        temp=*(arr+i);
+        j=i-1;
+       while(temp&lt;*(arr+j)&&j&gt;=0)
+       {
+           *(arr+(j+1))=*(arr+j);
+           j--;
+       }
+      *(arr+(j+1))=temp;
+    }
+  return 0;
+}</pre></div></div> <div class='question'>10. What is the output of this C code?
+
+       #include &lt;stdio.h&gt;
+        int main()
+        {
+            char *str = "hello, world\n";
+            char *strc = "good morning\n";
+            strcpy(strc, str);
+            printf("%s\n", strc);
+            return 0;
+        }</p><button class='accordion'>Answer</button><div class='panel'><p >The program crashes with segmentation fault</p></div></div> <div class='question'>11. What is the output of this C code?
+
+        #include &lt;stdio.h&gt;
+        int main()
+        {
+            char *str = "hello, world\n";
+            str[5] = '.';
+            printf("%s\n", str);
+            return 0;
+        }</p><button class='accordion'>Answer</button><div class='panel'><p >Crashes with segmentation fault</p></div></div> <div class='question'>12. What is the output of the following program
+
+       #include &lt;stdio.h&gt;
+        int main()
+        {
+            char *str = "hello world";
+            char strary[] = "hello world";
+            printf("%d %d\n", sizeof(str), sizeof(strary));
+            return 0;
+        }
+
+</p><button class='accordion'>Answer</button><div class='panel'><p >4 and 12 in 32 bit machines. </p></div></div> <div class='question'>13. What is a dangling pointer and what is NULL pointer?</p><button class='accordion'>Answer</button><div class='panel'><p >A dangling pointer is the one which is used after the memory allocated to it is released using free. Because the pointer is not pointing to any valid address, the result is unpredictable.<br><br>int *ptr = malloc(100*sizeof(int));<br>-------<br>------<br>free(ptr);<br>*ptr = 12;/*using ptr after free. dangling pointer*/<br><br>NULL pointer is pointer pointing to location 0. It is defined as (void*)0 in stdio.h and stdlib.h Function which returns a pointer, returns NULL to indicate failure. <br><br>Null pointer should never be derefernced. If it is derefernced, the program will crash.</p></div></div> <div class='question'>14. What is memory leak? </p><button class='accordion'>Answer</button><div class='panel'><p >If memory blocks allocated dynamically in a program (using malloc or calloc) are  not released, your program will run out of heap  memory in due time. This is called memory leak. </p></div></div> <div class='question'>15. What is void pointer?</p><button class='accordion'>Answer</button><div class='panel'><p >A void  pointer is a generic pointer. It is defined as<br><br>void *ptr;<br><br>This void pointer can be used to store address of any type of data. <br><br>But if a void pointer is deferenced without type casting, compiler gives error.<br><br>void *ptr;<br>int a; float b;<br>ptr = (int *)&a;<br>ptr = (float*)&b;<br><br>*ptr=5;/*syntax error*/<br><br>*(int *)ptr = 5;//correct<br><br>malloc, calloc and realloc return a void pointer.<br></p></div></div> <div class='question'>16. What arithmetic operations are allowed with pointers?</p><button class='accordion'>Answer</button><div class='panel'><p >Only operations allowed with pointers are :<br>1. You can add or subtract an integer to a pointer. <br>2. You can subtract 2 pointers. <br><br>Note that when you add/subtract integer to a pointer, it gets scaled by size of the pointed variable.<br><br>e.g. if you add 1 to integer pointer in 32 bit machine, the pointer gets incremented by 4 bytes so that it can point to next integer.<br><br>int a;float b;double c; char d;<br>int *ptr1 = &a;/* say a is at location 1000 and it is 4 byte machine*/<br>float *ptr2 = &b;/*say b is at location 3000*/<br>double *ptr3 = &c;/*say c is at location 4000*/<br>char *ptr4 = &d;<br><br>ptr1++;/*now ptr1 is 1004*/<br>ptr1 +=5;/*now ptr1 is 1024*/<br>ptr2 = ptr2 - 3;/*now ptr2 is 2988 */<br>pt3++;/* now ptr3 is 4008*/<br>ptr4+=5;/*ptr4 is 4005*/<br><br>ptr1*=2;/* error*/<br>ptr2 = ptr1+ptr2;/*error*/</p></div></div> <div class='question'>17. Declare x  as  pointer to a function which takes a character pointer as parameter and returns an integer pointer.</p><button class='accordion'>Answer</button><div class='panel'><p >int *(*x)(char*)</p></div></div> <div class='question'>18. When is  an array in an expression is not implicitly converted to a pointer?</p><button class='accordion'>Answer</button><div class='panel'><p >When using & - address of operator and when using sizeof operator<br><br>int arr[3]={1,2,3};<br>arr[1]=24;/* is converted to *(arr+1) = 24*/<br>add_num(arr,12);/* parameters sent are &arr[0] and 12*/<br><br>l = sizeof(arr);/* is 3*sizeof(int) . Not sizeof(&arr[0]) */<br>int *ptr = &arr+1;/* if arr is stored at 1000, ptr will be 1012.  no implicit conversion*/</p></div></div> <div class='question'>19. What is the output of the following program?
+
+#include&lt;stdio.h&gt;
+int main()
+{
+  int a,b,c,d;
+  char *p = ( char *)0;
+  int *q = ( int *)0;
+  float *r = ( float *)0;
+  double *s = 0;
+  a = (int)(p+1);
+  b = (int)(q+1);
+  c = (int)(r+1);
+  d = (int)(s+1);
+  printf("%d %d %d %d",a,b,c,d);
+  return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >1 4 4 8<br>for 32 bit computer</p></div></div> <div class='question'>20. What will be output of following program?
+
+#include&lt;stdio.h&gt;
+int main()
+{
+  int i = 3;
+  int *j;
+  int **k;
+  j = &i;
+  k = &j;
+  printf("%u %u %u",i,*j,**k);
+  return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >3 3 3</p></div></div> <div class='question'>21. What error is stopping the program from printing 30? How do you correct it?
+
+# include &lt;stdio.h&gt;
+void fun(int x)
+{
+    x = 30;
+}
+
+int main()
+{
+  int y = 20;
+  fun(y);
+  printf("%d", y);
+  return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >x is a value parameter. So x is another copy of y. So changing x will not change y. Hence program will print 20 instead of 30.<br><br>To fix the problem, you need to send a reference paramter as shown below<br><br>void fun(int *x)<br>{<br>   *x = 30;<br>}<br>int main()<br>{<br>   int y = 20;<br>  fun(&y);/*send address of y to function*/<br>  printf("%d",y);<br>  return 0;<br>}<br><br>Other method is by returning a value from function fun<br><br>int fun(int x)<br>{<br>   x = 30; return x;<br>}<br>int main()<br>{<br>   int y = 20;<br>  y = fun(y);<br>  -------<br>----<br>}</p></div></div> <div class='question'>22. Assume that float takes 4 bytes, predict the output of following program.
+
+#include &lt;stdio.h&gt;
+int main()
+{
+    float arr[5] = {12.5, 10.0, 13.5, 90.5, 0.5};
+    float *ptr1 = &arr[0];
+    float *ptr2 = ptr1 + 3;
+
+    printf("%f ", *ptr2);
+    printf("%d", ptr2 – ptr1);
+
+   return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >90.5 3</p></div></div> <div class='question'>23. #include&lt;stdio.h&gt;
+int main()
+{
+   int a;
+   char *x;
+   x = (char *) &a;
+   a = 512;
+   x[0] = 1;
+   x[1] = 2;
+   printf("%d\n",a);
+   return 0;
+}
+
+What is the output of above program?</p><button class='accordion'>Answer</button><div class='panel'><p >513</p></div></div> <div class='question'>24. Is line number 2 correct. If yes, why?
+
+int arr[3] = {1,22,333};
+2[arr]= 44;</p><button class='accordion'>Answer</button><div class='panel'><p >Though it looks ridiculous it is correct.<br><br>C compiler converts array expression  into a pointer expression<br><br>So arr[3] = 3[arr] =*(arr+3)<br><br></p></div></div> <div class='question'>25. What do  the following declarations mean?
+
+int* a1[8];
+int (*a2)[8];
+int (*a3)(int[]);</p><button class='accordion'>Answer</button><div class='panel'><p >a1 is an array of 8 integer pointers.<br><br>a2 is a pointer to an array of 8 integers.<br><br>a3 is a pointer to a function which takes integer array as a pointer and returns an integer</p></div></div> <div class='question'>26. #include &lt;stdio.h&gt;
+ int main()
+{
+     char *a = {"p", "r", "o", "g", "r", "a", "m"};
+     printf("%s", a);
+ }
+
+What is the output of this program?</p><button class='accordion'>Answer</button><div class='panel'><p >p</p></div></div> <div class='question'>27. If the size of integer is 4 bytes, What will be the output of the program?
+
+#include&lt;stdio.h&gt;
+
+int main()
+{
+    int arr[] = {12, 13, 14, 15, 16};
+    printf("%d, %d, %d\n", sizeof(arr), sizeof(*arr), sizeof(arr[0]));
+    return 0;
+}</p><button class='accordion'>Answer</button><div class='panel'><p >20 4 4</p></div></div> <div class='question'>28. Write function to calculate sum or product of 3 numbers using a function pointer argument. Write also the necessary functions and code to call this function for both these cases.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+int sum(int a,int b,int c)
+{
+    return a+b+c;
+}
+int product(int a,int b,int c)
+{
+    return a*b*c;
+}
+int operate(int(*fptr)(int,int,int),int a,int b,int c)
+{
+     return fptr(a,b,c);
+}
+int main()
+{
+    int x,y,z;
+    x = 2;y=4;z=6;
+    printf("product is %d\n",operate(product,x,y,z));
+    printf("sum is  %d\n",operate(sum,x,y,z));
+ }</pre></div></div> <div class='question'>29. Write a function to swap the values of two variables using pointers and without using a third variable</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void swap(int *ptr1,int *ptr2)
+{
+    *ptr1 = *ptr1+*ptr2;
+    *ptr2 = *ptr1-*ptr2;
+    *ptr1 = *ptr1-*ptr2;
+}
+int main()
+{
+   int i=10,j=20;
+   swap(&i,&j);
+   return 0;
+}</pre></div></div> <div class='question'>30. Using typedefine define INTPTR as integer pointer and use this to define two integer pointers. </p><button class='accordion'>Answer</button><div class='panel'><p >#include&lt;stdio.h&gt;<br>typedef int * INTPTR;<br>int main()<br>{<br>  INTPTR p1,p2;<br>  int a,b;<br>  a = 10;<br>  b = a;<br>  p1 = &a;<br>  p2 = &b;<br>  printf("Sum of a and b is %d\n", *p1+*p2 );<br>  return 0;<br>}</p></div></div> <div class='question'>31. How do you define a pointer? How do you assign address of a variable to it?</p><button class='accordion'>Answer</button><div class='panel'><p >A pointer is defined with its name, type of pointee and *.<br><br>Syntax<br>  data-type * var-name;<br><br>e.g.<br>   int *ptr;<br>   float *p2;<br><br>We are defining ptr as integer pointer and p2 as float pointer.<br><br>To assign an address to it, we use & operator.<br><br>int a = 10;<br>int *ptr;<br>ptr = &a;<br><br>Now ptr points to a.</p></div></div> <div class='question'>32. What is indirection operator? </p><button class='accordion'>Answer</button><div class='panel'><p >An indirection operator is used to give value at the address specified by ptr. This operator is *<br><br>    int *ptr;<br>    int a;<br>    ptr = &a;<br>    *ptr = 12;<br><br>Now *ptr gives us "a".  <br><br>The statement *ptr=12 assigns 12 to a indirectly. <br><br>Indirection operator and address of operator (* and &) are complimentory to each other. </p></div></div> <div class='question'>33. What is a function pointer? How do you define a function pointer?</p><button class='accordion'>Answer</button><div class='panel'><p >A function pointer is a pointer which stores address of a function. <br>  <br>If void foo(); <br>is a function, then foo (without paranthesis) or &foo is address of this function and is a function pointer.<br><br>To define a function pointer syntax used is<br><br>ret-type (*name)(parameter-list);<br><br>e.g.<br>   void (*ptr)() is a function pointer which points to a function which takes no parameter and returns nothing.<br><br>Similarly to define a function pointer which takes an array and int as parameter and returns int, we should write<br><br>   int (*ptr)(int arr[],int n)<br><br>Function pointers are used to implement call back functions</p></div></div> <div class='question'>34. With an example, explain how a function pointer is used.</p><button class='accordion'>Answer</button><div class='panel'><p >A function pointer is a pointer which holds address of a function.<br><br>int (*ptr)(int,int)<br><br>This defines ptr as a function pointer to a function which returns an integer and takes two integer parameter.<br><br>Next this pointer must be assigned to address of such function.<br><br>Let us say sum function.<br><br>ptr = sum;<br>or<br>ptr = &sum;<br><br>sum should be of the type<br><br>int sum(int a,int b);<br><br>To invoke sum() using function pointer, we must dereference it.<br><br>int ans = (*ptr)(10,10);<br>calls sum function with parameters 10 and 10.</p></div></div> <div class='question'>35. Define the following
+  a) Pointer to an integer
+   b) Pointer to pointer to integer
+  c) Pointer to an array of 3 integers
+  d) Array of 3 integer pointers
+  e) Pointer to function which return an int and takes an int parameter.</p><button class='accordion'>Answer</button><div class='panel'><p >a) int *ptr;<br>b) int  **ptr;<br>c) int  (*ptr)[3];<br>d) int *ptr[3];<br>e) int (*ptr)(int);</p></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

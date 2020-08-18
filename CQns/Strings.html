@@ -1,0 +1,800 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Strings Questions </h1><div class='main'><div class='question'>1. Write a program to reverse the words in  a string. e.g.if the string is "Write a C program to print words'The output should be "words print to program C  Write"</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int convert_to_words(char *s,char words[][20]);
+void reverse_words(char words[][20],int nwords);
+void print_words(char words[][20],int n);
+int main()
+{
+    char s[100];
+    char words[20][20];
+    int num_of_words;
+    printf("Your string:");
+    gets(s);
+    num_of_words = convert_to_words(s,words);
+    print_words(words,num_of_words);
+    reverse_words(words,num_of_words);
+    print_words(words,num_of_words);
+    return 0;
+}
+
+int convert_to_words(char *s,char words[][20])
+{
+   int nword=0;int j=0;
+   while(*s)
+   {
+      if(*s==' '||*s=='\t')
+      {
+           words[nword][j]=0;
+           nword++; j=0;
+      }
+      else
+      {
+           words[nword][j++]=*s;
+      }
+      s++;
+    }
+    words[nword][j]=0;
+    nword++;
+    return nword;
+  }
+
+void reverse_words(char words[][20],int nwords)
+{
+   int i,j;
+   for(i=0,j=nwords-1;i&lt;j;i++,j--)
+   {
+       char temp[20];
+       strcpy(temp,words[i]);
+       strcpy(words[i],words[j]);
+       strcpy(words[j],temp);
+    }
+}
+void print_words(char words[][20],int n)
+{
+   int i;
+   for(i=0;i&lt;n;i++)
+      printf("%s",words[i]);
+}      </pre></div></div> <div class='question'>2. Write a program to remove duplicate words from a string. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int convert_to_words(char *s,char words[][20]);
+void remove_duplicates(char words[][20],int nwords);
+void print_words(char words[][20],int n);
+void pack_string(char words[][20],char *str,int omit_this,int numwords);
+int main()
+{
+    char s[100];
+    char words[20][20];
+    int num_of_words;
+    printf("Your string:");
+    gets(s);
+    num_of_words = convert_to_words(s,words);
+    remove_duplicates(words,num_of_words);
+    puts("after duplicates are removed  ");
+    print_words(words,num_of_words);
+    return 0;
+}
+
+int convert_to_words(char *s,char words[][20])
+{
+   int nword=0;int j=0;
+   while(*s)
+   {
+      if(*s==' '||*s=='\t')
+      {
+           words[nword][j]=0;
+           nword++; j=0;
+      }
+      else
+      {
+           words[nword][j++]=*s;
+      }
+      s++;
+    }
+    words[nword][j]=0;
+    nword++;
+    return nword;
+  }
+
+void remove_duplicates(char words[][20],int nwords)
+{
+   int i,j;
+   char tempstr[100];
+   for(i=0;i&lt;nwords;i++)
+   {
+       char temp[20];
+       strcpy(temp,words[i]);
+       for(j=i+1;j&lt;nwords;j++)
+       {
+          if(strcmp(temp,words[j])==0)
+          {
+             pack_string(words,tempstr,j,nwords);
+             nwords = convert_to_words(tempstr,words);
+           }
+        }
+
+    }
+}
+void print_words(char words[][20],int n)
+{
+   int i;
+   puts("");
+   for(i=0;i&lt;n;i++)
+      printf("%s ",words[i]);
+}
+void pack_string(char words[][20],char *str,int omit_this,int num_words)
+{
+    int i;
+    strcpy(str,"");
+    for(i=0;i&lt;num_words;i++)
+    {
+        if(i!=omit_this)
+        {
+            strcat(str,words[i]);
+            strcat(str," ");
+        }
+     }
+}
+</pre></div></div> <div class='question'>3. Write your own version of strcpy.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>char * mystrcpy(char*dest,char*src)
+{
+   char *temp = dest;
+     while(*src)
+    {
+      *dest++ = *src++;
+    }
+    *dest = '\0';
+   return temp;
+}
+
+We can even write a smaller function like this.
+
+char *mystrcpy2(char *dest,char *src)
+{
+     char *temp = dest;
+     while(*dest++=*src++);
+     return temp;
+}
+
+In this function, while loop is using assignment statement to copy each src character to dest character. The assignment becomes false after copying null character to dest. </pre></div></div> <div class='question'>4. Write a function which accepts a string and returns 1 if the string is a palindrome and return 0 if it is not.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int palindrome(char *s)
+{
+    int l=strlen(s);
+    int i,j;
+    for(i=0,j=l-1;i&lt;j;i++,j--)
+        if(s[i]!=s[j])
+           return 0;
+   return 1;
+}</pre></div></div> <div class='question'>5. The program gives length of string as  "6"   when input is "Hello, how are you"
+
+int main()
+{
+   char str[50];
+   printf("Enter a string");
+   scanf("%s",str);
+   printf("The length of the string is %d\n",strlen(str));
+   return 0;
+}
+
+Find out the error in the program.</p><button class='accordion'>Answer</button><div class='panel'><p >gets(str) should be used to read a line of characters<br>instead of<br>scanf("%s",str);</p></div></div> <div class='question'>6. Write  a function with  find_chars(string1, string2) that returns a string that contains only the characters found both in string1 and string2  in the order that they are found in string1.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt;
+char * find_common_chars(char *string1, char *string2)
+{
+    char *temp = (char*)malloc(100);
+    char *t2 = temp;
+    int i,len;
+    len = strlen(string2);
+    while(*string1)
+    {
+        char ch = *string1;
+        int found = 0;
+
+        for(i=0;i&lt;len;i++)
+        {
+          if(string2[i]==ch)
+             {
+                found = 1;
+                string2[i]=0;
+    /*to avoid finding this char for repeated char in string1*/
+                break;
+              }
+         }
+         if(found )
+           *temp++ = ch;
+         string1++;
+    }
+    *temp = 0;
+    return t2;
+}
+
+int main()
+{
+     char str1[100],str2[100];
+     char *ptr;
+     printf("Enter strings one line at a time");
+     gets(str1);
+     gets(str2);
+     ptr = find_chars(str1,str2);
+     printf("Common characters between %s and %s is %s",str1,str2,ptr);
+     return 0;
+}</pre></div></div> <div class='question'>7. Write C code to test whether the given character is lowercase letter, uppercase letter, digit or white space (space, tab or newline)</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>if(c&gt;='a' && c&lt;='z' || c&gt;='A' && c&lt;='Z')
+      printf("Letter");
+else if (c&gt;='0' && c&lt;='9')
+      printf("Digit");
+else if (c==' ' || c=='\t' || c=='\n')
+      printf("White space");
+
+You can also use builtin functions
+
+if(isalpha(c))
+    printf("Letter");
+else if(isdigit(c))
+    printf("Digit");
+else if(isspace(c))
+      printf("White space");</pre></div></div> <div class='question'>8. Write your own atoi and atof functions </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int myatoi(char *str)
+{
+   int l,i;
+   int sum=0;
+   int sign=1;
+   i = 0;
+    if(str[0]=='-')
+       {
+           sign = -1;i++;
+      }
+  for(;str[i]!=0;i++)
+   {
+       if( (str[i]&gt;='0' && str[i]&lt;='9'))
+          sum = sum*10 + str[i]-48;
+      else
+         break;
+    }
+    return sum*sign;
+}
+float myatof(char *str)
+{
+     int i=0;
+     float sum=0;
+     int isfraction=0; 
+     int sign = 1; 
+     float decimals = 0.1;
+     if(str[0]=='-')
+       {
+           sign = -1;i++;
+      }
+     for(;str[i];i++)
+     {
+          if(isdigit(str[i]))
+           {
+              if(isfraction)
+               {
+                  sum =sum+ (str[i]-48)*decimals;
+                  decimals *=0.1;
+                }
+               else
+               {
+                  sum = sum*10 + (str[i]-48);
+               }
+            }
+          else if (str[i]=='.')
+            {
+                 isfraction = 1; 
+             }
+          else
+            break;
+      }      
+      return sum*sign;
+}
+int main()
+{
+    char str[40];
+    printf("Enter a string:");
+    scanf("%s",str);
+    printf("The number is %.5f",myatof(str));
+    return 0;
+}</pre></div></div> <div class='question'>9. Write a program to check if a string contains another string and returns its first index or -1 if it does not contain.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int indexof(char *src,char *searchstr)
+{
+    int i=0;
+    int len = strlen(searchstr);
+    while(src[i])
+    {
+       int result=strncmp(src+i,searchstr,len);
+       if(result==0)
+          return i;
+       i++;
+    }
+    return -1;
+}</pre></div></div> <div class='question'>10. Write a program to find the character which has appeared maximum number of times in a string.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+char highest(char *str);
+int largestindex(int arr[],int size);
+int main()
+{
+   char str[100];
+   printf("Enter string:");
+   gets(str);
+   printf("The most frequent character in the string is |%c|\n",highest(str));
+   return 0;
+}
+
+char highest(char *str)
+{
+  int temp[100]={0};
+  int i;
+  for(i=0;str[i];i++)
+  {
+     char ch = str[i];
+     int count =0;
+     int j;
+     for(j=0;str[j];j++)
+        if(str[j]==ch)
+            count++;
+     temp[i]=count;
+  }
+  i = largestindex(temp,strlen(str));
+  return str[i];
+}
+
+int largestindex(int arr[],int size)
+{
+   int i,largestindex = 0;
+   for(i=1;i&lt;size;i++)
+      if(arr[i]&gt;arr[largestindex])
+         largestindex = i;
+   return largestindex;
+}</pre></div></div> <div class='question'>11. How do you sort String on their word lengths in C? The shortest word must come first and longest last.
+
+e.g.  this is C program
+
+should become
+
+C is this program
+</p><button class='accordion'>Answer</button><div class='panel'><p >#include&lt;stdio.h&gt;<br>#include&lt;string.h<br>#include&lt;stdlib.h&gt;<br>int break_into_words(char *str,char *words[20]);<br>void sort_words(char *words[20],int num);<br>void print_words(char *words[20],int num);<br>int main()<br>{<br>   char str[100];<br>   int num_words;<br>   char *words[20];<br>   gets(str);<br>   num_words = break_into_words(str,words);<br>   print_words(words,num_words);<br>   sort_words(words,num_words);<br>   print_words(words,num_words);<br>   return 0;<br>}<br><br>int break_into_words(char *str,char *words[20])<br>{<br>     int i=0,j=0;<br>     int whitespacestarted = 0;<br>     char ch;<br>     words[0] = (char*)malloc(20);<br>     while(*str)<br>     {<br>       ch = *str++;<br>       if (ch==' '||ch=='\t'||ch=='\n')<br>         {<br>             words[i++][j]=0;<br>             j=0;<br>             words[i] = (char*)malloc(20);<br>         }<br>         else<br>           {<br>               words[i][j++]=ch;<br>           }<br>      }<br>      if(ch!=' '&&ch!='\n'&&ch!='\t')<br>          words[i++][j]=0;<br>      return i;<br>}<br><br>void sort_words(char *words[20],int n)<br>{<br>     int i,j;<br>     char *temp;<br>     for(i=1;i&lt;n;i++)<br>    {<br>        temp=words[i];<br>        j=i-1;<br>        while(j&gt;=0 && strlen(temp)&lt;strlen(words[j]))<br>        {<br>             words[j+1] = words[j];<br>              j--;<br>          }<br>          words[j+1]=temp;<br>       }<br>}<br>void print_words(char *words[20],int n)<br>{<br>  int i;<br>  for(i=0;i&lt;n;i++)<br>     printf("%s ",words[i]);<br>  puts("");<br>}<br></p></div></div> <div class='question'>12. How to find first non repeated character of a given String?</p><button class='accordion'>Answer</button><div class='panel'><p >int first_non_repeated_char(char *str)<br>{<br>  int i;<br>  for(i=0;str[i];i++)<br>  {<br>     char ch = str[i];<br>     int j;<br>     int repeated = 0;<br>     for(j=0;str[j];j++)<br>        if(i!=j && str[j]==ch)<br>            {<br>               repeated = 1;break;<br>            }<br>     if(!repeated && isalpha(ch))<br>          return ch;<br>  }<br><br>   return -1;<br>}</p></div></div> <div class='question'>13. Write a program to check if given two strings are anagrams</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int check_anagram(char *str1,char *str2);
+void delete_char(char *str,char ch);
+int main()
+{
+   char str1[60],str2[60];
+   int angrm=0;
+   printf("Enter two strings:");
+   fgets(str1,59,stdin);
+   fgets(str2,59,stdin);
+   angrm = check_anagram(str1,str2);
+   printf("The strings  are %s\n",angrm?"anagrams":"not anagrams");
+   return 0;
+}
+
+
+int check_anagram(char *str1, char *str2)
+{
+    int i;
+    for(i=0;str1[i];i++)
+     {
+         char ch = str1[i];
+         char *ptr = strchr(str2,ch);
+         if(ptr==NULL)
+           return 0;
+         delete_char(str2,ch);
+     }
+     if(strlen(str2)==0)
+        return 1;
+     return 0;
+}
+
+void delete_char(char *str,char ch)
+{
+      char *ptr = strchr(str,ch);
+      if(ptr==NULL)
+         return;//error
+      while(*ptr)
+      {
+          *ptr = *(ptr+1);
+          ptr++;
+      }
+}</pre></div></div> <div class='question'>14. Write a function to remove white spaces at the begining and end of the string. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt;
+char *trim_string(char *str);
+int main()
+{
+   char str[60]; char *ptr;
+   fgets(str,59,stdin);
+   ptr= trim_string(str);
+   printf("After removing the white spaces, the string is |%s|\n",ptr);
+   return 0;
+}
+
+char *trim_string(char *str)
+{
+   int len;
+   char *temp = (char*)malloc(60);
+   while(*str==' ' || *str=='\t' || *str=='\n')
+/*find spaces at begining*/
+     str++;
+
+    len = strlen(str);
+    temp = str+len-1;
+    while(*temp==' ' || *temp=='\t' || *temp=='\n')
+/*find spaces at end*/
+       temp--;
+     temp++;
+     *temp = 0;
+     return str;
+}</pre></div></div> <div class='question'>15. Write a function to check if a string begins with another string. e.g. app and apple, app and application etc.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int begins_with(char *str1,char *str2)
+{
+      int l = strlen(str2);
+      if  ( strncmp(str1,str2,l)==0)
+         return 1;
+      return 0;
+ }</pre></div></div> <div class='question'>16. Write a program to test if a string str1 ends with str2. e.g. examination ends with nation. Thesis ends with is</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int ends_with(char *str1, char *str2);//returns 1 if str1 begins with str2
+int main()
+{
+   char str1[100],str2[100];
+   gets(str1);
+   gets(str2);
+   if(ends_with(str1,str2))
+     printf("%s ends with %s\n",str1,str2);
+   else
+     printf("%s does not end with %s\n",str1,str2);
+   return 0;
+}
+int ends_with(char *str1,char *str2)
+{
+     int l = strlen(str2);
+     str1 = str1+ (strlen(str1) - l);
+     if(strcmp(str1,str2)==0)
+      return 1;
+     return 0;
+}</pre></div></div> <div class='question'>17. Write a function to replace every instance of a character with another charcter. e.g. replace i with j for "C is a nice language" will become "C js njce language"</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+void replace(char *str,char ch1,char ch2)
+{
+   while(*str)
+   {
+     if (*str==ch1)
+       *str = ch2;
+     str++;
+    }
+}
+int main()
+{
+   char str[100];
+   char ch1,ch2;
+   gets(str);
+   printf("Enter character to replace :");
+   scanf("%c",&ch1);
+   printf("Enter new character in place of %c :",ch1);
+   scanf(" %c",&ch2);
+   replace(str,ch1,ch2);
+   printf("After replacing %c with %c the string is %s\n",ch1,ch2,str);
+   return 0;
+} </pre></div></div> <div class='question'>18. Write a function to encode a string by replacing each character by its predecessor</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void encode(char *str)
+{
+    while(*str)
+    {
+       *str = *str -1;
+       str++;
+    }
+}</pre></div></div> <div class='question'>19. Write a C function to split a string at separators where separator is  a character parameter to function. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+int split(char *string,char sepr,char substring[][30])
+{
+       int i=0,j=0;
+       while(*string)
+       {
+            char temp = *string++;
+            if(temp==sepr)
+                {
+                 substring[i++][j]=0;j=0;
+                 }
+            else
+                 substring[i][j++]=temp;
+        }
+        if(substring[i][j]!=0)
+              substring[i++][j]=0;
+        return i;
+}
+
+
+int main()
+{
+   char string[200];
+   char separator;
+   char words[30][30]={0};
+   int nw;
+   printf("Enter the string:");
+   gets(string);
+   printf("Separator:");
+   scanf("%c",&separator);
+   nw = split(string,separator,words);
+   do
+    printf("%s\n",words[nw]);
+   while(nw--);
+}</pre></div></div> <div class='question'>20. Given two strings A and B, how would you find out if the characters in B were a subset of the characters in A?</p><button class='accordion'>Answer</button><div class='panel'><p >int indexOf(char *str,char ch)<br>{<br>    int i,l=strlen(str);<br>    for(i=0;i&lt;l;i++)<br>       if(str[i]==ch)<br>         return i;<br>    return -1;<br>}<br>/* function return 1 if str2 is a subset of str1. Else returns 0*/<br>int isSubset(char *str1,char *str2)<br>{<br>     char ch;<br>     while(ch=*str2++)<br>       if(indexOf(str1,ch)==-1)<br>          return 0;<br>     return 1;<br>}  </p></div></div> <div class='question'>21. Write a function to remove any character from a given string</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+void shiftele(char str[],int pos);
+void remove_char(char *str,char ch);
+int main()
+{
+ char str[100];
+ char ch;
+ printf("Enter the string\n");
+ gets(str);
+ printf("Enter the character to be deleted\n");
+ scanf(" %c",&ch);
+ remove_char(str,ch);
+ printf("After removing %c string is %s",ch,str);
+ return 0;
+}
+void remove_char(char *str,char ch)
+{
+ int i;
+ for(i=0;i&lt;=str[i]!='\0';i++)
+ {
+  if(str[i] == ch )
+   {
+     int j;
+     for(j=i;str[j]!=0;j++)
+        str[j] = str[j+1];
+   }
+ }
+}
+ </pre></div></div> <div class='question'>22. Write a program to find the frequencies of characters in a string. (run length encoding)</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+struct charfreq
+{
+   char ch;
+   int freq;
+};
+int index_of(char ch,struct charfreq  freq_arr[],int count)
+{
+    int i;
+    for(i=0;i&lt;count;i++)
+        if(freq_arr[i].ch==ch)
+           return i;
+    return -1;
+}
+int find_frequencies(char *str,struct charfreq freq_arr[])
+{
+     int count = 0;
+     char ch;
+     while(ch = *str++)
+     {
+         int index ;
+         if((index = index_of(ch,freq_arr,count))==-1)
+              {
+              freq_arr[count].ch = ch;
+              freq_arr[count++].freq=1;
+              }
+         else
+            {
+              freq_arr[index].freq++;
+            }
+       }
+       return count;
+}
+
+int main()
+{
+    char str[100];
+    struct charfreq cf[30];
+    int i,l;
+    printf("Enter string:");
+    gets(str);
+    l = find_frequencies(str,cf);
+    for(i=0;i&lt;l;i++)
+      printf("%c %d\n",cf[i].ch,cf[i].freq);
+    return 0;
+}
+</pre></div></div> <div class='question'>23. Write a program to check if one string is a rotation of another string</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int main()
+{
+   char str1[100];
+   char str2[100];
+   char str3[200];
+   puts("First string");
+   gets(str1);
+   puts("Second string");
+   gets(str2);
+   strcpy(str3,str1);
+   strcat(str3,str1);
+   if(strstr(str3,str2)!=NULL)
+     printf("%s is a rotation of %s",str1,str2);
+   else
+     printf("%s is not a rotation of %s",str1,str2);
+   return 0;
+}</pre></div></div> <div class='question'>24. Write a program to eliminate pairs from a string. That is if there are two similar consecutive characters, one of them should be removed.
+
+  If string is
+
+Success is by product of hard work
+
+Output should be
+
+Suces is by product of hard work</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+/* function deletes the first character of the string and packs it*/
+void delete_char(char *str)
+{
+   /*delete current char by moving rest of string to left*/
+   while(*str)
+     {
+         *str = *(str+1);
+         str++;
+      }
+}
+
+void eliminate_pairs(char *str)
+{
+    char ch,prevch;
+    prevch=0;
+    while((ch=*str))
+    {
+      if(ch==prevch)
+         delete_char(str);
+      else
+        str++;
+      prevch = ch;
+     }
+}
+int main()
+{
+   char str1[100];
+   puts("First string");
+   gets(str1);
+   eliminate_pairs(str1);
+   printf("After elimination, the result is  %s",str1);
+   return 0;
+}</pre></div></div> <div class='question'>25. Write a C program that takes two strings as arguments and removes the characters from first string which are present in second string (called mask string. )
+e.g.
+If first string is
+C is procedure oriented language
+and second string is
+abcde
+
+then output should be
+C is  prour orint lngug
+</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int indexOf(char ch,char *str)
+{
+   int i;
+   for(i=0;str[i];i++)
+      if(str[i]==ch)
+         return i;
+
+    return -1;
+}
+/* function deletes the first character of the string and packs it*/
+void delete_char(char *str)
+{
+   while(*str)
+     {
+         *str = *(str+1);
+         str++;
+      }
+}
+
+
+void eliminate_chars(char *str1,char *str2)
+{
+    char ch,prevch;
+    prevch=0;
+    while((ch=*str1))
+    {
+      if(indexOf(ch,str2)!=-1)
+            delete_char(str1);
+      else
+          str1++;
+     }
+}
+int main()
+{
+   char str1[100]; char str2[100];
+   puts("First string");
+   gets(str1);
+   puts("Second string");
+   gets(str2);
+   eliminate_chars(str1,str2);
+   printf("After elimination, the result is  %s",str1);
+   return 0;
+}</pre></div></div> <div class='question'>26. Write a function  to implement your own itoa. The function should convert a integer to a string. e.g. if no is 17, the function should return "17"</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt;
+void reverse(char *s)
+{
+    int i,j;
+    int len = strlen(s);
+    for(i=0,j=len-1;i&lt;j;i++,j--)
+    {
+        char temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+    }
+}
+char *itoa(int num)
+{
+    char *str = malloc(40);
+    int i;
+    int dig; 
+    while(num)
+    {
+      dig = num%10;
+      str[i++]=dig+48;
+      num /=10;
+    }
+    str[i]=0;
+    reverse(str);
+    return str;
+}
+int main()
+{
+   int n;
+   printf("Enter number :");
+   scanf("%d",&n);
+   printf("The number as a string is %s\n",itoa(n));
+   return 0;
+}</pre></div></div> <div class='question'>27. Write a function to find length of a string. Do not use library function strlen()</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+int stringlen(char *str)
+{
+   int l = 0;
+   while (*str++)
+       l++;
+   return l;
+}</pre></div></div> <div class='question'>28. Write a program to read 10 strings and print the longest string. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int longestString(char str[][80],int nl)
+{
+    int l = 0,i;
+    for(i=0;i&lt;nl;i++)
+      if(strlen(str[i])&gt;strlen(str[l]))
+         l = i;
+    return l;
+}
+int main()
+{
+    char str[10][80];
+    int i;
+    for(i=0;i&lt;10;i++)
+    {
+        printf("String:");
+        fgets(str[i],79,stdin);
+    }
+    i = longestString(str,10);
+    printf("The longest string is %s",str[i]);
+    return 0;
+}</pre></div></div> <div class='question'>29. Write a program to read a string and replace all vowels with character after that. e.g. a will be replaced with b, e will be replaced with f and so on. The consonants are unmodified</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+void remove_vowels(char *s);
+int is_vowel(char ch); 
+int main()
+{
+    char str[40];
+    printf("Enter a string");
+    fgets(str,39,stdin);
+    replace_vowels(str);
+    printf("The string after replacing of vowels is %s",str);
+    return 0;
+}
+void replace_vowels(char *s)
+{
+    int l = strlen(s);
+    for(;*s!='\0';s++)
+    {
+      char ch = *s;
+      if(is_vowel(ch))
+      {
+         *s = ch+1;
+       }
+    }
+}
+
+int is_vowel(char ch)
+{
+    ch = tolower(ch);
+    /* we are testing only for lower case vowels*/
+    if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u')
+      return 1;
+    return 0;
+}
+
+ 
+</pre></div></div> <div class='question'>30. How do you define a string variable in C?</p><button class='accordion'>Answer</button><div class='panel'><p >A string in C is a character array. <br><br>To define a string variable, we define a char array.<br><br>char arr[40];<br><br>We are defining a string with a maximum length of 39 characters (and one null character)<br><br>To access individual characters, we can use array indices.<br><br>arr[0] gives 0th character and so on.</p></div></div> <div class='question'>31. How do you initialize a string variable in C?</p><button class='accordion'>Answer</button><div class='panel'><p >A string is initialized by giving value in double quotes.<br><br>char str[30] = "Hello";<br><br>or <br>char str[] = "Hello";<br><br>In the second definition, size of str is 6 characters. <br><br>But this initialization given below is syntactically correct - but not preferred<br><br>char str[]= {'H',''e','l','l','o','\n'};</p></div></div> <div class='question'>32. How do you read a string variable from console and how do you print it ?</p><button class='accordion'>Answer</button><div class='panel'><p >A string variable which is character array is read and written using format specifier %s. Array name is specified as parameter for printf()/scanf() without index. Scanf() does not use address-of operator for a string.<br><br>char str[30];<br>scanf("%s",str);<br>printf("%s",str);<br><br>Note that scanf will read only till white space.<br><br>If your input is "Hello world", the variable will read only Hello.<br><br>To read an entire line you can use gets() or fgets()<br><br>  gets(str);<br>  fgets(str,29,stdin);<br><br>Similarly a string can also be displayed using puts<br>   puts(str)<br><br>puts() prints the string followed by newline character. </p></div></div> <div class='question'>33. What are the functions - sscanf and sprintf?</p><button class='accordion'>Answer</button><div class='panel'><p >sscanf is a function to read values from a string instead of console.<br><br>Syntax<br>sscanf(char *string,char *format-specifier ...);<br><br>sprintf(char *string,char *format-specifier ...);<br><br>e.g.<br><br>char str[30];<br>int a=12;<br>sprintf(str,"a is %d",a);<br><br>Now str will be "a is 12"<br><br>char *str2="10 10 1.2";<br>int a,b;<br>float c;<br>sscanf(str2,"%d %d %f",&a,&b,&c);<br><br>Now a, b and c are read from str2 and will be read as 10,10 and 1.2<br></p></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

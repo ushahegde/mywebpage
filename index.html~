@@ -64,9 +64,7 @@
    text-align: center;
    margin: 0px;
    margin-top:0px;
-   margin-bottom: 20px;
-    border-radius:5px; 
- border-style : outset;  
+   margin-bottom: 20px; 
   border-color: #eef;
    font-family:'roboto',sans-serif; 
 }
@@ -88,7 +86,7 @@
 			 
 	 		 <a href="somepage.html">Prime Numbers</a>
  			 <a href="primefactors.html">Prime factors </a> 
-Java Objective questions
+Java multiple choice questions
  		 <a href="objBasics.html">Basics</a>	
  	 <a href="objClasses.html">Classes</a>			 
 		<a href="objInheritance.html">Inheritance</a>		
