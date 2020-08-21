@@ -1,0 +1,49 @@
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="CObjBasics.js" >
+    
+    </script>
+</head>
+<body>
+ <header class="head">
+            <h2 align="center">Basics</h2></header>
+    <div class="grid">
+        <div id="quiz">
+       
+             
+             
+            <h4 id="score" style="font-size:14px; text-align: right; "></h4>
+                <hr style="margin-top: 50px">
+            <p id="question"></p>
+ 
+            <div class="buttons">
+             <menuitem name="group1">
+                 <input type="radio" id="btn0" name="group1" ><span id="choice0"></span></input><br>
+              
+                <input type= "radio" id="btn1" name="group1" ><span id="choice1"></span></input><br>
+                <input type="radio"  id="btn2" name="group1" ><span id="choice2"></span></input><br>
+                <input type="radio"  id="btn3" name="group1" ><span id="choice3"></span></input><br>
+           </menuitem>    
+            </div>
+           
+            <hr style="margin-top: 50px">
+            
+            <footer>
+             <p class="answerclass" id="answerIndicator"></p>
+                <p id="progress">Question x of y</p>
+               <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
+            </footer>
+        </div>
+    </div>
+ <script type="text/javascript" >
+    
+   populate()
+ </script>
+ 
+</body>
+</html>
