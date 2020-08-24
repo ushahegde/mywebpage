@@ -1,0 +1,3879 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}
+.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; box-shadow:2px 2px #eee; }
+.question{font-family:'roboto',sans-serif; margin-left:160px;margin:30px;padding:30px;background-color:#fafafa;}
+.sidenav {
+  width: 150px;
+  position: fixed;
+  margin:5px;
+  margin-top: 60px;
+  z-index: 2;
+  top: 40px;
+  left: 10px;
+  background-color:#eee; 
+  overflow-x: hidden;
+  font-size:14px; 
+  padding: 8px 4px 8px 4px; 
+  line-height: 150%;
+  font-family: 'roboto',sans-serif;
+  box-shadow: 2px 2px #ccc;
+
+}
+
+h2{
+   padding: 10px;
+   font-family: 'roboto',sans-serif;
+   text-align: center;
+   
+}
+.mainbody{
+    margin-left: 200px;
+  
+    
+}
+
+</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  >
+
+
+<h2 class='heading'> C++  Questions and Programs </h1>
+<div class="sidenav">
+<a href="#AbstractClass">AbstractClass</a><br>
+<a href="#Class-I">Class-I</a><br>
+<a href="#Class-II">Class-II</a><br>
+<a href="#Composition">Composition</a><br>
+<a href="#Const">Constants</a><br>
+<a href="#Constructor">Constructor</a><br>
+<a href="#CopyConstructor">Copy Constructor</a><br>
+<a href="#Destructor">Destructor</a><br>
+<a href="#DynamicMemory">Dynamic Memory</a><br>
+<a href="#ExceptionHandling">Exception Handling</a><br>
+<a href="#FileHandling">File Handling</a><br>
+<a href="#Friend">Friends</a><br>
+<a href="#FunctionOverloading">Function Overloading</a><br>
+<a href="#Inheritance">Inheritance</a><br>
+<a href="#Introduction">Introduction</a><br>
+<a href="#MultipleInheritance">Multiple Inheritance</a><br>
+<a href="#OperatorOverloading-I">Operator Overloading-I</a><br>
+<a href="#OperatorOverloading-II">Operator Overloading-II</a><br>
+<a href="#Polymorphism">Polymorphism</a><br>
+<a href="#Static">Static Classes and Functions</a><br>
+<a href="#Templates">Templates</a><br>
+
+<a href="#Reference">Reference</a><br>
+
+
+</div>
+
+<div class="mainbody">
+<p align='center'><h2><a id="AbstractClass">AbstractClass</a></h2></p><div class='question'><p>1. Make Polygon as abstract class. Now override the virtual method printArea() in Rectangle class, but not in Triangle class. In main function create objects of Polygon, Rectangle and Triangle. What do you observe? Why? </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>polygon.h
+
+class polygon
+{
+    protected:
+    int num_sides;
+public:
+    polygon(int nsides=3);
+    ~polygon();
+    virtual void printArea()=0;
+};
+
+Rectangle.h
+
+#include"polygon.h"
+class Rectangle : public polygon
+{
+    int wid,len;
+public:
+    Rectangle(int w=1,int l=1);
+    ~Rectangle();
+    void printArea();
+};
+
+triangle.h
+
+#include&lt;iostream&gt;
+#include"polygon.h"
+class triangle:public polygon
+{
+    int base,height;
+public:
+    triangle(int b=1,int h=1):base(b),height(h){}
+};
+
+main.cpp
+
+#include &lt;iostream&gt;
+using namespace std;
+#include"polygon.h"
+#include "Rectangle.h"
+#include "triangle.h"
+
+ 
+int main(int argc, char **argv)
+{
+        polygon p;
+        Rectangle r;
+        triangle t;
+}
+
+Note :Rectangle.cpp file not shown here.
+
+The program gives error
+
+Can not declare variable p of abstract class polygon 
+Can not declare variable t of abstract class triangle
+
+Since polygon has a pure virtual function, it is an abstract class and objects can not be created from it.
+
+Triangle class is inheriting this pure virtual function and is not overriding it. So triangle class is also an abstract class. 
+
+</pre><p></p></div></div><div class='question'><p>2. Make the destructor of Polygon pure virtual, instead of printArea method? Is it possible? </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>It is possible and it is advisable to make destructor of a class virtual if the class has dynamic memory in it. 
+
+polygon.h
+
+class polygon
+{
+    protected:
+    int num_sides;
+public:
+    polygon(int nsides=3);
+    virtual ~polygon()=0;
+    virtual void printArea();
+};
+</pre><p></p></div></div><p align='center'><h2><a id="Class-I">Class-I</a></h2></p><div class='question'><p>3. Write a class student with data members name and id. Write 4 methods getName(), setName(char*), getId() and setId(int). The default constructor  must take default values 0 for id, "noname" for name. Write main function which creates 4 different student objects and prints them. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Student.h
+#ifndef STUDENT_H
+#define STUDENT_H
+
+class Student
+{
+    char name[30];
+    int id;
+public:
+    Student();
+    Student(char *name,int id);
+    ~Student();
+    char* get_name();
+    int get_id();
+    void set_name(char *n);
+    void set_id(int n);
+};
+
+#endif // STUDENT_H
+
+Student.cpp
+#include&lt;iostream&gt;
+#include "Student.h"
+#include&lt;cstring&gt;
+using std::strcpy;
+using std::cout;
+Student::Student():id(0)
+{
+    strcpy(name,"noname");
+    cout&lt;&lt;"Default constructor\n";
+}
+Student::~Student()
+{
+    cout&lt;&lt;"destrutor\n";
+}
+
+Student::Student(char *name,int id2):id(id2)
+{
+    strcpy(this-&gt;name,name);
+    cout&lt;&lt;"2 param constructor\n";
+}
+
+void Student::set_name(char *name )
+{
+    strcpy(this-&gt;name,name);
+}
+
+void Student::set_id( int id)
+{
+    this-&gt;id = id;    
+}
+char * Student::get_name()
+{
+    return name;
+}
+int Student::get_id()
+{
+    return id;
+}
+main.cpp
+#include &lt;iostream&gt;
+#include"Student.h"
+using namespace std;
+
+void print_details(Student s)
+{
+    cout&lt;&lt;"Name "&lt;&lt;s.get_name()&lt;&lt;"\n";
+    cout&lt;&lt;"Id "&lt;&lt;s.get_id()&lt;&lt;"\n";
+}
+int main( )
+{
+    Student s1;
+    cout&lt;&lt;"name of student";
+    string name;
+    cin&gt;&gt;name;
+    cout&lt;&lt;"id =";
+    int id;
+    cin&gt;&gt;id;
+    Student s2((char*)name.c_str(),id);
+    print_details(s1);
+    print_details(s2);	 
+   return 0;
+}
+
+</pre><p>Observe how many times destructor is being called? Why? </p></div></div><p align='center'><h2><a id="Class-II">Class-II</a></h2></p><div class='question'><p>4. Write a class point with x and y co-ordinates, constructor, default constructor, getters and setters. Write a non-member function which finds the length of the straight line with the given end points. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>point.h
+#include&lt;fstream&gt;
+using std::ostream;
+using std::istream; 
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m ,float n );
+    point();
+    float  getx() ;
+    float  gety() ;
+    void setx(const float & a);
+    void sety(const float & b); 
+};
+
+point.cpp
+#include"point.h"
+/*para ctor*/
+point::point(float a,float b):x(a),y(b)
+{
+}
+ 
+ /*default ctor*/
+point::point()
+{
+    x = y = 0;
+}
+/*setters*/
+void point::setx(const float &a)  
+{
+   x = a;
+}
+void point::sety(const float &b)  
+{
+   y = b;
+}
+/*getters*/
+float point::getx() 
+{
+    return x;
+}
+float point::gety() 
+{
+    return y;
+}
+
+main.cpp
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include"point.h"
+using namespace std;
+ 
+ 
+float lineLength(point p1,point p2)
+{
+    float xdiff = p2.getx()-p1.getx();
+    float ydiff = p2.gety() -p1.gety();
+    float dist = sqrt(xdiff*xdiff + ydiff*ydiff);
+    return dist;    
+}
+int main()
+{   
+    point p1; point p2;
+    cout&lt;&lt;"Enter first point";
+    float a,b;
+    cin&gt;&gt;a&gt;&gt;b;
+    p1.setx(a);
+    p1.sety(b);
+     cout&lt;&lt;"Enter second point";
+    
+    cin&gt;&gt;a&gt;&gt;b;
+    p2.setx(a);
+    p2.sety(b);
+    
+    cout&lt;&lt;"Length of straight line betn the points is "&lt;&lt;lineLength(p1,p2);
+     return 0;
+}
+               </pre><p></p></div></div><div class='question'><p>5. Write a class to implement a singly linked list of integers. The class must have append,  insert(pos,val), size(), delete(val), search(val), iterate() functions. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using std::cout;
+class node
+{
+  public:   
+   int n;
+   class node *next;
+};
+class sll
+{
+   node *head;
+public:
+    sll();
+   sll(int val);
+   void append(int num);
+   void insert(int num,int pos);
+   void iter();
+   node *getLastNode();
+   ~sll();
+};
+node *createNode(int n)
+{
+   node * temp = new node;
+   temp-&gt;n = n;
+   temp-&gt;next = NULL;
+   return temp;
+}
+sll::sll()
+{
+   head = NULL;
+}
+sll::sll(int val)
+{
+   node *nd = createNode(val);
+   head = nd;
+}
+node* sll::getLastNode()
+{
+   node*temp = head;
+   while(temp && temp-&gt;next!=NULL)
+      temp = temp-&gt;next;
+   return temp;
+}
+void sll::append(int num)
+{
+   node *nd = createNode(num);
+   node* lastnode = getLastNode();
+   if(lastnode!=NULL)
+   {
+      lastnode-&gt;next = nd;
+   }
+   else
+   {
+      head = nd;
+   }
+}
+void sll::insert(int num,int pos)
+{
+   node *nd = createNode(num);
+   //go to node pos-1
+   node *temp = head;
+   node * prevnd;
+   for (int i=1;temp&&i&lt;=pos;i++,temp=temp-&gt;next )
+        prevnd = temp;   
+   if(temp==NULL)
+   {
+      delete nd;
+      append(num);
+   }
+   nd-&gt;next = prevnd-&gt;next;
+   prevnd-&gt;next = nd;
+}       
+void sll::iter()
+{
+   node *temp = head;
+   while(temp-&gt;next)
+   {
+      cout&lt;&lt;temp-&gt;n&lt;&lt;"=&gt;";
+      temp = temp-&gt;next;
+   }
+   if(temp)
+      cout&lt;&lt;temp-&gt;n;
+}
+sll::~sll()
+{
+   //delete all the nodes
+   node *temp = head;
+   while(temp)
+   {
+      node *nextnode = temp-&gt;next;
+        cout&lt;&lt;"Deleting the node"&lt;&lt;temp-&gt;n&lt;&lt;"\n";
+      delete temp;
+      temp = nextnode;
+   }
+   head = NULL;
+}   
+int main()
+{
+   sll obj;
+   for(int i=1;i&lt;10;i++)
+   {
+      obj.append(i*i);
+   }
+    obj.insert(2000,3);
+   obj.iter();
+}    
+      </pre><p>Note that destructor deletes all the nodes of singly linked list</p></div></div><div class='question'><p>6. Write a class pen with  price as data member  and  constructor. Create a static member function which prints "Pen is mightier than sword". Can this function print price of the pen?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using std::cout;
+class Pen
+{	
+   float price;
+public:
+   Pen(float p=10);
+   static void printMighty();
+};
+Pen::Pen(float p ):price(p){}
+void Pen::printMighty()
+{
+    cout&lt;&lt;"Pen is mightier than sword"; 
+}
+int main()
+{
+     Pen obj(5);
+     obj.printMighty();
+}
+
+</pre><p>No. Because a static function can access only static data members of the class.</p></div></div><div class='question'><p>7. Write a class Student with an id and name as data members. name  should be a char pointer.  Write constructors and destructors and a function which finds if the name of the student is Kumar. What happens when you do not define copy constructor?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using std::cout;
+using std::cin;
+class Student
+{
+	int id;
+	char *name;
+	public:
+	Student( char *s,int id);	 
+	Student(const Student & sobj);//copy constructor
+	char *getName();
+	int getId();
+	void setName(char *s);
+	void setId(int n);
+	~Student();
+	Student & operator = (const Student & other);//assignment operator
+};
+Student::Student(char *s,int id=0)
+{
+	this-&gt;id = id;
+	int len =  strlen(s);
+	name = new char[len];
+	strcpy(name,s);
+}
+Student::~Student()
+{
+	delete[] name;
+}
+Student::Student(const Student& sobj)
+{
+	id = sobj.id;
+	name = new char[strlen(sobj.name)];
+	strcpy(name,sobj.name);
+}
+Student & Student::operator =(const Student &other)
+{
+	if (this!=&other)//not self assignment
+	{
+		delete []name;
+		id = other.id;
+		name = new char[strlen(other.name)];
+	    strcpy(name,other.name);
+	}
+	return *this;
+}
+char *Student::getName()
+{
+	return name;
+}
+int Student::getId()
+{
+	return id;
+}
+void Student::setId(int n)
+{
+	id = n;
+}
+void Student::setName(char *s)
+{
+	delete name;
+	name = new char[strlen(s)];
+	strcpy(name,s);
+}
+bool isNameKumar(Student sobj)
+{
+	if(strcmp(sobj.getName(),"Kumar")==0)
+		return true;
+	return false;
+}
+int main()
+{
+	Student s1("Hari",1);
+	Student s2("Kumar",2);
+	if(isNameKumar(s2))
+	{
+		cout&lt;&lt;"this student is Kumar";
+	}
+}</pre><p></p></div></div><div class='question'><p>8. Create 2 pointers to Point class. Set x and y values to these points and print their distances from origin. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>main.cpp
+
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include"point.h"
+using namespace std;
+float dist(const point * p1)
+{
+    float sum = p1-&gt;gety()*p1-&gt;gety()+p1-&gt;getx()*p1-&gt;getx();
+    return sqrt(sum);
+    
+}
+int main()
+{   
+    point *p1 = new point(11,22);
+    point *p2 = new point(1,223);
+    cout&lt;&lt;"Distance of first point from origin is "&lt;&lt;dist(p1)&lt;&lt;endl;
+    cout&lt;&lt;"Distance of second point from origin is "&lt;&lt;dist(p2)&lt;&lt;endl;
+    delete p1;
+    delete p2;
+}
+     </pre><p>Note that the pointers should be explicitly released using delete. </p></div></div><div class='question'><p>9. Create an array of points using new operator. Now print the total number of points in each of the quadrants. Do not forget to release the memory  at the end.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>main.cpp
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include"point2.h"
+using namespace std;
+ 
+
+void readPoints(point *parr,int len)
+{
+    for(int i=0;i&lt;len;i++)
+    {
+        float a,b;
+        cout&lt;&lt;"Enter x and y of point "&lt;&lt;i+1&lt;&lt;":";
+        cin&gt;&gt;a&gt;&gt;b;
+        parr[i].setx(a);
+        parr[i].sety(b);
+    }
+}
+void countQuadrants(point *parr,int len, int&q1,int&q2,int&q3,int&q4)
+{
+    for(int i=0;i&lt;len;i++)
+    {
+        float x = parr[i].getx();
+        float y = parr[i].gety();
+        if(x&gt;0 &&y&gt;0)
+            q1++;
+        else if(x&lt;0 &&y&gt;0)
+            q2++;
+        else if(x&lt;0 &&y&lt;0)
+            q3++;
+        else if(x&gt;0 &&y&lt;0)
+            q4++;  
+    }
+}
+int main()
+{   
+    point *parr = new point[6];
+    readPoints(parr,6);
+    int quad1,quad2,quad3,quad4;
+    quad1 = quad2 = quad3 = quad4 = 0;
+    countQuadrants(parr,6,quad1,quad2,quad3,quad4);
+    cout&lt;&lt;"Points in first quadrant are "&lt;&lt;quad1&lt;&lt;endl;
+    cout&lt;&lt;"Points in sedond quadrant are "&lt;&lt;quad2&lt;&lt;endl;
+    cout&lt;&lt;"Points in third quadrant are "&lt;&lt;quad3&lt;&lt;endl;
+    cout&lt;&lt;"Points in fourth quadrant are "&lt;&lt;quad4&lt;&lt;endl;
+    delete []parr;
+}
+               </pre><p></p></div></div><div class='question'><p>10. Write a class for Stack in C++. Implement the methods, push, pop and isEmpty methods along with constructor and destructor. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Stack.h
+
+#include&lt;vector&gt;
+
+
+class VecStack
+{
+    std::vector&lt;int&gt; elements;
+public:
+    VecStack();
+    ~VecStack();
+    void push(int value);
+    int pop();
+    bool empty();
+
+};
+#define ERR_CODE -1000
+
+Stack.cpp
+
+#include "VecStack.h"
+
+VecStack::VecStack()
+{
+   
+}
+
+VecStack::~VecStack()
+{
+    elements.clear();
+}
+
+void VecStack::push(int value)
+{
+    elements.push_back(value);
+}
+
+int VecStack::pop()
+{
+    if(empty())
+    {
+        return ERR_CODE;
+    }
+    int size  = elements.size();
+    int val = elements[size-1];
+     elements.pop_back();
+     return val;
+}
+
+bool VecStack::empty()
+{
+    return !elements.size();
+}
+
+main.cpp
+
+#include &lt;iostream&gt;
+using std::cin;
+using std::cout;
+#include"VecStack.h"
+
+int main(int argc, char **argv)
+{
+	 VecStack stack;
+     for(int i=0;i&lt;5;i++)
+     {
+         int val;
+         cout&lt;&lt;"value:";
+         cin&gt;&gt;val;
+         stack.push(val);
+     }
+     
+     while(!stack.empty())
+     {
+         cout&lt;&lt;stack.pop();
+     }
+     return 0;
+}
+
+</pre><p>Here stack is implemented using STL vector instead of arrays or linked lists.</p></div></div><p align='center'><h2><a id="Composition">Composition</a></h2></p><div class='question'><p>11. Write a class Vehicle which has an object of Engine class in it. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using namespace std;
+class Engine
+{
+    float capacity;
+public:
+    Engine(float c):capacity(c)
+    {
+        cout&lt;&lt;"Engine constructor";
+    }
+     ~Engine( )
+    {
+        cout&lt;&lt;"Engine destructor";
+    }
+};
+class Vehicle
+{
+    Engine e1;
+public:
+    Vehicle(float cap):e1(cap)
+    {
+        cout&lt;&lt;"Vehicle constructor";
+    }
+    ~Vehicle()
+    {
+        cout&lt;&lt;"Engine constructor";
+    }
+};
+int main()
+{
+    Vehicle v1(1.25);
+}
+</pre><p></p></div></div><p align='center'><h2><a id="Const">Const</a></h2></p><div class='question'><p>12. Write a function which takes two constant reference parameters x and y. Now increment both of them and return their product. What is the result? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+ 
+int product(const int &n1, const int &n2)
+{
+    n1++;
+    n2++;
+    return n1*n2;
+}
+int main()
+{
+     int a= 10;
+     int b = 100;
+     cout&lt;&lt;product(a,b);
+}</pre><p>The program gives 2 compiler errors - increment of read only reference n1 and error - increment of read only reference n2.<br><br>A constant reference can not be modified.  </p></div></div><div class='question'><p>13. Can a class have const data members? If yes, how are they initialized? Write a class Student with name as constant data member. Create 3 objects of this class and print the names. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Yes
+
+Constant data memebers are initialized using member initializer lists in constructor. 
+
+Student.h
+#ifndef STUDENT_H
+#define STUDENT_H
+#include&lt;iostream&gt;
+using std::string;
+class Student
+{
+    const string name;
+    int id;
+public:
+    Student();
+    Student(string name,int id);
+    ~Student();
+    string  get_name();
+    int get_id();
+    void set_name(string n);
+    void set_id(int n);
+};
+
+#endif // STUDENT_H
+
+Student.cpp
+#include&lt;iostream&gt;
+#include "Student.h"
+#include&lt;cstring&gt;
+using std::strcpy;
+using std::cout;
+using std::string;
+Student::Student():id(0),name("noname")
+{
+    
+    cout&lt;&lt;"Default constructor\n";
+}
+Student::~Student()
+{
+    cout&lt;&lt;"destrutor\n";
+}
+
+Student::Student(string n,int id2):id(id2), name(n)
+{
+   
+    cout&lt;&lt;"2 param constructor\n";
+}
+
+void Student::set_name(string name )
+{
+   // this-&gt;name = name;
+}
+
+void Student::set_id( int id)
+{
+    this-&gt;id = id;    
+}
+string Student::get_name()
+{
+    return name;
+}
+int Student::get_id()
+{
+    return id;
+}
+main.cpp
+#include &lt;iostream&gt;
+#include"Student.h"
+using namespace std;
+
+void print_details(Student s)
+{
+    cout&lt;&lt;"Name "&lt;&lt;s.get_name()&lt;&lt;"\n";
+    cout&lt;&lt;"Id "&lt;&lt;s.get_id()&lt;&lt;"\n";
+}
+int main( )
+{
+    Student s1;
+    cout&lt;&lt;"name of student";
+    string name;
+    cin&gt;&gt;name;
+    cout&lt;&lt;"id =";
+    int id;
+    cin&gt;&gt;id;
+    Student s2(name ,id);
+    print_details(s1);
+    print_details(s2);	 
+   return 0;
+}
+
+</pre><p></p></div></div><div class='question'><p>14. Write a function printNumber which prints the data of Number object. The parameter to the function must be constant reference. But the object must remember how many times it has been printed so far. 
+</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>A.h
+ class Number
+{
+    char num;
+    mutable int numTimesPrinted;
+public:
+    Number(char n);
+    Number(const Number &obj);
+    ~Number();
+    void setNum(char m);
+    char getNum();
+    void printNum() const;
+}; 
+A.cpp
+#include "A.h"
+#include&lt;iostream&gt;
+using std::cout;
+ 
+Number::Number(char n)
+{
+    this-&gt;num = n;
+    numTimesPrinted = 0;
+}
+Number::~Number()
+{
+     std::cout&lt;&lt;"Destructor of "&lt;&lt;num&lt;&lt;std::endl;
+}
+Number::Number(const Number &obj)
+{
+     this-&gt;num = obj.num;
+     std::cout&lt;&lt;"copy constructor is called";
+     numTimesPrinted = 0;
+}
+void Number::setNum(char m)
+{
+    num = m;
+}
+char Number::getNum()
+{
+    return num;
+}
+
+void Number::printNum() const
+{
+    cout&lt;&lt;"The number is "&lt;&lt;(int)num;
+    numTimesPrinted++;
+    cout&lt;&lt;"The object is calling printNum function "&lt;&lt;numTimesPrinted&lt;&lt;" times\n";
+}
+main.cpp
+#include &lt;iostream&gt;
+#include"A.h"
+using namespace std;
+ 
+void globPrint(const Number &obj)
+{
+    obj.printNum();
+    obj.printNum();
+}
+int main()
+{
+  Number obj1('a');
+  obj1.printNum();
+  obj1.printNum();
+  Number obj2('b');
+  obj2.printNum();
+  globPrint(obj1);
+  return 0;  
+}
+
+</pre><p>There are two aspects to the mutable data - numTimesPrinted. This basically tells you how many times printNum is called on the given object.<br><br> Do not confuse it with static data member.  numTimesPrinted does not tell you how many times printNum is called for all the objects. <br><br>See the speciality of this data member.<br><br>  1) Even in const function we are able to modify this data member.<br><br>  2) The global function - globPrint() which receives a constant reference is able to modify this mutable data member through the printNum function<br></p></div></div><div class='question'><p>15. Use the Point class written earlier. Send a constant reference to a function. Now change the x and y of the first object to 10 and 30 respectively using setters. Will the program compile? Why?  
+
+Now can the constant object call this getx() function? Why?
+</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Use previous point.h and point.cpp
+
+main.cpp
+#include&lt;iostream&gt;
+using namespace std;
+#include"point.h"
+
+void foobar(const point &p1)
+{
+     p1.setx(10);//error
+    p1.sety(30);//error
+    cout&lt;&lt;p1.getx();//error
+}
+
+int main()
+{
+    point p1;
+    foobar(p1);
+  
+}
+      </pre><p>The constant object is unable to call setx() or sety() because, we can not change the state of a constant object.<br><br>The object can not call getx() or gety() also because they are const function. So they are not promising that they won't change the state of the object.<br><br>A constant object can call only const function. </p></div></div><div class='question'><p>16. In the point class make getx and gety and constant functions. Now create 2 constant Points. Can we display x and y of the points now in main function? How? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>point.h
+#include&lt;fstream&gt;
+using std::ostream;
+using std::istream; 
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m =0,float n=0 );
+    ~point();    
+    float  getx() const;
+    float  gety() const ;
+    void setx(const float & a);
+    void sety(const float & b); 
+};
+
+point.cpp
+
+#include"point.h"
+#include&lt;iostream&gt;
+using std::cout;
+point::point(float a,float b):x(a),y(b)
+{
+    cout&lt;&lt;"Constructor is called\n";
+} 
+ 
+void point::setx(const float &a)  
+{
+   x = a;
+}
+void point::sety(const float &b)  
+{
+   y = b;
+}
+
+float point::getx()  const
+{
+    return x;
+}
+float point::gety() const
+{
+    return y;
+}
+point::~point()
+{
+    cout&lt;&lt;"Destructor is called\n";
+}
+
+main.cpp
+
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include"point2.h"
+using namespace std;
+ void foobar(const point &p1)
+{
+  /*   p1.setx(10);//error
+    p1.sety(30);//error*/
+    cout&lt;&lt;p1.getx();//error
+}
+int main()
+{   
+     point p1; 
+     foobar(p1);
+}
+               </pre><p>The program works fine because a constant object can call constant function. getx() is a constant function. </p></div></div><p align='center'><h2><a id="Constructor">Constructor</a></h2></p><div class='question'><p>17. Write a constructor to the class Point which has two data members x and y.  If the parameters are not given, x and y should have the value 0 and 0</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>class Point
+{
+    float x,y;
+public:
+   Point(float a=0,float b=0);
+};
+Point::Point(float a,float b):x(a),y(b){}</pre><p>Constructor is using default arguments for all its parameters. So it can be used even without any argument. <br><br>That is to say it is a default constructor also.<br><br>And the constructor uses member initializer list to set values to x and y</p></div></div><div class='question'><p>18. Write a class RealNumber with one data which is double. Write a constructor for this class which also works as default constructor. Create an object of this class called rObj. Now assign rObj to a double variable a. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using std::cout;
+class RealNumber
+{
+    double num;
+public:
+    RealNumber(double m=0):num(m){std::cout&lt;&lt;"ctor";}
+}; 
+int main( )
+{
+     RealNumber nobj(11);
+     double d1 = 1.2;
+     nobj = d1;     
+}</pre><p>The constructor is called twice even though only one object is created. <br><br>When there is conversion from basic data type to object, it will use the constructor with that type as single parameter. In this case conversion from double to RealNumber object uses the constructor.<br><br>If you do not want this implicit conversion, you should add "explicit" word before constructor.</p></div></div><div class='question'><p>19. Write a class Point with only one constructor with two float parameters for x and y. Now create an array of 10 points in main(). Will the program compile? Why? Now comment the constructor and compile the program again.  Now will the program compile? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Point.h
+class Point
+{
+    float x,y;
+public:
+   Point(float a,b):x(a),y(b){}
+   float getx();
+   float gety();
+};
+
+Point.cpp
+#include"Point.h"
+float Point::getx()
+{
+     return x;
+}
+float Point::gety()
+{
+     return y;
+}
+
+main.cpp
+#include&lt;iostream&gt;
+#include"Point.h"
+using std::cout;
+int main()
+{
+      Point pobj_arr[10];
+}</pre><p>The program does not compile because array creation calls implicitly the constructor for each array element which requires a default constructor. Since Point class has no default constructor, there is compilation error.<br><br>When we comment out the constructor, the compiler provides a default constructor for the class. Because compiler provides a default constructor only when the class has no user defined constructor. That is the reason why the program will compile now.</p></div></div><p align='center'><h2><a id="CopyConstructor">CopyConstructor</a></h2></p><div class='question'><p>20. Write a copy constructor for class MyArray which is a dynamic array of integers. Creates an object. Create second object as a copy of first object. 
+
+What happens when you comment out the copy ctor? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>MyArray.h
+#ifndef MYARRAY_H
+#define MYARRAY_H
+
+class MyArray
+{
+    int *elements;
+    int len;
+public:
+    MyArray(int len=5);
+    ~MyArray();
+    MyArray(const MyArray & obj1);
+};
+
+#endif // MYARRAY_H
+MyArray.cpp
+#include "MyArray.h"
+MyArray::MyArray(int len)
+{
+    this-&gt;len = len;
+    elements = new int[len];
+    for(int i=0;i&lt;len;i++)
+        elements[i]=0;
+}
+/* copy ctor*/
+MyArray::MyArray(const MyArray &obj1)
+{
+    this-&gt;len = obj1.len;
+    elements = new int[len];
+    for(int i=0;i&lt;len;i++)
+        elements[i]=obj1.elements[i];
+} 
+
+
+MyArray::~MyArray()
+{
+    delete []elements;
+}
+
+main.cpp#include &lt;iostream&gt;
+#include"MyArray.h"
+using namespace std;
+int main()
+{
+    MyArray obj(10);
+    MyArray obj2 = obj;
+    
+}</pre><p>If copy ctor is not present - that is , when the program uses compiler provided copy constructor, the program crashes. Because, elements is dynamically created array and compiler provided copy ctor does shallow copy that is it just copies the pointer value to elements without actually creating a new block of memory.<br><br>When obj2 is destroyed, memory block is released. But elements of obj1 also points to this memory. During destruction of obj1, the program tries to release a dangling pointer. And it crashes. </p></div></div><div class='question'><p>21. Write a class Number with a byte sized number as data. Now write a ctor and copy ctor to this class. Show the different situations when this copy ctor is called. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>A.h
+ class Number
+{
+    char num;
+public:
+    Number(char n);
+    Number(const Number &obj);
+    ~Number();
+    void setNum(char m);
+    char getNum();
+
+}; 
+A.cpp
+#include "A.h"
+#include&lt;iostream&gt; 
+Number::Number(char n)
+{
+    this-&gt;num = n;
+}
+Number::~Number()
+{
+     std::cout&lt;&lt;"Destructor of "&lt;&lt;num&lt;&lt;std::endl;
+}
+Number::Number(const Number &obj)
+{
+     this-&gt;num = obj.num;
+     std::cout&lt;&lt;"copy constructor is called";
+}
+void Number::setNum(char m)
+{
+    num = m;
+}
+char Number::getNum()
+{
+    return num;
+}
+main.cpp
+#include &lt;iostream&gt;
+#include"A.h"
+using namespace std;
+ 
+Number print_diff(Number obj1,Number &obj2)
+{
+    int m = obj1.getNum() - obj2.getNum();
+    cout&lt;&lt;"Difference is "&lt;&lt;m&lt;&lt;"\n";
+    cout&lt;&lt;"Returning an object";
+    return Number(m);    
+}
+int main()
+{
+  Number obj1('a');
+  cout&lt;&lt;"copy creation\n";
+  Number obj2 = obj1;
+  obj1.setNum('\01');
+  cout&lt;&lt;"obj1 is "&lt;&lt;(int)(obj1.getNum())&lt;&lt;endl;
+  cout&lt;&lt;"Assignment\n";
+  obj2 = obj1;
+  obj1.setNum(104);
+  obj2.setNum(66);
+  cout&lt;&lt;"function call with 2 Number parameters - first value, second reference\n";
+  print_diff(obj1,obj2);
+  return 0;
+  
+}
+</pre><p></p></div></div><p align='center'><h2><a id="Destructor">Destructor</a></h2></p><div class='question'><p>22. To a class Point,  add a destructor which just prints the message "destructor is called" 
+Create  a function which prints the length of the straight line joining these two points . Points should be parameters to the function. Now observe the destructor calls. Can you explain the reason for anamoly.  </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>point.h 
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m =0,float n=0 );
+    ~point();    
+    float  getx() ;
+    float  gety() ;
+    void setx(const float & a);
+    void sety(const float & b); 
+};
+point.cpp
+#include"point.h"
+#include&lt;iostream&gt;
+using std::cout;
+point::point(float a,float b):x(a),y(b)
+{
+    cout&lt;&lt;"Constructor is called\n";
+} 
+/*setters*/
+void point::setx(const float &a)  
+{
+   x = a;
+}
+void point::sety(const float &b)  
+{
+   y = b;
+}
+/*getters*/
+float point::getx() 
+{
+    return x;
+}
+float point::gety() 
+{
+    return y;
+}
+point::~point()
+{
+    cout&lt;&lt;"Destructor is called\n";
+}
+main.cpp
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include"point.h"
+using namespace std; 
+float lineLength(point p1,point p2)
+{
+    float xdiff = p2.getx()-p1.getx();
+    float ydiff = p2.gety() -p1.gety();
+    float dist = sqrt(abs(xdiff*xdiff + ydiff*ydiff));
+    return dist;    
+}
+int main()
+{   
+    point p1; point p2;
+    cout&lt;&lt;"Enter first point";
+    float a,b;
+    cin&gt;&gt;a&gt;&gt;b;
+    p1.setx(a);
+    p1.sety(b);
+
+    cout&lt;&lt;"Enter second point";    
+    cin&gt;&gt;a&gt;&gt;b;
+    p2.setx(a);
+    p2.sety(b);
+    
+    cout&lt;&lt;"Length of straight line betn the points is "&lt;&lt;lineLength(p1,p2);
+    return 0;
+}
+               </pre><p>The program calls point destructor 4 times and constructor 2 times. <br><br>The reason is the parameters to the function are value parameters of point class. They are copied to the function using copy constructor - which is compiler provided. And when the function exits, these objects are destroyed using the destructor. </p></div></div><div class='question'><p>23. How many constructors can a class have? How many destructors can it have?
+
+ Write a class A with constructor and destructor. Now create a local object, a global object, and an object within a block.
+
+ When are the constructors of these objects called? When are destructors called?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>A class can have multiple constructors. That is to say constructors of a class can be overloaded.
+
+But class can have only one destructor. Because destructor does not take parameters, there is no way in which it can be overloaded. 
+
+A.h
+ class A
+{
+    char name[30];
+public:
+    A(char *n);
+    A();
+    ~A();
+
+}; 
+A.cpp
+#include "A.h"
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+A::A()
+{
+    std::strcpy("noname",name);
+    std::cout&lt;&lt;"Default constructor"&lt;&lt;std::endl;
+}
+A::A(char *n)
+{
+    std::strcpy(name,n);
+    std::cout&lt;&lt;"Constructor of "&lt;&lt;name&lt;&lt;std::endl;
+}
+A::~A()
+{
+     std::cout&lt;&lt;"Destructor of "&lt;&lt;name&lt;&lt;std::endl;
+}
+
+main.cpp
+#include &lt;iostream&gt;
+#include"A.h"
+using namespace std;
+void some_function()
+{
+    A obj("function object");
+}
+A obj1("global");
+int main()
+{
+    cout&lt;&lt;"We are in the main function\n";
+    A obj2("local1");
+     some_function();
+    A obj3("local2");   
+}
+
+
+</pre><p>Constructor of global object is called before main. Destructor of global object is called when the program ends. Local object constructor is called when it is defined. Its destructor is called when its block exits.</p></div></div><p align='center'><h2><a id="DynamicMemory">DynamicMemory</a></h2></p><div class='question'><p>24. Write a program to create an array of doubles. The array should be created using dynamic memory allocation. Print the product of all the elements of the array.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std;
+
+void print_array(int *arr,int len)
+{
+    for(int i=0;i&lt;len;i++)
+    {
+        cout&lt;&lt;arr[i];
+        if(i&lt;len-1)
+            cout&lt;&lt;",";
+    }
+}
+void read_array(float *arr,int len)
+{
+    for(int i=0;i&lt;len;i++)
+    {
+        cout&lt;&lt;"arr["&lt;&lt;i&lt;&lt;"]=";
+        cin&gt;&gt;arr[i];
+    }
+}
+float find_product(float *arr,int len)
+{
+    float product = arr[0];
+    for(int i=0;i&lt;len;i++)
+    {
+         product *=arr[i];
+    }
+    return product;
+}
+
+int main()
+{
+    float *arr = new float[5];
+    read_array(arr,5);
+    float product = find_product(arr,5);
+    cout&lt;&lt;"Product of elements is "&lt;&lt;product;
+    delete []arr;
+    return 0;
+}
+</pre><p></p></div></div><p align='center'><h2><a id="ExceptionHandling">ExceptionHandling</a></h2></p><div class='question'><p>25. Write a program with a function to give quotient of two numbers. When denominator is zero the program should throw an integer exception. Handle the exception in the function.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+#define ERR_CODE -1000
+ 
+ float quotient(int n1,int n2)
+ {
+      
+     try{
+         if(n2==0)
+             throw int(10);
+         float ans = (float)n1/n2;
+         return ans;
+     }
+     catch(int error1)
+     {
+         cout&lt;&lt;"Attempt to divide by 0";
+         return ERR_CODE;
+     }
+ }
+ int main()
+{
+    int m;
+    int n;
+    cout&lt;&lt;"Enter 2 integers ";
+    cin&gt;&gt;m&gt;&gt;n;
+    float ans = quotient(m,n);
+    if(ans!=ERR_CODE)
+        cout&lt;&lt;"Answer is"&lt;&lt;ans;
+}
+ </pre><p></p></div></div><div class='question'><p>26. Write a program with div function to return quotient of two numbers. When denominator is zero the program should throw an integer exception. Handle the exception in main function.  </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+#define ERR_CODE -1000
+ 
+ float div(int n1,int n2)
+ { 
+         if(n2==0)
+             throw int(10);
+         float ans = (float)n1/n2;
+         return ans;
+    
+ }
+ int main()
+{
+    int m;
+    int n;
+    cout&lt;&lt;"Enter 2 integers ";
+    cin&gt;&gt;m&gt;&gt;n;
+    try{
+        float ans = div(m,n);
+        cout&lt;&lt;"Quotient is"&lt;&lt;ans;
+     }
+     catch(int error1)
+     {
+         cout&lt;&lt;"Attempt to divide by 0";
+         
+     }
+    }
+    
+
+The function exits and passes on the exception to main function. In main(), the exception is handled.
+
+If main could not handle the exception, then the program crashes. 
+</pre><p></p></div></div><div class='question'><p>27. Modify the program to demonstrate stack unwinding during exception handling. Create two objects of some class in the function. and observe the destructors being called. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> class A
+ {
+public:
+     A(){cout&lt;&lt;"A constructor";}
+     ~A(){cout&lt;&lt;"A destructor";}
+ };
+ class DivError
+ {};
+ float div(int n1,int n2)
+ { 
+       A obj1; A obj2;
+         if(n2==0)
+             throw DivError();
+         float ans = (float)n1/n2;
+         return ans;
+    
+ }
+ int main()
+{
+    int m;
+    int n;
+    cout&lt;&lt;"Enter 2 integers ";
+    cin&gt;&gt;m&gt;&gt;n;
+    try{
+        float ans = div(m,n);
+        cout&lt;&lt;"Quotient is"&lt;&lt;ans;
+     }
+     catch(DivError error1)
+     {
+         cout&lt;&lt;"Attempt to divide by 0";
+         
+     }
+    }
+    
+</pre><p>obj1 and obj2 destructors are called after the exception is thrown. So any local objects are destructed(!), when exception is transferred to caller function. <br><br>Also note that in this program, the exception thrown is an object, not POD</p></div></div><div class='question'><p>28. Modify the above program so that the catch block catches only float exception. What happens to program? Are the destructors of objects being called?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+#define ERR_CODE -1000
+ 
+ class A
+ {
+public:
+     A(){cout&lt;&lt;"A constructor";}
+     ~A(){cout&lt;&lt;"A destructor";}
+ };
+ class DivError
+ {};
+ float div(int n1,int n2)
+ { 
+       A obj1;
+         if(n2==0)
+             throw DivError();
+         float ans = (float)n1/n2;
+         return ans;
+    
+ }
+ int main()
+{
+    int m;
+    int n;
+    cout&lt;&lt;"Enter 2 integers ";
+    cin&gt;&gt;m&gt;&gt;n;
+    try{
+        float ans = div(m,n);
+        cout&lt;&lt;"Quotient is"&lt;&lt;ans;
+     }
+     catch(float error1)
+     {
+         cout&lt;&lt;"Attempt to divide by 0";
+         
+     }
+    }
+    
+The program crashes because the exception is not handled. 
+
+No. The local objects are not cleaned up.</pre><p></p></div></div><div class='question'><p>29. Write a function foo which prints ith element of the array. foo() calls bar() which returns arr[i]. bar throws an exception if i is out of range. Call foo in main with in a loop with different values of index and observe behaviour. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+#define ERR_CODE -1000
+ 
+ int bar(int *arr,int len,int index)
+ {
+     cout&lt;&lt;"in bar function";
+     if(index&lt;0)
+         throw float(1.2);
+     if(index&gt;=len)
+        throw int(11);
+     return arr[index];   
+ }
+ int foo(int *arr,int len,int index)
+ {
+     cout&lt;&lt;"in foo function";
+     return bar(arr,len,index);
+ }
+ int main()
+{
+    int arr[] = {11,22,33,44,55,66,77,88};
+    for(int i=0;i&lt;5;i++){
+        int n;
+        cout&lt;&lt;"Which element:";
+        cin&gt;&gt;n;
+        try{
+            int el = foo(arr,8,n);
+            cout&lt;&lt;"Element is "&lt;&lt;el&lt;&lt;endl;
+        }
+        catch(float error1)
+        {  
+            cout&lt;&lt;"subscript can not be negative"&lt;&lt;endl;
+         
+        }
+        catch (int error1){
+            cout&lt;&lt;"Array index out of range"&lt;&lt;endl;
+        }
+    }
+  }
+    
+    
+</pre><p></p></div></div><div class='question'><p>30. Modify the above program where bar has exception specification. bar() can throw only int exceptions. Run the program. Now specify that bar() can not throw any exception. Is it possible to specify that bar() can throw any type of exception</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+#define ERR_CODE -1000
+ 
+ int bar(int *arr,int len,int index) throw (int)
+  {
+     cout&lt;&lt;"in bar function";
+  
+     if(index&lt;0)
+         throw float(1.2);
+     if(index&gt;len)
+        throw int(11);
+     return arr[index];   
+ }
+ int foo(int *arr,int len,int index)
+ {
+     cout&lt;&lt;"in foo function";
+     return bar(arr,len,index);
+ }
+ int main()
+{
+    int arr[] = {11,22,33,44,55,66,77,88};
+    for(int i=0;i&lt;5;i++){
+        int n;
+        cout&lt;&lt;"Which element:";
+        cin&gt;&gt;n;
+        try{
+            int el = foo(arr,8,n);
+            cout&lt;&lt;"Element is "&lt;&lt;el&lt;&lt;endl;
+        }
+        catch(float error1)
+        {  
+            cout&lt;&lt;"subscript can not be negative"&lt;&lt;endl;
+         
+        }
+        catch (int error1){
+            cout&lt;&lt;"Array index out of range"&lt;&lt;endl;
+        }
+    }
+  }
+    
+    
+To specify that the function can not throw any exception, throw specifier should be empty
+
+int bar(int *arr,int len, int index) throw ()
+</pre><p></p></div></div><div class='question'><p>31. Write a program which prints a/b and throws a double exception if b is zero. Write a catch block with int and another with catch all. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+#define ERR_CODE -1000
+ 
+ class A
+ {
+public:
+     A(){cout&lt;&lt;"A constructor";}
+     ~A(){cout&lt;&lt;"A destructor";}
+ };
+ class DivError
+ {};
+ float div(int n1,int n2)
+ { 
+       A obj1;
+         if(n2==0)
+             throw double(12);
+         float ans = (float)n1/n2;
+         return ans;
+    
+ }
+ int main()
+{
+    int m;
+    int n;
+    cout&lt;&lt;"Enter 2 integers ";
+    cin&gt;&gt;m&gt;&gt;n;
+    try{
+        float ans = div(m,n);
+        cout&lt;&lt;"Quotient is"&lt;&lt;ans;
+     }
+     catch(int error1)
+     {
+         cout&lt;&lt;"caught an int error";         
+     }
+     catch(...)
+     {
+         cout&lt;&lt;"there was an error";         
+     }
+    }
+    
+catch(...) catches all exceptions. If used, it must be last catch block.</pre><p></p></div></div><p align='center'><h2><a id="FileHandling">FileHandling</a></h2></p><div class='question'><p>32. Write a program to write cubes of first 10 integers to a binary file. Now read back these numbers from the file and print the cube roots of values in file. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#include&lt;cmath&gt;
+using namespace std;
+bool writeNumsTofile(char *filename)
+{
+    ofstream outfile(filename,ios::out|ios::binary);
+    if(!outfile)
+    {
+        return false;
+    }
+    for(int i=1;i&lt;=10;i++)
+    {
+        int cube = i*i*i;
+        outfile.write((char*)&cube,sizeof(cube));
+    }
+    outfile.close();
+    return true;
+}
+        
+bool readNumFromFile(char *filename)
+{
+    ifstream infile(filename,ios::binary);
+    if(!infile)
+    {
+        return false;
+    }
+    int num;
+    while(infile.read((char*)&num,sizeof(num)))
+    {
+        double root = pow(num,(1.0/3));
+        cout&lt;&lt;"num"&lt;&lt;num&lt;&lt;"cube root:"&lt;&lt;root&lt;&lt;"\n";
+    }
+       
+    infile.close();
+}  
+  
+int main()
+{
+    char *filename=new char[40];
+    cout&lt;&lt;"File=";
+    cin&gt;&gt;filename;
+    if(writeNumsTofile(filename))
+        readNumFromFile(filename);
+    else 
+        cout&lt;&lt;"file create error";
+    return 0;
+}</pre><p></p></div></div><div class='question'><p>33. Write a program to read a c++ program file and print the total number of characters in the file. The program should also print the names of header files used in the program file. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#include&lt;string&gt;
+using namespace std;
+
+int getNumChars(string filename)
+{
+    ifstream infile(filename.c_str());
+    if(!infile)
+    {
+        cout&lt;&lt;"Error opening the file";
+        return -1;
+    }
+    infile.seekg(0,ios::end);
+    int temp = infile.tellg();
+    return temp;
+}
+
+bool non_blank(string line,int pos)
+{
+    for(int i=0;i&lt;pos;i++)
+    {
+        if(line[i]!=' ' && line[i]!='\t')
+            return true;
+    }
+    return false;
+}
+void printIncludes(string filename)
+{
+    ifstream infile(filename.c_str());
+    if(!infile)
+    {
+        cout&lt;&lt;"Error opening the file";
+        return;
+    } 
+    while(infile)
+    {
+        string line;
+        getline(infile,line);
+        if(infile.fail())
+            break;
+        int pos = line.find("#include");
+        if(pos!=string::npos)
+        {          
+            if(non_blank(line,pos))
+                continue;
+            string s1 = line.substr(pos+8,100);     
+            cout&lt;&lt; s1&lt;&lt;endl;
+        }
+    }
+}
+
+int main()
+{
+    string filename;
+    cout&lt;&lt;"File name";
+    cin&gt;&gt;filename;
+    int count = getNumChars(filename);
+    cout&lt;&lt;"size of the file is "&lt;&lt;count&lt;&lt;endl;
+    printIncludes(filename);
+}</pre><p>string::find function searches for substring in a string. If found, it returns the first index. If not found, it returns string::npos.<br><br>non_blank function is used to remove lines which contain #include within quoted strings.</p></div></div><div class='question'><p>34. Write a program to write a simple Hello world program to a file. The program should be complete and should be compilable. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;fstream&gt;
+using namespace std;
+void write_to_file(char *filename)
+{
+    fstream outfile(filename,ios::out);
+    if(!outfile)
+    {
+        cout&lt;&lt;"Error opening the file";
+        return;
+    }
+    outfile&lt;&lt;"#include&lt;iostream&gt;"&lt;&lt;endl;
+    outfile&lt;&lt;"using std::cout;"&lt;&lt;endl;
+    outfile&lt;&lt;"int main()"&lt;&lt;endl;
+    outfile&lt;&lt;"{"&lt;&lt;endl&lt;&lt;"cout&lt;&lt;\"Hello world\"; "&lt;&lt;endl;
+    outfile&lt;&lt;"}";
+    outfile.close();
+}
+    
+
+int main()
+{
+    char *filename = new char[30];
+    cin&gt;&gt;filename;
+    write_to_file(filename);
+    return 0;
+}</pre><p></p></div></div><div class='question'><p>35. A file a.txt contains 5 Points in the format (x,y),(x1,y1) etc. Read this file and find out if these points are collinear. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+ 
+using std::cin;
+using std::cout;
+using std::ifstream; 
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m=0,float n=0);
+    float  getx() const;
+    float  gety() const;
+    void setx(const float & a);
+    void sety(const float & b);
+};
+point::point(float a,float b):x(a),y(b)
+{
+}
+float   point::getx() const
+{
+    return x;
+}
+float   point::gety() const
+{
+    return y;
+}
+void point::setx(const float &a)  
+{
+   x = a;
+}
+void point::sety(const float &b)  
+{
+   y = b;
+}
+
+ 
+ 
+bool collinear(point*pobj,int len)
+{
+    float prevSlope = pobj[0].gety()/pobj[0].getx();
+    for(int i=1;i&lt;len;i++)
+     {
+         float slope = pobj[i].gety()/pobj[i].getx();         
+         if(prevSlope!=slope)
+                   return false;
+         prevSlope= slope;          
+     }
+     return true;
+} 
+
+bool readFile(char *filename,point pobj[])
+{
+    ifstream infile(filename);
+    if(!infile)
+    {
+        cout&lt;&lt;"File open error";
+        return false;
+    }
+    int i=0;
+    while(infile)
+    {
+        float m1,m2;
+        
+        infile.ignore(100,'(');
+        infile&gt;&gt;m1;
+        infile.ignore(100,',');
+        infile&gt;&gt;m2;
+        infile.ignore(100,')');
+        infile.ignore(100,',');
+        pobj[i].setx(m1);
+        pobj[i].sety(m2);
+        i++;        
+    }
+    infile.close();
+    
+}
+int main()
+{   
+    point pobj[5];
+    readFile("./a.txt",pobj);
+ 
+    for(int i=0;i&lt;5;i++)
+    {
+         
+        cout&lt;&lt;"("&lt;&lt;pobj[i].getx()&lt;&lt;","&lt;&lt;pobj[i].gety()&lt;&lt;")\n";
+    }
+    if(collinear(pobj,5)){
+        cout&lt;&lt;"The points are collinear";
+    }else{
+        cout&lt;&lt;"The points are not collinear";
+    }  
+     return 0;
+}
+               </pre><p></p></div></div><div class='question'><p>36. Write a program to write 4  Points to a binary file. Next read back these Point objects and print the point which is farthest from the origin.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+#include&lt;fstream&gt; 
+#include&lt;cmath&gt;
+using std::cin;
+using std::cout;
+using std::ofstream;
+using std::ifstream;
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m=0,float n=0);
+    float  getx() const;
+    float  gety() const;
+    void setx(const float & a);
+    void sety(const float & b);
+};
+point::point(float a,float b):x(a),y(b)
+{
+}
+float   point::getx() const
+{
+    return x;
+}
+float   point::gety() const
+{
+    return y;
+}
+void point::setx(const float &a)  
+{
+   x = a;
+}
+void point::sety(const float &b)  
+{
+   y = b;
+}
+
+ 
+void writeToFile(char* filename,point*pobjarr,int len)
+{
+    ofstream file(filename);
+    if(!file)
+    {
+        cout&lt;&lt;"File opening error.";
+        return;
+    }
+    for(int i=0;i&lt;len;i++)
+    {
+        file.write((char*)&pobjarr[i],sizeof(pobjarr[i]));
+    }
+    file.close();
+}
+void readFromFile(char* filename,point*pobjarr,int len)
+{
+    ifstream file(filename);
+    if(!file)
+    {
+        cout&lt;&lt;"File opening error.";
+        return;
+    }
+    for(int i=0;i&lt;len;i++)
+    {
+        file.read((char*)&pobjarr[i],sizeof(pobjarr[i]));
+    }
+    file.close();
+}
+int main()
+{
+    point pobj[4];
+    for(int i=0;i&lt;4;i++)
+    {
+        cout&lt;&lt;"Enter x and y of point"&lt;&lt;i&lt;&lt;":";
+        float x1,y1;
+        cin&gt;&gt;x1&gt;&gt;y1;
+        pobj[i].setx(x1);
+        pobj[i].sety(y1);
+    }
+    writeToFile("a.1",pobj,4);
+    point pobjarr[4];
+    readFromFile("a.1",pobjarr,4);
+    /*find farthest point*/
+    float largest_dist = -1;
+    int index = -1;
+    for(int i=0;i&lt;4;i++)
+     {
+         float squared_dist = pobj[i].getx()*pobjarr[i].getx() + pobjarr[i].gety()*pobjarr[i].gety();
+         float dist_from_origin = sqrt(squared_dist);
+         if(dist_from_origin&gt;largest_dist)
+         {
+               largest_dist = dist_from_origin;
+               index = i;
+         }
+     }
+     cout&lt;&lt;"The farthest point is ("&lt;&lt;pobjarr[index].getx()&lt;&lt;","&lt;&lt;pobjarr[index].gety()&lt;&lt;")";
+     return 0;
+}
+               </pre><p></p></div></div><div class='question'><p>37. Overload &gt;&gt; and &lt;&lt; for files for the class Point. Now open a file for both reading and writing and save 5 points to the file. Now read the last point and change it to 0,0 and write it back. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>point2.h
+#include&lt;fstream&gt;
+using namespace std;
+ 
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m =0,float n=0 );
+    ~point();    
+    float  getx() const;
+    float  gety() const ;
+    void setx(const float & a);
+    void sety(const float & b); 
+  
+    friend fstream & operator &lt;&lt;(fstream &file,const point &p1);
+    friend fstream & operator &gt;&gt;(fstream &file, point &p1);
+};
+
+point2.cpp
+
+#include"point2.h"
+#include&lt;iostream&gt;
+using std::cout;
+/*para ctor*/
+point::point(float a,float b):x(a),y(b)
+{
+     
+}
+ 
+ 
+/*setters*/
+void point::setx(const float &a)  
+{
+   x = a;
+}
+void point::sety(const float &b)  
+{
+   y = b;
+}
+/*getters*/
+float point::getx()  const
+{
+    return x;
+}
+float point::gety() const
+{
+    return y;
+}
+point::~point()
+{
+   
+}
+ main.cpp
+#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#include"point2.h"
+using namespace std;
+ 
+
+fstream &operator&lt;&lt;(fstream&file,const point &p)
+{
+    file&lt;&lt;p.x&lt;&lt;" "&lt;&lt;p.y&lt;&lt;endl;
+    return file;
+}
+
+fstream &operator&gt;&gt;(fstream&file, point &p)
+{
+    string str;
+    file&gt;&gt;p.x&gt;&gt; p.y;
+    return file;
+}
+ 
+ istream &operator&gt;&gt;(istream&file, point &p)
+{
+    float a,b;
+    file&gt;&gt;a&gt;&gt;b;
+    p.setx(a);
+    p.sety(b);
+    return file;
+}
+ 
+ 
+int main()
+{   
+   fstream file("d:/cpp/a.txt",ios::in|ios::out|ios::trunc);
+   for(int i=0;i&lt;5;i++)
+   {
+       point p;
+       cout&lt;&lt;"Enter the point:";
+       cin&gt;&gt;p;
+       file&lt;&lt;p;
+   }
+   file.seekg(0,ios::beg);
+  
+    point p;
+    file&gt;&gt;p;
+    p.setx(0);
+    p.sety(0);
+    file.seekg(0,ios::beg);
+    file&lt;&lt;p;
+}
+               </pre><p></p></div></div><p align='center'><h2><a id="Friend">Friend</a></h2></p><div class='question'><p>38. Write a friend function which takes a point as parameter and returns distance of the point from origin</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>point.h 
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m =0,float n=0 );
+    ~point();    
+    float  getx() const;
+    float  gety() const ;
+    void setx(const float & a);
+    void sety(const float & b); 
+  
+    friend float dist (const point& p1);
+};
+
+
+main.cpp
+
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include"point.h"
+using namespace std;
+float dist(const point & p1)
+{
+    float sum = p1.y*p1.y+p1.x*p1.x;
+    return sqrt(sum);    
+}
+int main()
+{   
+    point p(3,4);
+    cout&lt;&lt;"DIstance from origin is "&lt;&lt;dist(p);
+}
+               
+</pre><p>Note that the class must declare the function to be a friend function within the class body.<br><br>A friend function can acces even the private members of the class.</p></div></div><p align='center'><h2><a id="FunctionOverloading">FunctionOverloading</a></h2></p><div class='question'><p>39. Implement an overloaded set of max() functions to accept (a) two integers, (b) two floats, (c) two strings,  (d) an array of floats and an integer indicating the size of the array. Write a main() function.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;cstring&gt; 
+using std::cout;
+using std::strcmp;
+using std::endl;
+
+int max(int a,int b)
+{
+    return a&gt;b?a:b;
+}
+float max(float a,float b)
+{
+    return a&gt;b?a:b;
+}
+char * max(char *a,char *b)
+{
+    if(strcmp(a,b)&gt;0)
+        return a;
+        else 
+            return b;
+}
+int max(int a,int b,int c)
+{
+    return a&gt;b?(a&gt;c?a:c):b&gt;c?b:c;
+}
+float max(float arr[],int len)
+{
+    float max = arr[0];
+    for(int i=1;i&lt;len;i++)
+    {
+        if(arr[i]&gt;max)
+            max = arr[i];
+    }
+    return max;
+}
+
+
+int main()
+{
+    cout&lt;&lt;"max of 11 and 1239 is"&lt;&lt;max(11,1239)&lt;&lt;endl;
+    cout&lt;&lt;"max(1.8,-99.2) is"&lt;&lt;max(1.8f,-99.2f)&lt;&lt;endl;
+    cout&lt;&lt;"max(\"hello\",\"world\") is"&lt;&lt;max("hello","world")&lt;&lt;endl;
+    float arr[] = {1,22,45.6,112.8};
+    cout&lt;&lt;"max(arr,4) is "&lt;&lt;max(arr,4)&lt;&lt;endl;
+    cout&lt;&lt;"max(11,22111,333) is "&lt;&lt;max(11,22111,333)&lt;&lt;endl;
+    return 0;
+}</pre><p>Notes: 1) using namespace std may cause program to use libaray max function. Either use using std::cout etc. or change the name of fn to max1<br>2) Sending 1.8,-99.2 as parameters to float version of max function causes ambiguity error. Hence use float instead of double</p></div></div><div class='question'><p>40. Write a  function which can find the product of 2 or 3 or 4  float values. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+float product(float a,float b,float c=1,float d=1)
+{    
+    return a*b*c*d ;
+}
+int main()
+{
+     float m,n,x,y,z;
+     cout&lt;&lt;"Enter 4 numbers";
+     cin&gt;&gt;m&gt;&gt;n&gt;&gt;x&gt;&gt;y;
+     cout&lt;&lt;"Prodcut of "&lt;&lt;x&lt;&lt;" and "&lt;&lt;y&lt;&lt;" is"&lt;&lt;product(x,y)&lt;&lt;endl;
+     cout&lt;&lt;"Prodcut of "&lt;&lt;m&lt;&lt;" and "&lt;&lt;n&lt;&lt;" and "&lt;&lt;x&lt;&lt;" is"&lt;&lt;product(m,n,x)&lt;&lt;endl;
+     cout&lt;&lt;"Prodcut of "&lt;&lt;m&lt;&lt;" and "&lt;&lt;n&lt;&lt;" and "&lt;&lt;x&lt;&lt;" and "&lt;&lt;y&lt;&lt;" is"&lt;&lt;product(m,n,x,y)&lt;&lt;endl;     
+     return 0;
+}</pre><p></p></div></div><div class='question'><p>41. Write a function to initialize the elements of the array. The function must take array as first argument and size as second argument and initial value to be set as third. If value is not given, array elements must be initialzed to 0.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+ 
+void init_array(int *arr,int len,int value=0)
+{
+    for(int i=0;i&lt;len;i++)
+    {
+        arr[i]=value;
+    }
+}
+void print_array(int *arr,int len)
+{
+    for(int i=0;i&lt;len;i++)
+       {
+         cout&lt;&lt;arr[i];
+         if(i&lt;len-1)
+            cout&lt;&lt;",";       
+       }    
+    cout&lt;&lt;endl; 
+}
+int main()
+{
+     int *arr = new int[10];
+     init_array(arr,10,1);
+     print_array(arr,10);
+     int *arr2 = new int[5];
+     init_array(arr2,5);
+     print_array(arr2,5);
+}
+ </pre><p></p></div></div><div class='question'><p>42. Write a function to find the product of any where from 2 to 5 floats.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using std::cout;
+float product(float a,float b,float c=1,float d=1,float e = 1)
+{
+	return a*b*c*d*e;
+}
+int main()
+{
+	cout&lt;&lt;"Product of 11.2 and 22.4 is "&lt;&lt;product(11.2,22.4)&lt;&lt;"\n";
+	cout&lt;&lt;"Product of 8, 7.9 and 4.3 is "&lt;&lt;product(8,7.9,4.3)&lt;&lt;"\n";
+	cout&lt;&lt;"Product of 3,4,5 and 6 is "&lt;&lt;product(3,4,5,6)&lt;&lt;"\n";
+	cout&lt;&lt;"Product of 11,22,33,44 and 55 is "&lt;&lt;product(11,22,33,44,55)&lt;&lt;"\n";
+	return 0;
+}</pre><p>As the function has default values of 1 for 3rd to 5th parameters, it is able to work with 2 or 3 or 4 or 5 parameters</p></div></div><p align='center'><h2><a id="Inheritance">Inheritance</a></h2></p><div class='question'><p>43.  Write a class Widge. Now write two derived classes of Widget- Button and Label with data member text. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> class Widget
+ {
+     float x,y;
+  
+ };
+ 
+ class Button:public Widget
+ {
+     string text;
+ };
+ class Label:public Widget
+ {
+     string text;
+     int color;
+ };</pre><p></p></div></div><div class='question'><p>44. In the class Widget, write a constructor with 2 parameters x and y. Now can you create objects of derived classes Button and Label? How do you fix this? </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>No. The program does not compile. To fix the error, we have to write constructors for Button and Label classes which call Widget constructor in their initializer list.
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ class Widget
+ {
+     float x,y;
+public:
+  Widget(float a,float b):x(a),y(b)
+  {
+     cout&lt;&lt;"Widget constructor";      
+}
+ };
+ 
+ class Button:public Widget
+ {
+     string text;
+public:
+     Button(float a,float b,string str);
+ };
+ Button::Button(float a,float b,string str):Widget(a,b),text(str)
+ {
+     cout&lt;&lt;"Button constructor";    
+ }
+ class Label:public Widget
+ {
+     string text;
+     int color;
+public:
+     Label(float a,float b, string str);
+ };
+  Label::Label(float a,float b,string str):Widget(a,b),text(str)
+ {
+     cout&lt;&lt;"Label constructor";    
+ }
+ int main()
+ {
+     Button b1(0,0,"hi");
+     Label l1(0,0,"label");
+ }</pre><p>A derived class constructor always calls base class constructor. <br><br>If the base class has no default constructor, then base class ctor can not be called implicitly. So we must explicitly call base class ctor in member initializer list of derived class ctor.</p></div></div><div class='question'><p>45. In the polygon class, write a function printArea takes area as a parameter and prints it. Now write an area function in Rectangle class which has no parameters and pritns the area as length*width. Can a rectangle object call one parameter printArea() function?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>polygon.h
+class polygon
+{
+    int num_sides;
+public:
+    polygon(int nsides);
+    ~polygon();
+    void printArea(int area);
+};
+polygon.cpp - partial
+#include "polygon.h"
+#include&lt;iostream&gt;
+ 
+void  polygon::printArea(int area)
+{
+    std::cout&lt;&lt;"Area is "&lt;&lt;area&lt;&lt;std::endl;
+}
+
+Rectangle.h
+class Rectangle : public polygon
+{
+    int wid,len;
+public:
+    Rectangle(int w=1,int l=1);
+    ~Rectangle();
+    void printArea();
+
+};
+
+Rectangle.cpp - partial
+
+void  Rectangle::printArea()
+{
+    std::cout&lt;&lt;"Area is "&lt;&lt;len*wid&lt;&lt;std::endl;
+}
+
+main.cpp
+
+#include &lt;iostream&gt;
+using namespace std;
+#include"polygon.h"
+#include "Rectangle.h"
+
+int main(int argc, char **argv)
+{
+	 polygon p(3);
+     p.printArea(100);      
+     Rectangle r(11,22);
+     r.printArea();
+     //r.printArea(10); 
+}
+
+
+</pre><p>It is not possible to call base class printArea() function by Rectangle object. Because it is hidden by the overridden function. <br><br>But you can still call that function using base class name and ::<br><br>r.polygon::printArea();</p></div></div><div class='question'><p>46. Create two objects. obj1 a  polygon and obj2 a  rectangle. Can obj1 be assigned to obj2? Why? Can obj2 be assigned to obj1? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include"polygon.h"
+#include "Rectangle.h"
+
+int main(int argc, char **argv)
+{
+	 polygon p(3);
+     Rectangle r(11,22);
+     
+     p = r;
+     r = p;/*invalid*/
+     
+}
+
+
+r = p gives an error because polygon is not a Rectangle. So a base class object can not be assigned to a derived class object. 
+
+Derived class object is more specialized object. 
+
+Base class object can be always be assinged to derived class object. 
+
+</pre><p></p></div></div><div class='question'><p>47. Make x and y as private members in the Widget class in previous example. Write a method setxy in Button class which modifies x and y. Will the program compile? What are the two solutions to fix this?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>1) Make x and y as protected members.
+
+ class Widget
+ {
+protexted:
+     float x,y;
+public:
+  Widget(float a,float b):x(a),y(b)
+  {
+     cout&lt;&lt;"Widget constructor";      
+}
+ };
+class Button:public Widget
+ {
+     string text;
+public:
+     Button(float a,float b,string str);
+     void setxy(float a, float b);
+ };
+ void Button::setxy(float a,float b)
+ {
+     x = a;
+     y = b;
+ }
+
+2) Write public  setters and getters for Widget class x and y. Use these in setxy
+ class Widget
+ {
+ 
+     float x,y;
+public:
+  Widget(float a,float b):x(a),y(b)
+  {
+     cout&lt;&lt;"Widget constructor";      
+  }
+  void setx(float a)
+  {
+      x = a;
+  }
+   void sety(float b)
+  {
+      y = b;
+  }  
+ }; 
+ class Button:public Widget
+ {
+     string text;
+public:
+     Button(float a,float b,string str);
+     void setxy(float a, float b);
+ };
+ void Button::setxy(float a,float b)
+ {
+     setx(a);
+     sety(b);
+ }
+  int main()
+ {
+     Button b1(0,0,"hi");
+     Label l1(0,0,"label");
+     b1.setxy(10,10);
+ }
+
+
+
+
+</pre><p></p></div></div><div class='question'><p>48. Can a class Checkbox  be inherited using private inheritance from Widget class? What are the effects of this inheritance?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Yes.
+
+class Checkbox:private Widget
+{
+/*code*/
+}
+
+or
+
+class  Checkbox:private Widget
+{
+/*code*/
+}
+
+Now all members of polygon including public members become private members in derived class.</pre><p></p></div></div><p align='center'><h2><a id="Introduction">Introduction</a></h2></p><div class='question'><p>49. Write a function printArray to print the contents of an integer array with the string ", " between elements(but not after the last element). Yourfunction should return nothing.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std;
+
+void print_array(int *arr,int len)
+{
+    for(int i=0;i&lt;len;i++)
+    {
+        cout&lt;&lt;arr[i];
+        if(i&lt;len-1)
+            cout&lt;&lt;",";
+    }
+}
+int main()
+{
+    int arr[4]={11,22,33,44};
+    print_array(arr,4);
+    return 0;
+}
+</pre><p></p></div></div><div class='question'><p>50. Write a function to implement binary search of an array</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using namespace std;
+int binarySearch(int *arr,int start,int end,int searchvalue)
+{
+	if(start&gt;end)
+	{
+		return -1;
+	}
+	int mid = (start+end)/2;
+	if(arr[mid]==searchvalue)
+	    {
+			return mid;
+		}
+	if(arr[mid]&gt;searchvalue)
+	{
+	    return binarySearch(arr,start,mid-1,searchvalue);
+	}
+	else 
+	{
+		return binarySearch(arr,mid+1,end,searchvalue);
+	}
+	 
+}
+
+int main()
+{
+   int arr[10];
+     cout&lt;&lt;"Enter sorted array elements";
+  for(int i=0;i&lt;10;i++)
+  {
+      cout&lt;&lt;"arr["&lt;&lt;i&lt;&lt;"]=";
+      cin&gt;&gt;arr[i];
+  }
+  int searchvalue;
+  cout&lt;&lt;"Search value=";
+  cin&gt;&gt;searchvalue;
+  int index = binarySearch(arr,0,9,searchvalue);
+  if(index==-1)
+        cout&lt;&lt;"Search value is not found in array";
+  else
+        cout&lt;&lt;index&lt;&lt;" element is the Searchvalue";
+  return 0;
+}</pre><p></p></div></div><div class='question'><p>51. Write a function which takes two integers and finds the sum of all numbers between these two integers.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std;
+ 
+int sum_of_numbers(int a,int b)
+{
+    if(b&gt;a)
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+    int sum=0;
+    for(int i=b;i&lt;=a;i++)
+    {
+        sum+=i;
+    }
+    return sum;
+}
+int main()
+{
+     int m,n;
+     cout&lt;&lt;"Enter two numbers:";
+     cin&gt;&gt;m&gt;&gt;n;
+     int total = sum_of_numbers(m,n);
+     cout&lt;&lt;"Sum of numbers between "&lt;&lt;m&lt;&lt;"and "&lt;&lt;n&lt;&lt;" is "&lt;&lt;total;
+     return 0;
+}</pre><p></p></div></div><div class='question'><p>52. Write a program to read three numbers and print their product in decimal, octal and hexadecimal.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+int main()
+{
+     int m,n,p;
+     cout&lt;&lt;"Enter three numbers:";
+     cin&gt;&gt;m&gt;&gt;n&gt;&gt;p;
+     int product = m*n*p;
+     cout&lt;&lt;"Product is  "&lt;&lt;product&lt;&lt;oct&lt;&lt;"\nProduct in Octal is "&lt;&lt;product&lt;&lt;"\nProduct in hexadecimal is"&lt;&lt;hex&lt;&lt;product;
+     return 0;
+}
+ </pre><p></p></div></div><p align='center'><h2><a id="MultipleInheritance">MultipleInheritance</a></h2></p><div class='question'><p>53. Write a class MI which inherits both classes A - data members n1 and n2, B - with data members n1 and n11. Now create an object MI and set n1 to 10. Does the program compile? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>mi.h
+
+class A
+{
+public:
+    int n1;
+    int n2;
+};
+
+class B
+{
+public:
+    int n1;
+    int n11;
+};
+
+class MI:public A, public B
+{
+    int m;
+    
+};
+
+main.cpp
+
+#include &lt;iostream&gt;
+#include"aaaa.h"
+using namespace std;
+int main(int argc, char **argv)
+{
+      MI obj1;
+     obj1.n1 = 10;
+     cout&lt;&lt;obj1.n1;
+}
+
+
+The program does not compile. obj of MI class has four members n1, n2 and n1 and n11. That is there are 2 members with name n1. 
+
+The problem can be solved by using base class name and ::
+
+int main(int argc, char **argv)
+{
+      MI obj1;
+     obj1.A::n1 = 10;
+     cout&lt;&lt;obj1.A::n1;
+}
+
+
+</pre><p></p></div></div><div class='question'><p>54. class B inherits from class A. class C also inherits from class A. class D is a derived class of both A and B. A has data memeber n1 and setter and getter to it. 
+
+Write code so that accessing n1 through does not create compilation error. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>multiinh2.h
+
+class A
+{
+    int n;
+public:
+    void setn(int m){n = m;}
+    int getn(){return n;}
+};
+
+class B:virtual public A
+{
+    
+};
+
+class C:virtual public A
+{
+    
+};
+
+class D:public C, public B
+{
+    
+};
+
+main.cpp
+
+#include &lt;iostream&gt;
+#include"multiinh2.h"
+using std::cout;
+int main(int argc, char **argv)
+{
+	 D obj1;
+     obj1.setn(100);
+     cout&lt;&lt;obj1.getn();
+}
+</pre><p>If the classes B and C are not using virtual inheritance, D object will have 2 sub-objects of A class.  Accessing any member of A will cause ambiguity error in D class.<br><br>Virtual inheritace ensures that the base class A object is included only once in derived class irrespective of how many times A is used as base class directly or  indirectly. </p></div></div><p align='center'><h2><a id="OperatorOverloading-I">OperatorOverloading-I</a></h2></p><div class='question'><p>55. Write a program with date class which  has dd,mm and yy as int members. Provide constructors. And overload ++ operator to increment date by d days.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>date.h
+#ifndef DATE_H
+#define DATE_H
+
+class Date
+{
+    int dd,mm,yy;
+public:
+    Date();
+    Date(int d,int m,int y);
+    ~Date();
+    void setDay(int d);
+    void setMonth(int m);
+    void setYear(int y);
+    int getDay();
+    int getMonth();
+    int getYear();
+    Date operator +(int n);
+    
+    bool leapYear();
+
+};
+
+#endif // DATE_H
+
+date.cpp
+#include "Date.h"
+ 
+Date::Date()
+{
+    dd = 1;
+    mm = 1;
+    yy = 2000;
+}
+
+Date::~Date()
+{
+}
+
+Date::Date(int d,int m,int y):dd(d),mm(m),yy(y)
+{
+    
+}
+void Date::setDay(int d)
+{
+    dd =d;
+}
+void Date::setMonth(int m)
+{
+    mm = m;
+}
+void Date::setYear(int y)
+{
+    yy  = y;
+}
+int Date::getDay()
+{
+    return dd;
+}
+int Date::getMonth()
+{
+    return mm;
+}
+int Date::getYear()
+{
+    return yy;
+}
+ Date Date::operator +(int n)
+{
+    Date temp = *this;
+    static int month_days[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+    temp.yy+=n/365;
+    n = n%365;
+    
+    int incr_dd = temp.dd+n;
+    
+     int mn_days = month_days[temp.mm-1];
+     if(temp.mm==2&&leapYear())
+        {
+            mn_days=29;
+        }
+    while(incr_dd&gt;mn_days)
+    {
+       
+           incr_dd -= mn_days;
+            temp.mm++;
+  
+            if(temp.mm&gt;12)
+            {
+                temp.mm-=12;
+                temp.yy++;
+            }
+            mn_days = month_days[temp.mm-1];
+        if(temp.mm==2&&leapYear())
+        {
+            mn_days=29;
+        }
+    }
+        
+    temp.dd = incr_dd;   
+    return temp;
+}
+bool Date::leapYear()
+{
+    int rem = yy%4;
+    int rem2  = yy%100;
+    int rem3 = yy%400;
+    if(rem3==0 )
+    {
+        return true;
+    }
+    if(rem2==0)
+        return false;
+    if(rem==0)
+        return true;    
+    return false;
+}
+
+main.cpp
+#include &lt;iostream&gt;
+#include"Date.h"
+using namespace std;
+int main()
+{
+	 Date d1;
+     int a,b,c;
+     cout&lt;&lt;"Enter dd mm yy:";
+     cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
+     d1.setDay(a);
+     d1.setMonth(b);
+     d1.setYear(c);
+     cout&lt;&lt;"Enter days to be added:";
+     int n;
+     cin&gt;&gt;n;
+      Date d2 = d1+n;
+     cout&lt;&lt;"date is "&lt;&lt;d2.getDay()&lt;&lt;"-"&lt;&lt;d2.getMonth()&lt;&lt;"-"&lt;&lt;d2.getYear();
+     return 0;
+}
+</pre><p></p></div></div><div class='question'><p>56. Write a program to overload () in matrix class to return ith row jth column element of matrx</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>matrix.h
+#ifndef MATRIX_H
+#define MATRIX_H
+
+class matrix
+{
+    int *elements;
+    int nr,nc;
+public:
+   
+    matrix();
+    ~matrix();
+    int getNrows(){return nr;}
+    int getNcols(){return nc;}
+    matrix(int nr,int nc);
+    int & operator() (int row,int col);
+
+};
+
+#endif // MATRIX_H
+matrix.cpp
+#include "matrix.h"
+
+matrix::matrix()
+{
+    nr = nc = 2;
+    this-&gt;elements = new int[nr*nc];
+    for(int i=0;i&lt;nr*nc;i++)
+    {
+        elements[i]=0;
+    }
+}
+
+matrix::~matrix()
+{
+}
+matrix::matrix(int nr,int nc)
+{
+    this-&gt;nr = nr;
+    this-&gt;nc = nc;
+    this-&gt;elements = new int[nr*nc];
+    for(int i=0;i&lt;nr*nc;i++)
+    {
+        elements[i]=0;
+    }
+}
+
+int& matrix::operator()(int row,int col)
+{
+   int index = row*nc;
+   index+=col;
+   return elements[index];
+}
+main.cpp
+#include &lt;iostream&gt;
+#include"matrix.h"
+using namespace std;
+int main( )
+{
+    matrix m(3,3);
+    for(int i=0;i&lt;3;i++)
+        for(int j=0;j&lt;3;j++)
+        {
+            int temp;
+            cout&lt;&lt;"Value:";
+            cin&gt;&gt;temp;
+            m(i,j)=temp;
+        }
+       
+      for(int i=0;i&lt;m.getNrows();i++)
+      {
+        for(int j=0;j&lt;m.getNcols();j++)
+        {
+            cout&lt;&lt;m(i,j)&lt;&lt;"  ";
+        }  
+        cout&lt;&lt;endl;
+      }
+      
+}
+</pre><p></p></div></div><p align='center'><h2><a id="OperatorOverloading-II">OperatorOverloading-II</a></h2></p><div class='question'><p>57. Make a friend function that implements a + operator for Stacks. The behavior of the + operator should be such that when you write a+b, you get a new stack containing a’s items followed by b’s items</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Stack.h
+struct node
+{
+    int num;
+    struct node *next;
+};
+
+ 
+class Stack
+{
+       node  *topnode;
+public:
+      Stack();
+      bool empty();
+      void push(int data);
+      int pop();
+      int & top();
+      friend Stack  operator +( Stack  &a,  Stack  &b);
+};
+
+main.cpp
+#include &lt;iostream&gt;
+#include"Stack.h"
+using namespace std;
+
+ 
+Stack     operator +( Stack  &s1,  Stack  &s2)
+{
+     int count = 0;
+     while(!s2.empty())
+     {
+         int num = s2.pop();
+         s1.push(num);
+         count++;
+     }
+     return s1;
+}
+int main(int argc, char **argv)
+{
+	Stack s1;
+    for(int i=0;i&lt;10;i++)
+    {
+        int m;
+        cout&lt;&lt;"num";
+        cin&gt;&gt;m;
+        s1.push(m);
+    }
+  
+ 
+    Stack  s2;
+    for(int i=1;i&lt;3;i++)
+    {
+        s2.push(i*100);
+    }
+    s1=s1+s2;
+      while(!s1.empty())
+    {
+        int a;
+        a = s1.pop();
+        cout&lt;&lt;"Popped value is "&lt;&lt;a&lt;&lt;"\n";
+    }
+}
+
+ 
+Stack ::Stack()
+{
+    topnode = 0;/*initialize*/
+}
+ 
+bool Stack ::empty()
+{
+    return topnode==0;
+}
+
+ 
+void Stack::push(int data)
+{
+     node  *newnode = new node ;
+     newnode-&gt;num = data;
+     if(topnode){
+         newnode-&gt;next = topnode;
+     }else{
+         newnode-&gt;next = 0;
+     }
+     topnode = newnode;
+}
+ 
+int Stack ::pop( )
+{
+    if(!empty())
+        {
+            node  * temp = topnode;
+            topnode = topnode-&gt;next;
+            int num = temp-&gt;num;
+            delete temp;
+            return num;
+    }
+    else
+        {
+             return  0;
+        }
+}
+
+ 
+int& Stack ::top( )
+{
+    if(!empty())
+        {                        
+            int num = topnode-&gt;num;             
+            return num;
+        }
+    else
+        {
+             int m = 0;
+             return  m;
+        }
+}
+
+</pre><p></p></div></div><div class='question'><p>58. Overload == and  &gt; operators for the date class</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>date.h
+class Date
+{
+    int dd,mm,yy;
+public:
+    Date();
+    Date(int d,int m,int y);
+    ~Date();
+    void setDay(int d);
+    void setMonth(int m);
+    void setYear(int y);
+    int getDay();
+    int getMonth();
+    int getYear();
+    Date operator +(int n);    
+    bool leapYear();
+    bool operator ==(const Date& d);
+    bool operator &gt;(const Date& d);
+}
+
+partial date.cpp
+bool Date::operator==(const Date &dt2)
+{
+    if (dd==dt2.dd  && mm==dt2.mm && yy == dt2.yy)
+        return true;
+    return false;
+}
+bool Date::operator&gt;(const Date &dt2)
+{
+    
+    if(yy&gt;dt2.yy)
+        return true;
+    if(yy&lt;dt2.yy)
+        return false;
+    if(mm&gt;dt2.mm)
+        return true;
+    if(mm&lt;dt2.mm)
+        return false;
+    if(dd&gt;dt2.dd)
+        return true;
+     return false;    
+}
+
+main.cpp
+#include &lt;iostream&gt;
+#include"Date.h"
+using namespace std;
+int main()
+{
+	  
+     int a,b,c;
+     cout&lt;&lt;"Enter first date in the form dd mm yy:";
+     cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
+     Date d1(a,b,c);
+     cout&lt;&lt;"Enter second date in the form dd mm yy:";
+     cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
+     Date d2(a,b,c);
+     if(d1&gt;d2)
+     {
+         cout&lt;&lt;"First date is larger";
+     }
+     else if(d1==d2)
+     {
+         cout&lt;&lt;"dates equal";
+     }
+     else
+     {
+         cout&lt;&lt;"second date is larger";
+     }   
+     
+     return 0;
+}
+</pre><p></p></div></div><div class='question'><p>59. Create a class Number which is one byte in size. Write a constructor, destructor. Write overloaded functions +,-,* and / to this class. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>A.h
+class Number
+{
+    char num; 
+public:
+    Number(int n=0);
+    Number(const Number &obj);
+    ~Number();
+    void setNum(char m);
+    int getNum();  
+    Number operator +(const Number & obj); 
+    Number operator -(const Number & obj);
+    int operator *(const Number & obj);
+    float operator /(const Number & obj);  
+}; 
+#define ERROR_DIVISION 1289
+
+A.cpp
+#include "A.h"
+#include&lt;iostream&gt;
+using std::cout;
+ 
+Number::Number(int n)
+{
+    this-&gt;num =(char) n; 
+}
+Number::~Number()
+{
+   //  std::cout&lt;&lt;"Destructor of "&lt;&lt;(int)num&lt;&lt;std::endl;
+}
+Number::Number(const Number &obj)
+{
+     this-&gt;num = obj.num;
+   //  std::cout&lt;&lt;"copy constructor is called";
+ 
+}
+void Number::setNum(char m)
+{
+    num = m;
+}
+int Number::getNum()
+{
+    return num;
+}
+
+Number Number::operator +(const Number & obj)
+{
+   return Number(num+obj.num);
+} 
+Number Number::operator -(const Number & obj)
+{
+   Number temp = *this;
+   temp.num -=obj.num;
+   return temp;
+} 
+
+int Number::operator *(const Number & obj)
+{
+   int temp(this-&gt;num*obj.num);
+   return temp;
+} 
+
+float Number::operator /(const Number & obj)
+{
+   if(obj.num==0)
+   {
+       cout&lt;&lt;"Denominator is 0";
+       return ERROR_DIVISION;
+   }
+   return  (float)num/obj.num;
+} 
+
+
+main.cpp
+#include &lt;iostream&gt;
+#include"A.h"
+using namespace std;
+ 
+ 
+int main()
+{
+  Number obj1(12);
+  Number obj2(25);
+  Number obj3 ;
+  obj3 = obj1+obj2;
+  cout&lt;&lt;"sum is "&lt;&lt;obj3.getNum()&lt;&lt;endl;
+  obj3 = obj1 - obj2;
+  cout&lt;&lt;"difference is "&lt;&lt;obj3.getNum()&lt;&lt;endl;
+  int product = obj1 * obj2;
+  cout&lt;&lt;"product  is "&lt;&lt;product&lt;&lt;endl;
+  float quotient = obj1 / obj2;
+  if(quotient!=ERROR_DIVISION){
+    cout&lt;&lt;"quotient is "&lt;&lt;quotient&lt;&lt;endl;
+  }
+  }
+   
+</pre><p></p></div></div><div class='question'><p>60. To the Number class add the overloaded operators +=, -= which take a Number as second argument. Overload *= and /= with integer as second argument. Also overload assignment operator</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>A.h
+ class Number
+{
+    unsigned char num; 
+public:
+    Number(int n=0);
+    Number(const Number &obj);
+    ~Number();
+    void setNum(char m);
+    int getNum();  
+    Number operator +(const Number & obj); 
+    Number operator -(const Number & obj);
+    int operator *(const Number & obj);
+    float operator /(const Number & obj);  
+    void operator +=(const Number &obj);
+    void operator -=(const Number &obj);
+    void operator *=(int n);
+    void operator /=( int n);
+    Number & operator=(const Number &other);
+}; 
+#define ERROR_DIVISION 1289
+
+A.cpp
+
+#include "A.h"
+#include&lt;iostream&gt;
+using std::cout;
+ 
+Number::Number(int n)
+{
+    this-&gt;num =(char) n; 
+}
+Number::~Number()
+{
+   //  std::cout&lt;&lt;"Destructor of "&lt;&lt;(int)num&lt;&lt;std::endl;
+}
+Number::Number(const Number &obj)
+{
+     this-&gt;num = obj.num;
+   //  std::cout&lt;&lt;"copy constructor is called";
+ 
+}
+void Number::setNum(char m)
+{
+    num = m;
+}
+int Number::getNum()
+{
+    return num;
+}
+
+Number Number::operator +(const Number & obj)
+{
+   return Number(num+obj.num);
+} 
+Number Number::operator -(const Number & obj)
+{
+   Number temp = *this;
+   temp.num -=obj.num;
+   return temp;
+} 
+
+int Number::operator *(const Number & obj)
+{
+   int temp(this-&gt;num*obj.num);
+   return temp;
+} 
+
+float Number::operator /(const Number & obj)
+{
+   if(obj.num==0)
+   {
+       cout&lt;&lt;"Denominator is 0";
+       return ERROR_DIVISION;
+   }
+   return  (float)num/obj.num;
+} 
+
+void Number::operator -=(const Number &  obj)
+{
+    num -=obj.num;
+}
+
+void Number::operator +=(const Number &  obj)
+{
+    num +=obj.num;
+}
+void Number::operator *=(  int n)
+{
+    num *=n;
+}
+void Number::operator /=(  int n)
+{
+   num/=n;
+}
+Number & Number::operator=(const Number&other)
+{
+     num = other.num;
+     /*no need to check for self assignment as no pointers involved*/
+     return *this;
+}
+
+main.cpp
+
+#include &lt;iostream&gt;
+#include"A.h"
+using namespace std; 
+int main()
+{
+  Number obj1(12);
+  Number obj2(25);  
+  obj1 +=obj2;
+  cout&lt;&lt;"After +=obj2,  obj1 is "&lt;&lt;obj1.getNum()&lt;&lt;endl;
+  obj1 -= obj2;
+  cout&lt;&lt;"After -=obj2 obj1 is "&lt;&lt;obj1.getNum()&lt;&lt;endl;
+  obj1*=20;
+  cout&lt;&lt;"After *=20, obj1 is "&lt;&lt;obj1.getNum()&lt;&lt;endl;
+  obj1/=20;
+  cout&lt;&lt;"After /=20, obj1 is "&lt;&lt;obj1.getNum()&lt;&lt;endl;
+  }
+
+
+</pre><p></p></div></div><div class='question'><p>61. Write a class MyArray with float array and length of the array. Now overload subscript operator for this class for accessing and modifying array elements</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Array.h
+class Array1
+{
+    int *arr;
+    int size;
+    public:
+    Array1(int n=3,int val=0);
+    int& operator [](int index);
+    int operator [](int index) const;
+};
+Array.cpp
+#include"Array.h"
+Array1::Array1(int n,int val):size(n)
+{
+     arr = new int[n];
+     for(int i=0;i&lt;n;i++)
+            arr[i]=val;
+}
+int &Array1::operator [](int index)
+{
+        return arr[index];
+ }
+ int Array1::operator [](int index) const
+{
+        return arr[index];
+}
+
+main.cpp
+
+#include &lt;iostream&gt;
+#include"Array.h"
+using namespace std;
+
+int main()
+{
+        Array1 obj(10);
+        for(int i=0;i&lt;10;i++)
+           obj[i] = i;
+        const Array1 obj2(3,99);
+        cout&lt;&lt;"Object 2 is ";
+        for(int i=0;i&lt;3;i++)
+            cout&lt;&lt;obj2[i]&lt;&lt;" ";
+        cout&lt;&lt;"\nObject is ";
+        for(int i=0;i&lt;10;i++)
+            cout&lt;&lt;obj[i]&lt;&lt;" ";
+ }</pre><p></p></div></div><div class='question'><p>62. Overload both pre-decrement and post-decrement operator for TinyInteger class. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>A.h
+ class Number
+{
+    unsigned char num; 
+public:
+    Number(int n=0);
+    Number(const Number &obj);
+    ~Number();
+    void setNum(char m);
+    int getNum();  
+    Number & operator ++();
+    Number   operator ++(int dummy);
+}; 
+A.cpp
+#include "A.h"
+#include&lt;iostream&gt;
+using std::cout;
+ 
+Number::Number(int n)
+{
+    this-&gt;num =(char) n; 
+}
+Number::~Number()
+{
+   //  std::cout&lt;&lt;"Destructor of "&lt;&lt;(int)num&lt;&lt;std::endl;
+}
+Number::Number(const Number &obj)
+{
+     this-&gt;num = obj.num;
+   //  std::cout&lt;&lt;"copy constructor is called";
+ 
+}
+void Number::setNum(char m)
+{
+    num = m;
+}
+int Number::getNum()
+{
+    return num;
+}
+ 
+Number & Number::operator++()
+{
+    num++;
+    return *this;
+}
+
+Number  Number::operator++(int dummy)
+{
+    Number temp(num);
+    num++;
+    return temp;
+}
+
+main.cpp
+#include &lt;iostream&gt;
+#include"A.h"
+using namespace std;
+ 
+ 
+int main()
+{
+  Number obj1(12);
+  Number obj2(25);  
+  ++obj1;
+  
+  cout&lt;&lt;"After pre-increment, obj1 is "&lt;&lt;obj1.getNum()&lt;&lt;endl;
+  Number obj3(7);
+  obj3 = obj1++;
+  cout&lt;&lt;"After post-increment, obj1 and obj3 are  "&lt;&lt;obj1.getNum()&lt;&lt;" "&lt;&lt;obj3.getNum()&lt;&lt;endl;
+  }
+</pre><p></p></div></div><div class='question'><p>63. Write a functor which finds the square root of a perfect square. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+class SquareRoot
+{
+public:
+    int operator ()(unsigned int num);
+};
+int SquareRoot::operator()(unsigned int num)
+{
+    for(int i=0;i&lt;num;i++)
+    {
+        if(i*i==num)
+            return i;
+    }
+    return -1;/*error*/
+}
+int main()
+{
+    int m;
+    cout&lt;&lt;"Enter a perfect square ";
+    cin&gt;&gt;m;
+    SquareRoot sqrtObj;
+    int sr = sqrtObj(m);
+    if(sr==-1)
+        cout&lt;&lt;"The number must be a perfect square";
+    else  
+        cout&lt;&lt;"Square root of "&lt;&lt;m &lt;&lt;"is "&lt;&lt;sr;    
+}
+ </pre><p></p></div></div><div class='question'><p>64. Overload insertion operator and extraction operator for Point class. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>point.h
+#include&lt;fstream&gt;
+using std::ostream;
+using std::istream; 
+class point
+{
+    float x;
+    float y;
+public:
+    point(float m=0,float n=0):x(m),y(n){}
+    float  getx() const {return x;}
+    float  gety() const {return y;}
+    void setx(const float & a){x=a;}
+    void sety(const float & b){y=b;}
+    friend istream &operator&gt;&gt;(istream&out, point &p);
+    friend ostream &operator&lt;&lt;(ostream&out, point &p);
+};
+
+main.cpp
+#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#include"point2.h"
+using namespace std;
+ 
+ ostream & operator &lt;&lt;(ostream &out,point &p)
+{
+    out&lt;&lt;p.x&lt;&lt;","&lt;&lt;p.y&lt;&lt;"\n";
+    return out;
+}
+istream & operator &gt;&gt;(istream &in, point &p)
+{
+    in&gt;&gt;p.x&gt;&gt;p.y;
+    return in;
+} 
+int main()
+{   
+    point pobj[5];
+    for(int i=0;i&lt;5;i++)
+    {
+         cout&lt;&lt;"Enter point:";
+         cin&gt;&gt;pobj[i];
+    }
+    for(int i=0;i&lt;5;i++)
+    {
+        cout&lt;&lt;pobj[i];
+    }
+     return 0;
+}
+               </pre><p></p></div></div><p align='center'><h2><a id="Polymorphism">Polymorphism</a></h2></p><div class='question'><p>65. Write a class Shape with printName method which just prints Shape. Now write derived classes Circle and Square. These classes must override printName method to print Circle and Square respectively. Now write an external function pr(Shape s) which calls printName() of its parameter. 
+
+Can we call pr() function with a circle object and a Square object? Will the function print the correct Shape name? How do you make pr function print correct name?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Make printName() in Shape class as virtual function
+
+Make the parameter to pr function as either a reference parameter or a pointer parameter.
+
+ #include&lt;iostream&gt;
+using namespace std;
+class Shape
+{
+public:
+    virtual void printName()
+    {
+        cout&lt;&lt;"shape";
+    }
+};
+class Circle:public Shape
+{
+public:
+    void printName()
+    {
+        cout&lt;&lt;"Circle";
+    }
+};
+class Square:public Shape
+{
+public:
+    void printName()
+    {
+        cout&lt;&lt;"Square";
+    }
+};
+void pr(Shape &s)
+{
+    s.printName();
+}
+void prPtr(Shape *sptr)
+{
+    sptr-&gt;printName();
+}
+
+void prVal(Shape s)
+{
+    s.printName();
+}
+int main()
+{
+    Shape s;
+    Circle c;
+    Square sq;
+    cout&lt;&lt;"Reference parameters   ";
+    pr(s);
+    pr(c);
+    pr(sq);
+    cout&lt;&lt;"\nPointer parameters   ";
+    prPtr(&s);
+    prPtr(&c);
+    prPtr(&sq);
+    cout&lt;&lt;"\nValue parameters   ";
+    prVal(s);
+    prVal(c);
+    prVal(sq);    
+}
+    </pre><p></p></div></div><div class='question'><p>66. In the previous example, what is the size of Shape object, if it no data members? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>The size is 4 bytes in case of 4 byte integer. The size is more because of the hidden member vptr which is stored in the object. </pre><p></p></div></div><p align='center'><h2><a id="Reference">Reference</a></h2></p><div class='question'><p>67. Write a function to find the product of two variables and store this product in first variable. The function should return nothing. Do not use pointers.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void product(int &n1,int &n2)
+{
+    n1 *=n2;
+}</pre><p></p></div></div><div class='question'><p>68. Write a function to swap two variables using references.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+void swap(int &a,int &b)
+{
+    int temp =a ;
+    a = b;
+    b = temp;
+}
+int main()
+{
+     int m,n;
+     cout&lt;&lt;"Enter 2 numbers m and n:";
+     cin&gt;&gt;m&gt;&gt;n;
+     swap(m,n);
+     cout&lt;&lt;"m  is"&lt;&lt;m&lt;&lt; "\nn is "&lt;&lt;n ;
+     return 0;
+}</pre><p></p></div></div><div class='question'><p>69. Write a  function product which takes two integer reference parameters and finds their product. Let the parameters be  unchangeable. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include &lt;iostream&gt;
+using namespace std; 
+int product(const int &a,const int &b)
+{
+   // a++;
+    return a*b;
+}
+int main()
+{
+     int m,n;
+     cout&lt;&lt;"Enter 2 numbers m and n:";
+     cin&gt;&gt;m&gt;&gt;n;
+     
+     cout&lt;&lt;"product is"&lt;&lt;product(m,n) ;
+     return 0;
+}
+ </pre><p></p></div></div><p align='center'><h2><a id="Static">Static</a></h2></p><div class='question'><p>70. In the student class, create a data member batch which is common to all students. Now create 5 student objects and print their informations.
+</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using namespace std;
+class Student
+{
+    string name;
+    int id;    
+public:
+   static int batch;
+    Student(string name,int id);
+    string  get_name()
+    { 
+      return name;
+    }
+    int get_id()
+    {
+         return id;
+    }
+    int get_batch()
+    {
+        return batch;
+    }
+    void set_name(string n);
+    void set_id(int n);
+};
+int Student::batch=2017;
+
+Student::Student(string n,int id2):id(id2), name(n)
+{
+   
+    cout&lt;&lt;" constructor\n";
+}
+
+void Student::set_name(string name )
+{
+     this-&gt;name = name;
+}
+
+void Student::set_id( int id)
+{
+    this-&gt;id = id;    
+} 
+void print_details(Student s)
+{
+    cout&lt;&lt;"Name "&lt;&lt;s.get_name()&lt;&lt;"\n";
+    cout&lt;&lt;"Id "&lt;&lt;s.get_id()&lt;&lt;"\n";
+    cout&lt;&lt;"Batch "&lt;&lt;s.get_batch()&lt;&lt;"\n";
+}
+int main( )
+{    
+    cout&lt;&lt;"name of student";
+    string name;
+    cin&gt;&gt;name;
+    cout&lt;&lt;"id =";
+    int id;
+    cin&gt;&gt;id;
+    Student s2(name ,id);
+    print_details(s2);
+    cout&lt;&lt;"All these students are from batch of "&lt;&lt;Student::batch;	 
+    return 0;
+}
+
+
+</pre><p></p></div></div><div class='question'><p>71. Write a method to class Point which prints a message "Welcome to the world of Points". The message must be printed without creating any object of Point class</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>class point
+{
+    float x;
+    float y;
+public:
+    point(float m =0,float n=0 ); 
+    float  getx() const
+    {
+        return x;
+     }
+    float  gety() const 
+    {
+         return y;
+    }
+    void setx(const float & a);
+   {  
+        x = a;
+    }
+    void sety(const float & b)
+ {  
+       y = b;
+    }
+    static void print_hello();
+};
+point::point(float a,float b):x(a),y(b)
+{
+    cout&lt;&lt;"Constructor is called\n";
+}
+
+void point::print_hello()
+{
+    cout&lt;&lt;"Welcome to the world of points";
+}
+
+ 
+int main()
+{   
+    point::print_hello();
+}
+</pre><p></p></div></div><div class='question'><p>72. In the class point, add a static method printPoint which displays x and y co-ordinates of the point. Will the program compile? Why?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>point.cpp
+/*code*/
+void point::print_point()
+{
+    cout&lt;&lt;x&lt;&lt;","&lt;&lt;y&lt;&lt;endl;
+}
+
+No, the program gives error.</pre><p>A static member function of a class does not have this pointer. So it can not access non-static members of  a class.<br><br>A static member function can only access static data members. </p></div></div><p align='center'><h2><a id="Templates">Templates</a></h2></p><div class='question'><p>73. Write a template function min to find the minimum of two values. You may have to remove line using namespace std as std already has a min function in it.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using std::cout; 
+using std::endl;
+template &lt;class T&gt;
+T min(T a,T b)
+{
+    return a&lt;b?a:b;
+}
+
+int main()
+{
+    int a =10;
+    int b=-100;
+    float x=100.9,y=200;
+    cout&lt;&lt;min(a,b)&lt;&lt;endl;
+    cout&lt;&lt;min(x,y)&lt;&lt;endl;
+    return 0;
+}</pre><p></p></div></div><div class='question'><p>74. Using templates, implement a Stack class that can be used to store items of any type. Your class should support the following 4 public functions
+ 
+bool Stack::empty()   
+void Stack::push(const T &item)  
+T &Stack::top() – returns a reference to the most-recently-added item
+void Stack::pop() – removes the most-recently-added item from the stack
+</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Stack.h
+
+template &lt;class T&gt;
+struct node
+{
+    T num;
+    struct node *next;
+};
+
+template &lt;class T&gt;
+class Stack
+{
+       node &lt;T&gt;*topnode;
+public:
+      Stack();
+      bool empty();
+      void push(T data);
+      T pop();
+      T & top();
+};
+
+
+template &lt;class T&gt;
+Stack&lt;T&gt;::Stack()
+{
+    topnode = 0;/*initialize*/
+}
+template &lt;class T&gt;
+bool Stack&lt;T&gt;::empty()
+{
+    return topnode==0;
+}
+
+template&lt;class T&gt;
+void Stack&lt;T&gt;::push(T data)
+{
+     node &lt;T&gt;*newnode = new node&lt;T&gt;;
+     newnode-&gt;num = data;
+     if(topnode){
+         newnode-&gt;next = topnode;
+     }else{
+         newnode-&gt;next = 0;
+     }
+     topnode = newnode;
+}
+
+template&lt;class T&gt;
+T Stack&lt;T&gt;::pop( )
+{
+    if(!empty())
+        {
+            node&lt;T&gt; * temp = topnode;
+            topnode = topnode-&gt;next;
+            T num = temp-&gt;num;
+            delete temp;
+            return num;
+    }
+    else
+        {
+             return (T)0;
+        }
+}
+
+template&lt;class T&gt;
+T& Stack&lt;T&gt;::top( )
+{
+    if(!empty())
+        {                        
+            T num = topnode-&gt;num;             
+            return num;
+        }
+    else
+        {
+             return (T)0;
+        }
+}
+
+main.cpp
+#include &lt;iostream&gt;
+#include"Stack.hpp"
+using namespace std;
+int main(int argc, char **argv)
+{
+	Stack&lt;int&gt; s1;
+    for(int i=0;i&lt;10;i++)
+    {
+        int m;
+        cin&gt;&gt;m;
+        s1.push(m);
+    }
+    while(!s1.empty())
+    {
+        int a;
+        a = s1.pop();
+        cout&lt;&lt;"Popped value is "&lt;&lt;a&lt;&lt;"\n";
+    }
+    Stack&lt;char&gt; s2;
+    s2.push('c');
+    s2.push('+');
+    s2.push('+');
+    
+     while(!s2.empty())
+    {
+        char a;
+        a = s2.pop();
+        cout&lt;&lt; a&lt;&lt;"\n";
+    }
+}
+</pre><p>Note that in case of template classes, both class definition and methods definition should be in the same .h file.</p></div></div><div class='question'><p>75. Write a template function to find largest element of an array. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;iostream&gt;
+using namespace std;
+template &lt;class T &gt;
+T largest(T arr[],int size)
+{
+   T lr = arr[0];
+   for(int i=0;i&lt;size;i++)
+       if(arr[i]&gt;lr)
+           lr = arr[i];
+   return lr;        
+}
+int main()
+{
+    float arr1[]={1.2,-3.4,12,-4.5};
+    double arr2[]={11,22,33,44,55,-66};
+    char arr3[]={'a','b','c','d','8','A','Z'};
+    cout&lt;&lt;"Largest of float array is"&lt;&lt;largest(arr1,4)&lt;&lt;endl;
+    cout&lt;&lt;"Largest of double array is"&lt;&lt;largest(arr2,6)&lt;&lt;endl;
+    cout&lt;&lt;"Largest of char array is"&lt;&lt;largest(arr3,7)&lt;&lt;endl;
+}
+</pre><p></p></div></div><div class='question'><p>76. Write a template class List which is singly linked list. Implement the following methods insert(T data,int pos), delete(T data), append(T& data) and isEmpty() and print().</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>List1.h
+ 
+#include&lt;iostream&gt;
+using std::cout;
+
+template &lt;class T&gt;
+struct node
+{
+    T num;
+    struct node&lt;T&gt; *next;
+};
+
+template &lt;class T&gt;
+class List
+{
+    node&lt;T&gt;  *first;
+public:
+    List();
+    ~List();
+    void append(T data);
+    void insert(int pos,T data);
+    void print();
+    void delete_node(T data);
+    node&lt;T&gt;* find_node(T data);   
+    node&lt;T&gt;* create_node(T data);
+    node&lt;T&gt;* find_last_node();
+    node&lt;T&gt;* find_ith_node(int i);
+    node&lt;T&gt;* find_previous_node(node&lt;T&gt; *nn);
+    
+};
+
+template &lt;class T&gt;
+List&lt;T&gt;::List()
+{
+    first = 0;/* initialize first node*/
+}
+
+template &lt;class T&gt;
+List&lt;T&gt;::~List()
+{
+    while(first)
+    {
+        node &lt;T&gt;*temp = first;
+        first = first-&gt;next;
+        delete temp;
+    }
+}
+template &lt;class T&gt;
+node&lt;T&gt; * List&lt;T&gt;::create_node(T data)
+{
+    node&lt;T&gt; * newnode = new node&lt;T&gt;;
+    newnode-&gt;num = data;
+    newnode-&gt;next = 0;
+    return newnode;
+}
+template &lt;class T&gt;
+node&lt;T&gt; *List&lt;T&gt;::find_last_node()
+{
+    node&lt;T&gt; *temp = first;
+    while(temp && temp-&gt;next)
+        temp = temp-&gt;next;
+    return temp;    
+}
+template &lt;class T&gt;
+void List&lt;T&gt;::append(T data)
+{
+   node&lt;T&gt; *newnode = create_node(data);
+   
+   node&lt;T&gt; *last_node = find_last_node();
+   if(!last_node)
+   {
+       first = newnode;
+   }
+   else{
+       last_node-&gt;next = newnode;
+   }
+}
+template &lt;class T&gt;
+node&lt;T&gt; * List&lt;T&gt;::find_previous_node(node&lt;T&gt; * nn)
+{
+    node&lt;T&gt; * temp = first;
+    while(temp && temp-&gt;next!=nn)
+        temp = temp-&gt;next;
+    return temp;    
+}
+template &lt;class T&gt;
+node&lt;T&gt; * List&lt;T&gt;::find_ith_node(int pos)
+{
+    node&lt;T&gt; *temp = first;
+    int i = 0;
+    while(temp&&i!=pos)
+    {
+        temp = temp-&gt;next;
+        i++;
+    }
+    
+    return temp;    
+}
+template &lt;class T&gt;
+void List&lt;T&gt;::insert(int pos,T data)
+{
+    node&lt;T&gt; * newnode = create_node(data);
+    
+    node&lt;T&gt; * ithnode = find_ith_node(pos);
+    if(ithnode)
+    {
+        node&lt;T&gt; *prevnode = find_previous_node(ithnode);
+        if(prevnode)
+        {
+            node&lt;T&gt; * nextnode = prevnode-&gt;next;
+            prevnode-&gt;next = newnode;
+            newnode-&gt;next = nextnode;            
+        }
+        else
+        {
+            /*i must be 0*/
+            newnode-&gt;next = first;
+            first= newnode;
+        }
+    }
+    else/*no ith node. append*/
+    {
+        node&lt;T&gt; * last_node = find_last_node();
+        if(last_node)
+            last_node-&gt;next = newnode;
+        else
+            first  = newnode;
+    }   
+    
+}
+template &lt;class T&gt;
+void List&lt;T&gt;::print()
+{
+    node&lt;T&gt; * temp = first;
+    while(temp)
+    {
+        
+        cout&lt;&lt;temp-&gt;num;
+        if(temp-&gt;next)
+            cout&lt;&lt;"==&gt;";
+        temp = temp-&gt;next;    
+    }
+    cout&lt;&lt;std::endl;
+}
+
+template &lt;class T&gt;
+node&lt;T&gt; * List&lt;T&gt;::find_node(T data)
+{
+    node&lt;T&gt; * temp = first;
+    while(temp && temp-&gt;num!=data)
+        temp = temp-&gt;next;
+    return temp;    
+}
+template &lt;class T&gt;
+void List&lt;T&gt;::delete_node(T data)
+{
+    node&lt;T&gt; * temp = find_node(data);
+    if(!temp)
+    {
+        cout&lt;&lt;"Value not found";
+        return;
+    }
+    else
+    {
+        node&lt;T&gt; *prevnode = find_previous_node(temp);
+        if(!prevnode)
+        {
+            /*we are deleting the first node*/
+            first = first-&gt;next;
+            delete temp;
+        }
+        else{
+            prevnode-&gt;next = temp-&gt;next;
+            /*link previous node to next node*/
+            delete temp;
+        }
+    }
+}
+
+main.cpp
+
+#include &lt;iostream&gt;
+using std::cout;
+using std::cin;
+using std::string;
+#include"List1.h"
+int main(int argc, char **argv)
+{
+	 List&lt;int&gt; list;
+     for(int i=0;i&lt;5;i++)
+     {
+         int n;
+         cout&lt;&lt;"NUmber";
+         cin&gt;&gt;n;
+         list.append(n);
+     }
+     list.print();
+     List&lt;string&gt; list2;
+     list2.append("hello");
+     list2.append("hi");
+     list2.append("bye");
+     list2.append("morning");
+     
+     list2.print();
+     list2.delete_node("hi");
+     list2.print();
+     list2.insert(0,string("list of words"));
+     list2.print();    
+          
+}
+</pre><p></p></div></div>
+</div>
+<script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
