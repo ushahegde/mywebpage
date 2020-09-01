@@ -1,0 +1,1041 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0;box-shadow:2px 2px #ccc; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> Stack Questions </h1><div class='question'><p>1. Show how a stack can be used to evaluate a postfix expression with the help of this example.
+632-5*+1^7+</p><button class='accordion'>Answer</button><div class='panel'>For evaluating a postfix expression, a stack is used to store operands. Whenever an operator is found, two top most operands are popped and operated on.<br><br>If we take the example<br>632-5*+1^7+<br><br>When the expression is scanned, <br>   6,3 and 2 are pushed to the stack. <br>    - is encountered.   <br>       3 and 2 are popped out. <br>       3-2 is done and <br>       the result 1 is pushed to stack<br>   Next 5 is pushed to stack<br>   * is encountered <br>       5 and 1 are popped<br>       5*1 = 5 is pushed back<br>  + encountered<br>        5 nd 6 are popped out <br>        6+5=11 is pushed back<br>   1 is pushed to stack<br>   ^ is obtained <br>       1 and 11 are popped  <br>      11^1 = 11 is pushed to stack<br>  Next 7 is pushed to stack<br>  Lastly + is encountered , <br>       7 and 11 are popped <br>       11+7 =18 is pushed to stack.<br><br>18 is popped out and is our answer<br><br>Note<br>1) We use fgets instead of scanf because we have to use spaces as separator<br>2) We must compile the program with flag -lm for math library<br>     gcc youfile.c -lm<br><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt;
+#define ERRCODE 12345
+#define DIVBYZERO 23456
+struct node
+{
+    double n1;
+    struct node *next;
+};
+typedef struct node *NODEPTR;
+NODEPTR createnode(double num)
+{
+    NODEPTR newnode = (NODEPTR) malloc(sizeof(struct node));
+    newnode-&gt;n1 = num;
+    newnode-&gt;next = NULL;
+}
+
+NODEPTR  push(double num,NODEPTR top)
+{
+   NODEPTR newnode = createnode(num);
+   newnode-&gt;next = top;
+   top = newnode;
+   return top;
+}
+
+double pop(NODEPTR * top)
+{
+   if(top==NULL)
+	return ERRCODE;
+   NODEPTR temp = *top;
+   *top =(*top)-&gt;next;
+   double val = temp-&gt;n1;
+   free(temp);
+   return val;
+}
+
+int is_operator(char ch)
+{
+    switch(ch)
+    {
+	case '+':
+	case '-':
+	case '/':
+	case '*':
+	case '^':
+		return 1;
+        default : return 0;
+    }
+}
+ 
+double evaluate(char *postfix)
+{
+     char ch;
+     double ans,n1,n2;
+     NODEPTR top = NULL;
+     while(ch =*postfix++)
+     {
+        if(isdigit(ch))
+        {
+          double n = ch-48;
+          top = push(n,top);
+        }
+        else if(is_operator(ch))
+       {
+           n1 = pop(&top);
+           if(n1==ERRCODE)
+              return ERRCODE;
+           n2 = pop(&top);
+           if(n2 ==ERRCODE)
+              return ERRCODE;
+          switch(ch)
+          {
+            case '+': ans = n1+n2; 
+                    break;
+            case '-': ans = n2 - n1;
+  	  break;
+            case '*': ans = n1*n2;
+                 break;
+           case '/': if(n1!=0)
+                   ans = n2/n1;
+                else
+                   return DIVBYZERO;	 
+                break;
+          case '^':ans = pow(n2,n1);
+	  break;
+          }
+          top = push(ans,top);
+      }
+    }
+    ans = pop(&top);
+    return ans;
+}
+    
+   
+int main()
+{
+   char postfix[30];
+   double ans;
+   printf("Enter postfix expression (leave space between values):");
+   fgets(postfix,29,stdin);
+   ans = evaluate(postfix);
+   printf("The value of expression is %f",ans);
+   return 0;
+}</pre></div></div><div class='question'><p>2. Convert the following expressions into prefix and postfix.
+
+A+B*C-D/E*H
+(A+B^C^D)*(E+F/D)</p><button class='accordion'>Answer</button><div class='panel'>Infix Expression<br>A+B*C-D/E*H<br>(A+B^C^D)*(E+F/D)<br><br>Postfix expression<br>ABC*+DE/H*-<br>ABC^D^+EFD/+*<br><br>Prefix expression<br>+A -*BC */DEH<br>*+A ^^BCD  +E/FD<pre class='courier'></pre></div></div><div class='question'><p>3. What is stack data structure? 
+Write push, pop, isEmpty and isFull functions for a stack using array implementation</p><button class='accordion'>Answer</button><div class='panel'>Stack is a linear data structure where elements are added to only one end - top of stack and they can only be   removed from top of stack.<br>Stack data structure is used for function calls by operating systems. <br><br>Stack should be used whenever you need to reverse the order of input.<br> <br>Stack data structure has 3 functions - push, pop and isempty.<br><br>push adds an element at the top of the stack. <br>pop removes an element from top of stack.<br><br>Both these operations have constant complexity viz O(1). <br><br>A stack can be implemented using an array or a linked list.  <br><br>For array implementation - <br>push function checks if the stack is full. If not, it adds a value at array[top] after incrementing top.<br><br>pop function checks if the stack is empty. If it is not empty, then the value at top of stack is returned and top is decremented.<br><br>We can send top and array as two separate parametes to all the above functions. <br><br>But for the sake of convenience, array and top are stored together in a structure in our code.<pre class='courier'>#include&lt;stdio.h&gt;
+#define MAX 30
+struct stack
+{
+    int arr[MAX];
+    int top;
+};
+void push(struct stack *s, int val)
+{
+   if( is_full(s))
+      printf("Stack overflow");
+   else
+   {
+      (s-&gt;top)++;
+      s-&gt;arr[s-&gt;top]=val;
+   }
+    
+}
+int is_empty(struct stack *s)
+{
+    return s-&gt;top==-1;
+}
+int is_full(struct stack *s)
+{
+    return s-&gt;top&gt;=MAX;
+}
+int pop(struct stack *s)
+{
+    int val = -1;
+    if(is_empty(s))
+      printf("Stack empty");
+    else
+     {
+        int t = s-&gt;arr[s-&gt;top];
+        s-&gt;top--;
+        val = t;
+      }
+    return val;
+}
+    
+int main()
+{
+    struct stack s1;
+    s1.top = -1;
+    int option;
+    while(1)
+    {
+       printf("Enter 1- push 2-pop 3 - exit:");
+       scanf("%d",&option);
+       if(option==3)
+          break;
+       else if(option==1)
+      {
+          int num;
+          printf("Enter value to push:");
+          scanf("%d",&num);
+          push(&s1,num);
+        }
+        else if(option==2)
+       {
+           int num;
+           num = pop(&s1);
+           if(num!=-1)
+              printf("value popped is %d\n",num); 
+        }   
+    }
+    return 0;
+}
+
+    
+    </pre></div></div><div class='question'><p>4. Write an algorithm to convert an infix expression into postfix. And also write code for this. </p><button class='accordion'>Answer</button><div class='panel'>This is how we can solve this question<br><br>Create an empty stack called opstack for keeping operators. Create an empty array for output.<br>  <br>  Scan the token list from left to right.<br>  If the token is an operand, append it to the end of the output string.<br>  If the token is a left parenthesis, push it on the opstack.<br>  If the token is a right parenthesis,  <br>      pop the opstack until the corresponding left parenthesis is removed. <br>      Append each operator popped out to the end of the output string.<br>  If the token is an operator,<br>      remove any operators in stack with &gt;=precedence and append to the output string.<br>      push token on the opstack. <br>  <br>When the input expression has been completely processed as mentioned above,<br>   check the opstack. <br>   Remove any operators still on the stack  and <br>   append to the end of the output string.<br><br>The stack library is not included in the solution. So while compiling include stack implementation file. Some thing like this<br><br>gcc infixtopostfix.c stacklib.c <pre class='courier'>#include&lt;stdio.h&gt;
+#include"stack.h"
+int is_operator(char ch)
+{
+   switch(ch)
+   {
+      case '+':
+      case '-':
+      case '/':
+      case '*':
+      case '%':
+      case '^':
+                return 1;
+      default : return 0;
+   }
+}
+int priority(char ch)
+{
+ switch(ch)
+   {
+      case '+':
+      case '-':return 1;
+      case '/':
+      case '*':
+      case '%':return 2;
+      case '^':return 3;
+                 
+      default : return 0;
+   }
+}
+
+void convert(char *input, char *output)
+{
+   struct stack s1;
+   s1.top = -1;
+   while(*input)
+   {
+   char ch = *input++;
+   char ch2;
+   if(ch=='(')
+      push(&s1,ch);
+   else if(ch==')')
+   {
+       while(!is_empty(&s1)  && ( (ch=pop(&s1))!='('))
+          *output++ = ch;
+    }
+    else 
+    if(is_operator(ch))
+    {
+       while(!is_empty(&s1)  &&  priority(peek(&s1))&gt;=priority(ch))
+          *output++ = pop(&s1);
+       push(&s1,ch);
+     }
+     else
+       *output++ = ch;
+    }
+    while(!is_empty(&s1))
+       *output++ = pop(&s1);
+    *output = 0;
+}               
+int main()
+{
+   char infix[40],postfix[40];
+   printf("Enter infix expression:");
+   scanf("%s",infix);
+   convert(infix,postfix);
+   printf("the postfix expression is %s\n",postfix);
+   return 0;
+}
+/*stack implementation not shown */</pre></div></div><div class='question'><p>5. Explain how a stack can be implemented using a linked list. Write C functions for push, pop, isempty for this method.</p><button class='accordion'>Answer</button><div class='panel'>Stack abstract data type has 3 functions - push, pop and isempty.<br><br>push adds an element at the top of the stack. <br>pop removes an element from top of stack.<br><br>To implement stack using linked list, push should add an element to the begining of linked list. and pop should remove the element from begining of linked list.<br><br>Isempty should check if the list is empty i.e. top is NULL.<br><br>All three operations take constant time - O(1)<pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+#define ERROR -1000
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+   temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ NODEPTR push(NODEPTR top,int n)
+ { 
+     NODEPTR newnode = create_node(n);
+     newnode-&gt;next = top;
+     top = newnode;
+     return top;
+}
+int isempty(NODEPTR top)
+{
+   return top==NULL;
+}
+int pop(NODEPTR *topPtr)
+{
+   if(isempty(*topPtr))
+    return ERROR;
+   int num = (*topPtr)-&gt;n;
+   NODEPTR temp = *topPtr;
+   *topPtr = (*topPtr)-&gt;next;
+   free(temp);
+   return num;
+}
+
+ int main()  
+ {  
+     NODEPTR top = NULL;
+     NODEPTR nd; 
+     while(1)
+     {  
+       int option,value; 
+       printf("Enter 1- push 2- pop 3 - exit"); 
+       scanf("%d",&option);
+       if(option==3)
+          break;
+       switch(option)
+       {
+          case 1:  printf("new value to push=");  
+            scanf("%d",&value);   
+            top = push(top,value);
+            break;
+         case 2:  value = pop(&top);
+           if(value==ERROR)
+             printf("Stack empty\n");
+           else
+             printf("Value popped is %d\n",value);
+        break; 
+     }  
+    }     
+ }  
+</pre></div></div><div class='question'><p>6. Design a method to create two stacks in a single array so that either stack overflows until the memory is completely filled and a stack is never moved to another memory location. Write push1, push2, pop1, pop2, display1 and display2 functions for this in C.</p><button class='accordion'>Answer</button><div class='panel'>We can implement first stack at the begining of array and second stack at the end of array. So that the two stacks grow in opposite directions. <br><br>Stacks are full only when the top values are next to each other and there is no place to grow. <br><br>As the second stack is growing in reverse direction, push() for second stack will decrement the top and pop() will increment the top.<pre class='courier'>#include&lt;stdio.h&gt;
+#define MAX 5
+struct two_stacks
+{
+    int arr[MAX];
+    int top1,top2;
+};
+void push1(struct two_stacks *s, int val)
+{
+   if( is_full(s))
+      printf("Stack overflow");
+   else
+   {
+      (s-&gt;top1)++;
+      s-&gt;arr[s-&gt;top1]=val;
+   }    
+}
+
+void push2(struct two_stacks *s, int val)
+{
+   if( is_full(s))
+      printf("Stack overflow");
+   else
+   {
+      (s-&gt;top2)--;
+      s-&gt;arr[s-&gt;top2]=val;
+   }    
+}
+int is_empty1(struct two_stacks *s)
+{
+    return s-&gt;top1==-1;
+}
+ 
+int pop1(struct two_stacks *s)
+{
+    int val = -1;
+    if(is_empty1(s))
+      printf("Stack empty");
+    else
+     {
+        int t = s-&gt;arr[s-&gt;top1];
+        s-&gt;top1--;
+        val = t;
+      }
+    return val;
+}
+  
+int pop2(struct two_stacks *s)
+{
+    int val = -1;
+    if(is_empty2(s))
+      printf("Stack empty");
+    else
+     {
+        int t = s-&gt;arr[s-&gt;top2];
+        s-&gt;top2++;
+        val = t;
+      }
+    return val;
+}  
+int is_empty2(struct two_stacks *s)
+{
+    return s-&gt;top2==MAX;
+}
+int is_full(struct two_stacks *s)
+{
+    return (s-&gt;top2-s-&gt;top1==1)?1:0;    
+}
+int main()
+{
+    struct two_stacks s;
+    s.top1 = -1;
+    s.top2 = MAX;    
+    int option;
+    while(1)
+    {
+      printf("Enter 1- push to s1, 2-pop from s1, 3- push to s2, 4-pop from s2,  5 - exit:");
+      scanf("%d",&option);
+        
+      if(option==5)
+          break;
+      else if(option==1||option==3)
+     {
+         int num;
+         printf("Enter value to push:");
+         scanf("%d",&num);
+        if(option==1) 
+           push1(&s,num);
+        else
+           push2(&s,num);
+       }
+      else if(option==2||option==4)
+     {
+         int num;
+         if(option==2)
+           num = pop1(&s);
+         else
+           num = pop2(&s);
+           if(num!=-1)
+              printf("value popped is %d\n",num);	
+        }             
+    }
+    return 0;
+}
+
+    
+    </pre></div></div><div class='question'><p>7. Write a function to convert a given postfix expression to infix expression.</p><button class='accordion'>Answer</button><div class='panel'>To convert a postfix expression to infix expression, you should use a operand stack. <br><br>You should extract characters -<br>  if  operand,   push it to stack.<br>  If it is an operator, <br>       pop 2 values from stack, <br>       form an expression with this operator and the operands <br>       push the result back to stack.<br>  Repeat this until all the characters are extracted.<br><br>  Finally pop out the content of stack - which is answer<br><br>Remember that postfix expression does not have brackets. That is why while forming expressions  you should enclose it in paranthesis<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt; 
+struct node
+{
+    char str[30];
+    struct node *next;
+};
+struct node *createnode(char *str)
+{
+    struct node *newnode = (struct node*) malloc(sizeof(struct node));
+    strcpy(newnode-&gt;str,str);
+    newnode-&gt;next = NULL;
+}
+
+struct node * push(char *str,struct node *top)
+{
+   struct node *newnode = createnode(str);
+   newnode-&gt;next = top;
+    top = newnode;
+   return top;
+}
+
+char * pop(struct node ** top)
+{
+   static char str[30];
+   if(*top==NULL)
+    return NULL;
+   struct node * temp = *top;
+   *top =(*top)-&gt;next;
+   strcpy(str,temp-&gt;str);
+   
+   free(temp);
+   return str;
+}
+
+int is_operator(char ch)
+{
+    switch(ch)
+    {
+    case '+':
+    case '-':
+    case '/':
+    case '*':
+    case '^':
+    return 1;
+        default : return 0;
+    }
+}
+ 
+char *concat(char *s1,char *s2,char ch)
+{
+   char *result = (char*)malloc(60);
+   int i=1;
+   result[0] = '(';
+   while(*s1)
+     result[i++]=*s1++;
+   result[i++]=ch;
+   while(*s2)
+     result[i++]=*s2++;
+   result[i++]=')';/*enclose in parantheses*/
+   result[i]=0;
+   return result;
+}
+int convert(char *postfix,char *infix)
+{
+     char ch;
+     char oper1,oper2,opernew;
+     char *expr1=(char*)malloc(30);
+     char *expr2=(char*)malloc(30);
+     char *expr3 = (char*)malloc(60);
+     struct node *top = NULL;
+     int iserr = 0;
+     while(ch =*postfix++)
+     {
+      if(isdigit(ch) ||isalpha(ch))
+      {
+         char  str[] = {ch,0};
+         top = push(str,top);
+      }
+      else if(is_operator(ch))
+     {
+        char* str = pop(&top);
+        if(str==NULL)
+        {
+           printf("pop error");
+           iserr=1;
+           break;
+        }        
+        strcpy(expr1, str);         
+        str = pop(&top);        
+        if(str==NULL)
+        {
+         iserr = 1;
+         printf("Error");
+         break;
+        }
+        strcpy(expr2,str);
+       strcpy(expr3, concat(expr2,expr1,ch));    
+       top = push(expr3,top);
+      }
+    } 
+    if(!iserr)
+        strcpy(infix,pop(&top));
+    else
+        return 0;
+}
+    
+   
+int main()
+{
+   char postfix[30];char infix[30];
+   double ans;
+   printf("Enter postfix expression :");
+   scanf("%s",postfix); 
+   if(convert(postfix,infix))
+   printf("The expression in infix is %s",infix);
+   return 0;
+}</pre></div></div><div class='question'><p>8. Write a function to check if a given expression is having balanced brackets.</p><button class='accordion'>Answer</button><div class='panel'>In any arithmetic expressions or program pieces, the brackets must match in type and order. That is - each opening bracket must have a corresponding closing bracket. And two pairs of different brackets can not interesect each other.<br><br>e.g<br>           (a+[b*c]*d)  - valid<br>           (a+[b*c)*d] - invalid<br>           (a+b+c  - invalid<br>            a+b)+c ( - invalid<br><br>To test whether a string has matching parantheses, we need to use a brackets stack. <br>      1) scan each character<br>      2) if the character is an opening bracket, push it to stack<br>      3) If the character is a closing bracket, pop a bracket <br>              if the popped opening bracket does not match the closing bracket  return false<br>      4) repeat steps 2 to 3 for each character   <br>      5) At the end of expression if   stack is not empty return false<br>      6) Else return true           <pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt; 
+#define ERRORCHAR 65
+struct node
+{
+    char ch;
+    struct node *next;
+};
+struct node *createnode(char ch)
+{
+    struct node *newnode = (struct node*) malloc(sizeof(struct node));
+    newnode-&gt;ch = ch;
+    newnode-&gt;next = NULL;
+    return newnode;
+}
+
+int is_empty(struct node *top)
+{
+    return top==NULL;
+}
+struct node * push(char ch,struct node *top)
+{
+   struct node *newnode = createnode(ch);
+   newnode-&gt;next = top;
+   top = newnode;
+   return top;
+}
+
+char pop(struct node ** top)
+{
+   char ch;
+   if(*top==NULL)
+	return ERRORCHAR;
+   struct node * temp = *top;
+   *top =(*top)-&gt;next;
+   ch = temp-&gt;ch;
+   
+   free(temp);
+   return ch;
+}
+
+int is_opening_bracket(char ch)
+{
+    switch(ch)
+    {
+        case '(':
+        case '[':
+        case '{':
+	   return 1;
+        default : return 0;
+    }
+}
+
+int is_closing_bracket(char ch)
+{
+    switch(ch)
+    {
+        case ')':
+        case ']':
+        case '}': 
+	    return 1;
+        default : return 0;
+    }
+} 
+ 
+int is_matching_bracket(struct node **top,char ch)
+{
+    char ch2 = pop(top);
+    if(ch2!=ERRORCHAR)
+    {
+        if(ch2=='(' && ch==')' )
+           return 1;
+        if(ch2=='[' && ch==']' )
+           return 1;
+       if(ch2=='{' && ch=='}' )
+           return 1;
+     }
+     return 0; 
+} 
+int is_balanced(char *expression)
+{
+     char ch;
+      
+     struct node *top = NULL;
+     while(ch =*expression++)
+     {
+        if(is_opening_bracket(ch))
+        {
+            top = push(ch,top);
+        }
+        else if(is_closing_bracket(ch))
+        {
+            if(!is_matching_bracket(&top,ch))
+            {
+               return 0;           
+             }
+        }
+     }
+     return is_empty(top);
+}    
+   
+int main()
+{
+   char expression[50]; 
+   printf("Enter an expression :");
+   scanf("%s",expression); 
+   if(is_balanced(expression))
+   {
+        printf("The expression has balanced brackets");
+   }
+   else
+   {
+        printf("The expression has unbalanced brackets");
+   }
+   return 0;
+}</pre></div></div><div class='question'><p>9. Given two integer sequences, one of which is the push sequence of a stack, please check whether the other sequence is a corresponding pop sequence or not.</p><button class='accordion'>Answer</button><div class='panel'>We know that stack is a last in first out (LIFO) data structure. Elements pushed first will pop out last. So basically a stack reverses input sequence. <br><br>So in this program we need not use a stack at all. We need to check if second sequence is reverse list of first sequence.<pre class='courier'>#include&lt;stdio.h&gt;
+void read_array(int *arr,int n)
+{
+   int i;
+   printf("Enter the elements of the array:");
+   for (i=0;i&lt;n;i++)
+     scanf("%d",&arr[i]);
+}
+void write_array(int *arr,int n)
+{
+   int i;
+   printf("The array is ");
+   for (i=0;i&lt;n;i++)
+     printf("%d  ",arr[i]);
+}
+int is_pop_sequence(int *arr1,int *arr2,int n)
+{
+    int i,j;
+    for(i=0,j=n-1;i&lt;n;i++,j--)
+      if(arr1[i]!=arr2[j])
+         return 0;
+    return 1;
+}
+int main()
+{
+    int arr1[20], arr2[20];
+    int n;
+    printf("Enter the length of sequence:");
+    scanf("%d",&n);
+    read_array(arr1,n);
+    read_array(arr2,n);
+    if(is_pop_sequence(arr1,arr2,n))
+       printf("These two correspond to push and pop sequences");
+    else
+       printf("These are not push and pop sequences of same stack");
+
+}</pre></div></div><div class='question'><p>10. Write a recursive function to reverse a stack .</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+#define ERROR -1000
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ void push(NODEPTR* topptr,int n)
+ { 
+     NODEPTR newnode = create_node(n);
+     newnode-&gt;next = *topptr;
+     *topptr = newnode; 
+}
+int isempty(NODEPTR top)
+{
+   return top==NULL;
+}
+int pop(NODEPTR *topPtr)
+{
+   if(isempty(*topPtr))
+       return ERROR;
+   int num = (*topPtr)-&gt;n;
+   NODEPTR temp = *topPtr;
+   *topPtr = (*topPtr)-&gt;next;
+   free(temp);
+   return num;
+}
+
+void bottom_insert(NODEPTR *topptr,int n)
+{
+  if(isempty(*topptr))
+     push(topptr,n);
+  else
+    {
+    int a = pop(topptr);
+    bottom_insert(topptr,n);
+    push(topptr,a);
+    }
+}
+
+void reverse(NODEPTR *topptr)
+{
+  if(*topptr!=NULL)
+  {
+    int n= pop(topptr);
+    reverse(topptr);
+    bottom_insert(topptr,n);
+  }
+
+}
+ int main()  
+ {  
+     NODEPTR top = NULL;
+     NODEPTR nd;
+
+     while(1)
+     {  
+       int option,value; 
+       printf("Enter 1- push 2- pop 3 - reverse stack 4 - exit"); 
+       scanf("%d",&option);
+       if(option==4)
+          break; 
+       switch(option)
+       {
+           case 1:  printf("new value to push=");  
+              scanf("%d",&value);  
+              push(&top,value);
+              break;
+           case 2:  value = pop(&top);
+             if(value==ERROR)
+                 printf("Stack empty\n");
+             else
+                 printf("Value popped is %d\n",value);
+             break; 
+          case 3:  reverse(&top);
+             break;
+        }  
+    }     
+ }  
+</pre></div></div><div class='question'><p>11. Write a function to print next greater element for all elements in an array. If there is no NGE , it must print -1 for that element</p><button class='accordion'>Answer</button><div class='panel'>Next greater element problem involves finding first element which appears after given element and is greater than given element. If there are no such elements, then program should give -1 for that value. <br>e.g.<br>If array is <br>30 88 12 96 45 3 12 10<br> <br>Output should be<br><br> Next greater element for 30 =88<br> Next greater element for 12 =96<br> Next greater element for 88 =96<br> Next greater element for 3 =12<br> Next greater element for 10 is -1<br>Next greater element for 12 is -1<br>Next greater element for 45 is -1<br>Next greater element for 96 is -1<br><br>To write an efficient code, instead of writing O(n2) code, we can use this algorithm.<br><br>We traverse the array once.<br>   1. If the stack is empty or the current element is smaller than top element of the stack, then push the current element on the stack.<br>   2. If the current element is greater than top element of the stack, then this is the next greater element of the top element. Keep poping elements from the stack till a larger element than the current element is found on the stack or till the stack becomes empty. Push the current element on the stack.<br>   3. Repeat steps 1 and 2 till the end of array is reached.<br>   4. Finally pop remaining elements from the stack and print -1  for them.<pre class='courier'>#include&lt;stdio.h&gt;
+#include"stackint.h"
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+void next_greater_elements(int *arr,int n)
+{
+     STACK s1;
+     int i;
+     s1.top=-1;
+     push(&s1,arr[0]); 
+     for(i=1;i&lt;n;i++)
+     {
+        while (!is_empty(&s1) && peek(&s1) &lt; arr[i]) 
+	{
+                 printf("Next greater element for %d =%d\n" ,
+	 	             + pop(&s1), arr[i]);
+                }
+ 	push(&s1,arr[i]);  
+     }
+     while(!is_empty(&s1))
+        printf("Next greater element for %d is -1\n",pop(&s1));
+}
+int main()
+{
+    int arr[50];
+    int sz; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz);
+    print_array(arr,sz);
+   
+    next_greater_elements(arr,sz);
+    return 0;
+}</pre></div></div><div class='question'><p>12. Implement a stack with min() function which returns the minimum value of a stack. All of push(), pop() and min() function must have time complexity of O(1)</p><button class='accordion'>Answer</button><div class='panel'>This can be done with the help of auxilliary stack - let us call it minstack.<br><br> Whenever an element is pushed, if it is lesser than minimum, it is also pushed to minstack.<br><br> If not, the existing minimum is pushed again into minstack.<br><br>Whenever an element is popped, an element is also popped from minstack.<br><br>min() function will be just peeking the minstack to get minimum of stack<br><br>Hence all operations use time complexity of O(1)<pre class='courier'>  #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+#define ERROR -1000
+ struct node  
+ {  
+   int value;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;value= value;  
+   return temp;  
+ } 
+ NODEPTR push(NODEPTR top,int val)
+ { 
+     NODEPTR newnode = create_node(val);
+     newnode-&gt;next = top;
+     top = newnode;
+     return top;
+}
+int isempty(NODEPTR top)
+{
+   return top==NULL;
+}
+int pop(NODEPTR *topPtr)
+{
+   if(isempty(*topPtr))
+       return ERROR;
+   int num = (*topPtr)-&gt;value;
+   NODEPTR temp = *topPtr;
+   *topPtr = (*topPtr)-&gt;next;
+   free(temp);
+   return num;
+}
+int peek(NODEPTR nd)
+{
+   return nd-&gt;value;
+}
+
+void push1(NODEPTR*topptr,NODEPTR* mintopptr,int val)
+{
+     int minval =val;
+     if(*mintopptr!=NULL)
+        {
+           int temp = peek(*mintopptr);
+           if (temp&lt;minval)
+               minval = temp;
+        }
+     *topptr = push(*topptr,val);
+     *mintopptr = push(*mintopptr,minval);
+ }
+
+ int pop1(NODEPTR* topptr,NODEPTR *mintopptr)
+ {
+   if(!isempty(*topptr))
+   {
+    pop(mintopptr);
+    return pop(topptr);
+   }else
+       return ERROR;
+ }
+      
+int findmin(NODEPTR mintop)
+{
+   if(mintop==NULL)
+      return -1;
+   return mintop-&gt;value;
+}   
+ 
+
+
+ int main()  
+ {  
+     NODEPTR top = NULL;
+     NODEPTR nd;
+     NODEPTR mintop=NULL;
+
+     while(1)
+     {  
+       int option,value; 
+       printf("Enter 1- push 2- pop 3 - exit 4- find minimum"); 
+       scanf("%d",&option);
+       if(option==3)
+          break;
+       switch(option)
+       {
+           case 1:  printf("new value to push=");  
+       		    scanf("%d",&value);   
+                    push1(&top,&mintop,value);
+                    break;
+           case 2:  value = pop1(&top,&mintop);
+                    if(value==ERROR)
+                         printf("Stack empty\n");
+                    else
+			 printf("Value popped is %d\n",value);
+                    break; 
+           case 4:  value=findmin(mintop);
+                    if(value==-1)
+                        printf("Stack empty\n");
+                    else
+                    printf("Minimum of stack is %d\n",value);
+             
+                    break;
+        }  
+    }     
+ }  
+</pre></div></div><div class='question'><p>13. Write a program to reverse a string using stack.</p><button class='accordion'>Answer</button><div class='panel'>To reverse a string you have to push all the characters of string to stack. Then pop these and copy them back to string. <br>    1) push a character to stack<br>    2) move to next character<br>    3) repeat step 1 and 2 until end of string<br>    4) pop a character from stack<br>    5) save this character in string and increment index<br>    6) repeat steps 4 and 5 as long as stack is not empty<br><br>The program uses stack library functions which are not shown.<pre class='courier'>void reverseString(char *str)
+{
+    struct stack s;
+    s.top = -1;
+    char ch;
+    char *temp = str;
+    while(ch=*str++)/*till '\0'*/
+    {
+       push(&s,ch);
+    }
+    str = temp;/*go to beg address*/
+    while(!is_empty(&s))
+      *str++ = pop(&s);      
+}
+int main()
+{
+    char str[50];
+    printf("Enter a string");
+    fgets(str,49,stdin);
+    reverseString(str);
+    printf("The reversed string is %s\n",str);
+    return 0;
+}</pre></div></div><div class='question'><p>14. With the help of a stack, determine whether a given string is a palindrome.</p><button class='accordion'>Answer</button><div class='panel'>A palindrome is a string which reads same forwards and backwards. <br><br>To check if the string is a palindrome, it can be pushed to stack. Next all the characters can be popped and compared with characters of original string. If they do not match, the string is not a palindrome. <pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt;
+#define MAX 70
+struct stack
+{
+    int arr[MAX];
+    int top;
+};
+char pop(struct stack *s);
+void push(struct stack *s, char val);
+int is_palindrome(char *str)
+{
+     char *str2=str;
+     struct stack s;
+     s.top = -1;
+
+     while(*str)
+     {
+        char ch = *str++;
+        push(&s,ch);
+     }
+     while(*str2 && !is_empty(s))
+     {
+         char ch = pop(&s);
+         if( *str2 !=ch)             
+             return 0;
+         str2++;
+      }
+      return 1;
+}   
+int is_full(struct stack *s)
+{
+    return s-&gt;top&gt;=MAX;
+}
+void push(struct stack *s, char val)
+{
+   if( is_full(s))
+      printf("Stack overflow");
+   else
+   {
+	(s-&gt;top)++;
+	s-&gt;arr[s-&gt;top]=val;
+   }    
+}
+int is_empty(struct stack s)
+{
+    return s.top==-1;
+}
+
+char pop(struct stack *s)
+{
+    int val = -1;
+    if(is_empty(*s))
+      printf("Stack empty");
+    else
+     {
+	int t = s-&gt;arr[s-&gt;top];
+        s-&gt;top--;
+        val = t;
+      }
+    return val;
+} 
+
+int main()
+{
+    char string[MAX];
+    printf("Enter the string:");
+    fgets(string,MAX-1,stdin);
+    int l = strlen(string);/*fgets adds a new line char*/
+    string[l-1]='\0';
+    if(is_palindrome(string))
+      printf("%s is a palindrome\n",string);
+    else
+      printf("%s is not a palindrome\n",string);
+    return 0;
+}
+
+    
+    </pre></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

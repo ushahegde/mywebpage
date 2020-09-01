@@ -1,0 +1,446 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0;box-shadow:2px 2px #ccc; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> Sorting Questions </h1><div class='question'><p>1. Write a function to implement insertion sort</p><button class='accordion'>Answer</button><div class='panel'>Insertion sort takes one element at a time from the array and inserts it in correct location by moving larger elements to the right. <br><br>It is a quadratic algorithm (O(n2)) like bubble or selection sort. But is more effecient than them. <br><br>This sorting algorithm is quite useful for data sets which are small in size and are almost sorted. It is also in-place algorithm and is stable. Time complexity - O(n^2)<br><br>Algorithm<br>           repeat for i = 1 to n-1<br>                temp = arr[i]<br>                repeat for j=i-1 to 0  and arr[j]&gt;temp<br>                    if arr[j]&lt;arr[i]<br>                         move arr[j] to arr[j+1]<br>                arr[j+1]=temp<br>                 <pre class='courier'>void insertion_sort(int *arr,int sz)
+{
+   int i,j,k;
+   for(i = 1;i&lt;sz;i++)
+   {
+       int temp = arr[i];
+       int j = i-1;
+       while(j&gt;=0  && arr[j]&gt;temp)
+       {          
+          arr[j+1] = arr[j];          
+          j--;
+       }
+       arr[j+1] = temp;
+   }           
+}</pre></div></div><div class='question'><p>2. Explain shell sort with its implementation</p><button class='accordion'>Answer</button><div class='panel'>Shell sort methods sorts sublists using insertion sort. But these sublists are not contiguous. They are apart by a gap. Let us say we have an aray of size 8. In the first iteration, and gap size is 2. The sublist consisting of a0, a2,a4,a6 is sorted using insertion sort. And also sublist consisting of a1,a3,a5,a7 is sorted. Next the gap size is reduced to 1. And the array is sorted again.<br><br>Normally the initial gap size is taken as n/2 where n is size of array. And after each iteration, gap size is divided by 2 until gap size is 1 and entire array is sorted. <pre class='courier'>#include&lt;stdio.h&gt;
+ 
+void shell_sort(int *arr,int n)
+{
+     int gap,i;
+     for(gap=n/2;gap&gt;0;gap/=2)
+     {
+         int i;
+         for(i=gap;i&lt;n;i++)
+         {
+              int temp = arr[i];
+              int j;
+              for(j=i;j&gt;=gap&&arr[j-gap]&gt;temp;j-=gap)
+                  arr[j] = arr[j-gap];
+              arr[j]=temp;
+          }
+      }
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr[50];
+    int sz; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz);
+   
+    shell_sort(arr,sz);
+    printf("The sorted array is ");
+    print_array(arr,sz);
+    return 0;
+}</pre></div></div><div class='question'><p>3. Explain the quick sort algorithm. Write a function for quick sort</p><button class='accordion'>Answer</button><div class='panel'>Quick sort is one of the most efficient sorting algorithms. Its time complexity is O(nlogn). <br><br>It is divide and conquer algorithm. But unlike merge sort where array is split into two equal halves, here array is split using a pivot value. All elements less than pivot value are in first subarray and all elements more than pivot value are in second sub array. Pivot is placed between them. And then these subarrays are sorted recursively.<br><br>Quick sort algorithm : <br>    Pick an element, called a pivot, from the array.<br><br>    Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it (equal values can go either way). After this partitioning, the pivot is placed in its final position.   <br><br>    Recursively apply the above steps to the sub-array of elements with smaller values and  to the sub-array of elements with greater values.<pre class='courier'>void quicksort(int *arr,int lo,int hi)
+{
+    if (lo &lt; hi) {
+        int p =partition(arr, lo, hi);
+        quicksort(arr,lo,p-1);
+        quicksort(arr, p + 1, hi);
+    }
+}
+
+void swap(int *ptr1,int *ptr2)
+{
+   int temp = *ptr1;
+   *ptr1 = *ptr2;
+   *ptr2 = temp;
+}
+int partition(int *arr,int low,int high)
+{
+       int i,j,pivot;
+       i = low+1;
+       pivot = arr[low];
+       for(j=low+1;j&lt;=high;j++)
+         if(arr[j]&lt;pivot)
+             {
+             swap(&arr[j],&arr[i]);
+             i++;
+             }  
+       swap(&arr[low],&arr[i-1]);
+       return i-1;
+}</pre></div></div><div class='question'><p>4. How efficient is sequential search? Explain different methods used to get maximum search efficiency.</p><button class='accordion'>Answer</button><div class='panel'>Sequential search is not very effecient. The worst case time complexity is O(n) - if the search value is located at the end of the data set , n comparisons have to be made.<br>   1) set i =0 <br>   2) if arr[i]=searchvalue terminate the loop<br>   3) increment i<br>   4) if i&lt;size of array go back to step 2<br><br>Ways to improve effeciency:<br><br>1) Each iteration makes two comparisons - whether index is less than size and whether data is equal to search value. One comparison can be avoided by placing the search value at the end of the list. <br>   1) set arr[size]=searchvalue<br>   2)  if arr[i]=searchvalue terminate the loop<br>   3) increment i<br>   4)  go back to step 2<br>   5) if i ==size, value is not found <br>       otherwise value is found<br><br>2) If the data set is already sorted, we need not continue the search once we get a value greater than key value.<br>     1) set i to 0<br>     2) if arr[i]&gt;=searchvalue go to step 4<br>     3) increment i and go back to step 2<br>     4) if arr[i]==searchvalue, search is successful<br><br>    <pre class='courier'>int sequential_search(int *arr,int sz,int sv)
+{
+     int i;
+     for(i=0;i&lt;sz &&arr[i]!=sv;i++)
+     ;
+     if(arr[i]==sv)
+         return i;
+     return -1;
+}
+int sequential_search2(int *arr,int sz,int sv)
+{
+     int i;
+     arr[sz]=sv;/*save a sentinel value*/
+     for(i=0; arr[i]!=sv;i++)
+     ;
+     if(i&lt;sz)
+         return i;
+     return -1;
+}
+int sequential_search3(int *arr,int sz,int sv)
+{
+/*the array is already sorted
+ stop searching if value is greater than n*/
+     int i; 
+     for(i=0;i&lt;sz && arr[i]&lt;sv;i++)
+     ;
+     if(arr[i]==sv)
+         return i;
+     return -1;
+}</pre></div></div><div class='question'><p>5. Write an algorithm and function for selection sorting.</p><button class='accordion'>Answer</button><div class='panel'>Selection sorting is a simple sorting algorithm. It is not very efficient for large data sets.<br><br>The basic idea behind this algorithm is to find minimum of the set and place this at the begining and then reduce the size of the set. <br><br>So algorithm is as follows<br>    1) for values of i from 0 to n-1 repeat<br>          a) set s = i<br>          b) compare all elements a[j] for j=i+1 to n<br>               if any element is smaller than a[s], store its index in s<br>          c) if a[s] &lt; a[i] then swap a[s] and a[i]<br>    <br>It is an in-place algorithm. It is one of the quadratic sorting algorithms - that is its time complexity is O(n^2)<pre class='courier'>void selection_sort(int *arr,int sz)
+{
+   int i,j,k;
+   for(i = 0;i&lt;sz-1;i++)
+   {      
+       int s = i;
+       for(j=i+1;j&lt;sz-1;j++)
+          if(arr[j]&lt;arr[s])
+             s = j;
+       if(arr[s]&lt;arr[i])/*ith smallest*/
+           {
+             int temp = arr[s];
+             arr[s] = arr[i];
+             arr[i] = temp;
+           }
+   }           
+}</pre></div></div><div class='question'><p>6. Explain interpolation search</p><button class='accordion'>Answer</button><div class='panel'>In binary searching, the search set is always divided at the mid point and one half is discarded. <br>But Interpolation search calculates where in the remaining search space the value might be present based on target value and high and low values of search space.<br>It uses the formula<br>mid = lo + [ (x-arr[lo])*(hi-lo) / (arr[hi]-arr[Lo]) ]<br><br>If the values in the data set are uniformly distributed, then interpolation has the average case complexity of O(log logn). But it has worst case complexity of O(n)<pre class='courier'>#include&lt;stdio.h&gt;
+
+int interpolation_search(int arr[], int size, int key)
+{
+    int low = 0;
+    int high = size - 1;
+    int mid;
+
+    while ((arr[high] != arr[low]) && (key &gt;= arr[low]) && (key &lt;= arr[high])) 
+   {
+        mid = low + ((key - arr[low]) * (high - low) / (arr[high] - arr[low]));
+
+        if (arr[mid] &lt; key)
+            low = mid + 1;
+        else if (key &lt; arr[mid])
+            high = mid - 1;
+        else
+            return mid;
+    }
+
+    if (key == arr[low])
+        return low ;
+    else
+        return -1;
+}
+
+void print_array(int *arr,int sz)
+{
+     int i;
+     printf("Elements of the array are:");
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+   int n;
+   int arr[] = {11,33,55,88,211,899};   
+   print_array(arr,6);
+   while(1)
+   {
+     printf("Enter the value to search (-1000 to exit):");
+     scanf("%d",&n);
+     if(n==-1000)
+       break;
+     n = interpolation_search(arr,6,n);
+     if(n!=-1)
+       printf("The array element is found at %d\n",n);
+     else
+       printf("Not found\n");
+   }
+      }
+</pre></div></div><div class='question'><p>7. Write a function to search an array using binary search</p><button class='accordion'>Answer</button><div class='panel'>In binary search, the data set is split into two parts at the mid point of data set. If the mid value is smaller than search value, then all elements to the left of mid point will be still smaller than search value. So we can discard that half and continue searching only in right half of data set. <br><br>Instead if the mid value is larger than search value, all the values to the right of mid point will be larger than search value. Hence we can search only in the left half of the data set. <br><br>In the next step again the mid point of this set is calculated and mid value is compared with search value.<br><br>This procedure is continued until, the value is found or the data set has 0 values.<br><br>Because we are halving the data set each time, the time complexity of this search method is not linear but logarithmic - O(logn) <br><br>But keep in mind that, the array should be sorted for binary search. <pre class='courier'>#include&lt;stdio.h&gt;
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     printf("Enter the elements of sorted array:");
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+
+int binary_search(int *arr,int start,int end,int val)
+{ 
+   if(start&lt;=end){ 
+      int mid  = (start+end)/2;
+      if(arr[mid]==val)
+           return mid;
+      else if(arr[mid]&gt;val)
+           return binary_search(arr,start,mid-1,val);
+      else 
+         return binary_search(arr,mid+1,end,val);
+    }
+    else
+        return -1;
+}
+    
+int main()
+{
+    int arr[50];
+    int sz; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz);
+   
+    while(1)
+    {
+        int n,index;
+        printf("Enter the value to search, -1 to exit");
+        scanf("%d",&n);
+        if(n==-1)
+            break;
+        if((index=binary_search(arr,0,sz-1,n))!=-1)
+            printf("Value found at index %d\n",index);
+        else
+            printf("Value not found\n");
+    } 
+    return 0;
+}</pre></div></div><div class='question'><p>8. Write a function to merge sort an array.</p><button class='accordion'>Answer</button><div class='panel'>In merge sort, the array is divided into two halves and these two halves are sorted recursively. Then the sorted sub-arrays are merged.<br><br>The splitting of the array continues in recursion until each subarray has only one element. Which is sorted of course.<br><br>For merging two sorted arrays, both the array elements are compared and smaller element is copied to result array and its index is incremented. This is repeated till end of array. And at some point of time, only one array is left. Its value is directly copied. After all the values from both sub-arrays are copied to result array, these are copied back to original array. <br><br>Merge sort is not an in place algorithm. It is divide and conquer algorithm. Its time complexity is O(nlogn)<pre class='courier'>#include&lt;stdio.h&gt;
+void merge_sorted_arrays(int *arr,int st1,int md1,int end1);
+void merge_sort(int *arr,int start,int end)
+{
+   if(start&lt;end){ 
+      int mid = (start+end)/2; 
+      merge_sort(arr,start,mid);
+      merge_sort(arr,mid+1,end);
+      merge_sorted_arrays(arr,start,mid,end);
+   }    
+}
+ 
+void merge_sorted_arrays(int *arr ,int st1,int md1,int end1)
+{
+    int i,j,k;int temp[50];
+    i = j = k=0;
+    i = st1; j=md1+1;
+    
+    while(i&lt;=md1 && j&lt;=end1)
+    {
+       if(arr[i]&lt;arr[j])
+          temp[k++] = arr[i++];
+       else
+          temp[k++] = arr[j++];
+    }
+    while(i&lt;=md1)
+       temp[k++] = arr[i++];
+    while(j&lt;=end1)
+       temp[k++] = arr[j++];
+    for(i=st1,k=0;i&lt;=md1;i++,k++)
+       arr[i]=temp[k];
+    for(j=md1+1 ;j&lt;=end1;j++,k++)
+       arr[j]=temp[k];
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr1[50] ;
+    int sz ; 
+    printf("Enter the size of  array:"); 
+    scanf("%d",&sz);
+    printf("Enter the  array elements:");
+    read_array(arr1,sz);    
+    merge_sort(arr1,0,sz-1);     
+    printf("The sorted array is ");
+    print_array(arr1,sz);
+    return 0;
+}</pre></div></div><div class='question'><p>9. Write a program to heapsort an array.</p><button class='accordion'>Answer</button><div class='panel'>In a heap sort, an array is converted into a max heap. A max heap is a special type of binary tree where each node has a key value larger than its children. And the largest value is always at the root. <br><br>After converting array to heap, the root value is swapped with last element of array. Now we have largest element at end of array.<br><br>Next a heap is built with n-1 array elements discarding the last value and again root value is swapped with n-1th element. This process is repeated until the entire array is sorted.  <br><br>Heap sort is in place algorithm and it has a time complexity of O(nlogn) like quick sort and merge sort algorithms. <pre class='courier'>#include &lt;stdio.h&gt;
+void printArray(int *arr,int n);
+void swap(int *a,int *b)
+{
+ 	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+ 
+/* convert node at index i into a max heap */
+void heapify(int arr[], int n, int i)
+{
+	 
+    int largest = i;  
+    int left = 2*i + 1;  // left = 2*i + 1
+    int right = 2*i + 2;  // right = 2*i + 2
+     
+    if (left &lt; n && arr[left] &gt; arr[largest])
+        largest = left;
+   
+    if (right &lt; n && arr[right] &gt; arr[largest])
+        largest = right;
+    
+    if (largest != i)    {
+        swap(&arr[i], &arr[largest]);        
+        heapify(arr, n, largest);/*now node at largest is out of order. heapify it*/
+    }
+}
+
+void heapSort(int arr[], int n)
+{
+    int i;
+    /* Build heap from array elements*/
+    for ( i = n / 2 - 1; i &gt;= 0; i--)
+        heapify(arr, n, i);
+ 
+    /*Extract 0th element (root) and move it at the end of array. Reduce the size of heap*/
+    for ( i=n-1; i&gt;=0; i--)
+    {
+        /* Move current root to end*/
+        swap(&arr[0], &arr[i]);
+
+        /* call max heapify on the reduced heap*/
+        heapify(arr, i, 0);
+    }
+}
+
+void readArray(int arr[], int n)
+{
+    int i;
+    for ( i=0; i&lt;n; ++i)
+	{
+	    printf("a[%d]",i);
+            scanf("%d",&arr[i]);
+	}  
+} 
+
+void printArray(int arr[], int n)
+{
+    int i;
+    for ( i=0; i&lt;n; ++i)
+        printf("%d ",arr[i]);
+   printf( "\n");
+}
+
+// Driver program
+int main()
+{
+    int arr[40];int n; 
+    printf("What is array size");
+    scanf("%d",&n);
+    readArray(arr,n);
+    
+    heapSort(arr, n);
+
+    printf("Sorted array is \n");
+    printArray(arr, n);
+}</pre></div></div><div class='question'><p>10. Write a program to search a value in an array using linear searching method. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     printf("Enter the elements of sorted array:");
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+
+ 
+int linear_search(int *arr,int n,int val)
+{
+    int index = -1;
+    int i;
+    for(i=0;i&lt;n;i++)
+      if(arr[i]==val)
+          return i;
+    return index;
+}
+    
+int main()
+{
+    int arr[50];
+    int sz; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz);
+   
+    while(1)
+    {
+        int n,index,val;
+	printf("Enter the value to search, -1 to exit");
+        scanf("%d",&val);
+	if(val==-1)
+	   break;
+        if((index=linear_search(arr, sz,val))!=-1)
+           printf("Value found at index %d\n",index);
+        else
+	   printf("Value not found\n");
+    } 
+    return 0;
+}</pre></div></div><div class='question'><p>11. What are the different methods of search algorithms? Explain.</p><button class='accordion'>Answer</button><div class='panel'>Search algoritms find a value with a given key in the data structure. The most commonly used search algorithms are linear search and binary search.<br><br>In linear search the key is compared to values in the given data set, in a sequence until a match is found. This algorithm does not require the data to be sorted. But is slow and has a time complexity is O(n).<br><br>In binary search, the key is compared to middle value of given set and in each iteration, the data set is halved. It is faster and has a time complexity of O(logn). But the data set should be sorted for binary search.<br> <pre class='courier'></pre></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

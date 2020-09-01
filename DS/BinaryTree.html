@@ -1,0 +1,1733 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0;box-shadow:2px 2px #ccc; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> BinaryTree Questions </h1><div class='question'><p>1. Given the following output, draw the binary search tree.
+Inorder : EICFJBGDKHLA
+PreOrder : ABCEIFJDGHKL</p><button class='accordion'>Answer</button><div class='panel'>The method for obtaining tree is as follows<br>   1) get the ith character from preorder output<br>   2) Find its index in inorder - idx<br>   3) All values of the subtree to the left of idx are in left subtree<br>   4) All values to right of idx are on right subtree<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+struct node
+{
+    char val;
+    struct node *left;
+    struct node *right;
+};
+
+struct node *createnode(char ch)
+{
+    struct node *newnode =(struct node*) malloc(sizeof(struct node));
+    newnode-&gt;val = ch;
+    newnode-&gt;left = newnode-&gt;right = NULL;
+    return newnode;
+}
+
+int findindex(char *inorder,char ch)
+{
+     int i;
+     for(i=0;inorder[i]!=0&&inorder[i]!=ch;i++);
+     return i;
+}
+
+struct node * constructNode(char *preorder,char *inorder,int instart,int inend)
+{
+    static int preindex = 0;
+    if( instart&gt;inend)
+       return NULL;
+ 
+    char ch = preorder[preindex++];
+  /*  printf("ch is %c\n instart is %d inend is %d",ch,instart,inend);*/
+    struct node * nd = createnode(ch);
+    if(instart==inend)
+       return nd;
+    int l = strlen(inorder);
+
+    int index = findindex(inorder,ch);
+    struct node * left = constructNode(preorder,inorder,instart,index-1);
+    struct node * right = constructNode(preorder,inorder,index+1,inend);
+    nd-&gt;left = left;
+    nd-&gt;right = right;
+    return nd;
+}
+ 
+void inorderprint(struct node *nd)
+{
+  if(nd!=NULL)
+  { 
+    inorderprint(nd-&gt;left);
+    printf("%c-----&gt;",nd-&gt;val);
+    inorderprint(nd-&gt;right);
+   }
+}
+int main()
+{
+    char inorder[30],preorder[30];
+    struct node *root;
+    printf("Enter inorder output");
+    scanf("%s",inorder);
+    printf("Enter preorder output");
+    scanf("%s",preorder);
+    root = constructNode(preorder,inorder,0,strlen(preorder)-1);
+    printf("\n Inorder traversal is ");
+    inorderprint(root);
+}
+
+
+</pre></div></div><div class='question'><p>2. Write an algorithm to add a new node non-recursively to a binary search tree and write a function for this.</p><button class='accordion'>Answer</button><div class='panel'>Algorithm for adding a node to binary search tree<br>1) set node = root<br>2) set parent = node<br>3) if  newnode &gt;  node, set node to node-&gt;right<br>4) If  newnode &lt;   node, set node to node-&gt;left<br>5) repeat steps 2 to 4 until node is null<br>6) if key of newnode&gt;key of parent, set parent -&gt;right = newnode<br>7) if not set parent-&gt;left = newnode<br><br>If root is NULL, then we should set root = newnode. <pre class='courier'>NODEPTR insert_node_nr(NODEPTR nd,NODEPTR newnode)
+{
+     NODEPTR parent = nd;
+     NODEPTR root = nd;
+     if(root == NULL)
+        return newnode;
+    /*find a location add new node*/
+     while(nd!=NULL)
+     {
+        parent = nd;
+        if(newnode-&gt;val &gt; nd-&gt;val)
+            nd = nd-&gt;right;
+        else if(newnode-&gt;val &lt;nd-&gt;val)
+           nd = nd-&gt;left;
+        else
+        {
+               printf("Duplicate values not allowed");
+               return NULL;
+         }
+     }
+     if(newnode-&gt;val &gt;parent-&gt;val)
+         parent-&gt;right = newnode;
+     else
+         parent-&gt;left = newnode;
+     return root;
+}
+
+int main()
+{
+      NODEPTR root = NULL;
+      NODEPTR newnode;
+    .....
+     int n ;
+     scanf("%d",&n);
+     newnode = create_node(n);
+     root = insert_node_nr(root,newnode);
+  .....
+}
+</pre></div></div><div class='question'><p>3. Write algorithms for deleting a node from a binary search tree in all possible cases.</p><button class='accordion'>Answer</button><div class='panel'>When a node is to be deleted from a binary search tree, there are 3 possible cases<br>    a) the node is leaf<br>    b) the node has only one child/subtree<br>    c) the node has both children/subtrees<br><br>The following recursive algorithm takes care of all three cases<br><br>1) nd = root<br><br>find the node to be deleted <br>2) if nd-&gt;val &gt; delvalue<br>      recursively call delete on nd-&gt;left and set result to nd-&gt;left<br>3) if nd-&gt;val &lt; delvalue<br>      recursively call delete on nd-&gt;right and set result to nd-&gt;right<br><br>node is found<br>4) if nd-&gt;val==delvalue<br>      a)if nd is a leaf node return NULL so that parent-&gt;left or parent-&gt;right is NULL after deleting nd<br>      b) if nd has only one  non-null child, return non-null child. parent-&gt;left or parent-&gt;right is set to  nd-&gt;child<br>      c) If nd has both children, find in order successor of nd.<br>             i) copy sucessor's  value to nd<br>             ii) set node to be deleted (nd)  to successor<br>             iii) Delete this inorder successor using either a or b above. because successor will be either be leaf or will have only right child<br>       <pre class='courier'>/* inorder successor is the minimum of 
+right subtree*/
+NODEPTR find_rightst_min(NODEPTR node)
+{
+     node = node-&gt;right;
+     while(node-&gt;left!=NULL)
+       node = node-&gt;left;
+     return node;
+}
+NODEPTR delete_node(NODEPTR nd,int delval)
+{
+    if(nd==NULL)
+       return nd;
+    if(nd-&gt;val &gt;delval)
+        nd-&gt;left = delete_node(nd-&gt;left,delval);
+     else if(nd-&gt;val &lt; delval)
+        nd-&gt;right = delete_node(nd-&gt;right,delval);
+     else/*node found*/
+     {
+        if(nd-&gt;left==NULL && nd-&gt;right==NULL)/*leaf node*/
+         {
+             free(nd);
+     	  nd = NULL;
+         }
+        else if(nd-&gt;left==NULL)/*has only right child*/
+        {
+           NODEPTR temp = nd-&gt;right;
+           free(nd);
+           nd =temp;
+        }
+        else if(nd-&gt;right==NULL)/*has only left child*/
+        {
+           NODEPTR temp = nd-&gt;left;
+           free(nd);
+           nd = temp;
+        }
+        else/*has both subtrees*/
+         {
+          NODEPTR min_node = find_rightst_min(nd);
+          nd-&gt;val = min_node-&gt;val;
+          nd-&gt;right = delete_node(nd-&gt;right,min_node-&gt;val);
+         }      
+      }
+    return nd;  
+}</pre></div></div><div class='question'><p>4. Explain one way and two way threaded binary trees</p><button class='accordion'>Answer</button><div class='panel'>A threaded binary is the one which uses the NULL pointers of nodes to store links to in order successor and in order predecessor. These links are called threads.<br><br>A one way threaded binary tree will have only one type of threads - either inorder successor or inorder predecessor.<br><br>Two way threaded binary tree has threads for both inorder successor and inorder predecessor.<br><br>Threaded binary tree uses up wasted NULL links and allows you to traverse the tree non-recursively. <br><br>Now a node can have left pointer either as a left child or a left thread. Similar is the case with right pointer. <br><br>To differentiate between the two, two extra boolean variables are used in each node - isLeftThread and isRightThread which are set to 1 to indicate thread and reset to 0 to indicate child nodes.<br><pre class='courier'></pre></div></div><div class='question'><p>5. Draw a binary heap from the elements shown below. And also write a program to heap sort an array.
+50 25 30 75 100 45 80</p><button class='accordion'>Answer</button><div class='panel'>A binary heap is a special binary tree where every node has a value greater than its children (max heap).<br><br>In a min heap, every node has key value smaller than that of its children.<br><br>Heap sort arranges the elements in a max heap (heapify). Then it swaps the root element with last element and reduces the size of heap by one. Then the heap is built again. This procedure is continued till array is sorted.<pre class='courier'>#include &lt;stdio.h&gt;
+void printArray(int *arr,int n);
+void swap(int *a,int *b)
+{
+     int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+ 
+/* convert node at index i into a max heap */
+void heapify(int arr[], int n, int i)
+{     
+    int largest = i;  
+    int left = 2*i + 1;  /* left child = 2*i + 1*/
+    int right = 2*i + 2;  /* right child = 2*i + 2*/
+     
+    if (left &lt; n && arr[left] &gt; arr[largest])
+        largest = left;
+   
+    if (right &lt; n && arr[right] &gt; arr[largest])
+        largest = right;
+    
+    if (largest != i)    {
+        swap(&arr[i], &arr[largest]);        
+        heapify(arr, n, largest);/*now node at largest may be out of order. heapify it*/
+    }
+}
+
+void heapSort(int arr[], int n)
+{
+    int i;
+    /* Build heap from array elements*/
+    for ( i = n / 2 - 1; i &gt;= 0; i--)
+        heapify(arr, n, i);
+ 
+    /*Extract 0th element (root) and move it at the end of array. Reduce the size of heap*/
+    for ( i=n-1; i&gt;=0; i--)
+    {
+        /* Move current root to end*/
+        swap(&arr[0], &arr[i]);
+
+        /* call max heapify on the reduced heap*/
+        heapify(arr, i, 0);
+    }
+}
+
+void readArray(int arr[], int n)
+{
+    int i;
+    for ( i=0; i&lt;n; ++i)
+    {
+        printf("a[%d]",i);
+        scanf("%d",&arr[i]);
+    }  
+} 
+
+void printArray(int arr[], int n)
+{
+    int i;
+    for ( i=0; i&lt;n; ++i)
+        printf("%d ",arr[i]);
+   printf( "\n");
+}
+
+ 
+int main()
+{
+    int arr[40];int n; 
+    printf("What is array size");
+    scanf("%d",&n);
+    readArray(arr,n);
+    
+    heapSort(arr, n);
+
+    printf("Sorted array is \n");
+    printArray(arr, n);
+}</pre></div></div><div class='question'><p>6. Write a function to find the number of leaf nodes in a given binary tree.</p><button class='accordion'>Answer</button><div class='panel'>We can write a recursive function for this. <br>   count = leaf nodes in left subtree + leaf nodes in right subtree<br><br>  If a node is having left link as NULL and right link as NULL, then it is a leaf node. So if this condition is true, the call should return 1. If the node is NULL, the call should return 0.<br><br>    if node is NULL <br>          return 0<br>    if node-&gt;left==NULL and node-&gt;right==NULL <br>         return 1<br>    else<br>        return count(node-&gt;left)+count(node-&gt;right)<pre class='courier'>int count_leaf_nodes(NODEPTR nd)
+{
+    if(nd==NULL)
+       return 0;
+    if(nd-&gt;left ==NULL  && nd-&gt;right==NULL)
+       return 1;
+     
+       return count_leaf_nodes(nd-&gt;left)+count_leaf_nodes(nd-&gt;right);
+}</pre></div></div><div class='question'><p>7. Write a function to find in order successor of a given non-leaf node in a  binary tree</p><button class='accordion'>Answer</button><div class='panel'>In order successor a node is the node which is encountered next in the inorder traversal. <br><br>And this node will be tree minimum of right subtree of the given node.<br><br>If the node has a right child, we  branch to right. Next we traverse left until node-&gt;left is NULL. At this point, we have got our inorder successor. <br><br>If it does not have a right child, then in-order successor is the bottom-most ancestor which branched to left. That is - in order successor is the parent of last node which was a left child. So parent of 150 is 900 and parent of 58 is 100. <br><br>e.g.<br>              100<br>       10           900<br>     2   58    150   1090<br><br>In the tree shown above, in order successor of 10 is 58. Inorder successor of 100 is 150<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+}
+NODEPTR search(NODEPTR nd,int num)
+{
+    while(nd!=NULL )
+    {
+        if (num &gt; nd-&gt;val)
+           nd = nd-&gt;right;
+        else if (num&lt; nd-&gt;val)
+           nd = nd-&gt;left;
+        else 
+           return nd;
+     }
+     return NULL;/*not found*/
+}
+
+NODEPTR successor(NODEPTR root, NODEPTR nd)
+{
+     if(nd-&gt;right!=NULL)
+     {
+         nd = nd-&gt;right;
+         while(nd-&gt;left!=NULL)
+         { 
+             nd = nd-&gt;left;
+         }
+         return nd;
+     }
+     else
+     {
+        NODEPTR succ = NULL;
+        while(root!=NULL)
+        {
+            if(root-&gt;val &gt; nd-&gt;val)
+            {
+                 succ = root;
+        	root = root -&gt;left;
+            }
+            else if(root-&gt;val &lt;nd-&gt;val)
+                root = root -&gt;right;
+            else
+                return succ;
+        }
+        return root;
+    } 
+}
+
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1); 
+       printf("\nInorder traversal\n");
+       in_order(root);  
+       while(1)
+       {   
+         printf("Enter node value (-1 to stop):");
+         scanf("%d",&n);
+         if(n==-1)
+            break;
+         NODEPTR nd = search(root,n);
+         if(nd==NULL)
+             printf("%d is not present in tree",n);
+         else
+            {
+             NODEPTR nds = successor(root,nd);
+             if(nds!=NULL)
+                printf("the successor is %d\n",nds-&gt;val);
+             else
+                printf("No successor\n");
+            }
+       }    
+       return 0;
+}</pre></div></div><div class='question'><p>8. Explain what is binary search tree with an example. Write a function to search a value in a binary search tree using iteration.</p><button class='accordion'>Answer</button><div class='panel'>A binary tree is a non-linear data structure where each node has two child pointers to left child node and right child node and data. The top most node is called root node. <br><br>A binary search tree is a binary tree with the special property that each node has nodes with smaller key values on left sub tree and larger key values on right subtree. So a binary search tree (BST) is ordered. <br><br>Inorder traversal of binary search tree gives key values in ascending order.<br><br>Searching a value in a BST is done in O(logn) time. For searching, we compare the node and if search value is greater than node value, we branch to right. If search value is smaller than node value, we branch to left. This is repeated until search value is found or we get a NULL.  If such a branch gives us NULL, then the value is not found. <pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR search_node(NODEPTR root, int num)
+{
+   NODEPTR temp = root;
+   while(temp!=NULL)
+   {
+      if(temp-&gt;val&gt;num)
+         temp = temp-&gt;left;
+      else if(temp-&gt;val&lt;num)
+         temp = temp-&gt;right;
+      else/*we found a match*/
+         return temp;
+   }
+   return NULL;/*no match*/
+} 
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+}
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1);
+       
+       printf("\nInorder traversal\n");
+       in_order(root);
+      
+       while(1)
+       {
+          NODEPTR snode;
+          printf("Enter value to search (-1 to quit):");
+          scanf("%d",&n);
+          snode = search_node(root,n);
+          if(snode==NULL)
+             printf("Value not found\n");
+          else 
+             printf("Value is found\n");
+       }
+       return 0;
+}</pre></div></div><div class='question'><p>9. Write a function for inorder traversal of a threaded binary tree</p><button class='accordion'>Answer</button><div class='panel'>Threaded binary trees are invented to avoid recursion while traversing the binary tree. <br><br>Every node in a threaded binary tree except for terminal nodes will have both left and right links. If the node does not have a child node, then links are threads to inorder predecessor(left link) and inorder successor(right link). <br><br>To travese such a tree, you need to find tree minimum. That is done by moving to node-&gt;left until there is left thread. <br>Then you just need to <br>    continue to set node = node-&gt;right if you have right thread<br>    else go to tree minimum of right subtree if there is right child<br><br>Continue this until you reach tree maximum<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+   int isleftthread;
+   int isrightthread;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     temp-&gt;isleftthread = 1;
+     temp-&gt;isrightthread = 1;
+     return temp;
+}
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+     NODEPTR parent = nd;
+     NODEPTR root = nd;
+     if(root == NULL)
+       return newnode;
+     while(nd!=NULL)
+     {
+       parent = nd;
+       if(newnode-&gt;val &gt; nd-&gt;val)
+       {
+         if(nd-&gt;isrightthread)
+         {
+           nd = nd-&gt;right;
+           break;
+         }
+         else
+            nd = nd-&gt;right;	
+       } 	
+       else if(newnode-&gt;val &lt;nd-&gt;val){
+         if(nd-&gt;isleftthread)
+ 	 {
+            nd = nd-&gt;left;
+            break;
+         }
+         else
+           nd = nd-&gt;left;
+        }
+        else
+        {
+           printf("Duplicate values not allowed");
+           return NULL;
+         }
+     }
+     if(newnode-&gt;val &gt;parent-&gt;val)
+	{/*insert as right child*/
+	newnode-&gt;right = parent-&gt;right;
+	parent-&gt;right = newnode;
+	parent-&gt;isrightthread=0;
+	newnode-&gt;left = parent;/*update thread*/
+	}
+     else
+	{/*insert as left child*/
+	newnode-&gt;left = parent-&gt;left;
+ 	parent-&gt;left = newnode;
+	parent-&gt;isleftthread = 0;
+	newnode-&gt;right = parent;/*update thread*/
+	}
+     return root;
+}
+void in_order(NODEPTR nd)
+{
+    /* find extreme left node*/
+    while(!nd-&gt;isleftthread)
+	nd = nd-&gt;left;
+   /* traverse all nodes till extreme right end*/
+    while(nd)
+	{
+	  printf("%d  ",nd-&gt;val);
+	  if(nd-&gt;isrightthread)
+             nd = nd-&gt;right;
+          else 
+            {/*find tree minimum of right subtree*/
+              nd = nd-&gt;right;
+              while(nd!=NULL && !nd-&gt;isleftthread)
+                nd = nd-&gt;left;
+           }
+	} 
+}
+
+void pre_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        printf("%d---",nd-&gt;val);   
+        pre_order(nd-&gt;left);
+        pre_order(nd-&gt;right);
+            
+     }
+} 
+ 
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1);
+       
+       printf("\nInorder traversal\n");
+       in_order(root);
+       return 0;
+}</pre></div></div><div class='question'><p>10. Given a binary tree, write a function to find the depth of a binary tree.</p><button class='accordion'>Answer</button><div class='panel'>The depth or height of a binary tree is the distance between the root node and farthest leaf node.<br><br>The function recursively finds the height of a tree. <br><br>If the node is NULL, it returns -1.<br><br>If the node is not NULL, then it returns <br>1+ maximum(height of left subtree, height of right subtree)<pre class='courier'>int find_height(NODEPTR nd)
+{
+   if(nd==NULL)
+      return -1;
+   else
+     {
+        int h1 = find_height(nd-&gt;left);
+        int h2 = find_height(nd-&gt;right);
+        h1 = h1&gt;h2?h1:h2;/*maximum of heights of left subtree and right subtree */
+        return  h1+1;
+     }
+}</pre></div></div><div class='question'><p>11. Write a function to print the nodes in ascending order of a binary tree</p><button class='accordion'>Answer</button><div class='panel'>The inorder traversal of a binary search tree will print the nodes in ascending order. <br><br>The method of traversal is<br>             1) Visit the left subtree<br>             2) Visit the current node<br>             3) Visit the right subtree<pre class='courier'>void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---&gt;",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+}</pre></div></div><div class='question'><p>12. Write recursive functions for implementing tree traversal techniques - all of the three - inorder, preorder and postorder</p><button class='accordion'>Answer</button><div class='panel'>Binary tree can be traversed in 3 different ways - inorder, preorder and postorder.  In in-order traversal, the current node is traversed after left subtree and before right subtree. In pre-order current node is visited before its sub-trees. In post-order, current node is visited after visiting the sub-trees. <br><br>Inorder traversal- For any node<br>                 1) Traverse left subtree <br>                 2) visit current node<br>                 3) Traverse right subtree <br><br>Preorder traversal -  <br>                 1) visit current node<br>                 2) Traverse left subtree <br>                 3) Traverse right subtree <br>Remember that in preorder traversal, root is visited first.<br><br>Postorder traversal -<br>                1) Traverse left subtree <br>                2) Traverse right subtree <br>                3) visit the current node<br>In post order traversal, root node is visited last.<br><br>If we have a tree like this<br>       10<br>    2      45<br>1    5  22  800 <br><br>with just 3 nodes, say root as 100, 30 as its left child and 400 as its right child, then the traversals will be<br>   Inorder : 1 2 5 10 22 45 800<br>   Preorder : 10 2 1 5 45 22 800<br>   Postorder: 1 5 2 10 22 800 10<pre class='courier'>void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---&gt;",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+}
+
+void pre_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        printf("%d---&gt;",nd-&gt;val);   
+        pre_order(nd-&gt;left);
+        pre_order(nd-&gt;right);            
+     }
+}
+
+void post_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {    
+        post_order(nd-&gt;left);
+        post_order(nd-&gt;right);
+        printf("%d---&gt;",nd-&gt;val);
+     }
+}
+</pre></div></div><div class='question'><p>13. Write a function to insert a node into a binary search tree using recursion</p><button class='accordion'>Answer</button><div class='panel'>In a BST, the nodes are arranged in such a way that for any node, its left subtree has values smaller than current node and right subtree has values larger than current node.<br><br>So to insert a node, we should find a leaf node in the correct path depending on the value of newnode.<br><br>We compare the newnode value with current node. If newnode is larger, we call this function recursively for right child. If newnode is smaller , we call the function recursively for left child.  This is continued until we reach null. If a node is NULL, we return newnode.  <br><br>create_node function which allocates memory, assigns value is not shown in the code. <br> <pre class='courier'>struct node
+{
+   int val; 
+   struct node *left,*right;
+};
+typedef struct node *NODEPTR;
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode; 
+    if(newnode-&gt;val &gt; nd-&gt;val)/*branch to right*/
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)/*branch to left*/
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+int main()
+{
+    NODEPTR root = NULL;
+    root = insert_node(root,create_node(10));
+    root = insert_node(root,create_node(22));
+    root = insert_node(root,create_node(3));
+   ....
+}
+   </pre></div></div><div class='question'><p>14. Explain the following terms
+1) Strictly binary tree 2) Complete binary tree 3) Balanced binary tree</p><button class='accordion'>Answer</button><div class='panel'>A strictly binary tree is a binary tree where each node has either 0 child nodes or 2 child nodes. That is, in a strictly binary tree, all non-leaf nodes have 2 children.<br><br>A complete binary tree has all the levels completely filled except for last level, which is filled from left to right. A heap is an example of complete binary tree.  <br><br>A balanced binary tree is a binary tree where the height of left subtree and height of right subtree are almost equal. AVL tree is an example of balanced binary tree. <pre class='courier'></pre></div></div><div class='question'><p>15. Given a list of numbers, write a program to create a binary search tree, avoiding duplicate numbers.</p><button class='accordion'>Answer</button><div class='panel'><br><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+}
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)/*branch to right*/
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)/*branch to left*/
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    else
+   {
+	printf("Duplicate nodes are not allowed");
+    }
+    return nd;   
+}
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+} 
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1);       
+       printf("\nInorder traversal\n");
+       in_order(root);         
+       return 0;
+}</pre></div></div><div class='question'><p>16. What is a binary tree?
+Explain the following terms
+1) root node 2) leaf node 3) ancestor 4) descedents 5) siblings </p><button class='accordion'>Answer</button><div class='panel'>A tree is a non-linear data structure. A binary tree is a data structure where each node can be empty or can have a left subnode and a right subnode which are again binary trees. Left and right branches are called child nodes. <br><br>A tree data structure resembles an upside-down tree. <br><br>Root node is the starting node of a binary search tree similar to head of a linked list. It is the node which has no parent.<br><br>Leaf node is node in binary tree which has no child nodes. Left and right links of a leaf node will be null. <br><br>Sibling nodes are two nodes with the same parent node.<br><br>The nodes which are encountered in the path to the root node are called ancestors of a node. <br><br>The nodes which are encountered in the path to the leaf nodes are called a node's descendants<pre class='courier'></pre></div></div><div class='question'><p>17. What is a heap? What are the different types of heap?</p><button class='accordion'>Answer</button><div class='panel'>A heap is a complete binary tree with special property that any node will have a key value larger (max heap) than its children or smaller than its children (min heap).<br><br>A max heap will have largest key at the root. A min heap will have smallest key at the root. <br><br>A heap is used for implementing a priority queue.  <br><br>Max heap example:<br>         70<br>    11       12<br>  3   8     5<br><br><pre class='courier'></pre></div></div><div class='question'><p>18. What are the different types of rotations in an AVL tree.</p><button class='accordion'>Answer</button><div class='panel'>Four different types of rotations of an AVL tree are <br>1) Left rotation<br>2) Right rotation<br>3) Left-right rotation<br>4) Right-left rotation<br><br>When a right subtree is added to a right subtree and if the tree becomes unbalanced as a result of this, then single left rotation is performed. <br><br>If a tree becomes unbalanced when a left subtree is inserted to a left subtree, then a single right rotation is performed.<br><br>When a right subtree is added to left subtree and tree becomes unbalanced, a left right rotation is performed. First the child tree is rotated left. Next the subtree is rotated right.<br><br>When a left subtree is added to right subtree and tree becomes unbalanced, a right left rotation is performed. <br><br><pre class='courier'></pre></div></div><div class='question'><p>19. What is an AVL tree? Write a program to insert a node to an AVL tree. </p><button class='accordion'>Answer</button><div class='panel'>An AVL tree or an Adelson, Velsky and Landis tree is a self balancing binary search tree. <br><br>In an AVL tree, the difference between height of left subtree and height of right subtree is maintained to be in the range -1 to 1. This difference is called balance factor.<br><br>Each node stores its balance factor along with data and links. When the balance factor exceeds the range -1 to 1 during insertion or deletion of nodes, the nodes are rotated to maintain this balance factor. <br><br>The following tree is an AVL tree<br><br>      100<br>  10      500<br>2<br><br>This tree is not an AVL tree<br>           100<br>     10        500<br>             120<br>                145<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct avlNode
+{
+   int num;
+   struct avlNode *left;
+   struct avlNode *right;
+};
+typedef struct avlNode *NDPTR;
+int height(NDPTR temp)
+{
+    if(temp!=NULL)
+    {
+       int h1 = height(temp-&gt;left);
+       int h2 = height(temp-&gt;right);
+       return ( h1&gt;h2?h1:h2)+1;
+    }
+    return 0;
+}
+int balance_factor(NDPTR temp)
+{
+     int h1 = height(temp-&gt;left);
+     int h2 = height(temp-&gt;right);
+     return h1-h2;
+}
+
+NDPTR rr_rotation(NDPTR parent)
+{
+     NDPTR temp = parent-&gt;right;
+     parent-&gt;right = temp-&gt;left;
+     temp-&gt;left = parent;
+     return temp;
+}
+
+NDPTR ll_rotation(NDPTR parent)
+{
+     NDPTR temp = parent-&gt;left;
+     parent-&gt;left = temp-&gt;right;
+     temp-&gt;right = parent;
+     return temp;
+}
+
+NDPTR lr_rotation(NDPTR parent)
+{
+    NDPTR temp = parent-&gt;left;
+    parent-&gt;left = rr_rotation(temp);
+    return ll_rotation(parent);
+}
+NDPTR rl_rotation(NDPTR parent)
+{
+    NDPTR temp = parent-&gt;right;
+    parent-&gt;right = ll_rotation(temp);
+    return rr_rotation(parent);
+}
+NDPTR balance(NDPTR temp)
+{
+    int bal_factor = balance_factor(temp); 
+    if (bal_factor&gt;1)
+    {
+       
+       if(balance_factor(temp-&gt;left)&gt;0)
+          temp = ll_rotation(temp);
+       else
+          temp = lr_rotation(temp);
+    }
+    else if (bal_factor&lt;-1)
+    {
+       if(balance_factor(temp-&gt;right)&gt;0)
+          temp = rl_rotation(temp);
+       else
+          temp = rr_rotation(temp);
+    }
+    return temp;
+}
+NDPTR create_node(int num)
+{
+  NDPTR temp = (NDPTR)malloc(sizeof(struct avlNode));
+  temp-&gt;left = temp-&gt;right = NULL;
+  temp -&gt;num = num;
+  return temp;
+}
+NDPTR insert(NDPTR root,int value)
+{
+     if(root==NULL)
+     {
+        root = create_node(value); 
+     }
+     else if(value&gt;root-&gt;num)
+     {
+        root-&gt;right = insert(root-&gt;right,value);
+        root = balance(root);
+     }
+     else if(value&lt;root-&gt;num)
+    {
+        root-&gt;left = insert(root-&gt;left,value);
+        root = balance(root);
+     }
+     return root;
+}
+
+void pre_order(NDPTR root)
+{
+    if(root!=NULL)
+    {
+       printf("\n%d ",root-&gt;num);
+       pre_order(root-&gt;left);
+       
+       pre_order(root-&gt;right);
+    }
+}
+int main()
+{
+   NDPTR root = NULL;
+   while(1)
+   {
+      int n;
+      printf("Enter a node to insert :");
+      scanf("%d",&n);
+      if(n==-1)
+         break;
+      root = insert(root,n);
+   }
+   pre_order(root);
+}
+   </pre></div></div><div class='question'><p>20. What is a max heap? Write a function to add a value to a max heap.</p><button class='accordion'>Answer</button><div class='panel'>A max heap is a complete binary tree with the heap property - that each node has a key value larger than those of its children. Root is the node with highest key value.<br><br>As a heap is a complete binary tree, that means all the levels of tree are filled except for last level which is filled from left to right. Which means that we can assign consecutive indices to elements of heap. And it can be implemented using an array. <br><br>When inserting a value into a max heap, the value is initiallly addded to the last element of array.<br><br>Now this node may not obey max heap property. So compare the newly added node to its parent. If it is larger than parent, swap it with parent. Now go up the tree, compare the parent node with its parent and so on. Repeat this until you reach the root. This is called heapification process. <br><br>In our implementation, we are  omitting arr[0]. And we are taking arr[1] as root of heap. If we do this, for every node arr[i], its children are arr[2i] and arr[2i+1]. <br><br>When we want to find the parent of a node k, it is arr[k/2].<pre class='courier'> #include &lt;stdio.h&gt; 
+void printArray(int *arr,int n);
+void swap(int *a,int *b)
+{
+    int temp = *a;
+   *a = *b;
+   *b = temp;
+}
+  
+void heapfilterup( int arr[],int k )
+   {
+      /*move newly added value up to maintain heap*/
+      int parent=k/2;
+      while ( parent &gt; 0 )      
+      {
+       parent = k/2;   
+      if ( arr[k]&gt;arr[parent] )
+      {    
+         swap(&arr[parent],&arr[k]);
+         k = parent;
+      }
+      else
+      {
+        break;    
+      }
+      }
+   }
+
+void insert(int arr[], int n, int newvalue)
+{
+     arr[n-1] = newvalue; 
+     heapfilterup(arr,n-1);   
+}
+
+void readArray(int arr[], int n)
+{
+    int i;
+    printf("Enter elements of the max heap in order:");
+    for ( i=1; i&lt;n; ++i)
+    {
+     printf("a[%d]",i);
+     scanf("%d",&arr[i]);
+   } 
+} 
+
+void printArray(int arr[], int n)
+{
+    int i;
+    for ( i=1; i&lt;n; ++i)
+     printf("%d ",arr[i]);
+   printf( "\n");
+}
+
+// Driver program
+int main()
+{
+    int arr[40];int n,val; 
+    printf("What is heap size");
+    scanf("%d",&n);
+    n++;
+    readArray(arr,n);
+   //we dont store a value at arr[0]
+    printf("Enter new value to be inserted:");
+    scanf("%d",&val);
+    n++;
+    insert(arr,n,val); 
+    printf("Now the heap is \n");
+    printArray(arr, n);
+}</pre></div></div><div class='question'><p>21. With the help of examples explain
+1) Level of a binary tree
+2) Depth of a binary tree</p><button class='accordion'>Answer</button><div class='panel'>Level of any node in a binary tree is the distance between that node and root node.<br>Level of root is 0.<br><br>The depth of a binary tree is the level of the farthest leaf node. Depth of a tree is also called its height.<br><br>If we have a tree as shown below<br><br>          100<br>   10            500<br>2   18      300     900<br><br>Level of 100 is 0.<br>Level of 10 and 500 is 1<br>Level of 2, 18, 300 and 900 is 1<br><br>And height of tree is 2.<pre class='courier'></pre></div></div><div class='question'><p>22. Write a program to covert a binary tree into sorted doubly linke list. Do not create any nodes but just modify links. </p><button class='accordion'>Answer</button><div class='panel'>Here inorder traversal output is used to arrange the nodes as doubly linked list. And left link is used for prev pointer and right link is used for next pointer.<br><br>Just like in inorder traversal, we call the function with left child and right child. Between these two calls, instead of displaying the node, we link this node to previous node using <br>                node-&gt;left = prevnode<br>                prevnode-&gt;right = node<br><br>The node which has no previous node (NULL) is taken as head of of doubly linked list.<br><br><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+void convert_to_dll(NODEPTR nd,NODEPTR*headptr)
+{
+   static NODEPTR prevnode;
+   if(nd!=NULL)
+    {       
+        convert_to_dll(nd-&gt;left,headptr);
+        if(prevnode!=NULL){
+           prevnode-&gt;right = nd;
+           nd-&gt;left = prevnode;
+        }
+        else{
+           *headptr = nd;
+        }
+        prevnode = nd; 
+        convert_to_dll(nd-&gt;right,headptr);
+     }
+}
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+} 
+void print_dll(NODEPTR nd)
+{
+   NODEPTR temp = nd;
+    while(nd)
+      {
+        printf("%d----&gt;",nd-&gt;val);
+        nd = nd-&gt;right;
+       } 
+} 
+
+void inorder(NODEPTR nd)
+{
+   if(nd!=NULL)
+   {	
+      inorder(nd-&gt;left);
+      printf("%d ",nd-&gt;val);
+      inorder(nd-&gt;right);
+    }
+}
+
+int main()
+{
+       NODEPTR root=NULL,delnode,head;  
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1);
+        
+       head = NULL;
+       convert_to_dll(root ,&head);
+       print_dll(head); 
+       return 0;
+}</pre></div></div><div class='question'><p>23. Given a binary tree, write a function to determine whether it is a binary search tree</p><button class='accordion'>Answer</button><div class='panel'>A binary search tree must follow the rule that each node has key values smaller than itself on its left subtree and key values larger than itself on its right subtree.<br><br>In an inorder traversal, these rules are tested. If the inorder traversal output is not in ascending order, then the tree is not a BST.<br><br>So previous output of recursive call is stored in a global variable and is compared each time. If the current value is less than previous output, then the binary tree is not a binary search tree<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+static int prevValue;
+
+int isBST(NODEPTR nd)
+{ 
+ if(nd!=NULL)
+  {
+     if(!isBST(nd-&gt;left))
+       return 0;
+     if(nd-&gt;val&lt;prevValue)
+       return 0;
+     prevValue = nd-&gt;val;
+     return isBST(nd-&gt;right);
+  }
+  else
+    return 1;
+}
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+}
+ 
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+NODEPTR create_tree1()
+{
+        NODEPTR n1,n2,n3,n4,n5,n6,n7,root;
+        n1 = create_node(10);
+        n2 = create_node(20);
+        n3 = create_node(30);
+        n4 = create_node(40);
+        n5 = create_node(50);
+        n6 = create_node(60);
+        n7 = create_node(70);
+        root = n3;
+        n3-&gt;left = n1;
+        n1-&gt;right = n2;
+        n3-&gt;right = n6;
+        n6-&gt;left = n4;
+        n4-&gt;right = n5;
+        n6-&gt;right = n7;
+        return root;
+}
+NODEPTR create_tree2()
+{
+        NODEPTR n1,n2,n3,n4,n5,n6,n7,root;
+        n1 = create_node(10);
+        n2 = create_node(20);
+        n3 = create_node(30);
+        n4 = create_node(40);
+        n5 = create_node(50);
+        n6 = create_node(60);
+        n7 = create_node(70);
+        root = n3;
+        n3-&gt;left = n1;
+        n1-&gt;left = n2;
+        n3-&gt;right = n6;
+        n6-&gt;left = n4;
+        n4-&gt;right = n5;
+        n6-&gt;right = n7;
+        return root;
+}
+
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+} 
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       root = create_tree1();
+       printf("\nInorder traversal\n");
+       in_order(root);
+       if(isBST(root))
+          printf("The tree is a binary search tree");
+       else
+          printf("The tree is not a binary search tree");
+       root =create_tree2();
+      in_order(root);
+       if(isBST(root))
+          printf("this tree is a binary search tree");
+       else
+          printf("this tree is not a binary search tree");            
+       return 0;
+}</pre></div></div><div class='question'><p>24. Determine whether an input array is a post-order traversal sequence of a binary tree or not. Assume all numbers in an input array are unique.</p><button class='accordion'>Answer</button><div class='panel'>Travese the tree in post order. Instead of printing values, compare it with arr[index] and increment index. <br><br>If array element does not match with traversal output, then return false.<pre class='courier'>int is_array_post_order(NODEPTR nd,int *arr)
+{
+   static int index=0; 
+   if(nd!=NULL)
+    {
+        int leftst,rightst;	
+        leftst =  is_array_post_order(nd-&gt;left,arr);       
+        rightst =  is_array_post_order(nd-&gt;right,arr); 
+        if(arr[index++]!=nd-&gt;val)
+            return 0; 
+        if( leftst==0 || rightst==0)
+       { 
+		return 0;
+       }
+        else  return 1;
+     }
+     return 1;
+}</pre></div></div><div class='question'><p>25. Given a binary search tree and a value k,  find a node in the binary search tree whose value is closest to k.</p><button class='accordion'>Answer</button><div class='panel'>This algorithm uses binary search, but when traversing nodes checks if the difference between node value and search value is smaller than previous difference. <br><br>If yes, it stores the node value and the difference. This procedure is continued until a NULL is encountered<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+}
+
+int absolute(int m)
+{
+   return m&lt;0?-m:m;
+}
+int find_closest_num(NODEPTR nd,int num)
+{
+      int mindiff=absolute(nd-&gt;val - num);
+      int closest_val=nd-&gt;val;
+      while(nd!=NULL)
+      {
+          int d = absolute(num - nd-&gt;val);
+          if( d&lt;mindiff)
+         {
+              mindiff = d;
+              closest_val = nd-&gt;val;
+          } 
+          if(num&gt;nd-&gt;val)
+              nd = nd-&gt;right;
+          else if(num&lt;nd-&gt;val)
+              nd = nd-&gt;left;
+          else	
+              return nd-&gt;val;/*diff is 0*/
+     }
+     return closest_val;
+}
+
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1);
+       
+       printf("\nInorder traversal\n");
+       in_order(root);
+      
+       while(1)
+       {
+          NODEPTR snode;
+          int num1,num2;
+          printf("Enter a number(-1 to stop):");
+          scanf("%d",&num1);
+          if(num1==-1)
+             break;
+          int a =find_closest_num(root,num1);          
+          printf("closest value to %d is %d\n",num1,a);
+       }
+       return 0;
+}</pre></div></div><div class='question'><p>26. Write a function for breadth first traversal of a binary tree.</p><button class='accordion'>Answer</button><div class='panel'>Breadth first traversal of a binary tree is the method of visiting all the nodes of a level first and then moving on to next level. ie. we visit the siblings of a node before we visit the children. <br><br>In BFS, we visit all nodes at level 0 (only one here), then visit all nodes at level 1 and then all nodes at level 2 and so on.<br><br>This algorithm requires you to use a queue along with a BST. <br><br>     1) Enqueue the root of the tree<br>     2) while queue is not empty repeat<br>             a) dequeue a node from queue.<br>             b) visit the node<br>             c) enqueue the left and right child nodes of this node<br>     <br>For this tree<br>         300<br>     10     500<br>   2   18        800<br><br>the output should be   300, 10, 500, 2, 18, 500<br>             <pre class='courier'> #include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct btnode
+{ 
+    int value; 
+    struct btnode *left, *right; 
+};
+typedef struct btnode *NODEPTR ;
+#define MAX 40
+struct queue
+{ 
+   NODEPTR nodes[40];
+   int rear,front;
+}; 
+
+ NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;value &gt; nd-&gt;value)
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;value &lt;  nd-&gt;value)
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+ 
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct btnode));
+     temp-&gt;value = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+void enqueue(struct queue *qptr,NODEPTR newnode)
+{
+    if(qptr-&gt;rear&gt;=MAX)
+      {
+        printf("Queue overflow");
+        return;
+      }
+    qptr-&gt;rear++;
+    qptr-&gt;nodes[qptr-&gt;rear]=newnode;
+}
+int is_empty(struct queue qptr)
+{
+    if (qptr.front&gt;qptr.rear)
+      return 1;
+    return 0;
+}
+  
+NODEPTR dequeue(struct queue *qptr)
+{
+    if(is_empty(*qptr))
+    {
+        printf("Queue empty");
+        return NULL;
+    }    
+    NODEPTR temp= qptr-&gt;nodes[qptr-&gt;front];
+    qptr-&gt;front++;
+    return temp;
+}  
+
+/* displaying elements using BFS traversal */
+
+void bfs_traverse(NODEPTR root)
+{
+    struct queue q1;
+    NODEPTR nd;
+    q1.front=0;q1.rear =-1;
+    enqueue(&q1,root);
+    while(!is_empty(q1))
+    {
+        nd = dequeue(&q1) ;
+        if(nd==NULL)
+          break;
+        printf("%d  ",nd-&gt;value);    	
+        if (nd-&gt;left != NULL)
+            enqueue(&q1,nd-&gt;left);
+        if (nd-&gt;right != NULL )
+            enqueue(&q1,nd-&gt;right);         
+    }     
+}
+int main() 
+{ 
+    NODEPTR root = NULL,newnode ; 
+    int num = 1; 
+    printf("Enter the elements of the tree(enter -1 to exit)\n"); 
+
+    while (1) 
+    {     
+        scanf("%d",  &num); 
+        if (num  ==  -1) 
+            break; 
+        newnode = create_node(num);
+        root = insert_node(root,newnode);
+    }
+
+    printf("elements in bfs are\n"); 
+    bfs_traverse(root);
+    
+}</pre></div></div><div class='question'><p>27. Write a function for depth first traversal of a binary tree</p><button class='accordion'>Answer</button><div class='panel'>DFS traversal of a binary tree is nothing is the traversal method where you go deep into the tree before visiting siblings.<br><br>The three methods of Depth first traversals are inorder, preorder and postorder<pre class='courier'></pre></div></div><div class='question'><p>28. Write a program to print kth smallest element of a binary search tree</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int kth_smallest(NODEPTR nd,int k )
+{
+   static int m=0;  
+   if(nd!=NULL)
+    {
+        int a =  kth_smallest(nd-&gt;left,k );
+        m++;
+        if(m==k)
+           return nd-&gt;val;
+        int b= kth_smallest(nd-&gt;right,k);
+        return a;
+     }
+}
+ 
+
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1);
+       
+       printf("\nInorder traversal\n");
+       in_order(root);
+      
+       printf("Enter k:");
+       scanf("%d",&n);
+       int smallest=
+       kth_smallest(root,n);
+       printf("%dth smallest element is %d\n",n,smallest);
+       return 0;
+}
+/*compile this with binary tree library*/</pre></div></div><div class='question'><p>29. Write a program to merge two binary search trees</p><button class='accordion'>Answer</button><div class='panel'>To merge two binary search trees, you can use the following method.<br><br>Convert 2nd tree to a doubly linked list<br>    Remove one node from this list at a time<br>    Set the child links of this node to NULL<br>    Insert this node into 1st tree<br>    Repeat this until all nodes of list are removed and added to tree.<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+    return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+     nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+     nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+
+void convert_to_dll(NODEPTR nd,NODEPTR*headptr)
+{
+   static NODEPTR prevnode;
+   if(nd!=NULL)
+    {    
+    convert_to_dll(nd-&gt;left,headptr);
+     if(prevnode!=NULL){
+        prevnode-&gt;right = nd;
+        nd-&gt;left = prevnode;
+     }
+     else{
+        *headptr = nd;
+     }
+     prevnode = nd; 
+     convert_to_dll(nd-&gt;right,headptr);
+     }
+}
+ 
+NODEPTR merge_bsts(NODEPTR root,NODEPTR root2)
+{
+     NODEPTR head = NULL;
+     convert_to_dll(root2,&head);
+     while(head!=NULL)
+     {
+	NODEPTR temp = head;
+	head = head-&gt;right;
+                 temp-&gt;left = temp-&gt;right = NULL;/*detach from list*/
+	root = insert_node(root,temp);/*insert into first tree*/
+      }
+      return root;
+}
+
+void inorder(NODEPTR nd)
+{
+   if(nd!=NULL)
+   {	
+	inorder(nd-&gt;left);
+	printf("%d ",nd-&gt;val);
+                inorder(nd-&gt;right);
+    }
+}
+
+int main()
+{
+    NODEPTR root=NULL,delnode,head; 
+    NODEPTR root2 = NULL;
+    int n;
+    do
+    {
+        NODEPTR newnode;
+        printf("Enter value of node(-1 to exit):");
+        scanf("%d",&n);
+        if(n!=-1)
+         {  
+         newnode = create_node(n);
+         root = insert_node(root,newnode);
+          }
+    } while (n!=-1);
+    printf("Second bst:");
+    do
+    {
+        NODEPTR newnode;
+        printf("Enter value of node(-1 to exit):");
+        scanf("%d",&n);
+        if(n!=-1)
+         {  
+         newnode = create_node(n);
+         root2 = insert_node(root2,newnode);
+          }
+    } while (n!=-1);
+    head = NULL; 
+    root  = merge_bsts(root,root2); 
+    printf("Merged bst is ");
+    inorder(root);
+    return 0;
+}</pre></div></div><div class='question'><p>30. Find the sum of all elements in level k of a binary search tree</p><button class='accordion'>Answer</button><div class='panel'>One method would be to write level order traversal (BFS) and then add elements of kth level. But remember that level order traversal needs a queue also.<br><br>Another method is we write a recursive function where we traverse the tree inorder until we reach level k. For all nodes with level k we return a value of that node. For higher levels we return the level sum of left subtree+ level sum of right subtree .<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+int sum_at_levelk(NODEPTR nd,int level,int k)
+{   
+   if(nd==NULL)
+      return 0;
+   if(level&lt;k) 
+      {
+       int a = sum_at_levelk(nd-&gt;left,level+1,k);
+       int b = sum_at_levelk(nd-&gt;right,level+1,k);
+      return a+b;
+    } 
+   if(level==k)
+   { 
+      return nd-&gt;val;
+   }
+}
+
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+       nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+       nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+     in_order(nd-&gt;left);
+     printf("%d---",nd-&gt;val);
+     in_order(nd-&gt;right);
+     }
+}
+   
+int main()
+{
+    NODEPTR root=NULL,delnode; 
+    int n,k;
+    do
+    {
+        NODEPTR newnode;
+        printf("Enter value of node(-1 to exit):");
+        scanf("%d",&n);
+        if(n!=-1)
+         {  
+         newnode = create_node(n);
+         root = insert_node(root,newnode);
+          }
+    } while (n!=-1);
+    
+    printf("\nInorder traversal\n");
+    in_order(root);
+    while(1)
+    {
+       printf("Enter level (-1 to exit):");
+        scanf("%d",&k);
+       if(k==-1)
+          break;
+        printf("Sum of elements at level %d is %d \n",k,sum_at_levelk(root,0,k));
+    } 
+    return 0;
+}</pre></div></div><div class='question'><p>31. Write a function to find the lowest common ancestor of two given nodes in a binary search tree</p><button class='accordion'>Answer</button><div class='panel'>If you search for both the numbers and as long as both the numbers are on the same path from root, they have common ancestors. <br><br>The node where they branch out in search path is the lowest common ancestor.<br><br>          200<br>   100        500<br> 10  170         800<br><br>LCA of 10 and 170 is 100<br>LCA of 10 and 800 is 200<br>LCA of 10 and 200 is 200<br>LCA of 500 and 100 is 200<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR lowest_common_ancestor(NODEPTR root, int num1,int num2)
+{
+   NODEPTR temp = root;
+   while(temp!=NULL)
+   {
+        if(num1&gt;temp-&gt;val && num2&gt;temp-&gt;val ) 
+              temp = temp-&gt;right; 
+        else if(num1&lt;temp-&gt;val && num2&lt;temp-&gt;val)
+              temp= temp-&gt;left;
+        else
+              break; 
+    }
+    return temp;  
+} 
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+       return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+        nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+        nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+        in_order(nd-&gt;left);
+        printf("%d---",nd-&gt;val);
+        in_order(nd-&gt;right);
+     }
+} 
+
+int main()
+{
+       NODEPTR root=NULL,delnode; 
+       int n;
+       do
+       {
+           NODEPTR newnode;
+           printf("Enter value of node(-1 to exit):");
+           scanf("%d",&n);
+           if(n!=-1)
+            {  
+               newnode = create_node(n);
+               root = insert_node(root,newnode);
+             }
+       } while (n!=-1);
+       
+       printf("\nInorder traversal\n");
+       in_order(root);
+      
+       while(1)
+       {
+          NODEPTR snode;
+          int num1,num2;
+          printf("Enter two values num1 and num2:");
+          scanf("%d %d",&num1,&num2);
+          snode = lowest_common_ancestor(root,num1,num2);
+          if(snode==NULL)
+             printf("Value not found");
+          else 
+             printf("ancestor is %d\n",snode-&gt;val);
+       }
+       return 0;
+}</pre></div></div><div class='question'><p>32. Write a function to convert a binary tree into its mirror that is for each node, its left subtree and right subtree must be swapped.</p><button class='accordion'>Answer</button><div class='panel'>To get mirror of a binary tree, we have to swap left and right child links of all the nodes recursively.<br><br>If binary tree is<br><br>    32<br> 10   900<br>2<br><br>Then its mirror is<br>     32<br>900  10<br>           2<br><br>In order traversal of mirror of a binary search tree gives key values in descending order. <pre class='courier'>void mirror_tree(NODEPTR root)
+{
+   if(root!=NULL)
+   {
+         NODEPTR temp = root-&gt;left;
+         root-&gt;left = root-&gt;right;
+         root-&gt;right = temp;
+         mirror_tree(root-&gt;left);
+         mirror_tree(root-&gt;right);
+    }
+}
+</pre></div></div><div class='question'><p>33. Given two binary trees, write a compare function to check if they are equal or not. Being equal means that they have the same value and same structure.</p><button class='accordion'>Answer</button><div class='panel'>Here we traverse recursively both the trees parallely. We compare the values. If the values are not matching or if one of them is NULL when other node is not, the trees are unequal. <pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node
+{
+   int val;
+   struct node *left;
+   struct node *right;
+};
+typedef struct node *NODEPTR;
+
+NODEPTR create_node(int num)
+{
+     NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+     temp-&gt;val = num;
+     temp-&gt;left = NULL;
+     temp-&gt;right = NULL;
+     return temp;
+} 
+
+NODEPTR insert_node(NODEPTR nd,NODEPTR newnode)
+{
+    if(nd==NULL)
+    return newnode;/* newnode becomes root of tree*/
+    if(newnode-&gt;val &gt; nd-&gt;val)
+     nd-&gt;right = insert_node(nd-&gt;right,newnode);
+    else if(newnode-&gt;val &lt;  nd-&gt;val)
+     nd-&gt;left = insert_node(nd-&gt;left,newnode); 
+    return nd;   
+}
+
+void in_order(NODEPTR nd)
+{
+   if(nd!=NULL)
+    {
+     in_order(nd-&gt;left);
+     printf("%d---",nd-&gt;val);
+     in_order(nd-&gt;right);
+     }
+}
+int equal_trees(NODEPTR nd1,NODEPTR nd2)
+{
+    if(nd1==nd2)
+    return 1;/*both are null*/
+    if(nd1==NULL || nd2==NULL )     
+      return 0;/*either but not both*/
+    if(nd1-&gt;val!=nd2-&gt;val)
+      return 0;
+      else
+    {
+      int l= equal_trees(nd1-&gt;left,nd2-&gt;left);
+      int r = equal_trees(nd1-&gt;right,nd2-&gt;right);
+      return l&r;
+    }
+}    
+      
+NODEPTR create_tree()
+{
+    NODEPTR root = NULL;
+    int n;
+    do
+    {
+        NODEPTR newnode;
+        printf("Enter value of node(-1 to exit):");
+        scanf("%d",&n);
+        if(n!=-1)
+         {  
+      newnode = create_node(n);
+         root = insert_node(root,newnode);
+          }
+    } while (n!=-1);
+     return root;
+}
+ 
+
+int main()
+{
+    NODEPTR root=NULL,delnode; 
+    int n;
+    NODEPTR root1,root2;
+    printf("First tree:");
+    root1 = create_tree();
+    in_order(root1);
+    printf("Second tree:");
+    root2 = create_tree();
+    in_order(root2);
+    if(equal_trees(root1,root2))
+       printf("The two tree are equal");
+    else
+       printf("The two trees are not equal"); 
+    
+}</pre></div></div><div class='question'><p>34. Write a function to display the numbers in order of a binary search tree in the range x to y. 
+
+Hint on the analysis:  the visited nodes are found to the right of one path in the tree and to the left of another.</p><button class='accordion'>Answer</button><div class='panel'>This is similar to in-order traversal. But if a node has a value less than x, then you need not visit its left sub-tree. Similarly, for nodes with value greater than y, you do not call recursive function on right subtree. <br><br><pre class='courier'>void in_order_middle(NODEPTR nd,int x, int y)
+{
+    if(nd  )
+    { 
+        if(nd-&gt;val &gt;=x)
+             in_order_middle(nd-&gt;left,x,y);
+        if(nd-&gt;val&gt;=x && nd-&gt;val&lt;=y)
+	    printf("%d  ",nd-&gt;val);
+        if(nd-&gt;val &lt;=y)
+           in_order_middle(nd-&gt;right,x,y); 
+    }
+} </pre></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

@@ -1,0 +1,616 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0;box-shadow:2px 2px #ccc; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> Queue Questions </h1><div class='question'><p>1. What is a circular queue? Write a C program for static implementation of Circular Queue.</p><button class='accordion'>Answer</button><div class='panel'>A circular queue is a queue which wraps around itself. It has no begining and no end. <br><br>Circular queue has the advantage that if there is space at the front of the array instead of rear end, elements can be inserted there too. <br><br>Ordinary queue gives queue overflow error when rear&gt;=MAX. Even if we remove some elements from front of queue and make space, the error still persists because rear is still greater than MAX. <br><br>In order to add values to queue if there is place in it, we should be able to set rear to 0th element if rear is MAX and 0th element is empty. <br><br>That is the idea behind circular queue. In a circular queue enqueue and dequeue use %(modulo) operator to find the index of array to add or remove elements. <br> <br>Enqueue:<br>      arr[rear%MAX]=newvalue; rear++;<br>Dequeue<br>      num= arr[front%MAX]   ; <br>      front++;<br>      return num;<br><br>To find if the queue is empty we mainitain a variable - count. If count is 0, queue is empty. If count is MAX, queue is full. <br><br><pre class='courier'>#include&lt;stdio.h&gt;
+#define MAX 5
+
+struct queue 
+{
+    int arr[MAX];
+    int front,rear;
+    int count;
+};
+
+void init(struct queue *qp)
+{
+    qp-&gt;front = qp-&gt;rear = -1;
+    qp-&gt;count = 0;
+}
+
+int is_empty(struct queue *qp)
+{
+    return qp-&gt;count==0;
+}
+
+int is_full(struct queue *qp)
+{
+    return qp-&gt;count==MAX;
+}
+ 
+void enqueue(struct queue *qp,int num)
+{
+     if(is_full(qp))
+    {
+     printf("The queue is full. Can not add elements...");
+    }
+    else
+    {
+     (qp-&gt;rear)++;
+     int index  = qp-&gt;rear % MAX;      
+     qp-&gt;arr[index] = num;
+     
+     (qp-&gt;count)++;
+     if(qp-&gt;front==-1)
+         qp-&gt;front  = 0;
+    }
+      
+}
+ 
+
+int dequeue(struct queue *qp)
+{
+    int temp = -1;
+    if(is_empty(qp))
+    {
+      printf("Queue is empty");
+    }
+    else
+    {
+      int index =  qp-&gt;front %MAX;
+      temp = qp-&gt;arr[index];
+      (qp-&gt;front)++;
+      (qp-&gt;count)--;
+    }
+    return temp;
+}
+
+void print_queue(struct queue *qp)
+{
+    int i;
+    printf("Queue is ");
+    for(i = qp-&gt;front;i&lt;=qp-&gt;rear;i++)
+    printf("%d---",qp-&gt;arr[i%MAX]);
+    printf("\n");
+}
+
+    
+int main()
+{
+   struct queue q1;
+   init(&q1);
+    
+   while(1)
+   {
+    printf("Enter 1 - enqueue 2 - dequeue 3 - exit");
+    int opt;
+    scanf("%d",&opt);
+    if(opt==1)
+    {
+      int n;
+      printf("Enter a number:");
+      scanf("%d",&n);
+      enqueue(&q1,n);
+      print_queue(&q1);      
+    }
+    else if(opt==2)
+    {      
+      int n;         
+      n = dequeue(&q1);
+      if (n!=-1){
+         printf("Value dequed is %d\n",n);
+      print_queue(&q1);
+     }
+     }  
+    else
+     break; 
+   }
+   return 0;
+}
+
+     
+
+		</pre></div></div><div class='question'><p>2. Explain how queue is implemented using a linked list. Write functions to insert and delete elements to such a queue.</p><button class='accordion'>Answer</button><div class='panel'>A queue can be implemented using doubly linked list. Such a queue can have two pointers -  front and rear which are actually head and tail pointers of linked list. <br><br>When an element is enqueued, it is inserted after rear and rear pointer is updated. So enqueue will add an element after tail of linked list and tail is changed to this new node. <br><br>When an element is dequeued, it is deleted from front and front is updated. Dequeue operation will remove a node from head of the list, and head is changed to head-&gt;next.<br><br>The queue is empty when rear is NULL.<br><br>All operations have a time complexity of O(1), just like array implementation. But unlike array implementation, there is no restriction on size of queue. <pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;  
+   struct node *prev;  
+ };  
+ typedef struct node * NODEPTR;  
+  
+ struct queue 
+ {
+    NODEPTR front;
+    NODEPTR rear;
+  };
+
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+   temp-&gt;prev = temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ int dequeue(struct queue *qp)  
+ {  
+    if(qp-&gt;front==NULL)
+    {
+      printf("Queue empty...\n");
+      return -1;
+    }
+    NODEPTR nd = qp-&gt;front;
+    if(qp-&gt;rear==qp-&gt;front)//deleting the only node
+       qp-&gt;rear = NULL;
+    qp-&gt;front = qp-&gt;front-&gt;next;
+    if(qp-&gt;front!=NULL)
+          qp-&gt;front-&gt;prev= NULL;
+    int num = nd-&gt;n;
+    free(nd);
+    return num;    
+ } 
+ void enqueue(struct queue *qp, int num)  
+ {  
+    NODEPTR newnode = create_node(num);
+    if(qp-&gt;rear!=NULL)
+    	qp-&gt;rear-&gt;next = newnode;  
+    newnode-&gt;prev = qp-&gt;rear;  
+    qp-&gt;rear = newnode; 
+    if(qp-&gt;front==NULL)
+      qp-&gt;front = qp-&gt;rear;     
+ }  
+ void display_queue(struct queue *qp)  
+ {  
+   NODEPTR temp = qp-&gt;front; 
+   while(temp!=NULL)
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+ }  
+ int main()  
+ {  
+     struct queue q1;
+     q1.front = q1.rear = NULL;
+     while(1)
+     {
+       int option, number;
+       printf("Enter 1-enqueue 2 - dequeue 3- display 4 - exit:");
+       scanf("%d",&option);
+       if(option==1)
+       {
+             printf("Enter number to enqueue:");
+             scanf("%d",&number);
+             enqueue(&q1,number);
+       }
+       else if(option==2)
+       { 
+             number = dequeue(&q1);
+	     if(number !=-1)
+                printf("Number dequeued is %d\n",number);
+       }
+       else if(option==3)
+            display_queue(&q1);
+       else if(option==4)
+            break;
+      }    
+ }  
+</pre></div></div><div class='question'><p>3. Implement a queue with two stacks. Please implement two functions: appendTail to append an element into tail of a queue, and deleteHead to delete an element from head of a queue.</p><button class='accordion'>Answer</button><div class='panel'>The idea here is that we need to have a FIFO behaviour using stacks. Stack is a LIFO data structure. But using two stacks, we can reverse already reversed input and we get back original data set.<br><br>To implement a queue using stack, we can make either push operation expensive or pop operation expensive. <br><br>we need to either make enqueue as simple push operation and dequeue as popping all elements and pushing them back to second stack <br><br>or we need to make enqueue with push,pop all elements and push operations and dequeue as just pop.<br><br>1) Enqueue n <br>push n into  first stack<br><br>2) Dequeue  <br>    if second stack is emptu<br>    while first stack is not empty<br>        pop the value from first stack<br>        push value to second stack <br>   Now pop a value from second stack<pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+#define ERROR -1000
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ NODEPTR push(NODEPTR top,int val)
+ { 
+     NODEPTR newnode = create_node(val);
+     newnode-&gt;next = top;
+     top = newnode;
+     return top;
+}
+int isempty(NODEPTR top)
+{
+   return top==NULL;
+}
+int pop(NODEPTR *topPtr)
+{
+   if(isempty(*topPtr))
+       return ERROR;
+   int num = (*topPtr)-&gt;n;
+   NODEPTR temp = *topPtr;
+   *topPtr = (*topPtr)-&gt;next;
+   free(temp);
+   return num;
+}
+/*enqueue using push*/
+void enqueue(NODEPTR *top1,int val)
+{     
+    *top1 = push(*top1,val);
+}
+/*dequeue is expensive*/
+/*pop all to second stack from first
+now return top value from second*/
+int dequeue(NODEPTR *topptr1,NODEPTR *topptr2)
+{
+    if(isempty(*topptr2))
+    while(!isempty(*topptr1))
+        {
+        int a = pop(topptr1);
+        *topptr2 = push(*topptr2,a);
+        }
+    return pop(topptr2);
+} 
+ int main()  
+ {  
+     NODEPTR top1 = NULL,top2=NULL;
+     NODEPTR nd;
+
+     while(1)
+     {  
+       int option,value; 
+       printf("Enter 1- nq 2- dq 3 - exit"); 
+       scanf("%d",&option);
+       if(option==3)
+          break;
+       switch(option)
+       {
+           case 1:  printf("new value to enqueue=");  
+            scanf("%d",&value);   
+            enqueue(&top1,value);
+            break;
+           case 2:  value = dequeue(&top1,&top2);
+            if(value==ERROR)
+              printf("Queue empty\n");
+            else
+              printf("Value removed is %d\n",value);
+            break; 
+        }  
+    }     
+ }  
+</pre></div></div><div class='question'><p>4. What is a deque?</p><button class='accordion'>Answer</button><div class='panel'>A deque is a double-ended queue. This is a data structure wherein elements can be inserted or removed from either end, but not from the middle. <br><br>In a normal queue - elements are added only from rear end and removed only from front end. <br><br>We can even have restricted deques - <br><br>         input restricted deque - where values can be added only to rear end of queue but removed from both the ends of queue. <br><br>         output restricted deque - where values can be removed only from front end of queue but added to both the ends of queue. <br><br><pre class='courier'></pre></div></div><div class='question'><p>5. Write a function to count the number of nodes in a circular queue</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node 
+{
+   int num;
+   struct node *next;
+};
+
+typedef struct node *NODEPTR;
+struct queue
+{
+    NODEPTR front,rear;
+};
+
+typedef struct queue QUEUE;
+
+ 
+NODEPTR create_node(int n)
+{
+    NODEPTR newnode = malloc(sizeof(struct node));
+    newnode-&gt;num = n;
+    newnode-&gt;next = NULL;
+    return newnode;
+}
+int is_empty(QUEUE *q1)
+{
+    return  q1-&gt;front ==NULL;
+}
+void enqueue(QUEUE *q1,int n)
+{
+   NODEPTR temp = create_node(n);
+   if(is_empty(q1))
+      {
+        q1-&gt;rear = q1-&gt;front = temp;
+        temp-&gt;next = temp;
+      }
+    else{
+      q1-&gt;rear-&gt;next = temp;
+      q1-&gt;rear = temp;
+      temp-&gt;next = q1-&gt;front;
+   }  
+}
+
+int dequeue(QUEUE *q1)
+{
+   if(is_empty(q1))
+     return -1;
+   
+   NODEPTR temp = q1-&gt;front;
+   int m = temp-&gt;num;
+   q1-&gt;front = q1-&gt;front-&gt;next;
+   free(temp);
+   if(q1-&gt;front==NULL)
+      q1-&gt;rear = NULL;
+   else
+      q1-&gt;rear-&gt;next = q1-&gt;front;
+   return m;
+}
+
+void display(QUEUE q1)
+{
+   NODEPTR node=q1.front;
+   printf("\nThe list is \n");
+   do
+   {
+     printf("%d----",node-&gt;num);
+     node = node-&gt;next;
+   }while(node!=q1.front);
+} 
+
+int count(QUEUE q1)
+{
+    NODEPTR temp = q1.front;
+    int c=0;
+    do
+    {
+        c++;
+        temp = temp-&gt;next;
+    }while(temp!=q1.front);
+    return c;
+}
+int main()
+{
+    QUEUE q1;
+    /*initialize queue*/
+    q1.front = q1.rear = NULL; 
+    while(1)
+    {
+	int ans;
+       printf("Enter 1 - Add a node 2 - remove a node  3 - quit\n");
+       scanf("%d",&ans);
+       if (ans==1)
+       {
+	   int n;
+           printf("Node to enqueued:");
+	   scanf("%d",&n);
+           enqueue(&q1,n);
+           display(q1);
+        }else if (ans==2)
+        {
+            int n;
+            n = dequeue(&q1);
+            if(n==-1)
+               printf("THe queue is empty");
+            else
+               printf("The value dequed is %d\n",n);
+            display(q1);
+         }
+         else
+            break;
+     }
+     printf("Number of nodes in the queue is %d\n",count(q1));
+     return 0;
+}
+    
+</pre></div></div><div class='question'><p>6. Write a program to implement a deque using linked list. </p><button class='accordion'>Answer</button><div class='panel'>A deque or a double ended queue allows values to be added to front of queue as well as rear of queue. <br><br>In this program all functions except dequeue_rear have O(1) time complexity. dequeue_rear has O(n) time complexity. Because after removing a last node of queue, previous node of this should be set as q1-&gt;rear.<br><br>But we can avoid this by using doubly linked list for implementing a dequeue<pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct node 
+{
+   int num;
+   struct node *next;
+};
+
+typedef struct node *NODEPTR;
+
+struct queue
+{
+    NODEPTR front,rear;
+};
+
+typedef struct queue QUEUE;
+
+ 
+NODEPTR create_node(int n)
+{
+    NODEPTR newnode = malloc(sizeof(struct node));
+    newnode-&gt;num = n;
+    newnode-&gt;next = NULL;
+    return newnode;
+}
+int is_empty(QUEUE *q1)
+{
+    return (q1-&gt;front==NULL  && q1-&gt;rear==NULL);
+}
+void enqueue(QUEUE *q1,int n)
+{
+   NODEPTR temp = create_node(n);
+   if(is_empty(q1))
+      {
+	q1-&gt;rear = q1-&gt;front = temp;
+    }
+    else{
+      q1-&gt;rear-&gt;next = temp;
+      q1-&gt;rear = temp;
+   }  
+}
+
+void enqueue_front(QUEUE *q1,int n)
+{
+    NODEPTR temp = create_node(n);
+    if(is_empty(q1))
+        q1-&gt;rear = q1-&gt;front=temp;
+    else
+    {
+        temp-&gt;next = q1-&gt;front;
+        q1-&gt;front = temp;
+     }
+} 
+NODEPTR find_previous(QUEUE q1,NODEPTR nd)
+{
+     NODEPTR temp=q1.front;
+     while(temp!=NULL)
+     {
+        if(temp-&gt;next ==nd)
+           return temp;
+        temp = temp-&gt;next;
+     }
+     return NULL;
+}
+int dequeue(QUEUE *q1)
+{
+   if(is_empty(q1))
+     return -1;
+   
+   NODEPTR temp = q1-&gt;front;
+   int m = temp-&gt;num;
+   q1-&gt;front = q1-&gt;front-&gt;next;
+   free(temp);
+   if(q1-&gt;front==NULL)
+      q1-&gt;rear = NULL;
+   return m;
+}
+int dequeue_rear(QUEUE *q1)
+{
+    if(is_empty(q1))
+       return -1;
+    NODEPTR temp = q1-&gt;rear;
+    int val = temp-&gt;num;
+    NODEPTR prevnode = find_previous(*q1,temp);
+    if(prevnode==NULL)
+       {
+          q1-&gt;rear = q1-&gt;front = NULL;
+       }
+    else
+      {
+        prevnode-&gt;next = NULL;
+        q1-&gt;rear = prevnode;
+      }
+   free(temp);
+   return val;   
+}
+void display(QUEUE q1)
+{
+   NODEPTR node=q1.front;
+   printf("\nThe list is \n");
+   while(node !=NULL)
+   {
+     printf("%d----",node-&gt;num);
+     node = node-&gt;next;
+   }
+} 
+
+int main()
+{
+    QUEUE q1;
+    /*initialize queue*/
+    q1.front = q1.rear = NULL;
+    
+    while(1)
+    {
+       int ans;
+       printf("Enter 1 - Add a node at rear 2 - remove a node from front 3 - Add a node at front 4 - Remove a node from rear  5 - quit\n");
+       scanf("%d",&ans);
+       if (ans==1 || ans==3)
+       {
+	   int n;
+           printf("Node to enqueued:");
+	   scanf("%d",&n);
+           if(ans==1)
+              enqueue(&q1,n);
+           else
+              enqueue_front(&q1,n);
+           display(q1);
+        }else if (ans==2 || ans==4)
+        {
+            int n;
+            if(ans==2)
+                n = dequeue(&q1);
+            else if(ans==4)
+                n = dequeue_rear(&q1);
+            if(n==-1)
+               printf("The queue is empty");
+            else
+              { printf("The value dequed is %d\n",n);                           
+ 
+            display(q1);}
+         }
+         else if(ans==5)
+            break;
+     }
+     return 0;
+}
+    
+</pre></div></div><div class='question'><p>7. What is queue data structure?
+Write a program to implement a queue using an array</p><button class='accordion'>Answer</button><div class='panel'>A queue is a linear data structure where elements are added to rear of queue and elements are removed from front of queue. A queue is similar to a bus stop queue. <br><br>Enqueue - enqueue is the adding a new value to the rear end of queue.<br>Dequeue - is removing a value from begining of a queue.<br>Both these operations have constant complexity. (O(1))<br><br>A queue can be implemented using an array or a linked list.  <br><br>To implement a queue using an array, we need two integers to store front and rear ends of a queue.<br><br>enqueue  --   arr[rear++]=val<br>dequeue        return arr[front++]<br>isempty -       return rear==front<br>isfull  -           return rear&gt;=MAX<br><pre class='courier'>#include&lt;stdio.h&gt;
+#define MAX 5
+ 
+void enqueue(int  arr[],   int *rearptr,int num)
+{
+    if(*rearptr == MAX)
+    {
+        printf("Queue is full");
+     }
+    else
+    {
+        arr[*rearptr]=num;
+       (*rearptr)++;
+    }
+      
+}
+int is_empty(int front,int rear)
+{
+   return front==rear;
+}
+
+int dequeue(int  arr[],int *frontptr,int *rearptr)
+{
+    int temp = -1;
+    if(*frontptr==*rearptr)
+    {
+       printf("Queue is empty");
+    }
+    else
+    {
+        temp = arr[*frontptr];
+        (*frontptr)++;
+     }
+     return temp;
+}
+
+void print_queue(int *arr,int front, int rear)
+{
+    int i;
+    for(i = front;i&lt;rear;i++)
+       printf("%d---",arr[i]);
+    printf("\n");
+} 
+ 
+int main()
+{
+   int arr[MAX];
+   int i ;
+   int front =0,rear = 0;
+   while(1)
+   {
+       printf("Enter 1 - enqueue 2 - dequeue 3 - exit");
+       int opt;
+       scanf("%d",&opt);
+       if(opt==1)
+      {
+         int n;
+         printf("Enter a number:");
+         scanf("%d",&n);
+         enqueue(arr,&rear,n);
+         print_queue(arr,front,rear);
+      }
+    else if(opt==2)
+    {      
+        int n;         
+        n = dequeue(arr,&front,&rear);
+        if (n!=-1)
+           printf("Value dequed is %d\n",n);
+        print_queue(arr,front,rear);
+     }  
+    else
+     break;
+   }
+   return 0;
+}</pre></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

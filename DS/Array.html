@@ -1,0 +1,635 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0;box-shadow:2px 2px #ccc; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> Array Questions </h1><div class='question'><p>1. Implement a function which gets the intersection of two sorted arrays. Assuming numbers in each array are unique.
+</p><button class='accordion'>Answer</button><div class='panel'>The function must return the elements common to both arrays. <br>    1) traverse the arrays parallely<br>    2) move the array which has larger value<br>    3) if values match copy to third array<pre class='courier'>#include&lt;stdio.h&gt;
+int  intersection(int *arr1, int n1, int * arr2, int n2, int *result)
+{
+    int i,j,k=0;
+    while(i&lt;n1 && j&lt;n2)
+    {
+        if(arr1[i]&lt;arr2[j])
+            i++;
+        else if(arr1[i]&gt;arr2[j])
+            j++;
+        else
+           {
+            result[k++]=arr1[i++];
+            j++;
+           }
+     }
+     return k;
+}
+
+void read_array(int *arr,int sz)
+{
+     int i;
+     printf("Enter sorted array elements:");
+     for(i  =0;i&lt;sz;i++)
+     { 
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]= %d    ",i,arr[i]);        
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr1[50],arr2[50];
+    int resultarr[50]; 
+    int n1, n2, nres; 
+    printf("Enter the size of array 1 :"); 
+    scanf("%d",&n1);
+    read_array(arr1,n1);
+    printf("Enter the size of array 2 :"); 
+    scanf("%d",&n2);
+    read_array(arr2,n2);
+    nres = intersection(arr1,n1,arr2,n2,resultarr);    
+    printf("The intersection array is ");
+    print_array(resultarr,nres);    
+    return 0;
+}</pre></div></div><div class='question'><p>2. Write a function to rotate array elements by k</p><button class='accordion'>Answer</button><div class='panel'>To rotate an array, you should move the elements to the right and wrap back.<br>    <br>   1) move all elements to right by one place<br>   2) copy the last element to 0th element<br>   3) Repeat steps 1 and 2 k times<br><br>Other method which is faster but needs extra space is<br>    copy all the elements to temp array <br>        copy 0 to n-k-1 elements to locations  k to n into temp<br>        copy n-k to n elements to location 0 to k into temp<br>    copy them back to original array<br>This has a time complexity of O(n)<br>              <pre class='courier'>void rotate_array(int *arr,int n,int k)
+{
+   int i,j;
+   for(j=0;j&lt;k;j++)
+   {
+        int temp = arr[n-1];
+        for(i=n-1;i&gt;=0;i--)
+              arr[i+1]=arr[i];
+        arr[0]=temp;
+   }
+}
+
+second method (using temporary array)
+void rotate_array(int *arr,int n,int k)
+{
+   int i,j;
+   int temp[50];
+   /*copy shifted elements to temp*/
+   for(i=0;i&lt;n-k;i++)
+     temp[i+k]=arr[i];
+   for(i=n-k;i&lt;n;i++)
+     temp[i+k-n]=arr[i];
+  /*copy back to arr*/
+   for(i=0;i&lt;n;i++)
+     arr[i]=temp[i];  
+}</pre></div></div><div class='question'><p>3. Write a program to find contigious subarray  with largest sum</p><button class='accordion'>Answer</button><div class='panel'>Kadane's algorithm for finding largest subarray is very efficient and has a time complexity of O(n)<br><br>Two structures (which store maximum sum and indices of the range i and j) are used in this method. Maxcur and max.<br><br>Initially value of Maxcur and Max are taken as 0,0 and value of 0th element. <br><br>          For each element i from 1 to n-1, the previous value of Maxcur is inspected. <br>                This will be maximum sum of elements ending at i-1. <br>         If this sum is negative, it is discarded and range is taken as i to i and sum is taken as a[i]. <br>         If it is not negative then a[i] is added to sum and range is taken as previous lower range to i. <br>         the  sum of Maxcur is compared with sum of Max. If Maxcur is greater, then Max is set to Maxcur.<br><br><br>http://en.m.wikipedia.org/wiki/Maximum_subarray_problem<pre class='courier'>/*Kadane's algorithm for finding maximum sum of contiguous subarray*/
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+struct maxst
+{
+    int sum;
+    int i,j;
+};
+struct maxst maximum_subarray(int *arr,int n)
+{
+       /*maxcur is the maximum of subarrays ending at i*/
+       /*max is the maximum subarray*/
+       struct maxst max,maxcur;
+       int i;
+       struct maxst *maxptr = calloc(sizeof(struct maxst),n);
+       max.i=max.j=0;
+       max.sum=arr[i];
+       maxcur = max;
+       for(i=1;i&lt;n;i++)
+       {
+          /*if prev sum is 0. Dont include it*/
+	  if(maxcur.sum &lt; 0)
+          {
+              maxcur.sum = arr[i];
+              maxcur.i=maxcur.j=i;
+          }
+          else
+          {
+              maxcur.sum +=arr[i];
+              maxcur.j=i;
+          }
+          if(maxcur.sum&gt;max.sum)
+              max = maxcur;
+          maxptr[i]=max;
+        }
+        return max;//maxptr[i];
+ }
+void print_array(int *arr,int n)
+{
+   int i;
+   printf("Array elements are :");
+   for(i=0;i&lt;n;i++)
+     printf(" %d  ",arr[i]);
+   printf("\n");
+}
+ int main()
+{
+    int arr[]={-1,2,3,4,5,6,-7,8};
+    print_array(arr,8);
+    struct maxst s1 = maximum_subarray(arr,8);
+    printf("The maximum subarray is %d to %d and sum is %d\n",s1.i,s1.j,s1.sum);
+    return 0;
+}
+       </pre></div></div><div class='question'><p>4. Write a function to print all pairs of elements whose sum is x.</p><button class='accordion'>Answer</button><div class='panel'>The easiest method would be to take ith element and compare its sum with all subsequent elements and print if sum is equal to x. But this is ineffecient.<br><br>More effecient method would be - sort the array. Then take an element - n and binary search for x-n in the array and print if there is a match.<br><br>And a third method which requires extra space is hashing. Hashmap every element of the array to its value (key = array value  value = array value). Now each element arr[i] find x-arr[i]. If hash(x-arr[i]) exists then print the pair. <pre class='courier'> 
+/*the array needs to be sorted before calling this*/
+void pairs_with_sumx(int *arr,int n,int x)
+{
+   int i,j,k;
+   insertion_sort(arr,n);//not shown here
+   print_array(arr,n);
+   for(i = 0;i&lt;n;i++)
+   {
+       if(i&gt;0 && arr[i]==arr[i-1])//duplicate??
+           continue;
+        int num1= arr[i]; 
+        int index = binary_search(arr,i+1,n,x-num1);
+        if(index!=-1  && index&gt;i)
+            printf("%d and %d\n",num1,arr[index]); 
+   }           
+}
+ 
+#define MAX 10000
+void pairs_with_sumx_hash(int *arr,int n,int x)
+{   
+    int hash[MAX]={0};
+    int i;
+    for(i=0;i&lt;n;i++)
+    {
+       hash[arr[i]]=arr[i];
+    }
+    for(i=0;i&lt;n;i++)
+    {
+       int j = x - arr[i] ;
+       if(j&gt;0 && hash[j]!=0 && hash[j]!=arr[i] )
+       {
+            printf("The pair is %d and %d\n",arr[i],hash[j]);
+            hash[j]=0;//so that it is not repeated
+            hash[arr[i]]=0;
+       }
+    }
+}
+ </pre></div></div><div class='question'><p>5. Write a function to split an array into two parts - array of positive number and array of negative numbers</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+ 
+int split_array(int *arr,int n,int *posarr,int * negarr)
+{
+     int i,j,k;
+     j = k = 0;
+     for(i=0;i&lt;n;i++)
+        if(arr[i]&gt;0)
+            posarr[j++] = arr[i];
+        else
+           negarr[k++] = arr[i];
+     return j;
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr[50];
+    int posarr[50],negarr[50]; 
+    int sz; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz);
+    int sizep,sizen;
+    sizep = split_array(arr,sz,posarr,negarr);
+    printf("The array of positive numbers is ");
+    print_array(posarr,sizep);
+    printf("The array of negative numbers is ");
+    print_array(negarr,sz-sizep);
+    //print_array(arr,sz);
+    return 0;
+}</pre></div></div><div class='question'><p>6. An array has elements in increasing order and after reaching the largest element, they are stored in decreasing order. Find the largest element of this array. </p><button class='accordion'>Answer</button><div class='panel'>We need to find the first element which is smaller than its previous element. The element before this will be the largest element<br><pre class='courier'>#include&lt;stdio.h&gt;
+ 
+int find_largest_index(int *arr,int n )
+{ 
+   int i;
+   for(i=1;i&lt;n;i++)
+      if(arr[i]&lt;arr[i-1])
+      /*here elements start decreasing*/
+         return i-1;
+   if(i==n)
+   /*no such value found*/
+       return -1; 
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     printf("Enter array elements:");
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr[50];
+    int posarr[50],negarr[50]; 
+    int sz,n; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz);
+    if( (n=find_largest_index(arr,sz))&gt;-1)
+        printf("The largest element of the array is %d\n",arr[n]);
+    else
+        printf("The largest element is %d\n",arr[sz-1]);
+    return 0;
+}</pre></div></div><div class='question'><p>7. Write a function to merge two sorted arrays.</p><button class='accordion'>Answer</button><div class='panel'>The function compares elements of first and second array. And copies the smaller ones to merged array and increments the counter. <br><br>At some point of time, there will be only one array elements left. They are directly copied to merged array. <br><br>This merging of sorted arrays is the basis of merge sorting algorithm. <pre class='courier'>#include&lt;stdio.h&gt;
+ 
+void merge_sorted_arrays(int *arr1,int n1,int *arr2,int n2, int *arr3,int *n3)
+{
+    int i,j,k;
+    i = j = k=0;
+    while(i&lt;n1 && j&lt;n2)
+    {
+       /*copy smaller element*/
+       if(arr1[i]&lt;arr2[j])
+          arr3[k++] = arr1[i++];
+       else
+          arr3[k++] = arr2[j++];
+    }
+    /*only one array elements are remaining*/
+    while(i&lt;n1)
+       arr3[k++] = arr1[i++];
+    while(j&lt;n2)
+       arr3[k++] = arr2[j++];
+    *n3 = k;
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr1[50],arr2[50],arr3[100];
+    int sz1,sz2,sz3; 
+    printf("Enter the size of first array:"); 
+    scanf("%d",&sz1);
+    printf("Enter the sorted array elements:");
+    read_array(arr1,sz1);
+    printf("Enter the size of second array:"); 
+    scanf("%d",&sz2);
+    printf("Enter the sorted array elements:");
+    read_array(arr2,sz2);
+    merge_sorted_arrays(arr1,sz1,arr2,sz2,arr3,&sz3);     
+    printf("The merged array is ");
+    print_array(arr3,sz3);
+    return 0;
+}</pre></div></div><div class='question'><p>8. Write a function to delete an element from an array.</p><button class='accordion'>Answer</button><div class='panel'>To delete an array element,   to move all subsequent elements to the left by one place and then reduce the size of the array by 1.<br><br>e.g. To delete 3rd element of the array<br>move a[4] to a[3]<br>move a[5] to a[4] ... and so on.<pre class='courier'>#include&lt;stdio.h&gt;
+void delete_element(int *arr,int *n,int de)
+{
+    int i;
+    /*search*/
+    for(i=0;i&lt;*n && arr[i]!=de;i++)
+       ;
+    if(i==*n)
+    {  printf("This element is not present");
+      return;
+    }
+    /*pack*/
+    for(;i&lt;*n-1;i++)
+      arr[i]=arr[i+1];
+   (*n)--;
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+
+int main()
+{
+    int arr[50];
+    int de;
+    int sz; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz); 
+    printf("Enter element to be deleted:");
+    scanf("%d",&de);
+    delete_element(arr,&sz,de);    
+    print_array(arr,sz);
+    return 0;
+}</pre></div></div><div class='question'><p>9. Write a function to insert an element to an array</p><button class='accordion'>Answer</button><div class='panel'>To insert an element into an array at index i, we need to make room for that element. This is done by moving all elements from index i to the right by one place.<br><br>We are assuming that the array size is sufficient to hold this new item<pre class='courier'>#include&lt;stdio.h&gt;
+void insert_element(int *arr,int *n,int newval, int index)
+{
+    int i;
+    for(i= (*n);i&gt;index;i--)
+       arr[i]=arr[i-1];
+    arr[i] = newval;
+    (*n)++;    
+}  
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+
+int main()
+{
+    int arr[50];
+    int newval,index; 
+    int sz; 
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz); 
+    printf("Enter element to be inserted:");
+    scanf("%d",&newval);
+    printf("Enter the index of new element:");
+    scanf("%d",&index);
+    insert_element(arr,&sz,newval,index);    
+    print_array(arr,sz);
+    return 0;
+}</pre></div></div><div class='question'><p>10. Write a function to find the largest product of two elements of an array.</p><button class='accordion'>Answer</button><div class='panel'>The simple but expensive method would be to take each element and multiply it by every other element and find the largest product.<br><br>A better way is, we can find two largest elements n1 and n2. And their product will certainly be largest product.<br><br>But what if there are two negative numbers whose prodcut is larger than the above product? Remember that product of two negative numbers is positive. <br><br>So let us also find two smallest numbers, and two largest numbers and find their products. Larger of maxproduct and minproduct is our required answer.<br><br>Using this method, array is traversed 4 times and time complexity is O(n) not O(n2)<pre class='courier'>#include&lt;stdio.h&gt;
+int largest_product(int min1,int min2,int max1,int max2)
+{
+    if(min1*min2 &gt;max1*max2)
+        return min1*min2;
+    else
+        return max1*max2;
+}
+ void find_minimums(int *arr,int n,int *min,int *second_min)
+{
+    *min = arr[0];
+    int i;
+    for(i=0;i&lt;n;i++)
+        if(arr[i]&lt;*min)
+            *min = arr[i];
+
+    *second_min = arr[0];
+    for(i=0;i&lt;n;i++)
+        if(arr[i]&gt;*second_min && arr[i]&lt;*min)
+           *second_min= arr[i];
+}
+void find_maximums(int *arr,int n,int *max,int *second_max)
+{
+    *max = arr[0];
+    int i;
+    for(i=0;i&lt;n;i++)
+        if(arr[i]&gt;*max)
+            *max = arr[i];
+
+    *second_max = arr[0];
+    for(i=0;i&lt;n;i++)
+        if(arr[i]&gt;*second_max && arr[i]&lt;*max)
+           *second_max = arr[i];
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr[50];
+    int sz,k; 
+    int max1,max2;
+    int min1,min2;
+    printf("Enter the size of array:"); 
+    scanf("%d",&sz);
+    read_array(arr,sz);
+    find_maximums(arr, sz, &max1,&max2);
+    find_minimums(arr, sz,&min1,&min2);
+    int prod1 = largest_product(min1,min2,max1,max2);
+    printf("Largest product of the array is %d\n",prod1);    
+    return 0;
+}</pre></div></div><div class='question'><p>11. Given an array, arrange the elements in such a way that every alternate element is larger than its neighbors</p><button class='accordion'>Answer</button><div class='panel'>Compare the element with its next element a[i] and a[i+1]<br><br>If the element is even and it is larger than next, swap the elements<br><br>Similarly if the element is odd and it is smaller than next element, swap the elements.<br><br>Repeat this from i =0 to n<br><br>   <br><br><pre class='courier'> #include&lt;stdio.h&gt;
+void swap(int *p1,int *p2)
+{
+   int temp = *p1;
+   *p1 = *p2;
+   *p2 = temp;
+}
+void rearrange(int *arr,int n)
+{
+    int i;
+    for(i=0;i&lt;n-1;i++)
+    {
+        if( (i%2 && arr[i]&lt;arr[i+1])   ||
+              (i%2==0 && arr[i]&gt;arr[i+1]) )
+               swap(&arr[i],&arr[i+1]);
+    }
+}
+    
+void print_arr(int *arr,int n)
+{
+   int i;
+   for(i=0;i&lt;n;i++)
+      printf("%d  ",arr[i]);
+}
+
+int main()
+{
+   int arr[10];
+   int i,j;
+   for(i=0;i&lt;10;i++)
+     scanf("%d",&arr[i]);
+   rearrange(arr,10);
+   print_arr(arr,10);
+}</pre></div></div><div class='question'><p>12. Write a function to move all zeroes to the end of the array</p><button class='accordion'>Answer</button><div class='panel'>Each 0 is pushed to the end of the array and the rest of elements are moved to left.<br><br>This process is repeated for all 0s. <br><br>We need to use a variable last which indicates the position of end of array excluding 0s. When a 0 is moved to end, last must be decremented so that loop is repeated from 0 to last<pre class='courier'>#include&lt;stdio.h&gt;  
+void move_zeroes(int *arr,int n)
+{
+   int i;
+   int last = n-1;
+   i =last;/* last 0 in array*/
+   while(i&gt;=0)
+   {
+       if(arr[i]==0)
+       { 
+          int j;
+          for(j=i+1;j&lt;=last;j++)
+              arr[j-1]=arr[j];
+          arr[last--]=0;
+       }
+       i--;
+   }
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr[40];
+    int n;
+    printf("Enter size of array:");
+    scanf("%d",&n);
+    read_array(arr,n);
+    move_zeroes(arr,n);
+    printf("Now the array is ");
+    print_array(arr,n);
+}</pre></div></div><div class='question'><p>13. Write a program to print all pythogorean triplets in a given array.
+
+A pythogorean triplet is a three number set so that sum of squares of two numbers is equal to square of third number.
+e.g. 3,4,5    12,5,13   6,8,10</p><button class='accordion'>Answer</button><div class='panel'>This solution is from internet. Like most others are. :)<br><br>The array is first sorted. Now from last element, ith element at a time is taken and is set as c in the equation a2+b2=c2. Two indices l and r are taken as 0 and i-1. Now lth element and rth element are tested for pythogorean equation. If there is a match, loop is terminated.<br><br>If not, if arr[l]2 + arr[r]2 is larger than c2, r is decremented because sum is too large. If not (that is sum of squares is smaller than c squared), then l is incremented. This process is repeated as long as there l &lt;r.<pre class='courier'>#include&lt;stdio.h&gt;  
+ 
+void pythTriplets(int *arr,int n)
+{
+    int i=n-1;
+    for(;i&gt;=2;i--)
+    {
+       int a = arr[i];
+       int l=0,r=i-1;
+       int found = 0;
+       while(l&lt;r)
+       {
+            if(arr[l]*arr[l]+arr[r]*arr[r]==a*a)
+            {
+               found = 1;break;
+            }
+            if(arr[l]*arr[l]+arr[r]*arr[r] &gt;a*a)
+                   r--;
+            else
+                   l++;
+       }
+       if(found) 
+           printf("%d %d %d \n",a,arr[l],arr[r]);
+  }
+}
+void insSort(int *arr,int n)
+{
+   int j;
+   for(j=1;j&lt;n-1;j++)
+      {
+         int temp = arr[j];
+         int i;
+         for(i=j-1;i&gt;=0 && arr[i]&gt;temp;i--)
+             arr[i+1]=arr[i];
+         arr[i+1]=temp;
+       }
+}
+void read_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       scanf("%d",&arr[i]);
+     }
+}
+void print_array(int *arr,int sz)
+{
+     int i;
+     for(i  =0;i&lt;sz;i++)
+     {
+       printf("arr[%d]=",i);
+       printf("%d   ",arr[i]);
+     }
+     printf("\n");
+}
+int main()
+{
+    int arr[40];
+    int n;
+    printf("Enter size of array:");
+    scanf("%d",&n);
+    read_array(arr,n);
+    insSort(arr,n);
+    pythTriplets(arr,n);    
+}</pre></div></div><div class='question'><p>14. What is an array? Describe its features.</p><button class='accordion'>Answer</button><div class='panel'>An array is a data structure where values of same type are stored in consecutive memory locations. <br>Each array element has an index.<br>Indices start from 0.<br><br>Definition:<br>   Array definition should specify type of elements and size of array.<br>e.g.<br>   int arr[10];<br>   char arr2[30];<br><br>It can also specify optional initialization.<br>    int m[3] = {1,22,34};<br><br>Once defined size of an array can not be changed.<br><br>Because of consecutive storage, array elements can be represented using pointers.<br>   <br>  int *ptr = arr;/*ptr points to arr[0]*/<br>  ptr++;/* now ptr points to arr[1]*/<br><br>Advantage of array :<br>   1) compact storage<br>   2) random access<br>   3) simple <br><br>Disadvantages<br>   1) size can not be changed at run time<br>   2) Removal or insertion of elements in the middle is difficult<pre class='courier'></pre></div></div><div class='question'><p>15. Write a function to find the average of elements of an array</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>double aver(int *arr, int n)
+{
+    int sum = 0;
+    int i;
+    for(i=0;i&lt;n;i++)
+      sum+=arr[i];
+    return ((float)sum/n);
+}</pre></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>

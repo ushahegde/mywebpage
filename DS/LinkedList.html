@@ -1,0 +1,2830 @@
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0;box-shadow:2px 2px #ccc; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> LinkedList Questions </h1><div class='question'><p>1. Write functions for inserting and deleting elements to a linked list.</p><button class='accordion'>Answer</button><div class='panel'>A node can be inserted to the list either to the end, after last node, or at the begining or some where in the middle.<br><br>Append node - add a node to end -  requires you to traverse the list to find last node and then add new node after last node. So it has a time complexity of O(n)<br><br>Insert at begining - adds a node before head. As there is no need to traverse the list, this has complexity of O(1). This function sets newnode-&gt;next to head and then sets head as newnode. <br><br>For deletion of any node, you again need to find previous node and link previous node to next node of node to be deleted. So deletion has complexity of O(n)<pre class='courier'>struct node
+{
+   int n;
+   struct node* next;
+};
+typedef struct node* NODEPTR; 
+NODEPTR delete_node(NODEPTR head, int num)
+ {
+    NODEPTR dnode,prevnode,temp;    
+    prevnode=head;
+    if(head-&gt;n==num)/*delete first*/
+    {
+        temp = head; 
+        head = head-&gt;next; 
+        free(temp);
+        return head;
+    }
+    temp=head-&gt;next;
+    while(temp!=NULL)
+    {
+       if(temp-&gt;n==num)/*node found*/
+       {
+          prevnode-&gt;next = temp-&gt;next;/*link prev and next nodes*/
+          free(temp);
+          return head;
+       }
+       prevnode = temp;
+       temp = temp-&gt;next;
+    }
+    printf("Node not found");
+    return NULL;
+}
+NODEPTR insert_before_head(NODEPTR head, NODEPTR newnode)  
+ {  
+    newnode-&gt;next = head;
+    head = newnode;
+    return head;
+ } 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+NODEPTR create_node(int num)
+{
+   NODEPTR temp = (NODEPTR)malloc(sizeof(struct node));
+   temp-&gt;n = num;
+   temp-&gt;next = NULL;
+   return temp;
+} 
+void display_list(NODEPTR nd)
+{
+   printf("Now list is");
+   while(nd!=NULL)
+   {
+       printf("%d   ",nd-&gt;n);
+       nd = nd-&gt;next;
+   }
+}
+/****function call examples****/
+int main()
+{
+     NODEPTR head =NULL;
+     int n=11;
+     struct node *newnode = create_node(n);
+     head = append_node(head,newnode); 
+     int m = 11;
+     head = delete_node(head,m);
+     m=98;
+     head = insert_before_head(head,m); 
+     display_list(head);
+}
+</pre></div></div><div class='question'><p>2. Write a function to delete a node N from a doubly linked list. Assume that there are nodes on either sides of node to be deleted.</p><button class='accordion'>Answer</button><div class='panel'>When we are deleting a node from a DLL, we should link its previous node to its next node.  So the code is very simple. <br>      delnode-&gt;prev-&gt;next = delnode-&gt;next<br>      delnode-&gt;next-&gt;prev = delnode-&gt;prev<br><br>In this example, it has been mentioned that the node is middle node. But in general case, we have to verify that the previous node and nextnode of delnode are not NULL.  Also we should modify head, if delnode is head. In such a case, function must return the changed head node. <pre class='courier'> void delete_node(NODEPTR head, NODEPTR delnode)
+{
+     /*if(delnode==head)/*deleting first node 
+	    head = head-&gt;next;   */     
+    /*   if(delnode-&gt;prev)*/
+        delnode-&gt;prev-&gt;next = delnode-&gt;next;
+   /*   if(delnode-&gt;next)*/
+        delnode-&gt;next-&gt;prev = delnode-&gt;prev;
+        free(delnode);
+      /*  return head; */
+}
+/*uncomment the commented two lines for general case*/
+ </pre></div></div><div class='question'><p>3. Write a function to merge two singly linked lists. </p><button class='accordion'>Answer</button><div class='panel'>We should traverse till the end of first list - list1. <br><br>Next we have to link this last node of list1 to head of list2.<br>          last1-&gt;next = head2;<br><br>Complexity - O(n1)<pre class='courier'> void merge_nodes(NODEPTR l1, NODEPTR l2)
+ {
+     /* move to the end of list1*/
+     while(l1!=NULL && l1-&gt;next !=NULL)
+        l1 = l1-&gt;next;
+  /**link last node of list1 to l2***/
+     if(l1!=NULL)  
+        l1-&gt;next = l2;
+ }</pre></div></div><div class='question'><p>4. Write a function to find average of elements in a linked list</p><button class='accordion'>Answer</button><div class='panel'>To find average of elements you need to traverse the list and add elements together. You also need to count the number of nodes.<br> <br>Then calculate <br>average= sum/count<pre class='courier'> float average(NODEPTR h1)
+ {
+     int sum = 0;
+     int count =0;
+     while(h1)
+     {
+        sum+=h1-&gt;n;
+        h1 = h1-&gt;next;
+        count++;
+     }
+     return (float)sum/count;
+}
+</pre></div></div><div class='question'><p>5. Write a program to replace all the occurances of a given value in a linked list  by another value.</p><button class='accordion'>Answer</button><div class='panel'>While traversing, if we find that node has search value s, we should replace node-&gt;n with replace value r<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+/*sv is search value, rv is replace value*/
+void replace_nodes(NODEPTR h1, int sv,int rv)
+{
+     while(h1)
+     {
+         if(h1-&gt;n == sv)
+            h1-&gt;n = rv;
+        h1 = h1 -&gt;next;
+     }
+}   
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ }  
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+ 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ }  
+
+ int main()  
+ {  
+     NODEPTR head1;   
+     int numnodes1,i;  
+     int s,r;
+     //initialize head  
+     head1=  NULL;  
+     printf("Number of nodes in list1 = ");  
+     scanf("%d",&numnodes1);       
+     for(i = 0;i&lt;numnodes1;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head1 = append_node(head1,newnode);      
+     }  
+     printf("The linked list   now is ");  
+     display_nodes(head1); 
+     printf("Search value");
+     scanf("%d",&s);
+     printf("Replace with");
+     scanf("%d",&r);
+     replace_nodes(head1,s,r);
+     printf("The linked list after replacing is ");  
+     display_nodes(head1); 
+ }  
+</pre></div></div><div class='question'><p>6. Write a function to insert a value into a ordered (sorted) linked list.</p><button class='accordion'>Answer</button><div class='panel'>In this case, we must find a node N whose key value is just greater than new node. Now new node has to be inserted before this node N. You also need to maintain prevnode while traversing<br><br>          while nd!=NULL and nd-&gt;val &lt;newnode-&gt;val<br>               previousnode = nd<br>               move to next node<br>          link previous node to newnode<br>          link newnode to nd<br><br>This function can even be used to create a sorted list. Because if each element is inserted using this function, then the list will be automatically sorted. <pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ NODEPTR create_node(int value);    
+ void display_nodes(NODEPTR head);  
+ 
+NODEPTR insert_sorted(NODEPTR head, NODEPTR newnode)
+ {
+    NODEPTR prevnode = NULL,l1 = head;
+    while(l1!=NULL)
+   {
+      if(l1-&gt;n &gt;newnode-&gt;n)
+           break;/*we found location*/
+      prevnode = l1;
+      l1 = l1-&gt;next;
+    }
+    if(prevnode==NULL)/* insert at beginning*/
+    {
+       newnode-&gt;next = head;
+       head = newnode;
+     }
+    else/*insert before l1*/
+   {
+       newnode-&gt;next = l1;
+       prevnode-&gt;next = newnode;               
+    }
+    return head;
+  }
+ /*driver program*/
+int main()
+{
+     NODEPTR head = NULL;
+     while(1)
+    {
+       int n;
+       printf("Enter a value to be inserted (-1 to quit");
+       scanf("%d",&n);
+       if(n==-1)
+          break;
+       NODEPTR newnode = create_node(n);
+       head = insert_sorted(head,newnode);
+     }
+     display_nodes(head);
+}
+
+  
+create_node() and display_nodes() functions are not shown here</pre></div></div><div class='question'><p>7. Write a function to display all values in a singly linked list.</p><button class='accordion'>Answer</button><div class='panel'>To display a linked list, you need to start from head and traverse all the nodes until you reach NULL.<pre class='courier'> void display_nodes(struct node *nd)
+ {
+     while(nd!=NULL)
+     {
+          printf("%d\n",nd-&gt;val);
+          nd = nd-&gt;next;
+      }
+}
+/***calling this***/
+int main()
+{
+  -------
+  display_nodes(head);
+----
+}</pre></div></div><div class='question'><p>8. Write functions to insert a node at the front and rear of a circular linked list</p><button class='accordion'>Answer</button><div class='panel'>In a circular list, traversal should take into account the fact that there is no NULL in the list. Becasue last node of the list points back to head.<br><br>So Traversal should continue till you reach head again.<br><br>If we write a traversal loop like <br>   for(temp=head;temp!=NULL; temp=temp-&gt;next)<br>the loop will be infinite as there is no NULL in this list. <br><br>Traversal can be done using a do while loop<br>     temp=head<br>     do<br>         visit the node temp<br>         move to next node<br>    while temp is not head<br>This way we are ensuring that loop is terminated when we come across head for the second time. <br>  <br><br>For inserting a node to front (or rear) of a circular singly linked list, you need to just add the new node before head. <br>      find lastnode of list<br>      newnode-&gt;next = head;<br>      lastnode-&gt;next = newnode;<br>      head = newnode;<br><br>To find the last node, you need to traverse the list. So time complexity is  O(n).<br><br>But if the order is unimportant to you, you can add the node "after head", so that the time complexity is O(1)<br>    second = head-&gt;next<br>    head-&gt;next = newnode;<br>    newnode-&gt;next = second;<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ NODEPTR insert_front(NODEPTR head, NODEPTR newnode)  
+ {  /*complexity is O(n)*/
+    NODEPTR temp = head;
+    if(head==NULL)
+    {
+        newnode-&gt;next = newnode;
+        return newnode;
+    }
+    while(temp-&gt;next !=head)
+	temp = temp-&gt;next;
+    newnode-&gt;next = head;
+    temp-&gt;next = newnode;
+    head = newnode;
+    return head;  
+ }
+
+ void insert_after_head(NODEPTR head,NODEPTR newnode)
+{/*complextiy is O(1)*/
+     newnode-&gt;next = head-&gt;next;
+     head-&gt;next = newnode;
+}
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   if(head==NULL)
+	return;
+   do  
+   {  
+     printf("%d----&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   } while(temp!=head);
+   printf("\n");
+ }   
+ int main()  
+ {  
+     NODEPTR head; 
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = insert_front(head,newnode);      
+     }  
+     printf("The linked list now is "); 
+     display_nodes(head);   
+     insert_after_head(head,create_node(111));
+     printf("The linked list now is ");  
+     display_nodes(head);   
+ }  
+</pre></div></div><div class='question'><p>9. Write a function to add a node after the node with given value in a linked list. e.g. insert a new node with value 100 after a node with value 10.</p><button class='accordion'>Answer</button><div class='panel'>This is quite simple We need to find the node with given value. Then link the node to newnode. And link newnode to next node of this node<br>               <br>            Find m which is node with value <br>            newnode-&gt;next = m-&gt;next<br>            m-&gt;next = newnode<br><br>You do not have to worry about boundary condition because we are inserting the node after given node. Even if the node is head, the function will not modify head.<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+
+void insert_after( NODEPTR newnode,NODEPTR n1)
+{
+        //add the node after n1
+        NODEPTR n2 = n1-&gt;next;
+        n1-&gt;next = newnode;        
+        newnode-&gt;next = n2;        
+} 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+
+ NODEPTR find_node(NODEPTR temp, int val)
+ {
+      while(temp)
+        {
+           if(temp-&gt;n==val)
+                 return temp;
+           temp = temp-&gt;next;
+        }
+     return NULL;//node not found
+} 
+
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;
+     int m,n;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head); 
+     printf("Enter the value for new node:");
+     scanf("%d",&m);
+     printf("This should be inserted after which node :");
+     scanf("%d",&n);
+     dnode = find_node(head,n);
+     if(dnode==NULL)
+         printf("The value is not found in the list");
+     else
+        {
+           newnode = create_node(m);
+           insert_after(newnode,dnode);
+           printf("Node successfully inserted\nNow the list is:");
+           display_nodes(head);
+       } 
+ }  
+</pre></div></div><div class='question'><p>10. What are the advantages of doubly linked list over a singly linked list?</p><button class='accordion'>Answer</button><div class='panel'>Allows traversal of nodes in both directions<br><br>Insertion and deletion of nodes is easy when compared to singly linked list, because in singly linked list you need to find previous node for these operations. In DLL, the each node has a link to previous node so that insert and delete operation can use this link. <br><br>But keep in mind that because of extra link in each node, size of doubly linked list is larger.<pre class='courier'></pre></div></div><div class='question'><p>11. For a  singly linked list with integer data, write a function to search for a value. </p><button class='accordion'>Answer</button><div class='panel'>Searching in a linked list is always be done using sequential search. We need to traverse the list until  search value is found.  <br><br>If the list is sorted, then searching can be terminated when we find a value larger than search value.<br><br>First function searches in an unsorted list and second function searches for a value in a sorted list. Both these function return the node which contain search value if found. If not found, they return NULL.<br><br>Time complexity of search operation- O(n)<pre class='courier'> NODEPTR find_node(NODEPTR temp, int val)
+ {/*function to search in an unsorted list*/
+      while(temp)
+        {
+           if(temp-&gt;n==val)
+                 return temp;/*we found value*/
+           temp = temp-&gt;next;
+        }
+     return NULL;/*node not found*/
+}
+
+NODEPTR find_node_sorted(NODEPTR temp, int val)
+{/*search in sorted list*/
+     while(temp!=NULL && temp-&gt;n &lt;val)
+           temp = temp-&gt;next;
+     if(temp-&gt;n==val)
+       return temp;
+     return NULL;
+}</pre></div></div><div class='question'><p>12. Write a program to concatenate two singly linked circular lists without traversing either of them.</p><button class='accordion'>Answer</button><div class='panel'>The easiest way to do this is in a singly linked list is<br>   a) Point head1 to l22 where l22 is second node of list2<br>   b) Point head2 to l12 where l12 is second node of list1<br><br>So if circular list1 is A---B---C<br>and circular list2 is P---Q---R<br><br>after concatenation list will be A---Q---R---P---B---C--<br><br>Sample output<br>Number of nodes of list1 = 3<br>node value=10<br>node value=20<br>node value=30<br>Number of nodes of list2 = 4<br>node value=1<br>node value=2<br>node value=3<br>node value=4<br>Now the merged list is 10----&gt;2----&gt;3----&gt;4----&gt;1----&gt;20----&gt;30----&gt;<br><pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ 
+void concat(NODEPTR head1,NODEPTR head2)
+{ 
+     NODEPTR nx = head1-&gt;next;
+     head1-&gt;next = head2-&gt;next;
+     head2-&gt;next= nx;
+}
+     
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+
+ NODEPTR insert_rear(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(head==NULL)
+      {
+	newnode-&gt;next = newnode;
+        return newnode;
+      }
+    while(temp-&gt;next !=head)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    newnode-&gt;next = head;
+    return head;  
+ } 
+ 
+ void insert_after_head(NODEPTR head,NODEPTR newnode)
+{
+     newnode-&gt;next = head-&gt;next;
+     head-&gt;next = newnode;
+}
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   if(head==NULL)
+	return;
+   do  
+   {  
+     printf("%d----&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   } while(temp!=head);
+   printf("\n");
+ }   
+
+ int main()  
+ {  
+     NODEPTR head1,head2; 
+     int numnodes1,num2,i;  
+     //initialize head  
+     head1 = head2=  NULL;  
+     printf("Number of nodes of list1 = ");  
+     scanf("%d",&numnodes1);  
+     for(i = 0;i&lt;numnodes1;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head1 = append_node(head1,newnode);      
+     }  
+     printf("Number of nodes of list2 = ");  
+     scanf("%d",&num2);  
+     for(i = 0;i&lt;num2;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head2 = append_node(head2,newnode);      
+     }  
+     concat(head1,head2);
+     printf("Now the merged list is ");
+     display_nodes(head1);
+ }  
+</pre></div></div><div class='question'><p>13. Write a program a delete a node from a circular linked list.</p><button class='accordion'>Answer</button><div class='panel'>The delete operation involves linking previous node to the next node of N where N is the node to be deleted. <br><br>As in other operations, we need to remember that last node does not point to NULL in circular lists. <br><br>If the first node viz head node is to be deleted, we need to link last node of list to second node. One method of doing this would be find the last node using traversal, then link last node to second node. Free first node and mark second node as head. <br><br>The optimized  method to delete head node is <br>         move the data of second node to head node<br>         mark second node for deletion<br>         link first node to third node<br>         delete second node<br><br>What happens if we have only one node and it has to be deleted?  The list will become empty - head must be made NULL.  But how do we check this condition? if head-&gt;next = head, then there is only one node in the list. <pre class='courier'>   #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ NODEPTR insert_rear(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(head==NULL)
+      {
+	newnode-&gt;next = newnode;
+        return newnode;
+      }
+    while(temp-&gt;next !=head)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    newnode-&gt;next = head;
+    return head;  
+ } 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   if(head==NULL)
+	return;
+   do  
+   {  
+     printf("%d----&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   } while(temp!=head);
+   printf("\n");
+ } 
+  NODEPTR delete_node(NODEPTR head, int num)
+ {
+     NODEPTR temp = head;
+     NODEPTR prev = NULL;
+     int found = 0;
+     /*search the node*/
+     if(temp-&gt;n==num)
+       found=1;
+     else
+     while(  1)
+     {          
+         if(temp-&gt;n==num)
+         {
+            found = 1;
+            break;
+         }
+         prev= temp;
+         temp = temp-&gt;next;
+         if(temp==head)
+            break;
+      }
+      if(!found)
+         printf("That value is not present in the list ...");
+      else
+        {
+           if(prev!=NULL)
+            {
+               prev-&gt;next = temp-&gt;next;
+               free(temp);
+            }
+            else
+            {/*first node to be deleted*/
+               if(head-&gt;next!=head)             
+              {	 /*we have more than one node*/
+              	 head-&gt;n = head-&gt;next-&gt;n;
+                 /*copy the data of second node*/
+                 temp = head-&gt;next;
+                 head-&gt;next = head-&gt;next-&gt;next;
+	         /*delete 2nd node*/
+                 free(temp);
+              }
+              else/*we have only one node*/
+                 {
+                     head = NULL;
+                     free(temp);
+                  }               
+            }
+	}
+       return head;
+}          
+
+ int main()  
+ {  
+     NODEPTR head; 
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = insert_rear(head,newnode);      
+     }  
+     printf("The linked list now is "); 
+     display_nodes(head);  
+     printf("Enter node to be deleted:");
+     scanf("%d",&i);
+     head = delete_node(head,i);
+     printf("The linked list now is ");  
+     display_nodes(head);   
+ }  
+</pre></div></div><div class='question'><p>14. Explain how do you represent polynomials using a linked list. Write a function to add two polynomials represented as singly linked lists</p><button class='accordion'>Answer</button><div class='panel'>A polynomial can be stored as a linked list with the help of structures with three members - exponent , co-efficient and link to next node. One structure represents one term in the polynomial. <br><br>5x^3  ------&gt;  4x^2 -------&gt;10<br><br>12x^2 ----&gt; 3x ------&gt;18<br><br>e.g.<br><br>In the first polynomial list, there are 3 nodes. First node has exponent as 3, coeff as 5. Second node has exponent as 2 and coeff as 4. Last node has exponent as 0 and coeff as 10. First node is the head.<br><br>The structure to represent such a term in polynomial term can be as below.<br><br>       struct node<br>       {<br>           int exponent;<br>           float coeff;<br>           struct node *next;<br>        };<br><br>To add two polynomials, we need to traverse both of them parallely and copy the smaller terms if exponents are unequal and add co-efficients when exponents are equal. <br><br>Known issue : This program fails if the terms of polynomial are not entered in descending order. <pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int coeff;
+   int exponent;
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+NODEPTR create_node(int exp,int coeff);
+NODEPTR append_node(NODEPTR head,NODEPTR newnode);
+NODEPTR add_polynomials(NODEPTR head1, NODEPTR head2)
+ {
+    NODEPTR s = NULL;/*result polynomial*/
+    while(head1!=NULL && head2!=NULL)
+    {
+          if(head1-&gt;exponent &gt; head2-&gt;exponent)
+         {/*add term from first polynomial and move to next */
+             NODEPTR temp = create_node(head1-&gt;coeff,head1-&gt;exponent);
+             s = append_node(s,temp);
+             head1 = head1-&gt;next;
+          }else if(head2-&gt;exponent &gt; head1-&gt;exponent)
+         {/*add term from second polynomail and move to next*/
+             NODEPTR temp = create_node(head2-&gt;coeff,head2-&gt;exponent);
+             s = append_node(s,temp);
+             head2 = head2-&gt;next;
+         }else
+         {
+             /*exponents are equal. Add co-effs. Move to next for both*/
+              int c = head1-&gt;coeff+head2-&gt;coeff;
+              NODEPTR temp = create_node(c,head2-&gt;exponent);
+              s = append_node(s,temp);
+              head2 = head2-&gt;next;	
+              head1 = head1-&gt;next;
+         }
+    }
+    while(head1!=NULL)
+    {/*add remaining terms*/
+	NODEPTR temp = create_node(head1-&gt;coeff,head1-&gt;exponent);
+	s = append_node(s,temp);
+	head1 = head1-&gt;next;
+     }
+    while(head2!=NULL)
+    {/*add remaining terms*/
+	NODEPTR temp = create_node(head2-&gt;coeff,head2-&gt;exponent);
+	s = append_node(s,temp);
+	head2= head2-&gt;next;
+     }
+     return s;
+}
+ 
+ NODEPTR create_node(int c1,int e1)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;coeff = c1; 
+   temp-&gt;exponent = e1; 
+   return temp;  
+ } 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    newnode-&gt;next = NULL;
+    return head;  
+ } 
+ 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;
+   int i=0;
+   while (temp!= NULL)  
+   {  
+     if(i++&gt;0)
+       printf("+");
+     if(temp-&gt;exponent&gt;0)
+        printf("%dX^%d",temp-&gt;coeff,temp-&gt;exponent);
+     else
+        printf("%d ",temp-&gt;coeff); 
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+ 
+ 
+ int main()  
+ {  
+     NODEPTR head,head2; 
+     NODEPTR sumlist = NULL; 
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     //initialize head  
+     head =  head2 = NULL;  
+     printf("Number of terms in first polynomial = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int c1,e1;  
+       NODEPTR newnode;  
+       printf("node coeff and node exponent=");  
+       scanf("%d %d",&c1,&e1);  
+       newnode = create_node(c1,e1);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The first polynomial is ");
+     display_nodes(head);
+     printf("Number of terms in second polynomial = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int c1,e1;  
+       NODEPTR newnode;  
+       printf("node coeff and node exponent=");  
+       scanf("%d %d",&c1,&e1);  
+       newnode = create_node(c1,e1);  
+       head2 = append_node(head2,newnode);      
+     }  
+     printf("The second polynomial is ");
+     display_nodes(head2);
+     printf("The addition of two polynomials is ");  
+     //display_nodes(head2); 
+   
+     sumlist = add_polynomials(head,head2);
+     display_nodes(sumlist);           
+ }  
+</pre></div></div><div class='question'><p>15. Write a function to reverse a singly linked list.</p><button class='accordion'>Answer</button><div class='panel'>You need to recursively set next link to previous node. <br><br>When you reach end of list, that is if node-&gt;next is NULL, that node should be made as head. In order to maintain this value across recursive calls, head should be made as static variable. <br><br>Recursive algorithm for linked list reversal<br> <br>   set current node = l1<br>   if it is lastnode  set head = l1 <br>   set l2 = nextnode<br>   reverse list from l2 to end of list recursively<br>   set l2-&gt;next = l1<br>   set l1-&gt;next = NULL<br>   return head <br>      this returned value is discarded except for first call of function<br><br>   <br>But if you want to write a non-recursive reversal, you should use 3 pointers and a loop<br>     1) set l1, l2,l3 to head, second and third nodes respectively<br>     2) Now link l2 to l1 instead of l1 to l2<br>     3) Now move to next set of 3 nodes (this is where l3 is useful)<br>     4) repeat steps 2 to 3 until end of list<br><pre class='courier'> NODEPTR reverse_list(NODEPTR l1)
+ {
+    static NODEPTR head;
+    if(l1-&gt;next==NULL)
+   {
+       head = l1;
+       return l1;
+   }
+   else
+  {		
+      NODEPTR l2 = l1-&gt;next;
+      reverse_list(l2);
+      l2-&gt;next = l1;
+      l1-&gt;next = NULL;
+      return head;
+   }		
+}     
+/*function call */
+head = reverse_list(head);
+
+ NODEPTR reverse_list_nr(NODEPTR head)
+ {
+      NODEPTR p1,p2,p3;
+      p1 = head;
+      p2 = p1-&gt;next;
+      p3 = p2-&gt;next;
+      p1-&gt;next = NULL;
+      while(p3!=NULL)
+     {
+           p2-&gt;next = p1;
+           p1 = p2;
+           p2 = p3;
+           p3 = p3-&gt;next;
+      }
+      p2-&gt;next = p1;
+      return p2;	
+} 	   
+  
+/*function call */
+head = reverse_list_nr(head);	</pre></div></div><div class='question'><p>16. Write a function to conacatenate two singly linked lists</p><button class='accordion'>Answer</button><div class='panel'>The program finds the last node of first linked list and then links this to the head of second linked list.<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+NODEPTR find_lastnode(NODEPTR head);
+ void concat(NODEPTR head1,NODEPTR head2)
+ {
+     NODEPTR lastnode = find_lastnode(head1);
+     if(lastnode!=NULL)
+         lastnode-&gt;next = head2;
+ }
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ }  
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+ 
+
+  void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+
+NODEPTR find_lastnode(NODEPTR nd)
+{
+   while(nd!=NULL && nd-&gt;next!=NULL)
+     nd = nd-&gt;next;
+   return nd;
+}
+   
+  
+
+ int main()  
+ {  
+     NODEPTR head1,head2;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     //initialize head  
+     head1 =  head2 = NULL;  
+     printf("Number of nodes in first list = ");  
+     scanf("%d",&numnodes);  
+     printf("Enter nodes of first list:");
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head1 = append_node(head1,newnode);      
+     }  
+     printf("The first list now is ");  
+     display_nodes(head1);
+ 
+     printf("Number of nodes in second list = ");  
+     scanf("%d",&numnodes);  
+     printf("Enter nodes of second list:");
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head2 = append_node(head2,newnode);      
+     }  
+     printf("The second list now is ");  
+     display_nodes(head2); 
+     concat(head1,head2);  
+     printf("The concatenated list is");
+     display_nodes(head1);    
+           
+ }  
+</pre></div></div><div class='question'><p>17. Write a function to print the nodes of a singly linked list in reverse order. That is, print from last node to first node.</p><button class='accordion'>Answer</button><div class='panel'>This can be easily done in doubly linked list easily as it has prev link in each node. But SLL does not have prev link.<br><br>So the solution has to be written using recursion<br><br>    if node is node NULL<br>         call function recursively for next node<br>         print the current node<br>       <br>So we recursively call the function for next node each time until we reach NULL. Now the nodes are printed and stack frames are popped out. <br><br>e.g.<br> Let us look at a list like this<br><br>10 -18 - 2 - 5<br><br>Now the function call works like this<br><br>  call function for 10<br>    call function for 18<br>       call function for 2<br>          call function for 5<br>             call function for NULL<br>              return from function<br>            print 5 and return from fn<br>          print 2 and return from fn<br>        print 18 and return from fn<br>    print 10 and return from fn<pre class='courier'> void display_nodes_reverse(NODEPTR nd)  
+ {  
+    if( nd!=NULL)
+     {
+         display_nodes_reverse(nd-&gt;next);
+         printf("%d---&gt;",nd-&gt;n);
+     }
+ }</pre></div></div><div class='question'><p>18. What is the best algorithm for sorting a linked list. Explain it and write the function.</p><button class='accordion'>Answer</button><div class='panel'>Insertion sorting is best method for sorting a linked list.<br><br>In insertion sorting, each node of a linked list is taken and inserted into the right location. <br><br>To start with we can have an empty linked list called slist. We remove one node at a time-  first node from unsorted list and then insert this node into the sorted list by finding its correct location. <pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+ NODEPTR sort_list(NODEPTR head)
+ {
+    NODEPTR newhead = NULL;
+    while(head!=NULL)
+    {
+       NODEPTR temp = head;  
+       head = head -&gt;next;     
+       temp-&gt;next = NULL;
+       //remove one node at a time   
+      newhead = insert_sorted(newhead,temp);
+       //insert it into sorted list
+     }
+     return newhead;
+}
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+ 
+NODEPTR insert_sorted(NODEPTR head,NODEPTR newnode)
+{
+      if(head ==NULL)
+         return newnode;
+      NODEPTR temp=head,prevnode;
+      while(temp!=NULL &&temp-&gt;n&lt;newnode-&gt;n)
+      {
+	   prevnode=temp;
+           temp = temp-&gt;next;
+      }
+      if(temp==head)
+          /*insert at head*/
+         {
+	   newnode-&gt;next = head;
+           return newnode;
+         }
+     prevnode-&gt;next = newnode;
+     newnode-&gt;next = temp;
+     return head;
+}
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes); 
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head); 
+   
+     head = sort_list(head);
+      printf("The linked list now is ");  
+     display_nodes(head);               
+ }  
+</pre></div></div><div class='question'><p>19. Write a function to insert element to a sorted circular list.</p><button class='accordion'>Answer</button><div class='panel'>Here you need to find a node with value just greater than new value and insert the node before this.<br><br>If the list is empty, newnode becomes head node.<br><br>If the new node is smaller than first node, then you need to add the node at the begining. <pre class='courier'>  #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ NODEPTR insert_node_asc(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head,prevnode=NULL;  
+    if(head==NULL) 
+    {
+       newnode-&gt;next = newnode; 
+       return newnode;
+     }
+    if(newnode-&gt;n &lt;head-&gt;n)
+    {/*insert as first node*/
+        NODEPTR lastnode = head;
+        do 
+          lastnode = lastnode-&gt;next;
+        while (lastnode-&gt;next!=head);
+        lastnode-&gt;next = newnode;
+        newnode-&gt;next = head;
+        head = newnode;
+        return head;
+    }
+    do
+    {
+       if(temp-&gt;n&gt;newnode-&gt;n)
+          break;
+       prevnode = temp;
+       temp = temp-&gt;next;
+    }while(temp!=head ); 
+    prevnode-&gt;next = newnode;
+    newnode-&gt;next  = temp;
+    return head;  
+ } 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   if(head==NULL)
+	return;
+   do  
+   {  
+     printf("%d----&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   } while(temp!=head);
+   printf("\n");
+ }  
+
+ int main()  
+ {  
+     NODEPTR head; 
+     int numnodes,i;   
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = insert_node_asc(head,newnode);  
+       display_nodes(head);    
+     }  
+     printf("The linked list now is "); 
+     display_nodes(head);  
+        
+ }  
+</pre></div></div><div class='question'><p>20. Write a function to reverse a doubly linked list.</p><button class='accordion'>Answer</button><div class='panel'>To reverse a dll, you must swap previous and next links of each node. <br><br>But to move to next node, you should say temp = temp-&gt;prev.<br><br>If you keep saving current node as head before moving to next, when we reach NULL, head will be last node.<br><pre class='courier'> NODEPTR reverse_list(NODEPTR head )
+ {
+    NODEPTR temp=head; NODEPTR t1;
+    while(temp)
+    {
+       t1 = temp-&gt;prev;
+       temp-&gt;prev = temp-&gt;next;
+       temp-&gt;next = t1;
+       head = temp;
+       temp = temp-&gt;prev;
+    }
+    return head; 
+}
+  </pre></div></div><div class='question'><p>21. Write a function to rotate the elements of a singly linked list to the right by k.</p><button class='accordion'>Answer</button><div class='panel'>To rotate a list by k, we just need to see the list from kth location. Right? But what happens at last node? Won't the travesing stop because there is a NULL? <br><br>Yes, it does. So we have to link last node back to first node. <br><br>There is one more problem. We need to rotate to right by k nodes - which means we have to split the list at len-kth location instead. <br><br>So we solve the problem like this. <br>Find the lenght of list<br>Find (len-k)th node in the list.<br>Link last node to first node.<br>Set head as next node of kth node<br>Set next of kth node to NULL. (split the list)<br><br>e.g.<br>list is<br>10--20--30--40--50--60--70--80<br>k is <br>3<br><br>len-k+1 = 5<br><br>Find 5th node. - 50. Find its next node 60<br>Set 80-&gt;next = 10<br>Set head = 50-&gt;next <br>set next pointer of 50 to NULL.<br><br>Rotate left is similar. But we find kth node instead of len-k<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ 
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+int find_size(NODEPTR nd)
+{
+    int s = 0;
+    while(nd!=NULL)
+    {
+       s++;
+       nd = nd-&gt;next;
+    }
+    return s;
+}
+NODEPTR find_split_point(NODEPTR nd,int k)
+{
+    int count = find_size(nd); 
+    NODEPTR prevnode;
+    int i;
+    k = count - k;
+    NODEPTR temp = nd;
+    for(i=1;i&lt;k;i++)
+    {
+      prevnode = temp;
+      temp = temp-&gt;next;
+    } 
+    return temp;
+}
+ 
+NODEPTR find_previous(NODEPTR nd, NODEPTR n2)
+{
+     while(nd!=NULL && nd-&gt;next!=n2)
+         nd = nd-&gt;next;
+     if(nd-&gt;next==n2)
+        return nd;
+     else
+        return NULL;
+}
+NODEPTR find_last_node(NODEPTR nd )
+{
+     while(nd!=NULL && nd-&gt;next!=NULL)
+         nd = nd-&gt;next;
+    return nd;
+}
+NODEPTR rotate_nodes(NODEPTR head,int k)
+{    
+  NODEPTR prevnode;
+  NODEPTR kthnode = find_split_point(head,k);
+  if(kthnode!=NULL)
+    {
+       NODEPTR lastnode = find_last_node(head); 
+       if(lastnode==NULL  )
+       {
+	  printf("error in link. Can not rotate");
+          return NULL;
+        }
+       lastnode-&gt;next = head; 
+       head = kthnode-&gt;next;
+       kthnode-&gt;next = NULL; 
+       return head;
+   }
+   return NULL;
+} 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ }  
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i,k;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head); 
+
+      printf("k = ");  
+       scanf("%d",&k); 
+     NODEPTR temp = rotate_nodes(head,k);
+     if(temp!=NULL)
+        {
+	   head = temp;
+	   printf("The rotated list by %d nodes is",k);
+           display_nodes(head);
+        }
+}
+     
+           
+ 
+</pre></div></div><div class='question'><p>22. Given an unsorted linked list, and without using a temporary buffer, write a function that will delete any duplicates from the linked list. </p><button class='accordion'>Answer</button><div class='panel'>Here 2 loops are used. In the outer loop, a node is taken and in inner loop this is compared with all subsequent nodes and if there is dupicate it is removed by linking its previous node to its next node.<br><br>So the complexity of algorithm is O(n2)<br><br>We can use two other methods for removing duplicates<br>   a) Sort the list and compare each element with next element. If it is a duplicate, delete it.<br><br>    b) Use a hash array. When a node is encountered, check if its value is in hash array, delete it. If not, store its value in hash array.  <pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+#define MAX 10000
+
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+ 
+void remove_duplicates_hash(NODEPTR head)
+{
+    NODEPTR temp = head;
+    NODEPTR prev = head;
+    int hash[MAX]={0};
+    hash[temp-&gt;n] = temp-&gt;n;
+    temp = temp-&gt;next;
+    while(temp!=NULL)
+    {
+         int num = temp-&gt;n;
+         if(hash[num]==num)
+          {
+              delete_node(temp,prev);
+              temp = prev-&gt;next;
+          }
+         else
+         {
+            hash[num]=num;
+            prev = temp;         
+            temp = temp-&gt;next;
+         }
+    }
+}
+
+void delete_node(NODEPTR temp, NODEPTR prev)
+{
+      prev-&gt;next = temp-&gt;next;
+      free(temp);
+}
+NODEPTR insert_sorted(NODEPTR head,NODEPTR newnode)
+{
+      if(head ==NULL)
+         return newnode;
+      NODEPTR temp=head; NODEPTR prevnode;
+      while(temp!=NULL &&temp-&gt;n&lt;newnode-&gt;n)
+      {
+	   prevnode=temp;
+           temp = temp-&gt;next;
+      }
+      if(temp==head)
+          /*insert at head*/
+         {
+	   newnode-&gt;next = head;
+           return newnode;
+         }
+     prevnode-&gt;next = newnode;
+     newnode-&gt;next = temp;
+     return head;
+}
+
+ NODEPTR sort_list(NODEPTR head)
+ {
+    NODEPTR newhead = NULL;
+    while(head!=NULL)
+    {
+       NODEPTR temp = head;
+       head =  head-&gt;next;
+       temp-&gt;next = NULL;  
+       
+       newhead = insert_sorted(newhead,temp);      
+       //insert it into sorted list
+     }
+     return newhead;
+}
+
+void delete_nextnode(NODEPTR temp)
+{
+     if(temp-&gt;next)
+     {
+        NODEPTR d1 = temp-&gt;next;
+        temp-&gt;next = temp-&gt;next-&gt;next;
+	free(d1);
+     }
+}
+
+void remove_duplicates(NODEPTR head)
+ {
+    NODEPTR temp=head;
+    while(temp!=NULL)
+    {
+        NODEPTR n1 = temp;
+        NODEPTR prevnode = n1;
+        NODEPTR n2 = temp-&gt;next;
+        /*remove all duplicates of n1*/
+        while(n2!=NULL)
+        {
+           if(n1-&gt;n == n2-&gt;n)
+            {
+                prevnode-&gt;next = n2-&gt;next;
+                free(n2);
+                n2 = prevnode-&gt;next;
+            }else{
+            prevnode = n2 ;
+            n2 = n2-&gt;next;
+           }
+        }
+        temp = temp-&gt;next;
+     }
+} 
+
+NODEPTR remove_duplicates_sorted(NODEPTR head)
+{
+    head = sort_list(head);
+    NODEPTR temp=head;
+    NODEPTR prev_node  = temp;
+    temp = temp-&gt;next;
+    while(temp!=NULL)
+    {
+        if(temp-&gt;n == prev_node-&gt;n)
+        /* we have duplicate. Delete it*/
+        {
+             delete_nextnode(prev_node);             
+             temp = prev_node-&gt;next;
+        }else
+        {
+            prev_node = temp;
+            temp = temp-&gt;next;
+         }
+    }
+    return head;
+}
+
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head) ;
+     head = remove_duplicates_sorted(head);
+     printf("The linked list now is ");  
+     display_nodes(head);               
+ }  
+  
+ 
+</pre></div></div><div class='question'><p>23. Write a function to delete a node of a singly linked list, given only that node</p><button class='accordion'>Answer</button><div class='panel'>Normally when we delete a node, we link previous node of delnode to next node of del node, so that link is not broken. But here, as we have no other information- no head node, we can not find the previous node.<br><br>So we copy the data of next node to current node and then delete next node instead. <br>   nd-&gt;n = nd-&gt;next-&gt;n<br>   nd-&gt;next = nd-&gt;next-&gt;next<br>   free(nd-&gt;next)<br><br>Please note that this method fails if the node to be deleted is the last node. <pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int value;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+
+ NODEPTR delete_node_given_onend( NODEPTR dnode)
+ {
+      NODEPTR nextnode = dnode-&gt;next;
+      if(nextnode!=NULL)
+      {
+         dnode-&gt;value = nextnode-&gt;value;        
+         dnode-&gt;next = nextnode-&gt;next;        
+         free(nextnode);
+      }
+      else
+       printf("Not possible as this is last node");
+ }
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;value = value;  
+   return temp;  
+ } 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;value);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+
+ NODEPTR find_node(NODEPTR temp, int val)
+ {
+      while(temp)
+      {
+         if(temp-&gt;value==val)
+            return temp;
+        temp = temp-&gt;next;
+     }
+     return NULL;//node not found
+}
+
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head); 
+    
+     printf("Enter node to be deleted:");
+     scanf("%d",&i);
+     NODEPTR nd = find_node(head,i);
+     if(nd!=NULL)
+       delete_node_given_onend(nd); 
+     printf("Now the list is ");
+     display_nodes(head);     
+ }  
+</pre></div></div><div class='question'><p>24. Write a function to merge two sorted linked lists</p><button class='accordion'>Answer</button><div class='panel'>The program works as follows<br>   1) detach one node from head of list1<br>   2) detach a node from head of list2<br>   3) whichever is smaller link it to the merged list and move to next node<br>   4) repeat steps 1 to 3 until either of the lists is empty<br>    5) move all the nodes of the non-empty list to merged list<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int val;  
+   struct node *next;   
+ };   
+ typedef struct node *NODEPTR;
+NODEPTR append_node(NODEPTR head,NODEPTR nd);
+NODEPTR merge_sorted(NODEPTR head1,NODEPTR head2)
+{
+  NODEPTR newlist = NULL;
+  while(head1!=NULL && head2!=NULL )
+ {
+    if(head1-&gt;val &lt;head2-&gt;val)
+    {/*add a node from list1*/
+    NODEPTR temp = head1;
+    head1 = head1-&gt;next; 
+    temp-&gt;next = NULL;
+    newlist = append_node(newlist,temp);
+    }
+    else
+    {/*add a node from list2*/
+    NODEPTR temp = head2;
+    head2 = head2-&gt;next; 
+    temp-&gt;next = NULL;
+    newlist = append_node(newlist,temp);
+    }
+ }
+ while(head1!=NULL)
+ {/*add all remaining nodes*/
+  NODEPTR temp = head1;
+  head1 = head1-&gt;next; 
+  temp-&gt;next = NULL;
+  newlist = append_node(newlist,temp);
+  }
+ while(head2!=NULL)
+ {
+  NODEPTR temp = head2;
+  head2 = head2-&gt;next; 
+  temp-&gt;next = NULL;
+  newlist = append_node(newlist,temp);
+ }
+ return newlist;  
+}   
+
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;val = value;  
+   return temp;  
+ } 
+ 
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+       temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ }  
+
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;val);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ }   
+
+ int main()  
+ {  
+     NODEPTR head1,head2,head3;  
+     NODEPTR newnode,dnode;  
+     int numnodes1,numnodes2,i;  
+     //initialize head  
+     head1 = head2 =  NULL;  
+     printf("Number of nodes in first SORTED list = ");  
+     scanf("%d",&numnodes1);       
+     for(i = 0;i&lt;numnodes1;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head1 = append_node(head1,newnode);      
+     }  
+     printf("The linked list 1  now is ");  
+     display_nodes(head1); 
+     printf("Number of nodes in second SORTED list  = ");  
+     scanf("%d",&numnodes2);       
+     for(i = 0;i&lt;numnodes2;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head2 = append_node(head2,newnode);      
+     } 
+      printf("List 2 is  ");
+     display_nodes(head2);   
+     head3 = merge_sorted(head1,head2);
+     printf("Now the merged list is ");
+     display_nodes(head3);              
+ }  
+</pre></div></div><div class='question'><p>25. Write a function to find the number of nodes in singly linked list. Write another function to find this length using recursion</p><button class='accordion'>Answer</button><div class='panel'>To find the length without using recursion is simple - just increment the count while travesing the list and return this count<br><br>To find length using recursion, wereturn previous length +1 . And when node is NULL, we  return 0.  So that last node returns 1, last -1th node returns 2 and so on.<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+  
+ int get_count(NODEPTR temp)
+ {
+      int c = 0;
+      while(temp)
+      {
+           c++;
+           temp = temp-&gt;next;
+      }
+     return c; 
+}
+int get_count_recursive(NODEPTR temp)
+{
+    if(temp!=NULL)
+   {
+       return get_count_recursive( temp-&gt;next)+1;
+   }
+   else return 0;
+}
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+  
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+ 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+ 
+ int main()  
+ {  
+     NODEPTR head;  
+     //initialize head  
+     head =  NULL;        
+     while(1){
+       int value;  
+       NODEPTR newnode;  
+       printf("node value (-1 to stop)=");  
+       scanf("%d",&value); 
+       if(value==-1) 
+            break; 
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }
+     printf("The linked list now is ");  
+     display_nodes(head);
+     printf("The number of nodes in sll is %d\n",get_count(head));
+     printf("The number of nodes in sll using recursion is %d\n",get_count(head));           
+ }  
+</pre></div></div><div class='question'><p>26. Write a function to merge sort a given linked list</p><button class='accordion'>Answer</button><div class='panel'>The list can be merge sorted using divide and conquer technique.<br><br>  1) The list is split into two parts l1 and l2 at mid point.<br>         To find the midpoint of list, the famous two pointers slow which moves one node at a time and fast which     moves two nodes at a time are used.<br><br>  2) These are recursively merge sorted as long as list has more than one node<br><br>  3) Now the two sorted lists l1 and l2 are merged recursively<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int val;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR; 
+ NODEPTR merge_sorted_lists(NODEPTR h1,NODEPTR h2);
+
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;val = value;  
+   return temp;  
+ } 
+ 
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   while (temp!= NULL)  
+   {  
+     printf("%d---&gt;",temp-&gt;val);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+
+NODEPTR split_list(NODEPTR head)
+{
+    NODEPTR slow,fast;
+    slow =head; 
+    fast = head;
+    if(head==NULL || head-&gt;next==NULL)     
+       return head;
+    NODEPTR temp;
+    while(fast!=NULL)         
+    {       
+        fast = fast-&gt;next;        
+        if(fast!=NULL){
+           temp = slow;
+           fast = fast-&gt;next;
+           slow = slow-&gt;next;
+        }           
+     }     
+     temp-&gt;next  = NULL;
+     return slow;
+}
+      
+
+NODEPTR merge_sort(NODEPTR head)
+{
+     if(head==NULL || head-&gt;next==NULL)
+       return head;
+     NODEPTR mid = split_list(head);
+     head = merge_sort(head);
+     mid = merge_sort(mid);
+     head = merge_sorted_lists(head,mid);
+     return head;
+}
+
+ 
+NODEPTR merge_sorted_lists(NODEPTR head1,NODEPTR head2)
+{
+	NODEPTR newlist = NULL;
+	while(head1!=NULL && head2!=NULL )
+	{
+	   if(head1-&gt;val &lt;head2-&gt;val)
+		{
+		NODEPTR temp = head1;
+		head1 = head1-&gt;next; 
+		temp-&gt;next = NULL;
+		newlist = append_node(newlist,temp);
+		}
+	   else
+		{
+		NODEPTR temp = head2;
+		head2 = head2-&gt;next; 
+		temp-&gt;next = NULL;
+		newlist = append_node(newlist,temp);
+		}
+	}
+	while(head1!=NULL)
+	{
+		NODEPTR temp = head1;
+		head1 = head1-&gt;next; 
+		temp-&gt;next = NULL;
+		newlist = append_node(newlist,temp);
+		}
+	while(head2!=NULL)
+	{
+		NODEPTR temp = head2;
+		head2 = head2-&gt;next; 
+		temp-&gt;next = NULL;
+		newlist = append_node(newlist,temp);
+	}
+	return newlist;  
+}       
+
+
+ int main()  
+ {  
+     NODEPTR head1,head2;  
+     NODEPTR newnode,dnode;  
+     int numnodes1,numnodes2,i;  
+     //initialize head  
+     head1 = head2 =  NULL;  
+     printf("Number of nodes in list  = ");  
+     scanf("%d",&numnodes1);       
+     for(i = 0;i&lt;numnodes1;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head1 = append_node(head1,newnode);      
+     }  
+     printf("The linked list    now is ");  
+     display_nodes(head1); 
+     head1 = merge_sort(head1); 
+     printf("Now the merged list is ");
+     display_nodes(head1);   
+           
+ }  
+</pre></div></div><div class='question'><p>27. Write a function to add a node newnd before a given node k in a doubly linked list. k is not NULL</p><button class='accordion'>Answer</button><div class='panel'>Inserting a node in the middle of doubly linked list needs modification of 4 links. <br>    k-&gt;prev-&gt;next = newnode<br>    newnode-&gt;prev = k-&gt;prev<br>    k-&gt;prev = newnode<br>    newnode-&gt;next = k<br><br>And we have to check if k-&gt;prev is not null because, if there is no previous node for k, it means k is head of list. In that case k-&gt;prev-&gt;next will crash the program.  <pre class='courier'> NODEPTR insert_before_k(NODEPTR head, NODEPTR k, NODEPTR newnode)  
+ {  
+      NODEPTR prevnode = k-&gt;prev;
+   
+      if(prevnode!=NULL)
+         prevnode-&gt;next = newnode;
+
+      newnode-&gt;prev = prevnode;
+      newnode-&gt;next = k;
+      k-&gt;prev = newnode;
+
+      if(prevnode==NULL)/*k is head*/
+        head = newnode;
+      return head; 
+ } </pre></div></div><div class='question'><p>28. Given two linked lists, write a function to return the union of these two lists.</p><button class='accordion'>Answer</button><div class='panel'>To find union, we need to copy the elements which are common to  both the lists into the resultant list. We should avoid duplicates.<br><br>So we should copy all the elements of first list. Next copy only those elements of second list which are not present in first list. <pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+NODEPTR create_node(int n);
+NODEPTR append_node(NODEPTR,NODEPTR);
+
+NODEPTR find_union(NODEPTR head1, NODEPTR head2)
+ {
+    NODEPTR head3 = NULL;
+    NODEPTR temp = head1;
+    /*copy all nodes of first list*/
+    while(temp!=NULL){
+        head3 = append_node(head3, create_node(temp-&gt;n));
+        temp = temp-&gt;next;
+    }
+    temp = head2;
+    while(temp!=NULL)
+    { 
+        NODEPTR temp1 = head3;
+        while(temp1!=NULL && temp1-&gt;n!=temp-&gt;n)
+            temp1=temp1-&gt;next;
+        if(!temp1){
+            NODEPTR newnode = create_node( temp-&gt;n);
+             head3=append_node( head3,newnode);
+        }
+        temp = temp-&gt;next;
+    }
+    return head3;
+}
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+   temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ }  
+
+ int main()  
+ {  
+     NODEPTR head1, head2;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     head1 = NULL;
+     head2 =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head1 = append_node(head1,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head1);
+     printf("Number of nodes of second list is = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head2 = append_node(head2,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head2);
+     NODEPTR head3 = find_union(head1,head2);
+     printf("The union of two lists is ");
+     display_nodes(head3);    
+ }  
+</pre></div></div><div class='question'><p>29. Write a function to remove every kth node from a circular list, until only one node is left. </p><button class='accordion'>Answer</button><div class='panel'>You should write a loop to skip k-1 nodes and then delete kth node. You should also write an outer loop to continue this process until only one node is left.<br><br>Outer loop must stop when  only one node is left. That is when head-&gt;next is head.<br><br>This problem is called Josephus problem. <pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ NODEPTR delete_nodes(NODEPTR head,int k)
+{
+    NODEPTR temp = head;
+    NODEPTR prevnode = NULL;
+    while(temp-&gt;next !=temp) 
+    {
+           int i; 
+           for(i=1;i&lt;k;i++)
+           {
+             prevnode = temp;
+             temp = temp-&gt;next;
+           }
+           if(prevnode!=NULL)
+            {
+               printf("Deleting the node %d\n",temp-&gt;n);
+               prevnode-&gt;next = prevnode-&gt;next-&gt;next;
+               free(temp);
+            }
+            temp = prevnode-&gt;next;
+      }
+      return temp;
+} 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ }  
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(head==NULL)
+      {
+        newnode-&gt;next = newnode;
+        return newnode;
+      }
+    while(temp-&gt;next !=head)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    newnode-&gt;next = head;
+    return head;  
+ } 
+ 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   if(head==NULL)
+	return;
+   do  
+   {  
+     printf("%d----&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   } while(temp!=head);
+   printf("\n");
+ }   
+ int main()  
+ {  
+     NODEPTR head; 
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head);   
+     printf("k=");
+     scanf("%d",&i);
+     head = delete_nodes(head,i);
+     printf("The node remaining is %d\n",head-&gt;n);
+ }  
+</pre></div></div><div class='question'><p>30. Given two polynomials as linked lists, return a linked list which represents the product of two polynomials.</p><button class='accordion'>Answer</button><div class='panel'>When we multiply two polynomials, each term in first polynomial is multiplied with every term in second polynomial. In the product for each term, the exponants are added together and co-effecients are multiplied. <br><br>e.g.<br>(x^2+1)  * (x^2+2x+5)<br>= x^4+x^2+2x^3+2x+5x^2+5<br><br>But in the resultant polynomial there may be multiple terms with same exponent in the product and we need to simplify them.<br><br>e.g.    x^4+x^2+2x^3+2x+5x^2+5 =<br>x^4+2x^3+6x^2+2x+5<br><br>So we search in the resultant list for a term with given exponent. If found we add the co-effecient to this term. If not found, we create a new node with this exponent. <br><pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int coeff;
+   int exponent;
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+ NODEPTR multiply_polynomials(NODEPTR head1, NODEPTR head2)
+ {
+    NODEPTR head3 = NULL;/*result list*/
+    while(head1!=NULL)
+    {
+        NODEPTR temp = head2;
+        while(temp!=NULL)
+        {
+	 int coeff=temp-&gt;coeff*head1-&gt;coeff;
+                 int exponent = temp-&gt;exponent+head1-&gt;exponent;
+            	NODEPTR nd2 = NULL;
+                if(head3!=NULL)  nd2 =  term_with_exp(head3,exponent);
+                /*find the term with exponent in the resultant list*/
+                if(nd2==NULL){
+                  NODEPTR nd = create_node(coeff,exponent);
+                  head3 = append_node(head3,nd); 
+                }
+               else
+               {
+                  nd2-&gt;coeff +=coeff;
+               }            
+            temp = temp-&gt;next;
+        }
+        head1 = head1-&gt;next;
+     }
+     return head3;  
+}
+ NODEPTR create_node(int c1,int e1)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;coeff = c1; 
+   temp-&gt;exponent = e1; 
+   return temp;  
+ } 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    newnode-&gt;next = NULL;
+    return head;  
+ } 
+ 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   while (temp!= NULL)  
+   {  
+     printf("+");
+     if(temp-&gt;exponent&gt;0)
+         printf("%dX^%d  ",temp-&gt;coeff,temp-&gt;exponent);  
+     else 
+         printf("%d",temp-&gt;coeff);
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+ 
+ NODEPTR term_with_exp(NODEPTR head,int exponent)
+ {
+      while(head!=NULL)
+      {
+        if(head-&gt;exponent==exponent) 
+            return head;
+        head = head-&gt;next;
+      }
+      return NULL;
+}
+
+ 
+ int main()  
+ {  
+     NODEPTR head,head2; 
+     NODEPTR prodlist = NULL; 
+     NODEPTR newnode,dnode;  
+     int numnodes,i;   
+     head =  head2 = NULL;  
+     printf("Number of terms in first polynomial = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int c1,e1;  
+       NODEPTR newnode;  
+       printf("node coeff and node exponent=");  
+       scanf("%d %d",&c1,&e1);  
+       newnode = create_node(c1,e1);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The first polynomial is ");
+     display_nodes(head);
+     printf("Number of terms in second polynomial = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int c1,e1;  
+       NODEPTR newnode;  
+       printf("node coeff and node exponent=");  
+       scanf("%d %d",&c1,&e1);  
+       newnode = create_node(c1,e1);  
+       head2 = append_node(head2,newnode);      
+     }  
+     printf("The second polynomial is ");
+     display_nodes(head2);
+     printf("The product  is ");  
+   
+     prodlist = multiply_polynomials(head,head2);
+     display_nodes(prodlist);           
+ }  
+</pre></div></div><div class='question'><p>31. Write a function to append a node to a singly linked list</p><button class='accordion'>Answer</button><div class='panel'>We need to traverse till last node of the list. Then last node must be linked to new node. <br><br>Also note that the function needs to return pointer to first node (head) because if the list is empty, then the newnode will become head of the list.<br><br>The caller should use a statement like<br>head = append(head,10);<br><pre class='courier'>struct node *append(struct node *head,int num)
+{
+     /*create a node*/
+     struct node *newnode = malloc(sizeof(struct node));
+     newnode-&gt;val = num;
+     newnode-&gt;next = NULL;
+
+     struct node *temp = head;
+    /*find last node*/
+     while(temp!=NULL && temp-&gt;next!=NULL)
+        temp = temp-&gt;next;
+     if(head==NULL)/*empty list*/
+         return newnode;
+     /*link last node to newnode*/
+     temp-&gt;next = newnode;
+     return head;
+}
+
+/***call it like this****/
+int main()
+{
+    ----
+    head = append_node(head,24);
+   ----
+}</pre></div></div><div class='question'><p>32. Write a function to delete a node with a value v from a singly linked list.</p><button class='accordion'>Answer</button><div class='panel'>We have to traverse the list searching for the value. Once value is found, we should link its previous node to next node so that the node is now detached. <br><br>Next we have to release memory. <br><br>If the node to be deleted is head, then we have to modify head and set it as second node.<br><br>The complexity of operation is O(n)<pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+ 
+ NODEPTR delete_node(NODEPTR head, int val)
+ {
+     NODEPTR temp  = head;
+     NODEPTR prev = NULL;
+     if(head-&gt;n==val)
+    {/*deleting first node*/   
+         head = head-&gt;next;
+         free(temp);  
+     }
+    else{
+        while (temp !=NULL && temp-&gt;n!=val)
+        {/*travese till you find value*/
+            prev = temp;
+            temp = temp-&gt;next;
+         } 
+         if(temp!=NULL )
+        { 
+           prev-&gt;next = temp-&gt;next;
+           free(temp);
+         }
+        else
+          printf("Value not found\n"); 
+    }
+    return head;
+ } 
+
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ 
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+  
+ void display_nodes(NODEPTR temp)  
+ {   
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ }  
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head); 
+     printf("Enter the node to be deleted:");
+     scanf("%d",&i);
+     head = delete_node(head,i);
+     printf("Now the list is ");
+     display_nodes(head);   
+ }  
+</pre></div></div><div class='question'><p>33. Write a function to delete all the occurances of a given value in a linked list.</p><button class='accordion'>Answer</button><div class='panel'>Here  in a loop we delete nodes of given value and break the loop when value is not found.<br><br>We are using a helper function find_node() which searches for the value and returns the node if found, returns NULL if not found. The function also gives as previous node as a pointer parameter. This will be useful in deleting the node. <pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;   
+NODEPTR find_node(NODEPTR head,int val,NODEPTR *prevnode);
+NODEPTR del_all_nodes(NODEPTR head,int val)
+{   
+    NODEPTR temp = head; 
+    while(head!=NULL)
+    {
+       NODEPTR prevnode,dnode;
+       dnode = find_node(temp,val,&prevnode);
+       if(dnode!=NULL)
+       {
+         temp = dnode-&gt;next;/*store this*/
+         if(prevnode==NULL)/*head to be deleted*/
+         { head =head-&gt;next;
+           free(dnode);
+         }
+         else
+         {
+           prevnode-&gt;next = dnode-&gt;next;
+           free(dnode);
+         }          
+       }
+       else break;
+     }
+     return head;
+} 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+   temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ 
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+         return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+  
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+NODEPTR find_node(NODEPTR head,int val,NODEPTR *prevnode)
+{
+    *prevnode = NULL;
+    while(head!=NULL)
+    {
+        if(head-&gt;n==val)
+            return head;
+        *prevnode = head;
+        head = head-&gt;next;
+    }
+    return NULL;
+}
+ 
+
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;  
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head); 
+     printf("Enter the value to be deleted:");
+     scanf("%d",&i);
+     head = del_all_nodes(head,i);
+     printf("Now the list is ");
+     display_nodes(head);               
+ }  
+</pre></div></div><div class='question'><p>34. Write a function to split a singly linked list into two halves.</p><button class='accordion'>Answer</button><div class='panel'>The function finds the midpoint using the two pointer method. <br><br>Two pointers are used for traversing. First pointer moves one node at a time. Second pointer moves two nodes at a time. When second pointer has reached end of list, first pointer is at midpoint.<br><br>After finding midpoint, the program splits the first half by detaching the node before midpoint and returning midpoint node as second list. <br><br>The same algorithm is used for finding the middle of linked list. <br><br>And is used to know if there is a loopback in the linked list. If there is a loopback, then slow pointer becomes equal to fast pointer. <pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+ NODEPTR create_node(int value);   
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode);  
+ void display_nodes(NODEPTR head);  
+NODEPTR split_list(NODEPTR head)
+{
+    NODEPTR slow,fast;
+    slow =head; 
+    fast = head;
+    if(head==NULL || head-&gt;next==NULL)     
+       return head;
+    NODEPTR temp;
+    while(fast!=NULL)         
+    {       
+        fast = fast-&gt;next;        
+        if(fast!=NULL){
+           temp = slow;
+           fast = fast-&gt;next;
+           slow = slow-&gt;next;
+        }           
+     }     
+     temp-&gt;next  = NULL;
+     return slow;
+}
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ }  
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+  
+
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ }    
+
+
+ int main()  
+ {  
+     NODEPTR head,head2;   
+     int numnodes,i;  
+     //initialize head  
+     head =  NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);  
+     
+     for(i = 0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);  
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }  
+     printf("The linked list now is ");  
+     display_nodes(head);   
+     head2 = split_list(head);
+     printf("The listsare ");
+     display_nodes(head);
+     printf("\n");
+     display_nodes(head2);
+ }  
+</pre></div></div><div class='question'><p>35. Given a linked list , swap alternate nodes of linked list . For eq: 1 2 3 4 will become 2 1 4 3 and 1 2 3 4 5 6 will become 2 1 4 3 6 5 </p><button class='accordion'>Answer</button><div class='panel'>We have to swap the links of two adjacent nodes. <pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+  NODEPTR swap_nodes(NODEPTR head)
+{
+    NODEPTR prevnode = NULL; 
+    NODEPTR temp = head-&gt;next;
+    head-&gt;next = temp-&gt;next;
+    temp-&gt;next = head;
+    head = temp;
+    temp = head-&gt;next-&gt;next;
+    prevnode = head-&gt;next;
+    
+    while(temp!=NULL)
+    {
+	 NODEPTR p1,p2;
+         p1 = temp;
+         p2 = p1-&gt;next;
+         if(p2!=NULL){
+            if(prevnode!=NULL)
+               prevnode-&gt;next = p2;
+            else
+               head = p2;
+            p1-&gt;next = p2-&gt;next;
+            p2-&gt;next = p1;         
+         }
+         prevnode= temp;
+         temp = temp-&gt;next; 
+     }
+     return head;
+}
+ 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+
+  
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ } 
+
+ 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d====&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+
+
+ 
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR newnode,dnode;   
+     //initialize head  
+     head =  NULL;   
+     while(1){
+       int value;  
+       NODEPTR newnode;  
+       printf("node value (-1 to stop)=");  
+       scanf("%d",&value); 
+       if(value==-1) 
+	  break; 
+       newnode = create_node(value);  
+       head = append_node(head,newnode);      
+     }
+     printf("The linked list  is ");  
+     display_nodes(head);
+     head = swap_nodes(head);
+     printf("The linked list after swapping is ");  
+     display_nodes(head);           
+ }  
+</pre></div></div><div class='question'><p>36. Write a function to find the node where two lists merge.</p><button class='accordion'>Answer</button><div class='panel'>Merge point is the node where the two lists combine. From merge point, the nodes(addresses - not values) will be common for both nodes. <br>  8--9--12--13--<br>                       \--18--19--89<br>        6--9--29-/<br><br>Here 18 is the merge point of the two lists. <br>In this solution,<br>    a) Find the lengths of lists<br>    b) Skip the elements from the longer list till  both have equal number of nodes.<br>    c) Traverse lists parallely until they have a common node (with same address, not only value)<br><br>Say, first list has 10 elements and second list has 4 elements. From the first list, 6 nodes are traversed. Next list1 and list2 are traversed parallely one node at a time. Adresses of these nodes are compared. When they are equal, we have found our merge point.<br><br>For the sake of testing, we can create merged lists by pointing last node of list2 point to 3rd(or any other number) node of list1.  The code for this creation is not shown here. <pre class='courier'>int find_length(NODEPTR head)
+{
+   int c =0;
+   while(head)
+   {
+      c++;
+      head = head-&gt;next;
+   }
+   return c;
+}
+
+NODEPTR skip_nodes(NODEPTR head, int num)
+{
+    while(num)
+    {
+       head = head-&gt;next;
+       num--;
+    }
+    return head;
+}
+
+NODEPTR find_merge_point(NODEPTR l1,NODEPTR l2)
+{
+    int len1 = find_length(l1);
+    int len2 = find_length(l2);
+    if(len1&gt;len2)
+    {
+       l1 = skip_nodes(l1,len1-len2);
+    }else{
+       l2 = skip_nodes(l2,len2-len1);
+    }
+    while(l1 && l2)
+    {
+        if(l1==l2)
+            return l1;
+         l1=l1-&gt;next;
+         l2 = l2-&gt;next;
+    }
+    return NULL;
+}</pre></div></div><div class='question'><p>37. Write a function to delete all the nodes of linked list and release memory used by them</p><button class='accordion'>Answer</button><div class='panel'>If you say the answer <br>   head = NULL<br>you are wrong. <br>You have set list to NULL, but what happens to all the nodes you have allocated memory? They do remain in the program and will cause memory leakage.  So we have to free the memory allocated to every node.<br><br>So this is what we should do. First node is deleted and freed. The pointer is moved to next node (before deleting first node :)) and that is deleted and so on.<br><br>The process is repeated in a loop until we reach end of the list.<pre class='courier'> NODEPTR delete_list ( NODEPTR head)
+ {
+     while(head)
+     {
+          NODEPTR temp  = head;
+          head = head-&gt;next;
+          free(temp);
+      }
+     return head;
+ }</pre></div></div><div class='question'><p>38. Write a program to delete the nth item from end of a singly linked list</p><button class='accordion'>Answer</button><div class='panel'>Here we need to find kth node from end recursively and delete it. <br><br>To avoid traversing again for finding previous node of kth node, we can use previous node as a pointer parameter to function.<br><br>The algorithm to find kth node from end of list (and its previous node) is as follows <br><br>We use a static variable n.<br>         1) We call function recursively. when we reach end of list we  set n to 0<br>         2) As each stack frame is popped out, n is incremented. <br>         3) When n becomes equal to k, it is the kth node from end of list and we return it <br>         4) When the next stack frame is encountered (in the next call) n becomes k+1, and we have found our previous node of kth node and we set our reference parameter prevnode to this. <br>         5) In subsequent function returns, we return the same kth node.  <pre class='courier'> #include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int value;  
+   struct node *next;   
+ };  
+ typedef struct node * NODEPTR;  
+
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+    temp-&gt;next = NULL;  
+   temp-&gt;value = value;  
+   return temp;  
+ } 
+
+ NODEPTR append_node(NODEPTR head, NODEPTR newnode)  
+ {  
+    NODEPTR temp = head;
+    if(temp==NULL)
+      return newnode;
+    while(temp-&gt;next !=NULL)
+	temp = temp-&gt;next;
+    temp-&gt;next = newnode;
+    return head;  
+ }  
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head;//redundant 
+   while (temp!= NULL)  
+   {  
+     printf("%d -----",temp-&gt;value);  
+     temp = temp-&gt;next;  
+   }  
+   printf("\n");
+ } 
+ NODEPTR create_list(int numnodes)
+ {
+   NODEPTR head = NULL;
+   while(numnodes--)
+  {
+      int value;  
+      NODEPTR newnode;  
+      printf("node value=");  
+      scanf("%d",&value);  
+      newnode = create_node(value);  
+      head = append_node(head,newnode);   
+    }
+     return head;
+} 
+
+NODEPTR find_kth_node(NODEPTR nd,NODEPTR *prevnd,int k)
+{
+    static int n=0;
+    static int reachedEnd = 0;
+    if(nd !=NULL )
+    {  
+        NODEPTR temp = find_kth_node(nd-&gt;next,prevnd,k);
+        /*recursive call*/
+        if(reachedEnd)        
+	    n++;
+        if(k==n)
+           return nd;
+        if(n==k+1)
+         /*previous of kth node*/
+            *prevnd = nd;
+        if(n&lt;k)
+            return NULL;
+        return temp; 
+    }
+    else
+        reachedEnd=1;
+}
+ 
+NODEPTR delfirstnode(NODEPTR head)
+{
+	NODEPTR temp = head;
+	head = head-&gt;next;
+	free(temp);
+	return head;
+}
+NODEPTR delete_node(NODEPTR dnode,NODEPTR prev)
+{
+	prev-&gt;next = dnode-&gt;next;
+	free(dnode);
+}
+ int main()  
+ {  
+     NODEPTR head;  
+     NODEPTR delnode,prevnode;  
+     int numnodes,i;  
+     prevnode = NULL;
+     printf("Enter number of nodes:");
+     scanf("%d",&numnodes);
+     head = create_list(numnodes);
+     printf("k=");
+     scanf("%d",&i);
+     delnode = find_kth_node(head,&prevnode,i);
+     if(delnode!=NULL)
+    {
+         if(prevnode)
+             printf("kth node is %d prevnode is %d\n",delnode-&gt;value,prevnode-&gt;value);
+         if(prevnode==NULL)
+              head = delfirstnode(head);
+         else
+              delete_node(delnode,prevnode);         
+         display_nodes(head);
+      }
+     else
+         printf("There are not %d nodes in the list",i);
+}
+    
+     </pre></div></div><div class='question'><p>39. Write a function to print the frequency of a given number in a linked list. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> int frequency(NODEPTR head, int num)
+ {
+   int c =0;  
+   while(head)  
+  { 
+      if(head-&gt;val==num)
+         c++;
+      head = head-&gt;next;
+   }
+   return c;
+}</pre></div></div><div class='question'><p>40. Write a program to add a new node to the front of doubly linked list and to append a node to list.</p><button class='accordion'>Answer</button><div class='panel'>When we add a node before the head, these three things should happen<br>    1) prev link of head should be newnode<br>    2) next link of newnode should be head<br>    3) head should be set to newnode<br><br>When we append a node to doubly linked list<br>    a)If list is empty return newnode<br>    b)Find last node of DLL - this step is not needed if you maintain tail of list. <br>    c)lastnode-&gt;next = newnode<br>    d)newnode-&gt;prev = lastnode<br>    e) tail = newnode<br>   <pre class='courier'>#include&lt;stdio.h&gt;  
+#include&lt;stdlib.h&gt;
+ struct node  
+ {  
+   int n;  
+   struct node *next;  
+   struct node *prev;  
+ };  
+ typedef struct node * NODEPTR;  
+ NODEPTR create_node(int value);   
+ void display_nodes(NODEPTR head);   
+
+ NODEPTR insert_before_head(NODEPTR head, NODEPTR newnode)  
+ {  
+    newnode-&gt;next = head;  
+    if(head!=NULL)  
+    {  
+      head-&gt;prev = newnode;  
+    }  
+    head = newnode;  
+    return head;  
+ } 
+ NODEPTR create_node(int value)  
+ {  
+   NODEPTR temp = (NODEPTR) malloc(sizeof(struct node));  
+   temp-&gt;prev = temp-&gt;next = NULL;  
+   temp-&gt;n = value;  
+   return temp;  
+ } 
+ void display_nodes(NODEPTR head)  
+ {  
+   NODEPTR temp = head; 
+   while (temp!= NULL)  
+   {  
+     printf("%d--&gt;",temp-&gt;n);  
+     temp = temp-&gt;next;  
+   }  
+ }  
+ void display_reverse(NODEPTR tail)  
+ {  
+   NODEPTR temp = tail; 
+   while (temp!= NULL)  
+   {  
+     printf("%d--&gt;",temp-&gt;n);  
+     temp = temp-&gt;prev;  
+   }  
+ }  
+NODEPTR append(NODEPTR tail,int val)
+{
+   NODEPTR newnode = create_node(val);
+   if(tail == NULL)/*list is emptyt*/
+      return newnode;
+   
+   tail-&gt;next = newnode;
+   newnode-&gt;prev = tail;
+   tail = newnode;
+   return tail;
+} 
+
+ int main()  
+ {  
+     NODEPTR head,tail;  
+     NODEPTR newnode;  
+     int numnodes,i;  
+     //initialize head and tail. 
+     head = tail = NULL;  
+     printf("Number of nodes = ");  
+     scanf("%d",&numnodes);      
+     for( i=0;i&lt;numnodes;i++)  
+     {  
+       int value;  
+       NODEPTR newnode;  
+       printf("node value=");  
+       scanf("%d",&value);   
+       tail = append(tail,value);
+       if(head==NULL)  
+       {  
+          head = tail;
+       }  
+     }   
+     printf("Value to be inserted before head");
+     scanf("%d",&i);
+     head = insert_before_head(head,create_node(i));    
+     printf("The doubly linked list is ");  
+     display_nodes(head); 
+     printf("In reverse");
+     display_reverse(tail);      
+ }  
+</pre></div></div><div class='question'><p>41. Describe linked list data structure.</p><button class='accordion'>Answer</button><div class='panel'>A linked list is a linear data structure to which elements are linked to each other. To such a list elements can be added and removed at run time. The elements of linked list are called nodes. Each node will have data and link. Link will be a pointer to structure. This link points to the next node in the list. Hence the name.<br><br>The nodes are dynamically allocated at run time. And are freed up when not needed. <br><br>Each node of a list points to next node (its  pointer has address of next node). The last node points to NULL.<br><br>Linked list are defined in C using a self referential structure.<br>e.g<br>    struct node<br>    {<br>        float num;<br>        struct node *next;<br>    };<br><br>The starting node of a linked list is called head. <br><br>Doubly linked list and circular list<br><br>If each node has two pointers, one to next node and other to previous node, it is called a doubly linke list. Insertion and deletion are simpler for DLL. A DLL can have a head as well as a tail - last node. <br><br>If last node points back to first node, it is called circular linked list. <br><pre class='courier'></pre></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
