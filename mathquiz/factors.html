@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<title>Number Game</title>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<style type="text/css">
+ 
+.question{  
+    font-size: 18px;
+}
+button{
+    font-size: 14px;
+    background-color: #689;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+}
+.grid{
+    width: 50%;
+    margin:30px auto;
+    background-color: #ccc;
+   
+    padding-left:25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    box-shadow: 3px 3px 3px 3px #eee;
+}
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 30px; 
+   padding: 50px;
+}
+</style>
+</head>
+
+<body>
+ <h2 align="center">Maths worksheet - Factors</h2>
+ <div align = "center">
+ Maximum Number:<input   id="range" value="100">
+ <button onclick="generateQuestions()">Generate Questions</button>
+ <button onclick="showAnswers()">Show Answers</button>
+</div>
+ <div class="grid" style="display:none;">
+ <p id="questions"></p>
+ </div>
+ <script type="text/javascript">
+    function generateQuestions(){ 
+     var inputrange = document.getElementById("range")
+        var range = inputrange.value
+          var grid = document.getElementsByClassName("grid")
+          grid[0].style.display = "block"       
+           var str = ""
+			for(i=0;i<20;i++){
+				var num = generateRandomNumber(range)
+				var question = "Write the factors of "+num+" . "
+				str = str +"<p class='question'>"+question+"</p>"
+				var factorString = findFactors(num)
+				str = str+"<p class='hiddenFactors' style='display:none;'>"+factorString+"</p>"
+				str = str+"<hr>"
+			}   
+			var element = document.getElementById("questions")
+			element.innerHTML = str  
+    }
+      function generateRandomNumber(limit){
+		var n = Math.floor(Math.random()*limit)+10
+		return n    
+    }
+    function findFactors (num) {
+        var str = ""
+	     for(j=1;j<=num;j++){
+				if(num%j==0){
+				   if(str!=""){
+						str = str+","
+				   }
+				   str = str+j  
+				   }
+	     }
+	     return str
+    }
+    function showAnswers(){
+         var arr = document.getElementsByClassName('hiddenFactors')
+         for(i=0;i<arr.length;i++){
+         	var element = arr[i]
+         	element.style.display="block"
+         }
+			    
+    }
+ </script>
+ 
+ 
+</body>
+</html>

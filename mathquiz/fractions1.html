@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<title>Number Game</title>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<style type="text/css">
+ 
+.question{  
+    font-size: 18px;
+}
+button{
+    font-size: 14px;
+    background-color: #689;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+}
+.grid{
+    width: 50%;
+    margin:30px auto;
+    background-color: #ccc;
+    text-align: center;
+    padding-left:25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    box-shadow: 3px 3px 3px 3px #eee;
+}
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 30px; 
+   padding: 50px;
+}
+</style>
+</head>
+
+<body>
+ <h2 align="center">Fractions worksheet - I</h2>
+ <div align = "center">
+ <button onclick="generateQuestions()">Generate Questions</button>
+ <button onclick="showAnswers()">Show Answers</button>
+</div>
+ <div class="grid" style="display:none;">
+ <p id="questions"></p>
+ </div>
+ <script type="text/javascript">
+    function generateQuestions(){ 
+          var grid = document.getElementsByClassName("grid")
+          grid[0].style.display = "block"       
+           var str = ""
+			for(i=0;i<20;i++){
+				var denr1 = generateRandomNumber(10)
+				if(denr1<=1)
+				   denr1 = 2+generateRandomNumber(7)
+				var numr1 = generateRandomNumber(denr1) 
+				if(numr1==0)
+				   numr1 = 1
+				var fraction1 = "<sup>"+numr1+"</sup>&frasl;"+"<sub>"+denr1+"</sub>"
+				
+				var denr2 = generateRandomNumber(10)
+				if(denr2<=1)
+				   denr2 = 3+generateRandomNumber(7)
+				var numr2 = generateRandomNumber(denr2)
+				if(numr2==0)
+				   numr2 = 1
+				var fraction2 ="<sup>"+ numr2+"</sup>&frasl;"+"<sub>"+denr2+"</sub>"
+				
+			var answer= findAnswer(numr1,numr2,denr1,denr2)
+			var ha = "<span class='hiddenFactors' style='display:none;'>"+answer+"</span>"
+		 
+				var question = fraction1+"&nbsp;&nbsp;&nbsp;   "+ha+"&nbsp;&nbsp;&nbsp;  "+fraction2
+				str = str +"<p class='question'>"+question+"</p>"			
+				
+				str = str+"<br>"
+			}   
+			var element = document.getElementById("questions")
+			element.innerHTML = "<h3>Write &lt; or &gt; or = between these fractions</h3>"+str  
+    }
+      function generateRandomNumber(limit){
+		var n = Math.floor(Math.random()*limit)
+		if(n==0){
+		 n = Math.floor(Math.random()*limit)
+		}
+		return n    
+    }
+    function findAnswer(nr1,dr1,nr2,dr2){
+			var fr1 = nr1/dr1
+			var fr2 = nr2/dr2
+			if(Math.abs(fr1-fr2)<0.0000001){
+			  return "  =  "			
+			}    
+			if(fr1<fr2)
+			    return "  &lt;  "
+			else {
+				return "  &gt;  "
+			}    
+    }
+    function showAnswers(){
+         var arr = document.getElementsByClassName('hiddenFactors')
+         for(i=0;i<arr.length;i++){
+         	var element = arr[i]
+         	element.style.display="inline"
+         }
+			    
+    }
+ </script>
+ 
+ 
+</body>
+</html>
