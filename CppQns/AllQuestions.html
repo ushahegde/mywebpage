@@ -1,6 +1,15 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}
+<html><head><meta charset='utf-8' /><title></title>
+<style>
+.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}
 .heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; box-shadow:2px 2px #eee; }
-.question{font-family:'roboto',sans-serif; margin-left:160px;margin:30px;padding:30px;background-color:#fafafa;}
+.question{font-family:'roboto';
+ margin-left:160px;margin:30px;padding:30px;background-color:#fafafa; 
+ }
+ @media (min-width:900px){
+   .question{
+			font-size: 30px;
+   }
+ }
 .sidenav {
   width: 150px;
   position: fixed;
@@ -12,16 +21,16 @@
   background-color:#eee; 
   overflow-x: hidden;
   font-size:14px; 
-  padding: 8px 4px 8px 4px; 
-  line-height: 150%;
-  font-family: 'roboto',sans-serif;
+  padding: 8px 4px 8px 4px;  
+  font-family: 'roboto'; 
   box-shadow: 2px 2px #ccc;
 
 }
 
 h2{
    padding: 10px;
-   font-family: 'roboto',sans-serif;
+   font-family: 'roboto';
+   color:#228899;
    text-align: center;
    
 }
@@ -29,6 +38,9 @@ h2{
     margin-left: 200px;
   
     
+}
+a{
+	line-height:200%;
 }
 
 </style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  >
