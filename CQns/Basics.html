@@ -1,735 +1,1 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Basics Questions </h1><div class='main'><div class='question'>1. WAP to print numbers from 1 to 100 in such a way that, print "fizz" if number is divisible by 2, print "buzz" if it is divisible by 3 and   print "fizzbuzz" if it it is divisible by both and print the number itself if it is divisbile by neither. </p><button class='accordion'>Answer</button><div class='panel'><p >#include&lt;stdio.h&gt;<br>int main()<br>{<br>   int i;<br>   for(i=1;i&lt;100;i++)<br>   {<br>     if(i%3 && i%2)<br>        printf("%d ",i);<br>    else{<br>      if(i%2==0) printf("Fizz");<br>      if(i%3==0) printf("Buzz");<br>    }<br><br>       printf("\t");<br>    }<br>    return 0;<br>} </p></div></div> <div class='question'>2. What does the following function do?
-
-int func(int num)
-{
-    int count = 0;
-    while (num)    
-   {        
-        count++;        
-        num &gt;&gt;= 1;    
-    }
-    return  count ;
-} </p><button class='accordion'>Answer</button><div class='panel'><p >Returns total numbers of bits in a given number excluding leading zeroes<br><br>e.g. if the number is 7- that is binary 111, then output is 3 and if the number is 16 - binary 10000, output is 5<br><br>It right shifts the number by 1 bit each time, until the number becomes 0. So, 111 becomes 11 in first iteration, becomes 1 in second iteration and 0 in third iteration. So count is 3<br></p></div></div> <div class='question'>3. A 2-sum is the sum of a list of numbers, but every number that's next to a 2 is counted twice. Given a list of numbers, write  a program print out their 2-sum.
-
-For example, when given 1 2 3 4 as input, sum is 14, because  1 and 3 which are next to 2, are added twice.
- 1+1+2+3+3+4 = 14</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-
-int twos_sum(int *arr,int sz);
-int main()
-{
-   int arr[20];
-   int len,sum;
-   int i=0;
-   int num=0;
-   do
-   {
-      printf("Enter number - 0 to terminate:");
-      scanf("%d",&num);
-      if(num!=0)
-        arr[i++] = num;
-    }while (num!=0);
-    len = i;
-    sum = twos_sum(arr,len);
-    printf("The two's sum is %d\n",sum);
-    return 0;
-}
-
-int twos_sum(int *arr,int sz)
-{
-    int i=0;
-    int sum=0;
-    for(i=0;i&lt;sz;i++)
-      {
-         sum +=arr[i];
-         if(arr[i]==2)
-         {
-             if( i-1 &gt;=0)
-                 sum+=arr[i-1];
-             if( i+1 &lt;sz)
-                 sum+=arr[i+1];
-          }
-      }
-   return sum;
-}</pre></div></div> <div class='question'>4. What is the difference between ++a and a++? (pre-increment and post-increment operator)</p><button class='accordion'>Answer</button><div class='panel'><p >In ++a or preincrement operator, variable a is first incremented and this incremented value is used in the expression.<br><br>Where as in a++, first variable is used and then it is incremented.<br><br>e.g.<br>m = a+++b;<br>is equivalent to<br>m = a+b;<br>a = a+1; in that order<br><br>whereas<br>m= ++a+b;<br>is equivalent to<br><br>a = a+1<br>m = a+b in that order<br><br>Let us look at another example.<br><br>     b = a++;<br>     or <br>    b =++a;<br><br>If a is 10, after "b = a++;", b will be 10 only and then a becomes 11. That is to say, first b is assigned to a and then a is incremented. <br><br>But after "b=++a;", a will be incremented to 11, then b is set to 11. Here first a is incremented and then b is assigned to a.</p></div></div> <div class='question'>5. Write C  statement/s to print larger of two numbers without using if statement</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>printf("Larger number is %d",a&gt;b?a:b);</pre></div></div> <div class='question'>6. What is wrong with this statement
-double pi = 22/7;</p><button class='accordion'>Answer</button><div class='panel'><p >In the initialization, 22/7 uses integer arithmetic because both operands are integers. So 22/7 is truncated to 3, then it is type-cast to double. So pi value becomes 3.0 instead of 3.14.<br><br>The correct statement should be <br><br>double pi = 22.0/7;<br><br>If one of the operands is non-integer, then program uses real arithmetic.<br><br>Another way of avoiding such problems is to use  type casting for one of the operands.<br><br>double pi = (double)22/7;<br>Here 22 is converted to double - 22.0. And real arithmetic takes place and gives correct answer.</p></div></div> <div class='question'>7. Find the bug in this program
-
-#include&lt;stdio.h&gt;
-int main()
-{
-   double num;
-   printf("enter a double number :");
-   scanf("%f",&num);
-   printf("the number you just entered is %f\n",num);
-   return 0;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >scanf("%f",&num); should be replaced by<br><br>scanf("%lf",&num);<br><br>For scanf function, format specifier for double variable should be "%lf" not %f. <br><br>If you use a wrong format specifier, there won't be any syntax error. But program takes some garbage value as input.<br><br>There is a confusion regarding format specifiere of double data type because for printf function, format specifier for double is %f</p></div></div> <div class='question'>8. How do you assign a float value 12 to a float variable m?</p><button class='accordion'>Answer</button><div class='panel'><p >float m = 12.0f;<br><br>is the correct method.<br><br>By default a non-integer constant is double. So 12.0 is a double value, not a float value. You should use suffix "f" to make a real constant as float constant.<br><br>But the program works fine, even if we use "m=12.0", as the compiler implicitly converts this double constant to float constant.</p></div></div> <div class='question'>9. Write code to swap two variables without using third variable and using exor (^)  operator</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>a = a^b;
-b = b^a;
-a = a^b;</pre></div></div> <div class='question'>10. A statement is written to print whether the number is odd or even. Is it correct?
-
-if(n&1) printf("%d is odd",n);
-else printf("%d is even", n);</p><button class='accordion'>Answer</button><div class='panel'><p >It is correct</p></div></div> <div class='question'>11. Output of the following program
-
-#include&lt;stdio.h&gt;
-int main()
-{
-    char ch;
-    if(ch = printf(""))
-        printf("It matters\n");
-    else
-        printf("It doesn't matters\n");
-    return 0;
-}
-</p><button class='accordion'>Answer</button><div class='panel'><p >Output : It doesn't matter</p></div></div> <div class='question'>12. What is the output of the following program?
-
-#include&lt;stdio.h&gt;
-int main()
-{
-    int x = 10, y = 20;
-    if(!(!x) && x)
-         printf("x = %d\n", x);
-    else
-         printf("y = %d\n", y);
-    return 0;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Output : x is 10</p></div></div> <div class='question'>13. Write a program to find second largest number of an array using one iteration</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int second_largest(int arr[],int n);
-int main()
-{
-    int arr[10];
-    int i,la;
-    for(i=0;i&lt;10;i++)
-      scanf("%d",&arr[i]);
-    la = second_largest(arr,10);
-    printf("Second largest element of the array is %d\n",la);
-    return 0;
-}
-
-int second_largest(int *arr,int n)
-{
-   int lar,sec_lar=0;int i;
-   lar = sec_lar= arr[0];arr++;
-   for(i=1;i&lt;n;i++,arr++)
-   {
-     if(*arr&gt;lar)
-     {
-         sec_lar = lar;
-         lar = *arr;
-      }
-      else if(*arr&lt;lar && *arr&gt;sec_lar)
-      {
-           sec_lar = *arr;
-      }
-    }
-    return sec_lar;
-}   
-</pre></div></div> <div class='question'>14. What will be the output of the following C program segment?
-
-char inchar = 'A';
-switch (inchar)
-{
-case 'A' :printf ("choice A \n") ;
-case 'B' :printf ("choice B ") ;
-case 'C' :
-case 'D' :
-case 'E' :
-default:printf ("No Choice") ;
-} </p><button class='accordion'>Answer</button><div class='panel'><p >choice A<br>choice B No choice</p></div></div> <div class='question'>15. What does this printf statement print? Assume that size of int is 4 bytes.
-
-printf("%d %d %d %d",sizeof(2),sizeof(2.0),sizeof('2'),sizeof("2"));</p><button class='accordion'>Answer</button><div class='panel'><p >Output : 4 8 4 2</p></div></div> <div class='question'>16. Explain the terms lvalue and rvalue with examples.</p><button class='accordion'>Answer</button><div class='panel'><p >lvalue is something which has an address associated with it. Literally lvalue is something which can be used in LHS of an assignment statement. <br><br>In an assignment statement, RHS is evaluated and its value is stored in the address of LHS variable. So if we say 2 = a, we can not store value of a in 2. <br><br>All variables are lvalues.<br><br>rvalue (right hand side value) is a temporary result of an expression, hence has no memory location for it.<br><br>int a;<br>a = 4;//a is an lvalue<br>a+5=7; //error. a+5 is not an lvalue.<br><br>Remember that rvalues can NEVER be used on LHS of a assignment statement.</p></div></div> <div class='question'>17. What is an entry controlled loop and an exit controlled loop?</p><button class='accordion'>Answer</button><div class='panel'><p >Entry controlled loop is when condition is tested before body of the loop is executed.  Exit controlled loop is when condition is tested after body of the loop is executed.<br><br>Both for and while loops are entry controlled where as do--while is an exit controlled loop.<br><br>when <br>for(i=0;i&lt;10;i++) <br>       printf("%d",i);<br><br> is executed, the condition i&lt;10 is tested. If only this contion is true, then printf() statement is executed. If it is false, the loop is terminated.<br><br>Similarly <br>     while(a&lt;5)  <br>         printf("%d",a++);<br> checks condition  a&lt;5 first before entering into the loop.<br><br>In <br>        do <br>           printf("%d",a++); <br>      while(a&lt;5); <br><br>first printf() is executed and then condition is tested.<br><br>The advantage of exit controlled loop - do -while loop  - is the body of the loop is executed at least one.  </p></div></div> <div class='question'>18. Write a function to set kth bit of a number.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int set_bit(int n,int k);
-int main()
-{
-   int num,k;
-   printf("Number:");
-   scanf("%d",&num);
-   printf("k:");
-   scanf("%d",&k);
-   num = set_bit(num,k);
-   printf("After setting %dth bit number is %d\n",k,num);
-   return 0;
-}
-
-/* function sets kth bit from LSB*/
-int set_bit(int num,int k)
-{
-    int temp = 1;
-    temp = temp&lt;&lt;k;
-    num = num | temp;
-    return num;
-}</pre></div></div> <div class='question'>19. Write a function to flip kth bit of a number. If bit is set, it should be cleared and if it is clear, it should be set. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int flip_bit(int n,int k);
-int main()
-{
-   int num,k;
-   printf("Number:");
-   scanf("%d",&num);
-   printf("k:");
-   scanf("%d",&k);
-   num = flip_bit(num,k);
-   printf("After flipping %dth bit number is %d\n",k,num);
-   return 0;
-}
-
-/* function sets kth bit from LSB*/
-int flip_bit(int num,int k)
-{
-    int temp = 1;
-    temp = temp&lt;&lt;k;
-    num = num ^ temp;
-    return num;
-}
-
-</pre></div></div> <div class='question'>20. Write a function to add two numbers using bitwise operators</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> int getSum(int p, int q)
-{
-    int result = p ^ q; // + without carry 0+0=0, 0+1=1+0=1, 1+1=0
-    int carry = (p & q) &lt;&lt; 1; // 1+1=2
-    if (carry != 0) {
-        return getSum(result, carry);
-    }
-    return result;
-}</pre></div></div> <div class='question'>21. Write an expression to find if the number is a power of 2</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>if (num && ((num&(num-1)) ==0)) 
-     printf("power of 2");
-
-</pre></div></div> <div class='question'>22. What are implicit and explicit conversions in C?</p><button class='accordion'>Answer</button><div class='panel'><p >Some data type conversions are done automatically by C program. This is implicit conversion.<br><br>Examples <br><br>The value of right hand side is converted to type of left hand side operand.<br>e.g.<br>float m = 3;//gets converted to 3.0f<br><br>The arguments of a function is converted to the types of parameters of the function, and return value is converted to return type of function.<br><br>float larger(float a,float b);<br><br><br> larger(4,-12)<br><br>these gets converted to 4.0f and -12.0f<br><br>In an expression, shorts and chars are promoted to ints.<br><br>int a = 'a'+2;<br>Here character 'a' is converted to integer - to its ASCII code which is 97<br><br>In an expression, if any operand is float, then all values are converted to float. <br>If in an expression one value is double and others are smaller then all are converted to double.<br><br><br>float pi = 22.0f/7;//this becomes 22.0/7.0<br><br>Explicit conversion : When an expression is converted using typecase operator it is explicit conversion. Typecast operator is data type within paranthesis written to the left of expression.<br><br>Examples of explicit conversion:<br><br>char *ptr = (char *) malloc(10);<br>float ans = (float)5/10;<br><br>malloc returns a void pointer. It is converted to char pointer in first example.<br>5, which is an integer, is converted to float and then divided by 10 in second example. </p></div></div> <div class='question'>23. Write a function to divide two integers without using the divide operator.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int divide(int a, int b)
-{
-     int count=0;
-     while (a&gt;=b)
-     {
-       a -=b;
-       count++;
-     }
-     return count;
-}
-</pre></div></div> <div class='question'>24. What are the differences between a macro and a constant?</p><button class='accordion'>Answer</button><div class='panel'><p >A macro defined by #define get expanded by the preprocessor. So compiler has no knowledge about macros. If we do not define macro correctly, preprocessor does literal substitution and instead of compiler error, we get unexpected results.<br><br>But constants defined as "const" are seen by compiler. So any errors with consts are detected by compiler.<br><br>So const is always safer than #define. </p></div></div> <div class='question'>25. Write a C program to test whether in a given number atleast .3 out of the last 4 bits are set.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-    int n;
-    printf("Enter a number");
-    scanf("%d",&n);
-    n = n&0xf;
-    n = n^0xf;
-    if(n==0|| n==1 || n==2||n==4||n==8)
-       printf("true");
-    else
-       printf("false");
-    return 0;
-}
-
-</pre></div></div> <div class='question'>26. How will you write a code to print Hello world without using semicolon?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int main(void)
-{
-   if (printf(“Hello World”))
-   {
-    }
-}</pre></div></div> <div class='question'>27. Write a program to print all the prime factors of a number</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'># include &lt;stdio.h&gt;
-# include &lt;math.h&gt;
-// A function to print all prime factors of a given number n
-void primeFactors(int n)
-{
-    int i;
-    /* Print the number of 2s that divide n*/
-    if(n%2==0)
-   {    printf("2 ");
-        n =n/2;
-        while (n%2 == 0)
-        {
-          n = n/2;
-        }
-   }
-    /* n must be odd at this point.  So we can skip one element*/
-    for (i = 3; i &lt;= sqrt(n); i = i+2)
-    {
-        if(n%i==0)
-        {
-          printf("%d ",i);
-        n = n/i;
-        /*ignore repeated factors*/
-        while (n%i == 0)
-        {
-            n = n/i;
-        }
-       }
-    } 
-    if (n &gt; 2)
-        printf ("%d ", n);
-} 
-int main()
-{
-    int n;
-    printf("n=");
-    scanf("%d",&n);
-    primeFactors(n);
-    return 0;
-}
-</pre></div></div> <div class='question'>28. Write a program to check if all the bits of a number are ones. e.g. 15, 7, 31 etc</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-   int num;
-   printf("num:");
-   scanf("%d",&num);
-   if( (num&gt;0 && num&(num+1))==0)
-
-       printf("number  has all bits set");
-   else
-       printf("number does not have all bits set");
-   return 0;
-}</pre></div></div> <div class='question'>29. Write a function to print if the number is even or odd without using if statement</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void even_odd(int n)
-{
-     n&1?printf("Odd"):printf("Even");
-}
-
-void even_odd2(int n)
-{
-    swithc(n%2)
-   {
-      case 1:printf("even");break;
-      case 0:printf("odd");break;
-    }
-}</pre></div></div> <div class='question'>30. Write a program to print the pattern
-     A
-   ABA
- ABCBA
-ABCDCBA</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int main()
-{
-    char arr[] = "ABCDEFG";
-    int i,j;
-    for(i=0;i&lt;4;i++)
-      {
-        int num = strlen(arr)-i;
-        int j;
-        for(j=0;j&lt;num;j++)/*print spaces*/
-          printf(" ");
-        for(j=0;j&lt;i+1;j++)/*ascending*/
-          printf("%c",arr[j]);
-        for(j-=2;j&gt;=0;j--)/*descending*/
-          printf("%c",arr[j]);
-        printf("\n");
-      }
-    return 0;
-}</pre></div></div> <div class='question'>31. Write a program to find out if the computer is a little endian or big endian.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-    int num=1;
-    char *ptr = &num;
-    if(*ptr == 1)/* Stores the little end of the number first */
-      printf("The system is little endian");
-    else if(*(ptr+3)==1)/* Stores the big end of the number first */
-      printf("The system is big endian");
-    return 0;
-}</pre></div></div> <div class='question'>32. Write your own sqrt function to find square root of a number. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>double square_root(double value)
-{
-     assert(value &gt;= 1);
-     double lo = 1.0;
-     double hi = value;
-
-     while( hi - lo &gt; 0.00001)
-     {
-          double mid = lo + (hi - lo) / 2 ;
-          int midint = mid;
-          printf("%f %f %f\n",lo,hi,mid);
-          if(midint*midint==value)
-                return (float)midint;
-          if( mid * mid - value &gt; 0.00001)    
-          {
-              hi = mid;
-          } else {
-              lo = mid;
-          }
-     }
-
-    return lo;
- }</pre></div></div> <div class='question'>33. Write a function to count the number of set bits in a given number.
-e.g. 17 has 2 bits set. 15 has 4 bits set </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int num_set_bits(int n)
-{
-    int count = 0;
-    while(n&gt;0)
-    {
-        if (n&1==1)
-            count++;
-        n&gt;&gt;=1;
-     }
-     return count;
-}
-
- </pre></div></div> <div class='question'>34. Write a program to print a n by n square divided into quadrants of stars, dots, dollars, and ohs. Take n as command line parameter</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-void draw_quadrants(int num,char ch1,char ch2,char ch3, char ch4);
-int main(int argc,char *argv[])
-{
-
-   char ch1='*',ch2='.',ch3='$',ch4='o';
-   int n;
-   if(argc&lt;2)
-     {
-     printf("The syntax is drawsquares n");
-     return 0;
-     }
-   n = atoi(argv[1]);/*n is first command line parameter*/
-   draw_quadrants(n,ch1,ch2,ch3,ch4);
-   return 0;
-}
-
-void draw_quadrants(int n,char ch1,char ch2,char ch3, char ch4)
-{
-    int i,j;
-    for(i=1;i&lt;=n/2;i++)
-      {
-          for(j=1;j&lt;=n/2;j++)
-              printf("%c",ch1);
-          for(j=1;j&lt;=n/2;j++)
-             printf("%c",ch2);
-          printf("\n");
-      }
-    for(i=1;i&lt;=n/2;i++)
-      {
-          for(j=1;j&lt;=n/2;j++)
-              printf("%c",ch3);
-          for(j=1;j&lt;=n/2;j++)
-              printf("%c",ch4);
-           printf("\n");
-      }
-}</pre></div></div> <div class='question'>35. Write a program that prints   3 cycles of a cosine wave down the page.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-#include&lt;math.h&gt;
-#define PI (22.0/7)
-void draw_cosine();
-int main()
-{
-
-    draw_cosine();
-    return 0;
-}
-void draw_stars(int m)
-{
-
-   int i;
-   if(m&lt;0)
-     for(i=0;i&lt;20+m;i++)
-       putchar(' ');
-   else
-     for(i=0;i&lt;20;i++)
-       putchar(' ');
-   m = abs(m);
-   while(m--)
-     printf("*");
-   printf("\n");
-}
-void draw_cosine()
-{
-    int i,j;
-     for(i=0;i&lt;3;i++)
-       for(j=0;j&lt;=360;j+=10)
-       {
-            float rad = j*PI/180;
-            float y = cos(rad)*20;
-            draw_stars(y);
-        }
-  }
- </pre></div></div> <div class='question'>36. If the number of bacteria in the container doubles itself everyday. Assuming that the container would be full on the 10th day with 13,312 bacteria, find the number of bacteria that was initially in the container on the first day.</p><button class='accordion'>Answer</button><div class='panel'><p >#include&lt;stdio.h&gt;<br>#include&lt;math.h&gt;<br>int main()<br>{<br>    int bact_count;<br>    int num_day;<br>    float initial;<br>    printf("bact_count & num_day");<br>    scanf("%d %d",&bact_count,&num_day);<br>    initial = bact_count/pow(2, num_day);<br>    printf("Initial number of bacteria %f",initial);<br>    return 0;<br>}</p></div></div> <div class='question'>37. Consider the following number 45*45=2025; 20+25=45.Write a program to generate number between 32 and 99 that satisfies the above property.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int sumOfDigits(int num)
-{
-   int a = num%100;
-   int b = num/100;
-   return a+b;
-}
-int main()
-{
-  int i;
-  for(i=32;i&lt;=99;i++)
-   {
-     int square = i*i;
-     int s = sumOfDigits(square);
-     if(s==i)
-        printf("%d   ",i);
-   }
-}</pre></div></div> <div class='question'>38. Write a program to solve simultaneous equation in 2 unknowns.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>/* program source :www.learningpoint.net*/
-#include&lt;stdio.h&gt;
-int main()
-{
-double a,b,c,p,q,r,x,y;
-printf("Enter the coefficents of the first equation of the form ax+by=c
-\n");
-scanf("%lf%lf%lf",&a,&b,&c);
-printf("Enter the coefficents of the second equation of the form px+qy=r
-\n");
-scanf("%lf%lf%lf",&p,&q,&r); 
-if(((a*q-p*b)!=0)&&((b*p-q*a)!=0))
-{/*we have a unique solution and display x and y*/
-printf("The solution to the equations is unique\n");
-x=(c*q-r*b)/(a*q-p*b);
-y=(c*p-r*a)/(b*p-q*a);
-printf("The value of x=%lf\n",x);
-printf("The value of y=%lf\n",y);
-}
-else
-if(((a*q-p*b)==0)&&((b*p-q*a)==0)&&((c*q-r*b)==0)&&((c*p-r*a)==0))//In such
-condition we can have infinitely many solutions to the equation.
-{/*we can choose any one unknown as free and other unknown is calculated using the free variables's value.*/
-
-    printf("Infinitely many solutions are possible\n");
-    printf("The value of x can be varied and y can be calculated using relation\n");
-    printf("y=%lf+(%lf)x",(c/b),(-1*a/b));
-}
-else
-if(((a*q-p*b)==0)&&((b*p-q*a)==0)&&((c*q-r*b)!=0)&&((c*p-r*a)!=0))
-/*In such condition no solutions are possible.*/
-printf("No solutions are possible\n");
-
-}
-
-
-
-
-
-
-
-
-
-</pre></div></div> <div class='question'>39. Write a program to find the sum of first 10 odd numbers. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-   int s = 0;
-   int i = 1;
-   for(i=1;i&lt;10*2;i+=2)
-     s+=i;
-   printf("%d",s);
-   return 0;
-}</pre></div></div> <div class='question'>40. Write a program to print the following pattern
-1
-22
-333
-4444
-55555</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-    int i,j;
-    for(i=1;i&lt;=5;i++)
-      {
-       for(j=1;j&lt;=i;j++)
-          printf("%d",i);
-       printf("\n");
-     }
-     return0;
-}</pre></div></div> <div class='question'>41. Given two numbers write a function to find if the first number is exact multiple of second number. Do not use loops. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-    int a,b;
-    printf("Enter two numbers");
-    scanf("%d %d",&a,&b);
-    if(a%b==0)
-       printf("%d is a multiple of %d\n",a,b);
-    else
-     printf("%d is not a multiple of %d\n",a,b);  
-    return 0;
-}</pre></div></div> <div class='question'>42. Write a program to read 3 numbers and find out if all are different.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-   int a,b,c;
-   printf("Enter three numbers:");
-   scanf("%d %d %d",&a,&b,&c);
-   if(a==b || a==c || b==c )
-     printf("The numbers are repeated");
-   else
-     printf("They are all unique");
-   return 0;
-}</pre></div></div> <div class='question'>43. Write a function to read a set of numbers terminated by -1 and find the largest number. Do not use arrays</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-#include&lt;limits.h&gt;
-int largest()
-{
-   int large = INT_MIN;
-   while(1)
-   {
-     int n;
-     scanf("%d",&n);
-     if(n==-1)
-        break;
-     if(n&gt;large)
-       large = n;
-   } 
-   return large;
-}
-
-int main()
-{
-   int l = largest();
-   printf("The largest number entered is %d\n",l);
-   return 0;
-}</pre></div></div> <div class='question'>44. Write a program to print all factorial numbers less than or equal to the given number n</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int factorial(int n)
-{
-   if(n&lt;1)
-     return 1;
-   else
-     return n*factorial(n-1);
-}
-int main()
-{
-   int a;int i=1;
-   printf("Enter the number:");
-   scanf("%d",&a);
-   printf("Factorials are:");
-   while(i&lt;=a)
-   {
-       int f = factorial(i++);
-       if(f&lt;=a)
-          printf("%d ",f);
-       if(f&gt;=a)
-          break;
-   }
-   return 0;
-}
-     </pre></div></div> <div class='question'>45. Write a program to find the sum of the series 1+1/2+1/3+1/4+1/5....1/n. Value of n must be read from keyboard</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-float sumOfSeries(int n)
-{
-   float sum = 0;int i ;
-   for(i=1;i&lt;=n;i++)
-       sum = sum + 1.0/i;
-   return sum;
-}
-int main()
-{
-   int n;
-   printf("n=");
-   scanf("%d",&n);
-   printf("Sum of series 1+1/2+1/3+...1/n for n=%d is %.2f\n",n,sumOfSeries(n));
-   return 0;
-}</pre></div></div> <div class='question'>46. Write a program to read 3 sides of a rectangle and print its area and perimeter</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-#include&lt;math.h&gt;
-int main()
-{
-   float a,b,c;
-   double s,area;
-   printf("Enter 3 sides of triangle:");
-   scanf("%f %f %f",&a,&b,&c);
-   s = (a+b+c)/2;
-   area = sqrt(s*(s-a)*(s-b)*(s-c));
-   printf("s is %f Area of triangle is %.2lf\n",s,area);
-   return 0;
-}</pre></div></div> <div class='question'>47. Write a program to read a point - x and y co-ordinates and determine which quadrant the point lies in.
-</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int main()
-{
-   float x,y;
-   printf("x =");
-   scanf("%f",&x);
-   printf("y =");
-   scanf("%f",&y);
-   if(x==0 && y==0)
-      printf("the point is origin");
-   else if(x==0)
-      printf("the point is on Y axis");
-   else if (y==0)
-      printf("The point is on X axis");
-   else if(x&gt;0 && y&gt;0)
-        printf("The point is in first quadrant");
-   else if(x&gt;0 && y&lt;0)
-       printf("The point is in fourth quadrant");
-   else if(x&lt;0 && y&lt;0)
-       printf("The point is in  third quadrant");
-   else  
-        printf("The point is in second quadrant");
-   return 0;
-}
-    </pre></div></div> <div class='question'>48. Write a program to print all factors of a given number.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-void printFactors(int n)
-{
-   int i;
-   printf("Factors of %d are:",n);
-   for(i=1;i&lt;=n/2;i++)
-      if(n%i==0)
-          printf("%d ",i);
-  printf("%d\n",n);
-}
-int main()
-{
-   int n;
-   printf("n=");
-   scanf("%d",&n);
-   printFactors(n);
-   return 0;
-}</pre></div></div> <div class='question'>49. Write a program to multiply a given number by 4 using bitwise operators</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int product(int n)
-{
-   return n&lt;&lt;2;
-}
-int main()
-{
-   int n;
-   printf("n=");
-   scanf("%d",&n);
-   printf("%d multiplied by 4 is %d",n,product(n));
-   return 0;
-}</pre></div></div> <div class='question'>50. Write a program to implement power function for integer powers. The function must take x and y as parameters and return x^y.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-float power(int x,int y)
-{
-   int isNegativePower=0;
-   int i;
-   float product = 1;
-   if(y&lt;0)
-   {
-     isNegativePower = 1;
-     y = -y;
-   }
-   for(i=1;i&lt;=y;i++)
-     product *=x;
-   if(isNegativePower)
-      product = 1 /product;
-   return product;
-
-}
-int main()
-{
-   int x,y;
-   printf("x =");
-   scanf("%d",&x);
-   printf("y =");
-   scanf("%d",&y);
-   printf("%d to the power of %d is %f\n",x,y,power(x,y));
-   return 0;
-}</pre></div></div> <div class='question'>51. Write  a program to reverse the digits of a number</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int reverse(int n)
-{
-   int s = 0;
-   while(n)
-   {
-     int digit = n%10;
-     s = s*10+digit;
-     n /=10;
-   }
-   return s;
-
-}
-int main()
-{
-   int n;
-   printf("n =");
-   scanf("%d",&n); 
-   printf("After reversing the digits of %d we get %d\n",n,reverse(n));
-   return 0;
-}</pre></div></div> <div class='question'>52. Write a function to calculate sum of numbers 1 to N using recursion</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-
-int sum(int n)
-{
-   if(n==1)
-      return n;
-   else 
-     return n+sum(n-1);
-}
-int main()
-{
-  int n;
-  printf("Enter a number");
-  scanf("%d",&n); 
-  printf("The sum of numbers from 1 to %d is %d\n",n,sum(n));
-  return 0;
-}
-     </pre></div></div> <div class='question'>53. Write a program to read a number and print the number in octal and hexadecimal</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt; 
-int main()
-{
-  int n;
-  printf("n=");
-  scanf("%d",&n);
-  printf("%d in octal is %o and in hexadecimal is %x",n,n,n);
-  return 0;
-}</pre></div></div> <div class='question'>54. What is main() function? How many main functions can be present in C program?</p><button class='accordion'>Answer</button><div class='panel'><p >A C program should contain one main function.<br><br>Main function is the starting point of execution of program. The program begins and ends with main(). <br><br>main() function must return an integer which indicates the success of its execution - 0 to indicate success, non-zero to indicate error.</p></div></div> <div class='question'>55. What are format specifiers?</p><button class='accordion'>Answer</button><div class='panel'><p >Format specifiers are strings used to specify the type of values to be printed and how they should be printed.<br><br>%d is specifier for integer<br>%f is for float and double<br>%c is for characters etc.<br>e.g<br>printf("%d  %5d",m,n)<br><br>tells the system to print m and n as integers and also to print n with a width of 5.<br><br>Format specifiers also specify the type of values to be read in scanf.<br><br>e.g.<br>scanf("%d %f",&a,&b)<br>tells the system to read one integer and one float from console.<br><br>If a wrong format specifier is given, printf and scanf give garbage values. </p></div></div> <div class='question'>56. Which are the shift operators in C? How are they used?</p><button class='accordion'>Answer</button><div class='panel'><p >&lt;&lt; and &gt;&gt; are shift operators.<br><br>&lt;&lt; - left shift operator moves all the bits of a number to the left by given number of places.<br><br>e.g.<br>    a = 10;<br>    b = a&lt;&lt;2;<br><br>a is left shifted by 2 places. <br>   a = 1010<br>   a&lt;&lt;3 = 1010000 = 80<br><br>Left shifting a number is equivalent to multiplying the number by power of 2<br><br>10&lt;&lt;3 = 10 * 2^3 <br><br>&gt;&gt; is right shift operator which moves the bits of a number to the right by given number of places. <br><br>  a = 10<br>  b = a&gt;&gt;1  = 1010&gt;&gt;1 = 101 = 5<br><br>Right shifting a number is dividing a number by power of 2.<br><br></p></div></div> <div class='question'>57. Which are bitwise operators in C?</p><button class='accordion'>Answer</button><div class='panel'><p >C has the following bitwise operators.<br>    | - bitwise OR<br>    & - bitwise AND<br>    ^ - bitwise EXOR<br>    ~ - complement<br><br>These operators work on individual bits of the two operands.<br><br> e.g.<br>   a = 10<br>   b = 2<br><br>  a & b = 1010 &0010 = 0010 = 2<br><br>  a | b = 1010 | 0010 = 1010 = 10<br>  <br>  a^b = 1010 ^ 0010 = 1000 = 8<br><br>  ~a = ~0010 = 1101 (if we consider only 4 bits)<br><br>Bitwise operators work only on int and char data types. </p></div></div> <div class='question'>58. Which are assignment operators in C?</p><button class='accordion'>Answer</button><div class='panel'><p >The assignment operators in C are<br>   =<br>   +=     -=      *=    /=  %=<br>   &lt;&lt;=   &gt;&gt;=<br>   &=      |=      ^=<br><br>These operators combine assignment with another operation.<br><br>e.g.   a+=b is same as a = a+b<br><br>      m&lt;&lt;=2   is same as m = m&lt;&lt;2<br><br></p></div></div> <div class='question'>59. How do you define a boolean variable in C?</p><button class='accordion'>Answer</button><div class='panel'><p >A boolean variable is defined as an integer variable. And if its value is 0, it is logical false. If the value is non-zero, it is true.<br><br>    int isEven=0;<br>    if (m%2==0)<br>       isEven=1;<br><br></p></div></div> <div class='question'>60. How do you specify width for value to printed for
-a) integers b)floats?</p><button class='accordion'>Answer</button><div class='panel'><p >Format specifier can give width of the field along with %d for integers<br><br>e.g. %6d says that print integer with a width of 6 places.<br><br>For float we can specify the total width and width for decimal places. <br><br>printf("%9.2f",a)<br><br>says the system to print a with a total width of 9 and 2 decimal places.<br><br>printf("%.1f",b)<br><br>tells that print b with 1 decimal place.</p></div></div> <div class='question'>61. What do the following format specifiers do?
-%lf
-%ld
-%o
-%x
-%e</p><button class='accordion'>Answer</button><div class='panel'><p >%lf is used as format specifier for double in scanf.<br><br>%o is used to display an integer value in octal<br><br>%x is used to display an integer in hexadecimal<br><br>%e is used to display a float or a double value in exponential notation <br><br>e.g.<br>1.2E3 = 1.2 * 10^3</p></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}i{    font-family:'courier'; color:#445599; }pre{   margin-left:15px;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Basics Questions </h1><div class='main'><div class='question'>1. WAP to print numbers from 1 to 100 in such a way that, print "fizz" if number is divisible by 2, print "buzz" if it is divisible by 3 and   print "fizzbuzz" if it it is divisible by both and print the number itself if it is divisbile by neither. </p><button class='accordion'>Answer</button><div class='panel'><p> This is a very simple program which iterates over numbers from 1 to 100 and uses modulo operator to check divisibility by 2 and 3. </p><p>If the number is divisible by 2, then Fizz is printed. If it is divisible by 3, then 3 is printed. As the inner ifs are not exclusive, if the number is divisible by both 2 and 3, then FizzBuzz will be printed. </p><pre>#include&lt;stdio.h&gt;int main(){   int i;   for(i=1;i&lt;100;i++)   {     if(i%3 && i%2)        printf("%d ",i);    else{      if(i%2==0) printf("Fizz");      if(i%3==0) printf("Buzz");    }       printf("\t");    }    return 0;} </pre></div></div> <div class='question'>2. What does the following function do?<pre>int func(int num){    int count = 0;    while (num)       {                count++;                num &gt;&gt;= 1;        }    return  count ;} </pre><button class='accordion'>Answer</button><div class='panel'><p >Returns total numbers of bits in a given number excluding leading zeroes<br><br>e.g. if the number is 7- that is binary 111, then output is 3 and if the number is 16 - binary 10000, output is 5<br><br>It right shifts the number by 1 bit each time, until the number becomes 0. So, 111 becomes 11 in first iteration, becomes 1 in second iteration and 0 in third iteration. So count is 3<br></p></div></div> <div class='question'>3. A 2-sum is the sum of a list of numbers, but every number that's next to a 2 is counted twice. Given a list of numbers, write  a program print out their 2-sum.For example, when given 1 2 3 4 as input, sum is 14, because  1 and 3 which are next to 2, are added twice. 1+1+2+3+3+4 = 14</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int twos_sum(int *arr,int sz);int main(){   int arr[20];   int len,sum;   int i=0;   int num=0;   do   {      printf("Enter number - 0 to terminate:");      scanf("%d",&num);      if(num!=0)        arr[i++] = num;    }while (num!=0);    len = i;    sum = twos_sum(arr,len);    printf("The two's sum is %d\n",sum);    return 0;}int twos_sum(int *arr,int sz){    int i=0;    int sum=0;    for(i=0;i&lt;sz;i++)      {         sum +=arr[i];         if(arr[i]==2)         {             if( i-1 &gt;=0)                 sum+=arr[i-1];             if( i+1 &lt;sz)                 sum+=arr[i+1];          }      }   return sum;}</pre></div></div> <div class='question'>4. What is the difference between ++a and a++? (pre-increment and post-increment operator)</p><button class='accordion'>Answer</button><div class='panel'><p >In ++a or preincrement operator, variable a is first incremented and this incremented value is used in the expression.<br><br>Where as in a++, first variable is used and then it is incremented.<br><br>e.g.<br><pre>m = a+++b;</pre><br>is equivalent to<br><pre>   m = a+b;   a = a+1;</pre> in that order<br><br>whereas<br><pre>m= ++a+b;</pre><br>is equivalent to<br><pre>   a = a+1;   m = a+b; </pre> in that order<br><br>Let us look at another example.<br><br>    <pre> b = a++;<br>     or <br>    b =++a;</pre><br><br>If a is 10, after <i>b = a++;</i>, b will be 10 only and then a becomes 11. That is to say, first b is assigned to a and then a is incremented. <br><br>But after <i>b=++a;</i>, a will be incremented to 11, then b is set to 11. Here first a is incremented and then b is assigned to a.</p></div></div> <div class='question'>5. Write C  statement/s to print larger of two numbers without using if statement</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>printf("Larger number is %d",a&gt;b?a:b);</pre><p>If the numbers are integers and you can even write the statement without using relational operators. <pre> printf("Larger of two numbers is %d",a/b?a:b); </pre>Here if a is greater than b, then a/b is non-zero and a will be printed. If a is less than b, then a/b will be 0, as it is integer division. Zero is false, and hence b will be printed. </div></div> <div class='question'>6. What is wrong with this statement<pre>double pi = 22/7;</pre><button class='accordion'>Answer</button><div class='panel'><p >In the initialization, 22/7 uses integer arithmetic because both operands are integers. So 22/7 is truncated to 3, then it is type-cast to double. So pi value becomes 3.0 instead of 3.14.<br><br>The correct statement should be <pre>double pi = 22.0/7;</pre>If one of the operands is non-integer, then program uses real arithmetic.<br><br>Another way of avoiding such problems is to use  type casting for one of the operands.<pre>double pi = (double)22/7;</pre>Here 22 is converted to double - 22.0. And real arithmetic takes place and gives correct answer.</p></div></div> <div class='question'>7. Find the bug in this program<pre>#include&lt;stdio.h&gt;int main(){   double num;   printf("enter a double number :");   scanf("%f",&num);   printf("the number you just entered is %f\n",num);   return 0;}</pre></p><button class='accordion'>Answer</button><div class='panel'><p ><pre>scanf("%f",&num);</pre> should be replaced by <pre>scanf("%lf",&num);</pre>For scanf function, format specifier for double variable should be "%lf" not %f. <br><br>If you use a wrong format specifier, there won't be any syntax error. But program takes some garbage value as input.<br><br>There is a confusion regarding format specifiere of double data type because for printf function, format specifier for double is <i> %f</i></p></div></div> <div class='question'>8. How do you assign a float value 12 to a float variable m?</p><button class='accordion'>Answer</button><div class='panel'><p><pre >float m = 12.0f;</pre>is the correct method.<br><br>By default a non-integer constant is double. So 12.0 is a double value, not a float value. You should use suffix "f" to make a real constant as float constant.<br><br>But the program works fine, even if we use "m=12.0", as the compiler implicitly converts this double constant to float constant.</p></div></div> <div class='question'>9. Write code to swap two variables without using third variable and using <b>exor (^)</b> operator</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>a = a^b;b = b^a;a = a^b;</pre><p>Another way to write this code with + and - operators is <pre>a = a + b;b = a - b;a = a - b;<pre></div></div> <div class='question'>10. A statement is written to print whether the number is odd or even. Is it correct?<pre>if(n&1) printf("%d is odd",n);else printf("%d is even", n);</pre></p><button class='accordion'>Answer</button><div class='panel'><p >It is correct</p><p>When we are using bitwise & operator, the individual bits of both operands are logically anded. So if we have two numbers as 7 and 8 - the operations will be <b>111 & 1000 = 0000 </b><p> When we use <i>&</i> with 1, then if the number has LSB as 1, the result will be 1. If not the result will be 0. Which means that the result is 1 for odd numbers and 0 for even numbers. </div></div> <div class='question'>11. Write the output of the following program<pre>#include&lt;stdio.h&gt;int main(){    char ch;    if(ch = printf(""))        printf("It matters\n");    else        printf("It doesn't matters\n");    return 0;}</pre></p><button class='accordion'>Answer</button><div class='panel'><p >Output : It doesn't matter</p><p>The <i>if</i> statement uses assignment. <i>ch</i> is assigned to return value of <i>printf</i>.</p><p><i>printf</i> returns the total number of characters printed. Hence here it returns 0. </p> <p>The value of assignment statement is assigned to <i>ch</i>. Here it is 0 as printf prints 0 characters. So <i>if</i> condition is false. So the program executes <i>else</i> part and  prints "it doesn't matter</p></div></div> <div class='question'>12. What is the output of the following program?<pre>#include&lt;stdio.h&gt;int main(){    int x = 10, y = 20;    if(!(!x) && x)         printf("x = %d\n", x);    else         printf("y = %d\n", y);    return 0;}</pre><button class='accordion'>Answer</button><div class='panel'><p >Output : x is 10</p>x is true because in C, any non-zero value is true. <i>!x</i> is false. <i>!(!x)</i> is again true. true and true is true.</p><p>So the program executes the <i>if</i> clause and prints value of <i>x</i>.</p></div></div> <div class='question'>13. Write a program to find the second largest number of an array using only one iteration</p><button class='accordion'>Answer</button><div class='panel'><p>To find the second largest element, <ol><li>Initialize largest= second largest = 0<sup>th</sup> element of array.</li><li>Iterate over each element from 1 to n-1</li><li> If arr[i] element is larger than largest, then set secondlargest = largest and largest = a[i]</li><li>if not if arr[i] is larger than second largest, secondlargest = arr[i]</li></ol><pre class='courier'>#include&lt;stdio.h&gt;int second_largest(int arr[],int n);int main(){    int arr[10];    int i,la;    for(i=0;i&lt;10;i++)      scanf("%d",&arr[i]);    la = second_largest(arr,10);    printf("Second largest element of the array is %d\n",la);    return 0;}int second_largest(int *arr,int n){   int lar,sec_lar=0;int i;   lar = sec_lar= arr[0];arr++;   for(i=1;i&lt;n;i++,arr++)   {     if(*arr&gt;lar)     {         sec_lar = lar;         lar = *arr;      }      else if( *arr&gt;sec_lar)      {           sec_lar = *arr;      }    }    return sec_lar;}   </pre></div></div> <div class='question'>14. What will be the output of the following C program segment?<pre>char inchar = 'A';switch (inchar){   case 'A' :printf ("choice A \n") ;   case 'B' :printf ("choice B ") ;   case 'C' :   case 'D' :   case 'E' :   default:printf ("No Choice") ;} </pre><button class='accordion'>Answer</button><div class='panel'><p >choice A<br>choice B No choice</p><p>Since there are no <i>break</i> statements after each case statement, the execution seeps through to next statement until default. And <i>default</i> is also executed.</p><p>Correct way to use switch should be to include break after each case.</p><pre>switch(inchar){     case 'A':printf("choice A\n");                 break;</pre>etc.</div></div> <div class='question'>15. What does the following<i> printf</i> statement print? Assume that size of int is 4 bytes.<pre>printf("%d %d %d %d",sizeof(2),sizeof(2.0),sizeof('2'),sizeof("2"));</pre><button class='accordion'>Answer</button><div class='panel'><p >Output : 4 8 4 2</p><p>2 is an integer. Hence its size is 4 bytes.</p><p>2.0 is a double, not a float. (2.0f is a float literal) Hene its size is 8 bytes.</p><p> '2' is character literal and character literals are treated as integers. Hence its size is 4 bytes.</p><p> And "2" is a string literal with 2 characters, '2' and null('\0')  so its size is 2</p></div></div> <div class='question'>16. Explain the terms lvalue and rvalue with examples.</p><button class='accordion'>Answer</button><div class='panel'><p >lvalue is something which has an address associated with it. Literally lvalue is something which can be used in LHS of an assignment statement. <br><br>In an assignment statement, RHS is evaluated and its value is stored in the address of LHS variable. So if we say 2 = a, we can not store value of a in 2. <br><br>All variables are lvalues.<br><br>rvalue (right hand side value) is a temporary result of an expression, hence has no memory location for it.<br><pre>int a;a = 4;/*a is an lvalue*/a+5=7; /*error. a+5 is not an lvalue.*/</pre><p>Remember that rvalues can NEVER be used on LHS of a assignment statement.</p></div></div> <div class='question'>17. What is an entry controlled loop and an exit controlled loop?</p><button class='accordion'>Answer</button><div class='panel'><p >Entry controlled loop is when condition is tested before body of the loop is executed.  Exit controlled loop is when condition is tested after body of the loop is executed.<br><br>Both for and while loops are entry controlled where as do--while is an exit controlled loop.<br><br>when <br><pre>for(i=0;i&lt;10;i++)     printf("%d",i);</pre> is executed, the condition <i>i&lt;10</i> is tested. If only this contion is true, then <i>printf()</i> statement is executed. If it is false, the loop is terminated.<br><br>Similarly <br>     <pre>while(a&lt;5)      printf("%d",a++);</pre> checks condition  <i>a&lt;5</i> first before entering into the loop.<br><br>In <br>        <pre>do       printf("%d",a++);  while(a&lt;5); </pre>first <i>printf()</i> is executed and then condition is tested.<br><br>The advantage of exit controlled loop  (do -while loop)  - is the body of the loop is executed at least one.  </p></div></div> <div class='question'>18. Write a function to set k<sup>th</sup> bit of a number.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int set_bit(int n,int k);int main(){   int num,k;   printf("Number:");   scanf("%d",&num);   printf("k:");   scanf("%d",&k);   num = set_bit(num,k);   printf("After setting %dth bit number is %d\n",k,num);   return 0;}/* function sets kth bit from LSB*/int set_bit(int num,int k){    int temp = 1;    temp = temp&lt;&lt;k;    num = num | temp;    return num;}</pre><p><i>OR (|)</i> operator is be used to set a  bit. (<i>&</i> operator is used to clear a bit)</p><p>We need to have a temporary variable which has only kth bit set and all other bits as 0. For that, we are taking temp as 1 and left shift it by k places.</p><p>Then we bitwise OR (||) this temp with the given number. The result will have kth bit set and other bits unmodified.</p><p>Let us look at an example.</p><p>Let us say n is 10 and k is 2</p><i>temp = 1&lt;&lt;2 = 0100 </i><p>Now <i>10 | temp</i> is <i>1010 || 0100 = 1110 = 14 </i><p>So we have set 2nd bit from LSB in the number</p></div></div> <div class='question'>19. Write a function to flip kth bit of a number. If bit is set, it should be cleared and if it is clear, it should be set. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int flip_bit(int n,int k);int main(){   int num,k;   printf("Number:");   scanf("%d",&num);   printf("k:");   scanf("%d",&k);   num = flip_bit(num,k);   printf("After flipping %dth bit number is %d\n",k,num);   return 0;}/* function sets kth bit from LSB*/int flip_bit(int num,int k){    int temp = 1;    temp = temp&lt;&lt;k;    num = num ^ temp;    return num;}</pre><p><i>^(EXOR)</i> operator can be used to toggle a bit. Because 1^1 is 0 and 1^0 is 1.</p><p>So the function first creates a temp with k<sup>th</sup> bit set and all other bits 0. Then it Exors the number with temp	 </p></div></div> <div class='question'>20. Write a function to add two numbers using bitwise operators</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> int getSum(int p, int q){    int result = p ^ q; /* + without carry 0+0=0, 0+1=1+0=1, 1+1=0 */    int carry = (p & q) &lt;&lt; 1; /* 1+1=2 */    if (carry != 0) {        return getSum(result, carry);    }    return result;}</pre></div></div> <div class='question'>21. Write an expression to find if the number is a power of 2</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>if (num && ((num&(num-1)) ==0))      printf("power of 2");</pre><p>If a number is a power of 2, then it has MSB set and all other bits cleared. Numbers just before it has all bits set.</p><p>e.g.    16 is <i>10000</i> in binary            15 is <i>01111</i> in binary </p><p>When we AND 15 and 16 using bitwise AND (&) then we get <i>10000 & 1111 = 00000</i>And  to avoid taking 0 as power of 2, first condition is <i>num!=0</i> which is same as <i>num</i></div></div> <div class='question'>22. What are implicit and explicit conversions in C?</p><button class='accordion'>Answer</button><div class='panel'><p >Some data type conversions from one type to another type  are done automatically by C program. This is implicit conversion.<br><br>Examples <br><br>The value of right hand side is converted to type of left hand side operand.<br>e.g.<pre>float m = 3;/* value gets converted to 3.0f*/</pre> The arguments of a function is converted to the types of parameters of the function, and return value is converted to return type of function.<pre>float larger(float a,float b);larger(4,-12)</pre>The values 4 and -12 get converted to 4.0f and -12.0f<br><br>In an expression, shorts and chars are promoted to ints.<pre>int a = 'a'+2;</pre>Here character 'a' is converted to integer - to its ASCII code which is 97<br><br>In an expression, if any operand is float, then all values are converted to float. <br>If in an expression one value is double and others are smaller then all are converted to double.<pre>float pi = 22.0f/7;/*this becomes 22.0/7.0*/</pre>Explicit conversion : When an expression is converted using typecast operator, it is explicit conversion. Typecast operator is data type within paranthesis written to the left of expression.<br><br>Examples of explicit conversion:<pre>char *ptr = (char *) malloc(10);float ans = (float)5/10;</pre><p><i>malloc</i> returns a <i>void</i> pointer. It is converted to char pointer in first example.<br>5, which is an integer, is converted to float and then divided by 10 in second example. </p></div></div> <div class='question'>23. Write a function to divide two integers without using the division operator.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int divide(int a, int b){     int count=0;     while (a&gt;=b)     {       a -=b;       count++;     }     return count;}</pre></div></div> <div class='question'>24. What are the differences between a macro and a constant?</p><button class='accordion'>Answer</button><div class='panel'><p >A macro defined by<i> #define</i> gets expanded by the preprocessor. So compiler has no knowledge about macros. If we do not define macros correctly, preprocessor does literal substitution and instead of compiler error, we get unexpected results.</p><p>But constants defined as <i>const</i> are seen by compiler. So any errors with consts are detected by compiler.</p><p>So defining a constant using <i>const</i> is always safer defining it with than <i>#define</i>. </p></div></div> <div class='question'>25. Write a C program to test whether in a given number atleast 3 out of the last 4 bits are set.</p><button class='accordion'>Answer</button><div class='panel'><p><ol><li>To remove the other nibbles of the number, the number is bitwise ANDed with 0xf. </li><li>Then you EXOR a number with 0xf<i> (1111)</i></li><li>  If the number has atleast 3 bits set, then the result of AND is a number which has maximum one bit set.</li><li>The set bit could be in 0th, 1st, 2nd or 3rd position.</li><li> So if the result of AND  is 1, 2, 4 or 8 or 0, the condition is true.</li></ol> e.g.If the number is 12<i><br>1100<br>1100 ^ 0xf = 1100 ^ 1111 = 0011 = 3 </i><p>So the number does not have at least 3 bits set.   </p><p>If the number is 14 with 3rd bit, 2nd bit and first bit set</p><i>1110 ^ 1111 = 0001 </i><p>The answer is 1. So 14 has at least 3 bits of 4 last bits set.</p><pre class='courier'>#include&lt;stdio.h&gt;int main(){    int n;    printf("Enter a number");    scanf("%d",&n);    n = n&0xf;    n = n^0xf;    if(n==0|| n==1 || n==2||n==4||n==8)       printf("true");    else       printf("false");    return 0;}</pre></div></div> <div class='question'>26. How will you write a code to print Hello world without using semicolon?</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int main(void){   if (printf(“Hello World”)){}   }</pre></div></div> <div class='question'>27. Write a program to print all the prime factors of a number</p><button class='accordion'>Answer</button><div class='panel'><p>A prime factor of a number is a factor which is prime - a number divisible by only 1 and itself. </p><p>The long and easy method of finding prime factors will be to find factors from 1 to n-1 using modulo operator. And then testing if that number is prime. </p><p>But we know that the largest factor of any number is only n/2. And if we know that a number is a factor, and we divide n by i until n is no longer divisible by i, we have removed i and all its multiples from n. If we continue to do this, we will be removing multiples of numbers, then only factors we are left with are prime factors.</p><ol><li>Repeat from i=2 and 3 to n/2 in steps of 2 avoiding even numbers</li><li>If n is divisible by i</li><ul><li>while n is divisible by i</li><li>divide n by i</li><ul></ol><pre class='courier'># include &lt;stdio.h&gt; // A function to print all prime factors of a given number nvoid primeFactors(int n){	int m =n;int i; 	m = n;	i =2;	while(i<=m/2)/*repeat till half of the number*/	{	    if(n%i==0)	    {               /*if i is a factor, remove all i s*/		while(n%i==0)		    n = n/i;	         printf("%d    ",i); 	    }	   /*check only 2 and odd numbers*/            if(i==2)               i++;            else		i+=2;         }}int main(){    int n;    printf("n=");    scanf("%d",&n);    primeFactors(n);    return 0;}</pre></div></div> <div class='question'>28. Write a program to check if all the bits of a number are ones. e.g. 15, 7, 31 etc</p><button class='accordion'>Answer</button><div class='panel'><p>If the number has all bits as 1, then the next number will be having MSB+1 set and all other bits 0. </p><p> For example, for the number 15,(which is 1111), next number  16 (10000) has all bits as 0 except for most significant bit. For 31 (11111), the next number is 100000. </p><p> When we bitwise AND the number and its next number -  (&) <i>num & (num+1)</i>, we should get 0.</p><pre class='courier'>#include&lt;stdio.h&gt;int main(){   int num;   printf("num:");   scanf("%d",&num);   if( (num&gt;0 && num&(num+1))==0)       printf("number  has all bits set");   else       printf("number does not have all bits set");   return 0;}</pre></div></div> <div class='question'>29. Write a function to print if the number is even or odd without using if statement</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void even_odd(int n){     n&1?printf("Odd"):printf("Even");}void even_odd2(int n){    swithc(n%2)   {      case 1:printf("even");break;      case 0:printf("odd");break;    }}</pre> </div></div> <div class='question'>30. Write a program to print the pattern<p>&nbsp;&nbsp;&nbsp;&nbsp;A<br>&nbsp;&nbsp;&nbsp;ABA<br>&nbsp;&nbsp;ABCBA<br>ABCDCBA</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int main(){    char arr[] = "ABCDEFG";    int i,j;    for(i=0;i&lt;4;i++)      {        int num = strlen(arr)-i;        int j;        for(j=0;j&lt;num;j++)/*print spaces*/          printf(" ");        for(j=0;j&lt;i+1;j++)/*ascending*/          printf("%c",arr[j]);        for(j-=2;j&gt;=0;j--)/*descending*/          printf("%c",arr[j]);        printf("\n");      }    return 0;}</pre></div></div> <div class='question'>31. Write a program to find out if the computer is a little endian or big endian.</p><button class='accordion'>Answer</button><div class='panel'><p>Little endian systems start storing the number from least significant byte. Big endian systems start storing number from most significant byte.</p><p>If the number is 10 which is <i>0x000A</i> then Little endian system will store the number in the following way</p><pre> Address  1000  1001 1002  1003  Value       A     0     0     0 </pre><p>But big endian systems store it as</p><pre> Address  1000  1001 1002 1003  Value       0     0     0     A </pre>Note that  intel systems are Little Endian.<pre class='courier'>#include&lt;stdio.h&gt;int main(){    int num=1;    char *ptr = &num;    if(*ptr == 1)/* Stores the little end of the number first */      printf("The system is little endian");    else if(*(ptr+3)==1)/* Stores the big end of the number first */      printf("The system is big endian");    return 0;}</pre></div></div> <div class='question'>32. Write your own sqrt function to find square root of a number. </p><button class='accordion'>Answer</button><div class='panel'><p>This algorithm uses successive approximation and uses binary search algorithm. Just like binary search algorithm, we set high and lo and compare square of mid to n. And if mid squared is greater than n, we go to the left half by setting high = mid. If instead mid squared is less than n, we go to right half, by setting lo = mid. This process is continued until mid squared is equal to n (with a precision of 0.00001)</p><p>Also if the number is a perfect square the method checks integer multiplication of the square root by itself. e.g. if n is 16, the method returns 4.0 instead of 3.999997 </p><pre class='courier'>double square_root(double value){     assert(value &gt;= 1);     double lo = 1.0;     double hi = value;     while( hi - lo &gt; 0.00001)     {          double mid = lo + (hi - lo) / 2 ;          int midint = mid;          if(midint*midint==value)                return (float)midint;          if( mid * mid - value &gt; 0.00001)              {              hi = mid;          } else {              lo = mid;          }     }    return lo; }</pre></div></div> <div class='question'>33. Write a function to count the number of set bits in a given number.e.g. 17 has 2 bits set. 15 has 4 bits set </p><button class='accordion'>Answer</button><div class='panel'><p>If lsb is set then n&1 will be 1. For the next bit, we can shift the number to the right and then again AND the number with 1. This can be continued until all bits are tested.</p><pre class='courier'>int num_set_bits(int n){    int count = 0;    while(n&gt;0)    {        if (n&1==1)            count++;        n&gt;&gt;=1;     }     return count;} </pre></div></div> <div class='question'>34. Write a program to print a n by n square divided into quadrants of stars, dots, dollars, and ohs. Take n as command line parameter</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;void draw_quadrants(int num,char ch1,char ch2,char ch3, char ch4);int main(int argc,char *argv[]){   char ch1='*',ch2='.',ch3='$',ch4='o';   int n;   if(argc&lt;2)     {     printf("The syntax is drawsquares n");     return 0;     }   n = atoi(argv[1]);/*n is first command line parameter*/   draw_quadrants(n,ch1,ch2,ch3,ch4);   return 0;}void draw_quadrants(int n,char ch1,char ch2,char ch3, char ch4){    int i,j;    for(i=1;i&lt;=n/2;i++)      {          for(j=1;j&lt;=n/2;j++)              printf("%c",ch1);          for(j=1;j&lt;=n/2;j++)             printf("%c",ch2);          printf("\n");      }    for(i=1;i&lt;=n/2;i++)      {          for(j=1;j&lt;=n/2;j++)              printf("%c",ch3);          for(j=1;j&lt;=n/2;j++)              printf("%c",ch4);           printf("\n");      }}</pre></div></div> <div class='question'>35. Write a program that prints   3 cycles of a cosine wave down the page.</p><button class='accordion'>Answer</button><div class='panel'><p>cosine of an angle has a value between 0 and 1. So to plot this, we need to multiply the values by a factor say 20. Also to account for negative value, we must use an offset.</p><p>And do not forget to use the linker option while compiling this program. </p><i>gcc yourfile.c -lm</i><pre class='courier'>#include&lt;stdio.h&gt;#include&lt;math.h&gt;#define PI (22.0/7)void draw_cosine();int main(){    draw_cosine();    return 0;}void draw_stars(int m){   int i;   if(m&lt;0)     for(i=0;i&lt;20+m;i++)       putchar(' ');   else     for(i=0;i&lt;20;i++)       putchar(' ');   m = abs(m);   while(m--)     printf("*");   printf("\n");}void draw_cosine(){    int i,j;     for(i=0;i&lt;3;i++)       for(j=0;j&lt;=360;j+=10)       {            float rad = j*PI/180;            float y = cos(rad)*20;            draw_stars(y);        }  } </pre></div></div> <div class='question'>36. If the number of bacteria in the container doubles itself everyday. Assuming that the container would be full on the 10th day with 13,312 bacteria, find the number of bacteria that was initially in the container on the first day.</p><button class='accordion'>Answer</button><div class='panel'><p >#include&lt;stdio.h&gt;<br>#include&lt;math.h&gt;<br>int main()<br>{<br>    int bact_count;<br>    int num_day;<br>    float initial;<br>    printf("bact_count & num_day");<br>    scanf("%d %d",&bact_count,&num_day);<br>    initial = bact_count/pow(2, num_day);<br>    printf("Initial number of bacteria %f",initial);<br>    return 0;<br>}</p></div></div> <div class='question'>37. Consider the following number 45*45=2025; 20+25=45.Write a program to generate number between 32 and 99 that satisfies the above property - that is the square of the number is equal to sum of first two and last two sub-numbers. .</p><button class='accordion'>Answer</button><div class='panel'><p><pre class='courier'>#include&lt;stdio.h&gt;int sumOfDigits(int num){   int a = num%100;   int b = num/100;   return a+b;}int main(){  int i;  for(i=31;i&lt;=99;i++)   {     int square = i*i;     int s = sumOfDigits(square);     if(s==i)        printf("%d   ",i);   }}</pre><p>As we need a number whose square is four digit number, and as 30*30 is 900, we are starting from 31.</p></div></div> <div class='question'>38. Write a program to find the sum of first 10 odd numbers. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int main(){   int s = 0;   int i = 1;   for(i=1;i&lt;10*2;i+=2)     s+=i;   printf("%d",s);   return 0;}</pre></div></div> <div class='question'>39. Write a program to print the following pattern122333444455555</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int main(){    int i,j;    for(i=1;i&lt;=5;i++)      {       for(j=1;j&lt;=i;j++)          printf("%d",i);       printf("\n");     }     return0;}</pre></div></div> <div class='question'>40. Given two numbers, write a function to find if the first number is exact multiple of second number. Do not use loops. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int main(){    int a,b;    printf("Enter two numbers");    scanf("%d %d",&a,&b);    if(a%b==0)       printf("%d is a multiple of %d\n",a,b);    else     printf("%d is not a multiple of %d\n",a,b);      return 0;}</pre></div></div> <div class='question'>41. Write a program to read 3 numbers and find out if all are different.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int main(){   int a,b,c;   printf("Enter three numbers:");   scanf("%d %d %d",&a,&b,&c);   if(a==b || a==c || b==c )     printf("The numbers are repeated");   else     printf("They are all unique");   return 0;}</pre></div></div> <div class='question'>42. Write a function to read a set of numbers terminated by -1 and find the largest number. Do not use arrays</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;#include&lt;limits.h&gt;int largest(){   int large = INT_MIN;   while(1)   {     int n;     scanf("%d",&n);     if(n==-1)        break;     if(n&gt;large)       large = n;   }    return large;}int main(){   int l = largest();   printf("The largest number entered is %d\n",l);   return 0;}</pre></div></div> <div class='question'>43. Write a program to print all factorial numbers less than or equal to the given number n</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int factorial(int n){   if(n&lt;1)     return 1;   else     return n*factorial(n-1);}int main(){   int a;int i=1;   printf("Enter the number:");   scanf("%d",&a);   printf("Factorials are:");   while(i&lt;=a)   {       int f = factorial(i++);       if(f&lt;=a)          printf("%d ",f);       if(f&gt;=a)          break;   }   return 0;}     </pre></div></div> <div class='question'>44. Write a program to find the sum of the series 1+1/2+1/3+1/4+1/5....1/n. Value of n must be read from keyboard</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;float sumOfSeries(int n){   float sum = 0;int i ;   for(i=1;i&lt;=n;i++)       sum = sum + 1.0/i;   return sum;}int main(){   int n;   printf("n=");   scanf("%d",&n);   printf("Sum of series 1+1/2+1/3+...1/n for n=%d is %.2f\n",n,sumOfSeries(n));   return 0;}</pre></div></div> <div class='question'>45. Write a program to read 3 sides of a triangle and print its area and perimeter</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;#include&lt;math.h&gt;int main(){   float a,b,c;   double s,area;   printf("Enter 3 sides of triangle:");   scanf("%f %f %f",&a,&b,&c);   s = (a+b+c)/2;   area = sqrt(s*(s-a)*(s-b)*(s-c));   printf("s is %f Area of triangle is %.2lf\n",s,area);   return 0;}</pre></div></div> <div class='question'>46. Write a program to read a point - x and y co-ordinates and determine which quadrant the point lies in.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int main(){   float x,y;   printf("x =");   scanf("%f",&x);   printf("y =");   scanf("%f",&y);   if(x==0 && y==0)      printf("the point is origin");   else if(x==0)      printf("the point is on Y axis");   else if (y==0)      printf("The point is on X axis");   else if(x&gt;0 && y&gt;0)        printf("The point is in first quadrant");   else if(x&gt;0 && y&lt;0)       printf("The point is in fourth quadrant");   else if(x&lt;0 && y&lt;0)       printf("The point is in  third quadrant");   else          printf("The point is in second quadrant");   return 0;}    </pre></div></div> <div class='question'>47. Write a program to print all factors of a given number.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;void printFactors(int n){   int i;   printf("Factors of %d are:",n);   for(i=1;i&lt;=n/2;i++)      if(n%i==0)          printf("%d ",i);  printf("%d\n",n);}int main(){   int n;   printf("n=");   scanf("%d",&n);   printFactors(n);   return 0;}</pre></div></div> <div class='question'>48. Write a program to multiply a given number by 4 using bitwise operators</p><button class='accordion'>Answer</button><div class='panel'><p>When a number is left shifted once, it is multiplied by 2. When it is left shifted twice, the number is multiplied by 4 and so on. </p><p>When the number is left shifted by i, it is multiplied by 2^i</p><pre class='courier'>#include&lt;stdio.h&gt;int product(int n){   return n&lt;&lt;2;}int main(){   int n;   printf("n=");   scanf("%d",&n);   printf("%d multiplied by 4 is %d",n,product(n));   return 0;}</pre></div></div> <div class='question'>49. Write a program to implement power function for integer powers. The function must take x and y as parameters and return x<sup>y</sup>.</p><button class='accordion'>Answer</button><div class='panel'><p>x<sup>y</sup> is x multiplied by itself y times. </p><p>And x<sup>-y</sup> is 1/x<sup>y</sup></p><pre class='courier'>#include&lt;stdio.h&gt;float power(int x,int y){   int isNegativePower=0;   int i;   float product = 1;   if(y&lt;0)   {     isNegativePower = 1;     y = -y;   }   for(i=1;i&lt;=y;i++)     product *=x;   if(isNegativePower)      product = 1 /product;   return product;}int main(){   int x,y;   printf("x =");   scanf("%d",&x);   printf("y =");   scanf("%d",&y);   printf("%d to the power of %d is %f\n",x,y,power(x,y));   return 0;}</pre></div></div> <div class='question'>50. Write  a program to reverse the digits of a number</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int reverse(int n){   int s = 0;   while(n)   {     int digit = n%10;     s = s*10+digit;     n /=10;   }   return s;}int main(){   int n;   printf("n =");   scanf("%d",&n);    printf("After reversing the digits of %d we get %d\n",n,reverse(n));   return 0;}</pre></div></div> <div class='question'>51. Write a function to calculate sum of numbers 1 to N using recursion</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;int sum(int n){   if(n==1)      return n;   else      return n+sum(n-1);}int main(){  int n;  printf("Enter a number");  scanf("%d",&n);   printf("The sum of numbers from 1 to %d is %d\n",n,sum(n));  return 0;}     </pre></div></div> <div class='question'>52. Write a program to read a number and print the number in octal and hexadecimal</p><button class='accordion'>Answer</button><div class='panel'><p>No calculation is involved here. Format specifier %o prints the number in octal and format specifier %x prints the number in hexadecimal. </p><pre class='courier'>#include&lt;stdio.h&gt; int main(){  int n;  printf("n=");  scanf("%d",&n);  printf("%d in octal is %o and in hexadecimal is %x",n,n,n);  return 0;}</pre></div></div> <div class='question'>53. What is main() function? How many main functions can be present in C program?</p><button class='accordion'>Answer</button><div class='panel'><p >A C program should contain one main function.</p><p>Main function is the starting point of execution of program. The program begins and ends with <i>main()</i>. </p><p><i>main()</i> function must return an integer which indicates the success of its execution - 0 to indicate success, non-zero to indicate error.</p></div></div> <div class='question'>54. What are format specifiers?</p><button class='accordion'>Answer</button><div class='panel'><p >Format specifiers are strings used to specify the type of values to be printed and how they should be printed.</p><ul><li>%d is specifier for integer</li><li>%f is for float and double</li><li>%c is for characters etc.</li></ul>e.g<pre>printf("%d  %5d",m,n)</pre><p>tells the system to print m and n as integers and also to print n with a width of 5.</p><p>Format specifiers also specify the type of values to be read in scanf.</p>e.g.<pre>scanf("%d %f",&a,&b)</pre>tells the system to read one integer and one float from console.<p>If a wrong format specifier is given, printf and scanf give garbage values. </p></div></div> <div class='question'>55. Which are the shift operators in C? How are they used?</p><button class='accordion'>Answer</button><div class='panel'><p >&lt;&lt; and &gt;&gt; are shift operators.<br><br>&lt;&lt; - left shift operator moves all the bits of a number to the left by given number of places.<br><br>e.g.<pre>a = 10;b = a&lt;&lt;2;</pre><p>a is left shifted by 2 places. <br>   a = 1010<br>   a&lt;&lt;3 = 1010000 = 80</p><p>Left shifting a number is equivalent to multiplying the number by power of 2<br><br>10&lt;&lt;3 = 10 * 2^3 </p><p>&gt;&gt; is right shift operator which moves the bits of a number to the right by given number of places. <pre>a = 10;b = a&gt;&gt;1;</pre>   which is  1010&gt;&gt;1 = 101 = 5<p>Right shifting a number is dividing a number by power of 2.<br><br></p></div></div> <div class='question'>56. Explain bitwise operators in C.</p><button class='accordion'>Answer</button><div class='panel'><p >C has the following bitwise operators.<ol><li>| - bitwise OR</li><li>& - bitwise AND</li><li> ^ - bitwise EXOR</li><li> ~ - complement</li></ol>These operators work on individual bits of the two operands.<br><br> e.g.<br>   <pre>a = 10;b = 2;</pre><i> a & b = 1010 &0010 = 0010 = 2</i><p><i>  a | b = 1010 | 0010 = 1010 = 10</i> </p> <p>  <i>a^b = 1010 ^ 0010 = 1000 = 8</i></p><p><i>  ~a = ~0010 = 1101</i> (if we consider only 4 bits)</p><br><br>Bitwise operators work only on int and char data types. </p></div></div> <div class='question'>57. Which are assignment operators in C?</p><button class='accordion'>Answer</button><div class='panel'><p >The assignment operators in C are<ol><li>=</li><li>+=</li><li>-=</li><li>*=</li><li>/=</li><li>%=</li><li>&lt;&lt;=</li><li>&gt;&gt;=</li><li>&=</li><li>|=</li><li>^=</li><p>These operators combine assignment with another operation.<br><br>e.g. <i>  a+=b</i> is same as<i> a = a+b</i><br><br>    <i>  m&lt;&lt;=2 </i>  is same as <i>m = m&lt;&lt;2</i><br><br></p></div></div> <div class='question'>58. How do you define a boolean variable in C?</p><button class='accordion'>Answer</button><div class='panel'><p >There is no boolean data type in C. But an integer value is used in logical expressions. And if value is 0, it is logical false. If the value is non-zero, it is true. <pre>int isEven=0;if (m%2==0)     isEven=1;</pre>We can even write the code as<pre> isOdd = 1;if(m%2)   isOdd = 0;</pre></div></div> <div class='question'>59. How do you specify width for value to printed fora) integers b)floats?</p><button class='accordion'>Answer</button><div class='panel'><p >Format specifier can give width of the field along with %d for integers<br><br>e.g. %6d says that print integer with a width of 6 places.<br><br>For float we can specify the total width and width for decimal places. <pre>printf("%9.2f",a)</pre>says the system to print a with a total width of 9 and 2 decimal places.<br><pre>printf("%.1f",b)</pre><br>tells that print b with 1 decimal place.</p></div></div> <div class='question'>60. What do the following format specifiers do?<pre>%lf%ld%o%x%e</pre><button class='accordion'>Answer</button><div class='panel'><p >%lf is used as format specifier for double in scanf.<br><br>%o is used to display an integer value in octal<br><br>%x is used to display an integer in hexadecimal<br><br>%e is used to display a float or a double value in exponential notation <i>1.2E3 = 1.2 * 10^3</i></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
