@@ -131,7 +131,7 @@ function populate() {
             //console.log("choice"+i+"is "+str2);
            }
            element.innerHTML = str2;
-            var bt = document.getElementById("btn"+i);
+            var bt = document.getElementById("choice"+i);
             bt.checked = false;
             var ans = quiz.getQuestionIndex().answer;
              
