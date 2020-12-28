@@ -2,7 +2,10 @@
      font-family:'Roboto';
      src:url('fonts/Roboto-Light.ttf');
      font-weight:normal;
-     font-style:normal;
+}
+@font-face{
+     font-family:'Roboto-Dark'
+     src:url('fonts/Roboto-Dark.ttf');
 }
 
 body {
@@ -12,7 +15,7 @@ body {
 }
  
 .grid {
-    width: 600px; 
+    width: 60%; 
     margin: 20px auto;
     background-color: #fff;
     padding: 30px 50px 50px 50px;    
@@ -38,36 +41,28 @@ body {
 #score {
     color: #009688;
     text-align: right;
-    font-size: 16px;
+    font-family:'Roboto-Dark';
 }
  
 #choice0,#choice1,#choice2,#choice3{
     padding-top: 10px;
     padding-bottom: 10px;
-    width:300px;
+    width:60%;
       background-color:alice-blue;
+   font-size:18px;
  
    margin:5px;
-   text-align:center;
-   font-size:16px;
-   font-style:bold;
+   text-align:center;  
    border-radius: 7px;
    border-style: outset;
    box-shadow: 2px;
-   word-wrap: break-word;
-   
-    
+   word-wrap: break-word; 
  }
-.grid #question {
-    
-     
-     
-}
+ 
  
 .buttons {
     margin-top: 30px; 
-    line-height: 200%; 
-    font-size: 16px;
+    line-height: 200%;  
 }
  
  .codetext{
@@ -77,8 +72,7 @@ body {
 #nextbutton {
  
     background-color: #009688;
-    width: 250px;
-    font-size: 22px;
+    width: 40%; 
     font-weight: bold;
     color: #fff;
     margin:20px auto;
@@ -104,11 +98,10 @@ body {
 }
  
 #progress {
-    color: #009688;
-    font-size: 16px;
-    font-style:bold;
+    color: #009688; 
+
+    font-family:'Roboto-Dark'; 
 }
 .codestyle{
-    font-family: monospace;
-    font-size: 16px;
+    font-family: monospace; 
 }
