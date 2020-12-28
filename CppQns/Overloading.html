@@ -1,0 +1,52 @@
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Quiz</title> 
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script type="text/javascript" src="overloading.js" >
+    
+    </script>
+</head>
+<body>
+ <header class="head">
+            <h2 align="center">Overloaded operators and functions</h2></header>
+    <div class="grid">
+        <div id="quiz">
+       
+             <div class="heading">
+                 <p id="progress">Question x of y</p>
+            <h4 id="score" style="font-size:14px; text-align: right; "></h4>
+            </div>
+                <hr style="margin-top: 50px">
+         <div class = "qn">
+            <p id="question"></p>
+            <p id="questioncode" class="codestyle"></p>
+        </div>
+ 
+            <div class="buttons" align="center">
+              
+                 <button id="choice0"  onclick="answerClicked(1)" > </button><br>
+              
+                <button id="choice1" onclick="answerClicked(2)" > </button><br>
+                <button  id="choice2"   onclick="answerClicked(3)" > </button><br>
+                <button   id="choice3"   onclick="answerClicked(4)"> </button><br>
+            
+            </div>
+           
+            <hr style="margin-top: 20px">
+            
+       
+             <div class="answerclass" id="rightOrWrong"></div>
+            
+               <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
+           
+        </div>
+    </div>
+ <script type="text/javascript" >
+    
+   populate()
+ </script>
+ 
+</body>
+</html>

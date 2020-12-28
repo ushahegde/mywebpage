@@ -1,7 +1,14 @@
+@font-face{
+     font-family:'Roboto';
+     src:url('fonts/Roboto-Light.ttf');
+     font-weight:normal;
+     font-style:normal;
+}
+
 body {
     background-color: #eee;
     font-size:18px;
-    font-family: 'roboto',sans-serif;
+    font-family: "Roboto";
 }
  
 .grid {
@@ -34,9 +41,21 @@ body {
     font-size: 30px;
 }
  
-#btn0,.btn1,.btn2,.btn3{
+#choice0,#choice1,#choice2,#choice3{
     padding-top: 10px;
     padding-bottom: 10px;
+    width:250px;
+      background-color:alice-blue;
+ 
+   margin:5px;
+   text-align:center;
+   font-size:16px;
+   font-style:bold;
+   border-radius: 7px;
+   border-style: outset;
+   box-shadow: 2px;
+   word-wrap: break-word;
+   
     
  }
 .grid #question {
@@ -85,6 +104,10 @@ body {
 }
  
 #progress {
-    color: #2b2b2b;
+    color: #009688;
+    font-size: 16px;
+}
+.codestyle{
+    font-family: monospace;
     font-size: 16px;
 }
