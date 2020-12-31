@@ -2,42 +2,41 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz</title> 
     <link rel="stylesheet" type="text/css" href="../style.css">
+ 
     <script type="text/javascript" src="filehandling.js" >
     
     </script>
 </head>
-<body>
- <header class="head">
-            <h2 align="center">File Handling in C++ </h2></header>
+<body>  
+<h2  class = "heading"align="center" >File Handling</h2>
+ 
+     
     <div class="grid">
         <div id="quiz">
        
-             <div class="heading">
-                 <p id="progress">Question x of y</p>
-            <h4 id="score" style="font-size:14px; text-align: right; "></h4>
-            </div>
-                <hr style="margin-top: 50px">
-         <div class = "qn">
+             
+                 <div id="progress">Question x of y</div>
+            <div id="score"  ></div>
+                <hr  >
             <p id="question"></p>
-            <p id="questioncode" class="codestyle"></p>
-        </div>
+            <div id="questioncode" class="codestyle"></div>
  
-          <div class="buttons" align="center">
-            
-                 <button id="choice0"   onclick="answerClicked(1)" ></button><br>
-              
-                <button  id="choice1"  onclick="answerClicked(2)" > </button><br>
-                <button id="choice2"   onclick="answerClicked(3)" > </button><br>
-                <button id="choice3"   onclick="answerClicked(4)"> </button><br>
-            
+            <div class="buttons" align="center">
+             
+                 <button   id="choice0"   ></button><br>
+                  <button   id="choice1"  ></button><br>
+                   <button   id="choice2"  ></button><br>
+                    <button   id="choice3"   ></button><br>
+               
             </div>
            
-            <hr style="margin-top: 50px">
+            <hr  >
             
        
-             <div class="answerclass" id="rightOrWrong"></div>
+             <p class="answerclass" id="answerIndicator"></p>
             
                <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
            

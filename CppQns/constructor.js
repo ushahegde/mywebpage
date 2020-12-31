@@ -24,31 +24,22 @@ Quiz.prototype.guess = function(answer,button) {
 	var nextbutton = document.getElementById('nextbutton');
 	nextbutton.innerHTML = 'Next Question';
    var element = document.getElementById("answerIndicator");
-    console.log("you pressed"+answer);
-    console.log("correct answer is "+this.getQuestionIndex().answer);
+   
     if(this.getQuestionIndex().isCorrectAnswer(answer)) {
-        this.score++;
-        
+        this.score++;        
          element.style="color:green;";
-        element.innerHTML="CORRECT";
-     
-        
-    }else{
-    	 
-       
+        element.innerHTML="CORRECT";            
+    }else{   	 
        element.style="color:red;";
-     element.innerHTML="WRONG";  
-      
+     element.innerHTML="WRONG";        
     }
      var element2 = document.getElementById('score');
-      element2.innerHTML = 'Your Score :'+quiz.score;
-  
+      element2.innerHTML = 'Score :'+quiz.score;  
 }
  
 Quiz.prototype.isEnded = function() {
     return this.totalQuestions==this.questionIndex;
 }
- 
  
 function Question(text,textcode, ans1,ans2,ans3,ans4, answer) {
     this.text = text;
@@ -56,40 +47,34 @@ function Question(text,textcode, ans1,ans2,ans3,ans4, answer) {
     this.choices = [ans1,ans2,ans3,ans4]
   //  this.choices =new string[] {ans1,ans2,ans3,ans4};
     this.answer = this.choices[answer-1]; 
-}
- 
-Question.prototype.isCorrectAnswer = function(choice) {
-	 
+} 
+Question.prototype.isCorrectAnswer = function(choice) {	 
     return this.answer === choice;
 };
  
-
-
- 
- 
-function populate() {
-	
+function populate() {	
     if(quiz.isEnded()) {
         showScores();
     }
     else { 
-        var correctIndicator = document.getElementById('answerIndicator');
-       
+        var correctIndicator = document.getElementById('answerIndicator');       
         correctIndicator.innerHTML= "                       ";     
         var element = document.getElementById("question");
-        var str = quiz.getQuestionIndex().text;
-        
-       // console.log(str)
-        
+        var str = quiz.getQuestionIndex().text;        
+       // console.log(str)       
      //   str = str.replace(/'/g,'"');
-        element.innerHTML = str;
-        
+        element.innerHTML = str;        
         var strcode = quiz.getQuestionIndex().textcode;
         var elcode = document.getElementById("questioncode");
-        strcode = strcode.replaceAll("NLL","<br>")
-        strcode = strcode.replaceAll(" ","&nbsp;");
-        if(strcode!='a'&& strcode!="")
-          elcode.innerHTML = strcode;
+       
+       strcode= strcode.trim();
+        if(strcode!=""){
+          elcode.style.display='block';
+        elcode.innerHTML = "<pre>"+strcode+"</pre>";  
+        }
+        else{  
+          elcode.style.display='none'; 	       
+        }
         
         var nextButton = document.getElementById('nextbutton');
         nextButton.innerHTML = "Skip";
@@ -139,7 +124,7 @@ function showProgress() {
  
 function showScores() {
     var gameOverHTML = "<h1>Result</h1>";
-    gameOverHTML += "<h2 > Your scores: " + quiz.score + "/"+(quiz.questionIndex)+ "</h2>";
+    gameOverHTML += "<h2 > Your score: " + quiz.score + "/"+(quiz.questionIndex)+ "</h2>";
     var element = document.getElementById("quiz");
     element.innerHTML = gameOverHTML;
 };
@@ -155,16 +140,14 @@ new Question('What is the output of the program?',
 new Question('What is the output of the following program?',
 'class  A<br> {<br>   int a;<br> public:<br>   A(int n);<br>   void print_a(); <br> };<br> A::A(int n)<br> {<br>    a = n;    cout&lt;&lt;"Constructor ";<br> }<br> void A::print_a() <br>  {    <br>      cout&lt;&lt;a;<br>   }<br> int main()<br> {<br>      A obj1;     <br>      obj1.print_a();     <br> }',
 'Constructor 88 ','88','Error because the class has no default constructor','   ',3),
-new Question('What is the error in this program?','class  A<br> {<br>   int a;<br> public:<br>   void A(int n);<br>   void print_a(); <br> };<br> <br> void A::A(int n)<br> {<br>     a = n; <br>     cout&lt;&lt;"Constructor\n";<br> }<br> void A::print_a() <br>  {    <br>      cout&lt;&lt;a;<br>   }<br> int main()<br> {<br>      A obj1(12);  <br>      obj1.print_a();     <br> }','The statement should be<br> A obj1 = A(12);','Constructor can not have a return type','No error','   ',2),
-new Question('What is the output of the following program?','class  A<br> {<br>   int a;<br> public:<br>   A(int n);<br>   A();<br>   void print_a(); <br> };<br> A::A():a(0)<br> {<br>     cout&lt;&lt;"Default Constructor\n";<br> }<br> A::A(int n):a(n)<br> {<br>    cout&lt;&lt;"Parameterized Constructor\n";<br> }<br> void A::print_a() <br>  {      cout&lt;&lt;a;  }<br> int main()<br> {<br>      A obj1(12); <br>      A obj2;        <br>      A obj3=5;   <br>      obj1.print_a();     <br> }','Compiler error',12,'Parameterized Constructor<br> Default Constructor<br> Parameterized Constructor<br> 12','   ',3),
+new Question('What is the error in this program?','class  A<br> {<br>   int a;<br> public:<br>   void A(int n);<br>   void print_a(); <br> };<br> <br> void A::A(int n)<br> {<br>     a = n; <br>     cout&lt;&lt;"Constructor";<br> }<br> void A::print_a() <br>  {    <br>      cout&lt;&lt;a;<br>   }<br> int main()<br> {<br>      A obj1(12);  <br>      obj1.print_a();     <br> }','The statement should be<br> A obj1 = A(12);','Constructor can not have a return type','No error','   ',2),
+new Question('What is the output of the following program?','class  A<br> {<br>   int a;<br> public:<br>   A(int n);<br>   A();<br>   void print_a(); <br> };<br> A::A():a(0)<br> {<br>     cout&lt;&lt;"Default Constructor";<br> }<br> A::A(int n):a(n)<br> {<br>    cout&lt;&lt;"Parameterized Constructor";<br> }<br> void A::print_a() <br>  {      cout&lt;&lt;a;  }<br> int main()<br> {<br>      A obj1(12); <br>      A obj2;        <br>      A obj3=5;   <br>      obj1.print_a();     <br> }','Compiler error','12','Parameterized Constructor<br> Default Constructor<br> Parameterized Constructor<br> 12','   ',3),
 new Question('Which constructor does the  line marked as line 1 use?','class  A<br> {<br>   int a;<br> public:<br>   A(int n);<br>   A();<br> };<br> A::A()<br> {<br>     this-&gt;a =0;<br> }<br> A::A(int n):a(n)  <br> {<br> } <br> int main()<br> {<br>      A obj1(12);  <br>      A obj2;<br>      A obj3=obj1;/*line 1*/<br>      obj1.print_a();     <br> }','Default constructor','Copy Constructor','Parameterized constructor','   ',2),
 new Question('What will be the output of this program?','class  A<br> {<br>   int a;<br> public:<br>   A(int n); <br>   void print_a(); <br> }; <br> A::A(int n):a(n)  <br> {<br>    cout&lt;&lt;"Constructor";<br> }<br> void A::print_a() <br>  {         cout&lt;&lt;a;  }<br> int main()<br> {<br>      A obj1(12);  <br>      A objarr[10];<br>      obj1.print_a();     <br> }','Constructor12','12','1210','Compiler error',4),
 new Question('The following program gives the output as <br> Constructor1212DestructorDestructor<br> <br> Why is there an extra destructor?','class  A<br> {<br>   int a;<br> public:<br>   A(int n);<br>   ~A();<br>   void print_a(); <br> }; <br> A::~A()<br> {<br>     cout&lt;&lt;"Destructor";<br> }<br> A::A(int n):a(n)  <br> {<br>    cout&lt;&lt;"Constructor";<br> }<br> void A::print_a() <br>  {<br>          cout&lt;&lt;a;<br>   }<br> void print_num(A obj)<br> {<br>    obj.print_a();<br> }<br> int main()<br> {<br>      A obj1(12);    <br>      print_num(obj1);<br> }','There is an extra destructor because there is a bug in the compiler','obj1 is constructed twice','print_num creates another object using copy constructor','None of the above',3),
 new Question('What will be the output of the following program?','class  A<br> {<br>   int n;<br>   int *arr;<br> public:<br>   A(int n);<br>   ~A(); <br>  }; <br> A::~A()<br> {<br>     delete []arr;<br> }<br> A::A(int n):n(n)  <br> {<br>    arr = new int[n]; <br>   for(int i=0;i&lt;n;i++)   <br>        arr[i]=i*i;<br> }  <br> int main()<br> {<br>      A obj1(4);   <br>      if(true) <br>         A obj2(obj1);     <br>      A obj3 = obj1;    <br> }','No output','0','Program crashes because of shallow copy','None of the above',3),
-new Question('What is the error in the copy constructor in the following program?','class  A<br> {<br>   int n;<br>   int *arr;<br> public:<br>   A(int n);<br>   A(A obj);/*copy constructor*/<br>   ~A();<br>   void write_array();<br>   void print_array(); <br> };<br> A::A(A orig_obj)<br> {<br>    cout&lt;&lt;"Copy constructor";<br> }<br> /*rest of the code*/','No Error','Copy constructor can not be user defined','Parameter to copy constructor should be reference parameter','   ',3),
-new Question('Which of these is the right copy constructor for a class with two data members viz int n and integer array - int*arr?',
-'class A<br> {<br>    int n;<br>    int *arr;<br> public:<br> /** copy constructor decln here*/<br> };<br> ',
-'A::A(A obj1)<br> {<br>     n = obj1.n;<br>     arr = obj1.arr;<br> }<br> ',
+new Question('What is the error in the copy constructor in the following program?','class  A<br> {<br>   int n;<br>   int *arr;<br> public:<br>   A(int n);<br>   A(A obj);/*copy constructor*/<br>   ~A();  <br> };<br> A::A(A orig_obj)<br> {<br>    cout&lt;&lt;"Copy constructor";<br> }<br> /*rest of the code*/','No Error','Copy constructor can not be user defined','Parameter to copy constructor should be reference parameter','   ',3),
+new Question('Which of these is the right copy constructor for a class with two data members viz int n and integer array - int*arr?','class A<br> {<br>    int n;<br>    int *arr;<br> public:<br> /** copy constructor decln here*/<br> };<br> ','A::A(A obj1)<br> {<br>     n = obj1.n;<br>     arr = obj1.arr;<br> }<br> ',
 'A::A(const A &obj)<br> {<br>     n = obj.n;<br>     arr = obj.arr;<br> }',
 'A::A(const A &obj)<br> {<br>    this-&gt;n =  obj.n;   arr = new int[n];   <br>    for(int i=0;i&lt;n;i++)      arr[i] =  obj.arr[i];   <br> }','   ',3),
 new Question('What is the difference between copy constructor and assignment operator?','   ','Copy constructor is used for new objects. Assignment operator is used for existing objects.','You can write your own copy ctor but not assignment operator','There are no differences','   ',1),

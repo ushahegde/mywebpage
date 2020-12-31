@@ -24,8 +24,7 @@ Quiz.prototype.guess = function(answer,button) {
 	var nextbutton = document.getElementById('nextbutton');
 	nextbutton.innerHTML = 'Next Question';
    var element = document.getElementById("answerIndicator");
-    //console.log("you pressed"+answer);
-   // console.log("correct answer is "+this.getQuestionIndex().answer);
+    
     if(this.getQuestionIndex().isCorrectAnswer(answer)) {
         this.score++;
         
@@ -41,32 +40,10 @@ Quiz.prototype.guess = function(answer,button) {
       
     }
      var element2 = document.getElementById('score');
-      element2.innerHTML = 'Your Score :'+quiz.score;
+      element2.innerHTML = 'Score :'+quiz.score;
   
 }
-function answerClicked(answernum) 
-{
-	var nextbutton = document.getElementById('nextbutton');
-        var correctanswer = quiz.getQuestionIndex().answer;
-	nextbutton.innerHTML = 'Next Question';
-   var aa = document.getElementById("rightOrWrong");
-    //aa.innerHTML = "You clicked a button. la la la la";
-    //console.log("you pressed"+answer);
-   // console.log("correct answer is "+this.getQuestionIndex().answer);
-    if(answernum==correctanswer) {
-        quiz.score++;        
-         aa.style="color:green;";
-        aa.innerHTML="CORRECT";     
-    }else{ 
-       
-       aa.style="color:red;";
-     aa.innerHTML="WRONG";   
-    }
-     var element2 = document.getElementById('score');
-      element2.innerHTML = 'Your Score :'+quiz.score;
-  
-} 
-
+ 
 Quiz.prototype.isEnded = function() {
     return this.totalQuestions==this.questionIndex;
 }
@@ -74,39 +51,36 @@ Quiz.prototype.isEnded = function() {
  
 function Question(text,textcode, ans1,ans2,ans3,ans4, answer) {
     this.text = text;
-    this.textcode=textcode;
-    this.choices = [ans1,ans2,ans3,ans4]
-  //  this.choices =new string[] {ans1,ans2,ans3,ans4};
-    this.answer = answer; 
+    this.textcode=textcode; 
+    this.choices = [ans1,ans2,ans3,ans4] ;
+    this.answer = this.choices[answer-1];  
 }
  
 Question.prototype.isCorrectAnswer = function(choice) {
-	 
     return this.answer === choice;
 }; 
- 
 function populate() {	
     if(quiz.isEnded()) {
         showScores();
     }
     else { 
-        var  correctIndicator= document.getElementById("rightOrWrong");
-       
-      //  correctIndicator.innerHTML= "                       ";     
+        var correctIndicator = document.getElementById('answerIndicator');       
+        correctIndicator.innerHTML= "                       ";     
         var element = document.getElementById("question");
-        var str = quiz.getQuestionIndex().text;
-        
-       // console.log(str)
-        
-     //   str = str.replace(/'/g,'"');
+        var str = quiz.getQuestionIndex().text;  
         element.innerHTML = str;
         
         var strcode = quiz.getQuestionIndex().textcode;
         var elcode = document.getElementById("questioncode");
-        strcode = strcode.replaceAll("<br>","<br>")
-        strcode = strcode.replaceAll(" ","&nbsp;");
-        if(strcode!='a'&& strcode!="")
-          elcode.innerHTML = strcode;
+        
+        strcode= strcode.trim();
+        if(strcode!=""){
+          elcode.style.display='block';
+        elcode.innerHTML = "<pre>"+strcode+"</pre>";  
+        }
+        else{  
+          elcode.style.display='none'; 	       
+        }
         
         var nextButton = document.getElementById('nextbutton');
         nextButton.innerHTML = "Skip";
@@ -114,31 +88,21 @@ function populate() {
        
         var choices = quiz.getQuestionIndex().choices;
        
-     //   console.log(choices[1]);
-        for(var i = 0; i <choices.length; i++) {
+        for(var i = 0; i < choices.length; i++) {
             var element = document.getElementById("choice" + i);
-           
+            element.innerHTML = choices[i];
             var str2 = choices[i];
             str2 = str2.trim();
-            if(str2.length!=0){
- 		str2= str2.replaceAll("<br>","<br>");
-                str2 = str2.replaceAll(" ","&nbsp;");
-            //console.log("choice"+i+"is "+str2);
-           }
-           element.innerHTML = str2;
+            
+          
             var bt = document.getElementById("choice"+i);
             bt.checked = false;
-            var ans = quiz.getQuestionIndex().answer;
-             
-//bt.addEventListener("click",answerClicked(i+1,ans));
-		
             if(str2.length ==0){
 					bt.style.display = "none";            
             }else{
 					bt.style.display = "inline";            
             }
-            correctIndicator.innerHTML = "";
-         //   guess("btn" + i, str2);
+            guess("choice" + i, choices[i]);
         }
  
         showProgress();
@@ -161,9 +125,10 @@ function showProgress() {
 };
  
 function showScores() {
-    var gameOverHTML = "<h1>Result</h1>";
-    gameOverHTML += "<h2> Your score : " + quiz.score + "/"+(quiz.questionIndex)+ "</h2>";
+    var gameOverHTML = "<h2 class='heading'>Result</h2>";
+    gameOverHTML += "<h1 class='heading'> Your score: " + quiz.score + "/"+(quiz.questionIndex)+ "</h1>";
     var element = document.getElementById("quiz");
+ 
     element.innerHTML = gameOverHTML;
 };
 
@@ -171,7 +136,7 @@ function showNextQuestion() {
    quiz.questionIndex++;
    populate();
  }
-var questions=[
+ var questions = [ 
 new Question('What is the output of this program?','int sum(int a,int b,int c)<br>{    return a+b+c;} <br>int sum(int a,int b)<br>{   return a+b;}<br>int main()<br>{<br>    int s = sum(2,4,5);   <br>    cout&lt;&lt;s;<br>    return 0;<br>}','Error because function sum is redefined','11','None of the above','  ',2),
 new Question('What is the error/output of the program?',' int sum(int a,int b=0,int c=0)<br>{<br>    return a+b+c;<br>} <br>int main()<br>{ <br>    cout&lt;&lt;sum(2,4,5); <br>    cout&lt;&lt;sum(2,4);   <br>    cout&lt;&lt;sum(22);   <br>    return 0;<br>}','Error because assignment is used in parameter declaration','Error because function expects 3 arguments but is called with less than 3 arguments.','11622','  ',3),
 new Question('What is the error in this program?','int sum(int a=0,int b,int c=0)<br>{<br>    return a+b+c;<br>} <br>int main()<br>{ <br>    cout&lt;&lt;sum(2,4,5); <br>    cout&lt;&lt;sum(2,4); <br>    cout&lt;&lt;sum(2);   <br>    return 0;<br>}','can not assign values to parameters in function declaration','Default paramter value is not assigned to 2nd parameter but is assigned to first parameter','No error','  ',2),
@@ -198,7 +163,7 @@ new Question('For the class given below how do you overload assignment operator 
 new Question('What is the output of the following program?',' void printNum(int a)<br>    {<br>        cout&lt;&lt;"Integer  ="&lt;&lt;a&lt;&lt;"\n";<br>    }<br>    void printNum(float a)<br>    {<br>        cout&lt;&lt;"Float  ="&lt;&lt;a&lt;&lt;"\n";<br>    }<br> int main()<br>{<br>     printNum(10);<br>     printNum(11.2);<br>}','Integer = 10<br>Float = 11.2','Integer = 10<br>Integer = 11','Compiler error . Ambiguous call to printNum(11.2)','None of the above',3),
 new Question('What is the output of the following program?',' class Number<br>{<br>    unsigned char num; <br>public:<br>    Number(int n=0); <br>    Number operator * (const Number & obj);<br>}; <br>Number::Number(int n)<br>{    this-&gt;num =(char) n; } <br>Number Number::operator *(const Number &obj)<br>{<br>    cout&lt;&lt;"The parameter here is "&lt;&lt;(int)obj.num;<br>    cout&lt;&lt;"And current object is "&lt;&lt;(int)num;<br>    return Number(num*obj.num);    <br>}<br>int main()<br>{<br>  Number obj1(12);<br>  Number obj2(25);  <br>  Number obj3 = obj1*obj2;<br>}','No output','300','The parameter here is 25And current object is 12','  ',3),
 new Question('For the class given below, write the declaration of overloaded subscript operator.','class ABC<br>{<br>    int size;<br>    float *elements;<br>public:<br>   /*code*/<br>};','float operator[int n];','float & operator[](int n);','None of the above','   ',2),
-new Question('What is the output of the following program?','class DbArray<br>{<br>     int len;<br>     double *elements;<br>public:<br>    DbArray(int sz):len(sz)<br>   {  elements = new double[len];}<br>    double  operator [](int i) ;<br>};<br>double DbArray::operator[](int index)<br>{<br>    return elements[index];<br>}<br>int main()<br>{<br>     DbArray obj1(5);<br>     for(int i=0;i&lt;5;i++)<br>         obj[i] = i*2;<br>      for(int i=0;i&lt;5;i++)<br>         cout&lt;&lt;obj[i];<br>}','2468,01234','Compiler error','  ',3),
+new Question('What is the output of the following program?','class DbArray<br>{<br>     int len;<br>     double *elements;<br>public:<br>    DbArray(int sz):len(sz)<br>   {  elements = new double[len];}<br>    double  operator [](int i) ;<br>};<br>double DbArray::operator[](int index)<br>{<br>    return elements[index];<br>}<br>int main()<br>{<br>     DbArray obj1(5);<br>     for(int i=0;i&lt;5;i++)<br>         obj[i] = i*2;<br>      for(int i=0;i&lt;5;i++)<br>         cout&lt;&lt;obj[i];<br>}','2468','01234','Compiler error','  ',3),
 new Question('What are the errors in this program?','class Distance<br>{<br>    int inches;<br>    int feet;<br>public:<br>    Distance(int inc):feet(inc/12),inches(inc%12){}<br>    Distance & operator ++();/*prefix*/<br>    Distance operator++(int);/*postfix*/<br>};<br>Distance & operator++()<br>{<br>    inches++;<br>    if(inches&gt;=12)<br>    {<br>        inches-=12;<br>        feet++;<br>    }<br>   return *this;<br>}<br>Distance operator ++(int dummy)<br>{<br>    Distance temp = *this;<br>     inches++;<br>    if(inches&gt;=12)<br>    {<br>        inches-=12;<br>        feet++;<br>    }<br>    return temp;<br>}<br>','Can not overload an operator twice','++ operator is unary and it does not need a  parameter','No errors','  ',3),
 new Question('What is the output of this program?','class A<br>{<br>   int n;<br>public:<br>  A(int m);<br>  int getn();<br>};<br>A::A(int m):n(m){}<br>int A::getn()<br>{     return n;     }<br>ostream& operator&lt;&lt;(ostream&out,A &obj)<br>{<br>     out&lt;&lt;"n="&lt;&lt;obj.getn()&lt;&lt;endl;<br>     return out;<br>}<br>int main()<br>{<br>      A obj(10);<br>      cout&lt;&lt;obj;<br>}<br>  ','Error in &lt;&lt;operator function','10','n= 10','  ',3),
 new Question('How do you write overloaded conversion function for the following class?','class RealNumber<br>{<br>    double num;<br>public:<br>    RealNumber(double m):num(m){ }<br>    operator double();<br>};<br>','RealNumber::operator double()<br>{<br>    return num;<br>}<br>    ','double RealNumber::operator double()<br>{<br>    return num;<br>}<br>    ','It is not possible','  ',1),

@@ -10,22 +10,43 @@
 
 body {
     background-color: #eee;
-    font-size:18px;
+    font-size:16px;
     font-family: "Roboto";
 }
- 
+@media screen and (max-width: 800px){
+.grid{
+     width: 100%;
+     padding:5px;
+     
+}
+table,td{
+	display: block;
+	margin: 3px;
+
+}
+button{ 
+    padding:5px;
+    min-width:150px;
+   
+}
+}
+*{
+	margin:0px;
+	padding:0px;
+} 
 .grid {
+	
     width: 60%; 
-    margin: 20px auto;
+    margin: auto;
     background-color: #fff;
-    padding: 30px 50px 50px 50px;    
+    padding: 20px 20px 20px 20px; 
     border-radius:5px;   
    
 }
  
  .answerclass{ 
     font-weight: bolder; 
-    min-height: 40px;
+  
     text-align: center;
  }
 .grid h1 {
@@ -43,13 +64,12 @@ body {
     text-align: right;
     font-family:'Roboto-Dark';
 }
- 
-#choice0,#choice1,#choice2,#choice3{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width:60%;
-      background-color:alice-blue;
-   font-size:18px;
+ button{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width:70%;
+  background-color:#ddd;
+   font-size:16px;
  
    margin:5px;
    text-align:center;  
@@ -68,6 +88,8 @@ body {
  .codetext{
     font-family:monospace;
     font-size:12px; 
+    max-height:150px;
+    overflow:scroll;
  }
 #nextbutton {
  
@@ -75,9 +97,10 @@ body {
     width: 40%; 
     font-weight: bold;
     color: #fff;
-    margin:20px auto;
-    padding: 20px 20px 20px 20px;
+    margin:10px auto;
+    padding: 10px 10px 10px 10px;
     border-radius: 5px;
+    font-size:18px;
      
 }
  
@@ -96,12 +119,50 @@ body {
    font-weight: bolder; 
    padding:10px;
 }
+.heading{
+   background-color: #389;
+   color: white;
+   font-size: 30px;
+   font-weight: bolder;  
+   text-align:center;
+   padding:10px;
+}
  
 #progress {
     color: #009688; 
-
+    height: 50px;
+    text-align: left;
     font-family:'Roboto-Dark'; 
 }
 .codestyle{
     font-family: monospace; 
+    font-size:12px;
+    max-height:150px;
+    margin:25px;
+    overflow:scroll;
+    border:1px;
+    border-color:#bbb;
+    border-style:solid;
+    padding:5px;
+}
+nav ul{
+    list-style:none;
+    display:inline; 
+    float: left;
+    
+}
+nav ul li{
+	padding:4px;float: left;
+	
+}
+nav ul a{
+   text-decoration:none;
+}
+hr{
+   color:#888;
+   margin:5px;
+}
+#question{
+    padding:8px;
+    margin:8px;
 }

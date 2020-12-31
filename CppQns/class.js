@@ -2,8 +2,7 @@ function Quiz(questions) {
     this.score = 0;
     this.questions = shuffle(questions);
     this.totalQuestions = 10;
-    this.questionIndex = 0;
- 
+    this.questionIndex = 0; 
 }
   function shuffle(arra1) {
     var ctr = arra1.length, temp, index; 
@@ -26,21 +25,18 @@ Quiz.prototype.guess = function(answer,button) {
    var element = document.getElementById("answerIndicator");
     
     if(this.getQuestionIndex().isCorrectAnswer(answer)) {
-        this.score++;
-        
+        this.score++;        
          element.style="color:green;";
-        element.innerHTML="CORRECT";
-     
+        element.innerHTML="CORRECT";  
         
-    }else{
-    	 
+    }else{   	 
        
        element.style="color:red;";
      element.innerHTML="WRONG";  
       
     }
      var element2 = document.getElementById('score');
-      element2.innerHTML = 'Your Score :'+quiz.score;
+      element2.innerHTML = 'Score :'+quiz.score;
   
 }
  
@@ -60,11 +56,7 @@ function Question(text,textcode, ans1,ans2,ans3,ans4, answer) {
 Question.prototype.isCorrectAnswer = function(choice) {
 	 
     return this.answer === choice;
-};
- 
-
-
- 
+}; 
  
 function populate() {
 	
@@ -78,24 +70,28 @@ function populate() {
         var element = document.getElementById("question");
         var str = quiz.getQuestionIndex().text;
         
-        console.log(str)
+      //  console.log(str)
         
      //   str = str.replace(/'/g,'"');
-        element.innerHTML = str;
-        
+        element.innerHTML = str;        
         var strcode = quiz.getQuestionIndex().textcode;
         var elcode = document.getElementById("questioncode");
-       
-        strcode = strcode.replaceAll(" ","&nbsp;");
-        if(strcode!='a'&& strcode!="")
-          elcode.innerHTML = strcode;
+        
+        strcode= strcode.trim();
+        if(strcode!=""){
+          elcode.style.display='block';
+          elcode.innerHTML = "<pre>"+strcode+"</pre>";  
+        }
+        else{  
+          elcode.style.display='none'; 	       
+        }
+           
         
         var nextButton = document.getElementById('nextbutton');
         nextButton.innerHTML = "Skip";
         
        
-        var choices = quiz.getQuestionIndex().choices;
-        console.log(choices[1]);
+        var choices = quiz.getQuestionIndex().choices; 
         for(var i = 0; i < choices.length; i++) {
             var element = document.getElementById("choice" + i);
             element.innerHTML = choices[i];
@@ -134,7 +130,7 @@ function showProgress() {
  
 function showScores() {
     var gameOverHTML = "<h1>Result</h1>";
-    gameOverHTML += "<h2 > Your scores: " + quiz.score + "/"+(quiz.questionIndex)+ "</h2>";
+    gameOverHTML += "<h2 > Your score: " + quiz.score + "/"+(quiz.questionIndex)+ "</h2>";
     var element = document.getElementById("quiz");
     element.innerHTML = gameOverHTML;
 };
