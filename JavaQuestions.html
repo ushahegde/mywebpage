@@ -5,39 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta charset="utf-8" />
- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">    
+<link rel="stylesheet" type="text/css" href="../style.css">
 <title>Java Quiz</title>
 <style>
-.sidenav {
-  width: 150px;
-  position: fixed;
-  margin:5px;
-  margin-top: 60px;
-  z-index: 2;
-  top: 40px;
-  left: 10px;
-   
-  overflow-x: hidden;
-  font-size:14px; 
-  padding: 8px 4px 8px 4px; 
-  line-height: 150%;
-  font-family: 'roboto';
-}
-
-.sidenav a {
-  padding: 2px 8px 2px 16px;
-  text-decoration: none;
-  color: #2196F3;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #064579;
-}
+ 
 .grid {
-    width: 90%;
-     
-    height: 500px;
+    width: 80%; 
     margin-left: 200px ;
     margin-right: 20px;
     background-color: #eee;
@@ -49,7 +22,11 @@
   border-color: #eef; 
   
 }
- 
+
+ table{
+    margin:10px auto;
+    width:50%;
+}
 .grid h1 {
     background-color: #699;
     font-size: 40px;
@@ -69,6 +46,11 @@
    font-size: 14px;
    
 }
+table,td{
+	display: block;
+	margin: 3px;
+
+}
 }
 .heading{
    width: 100%;
@@ -85,53 +67,77 @@
   border-color: #eef;
    font-family:'roboto' ; 
 }
+td{
+   border-style: solid;
+   border-color: aliceblue;
+   border-width: 1px;
+   margin: 10px 5px 10px 5px;;
+   padding: 10px;
+   background-color:#22aabb;
+   
+}
+td a{
+   text-decoration:none;
+   display:block;
+}
+.content{
+   margin:10px auto;
+   width:80%;
+   }
 </style>
 </head>
 <body>
  <div class="heading">
    Java resources
  </div>
- <div class="sidenav">
- Java Quiz 
-		 			 <a href="Basics.html">Java Basics</a> 
-		 	 <a href="String.html">String</a>
-		 			 <a href="Classes.html">Classes </a> 
-		 		 <a href="Inheritance.html">Inheritance</a>
-			 	 <a href="ThreadHandling.html">Thread Handling</a>
-		   <a href="ExceptionHandling.html">Exception Handling</a>
-		   <a href="Advanced.html">Advanced</a>
-	 	 Java Programs 
-			 
-	 		 <a href="somepage.html">Prime Numbers</a>
- 			 <a href="primefactors.html">Prime factors </a> 
-Java multiple choice questions
- 		 <a href="objBasics.html">Basics</a>	
- 	 <a href="objClasses.html">Classes</a>			 
-		<a href="objInheritance.html">Inheritance</a>		
-		<a href="objFileHandling.html">File Handling</a>		
-		<a href="objExceptionHandling.html">Exception Handling</a>		
-		<a href="objThreadHandling.html">Threads</a>		
-		<a href="objStrings.html">Strings</a>	
-		<a href="objAdvanced.html">Advanced</a>			
-		 
-		 </div>
  
-<div class="grid">  
+ 
+  <div class="content"> 
 <p>Here are some quiz and programs in Java language. </p>
 <p>
    The quiz displays 10 random questions each time. So feel free to try it as many times as you want :)
 </p>
  All of these questions are available in my free android app Java quizard. You can download <a href="https://play.google.com/store/apps/details?id=com.hegdeapps.javaquizard">the app from play store </a>
- 
- <img src="JavaQuizard.PNG" width=500 height="250" ></img>
+<p> 
+ <img align="center" src="JavaQuizard.PNG" width=500 height="250" ></img></p>
+<table ><tr>
+<h3 align="center">Quiz</h3>
+		 		<td>	 <a href="Basics.html">Java Basics</a> </td>
+		 <td>	 <a href="String.html">String</a></td></tr>
+<tr><td>
+		 			 <a href="Classes.html">Classes </a> </td><td>
+		 		 <a href="Inheritance.html">Inheritance</a></td></tr>
+<tr><td>
+			 	 <a href="ThreadHandling.html">Thread Handling</a></td><td>
+		   <a href="ExceptionHandling.html">Exception Handling</a></td></tr> </table>
+	 <h3 align="center">	 Java Programs </h3>
+		<table><tr><td>	 
+	 		 <a href="somepage.html">Prime Numbers</a></td><td>
+ 			 <a href="primefactors.html">Prime factors </a> </td></tr></table>
+<h3 align="center">Java Quiz</h3>
+<table>
+<tr><td>
+ 		 <a href="objBasics.html">Basics</a>	</td><td>
+ 	 <a href="objClasses.html">Classes</a>	</td>
+</tr>
+<tr>
+<td>		 
+		<a href="objInheritance.html">Inheritance</a>	</td><td>	
+		<a href="objFileHandling.html">File Handling</a>	</td>
+</tr>
+<tr>
+<td>	
+		<a href="objExceptionHandling.html">Exception Handling</a></td><td>		
+		<a href="objThreadHandling.html">Threads</a>	</td>
+</tr>
+<tr>
+<td>	
+		<a href="objStrings.html">Strings</a></td><td>	
+		<a href="objAdvanced.html">Advanced</a>	</td></tr></table>		
+		 
+		 </div>
+</div>
 </body>
 </html>
  
  
-
-</head>
-<body>
- 
-
-</body>
-</html>

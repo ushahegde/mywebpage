@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+ 
+<script name=type="text/javascript" src="twenty.js">
+
+</script>
+<style>
+ 
+ @font-face{
+     font-family:'Roboto';
+     src:url('fonts/Roboto-Light.ttf');
+     font-weight:normal;
+}
+body{
+   font-family: 'Roboto';
+}
+#grid{
+	width: 50%;
+	height: 50%;
+	margin:auto;
+	background-color: #eee;
+	border-radius: 10px;
+	font-size: 18px;
+	visibility: hidden;
+	border-style: outset;
+	border:2px 2px 2px 2px;
+	border-color: #ddd;
+
+}
+input{
+   padding:10px;
+   
+}
+div{
+   padding:10px;
+   margin:10px;
+}
+#question{
+	font-size: 20px;
+	font-family: Helvetica;
+}
+.heading{
+   font-size: 30px;
+   padding: 30px 30px 30px 30px;
+   margin:0px;
+   background-color: #389;
+   color:white;
+   text-align: center;
+}
+button{
+   padding:8px;
+   background-color: #eee;
+   border-radius: 3px;
+  
+}
+ @media screen and (max-width: 800px){
+input{
+	padding:3px;  
+  }
+#grid{
+  width: 80%;
+}
+}
+</style>
+<title>Maths Quiz</title>
+</head>
+<body>
+<div class="heading">
+Simple Numbers Quiz
+</div>
+<div align="center" >
+ <button id="start" onclick="startPuzzle()" align="center"> Start</button>
+ </div>
+    <div id="grid" align="center"   >
+    <div align ="left" id="qnnum"></div>
+    <div id='question'></div>
+  
+    <input type="text" id="answer" type="text" ></input>
+    <button onclick="answerclicked()">Submit</button>
+    <div id="result"></div>
+    </div>
+</body>
+</html>
