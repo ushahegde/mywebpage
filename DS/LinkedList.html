@@ -1,4 +1,13 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0;box-shadow:2px 2px #ccc; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> LinkedList Questions </h1><div class='question'><p>1. Write functions for inserting and deleting elements to a linked list.</p><button class='accordion'>Answer</button><div class='panel'>A node can be inserted to the list either to the end, after last node, or at the begining or some where in the middle.<br><br>Append node - add a node to end -  requires you to traverse the list to find last node and then add new node after last node. So it has a time complexity of O(n)<br><br>Insert at begining - adds a node before head. As there is no need to traverse the list, this has complexity of O(1). This function sets newnode-&gt;next to head and then sets head as newnode. <br><br>For deletion of any node, you again need to find previous node and link previous node to next node of node to be deleted. So deletion has complexity of O(n)<pre class='courier'>struct node
+<html><head><meta charset='utf-8' /><title></title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+  </head><body  ><h2 class='heading'> LinkedList Questions </h1>
+  <div class='question'>
+  <p>1. Write functions for inserting and deleting elements to a linked list.</p>
+  <button class='accordion'>Answer</button>
+  
+  <div class='panel'>A node can be inserted to the list either to 
+ the end, after last node, or at the begining or some where in the middle.<br><br>Append node - add a node to end -  requires you to traverse the list to find last node and then add new node after last node. So it has a time complexity of O(n)<br><br>Insert at begining - adds a node before head. As there is no need to traverse the list, this has complexity of O(1). This function sets newnode-&gt;next to head and then sets head as newnode. <br><br>For deletion of any node, you again need to find previous node and link previous node to next node of node to be deleted. So deletion has complexity of O(n)<pre class='courier'>struct node
 {
    int n;
    struct node* next;
@@ -76,18 +85,144 @@ int main()
      head = insert_before_head(head,m); 
      display_list(head);
 }
-</pre></div></div><div class='question'><p>2. Write a function to delete a node N from a doubly linked list. Assume that there are nodes on either sides of node to be deleted.</p><button class='accordion'>Answer</button><div class='panel'>When we are deleting a node from a DLL, we should link its previous node to its next node.  So the code is very simple. <br>      delnode-&gt;prev-&gt;next = delnode-&gt;next<br>      delnode-&gt;next-&gt;prev = delnode-&gt;prev<br><br>In this example, it has been mentioned that the node is middle node. But in general case, we have to verify that the previous node and nextnode of delnode are not NULL.  Also we should modify head, if delnode is head. In such a case, function must return the changed head node. <pre class='courier'> void delete_node(NODEPTR head, NODEPTR delnode)
+</pre></div>
+<button class="cppbutton">C++ Code</button>
+<div class="panel">
+<pre>
+#include&lt;iostream&gt;
+using namespace std;
+struct node
 {
-     /*if(delnode==head)/*deleting first node 
-	    head = head-&gt;next;   */     
-    /*   if(delnode-&gt;prev)*/
+   int n;
+   node *next;
+};
+class linked_list
+{
+    node *head;
+  public:
+      linked_list(int val = 0)
+      {
+         if(val!=0){
+         head = new node;
+         head-&gt;n = val;
+         head-&gt;next = NULL;
+      }else{
+            head = NULL;
+        }
+       }
+       node* find_last_node()
+       {
+            node* temp = head;
+            while(temp!=NULL && temp-&gt;next!=NULL)
+                temp = temp-&gt;next;
+            return temp;
+       }
+       void append(int val)
+      {
+         node *nd = new node;
+         nd-&gt;n = val;
+         nd-&gt;next = NULL;
+         
+         node *last_node = find_last_node();
+         if(last_node!=NULL) 
+            last_node-&gt;next = nd;
+      else
+            head = nd;
+      }
+      void display()
+      {
+            node* temp = head;
+            while(temp)
+           {
+                cout&lt;&lt;temp-&gt;n&lt;&lt;" ";
+                temp = temp-&gt;next;
+            }
+     }
+     node* find_previous_node(node *nd)
+     {
+            node* temp = head;
+            while(temp)
+           {
+                if(temp-&gt;next == nd)
+                    return temp;
+                temp = temp-&gt;next;
+            }
+            return NULL;
+   }
+   
+     void delete_node(int n)
+     {
+          node *temp = find_node(n);
+          if(temp==NULL)
+            cout&lt;&lt;"The node is not found";
+         else{
+         if(temp==head)
+           {
+                 head = head-&gt;next;
+                 delete temp;
+             cout&lt;&lt;"Node deleted successfully";
+           }
+          else if(temp!=NULL)
+          {
+               node *prev_node = find_previous_node(temp);
+               if(prev_node!=NULL)
+               {
+                      prev_node-&gt;next = temp-&gt;next;
+                      delete temp;
+                  cout&lt;&lt;"Node deleted successfully";
+                }
+          }  
+      }
+   }
+    node * find_node(int n)
+    {
+          node *temp = head;
+          while(temp && temp-&gt;n !=n)
+              temp = temp-&gt;next;
+          
+           return temp;
+     }
+};
+int main()
+{
+     linked_list lst;
+     for(int i = 0;i&lt;5;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+          lst.append(n);
+     }
+     cout&lt;&lt;"The linked list is ";
+     lst.display();
+     int m;
+     cout&lt;&lt;"Enter a node to be deleted:";
+     cin&gt;&gt;m;
+     lst.delete_node(m);
+     cout&lt;&lt;"Now the list is";
+     lst.display();
+}
+      
+
+
+</pre> 
+</div>
+
+</div>
+ 
+<div class='question'>
+<p>2. Write a function to delete a node N from a doubly linked list. Assume that there are nodes on either sides of node to be deleted.</p><button class='accordion'>Answer</button><div class='panel'>When we are deleting a node from a DLL, we should link its previous node to its next node.  So the code is very simple. <br>      delnode-&gt;prev-&gt;next = delnode-&gt;next<br>      delnode-&gt;next-&gt;prev = delnode-&gt;prev<br><br>In this example, it has been mentioned that the node is middle node. But in general case, we have to verify that the previous node and nextnode of delnode are not NULL.  Also we should modify head, if delnode is head. In such a case, function must return the changed head node. 
+<pre class='courier'> void delete_node(NODEPTR head, NODEPTR delnode)
+{
+     if(delnode==head)/*deleting first node 
+	    head = head-&gt;next;        
+     if(delnode-&gt;prev)
         delnode-&gt;prev-&gt;next = delnode-&gt;next;
-   /*   if(delnode-&gt;next)*/
+      if(delnode-&gt;next)
         delnode-&gt;next-&gt;prev = delnode-&gt;prev;
         free(delnode);
-      /*  return head; */
+       
 }
-/*uncomment the commented two lines for general case*/
  </pre></div></div><div class='question'><p>3. Write a function to merge two singly linked lists. </p><button class='accordion'>Answer</button><div class='panel'>We should traverse till the end of first list - list1. <br><br>Next we have to link this last node of list1 to head of list2.<br>          last1-&gt;next = head2;<br><br>Complexity - O(n1)<pre class='courier'> void merge_nodes(NODEPTR l1, NODEPTR l2)
  {
      /* move to the end of list1*/
@@ -108,7 +243,7 @@ int main()
      }
      return (float)sum/count;
 }
-</pre></div></div><div class='question'><p>5. Write a program to replace all the occurances of a given value in a linked list  by another value.</p><button class='accordion'>Answer</button><div class='panel'>While traversing, if we find that node has search value s, we should replace node-&gt;n with replace value r<pre class='courier'> #include&lt;stdio.h&gt;  
+</pre></div></div><div class='question'><p>5. Write a program to replace all the occurrences of a given value in a linked list  by another value.</p><button class='accordion'>Answer</button><div class='panel'>While traversing, if we find that node has search value s, we should replace node-&gt;n with replace value r<pre class='courier'> #include&lt;stdio.h&gt;  
 #include&lt;stdlib.h&gt;
  struct node  
  {  
@@ -184,7 +319,86 @@ void replace_nodes(NODEPTR h1, int sv,int rv)
      printf("The linked list after replacing is ");  
      display_nodes(head1); 
  }  
-</pre></div></div><div class='question'><p>6. Write a function to insert a value into a ordered (sorted) linked list.</p><button class='accordion'>Answer</button><div class='panel'>In this case, we must find a node N whose key value is just greater than new node. Now new node has to be inserted before this node N. You also need to maintain prevnode while traversing<br><br>          while nd!=NULL and nd-&gt;val &lt;newnode-&gt;val<br>               previousnode = nd<br>               move to next node<br>          link previous node to newnode<br>          link newnode to nd<br><br>This function can even be used to create a sorted list. Because if each element is inserted using this function, then the list will be automatically sorted. <pre class='courier'>#include&lt;stdio.h&gt;  
+</pre></div>
+<button class="cppbutton">C++ Code</button>
+<div class="panel">
+<pre>
+#include&lt;iostream&gt;
+using namespace std;
+struct node
+{
+   int n;
+   node *next;
+};
+class linked_list
+{
+    node *head;
+  public:
+      linked_list(int val = 0)
+      {
+         head = new node;
+         head-&gt;n = val;
+         head-&gt;next = NULL;
+       }
+       node* find_last_node()
+       {
+            node* temp = head;
+            while(temp!=NULL && temp-&gt;next!=NULL)
+                temp = temp-&gt;next;
+            return temp;
+       }
+       void append(int val)
+      {
+         node *nd = new node;
+         nd-&gt;n = val;
+         nd-&gt;next = NULL;
+         node *last_node = find_last_node();
+         if(last_node!=NULL) 
+		last_node-&gt;next = nd;
+      }
+      void display()
+      {
+            node* temp = head;
+            while(temp)
+           {
+                cout&lt;&lt;temp-&gt;n&lt;&lt;" ";
+                temp = temp-&gt;next;
+            }
+     }
+     void replace_values(int old_val,int new_val)
+     {
+          node *temp = head;
+          while(temp)
+	  {
+               if(temp-&gt;n==old_val)
+                   temp-&gt;n = new_val;
+               temp = temp-&gt;next;
+           }
+  }  
+};
+int main()
+{
+     linked_list lst(10);
+     for(int i = 0;i<10;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+          lst.append(n);
+     }
+     cout&lt;&lt;"The linked list is ";
+     lst.display();
+     int m,n;
+     cout&lt;&lt;"Enter the value to be replaced and new value";
+     cin&gt;&gt;m&gt;&gt;n;
+     lst.replace_values(m,n);
+     cout&lt;&lt;"Now the list is";
+     lst.display();
+}
+</pre>
+</div>
+
+</div><div class='question'><p>6. Write a function to insert a value into a ordered (sorted) linked list.</p><button class='accordion'>Answer</button><div class='panel'>In this case, we must find a node N whose key value is just greater than new node. Now new node has to be inserted before this node N. You also need to maintain prevnode while traversing<br><br>          while nd!=NULL and nd-&gt;val &lt;newnode-&gt;val<br>               previousnode = nd<br>               move to next node<br>          link previous node to newnode<br>          link newnode to nd<br><br>This function can even be used to create a sorted list. Because if each element is inserted using this function, then the list will be automatically sorted. <pre class='courier'>#include&lt;stdio.h&gt;  
 #include&lt;stdlib.h&gt;
  struct node  
  {  
@@ -235,7 +449,85 @@ int main()
 }
 
   
-create_node() and display_nodes() functions are not shown here</pre></div></div><div class='question'><p>7. Write a function to display all values in a singly linked list.</p><button class='accordion'>Answer</button><div class='panel'>To display a linked list, you need to start from head and traverse all the nodes until you reach NULL.<pre class='courier'> void display_nodes(struct node *nd)
+create_node() and display_nodes() functions are not shown here</pre></div>
+<button class="cppbutton">C++ code</button>
+<div class="panel">
+<pre>
+#include&lt;iostream&gt;
+using namespace std;
+struct node
+{
+   int n;
+   node *next;
+};
+class linked_list
+{
+    node *head;
+  public:
+      linked_list(int val = 0)
+      {
+         if(val==0)
+		head = NULL;
+        else{
+            head = new node;
+            head-&gt;n = val;
+            head-&gt;next = NULL;
+	  }
+       }
+      
+      void display()
+      {
+            node* temp = head;
+            while(temp)
+           {
+                cout&lt;&lt;temp-&gt;n&lt;&lt;" ";
+                temp = temp-&gt;next;
+            }
+     }
+     void  insert_value(int m)
+     {
+          node * temp = head;
+	        node *prev = NULL;
+          
+          while(temp && temp-&gt;n < m)
+          {
+                prev = temp;
+                temp = temp-&gt;next;
+           }
+	   /*create a node  nn*/
+          node *nn = new node;
+          nn-&gt;n = m;
+           nn-&gt;next = NULL;
+   
+	        if(prev!=NULL)
+           {
+	      	   prev-&gt;next = nn;
+		         nn-&gt;next = temp;
+	         }else/*insert at begining of list*/
+            {
+		        nn-&gt;next = head;
+		        head = nn;
+            }
+        }     
+};
+int main()
+{
+     linked_list lst;
+     for(int i = 0;i<10;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+          lst.insert_value(n);
+          /*nodes are inserted in ascending order*/
+     }
+     cout&lt;&lt;"The linked list is ";
+     lst.display();
+     
+}
+</pre>
+</div>
+</div><div class='question'><p>7. Write a function to display all values in a singly linked list.</p><button class='accordion'>Answer</button><div class='panel'>To display a linked list, you need to start from head and traverse all the nodes until you reach NULL.<pre class='courier'> void display_nodes(struct node *nd)
  {
      while(nd!=NULL)
      {
@@ -249,7 +541,36 @@ int main()
   -------
   display_nodes(head);
 ----
-}</pre></div></div><div class='question'><p>8. Write functions to insert a node at the front and rear of a circular linked list</p><button class='accordion'>Answer</button><div class='panel'>In a circular list, traversal should take into account the fact that there is no NULL in the list. Becasue last node of the list points back to head.<br><br>So Traversal should continue till you reach head again.<br><br>If we write a traversal loop like <br>   for(temp=head;temp!=NULL; temp=temp-&gt;next)<br>the loop will be infinite as there is no NULL in this list. <br><br>Traversal can be done using a do while loop<br>     temp=head<br>     do<br>         visit the node temp<br>         move to next node<br>    while temp is not head<br>This way we are ensuring that loop is terminated when we come across head for the second time. <br>  <br><br>For inserting a node to front (or rear) of a circular singly linked list, you need to just add the new node before head. <br>      find lastnode of list<br>      newnode-&gt;next = head;<br>      lastnode-&gt;next = newnode;<br>      head = newnode;<br><br>To find the last node, you need to traverse the list. So time complexity is  O(n).<br><br>But if the order is unimportant to you, you can add the node "after head", so that the time complexity is O(1)<br>    second = head-&gt;next<br>    head-&gt;next = newnode;<br>    newnode-&gt;next = second;<pre class='courier'> #include&lt;stdio.h&gt;  
+}</pre></div>
+
+
+</div><div class='question'>
+<p>8. Write functions to insert a node at the front and rear of a circular linked list</p>
+<button class='accordion'>Answer</button>
+<div class='panel'>In a circular list, traversal should take into account the fact that
+ there is no NULL in the list. Because last node of the list points back to head.<br><br>So Traversal
+  should continue till you reach head again.<br><br>If we write a traversal loop like <br> 
+  <pre>  for(temp=head;temp!=NULL; temp=temp-&gt;next)</pre>
+  <br>the loop will be infinite as there is no NULL in this list. <br>
+  <br>Traversal can be done using a do while loop<br>    
+  <ul><li> temp=head</li>    <li> do</li>    <ul>   <li>  visit the node temp</li>
+  <li>         move to next node</li> </ul>   <li>while temp is not head</li>
+  </ul>
+  This way we are ensuring that loop is terminated when we come across head for the second time. <br>
+    <br><br>For inserting a node to front (or rear) of a circular singly linked list, 
+    you need to just add the new node before head. 
+    <ul><li>      find lastnode of list</li>   
+      <li>newnode-&gt;next = head;</li>      
+      <li>lastnode-&gt;next = newnode;</li>     
+      <li> head = newnode;</li></ul>
+      
+      To find the last node, you need to traverse the list. So time complexity is  O(n).<br>
+      <br>But if the order is unimportant to you, you can add the node "after head", so that the time complexity is O(1)<br>   
+       <ul><li>second = head-&gt;next</li>  
+         <li>head-&gt;next = newnode;</li> 
+            <li>newnode-&gt;next = second;</li></ul>
+            
+            <pre class='courier'> #include&lt;stdio.h&gt;  
 #include&lt;stdlib.h&gt;
  struct node  
  {  
@@ -321,7 +642,103 @@ int main()
      printf("The linked list now is ");  
      display_nodes(head);   
  }  
-</pre></div></div><div class='question'><p>9. Write a function to add a node after the node with given value in a linked list. e.g. insert a new node with value 100 after a node with value 10.</p><button class='accordion'>Answer</button><div class='panel'>This is quite simple We need to find the node with given value. Then link the node to newnode. And link newnode to next node of this node<br>               <br>            Find m which is node with value <br>            newnode-&gt;next = m-&gt;next<br>            m-&gt;next = newnode<br><br>You do not have to worry about boundary condition because we are inserting the node after given node. Even if the node is head, the function will not modify head.<pre class='courier'> #include&lt;stdio.h&gt;  
+</pre></div>
+<button class="cppbutton">C++ code</button>
+<div class="panel">
+<pre>
+#include&lt;iostream&gt;
+using namespace std;
+struct node
+{
+   int n;
+   node *next;
+};
+class linked_list
+{
+    node *head;
+  public:
+      linked_list(int val = 0)
+      {
+         if(val==0)
+	      	head = NULL;
+        else{
+            head = new node;
+            head-&gt;n = val;
+            head-&gt;next = NULL;
+	  }
+       }
+       node* find_last_node()
+       {
+	      if(head==NULL || head-&gt;next==head)
+                return head;
+         node* temp = head;
+         do{
+		      temp = temp-&gt;next;
+        }while(temp-&gt;next!=head);
+        return temp;
+       }
+       void append(int val)
+      {
+         node *nd = new node;
+         nd-&gt;n = val;
+         nd-&gt;next = NULL;
+         node *last_node = find_last_node();
+         if(last_node!=NULL) 
+         {
+				last_node-&gt;next = nd;
+				nd-&gt;next = head;
+          }
+         else if(head==NULL)/*list empty*/
+ 			{
+              head = nd;
+	      	  nd-&gt;next = nd;
+         }
+		else{/*only one node*/
+				head-&gt;next = nd;
+				nd-&gt;next = head;
+        }	
+      }
+      void display()
+      {
+            node* temp = head;
+            do
+           {
+                cout&lt;&lt;temp-&gt;n&lt;&lt;" ";
+                temp = temp-&gt;next;
+            }while(temp!=head);
+     } 
+};
+int main()
+{
+     linked_list lst;
+     for(int i = 0;i<10;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+          lst.append(n);
+     } 
+     cout&lt;&lt;"The linked list is ";
+     lst.display();
+}
+  
+</pre>
+</div>
+
+</div><div class='question'>
+<p>9. Write a function to add a node after the node with given value in a linked list.
+ e.g. insert a new node with value 100 after a node with value 10.</p>
+ <button class='accordion'>Answer</button><div class='panel'>
+ This is quite simple We need to find the node with given value.
+ 
+  Then link the node to newnode. And link newnode to next node of this node<br>     
+            <ul><li>Find m which is node with value </li>   
+                 <li>newnode-&gt;next = m-&gt;next</li>         
+                 <li>m-&gt;next = newnode</li></ul>
+
+  <br>You do not have to worry about boundary condition
+   because we are inserting the node after given node. 
+   Even if the node is head, the function will not modify head.<pre class='courier'> #include&lt;stdio.h&gt;  
 #include&lt;stdlib.h&gt;
  struct node  
  {  
@@ -415,7 +832,108 @@ void insert_after( NODEPTR newnode,NODEPTR n1)
            display_nodes(head);
        } 
  }  
-</pre></div></div><div class='question'><p>10. What are the advantages of doubly linked list over a singly linked list?</p><button class='accordion'>Answer</button><div class='panel'>Allows traversal of nodes in both directions<br><br>Insertion and deletion of nodes is easy when compared to singly linked list, because in singly linked list you need to find previous node for these operations. In DLL, the each node has a link to previous node so that insert and delete operation can use this link. <br><br>But keep in mind that because of extra link in each node, size of doubly linked list is larger.<pre class='courier'></pre></div></div><div class='question'><p>11. For a  singly linked list with integer data, write a function to search for a value. </p><button class='accordion'>Answer</button><div class='panel'>Searching in a linked list is always be done using sequential search. We need to traverse the list until  search value is found.  <br><br>If the list is sorted, then searching can be terminated when we find a value larger than search value.<br><br>First function searches in an unsorted list and second function searches for a value in a sorted list. Both these function return the node which contain search value if found. If not found, they return NULL.<br><br>Time complexity of search operation- O(n)<pre class='courier'> NODEPTR find_node(NODEPTR temp, int val)
+</pre></div>
+<button class="cppbutton">C++ code</button>
+<div class="panel">
+<pre>
+#include&lt;iostream&gt;
+using namespace std;
+struct node
+{
+   int n;
+   node *next;
+};
+class linked_list
+{
+    node *head;
+  public:
+      linked_list(int val = 0)
+      {
+         head = new node;
+         head-&gt;n = val;
+         head-&gt;next = NULL;
+       }
+       node* find_last_node()
+       {
+            node* temp = head;
+            while(temp!=NULL && temp-&gt;next!=NULL)
+                temp = temp-&gt;next;
+            return temp;
+       }
+       void append(int val)
+      {
+         node *nd = new node;
+         nd-&gt;n = val;
+         nd-&gt;next = NULL;
+         node *last_node = find_last_node();
+         if(last_node!=NULL) 
+            last_node-&gt;next = nd;
+      }
+      void display()
+      {
+            node* temp = head;
+            while(temp)
+           {
+                cout&lt;&lt;temp-&gt;n&lt;&lt;" ";
+                temp = temp-&gt;next;
+            }
+     }
+     node * find_node(int n)
+    {
+          node *temp = head;
+          while(temp && temp-&gt;n !=n)
+              temp = temp-&gt;next;
+           return temp;
+     }
+   void insert_after(node *nd,int val)
+   {
+         node *nn = new node;
+         nn-&gt;n = val;
+         nn-&gt;next = NULL;
+         /*insert node*/
+      nn-&gt;next = nd-&gt;next;
+        nd-&gt;next = nn;
+    }   
+};
+int main()
+{
+     linked_list lst(10);
+     for(int i = 0;i&lt;4;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+          lst.append(n);
+     }
+     cout&lt;&lt;"The linked list is ";
+     lst.display();
+     int m,n;
+     cout&lt;&lt;"New node?=";
+     cin&gt;&gt;m;
+     cout&lt;&lt;"Insert after ?:";
+     cin&gt;&gt;n;
+     node *temp = lst.find_node(n);
+     if(temp!=NULL)
+     {
+         lst.insert_after(temp,m);
+      }
+      else
+          cout&lt;&lt;"The value "&lt;&lt;n&lt;&lt;" in not found in the list";
+     cout&lt;&lt;"Now the list is";
+     lst.display();
+}
+</pre>
+</div>
+
+</div><div class='question'><p>10. What are the advantages of doubly 
+linked list over a singly linked list?</p><button class='accordion'>Answer</button>
+<div class='panel'>Allows traversal of nodes in both directions<br>
+<br>Insertion and deletion of nodes is easy when compared to singly linked list, 
+because in singly linked list you need to find previous node for these operations. 
+In DLL, the each node has a link to previous node so that insert and delete operation can 
+use this link. <br><br>But keep in mind that because of extra link in each node, 
+size of doubly linked list is larger.<pre class='courier'></pre></div></div><div class='question'>
+<p>11. For a  singly linked list with integer data, write a function to search for a value. </p><button class='accordion'>Answer</button><div class='panel'>Searching in a linked list is always be done using sequential search. We need to traverse the list until  search value is found.  <br><br>If the list is sorted, then searching can be terminated when we find a value larger than search value.<br><br>First function searches in an unsorted list and second function searches for a value in a sorted list. Both these function return the node which contain search value if found. If not found, they return NULL.<br><br>Time complexity of search operation- O(n)<pre class='courier'> NODEPTR find_node(NODEPTR temp, int val)
  {/*function to search in an unsorted list*/
       while(temp)
         {
@@ -433,7 +951,8 @@ NODEPTR find_node_sorted(NODEPTR temp, int val)
      if(temp-&gt;n==val)
        return temp;
      return NULL;
-}</pre></div></div><div class='question'><p>12. Write a program to concatenate two singly linked circular lists without traversing either of them.</p><button class='accordion'>Answer</button><div class='panel'>The easiest way to do this is in a singly linked list is<br>   a) Point head1 to l22 where l22 is second node of list2<br>   b) Point head2 to l12 where l12 is second node of list1<br><br>So if circular list1 is A---B---C<br>and circular list2 is P---Q---R<br><br>after concatenation list will be A---Q---R---P---B---C--<br><br>Sample output<br>Number of nodes of list1 = 3<br>node value=10<br>node value=20<br>node value=30<br>Number of nodes of list2 = 4<br>node value=1<br>node value=2<br>node value=3<br>node value=4<br>Now the merged list is 10----&gt;2----&gt;3----&gt;4----&gt;1----&gt;20----&gt;30----&gt;<br><pre class='courier'> #include&lt;stdio.h&gt;  
+}</pre></div></div><div class='question'>
+<p>12. Write a program to concatenate two singly linked circular lists without traversing either of them.</p><button class='accordion'>Answer</button><div class='panel'>The easiest way to do this is in a singly linked list is<br>   a) Point head1 to l22 where l22 is second node of list2<br>   b) Point head2 to l12 where l12 is second node of list1<br><br>So if circular list1 is A---B---C<br>and circular list2 is P---Q---R<br><br>after concatenation list will be A---Q---R---P---B---C--<br><br>Sample output<br>Number of nodes of list1 = 3<br>node value=10<br>node value=20<br>node value=30<br>Number of nodes of list2 = 4<br>node value=1<br>node value=2<br>node value=3<br>node value=4<br>Now the merged list is 10----&gt;2----&gt;3----&gt;4----&gt;1----&gt;20----&gt;30----&gt;<br><pre class='courier'> #include&lt;stdio.h&gt;  
 #include&lt;stdlib.h&gt;
  struct node  
  {  
@@ -462,7 +981,7 @@ void concat(NODEPTR head1,NODEPTR head2)
     NODEPTR temp = head;
     if(head==NULL)
       {
-	newnode-&gt;next = newnode;
+	     newnode-&gt;next = newnode;
         return newnode;
       }
     while(temp-&gt;next !=head)
@@ -472,11 +991,7 @@ void concat(NODEPTR head1,NODEPTR head2)
     return head;  
  } 
  
- void insert_after_head(NODEPTR head,NODEPTR newnode)
-{
-     newnode-&gt;next = head-&gt;next;
-     head-&gt;next = newnode;
-}
+  
  void display_nodes(NODEPTR head)  
  {  
    NODEPTR temp = head; 
@@ -505,7 +1020,7 @@ void concat(NODEPTR head1,NODEPTR head2)
        printf("node value=");  
        scanf("%d",&value);  
        newnode = create_node(value);  
-       head1 = append_node(head1,newnode);      
+       head1 = insert_rear(head1,newnode);      
      }  
      printf("Number of nodes of list2 = ");  
      scanf("%d",&num2);  
@@ -516,13 +1031,122 @@ void concat(NODEPTR head1,NODEPTR head2)
        printf("node value=");  
        scanf("%d",&value);  
        newnode = create_node(value);  
-       head2 = append_node(head2,newnode);      
+       head2 = insert_rear(head2,newnode);      
      }  
      concat(head1,head2);
      printf("Now the merged list is ");
      display_nodes(head1);
  }  
-</pre></div></div><div class='question'><p>13. Write a program a delete a node from a circular linked list.</p><button class='accordion'>Answer</button><div class='panel'>The delete operation involves linking previous node to the next node of N where N is the node to be deleted. <br><br>As in other operations, we need to remember that last node does not point to NULL in circular lists. <br><br>If the first node viz head node is to be deleted, we need to link last node of list to second node. One method of doing this would be find the last node using traversal, then link last node to second node. Free first node and mark second node as head. <br><br>The optimized  method to delete head node is <br>         move the data of second node to head node<br>         mark second node for deletion<br>         link first node to third node<br>         delete second node<br><br>What happens if we have only one node and it has to be deleted?  The list will become empty - head must be made NULL.  But how do we check this condition? if head-&gt;next = head, then there is only one node in the list. <pre class='courier'>   #include&lt;stdio.h&gt;  
+</pre></div>
+<button class="cppbutton">C++ code</button>
+<div class="panel">
+<pre>
+#include&lt;iostream&gt;
+using namespace std;
+struct node
+{
+   int n;
+   node *next;
+};
+class circular_list
+{
+    node *head;
+  public:
+      circular_list(int val = 0)
+      {
+         if(val==0)
+        head = NULL;
+        else{
+            head = new node;
+            head-&gt;n = val;
+            head-&gt;next = NULL;
+        }
+      }
+      node*get_head() 
+      {
+	   return head;
+      }
+       
+       node* find_last_node()
+       {
+           if(head==NULL || head-&gt;next==head)
+                return head;
+            node* temp = head;
+           while(temp-&gt;next!=head){
+               temp = temp-&gt;next;
+           } 
+            return temp;
+       }
+       void append(int val)
+      {
+         node *nd = new node;
+         nd-&gt;n = val;
+         nd-&gt;next = NULL;
+         node *last_node = find_last_node();
+         if(last_node!=NULL) 
+         {
+             last_node-&gt;next = nd;
+             nd-&gt;next = head;
+          }
+         else if(head==NULL)/*list empty*/
+        {
+              head = nd;
+              nd-&gt;next = nd;
+         }
+        else{/*only one node*/
+              head-&gt;next = nd;
+              nd-&gt;next = head;
+         }    
+      }
+      void display()
+      {
+            node* temp = head;
+            do
+           {
+                cout&lt;&lt;temp-&gt;n&lt;&lt;" ";
+                temp = temp-&gt;next;
+            }while(temp!=head);
+     } 
+};
+void concat_cir_lists(circular_list& lst1,circular_list& lst2)
+{
+     node * temp = lst1.get_head()-&gt;next;
+     lst1.get_head()-&gt;next = lst2.get_head()-&gt;next;
+     lst1.get_head()-&gt;next = temp;
+}
+int main()
+{
+     circular_list lst;
+     cout&lt;&lt;"Enter values for first list terminated by -1";
+     for(int i = 0;i&lt;10;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+	  if(n==-1)
+              break;
+          lst.append(n);
+     } 
+     cout&lt;&lt;"First linked list is ";
+     circular_list lst2;
+    cout&lt;&lt;"Enter values for second list terminated by -1";
+     for(int i = 0;i&lt;10;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+	  if(n==-1)
+              break;
+          lst2.append(n);
+     } 
+     lst2.display();  
+     concat_cir_lists(lst,lst2);
+     lst.display(); 
+}
+</pre>
+</div>
+</div><div class='question'>
+<p>13. Write a program a delete a node from a circular linked list.</p><button class='accordion'>Answer</button><div class='panel'>The delete operation involves linking previous node to the next node of N where N is the node to be deleted. <br><br>As in other operations, we need to remember that last node does not point to NULL in circular lists. <br><br>If the first node viz head node is to be deleted, we need to link last node of list to second node. One method of doing this would be find the last node using traversal, then link last node to second node. Free first node and mark second node as head. <br><br>The optimized  method to delete head node is <br>         move the data of second node to head node<br>         mark second node for deletion<br>         link first node to third node<br>         delete second node<br><br>What happens if we have only one node and it has to be deleted?  The list will become empty - head must be made NULL.  But how do we check this condition? if head-&gt;next = head, then there is only one node in the list. <pre class='courier'>   #include&lt;stdio.h&gt;  
 #include&lt;stdlib.h&gt;
  struct node  
  {  
@@ -640,7 +1264,149 @@ void concat(NODEPTR head1,NODEPTR head2)
      printf("The linked list now is ");  
      display_nodes(head);   
  }  
-</pre></div></div><div class='question'><p>14. Explain how do you represent polynomials using a linked list. Write a function to add two polynomials represented as singly linked lists</p><button class='accordion'>Answer</button><div class='panel'>A polynomial can be stored as a linked list with the help of structures with three members - exponent , co-efficient and link to next node. One structure represents one term in the polynomial. <br><br>5x^3  ------&gt;  4x^2 -------&gt;10<br><br>12x^2 ----&gt; 3x ------&gt;18<br><br>e.g.<br><br>In the first polynomial list, there are 3 nodes. First node has exponent as 3, coeff as 5. Second node has exponent as 2 and coeff as 4. Last node has exponent as 0 and coeff as 10. First node is the head.<br><br>The structure to represent such a term in polynomial term can be as below.<br><br>       struct node<br>       {<br>           int exponent;<br>           float coeff;<br>           struct node *next;<br>        };<br><br>To add two polynomials, we need to traverse both of them parallely and copy the smaller terms if exponents are unequal and add co-efficients when exponents are equal. <br><br>Known issue : This program fails if the terms of polynomial are not entered in descending order. <pre class='courier'>#include&lt;stdio.h&gt;  
+</pre></div>
+<button class="cppbutton">C++ code</button>
+<div class="panel">
+<pre>
+#include&lt;iostream&gt;
+using namespace std;
+struct node
+{
+   int n;
+   node *next;
+};
+class circular_list
+{
+    node *head;
+  public:
+      circular_list(int val = 0)
+      {
+         if(val==0)
+        head = NULL;
+        else{
+            head = new node;
+            head-&gt;n = val;
+            head-&gt;next = NULL;
+      }
+}
+      node*get_head() 
+      {
+	   return head;
+      }
+       
+       node* find_last_node()
+       {
+           if(head==NULL || head-&gt;next==head)
+                return head;
+            node* temp = head;
+           while(temp-&gt;next!=head){
+               temp = temp-&gt;next;
+           } 
+            return temp;
+       }
+       void append(int val)
+      {
+         node *nd = new node;
+         nd-&gt;n = val;
+         nd-&gt;next = NULL;
+         node *last_node = find_last_node();
+         if(last_node!=NULL) 
+         {
+             last_node-&gt;next = nd;
+             nd-&gt;next = head;
+          }
+         else if(head==NULL)/*list empty*/
+        {
+              head = nd;
+              nd-&gt;next = nd;
+         }
+        else{/*only one node*/
+              head-&gt;next = nd;
+              nd-&gt;next = head;
+         }    
+      }
+      void display()
+      {
+            node* temp = head;
+            do
+           {
+                cout&lt;&lt;temp-&gt;n&lt;&lt;" ";
+                temp = temp-&gt;next;
+            }while(temp!=head);
+     } 
+     node* find_node(int val)
+     {
+          node* temp = head;
+          do
+	  {
+		if(temp-&gt;n == val)
+		    return temp;
+                temp = temp-&gt;next;
+            }while (temp!=head);
+            return NULL;
+        }
+        node *find_previous_node(node *nd)
+        {
+	      node*temp = head;
+              do
+              {
+		  if(temp-&gt;next==nd)
+                          return temp;
+                  temp = temp-&gt;next;
+                }while(temp!=head);
+                return NULL;
+       }
+         bool delete_node(int val)
+         {
+		node *temp = find_node(val);
+                if(temp!=NULL)
+                {
+		     node *pre_node = find_previous_node(temp);
+                     if(pre_node!=NULL)
+                     {
+                           pre_node-&gt;next = temp-&gt;next;
+			   if(temp==head)
+                                head  = head-&gt;next;
+                           delete temp;
+                           return true;                 
+                     } 
+               }else
+                {
+			cout&lt;&lt;"value not found";
+                }      
+                return false;              
+               }
+};
+ 
+int main()
+{
+     circular_list lst;
+     cout&lt;&lt;"Enter values for first list terminated by -1";
+     for(int i = 0;i&lt;10;i++)
+     {
+          int n;
+          cout&lt;&lt;"Number:";
+          cin&gt;&gt;n;
+	  if(n==-1)
+              break;
+          lst.append(n);
+     } 
+     cout&lt;&lt;"First linked list is ";      
+     lst.display(); 
+     cout&lt;&lt;"Enter value to be deleted:";
+     int num;
+     cin&gt;&gt;num;
+     if(lst.delete_node(num))
+           cout&lt;&lt;"node deleted";
+      else
+           cout&lt;&lt;"node not deleted";
+      cout&lt;&lt;"now the list is ";
+      lst.display();     
+}
+</pre>
+</div>
+</div><div class='question'>
+<p>14. Explain how do you represent polynomials using a linked list. Write a function to add two polynomials represented as singly linked lists</p><button class='accordion'>Answer</button><div class='panel'>A polynomial can be stored as a linked list with the help of structures with three members - exponent , co-efficient and link to next node. One structure represents one term in the polynomial. <br><br>5x^3  ------&gt;  4x^2 -------&gt;10<br><br>12x^2 ----&gt; 3x ------&gt;18<br><br>e.g.<br><br>In the first polynomial list, there are 3 nodes. First node has exponent as 3, coeff as 5. Second node has exponent as 2 and coeff as 4. Last node has exponent as 0 and coeff as 10. First node is the head.<br><br>The structure to represent such a term in polynomial term can be as below.<br><br>       struct node<br>       {<br>           int exponent;<br>           float coeff;<br>           struct node *next;<br>        };<br><br>To add two polynomials, we need to traverse both of them parallely and copy the smaller terms if exponents are unequal and add co-efficients when exponents are equal. <br><br>Known issue : This program fails if the terms of polynomial are not entered in descending order. <pre class='courier'>#include&lt;stdio.h&gt;  
 #include&lt;stdlib.h&gt;
  struct node  
  {  
@@ -772,7 +1538,148 @@ NODEPTR add_polynomials(NODEPTR head1, NODEPTR head2)
      sumlist = add_polynomials(head,head2);
      display_nodes(sumlist);           
  }  
-</pre></div></div><div class='question'><p>15. Write a function to reverse a singly linked list.</p><button class='accordion'>Answer</button><div class='panel'>You need to recursively set next link to previous node. <br><br>When you reach end of list, that is if node-&gt;next is NULL, that node should be made as head. In order to maintain this value across recursive calls, head should be made as static variable. <br><br>Recursive algorithm for linked list reversal<br> <br>   set current node = l1<br>   if it is lastnode  set head = l1 <br>   set l2 = nextnode<br>   reverse list from l2 to end of list recursively<br>   set l2-&gt;next = l1<br>   set l1-&gt;next = NULL<br>   return head <br>      this returned value is discarded except for first call of function<br><br>   <br>But if you want to write a non-recursive reversal, you should use 3 pointers and a loop<br>     1) set l1, l2,l3 to head, second and third nodes respectively<br>     2) Now link l2 to l1 instead of l1 to l2<br>     3) Now move to next set of 3 nodes (this is where l3 is useful)<br>     4) repeat steps 2 to 3 until end of list<br><pre class='courier'> NODEPTR reverse_list(NODEPTR l1)
+</pre></div>
+<button class="cppbutton">C++ code</button>
+<div class="panel">
+<pre>
+#include<iostream>
+using namespace std;
+struct node
+{
+   int exp;
+   int coeff;
+   node *next;
+};
+class poly_list
+{
+    node *head;
+  public:
+      poly_list(int e = 0,float c=0.0f)
+      {
+         if(e!=0){
+         head = new node;
+         head->exp = e;
+         head->coeff=c;
+         head->next = NULL;
+	}else{
+            head = NULL;
+        }
+       }
+       node *get_head()
+       {
+            return head;
+        }
+       node* find_last_node()
+       {
+            node* temp = head;
+            while(temp!=NULL && temp->next!=NULL)
+                temp = temp->next;
+            return temp;
+       }
+       void append(int e,float c)
+      {
+         node *nd = create_node(e,c);         
+         node *last_node = find_last_node();
+         if(last_node!=NULL) 
+		last_node->next = nd;
+	else
+		head = nd;
+      }
+      void display()
+      {
+            node* temp = head;
+            while(temp)
+           {
+                cout<<temp->coeff<<"x^"<<temp->exp<<"+";
+                temp = temp->next;
+            }
+     }
+     node* create_node(int e,float c)
+     {
+ 		node *newnode = new node;
+	    	newnode->exp = e;
+                newnode->coeff = c;
+                newnode->next = NULL;  
+		return newnode;
+     }   
+};
+poly_list add_poly(poly_list l1,poly_list l2)
+   {
+	   poly_list lst3;
+	   node *h3 = lst3.get_head();
+	   node *h1 = l1.get_head();
+           node *h2 = l2.get_head();
+           while(h1!=NULL && h2!=NULL)
+           {
+	 	 if(h1->exp > h2->exp)
+	         {
+		      /*insert node from list1*/
+                      lst3.append(h1->exp,h1->coeff);		  
+                      h1 = h1->next;
+                 }
+                 else if(h2->exp > h1->exp)
+                   {    /*insert node from list2*/
+		       lst3.append(h2->exp,h2->coeff);		     
+		      h2 = h2->next;
+                 } else
+		{/*two exponents are equal. Add the terms*/
+                     float sum = h1->coeff +h2->coeff;
+                     lst3.append(h1->exp,sum);	
+		     h1 = h1->next;
+		     h2 = h2->next;
+                }
+           }
+           while(h1!=NULL)
+           {/*if list1 has extra nodes, add them*/
+                 lst3.append(h1->exp,h1->coeff);		  
+                      h1 = h1->next;
+	     }
+	   while(h2!=NULL)
+           {/*if list2 has extra nodes, add them*/
+                 lst3.append(h2->exp,h2->coeff);		     
+		 h2 = h2->next;
+	     }
+	      return lst3;
+    }
+int main()
+{
+     poly_list lst1,lst2,lst3;
+     cout<<"For the first polynomial\n";
+    for(int i = 0;i<5;i++)
+     {
+          int n;float m;
+         cout<<"Enter co-efficient and exponent of term (-1 -1 to end):";
+          cin>>m;
+	  cin>>n;
+	  if(n==-1)
+              break;	  	
+          lst1.append(n,m);
+     }
+    cout<<"First polynomial  is ";
+     lst1.display();
+    cout<<"For the seecond polynomial\n";
+    for(int i = 0;i<5;i++)
+     {
+          int n;float m;
+          cout<<"Enter co-efficient and exponent of term (-1 -1 to end):";
+          cin>>m;
+	  cin>>n;
+ 	 if(n==-1)
+              break;	 	  	
+          lst2.append(n,m);
+     }
+     cout<<"The second list is ";
+     lst2.display();
+     lst3 = add_poly(lst1,lst2);
+     cout<<"The resultant polynomial  is";
+     lst3.display();
+}
+      
+
+
+</pre>
+</div>
+</div><div class='question'><p>15. Write a function to reverse a singly linked list.</p><button class='accordion'>Answer</button><div class='panel'>You need to recursively set next link to previous node. <br><br>When you reach end of list, that is if node-&gt;next is NULL, that node should be made as head. In order to maintain this value across recursive calls, head should be made as static variable. <br><br>Recursive algorithm for linked list reversal<br> <br>   set current node = l1<br>   if it is lastnode  set head = l1 <br>   set l2 = nextnode<br>   reverse list from l2 to end of list recursively<br>   set l2-&gt;next = l1<br>   set l1-&gt;next = NULL<br>   return head <br>      this returned value is discarded except for first call of function<br><br>   <br>But if you want to write a non-recursive reversal, you should use 3 pointers and a loop<br>     1) set l1, l2,l3 to head, second and third nodes respectively<br>     2) Now link l2 to l1 instead of l1 to l2<br>     3) Now move to next set of 3 nodes (this is where l3 is useful)<br>     4) repeat steps 2 to 3 until end of list<br><pre class='courier'> NODEPTR reverse_list(NODEPTR l1)
  {
     static NODEPTR head;
     if(l1-&gt;next==NULL)
@@ -2827,4 +3734,40 @@ NODEPTR append(NODEPTR tail,int val)
      printf("In reverse");
      display_reverse(tail);      
  }  
-</pre></div></div><div class='question'><p>41. Describe linked list data structure.</p><button class='accordion'>Answer</button><div class='panel'>A linked list is a linear data structure to which elements are linked to each other. To such a list elements can be added and removed at run time. The elements of linked list are called nodes. Each node will have data and link. Link will be a pointer to structure. This link points to the next node in the list. Hence the name.<br><br>The nodes are dynamically allocated at run time. And are freed up when not needed. <br><br>Each node of a list points to next node (its  pointer has address of next node). The last node points to NULL.<br><br>Linked list are defined in C using a self referential structure.<br>e.g<br>    struct node<br>    {<br>        float num;<br>        struct node *next;<br>    };<br><br>The starting node of a linked list is called head. <br><br>Doubly linked list and circular list<br><br>If each node has two pointers, one to next node and other to previous node, it is called a doubly linke list. Insertion and deletion are simpler for DLL. A DLL can have a head as well as a tail - last node. <br><br>If last node points back to first node, it is called circular linked list. <br><pre class='courier'></pre></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+</pre></div></div>
+<div class='question'><p>41. Describe linked list data structure.</p>
+<button class='accordion'>Answer</button>
+<div class='panel'>A linked list is a linear data
+ structure to which elements are linked to each other. 
+ To such a list elements can be added and removed at run time. 
+ The elements of linked list are called nodes. 
+ Each node will have data and link. Link will be a pointer to structure. 
+ This link points to the next node in the list. Hence the name.<br>
+ <br>The nodes are dynamically allocated at run time. 
+ And are freed up when not needed. <br>
+ <br>Each node of a list points to next node (its  pointer has address of next node).
+  The last node points to NULL.<br><br>Linked list are defined in C using a self referential structure.<br>e.g<br>    struct node<br>    {<br>        float num;<br>        struct node *next;<br>    };<br><br>The starting node of a linked list is called head. <br><br>Doubly linked list and circular list<br><br>If each node has two pointers, one to next node and other to previous node, it is called a doubly linke list. Insertion and deletion are simpler for DLL. A DLL can have a head as well as a tail - last node. <br><br>If last node points back to first node, it is called circular linked list. <br>
+<pre class='courier'></pre></div></div>
+<script >
+var acc = document.getElementsByClassName("accordion");
+var cppacc = document.getElementsByClassName("cppbutton");
+var i;
+for (i = 0; i < acc.length; i++) {   
+ acc[i].addEventListener("click", function() { 
+    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    
+    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */ 
+       var panel = this.nextElementSibling;  
+         if (panel.style.display === "block") {     
+          panel.style.display = "none";    } else { 
+               panel.style.display = "block";    }  });}
+               
+ for(i=0;i<cppacc.length;i++){
+ cppacc[i].addEventListener("click",function () {
+ 	var panel = this.nextElementSibling;
+ 	if (panel.style.display === "block") {     
+          panel.style.display = "none";    } else { 
+               panel.style.display = "block";    }
+ })	
+ 	
+ }              
+                </script></body></html>
