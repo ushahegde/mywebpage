@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<style>
+.grid-container {
+  width:300px;
+  margin:20px auto;
+  display: grid;
+  grid-row-gap:2px;
+  grid-column-gap:2px;
+  grid-template-columns: 80px 80px 80px ; 
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 22px;
+  text-align: center;
+}
+p{
+ text-align:center;
+}
+h1{
+ background-color:#389;
+ color:#ffffff;
+ text-align:center;
+ padding:30px;
+ 
+}
+body{
+  margin:0px;
+  padding:0px;
+}
+</style>
+<script type="text/javascript" src="shataka.js"></script> 
+</head>
+<body>
+
+<h1 align="center" >Shataka - A number game</h1>
+<p>Find numbers such that row sums and column sums are all 100. Do not repeat numbers.</p>
+<div align="center">
+<button onclick="startGame();" >Start</button></div>
+<div class="grid-container" align="center">
+  <input class="grid-item" id="n0" value="1">
+<input class="grid-item" id="n1"  >
+<input class="grid-item" id="n2"  >
+<input class="grid-item" id="n3"  >
+<input class="grid-item" id="n4"  >
+<input class="grid-item" id="n5"  >
+<input class="grid-item" id="n6" >
+<input class="grid-item" id="n7"  >
+<input class="grid-item" id="n8"  > 
+  
+</div>
+<div align="center">
+<button onclick="submitAnswer()" align="center">submit</button></div>
+<div style="font-size:26px;" id="message"></div>
+</body>
+</html>
+
