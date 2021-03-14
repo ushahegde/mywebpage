@@ -1,0 +1,166 @@
+var arr=[];
+var targetNum=0;
+function checkAnswer()
+{
+	var ansBox = document.getElementById("answer");
+	var answerString = ansBox.value
+	var answerNum = eval(answerString);
+	var mesg = document.getElementById("message");
+	if(answerNum == targetNum){
+		
+		mesg.innerHTML = "Wonderful.<br>That is the correct answer";	
+		var playagain = document.getElementById("playagain");
+		playagain.style.display ="block" ;
+	}else{
+		mesg.innerHTML= "The answer is wrong";	
+	}
+}
+function operatorclicked(button){
+   var st = button.innerHTML;
+   var ansBox = document.getElementById("answer");
+	var answerString = ansBox.value;
+	answerString = answerString+st;
+	ansBox.value = answerString;
+	//disable only numbers
+	if(!(st=='+'||st=='-'||st=='*'||st=='/'||st=='('||st==')')){
+	   button.disabled = true;
+	 //  showProgress();
+	   }
+	   
+}
+function generateCountDownNumbers(){
+	var num = generateRandomNumber(200,2);
+	arr[0] = num;
+	for(i=1;i<5;i++){
+		var num = generateRandomNumber(20,2);
+		arr[i] = num;
+		/*index = i+1;
+		var btn = document.getElementById("btn"+index)	;
+		btn.innerHTML = num;	*/
+	}
+	
+}
+ function shuffle(arra1) {
+    var ctr = arra1.length, temp, index; 
+    while (ctr > 0) { 
+        index = Math.floor(Math.random() * ctr); 
+        ctr--; 
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
+}
+function displayNumbers(){
+    for(i=0;i<5;i++){
+    	var btnNum = i+1;
+		var btn = document.getElementById("btn"+btnNum)	;
+		btn.innerHTML = arr[i];	    
+    }
+}
+function generateTargetNumber(){
+   var operators = ["+","-","*","/"];
+   operators = shuffle(operators);
+   arr = shuffle(arr);
+   var expr = ""+arr[0];
+   var prevOp = "";
+   var op = [];
+   
+   for(i=1;i<5;i++){
+   	 
+   	 var opIndex = generateRandomNumber(4,0);
+   	 
+   	 var operator = operators[opIndex];
+   	 var number = arr[i];
+   	 if(operator=="/" && prevOp =="/")
+   	    operator = "+";
+   	 if(operator=='/'){
+   	 	var factor = generateRandomNumber(10,2);
+   	 	var product = number*factor;
+   	 	arr[i-1] = arr[i]*factor;
+   	  
+			   
+   	 }
+   	 /*don't have too many multi*/
+   	 if(prevOp=="*" && operator=="*"){
+			operator="-";   	 
+   	 }
+   	 op[i-1]=operator;
+   	 
+   	 prevOp=operator;
+	 // expr = expr + " "+operator+" ";
+	 
+	  //expr = expr + " "+arr[i]+" "; 
+	  //prevNumber = arr[i]  
+   }
+   expr=arr[0];
+   for(i=1;i<5;i++){
+	 
+		   expr = expr+op[i-1]+arr[i]; 
+		 
+   }
+ //  console.log("Expr is "+expr);
+   var answer = eval(expr);
+   return answer;  
+   
+}
+function startQuiz(){
+	enableButtons()
+	generateCountDownNumbers();
+	 
+	targetNum = generateTargetNumber();
+	displayNumbers();
+	var targetLabel = document.getElementById("targetNum");
+	targetLabel.innerHTML = "Target Number: "+targetNum;
+	var answerbox = document.getElementById("answer");
+	answerbox.value = "";
+	var playagain = document.getElementById("playagain");
+	playagain.style.display = "none";
+	clearMessage();
+}
+ function generateRandomNumber(limit,minimum){
+		var n = Math.floor(Math.random()*limit)+minimum;		 
+		return n    
+    }
+function findRandomFactor(number){
+	var factArr = findFactors(number);
+	if(factArr.length==0)
+	   return -1;
+	var randomIndex = generateRandomNumber(factArr.length,0);
+	return factArr[randomIndex];
+}   
+function findFactors(num){
+	var array = []
+	var j = 0;
+	for(i=2;i<num/2;i++){
+		if(num%i==0){
+		   array[j++]=i;		
+		}
+	}
+	
+	return array;
+} 
+function enableButtons(){
+	 
+	for(i=1;i<=5;i++){
+		var btn = document.getElementById("btn"+i);
+		btn.disabled = false;	
+	}
+}
+function clearMessage(){
+	var messa = document.getElementById("message");
+	messa.innerHTML = "";
+}
+function showProgress(){
+	var progress = document.getElementById("progress");
+	var input = document.getElementById("answer");
+	var yourInput = input.value;
+	var answerSoFar = eval(yourInput);
+	progress.innerHTML = answerSoFar;
+}
+function redo(){
+	var input = document.getElementById("answer");
+	input.value = "";
+	enableButtons();
+	clearMessage();
+}
