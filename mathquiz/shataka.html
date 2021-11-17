@@ -12,16 +12,19 @@
   display: grid;
   grid-row-gap:2px;
   grid-column-gap:2px;
+   
   grid-template-columns: 80px 80px 80px ; 
   padding: 10px;
 }
 
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(10, 150, 230, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 22px;
+  color:white;
   text-align: center;
+  font-weight:bold;
 }
 p{
  text-align:center;
@@ -30,37 +33,65 @@ h1{
  background-color:#389;
  color:#ffffff;
  text-align:center;
- padding:30px;
+ padding:20px;
  
 }
 body{
   margin:0px;
   padding:0px;
 }
+.fatbutton{
+  font-size:28px;
+  background-color:rgba(0,100,100,1.0);
+  border-radius:10px;
+  color:white;
+  padding:10px;
+}
+button{
+   padding:10px;
+   font-size:22px;
+   border-radius:5px;
+   
+}
+ 
 </style>
 <script type="text/javascript" src="shataka.js"></script> 
 </head>
 <body>
 
 <h1 align="center" >Shataka - A number game</h1>
-<p>Find numbers such that row sums and column sums are all 100. Do not repeat numbers.</p>
+<p align="center" >Drag and drop numbers into the grid so that sum of each row is 100 and sum of each column is 100. </p>
 <div align="center">
-<button onclick="startGame();" >Start</button></div>
-<div class="grid-container" align="center">
-  <input class="grid-item" id="n0" value="1">
-<input class="grid-item" id="n1"  >
-<input class="grid-item" id="n2"  >
-<input class="grid-item" id="n3"  >
-<input class="grid-item" id="n4"  >
-<input class="grid-item" id="n5"  >
-<input class="grid-item" id="n6" >
-<input class="grid-item" id="n7"  >
-<input class="grid-item" id="n8"  > 
+
+<button id = "startbtn" onclick="startGame();" class="fatbutton" >Start</button>
+<button onclick="restartGame();" class="fatbutton">Restart</button></div>
+<div class="grid-container" align="center"    >
+  <input class="grid-item" id="n0" value=""   ondrop="drop(event)" >
+<input class="grid-item" id="n1"   ondrop="drop(event)"  >
+<input class="grid-item" id="n2"   ondrop="drop(event)"   >
+<input class="grid-item" id="n3"      ondrop="drop(event)" >
+<input class="grid-item" id="n4"       ondrop="drop(event)" >
+<input class="grid-item" id="n5"     ondrop="drop(event)" >
+<input class="grid-item" id="n6"       ondrop="drop(event)" >
+<input class="grid-item" id="n7"     ondrop="drop(event)" >
+<input class="grid-item" id="n8"        ondrop="drop(event)" > 
   
+</div>
+<div class="answers" align="center">
+  <button id="ans1"  draggable="true" style="visibility:hidden;" ondragstart="drag(event)"> 0</button>
+  <button id="ans2" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
+  <button id="ans3" draggable="true" style="visibility:hidden;"  ondragstart="drag(event)">0</button>
+ <button id="ans4" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
+<button id="ans5"  draggable="true" style="visibility:hidden;" ondragstart="drag(event)"> 80</button>
+  <button id="ans6" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
+  <button id="ans7" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
+ <button id="ans8" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
+<button id="ans9"  draggable="true" style="visibility:hidden;" ondragstart="drag(event)"> 0</button>
+   
 </div>
 <div align="center">
 <button onclick="submitAnswer()" align="center">submit</button></div>
-<div style="font-size:26px;" id="message"></div>
+<div style="font-size:26px; color:red;" id="message" align="center"></div>
 </body>
 </html>
 

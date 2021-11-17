@@ -1,7 +1,8 @@
-
+index =0
+var x = [0,0,0,0,0,0,0,0,0]
 function generateNumbers()
 {
-  var x = [0,0,0,0,0,0,0,0,0];
+ // var x = [0,0,0,0,0,0,0,0,0];
   var neededSum=100;
  
 		  foundX0 = false;
@@ -89,8 +90,8 @@ return x;
 		return num;
 	}
 /**********************************************/
-function shuffle(arra1) {
-    var ctr = arra1.length, temp, index; 
+function shuffle(arra1,l) {
+    var ctr = l, temp, index; 
     while (ctr > 0) { 
         index = Math.floor(Math.random() * ctr); 
         ctr--; 
@@ -108,15 +109,21 @@ function clearAllArrayElements(x)
 }
 
 /**********************************************/
-function showNumbers(x)
+var optionArray=[0,0,0,0,0,0,0,0,0]
+var arr = [0,0,0,0,0,0,0,0,0,0];
+var maxshown=6;
+function showNumbers(x,restart)
 {
-     var arr = [0,0,0,0,0,0,0,0,0,0];
+     if(restart==false){
+      arr = [0,0,0,0,0,0,0,0,0,0];
+     
      var i= 0;
      var j = 0;
     
-     for (;i<=5;)
+     for (;i<maxshown;)
      {
-          var n = Math.floor(Math.random()*10+1)
+          var n = generateRandomNumber(0,9)
+         
           if(arr[n]==0)
           {
              arr[n]=x[n];
@@ -124,22 +131,65 @@ function showNumbers(x)
            }
           
      }
+     }
+     
      for(i=0;i<9;i++)
      {
         var qnNum = "n"+i; 
         var el = document.getElementById(qnNum);
         if(arr[i]>0)
            el.value = arr[i];
-        else
-           el.value=" ";
+        else{
+           el.value=" "
+           optionArray[index++]=x[i]
+         }
       }
+      showOptions()
+     
 
+}
+/*****************************************************/
+function showOptions()
+{
+    var l = 0;
+    for(i=0;i<9;i++)
+       if(optionArray[i]==0)
+          break;
+    l = i
+  
+    shuffle(optionArray,l)
+    index = 0
+ for(i=0;i<9;i++)
+       if(optionArray[i]==0)
+          {
+              var m = i+1
+              var btn = document.getElementById("ans"+m)
+              btn.style.visibility = "hidden"
+          }
+    for(i=0;i<l;i++)
+      showAsOption(i+1,optionArray[i])
+
+    
+       
+    }
+/*****************************************************/
+function showAsOption(index,value)
+{
+    
+              
+        var btn = document.getElementById("ans"+index)
+        
+           btn.innerHTML = value
+           btn.style.visibility = "visible"
+     
+      
 }
 /******************************************************/ 
 function startGame()
 {
+    clearOptions()
     var x = generateNumbers();
-    showNumbers(x);
+    showNumbers(x,false);
 }
 /******************************************************/
  function isElementPresentInArray( x,   num,  tillIndex) {
@@ -189,11 +239,78 @@ function submitAnswer()
     var message = document.getElementById("message");
     if(isValid())
     {
-       message.innerHTML = "Correct!!!!";
+      alert("Wonderful!!!!");
+       var startBtn = document.getElementById("startbtn")
+       startBtn.innerHTML = "New Game"
+       if(maxshown>=0)
+          maxshown--
     }
     else
     {
-       message.innerHTML = "Wrong ";
+       alert("Wrong ");
     }
 }
-       
+/*********************************************************/
+function clearOptions()
+{
+    for(i=1;i<=4;i++)
+    {
+         var m = "ans"+i
+         var btn = document.getElementById(m)
+         btn.innerHTML = ""
+         btn.style.visibility = "visible"
+    }
+    index = 0
+}
+/*********************************************************/
+function allowDrop(ev)
+{
+
+   ev.preventDefault()
+   
+}
+/*********************************************************/
+function drag(ev)
+{     
+     
+     ev.dataTransfer.setData("text",ev.target.id)
+}
+/*********************************************************/
+function drop(ev)
+{
+     ev.preventDefault()
+     var data = ev.dataTransfer.getData("text")
+     var el = document.getElementById(data) 
+     if(ev.target.value>0)
+        return
+     ev.target.value = el.innerHTML
+     el.innerHTML = " "
+     el.style.visibility= "hidden"
+     checkCompletion()
+    // ev.target.innerHTML = data
+    // document.getElementById(data).innerHTML = ""
+    
+}
+/*********************************************************/
+function restartGame()
+{
+    clearOptions()
+  //  var x = generateNumbers();
+    showNumbers(x,true)
+}
+/******************************************************/
+function checkCompletion()
+{
+     console.log("In check completion")
+      for(i=0;i<9;i++)
+     {
+        var elid = "n"+i;
+        var element = document.getElementById(elid);
+        if(element.value==0)
+            return
+     }
+     submitAnswer()
+}
+/******************************************************/
+ 
+ 
