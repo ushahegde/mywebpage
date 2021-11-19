@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+<title>Decimals Quiz</title>
+<meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz</title> 
+    <link rel="stylesheet" type="text/css" href="style.css">
+ 
+    <script type="text/javascript" src="DecimalQuiz.js" >
+    
+    </script>
+</head>
+<body  >
+
+<div class="heading" align="center"> 
+Decimal Numbers Quiz 
+</div>
+ 
+ <p align="center">Convert the following into decimals</p>
+    <div id="grid" align="center" style="margin:8% auto;"  >
+    <div align ="left" id="qnnum"></div>
+
+   <p id="qnnum"></p>
+	
+	<div id="decimalquestion" class="inlinequestion"></div>
+      
+	<input type="text" value="" id="answer" onkeypress="answerkeyclicked(event)"  >
+	<div id="answersuffix" class="inlinequestion"></div>
+    
+  <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message"></p>
+<button onclick="closeDialog()">OK</button>
+     </div>
+     
+  </div>
+ </div>
+
+
+
+<script>startQuiz()</script>
+</body>
+</html>
