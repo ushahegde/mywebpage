@@ -17,12 +17,19 @@
 <div class="heading" align="center"> 
 Decimal Numbers Quiz 
 </div>
- 
+     <div id="replay" align="center"   >
+       <button onclick="restartQuiz()">play again</button>
+       <button onclick="close()"><a href="../index.html">Home</a></button>
+    </div>
+<div id="qzmain">
  <p align="center">Convert the following into decimals</p>
+    
     <div id="grid" align="center" style="margin:8% auto;"  >
+
+   
     <div align ="left" id="qnnum"></div>
 
-   <p id="qnnum"></p>
+   <p   id="qnnum"></p>
 	
 	<div id="decimalquestion" class="inlinequestion"></div>
       
@@ -32,12 +39,13 @@ Decimal Numbers Quiz
   <div class="modal"  id="dialog">
      <div class="modalwindow">
         <p  id="message"></p>
-<button onclick="closeDialog()">OK</button>
+       <button style="background-color:#389;"  id="closebtn">OK</button>
+        
      </div>
      
   </div>
  </div>
-
+</div>
 
 
 <script>startQuiz()</script>

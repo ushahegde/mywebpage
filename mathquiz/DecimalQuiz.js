@@ -10,11 +10,11 @@ class Measure
  var answer = 0;
  var questionNum = 0
  var score = 0;
- var TotalQns = 10
- var objects = [new Measure("rupee","paisa",100),
- new Measure("kilogram","grams",1000),
- new Measure("meter","centimeter",100),
- new Measure("kilometer","meter",1000),
+ var TotalQns = 5
+ var objects = [new Measure("Rs.","paisa",100),
+ new Measure("Kg","gm",1000),
+ new Measure("mtr","cm",100),
+ new Measure("Km","mtr",1000),
  new Measure("Fraction")
  ];
  var modalDialog=document.getElementById("dialog")
@@ -82,9 +82,9 @@ class Measure
 
 		}
 		 questionNum++;
-	   if(questionNum<=TotalQns){
+	   if(questionNum<TotalQns){
 	       	   
-	      setTimeout(createQuestion,1000);
+	      //setTimeout(createQuestion,1000);
 	   }
 	   else{
 	   	showScore();
@@ -104,7 +104,17 @@ class Measure
       else if(score>=7){
 			mes = "<h2>Very Good</h2>";      
       }
-			grid.innerHTML=mes+"<h1>Your score is "+score+"/"+TotalQns+"</h1>";
+			grid.innerHTML=mes+"<h3>Quiz Completed <br><br>Your score is "+score+"/"+TotalQns+"</h3>";
+     var button= document.getElementById("closebtn")
+      button.onclick=function(){
+          console.log("Here we are")
+          modalDialog.style.display= "none"
+          var mainDi = document.getElementById("qzmain")
+          mainDi.style.visibility="hidden"
+          var replayDi = document.getElementById("replay")
+          replayDi.style.display = "block"
+     } 
+       
   }
 /*************************************************/
 function showMessage(msg)
@@ -113,6 +123,11 @@ function showMessage(msg)
       modalDialog.style.display = "block"
       var grid = document.getElementById("message");
       grid.innerHTML = msg
+      var button= document.getElementById("closebtn")
+      button.onclick=function(){
+          modalDialog.style.display= "none"
+          createQuestion()
+     }
      
 }
 /**************************************************/
@@ -120,4 +135,15 @@ function closeDialog()
 {
       modalDialog.style.display= "none"
 }
-
+/****************************************************/
+function restartQuiz()
+{
+         var mainDi = document.getElementById("qzmain")
+          mainDi.style.visibility="visible"
+          
+          var replayDi = document.getElementById("replay")
+          replayDi.style.display = "none"
+          questionNum = 0
+          score = 0
+          startQuiz()
+}

@@ -9,8 +9,7 @@ body{
    font-size: 16px;
 }
 #grid{
-	width: 50%;
-	height: 50%;
+	width:70%;
 	margin:auto;
 	background-color: #22669999;
 	 
@@ -70,27 +69,41 @@ button{
    width:100%;
    height:100%;
    margin:0px;
-    
+   background-color:rgba(255,255,255,0.5); 
+   background-alpha: 
    
 }
 .modalwindow{
-   margin:15% auto;/*15% from top and centered*/
+   margin:20% auto;/*15% from top and centered*/
     
-   width:70%;
-   height:50%;
-   background-color:#eee;
-   border-radius:40px;
+   width:50%;
+   
+   border-radius:10px;
    border:2px #ccc;
    font-size:30px;
    color:#555;
+   background-color:white;
    border-style:outset;
  }
- 
- @media screen and (max-width: 800px){
-input{
-	padding:3px;  
-  }
-#grid{
-  width: 80%;
+ #replay{
+   display:none;
 }
+ @media screen and (max-width: 481px){
+input{
+	padding:3px;
+        width:30%;  
+  }
+.heading{
+   font-size: 24px;
+   padding: 10px 10px 10px 10px;
+   margin:0px;
+   background-color: #389;
+   color:white;
+    
+   
+}
+#grid{
+   width:90%;
+}
+ 
 }
