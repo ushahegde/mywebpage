@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fraction Quiz</title> 
+     <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="FractionQuiz.js" ></script>
+    
+<style type="text/css">
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 22px; 
+   padding: 10px;
+}
+ 
+
+</style>
+
+<body>
+ <h2 align="center">Fractions Quiz</h2>
+  <div id="restartScreen" align="center" style="display:none;   margin:20px auto;">
+    <button onclick="restartQuiz()">Quiz again</button>
+    <button><p><a href="../index.html">Home</a></p></button>
+</div>
+ <div align = "center" id="grid">
+
+ <p id="qnnum" align="left" margin="10px"></p>
+ <div id="question"></div>
+  
+ <div>
+ <button  id = "btn1" class="answerbutton"></button><button  id="btn2" class="answerbutton"></button>
+ </div>
+ <div> 
+ <button   id="btn3" class="answerbutton"></button><button class="answerbutton" id="btn4"></button>
+ </div>
+ 
+ </div>
+   <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message" align = "center"></p>
+       <p align="center"><button    id="closebtn" >OK</button></p>
+        
+     </div>
+     
+  </div>
+ </div>
+
+</div>
+ <script> startQuiz();</script>
+</body>
+</html>

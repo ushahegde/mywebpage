@@ -11,13 +11,9 @@ body{
 #grid{
 	width:70%;
 	margin:auto;
-	background-color: #22669999;
+	background-color: #efefef;
 	 
-	font-size: 18px; 
-        color:white;
-	 
-	 
-
+	font-size: 18px;  
 }
 input{
    padding:10px;
@@ -29,8 +25,7 @@ div{
    margin:10px;
 }
 #question{
-	font-size: 20px;
-	font-family: Helvetica;
+	font-size: 24px; 
 }
 .inlinequestion{
   display: inline-block;
@@ -58,7 +53,17 @@ button{
    padding:8px;
    background-color: #eee;
    font-size: 16px;
+   border-radius:5px;
+   width:100px;
+   height:50px;
   
+}
+.answerbutton{
+   padding:10px 10px 10px 10px;
+   background-color:#ccddee;
+   font-size:22px;
+   
+   margin: 20px 20px 20px 20px;
 }
 .modal{
    z-index:1;
@@ -70,7 +75,7 @@ button{
    height:100%;
    margin:0px;
    background-color:rgba(255,255,255,0.5); 
-   background-alpha: 
+    
    
 }
 .modalwindow{
