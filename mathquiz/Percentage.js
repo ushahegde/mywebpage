@@ -26,7 +26,7 @@ function createObjects()
              solution = solnArray[i]
          else
              solution = "Not Defined"
-         console.log("soln    is "+solution)
+      //   console.log("soln    is "+solution)
          let obj = new Question(qnArray[i],answer,solution)
          ar.push(obj)
       }
@@ -50,8 +50,8 @@ function validateAns(event)
   if(event.keyCode==13){
      let el = document.getElementById("answer")     
      let answerEntered = el.value
-     console.log("Correct answer is "+answerValue)
-     console.log("Answer entered is "+answerEntered)
+     //console.log("Correct answer is "+answerValue)
+     //console.log("Answer entered is "+answerEntered)
      if (answerEntered == answerValue)
         showMessage("CORRECT")
      else
