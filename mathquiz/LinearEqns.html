@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Linear Equations Quiz</title> 
+     <link rel="stylesheet" type="text/css" href="style.css">
+    <script  src="lineqn.js" ></script>
+    
+<style type="text/css">
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 22px; 
+   padding: 10px;
+   text-align: center;
+}
+button{
+   margin:2%;
+} 
+.inputdiv{
+   text-align: center;
+}
+body{
+  margin: 0%;
+  padding: 0%;
+}
+ 
+</style>
+</head>
+<body>
+ <div class="heading" >Linear Equations Quiz</div>
+   
+ <div id="grid">
+ <div id="question"></div>
+ <div  class="inputdiv"><input   id="answer" onkeyup="validateAns(event);"></input></div>
+<div  >
+  <button style="float:left;" onclick="showPreviousQuestion()">Prev</button>
+  
+ <button  style="float:none;" onclick="showSolution()">Solution</button>
+<button  style=" float:right;"onclick="showNextQuestion()">Next</button>
+<div>
+ </div>
+  <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message"></p>
+       <p ><button    id="closebtn" >OK</button></p>
+        
+     </div>
+     
+  </div>
+ <script> startQuiz();</script>
+</body>
+</html>
