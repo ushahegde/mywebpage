@@ -6,226 +6,185 @@
  
 <meta name="viewport" content="width=device-width, initial-scale=1">
  
-<link rel="stylesheet" type="text/css" href="style.css">
-<style>
- 
-.grid {
-    width: 90%; 
-    margin-left: 20px ;
-    margin-right: 20px;
-    background-color: #eee;
-   border-radius: 2px;
-    padding:15px; 
-     border-radius:5px; 
- border-style : outset;  
-  border-color: #eef; 
-  line-height: 150%;
-   
-}
+<link rel="stylesheet" type="text/css" href="indexstyle.css">
 
-td{
-   border-style: solid;
-   border-color: aliceblue;
-   border-width: 1px;
-   margin: 10px;
-   padding: 15px;
-   background-color:#ccccd0;
-  
-    
-}
- 
- @media screen and (max-width: 800px){
-.grid{
-     width: 100%;
-     padding:10px;
-     
-}
-table,td{
-	display: block;
-	margin: 3px;
-
-}
-.heading{
-  display: none;
-}
-}
- h3{
-    font-size:22px; 
- }
- 
-.grid h2 {
-    background-color: #699;
-    font-size: 40px;
-    text-align: center;
-   
-    
-}
-.grid hr{
-   color: #fff;
-}
-.heading{
-   width: 100%;
-   background-color: #389;
-   color: white;
-   padding:20px;
-   font-size: 30px;
-   
-   font-weight: bolder;
-   text-align: center;
-   margin: 0px;
-   margin-top:0px;
-   margin-bottom: 20px; 
-  border-color: #eef; 
-}
-body{
-  font-family: 'Roboto';
-  background-color: #f5f5f1;
-}
- 
-</style>
 </head>
 <body>
 <h1>
  <div class="heading">   
    Programming resources
+   <ul    >
+   <li ><a href="#codingquiz">CodingQuiz</a></li>
+   <li ><a href="#androidapps">AndroidApps</a></li>
+    <li ><a href="#programmingblogs">Blogs</a></li>
+     <li ><a href="#sourcecodes">SourceCodes</a></li>
+      <li ><a href="#mathsquiz">MathsQuiz</a></li>
+       
+</ul> 
  </div>
  </h1>
- 
- 
- 
-<div class="grid" style="border:none;">  
-<h3>
+ <p  >
+	 These are the programming blogs, apps, source codes and some web applications by me. 
+ </p>
 
-  Coding Questions and Quiz
+ 
+<div class="grid"  >  
+<h3><a name="codingquiz">Coding Questions and Quiz</a>
+
+  
 </h3>
  In these pages you will find questions and answers, including solved programs on the given programming language.
   And also random 10 question quiz on the topics. Data structure programs are all in C language currently. 
  <table  >
  <tr>
 <td><a href="JavaQuestions.html">Java questions</a> </td>
- <td><a href="CQns/c.html">C questions</a> </td></td></tr> 
- <tr>
+ <td><a href="CQns/c.html">C questions</a> </td></td>
+ 
  <td><a href="CppQns/cpp.html">C++</a> </td>
   <td><a href="DS/ds.html">Data structures </a></td>
   </tr>
 </table>
-<hr>
-<h3 >Android apps</h3>
+ 
+</div>
+<div class="grid"> 
+ <h3 ><a name="androidapps">Android apps</a></h3>
 
-I have published some <a href="https://play.google.com/store/apps/developer?id=Hegdeapps&hl=en">android apps in google play </a> - 
+My published free <a href="https://play.google.com/store/apps/developer?id=Hegdeapps&hl=en">android apps in google play </a> - 
 
-These <i>free</i> apps   contain the coding questions and multiple choice questions available in the webpages above.<b>  And they don't contain ads.</b> 
 <div style="overflow-x: auto;">
 <table>
 <tr>
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.cquizard&hl=en_IN">
+<td><img align="center" src="./images/cqui.png"  width=50 height=50/><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.cquizard&hl=en_IN">
 
-<img align="center" src="./images/cqui.png"  width=50 height=50/>
-  </a>C quizard: Offers unlimited offline C quiz, hundreds of solved interview questions and programs. 
+
+  C quizard:</a> Offers unlimited offline C quiz, hundreds of solved interview questions and programs. 
 
  </td>
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.cppsimplified&hl=en">
-<img align="center" src="./images/cpp.png"  width=50 height=50/>
-</a> 
-Simplified C++: Has C++ notes with plenty of examples, quiz and solved programming and interview questions</td>
-</tr><tr>
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.dsqns&hl=en">
+<td><img align="center" src="./images/cpp.png"  width=50 height=50/><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.cppsimplified&hl=en">
+Simplified C++: </a> 
+Has C++ notes with plenty of examples, quiz and solved programming and interview questions</td>
+
+<td>
 <img align="center" src="./images/ds.png" width=50 height=50/>
-</a>Data Structure Questions:	Quiz and coding questions on data structures using C. Covers linked lists,
+<a href="https://play.google.com/store/apps/details?id=com.hegdeapps.dsqns&hl=en">
+Data Structure Questions</a>	Quiz and coding questions on linked lists,
 stacks, queues, binary trees and arrays</td>
-
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.Linuxquizard&hl=en">
-<img src="./images/Linuz.png" align="center" height=50 width=50/></a>Linux Quizard:Linux questions and quiz. Covers basic shell scripts</td>
 </tr><tr>
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.mathz&hl=en">
-<img src="./images/mathz.png" align="center" widht=50 height=50/> </a>Mathz: A Simple arithmetic game for children and adults. The simple quiz can be used to teach Maths to your kids</td>
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.shatakanew&hl=en">
+
+<td><img src="./images/Linuz.png" align="center" height=50 width=50/>
+<a href="https://play.google.com/store/apps/details?id=com.hegdeapps.Linuxquizard&hl=en">
+	Linux Quizard
+</a>Linux questions and quiz. Covers basic shell scripts</td>
+
+<td>
+	<img src="./images/mathz.png" align="center" widht=50 height=50/>
+	<a href="https://play.google.com/store/apps/details?id=com.hegdeapps.mathz&hl=en">
+		Mathz:
+ </a> A Simple arithmetic game for children and adults. The simple quiz can be used to teach Maths to your kids</td>
+<td>
 <image src="./images/shataka.png" width=50 height=50 align="center"/>
-</a>Shataka: A simple Maths puzzle. Your aim is to get 100 as row sums and columns sums. </td> 
+<a href="https://play.google.com/store/apps/details?id=com.hegdeapps.shatakanew&hl=en">Shataka</a> A simple Maths puzzle. Your aim is to get 100 as row sums and columns sums. </td> 
 </tr><tr>
 
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.memoryace&hl=en">
+<td>
 <img src = "./images/memory.png" height=50 width=50 align="center"/>
-</a>Memory Ace: A simple memory game with cards, Simon game, Face memory and patterns</td>
+<a href="https://play.google.com/store/apps/details?id=com.hegdeapps.memoryace&hl=en">
+	Memory Ace
+</a>A simple memory game with cards, Simon game, Face memory and patterns</td>
 
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.lekhanakeyboard&hl=en">
-<img src="./images/lekhana.png" align="center" width=50 height=50/>
-</a>Lekhana Kannada Keyboard: An online kannada/Hindi keyboard with transliteration</td>
-</tr><tr>
-<td><a href="https://play.google.com/store/apps/details?id=com.hegdeapps.javaquizard">
+<td>
+	<img src="./images/lekhana.png" align="center" width=50 height=50/>
+	<a href="https://play.google.com/store/apps/details?id=com.hegdeapps.lekhanakeyboard&hl=en">
+Lekhana Kannada Keyboard
+</a> An online kannada/Hindi transliteration keyboard</td>
+
+<td>
 <image src="./images/java.png" width=50 height=50 align="center"/>
-</a>Java Quizard: A quiz app with Java interview questions and programs </td>
+<a href="https://play.google.com/store/apps/details?id=com.hegdeapps.javaquizard">
+	Java Quizard
+</a> A quiz app with Java interview questions and programs </td>
 
 </tr>
 </table>
 </div>
-You can get information about these apps in this 
+You can get more details about these apps in my 
 <a href="https://hegdeapps.wordpress.com/">wordpress site</a>
-<hr>
-<h3>Programming blogs</h3>
+</div>
+ 
+<div class="grid">
+<h3><a name="programmingblogs">Programming blogs</a></h3>
 
 My programming blogs include
 <table>
 <tr>
 <td><a href="https://hegdeapps.wixsite.com/cpptutorial">C++ Notes</a>
 Notes on C++ topics from basics to advanced. </td>
-<td><a href="http://learncpp-hegdeapps.blogspot.com/">Learn C++ </a>A blog with C++ topics. Has notes and solved programs.</td></tr>
+<td><a href="http://learncpp-hegdeapps.blogspot.com/">Learn C++ </a>A blog with C++ topics with notes and programs.</td></tr>
 <tr>
-<td><a href="https://learnlinuxbyhegdeapps.wordpress.com/">Linux Notes</a>Linux notes and tips. Covers basic shell scripts</td>
+<td><a href="https://learnlinuxbyhegdeapps.wordpress.com/">Linux Notes</a>Linux notes and tips and shellscripts</td>
 <td><a href="http://coding-tricks-hegdeapps.blogspot.com/">Coding Tips</a>Tips on android, Linux, Java and C++</td>
 </tr>
 <tr>
-<td><a href="http://data-structures-in-c.blogspot.com/">Data structure</a>Has programs and interview questions on data structure topics - linked lists, tree, queues and stacks, sorting and searching</td>
+<td><a href="http://data-structures-in-c.blogspot.com/">Data structure</a>Has programs and interview questions on data structure</td>
 <td><a href="https://cwithlinux.blogspot.com/">C Notes</a></td>
 </tr>
 </table>
-<hr>
-<h3>Source Codes</h3>
+</div>
+ 
+<div class="grid">
+<h3><a name="sourcecodes">Source Codes</a></h3>
 <table><tr>
   <td><a href="https://github.com/ushahegde/Quiz">A Generic Quiz app</a>
-     An android app to create a simple quiz based on a pre-populated sqtdte database. It can generate question/answers, multiple choice questions and ontdne quiz
+     An android app to create a simple quiz using sqlite database.
      </td>
   <td><a href="https://github.com/ushahegde/Memory">Memory Game</a>
-     An android game which has card memory, simon game and image memory and pattern memory.
+     An android game which has memory, simon game and image memory and pattern memory.
         </td>
           <td><a href="https://github.com/ushahegde/Mathz">A Mathz Game</a>
-     An android maths puzzle for all ages. It has simple arithmetic questions. 
+     An android arithmetic puzzle for all ages 
         </td>
 </tr></table>
-<hr>
-<h3>Math Worksheets</h3>
+</div>
+ 
+<div class="grid">
+<h3><a name="mathsquiz">Math Worksheets and Quiz</a></h3>
 <p>
    These pages are meant for school children. There are some worksheets, quiz and question answers.
-    Except for Maths Puzzles blog, 
-   which has logical and mathematical puzzles for math aficionados of all ages. 
+    
 </p>
 <table   >
 <tr>
  <td> <a href="mathquiz/mathquiz.html">A simple Maths worksheet </a>  </td>
-<td>  <a href="mathquiz/factors.html">Factors</a> </td></tr>
-<tr>
+<td>  <a href="mathquiz/factors.html">Factors</a> </td>
  <td>  <a href="mathquiz/fractions1.html">Fractions-I</a> </td>
- <td> <a href="https://hegdeapps-maths-puzzles.blogspot.com">Maths Puzzles Blog</td>
+ </tr>
+<tr>
+<td>  <a href="mathquiz/twenty.html">Numbers Quiz</a> </td>
+ <td> <a href="mathquiz/mathquizMoney.html">Money problems</td>
+ <td> <a href="https://hegdeapps-maths-puzzles.blogspot.com">Maths Puzzles Blog<br>Math puzzles with solutions</td>
  </tr>
  <tr>
- <td>  <a href="mathquiz/twenty.html">Numbers Quiz</a> </td>
- <td> <a href="mathquiz/mathquizMoney.html">Money problems</td>
- </tr>
-<tr>
  <td> <a href="mathquiz/shataka.html">Shataka - a number game</a></td>
  <td> <a href="mathquiz/countdown.html">Countdown game</a></td>
-</tr>
+ <td> <a href="mathquiz/DecimalQuiz.html">Convert to Decimals</a></td>
+ </tr>
 <tr>
-   <td> <a href="mathquiz/DecimalQuiz.html">Convert to Decimals</a></td>
-   <td> <a href="mathquiz/FractionQuiz.html">Fractions addition and subtraction</a></td>
-</tr>
-<tr>
-   <td> <a href="mathquiz/Percentage.html">Percentage Calculation</a></td> 
+  <td> <a href="mathquiz/FractionQuiz.html">Fractions addition and subtraction</a></td>
+  <td> <a href="mathquiz/Percentage.html">Percentage Calculation</a></td> 
    <td> <a href="mathquiz/LinearEqns.html">Algebra- Linear equations(with solutions)</a></td>
-   
 </tr>
+<tr>   
+   
+   <td> <a href="mathquiz/Square.html">Squares and square roots</a></td>
+</tr>
+ 
 </table>
-
+</div>
+ 
+<div align="center" class="footer">
+   <a href="mailto: ushah65@icloud.com">Send suggestions</a> 
+</div>
+<hr>
   
  
 </body>

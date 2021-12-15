@@ -1,0 +1,156 @@
+
+@font-face{
+     font-family:'Roboto';
+     src:url('../fonts/Roboto-Light.ttf');
+     font-weight:normal;
+}
+body{
+   font-family: 'Roboto';
+   font-size: medium;
+   margin: 0;
+   padding: 0;
+}
+#grid{
+	width:87%;
+	margin: 3px auto;
+	padding: 3px;
+        margin-top: 5%;
+	background-color: #ffffff;
+	border: 1px solid lightgrey;
+	box-shadow: 5px 5px 5px grey; 
+	padding-bottom: 5px; 
+}
+input{
+   padding:10px;
+   font-size: medium;
+   
+}
+ 
+#question{
+	font-size: 0.9em; 
+}
+.inlinequestion{
+  display: inline-block;
+  text-align: left;
+}
+h1{
+   
+   padding: 10px;
+   margin:0px;
+   background-color: #389;
+   color:white;
+   
+}
+
+.heading{
+   font-size: large;
+   padding: 10px 10px 10px 10px;
+   margin:0px;
+   text-align: center;
+   background-color: #389;
+   color: white;
+   margin: 0px;
+   font-weight: bold;
+   
+}
+.heading a{
+   color:white;
+}
+.menu{
+   margin: 0px;
+   padding: 0px;
+}
+.menu li{
+   display: inline;
+   font-size: small;
+   text-decoration: none;
+   list-style-type : none;
+   text-align : right;
+   padding: 5px;
+   margin: 5px;
+}
+button{
+   padding:8px;
+   background-color: #eee; 
+   border-radius:5px;
+   
+  
+}
+.answerbutton{
+   padding:10px 10px 10px 10px;
+   background-color:#ccddee; 
+   min-width: 100px;
+   text-align: center;
+   margin: 5px;
+   margin-top: 10px;
+}
+
+a:hover, a:active{
+	text-decoration:none;
+	background-color:#882277;
+	color:white; 
+	
+}
+.heading a{
+    text-decoration:none;  
+}
+.modal{
+   z-index:1;
+   position:fixed;
+   left:0;
+   top:2%;
+   display:none;
+   width:100%;
+   height:100%;
+   margin:0px;
+   background-color:rgba(255,255,255,0.5); 
+    
+   
+}
+.modalwindow{
+   margin:20% auto;/*15% from top and centered*/
+   text-align:center;
+   width: 50%;
+   
+   border-radius:10px;
+   border:2px #ccc;
+   font-size: large;
+   color:#555;
+   background-color:white;
+   border-style:outset;
+ }
+ #replay{
+   display:none;
+}
+ @media only screen and (min-width: 1200px){
+input{
+	padding:3px;
+        width:30%;  
+  }
+.heading{
+   padding: 30px 30px 30px 30px;
+   margin:0px;
+   font-size: 2em;
+   background-color: #389;
+   color:white;
+    
+   
+}
+#grid{
+   width:70%;
+   padding: 10px;
+   margin: 30px 10px 30px 10px auto;
+   border: 1px solid aliceblue;
+   box-shadow: 10px 10px 5px grey;
+}
+#question{
+  font-size: 1em;
+}
+button{
+  margin:4px;
+}
+.modalwindow{ 
+  width: 30%;
+ 
+ }
+}
