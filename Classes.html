@@ -1,9 +1,38 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> Java Classes Questions </h1><div class='question'><p>1. What are the different access specifiers in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >4 Access specifiers in Java are<br>1) public, - these class/methods/variables can be accessed by any class or method.<br><br>2)private - class, methods, or variables defined as private can be accessed within the class only.<br><br>3) protected -  these can be accessed by the classes of the same package, or by the sub-class of this class in other packages also. <br><br>4) default - members  are accessible by classes within the package only.  Note that there is no "default" specifier. If no specifier is given, the class will have default access specifier. </p></div></div><div class='question'><p>2. What is the output of the following program?
+<!DOCTYPE html>
+<html><head>
+	<meta charset='utf-8' /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+   
+<title>Java Classes</title>
+<link rel="stylesheet" type="text/css" href="descriptivestyle.css"> 
+<script type="text/javascript" src="according.js"></script>
+ 
+	</head><body  >
+		<h2 class='heading'> Java Classes Questions </h1><div class='question'><p>1. What are the different access specifiers in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >4 Access specifiers in Java are<br>1) public, - these class/methods/variables can be accessed by any class or method.<br><br>2)private - class, methods, or variables defined as private can be accessed within the class only.<br><br>3) protected -  these can be accessed by the classes of the same package, or by the sub-class of this class in other packages also. <br><br>4) default - members  are accessible by classes within the package only.  Note that there is no "default" specifier. If no specifier is given, the class will have default access specifier. </p></div></div><div class='question'><p>2. What is the output of the following program?
 </p><pre class='courier'>public class Hello {
-   public static void main(String args[]) {	         System.out.println("Hello world");
+   public static void main(String args[]) {<br>	         System.out.println("Hello world");
   }
 }
-</pre><button class='accordion'>Answer</button><div class='panel'><p >Hello world<br></p></div></div><div class='question'><p>3. What is an object?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Object is an entity which has a state and behavior. <br><br>Object is an instance of a class. Object has fields and methods. <br><br>Whenever the JVM reads the “new()” keyword, it will create an instance of that class.<br><br>e.g.<br><br>class A{<br>    int n;<br>    void print(){<br>       System.out.println(n);<br>     }<br>}<br><br>class Demo{<br>   public static void main(String args[]){<br>      A obj = new A();<br>     }<br>}<br><br>Here we are creating an object called obj. T</p></div></div><div class='question'><p>4. What is a constructor?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Constructor is a special method in a class which is used to initialize the object. It is implicitly invoked when an object is created.<br><br>Name of the constructor must be same as class name. And constructor must not have an explicit return type. <br><br>e.g.<br>class A{<br>     A(){}//constructor<br>     A(int n){}//constructor<br>}<br><br>Here A class has two constructors. First one with no parameters is a default constructor. </p></div></div><div class='question'><p>5. Can a constructor be final? Is the constructor inherited?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >No. The constructor can not be final. <br><br>Constructor of a class can not be static. <br><br></p></div></div><div class='question'><p>6. Write a class with a 2 parameter constructor and a default constructor. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>public class Test {
+</pre><button class='accordion'>Answer</button><div class='panel'><p >Hello world<br></p></div></div>
+<div class='question'><p>3. What is an object?</p><pre class='courier'></pre>
+<button class='accordion'>Answer</button>
+
+<div class='panel'><p >Object is an entity which has a state and behavior. <br><
+br>Object is an instance of a class. Object has fields and methods. <br>
+<br>Whenever the JVM reads the “new()” keyword, it will create an instance of that class.<br><br>e.g.
+<pre class="courier"><br><br>class A{<br>    int n;<br>    void print(){<br>       System.out.println(n);<br>     }<br>}<br><br>class Demo{<br>   public static void main(String args[]){<br>      A obj = new A();<br>     }<br>}<br><br></pre>Here we are creating an object called obj which has an integer data member n.</p></div></div><div class='question'>
+	<p>4. What is a constructor?</p><pre class='courier'></pre>
+	<button class='accordion'>Answer</button>
+	<div class='panel'><p >Constructor is a special method in a class which is used to initialize the object. 
+	It is implicitly invoked when an object is created.<br>
+	<br>Name of the constructor must be same as class name. 
+	And constructor must not have an explicit return type. <br><br>e.g.<pre class="courier">
+		<br>class A{<br>     A(){}//default constructor<br>     A(int n){}//constructor<br>}<br></pre>
+		Here A class has two constructors. First one with no parameters is a default constructor. </p></div></div><div class='question'>
+			<p>5. Can a constructor be final? Is the constructor inherited?</p>
+			<pre class='courier'></pre><button class='accordion'>Answer</button>
+			<div class='panel'><p >No. The constructor can not be final. <br>It can't be inherited.
+			 <br></p></div></div><div class='question'><p>6. Write a class with a 2 parameter constructor and a default constructor. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>public class Test {
   Test(int a,int b){
     System.out.println("I am a constructor with "+a+b);
  }
@@ -14,7 +43,9 @@
       Test c1 = new Test(10,20);
       Test c2 = new Test();
   }
-}</pre><p>The class has two constructors - one default and another with 2 parameters. <br><br>The main() function first calls parameterized constructor by instantiating the class with 2 integers. Then it calls default constructor by instantiating the class with 0 values.<br><br>The output of the program is<br>I am a constructor with 1020<br>I am default constructor </p></div></div><div class='question'><p>7. What is the output of the following program?
+}</pre>
+<p>The class has two constructors - one default and another with 2 parameters. <br>
+<br>The main() function first calls parameterized constructor by instantiating the class with 2 integers. Then it calls default constructor by instantiating the class with 0 values.<br><br>The output of the program is<br>I am a constructor with 1020<br>I am default constructor </p></div></div><div class='question'><p>7. What is the output of the following program?
  </p><pre class='courier'>   class Test   
     {  
         int i;   
@@ -37,7 +68,59 @@
         }   
 
 }
-</pre><button class='accordion'>Answer</button><div class='panel'><p >Compiler error</p><p>The class has only a parameterized constructor. It has no default constructor. <br><br>The class instantiation with default constructor gives an error.</p></div></div><div class='question'><p>9. What is a class?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A class is a blue print of an object.<br><br> A class is  a user defined data type similar to structures. A class has data members and methods. Data members  define the state of the object and methods define behavior of the object.  <br><br>e.g.<br>class Test<br>{<br>     int num;<br>     void printNum(){<br>        .....<br>    }<br>}<br><br>Here class Test has an instance variable called num. It also has a method printNum()<br></p></div></div><div class='question'><p>10. What is the keyword "final" used for?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >final keyword can be used in different contexts.<br><br>A final variable is the one which can not be modified. Its value is set either using an initializer or using an assignment statement. Once assigned, its value can not be changed. <br><br>e.g.<br>final int m=10;<br><br>Now m can not be changed. Changing m results in syntax error.<br><br>A final object can not change its reference. its fields can change. But it can not refer to another object. <br><br>final A obj = new A();<br>obj.m=10;//ok<br>obj = new A();//error<br><br><br>A final method can not be overridden. The derived classes can not re-define a final method.<br>e.g.<br>class A{<br>    final void print(){}<br>}<br>class B extends A{<br>    final void print(){//error<br>   }<br>}<br><br><br>A final class can not be inherited - it can not be subclassed.<br><br>final class A{}<br>class B extends A{}//error<br></p></div></div><div class='question'><p>11. What is static keyword?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A static variable of a class is common to all objects of the class unlike an instance variable.<br>e.g.<br>class A{<br>   static int m;<br> }<br><br>Now m is shared between all objects of the class A. <br><br>A static method of a class can be invoked without using object of a class. And a static method can access only static variables of a class and it can call only static methods of that class. <br><br>e.g.<br>class A{<br>   static int m;<br>   int n;<br>   static void printHello(){<br>       System.out.println("Hello world");<br>       System.out.println("m is "+m);<br>       System.out.println("n is "+n);//error<br>  }<br>}<br>class Test{<br>   public static void main(String args[]){<br>       A.printHello();//no error<br>   }<br>}<br><br>As printHello() is a static method, we can call this method without creating any object of A class. <br><br>And this method is not able to access the instance variable n. </p></div></div><div class='question'><p>12. Can a class be defined as static?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A top level class can not be static. <br><br>But an inner class - a nested class can be static in Java.<br><br>e.g.<br><br>  class A{<br>      static class B{}<br>  }<br><br>Here B is the static inner class of class A. Which means B can be created without an outer class object. </p></div></div><div class='question'><p>13. What is static block in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Java static block or static initializer block is the group of statements that gets executed when the class is loaded  by Java class loader.<br><br>So a static block is executed even before main method. <br><br>Static block is used to initialize static variables of the class. <br><br>A class can have multiple static blocks which are executed in the same order they are defined in the class. <br><br>e.g.<br>   class A{<br>       static int m;<br>        int n;<br>        static{<br>          m = 1;<br>       }<br>       A(int num){<br>           n = num;<br>      }<br>   }<br>Here the block static { m = 1;} is the static initializer block. <br><br>Unlike the constructor, this block gets executed only once.<br><br></p></div></div><div class='question'><p>14. What is constructor overloading in Java? What is copy constructor?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Defining multiple constructors is called constructor overloading. <br><br>e.g.<br><br>public class Test<br>{<br>     Test(int n){<br>         ...<br>    }<br>    Test(){<br>        ...<br>    }<br>   public static void main(String arg[]){<br>      Test t1 = new Test(10);<br>      Test t2 = new Test();<br>      ....<br>   }<br>}<br><br>Here Test class has two constructors Test(int n), Test(). t1 calls first constructor with one parameter and t2 calls second constructor.<br></p></div></div><div class='question'><p>15. Write a class A which has a constructor with one int parameter. Write class B which is a subclass of A with a default constructor. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>class A
+</pre><button class='accordion'>Answer</button><div class='panel'><p >Compiler error</p><p>The class has only a parameterized constructor. It has no default constructor. <br><br>The class instantiation with default constructor gives an error.</p></div></div><div class='question'><p>9. What is a class?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A class is a blue print of an object.<br><br> A class is  a user defined data type similar to structures. A class has data members and methods. Data members  define the state of the object and methods define behavior of the object.  <br><br>e.g.<br>class Test<br>{<br>     int num;<br>     void printNum(){<br>        .....<br>    }<br>}<br><br>Here class Test has an instance variable called num. It also has a method printNum()<br></p></div></div><div class='question'>
+	<p>10. What is the keyword "final" used for?</p><pre class='courier'></pre>
+	<button class='accordion'>Answer</button><div class='panel'>
+		<p >final keyword can be used in different contexts.<br>
+		
+		<br>A final variable is the one which can not be modified. Its value is set either using an initializer or
+		 using an assignment statement. Once assigned, its value can not be changed. <br><br>e.g.
+		 <pre class="courier">final int m=10;<br></pre>Now m can not be changed. Changing m results in syntax error.
+		 <br><br>A final object can not change its reference. its fields can change. 
+		 But it can not refer to another object. <br><pre class="courier">final A obj = new A();<br>obj.m=10;//ok<br>obj = new A();//error</pre>A final method
+		  can not be overridden. The derived classes can not re-define a final method.<br>e.g.
+		  <pre class="courier">class A{<br>    final void print(){}<br>}<br>class B extends A{
+			  <br>    final void print(){//error<br>   }<br>}</pre>
+			  <br>A final class can not be inherited - it can not be subclassed.<br>
+			  <pre class="courier">final class A{}<br>class B extends A{}//error</pre></p></div></div>
+			  <div class='question'><p>11. What is static keyword?</p>
+			  <button class='accordion'>Answer</button><div class='panel'>
+				  <p >A static variable of a class is common to all objects of the class unlike an instance variable.
+				  <br>e.g.<pre class='courier'>class A{<br>   static int m;<br> }</pre>
+				  <br>Now m is shared between all objects of the class A. <br>
+				  <br>A static method of a class can be invoked without using object of a class. 
+				  And a static method can access only static variables of a class and it can call
+				   only static methods of that class. <br><br>e.g.<br>
+				   <pre class='courier'>class A{<br>   static int m;<br>   int n;<br>   static void printHello(){ <br>       System.out.println("Hello world");<br>       System.out.println("m is "+m);  <br>       System.out.println("n is "+n);//error<br>  }<br>}<br>class Test{
+						   <br>      public static void main(String args[]){<br>       A.printHello();//no error <br>   }<br>}</pre>
+					   <br>As printHello() is a static method, we can call 
+					   this method without creating any object of A class. <br>
+					   <br>And this method is not able to access the instance variable n. </p></div></div>
+					   
+	<div class='question'>
+		<p>12. Can a class be defined as a static class?</p>
+		<pre class='courier'></pre><button class='accordion'>Answer</button>
+		<div class='panel'><p >A top level class can not be static. <br>
+		<br>But an inner class - a nested class can be static in Java.<br><br>e.g.<br><pre class="courier">  class A{<br>      static class B{}<br>  }</pre>
+		<br>Here B is the static inner class of class A. Which means B can be created
+		 without an outer class object. </p></div></div>
+	<div class='question'><p>13. What is static block in Java?</p><pre class='courier'></pre>
+	<button class='accordion'>Answer</button>
+	<div class='panel'><p >Java static block or static initializer block is the group of statements that 
+	gets executed when the class is loaded  by Java class loader. So a static block is executed 
+	even before main method. Static block is used to initialize static variables of the class. <br>
+	<br>A class can have multiple static blocks which are executed in the same order they are defined in the class. 
+	<br><br>e.g.<pre class="courier">   class A{<br>       static int m;<br>        int n;<br>        static{<br>          m = 1;<br>       }<br>       A(int num){<br>           n = num;<br>      }<br>   }</pre>
+	Here the block static { m = 1;} is the static initializer block. <br>
+	<br>Unlike the constructor, this block gets executed only once.<br><br></p></div></div>
+
+<div class='question'><p>14. What is constructor overloading in Java? </p>
+<button class='accordion'>Answer</button><div class='panel'>
+	<p >Defining multiple constructors is called constructor overloading. <br>
+	<br>e.g.<pre class='courier'>public class Test<br>{<br>     Test(int n){<br>         ...<br>    }<br>    Test(){<br>        ...<br>    }<br>   public static void main(String arg[]){<br>      Test t1 = new Test(10);<br>      Test t2 = new Test();<br>      ....<br>   }<br>}<br></pre>
+	Here Test class has two constructors Test(int n), Test(). <br>t1 calls first constructor as it is initialized with one integer argument. t2 calls second constructor - zero parameter constructor also called default constructor.<br></p></div></div>
+<div class='question'><p>15. Write a class A which has a constructor with one int parameter. Write class B which is a subclass of A with a default constructor. </p><pre class='courier'></pre>
+<button class='accordion'>Answer</button><div class='panel'><pre class='courier'>class A
 {
    public A(int num)
    {
@@ -62,7 +145,11 @@ public class Test
     A obj2 = new A(10);
   }
 }
-</pre><p>If we omit the line super(0) in B class constructor, we get a syntax error. Because implicitly a subclass constructor calls default constructor of super class. As A class does not have a default constructor, there will be error.<br><br>By adding the line super(0), we are calling base class constructor - A(int num) with 0 as parameter.<br><br>The super() call if present, must be the first statement in derived class constructor. </p></div></div><div class='question'><p>16. Write a program to read names and times taken by n runners and find the fastest runner. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
+</pre><p>If we omit the line super(0) in B class constructor, we get a syntax error. Because implicitly a subclass constructor must call the super class constructor. In this case, it tries to implicityly call default constructor of super
+ class A. As A class does not have a default constructor, there will be error.<br>
+ <br>By adding the line super(0), we are calling base class constructor - A(int num) with 0 as parameter.<br>
+ <br>The super() call if present, must be the first statement in derived class constructor. </p></div></div>
+ <div class='question'><p>16. Write a program to read names and times taken by n runners and find the fastest runner. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 class Runner{
      String name;
      int runTime;
@@ -99,7 +186,15 @@ class Demo{
             }
             System.out.println("the fastest runner is "+arr[fastest].getName());      }
 }
-</pre><p>We are using a class Runner with 2 fields- name and time taken. Next we create an array of Runner objects. <br><br>Find the smallest element in the array. And then find the corresponding Name.<br><br>We could even use a comparator or comparable interfaces. </p></div></div><div class='question'><p>17. Explain static methods with an example. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A static method can be accessed without creating an object of the class. But a static method can not access instance variables, it can only access static variable and only call other static methods.<br><br>class AB{<br>    int m;<br>    static int sm;<br>    static void printNum(int n){<br>          System.out.println("n is "+n);<br>      //    System.out.println("m is"+m);//error<br>          System.out.println("sm is "+sm);//no error<br>    }<br>}<br><br>class Demo{<br>    public static void main(String args[]){<br>       int a = 10;<br>       AB.printNum(a);<br>   }<br>} <br><br>As the method printNum is a static method, we are calling it directly without creating any object of AB class.<br><br>Also note that main method of the program will be static, because the JVM will be able to call it directly,           <br></p></div></div><div class='question'><p>18. What is the output of the program?</p><pre class='courier'>class Const
+</pre><p>We are using a class Runner with 2 fields- name and time taken. Next we create an array of Runner objects. 
+<br><br>Find the smallest element in the array. And then find the corresponding Name.<br>
+<br>We could even use a comparator or comparable interfaces. </p></div></div>
+<div class='question'>
+	<p>17. Explain static methods with an example. </p> 
+	<button class='accordion'>Answer</button>
+	<div class='panel'><p >A static method can be accessed without creating an object of the class. But a static method can not access instance variables, it can only access static variable and only call other static methods.<br><br>class AB{<br>    int m;<br>    static int sm;<br>    static void printNum(int n){<br>          System.out.println("n is "+n);<br>      //    System.out.println("m is"+m);//error<br>          System.out.println("sm is "+sm);//no error<br>    }<br>}<br><br>class Demo{<br>    public static void main(String args[]){<br>       int a = 10;<br>       AB.printNum(a);<br>   }<br>} <br><br>As the method printNum is a static method, we are calling it directly without creating any object of AB class.<br><br>Also note that main method of the program will be static, because the JVM will be able to call it directly,           <br></p></div></div>
+<div class='question'><p>18. What is the output of the program?</p>
+	<pre class='courier'>class Const
 {
     private Const(){
         System.out.println("Constructor");
@@ -111,7 +206,13 @@ class Demo{
   public static void main(String args[]){
       Const obj = new Const(10);
   }
-}</pre><button class='accordion'>Answer</button><div class='panel'><p >The output is Constructor and n is 10. <br><br>Though the constructor is private, it is accessible from methods of the same class. So there will not be any errors<br></p></div></div><div class='question'><p>19. What is finalize method?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >finalize method is a deprected method used to clean up resoures used by an object before the object is garbage collected. <br><br>You can define finalize method in a class. But as we are not certain when the object will be garbage collected, this method is deprecated since Java 9. <br><br>class A{<br>      void finalize(){<br>            //* close files*/<br>           /* release other resources*/<br>      }<br>}<br></p></div></div><div class='question'><p>20. What is overloading of functions? Explain with the help of an example.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Overloading is the process where  two functions will have same name but different number of parameters or different types of parameters.<br><br> During compilation, the compiler will select the correct method based on the parameters passed to method.<br><br>e.g.<br>int sumNumbers(int n1,int n2)<br>{<br>   return n1+n2;<br>}<br>float sumNumbers(int n1,float n2,int n3)<br>{<br>    return n1+n2+n3;<br>}<br><br>Now if we call the method as<br><br>int s = sumNumbers(10,20)<br>first method will be called.<br><br>And if we call it as<br>int s2 = sumNumbers(10,1.4,88) <br>second method will be called.</p></div></div><div class='question'><p>21. Can a constructor of a class be private? Write an example. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Constructor can be private. If a class has a private constructor, then it can only be called by the same class, not by other classes.
+}</pre><button class='accordion'>Answer</button><div class='panel'>
+	<p >The output is Constructor and n is 10. <br>
+	
+	<br>Though the constructor is private, it is accessible from methods of the same class. So there will
+	 not be any errors<br></p></div></div>
+	 <div class='question'>
+		 <p>19. What is finalize method?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >finalize method is a deprected method used to clean up resoures used by an object before the object is garbage collected. <br><br>You can define finalize method in a class. But as we are not certain when the object will be garbage collected, this method is deprecated since Java 9. <br><br>class A{<br>      void finalize(){<br>            //* close files*/<br>           /* release other resources*/<br>      }<br>}<br></p></div></div><div class='question'><p>20. What is overloading of functions? Explain with the help of an example.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Overloading is the process where  two functions will have same name but different number of parameters or different types of parameters.<br><br> During compilation, the compiler will select the correct method based on the parameters passed to method.<br><br>e.g.<br>int sumNumbers(int n1,int n2)<br>{<br>   return n1+n2;<br>}<br>float sumNumbers(int n1,float n2,int n3)<br>{<br>    return n1+n2+n3;<br>}<br><br>Now if we call the method as<br><br>int s = sumNumbers(10,20)<br>first method will be called.<br><br>And if we call it as<br>int s2 = sumNumbers(10,1.4,88) <br>second method will be called.</p></div></div><div class='question'><p>21. Can a constructor of a class be private? Write an example. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Constructor can be private. If a class has a private constructor, then it can only be called by the same class, not by other classes.
  
 class Const
 {
@@ -208,4 +309,24 @@ class Student
          }
  }
 
-</pre></div></div><div class='question'><p>31. How do you access overridden method of a superclass? Can you similarly access overridden method of a super-super class?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >An overridden super class method can be called by using the keyword super followed by dot operator and the method name,<br><br>e.g.<br>   super.print(10);<br><br>Similarly you can use super.super.method() to invoke super super class method.<br><br>class B1<br>{<br>    public void print(int num)<br>    {<br>       System.out.println("Printing the number "+num);<br>    }<br>}<br>class D1 extends B1<br>{<br>    public void print(int num)<br>    {<br>      super.print(num);<br>     <br>      System.out.println("Printing the square of the number "+(num*num));<br>    }<br>}<br><br>Here D1 print() method is calling super class print() method by using super.print(num)<br></p></div></div><div class='question'><p>32. What are class/instance and local variables?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p > Local variables − Variables defined inside methods, constructors or blocks are called local variables. The variable will be declared and initialized within the method and the variable will be destroyed when the method has completed.<br><br>    Instance variables − Instance variables are variables within a class but outside any method. These variables are initialized when the class is instantiated. Instance variables can be accessed from inside any method, constructor or blocks of that particular class.<br><br>    Class variables − Class variables are variables declared within a class, outside any method, with the static keyword.<br></p></div></div><div class='question'><p>33. When is the constructor of a class invoked in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >A constructor is invoked whenever an object is being created using new operator. <br><br>If there are multiple constructor, the constructor being called depends on the arguments we send to new statement. <br><br>A obj = new A(10);<br><br>new A(10) calls one int parameter constructor of A class. </p></div></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+</pre></div></div><div class='question'>
+	<p>31. How do you access overridden method of a superclass? Can you similarly access 
+	overridden method of a super-super class?</p><pre class='courier'></pre>
+	<button class='accordion'>Answer</button><div class='panel'>
+		<p >An overridden super class method can be called by using the keyword super followed by dot operator and the method name,<br>
+		<br>e.g.<br>   super.print(10);<br><br>Similarly you can use super.super.method() to invoke super super class method.<br>
+		<br>class B1<br>{<br>    public void print(int num)<br>    {<br>       System.out.println("Printing the number "+num);<br>    }<br>}<br>class D1 extends B1<br>{<br>    public void print(int num)<br>    {<br>      super.print(num);<br>     <br>      System.out.println("Printing the square of the number "+(num*num));<br>    }<br>}<br><br>Here D1 print() method is calling super class print() method by using super.print(num)<br></p></div></div>
+<div class='question'><p>32. What are class/instance and local variables?</p><pre class='courier'></pre>
+<button class='accordion'>Answer</button><div class='panel'><p > Local variables − Variables defined inside methods, 
+constructors or blocks are called local variables. The variable will be declared and initialized within the method and the 
+variable will be destroyed when the method has completed.<br><br>    Instance variables −
+ Instance variables are variables within a class but outside any method. These variables are initialized 
+ when the class is instantiated. Instance variables can be accessed from inside any method, constructor or blocks 
+ of that particular class.<br><br>    Class variables − Class variables are variables declared within a class, outside any method,
+  with the static keyword.<br></p></div></div>
+  <div class='question'><p>33. When is the constructor of a class invoked in Java?</p>
+  <pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'>
+	  <p >A constructor is invoked whenever an object is being created using new operator. <br>
+	  <br>If there are multiple constructor, the constructor being called depends on the arguments we send to new statement. <br>
+	  <br>A obj = new A(10);<br><br>new A(10) calls one int parameter constructor of A class. </p></div></div>
+	  <script > init();</script></body></html>

@@ -1,14 +1,28 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #eee;  color: #444;  cursor: pointer;  padding: 10px;  width: auto;  border:none;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active, .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;  background-color: #ddd;  overflow: hidden;}</style></head><body  ><h1> Java Questions on STRING</h1><hr color='#eee'>
-<p>What are the differences between == and equals() in a String class?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >The == operator compares if the objects are the same instance. The equals() oerator compares the state of the objects (e.g. if all attributes are equal). <br><br>String s1 = "Program";<br>String s2 = "Program";<br>String s3 = new string ("Program");<br>if(s1 == s2) {    //true<br>    System.out.println("equal");<br>}<br><br>if(sl == s3) {    //false<br>    System.out.println("equal");<br>}</p></div><hr color='#eee'>
-<p>What are the differences between StringBuffer and StringBuilder?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >StringBuilder is not synchronized where as StringBuffer is synchronized. StringBuilder is faster than StringBuffer. So unless we are using strings multiple threads, it is better to use stringbuffer. </p></div><hr color='#eee'>
-<p>What is string pool in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Java maintains a pool of string literals called string pool.<br><br>JVM  stores only one copy of each literal String in a  pool. This process is called interning.<br><br>When we create a String variable and assign a value to it, the JVM searches the pool for a String of equal value.<br><br>If found, the Java compiler will simply return a reference to its memory address, without allocating additional memory.<br><br>If not found, it'll be added to the pool (interned) and its reference will be returned.</p></div><hr color='#eee'>
-<p>Write a program to find the square of a number given as command line argument.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>public class StringTest {
+<!DOCTYPE html>
+
+<html><head>
+	 
+	 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<meta charset="utf-8" />
+  
+<title>Java Strings</title>
+<script type="text/javascript" src="according.js"></script>
+<link rel="stylesheet" type="text/css" href="descriptivestyle.css"> 
+ 
+			   </head><body  >
+				   <h1 class="heading"> Java Strings</h1><hr color='#eee'>
+				   
+</div><div class="question">1. What are the differences between == and equals() in a String class?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >The == operator compares if the objects are the same instance. The equals() oerator compares the state of the objects (e.g. if all attributes are equal). <br><br>String s1 = "Program";<br>String s2 = "Program";<br>String s3 = new string ("Program");<br>if(s1 == s2) {    //true<br>    System.out.println("equal");<br>}<br><br>if(sl == s3) {    //false<br>    System.out.println("equal");<br>}</p></div><hr color='#eee'>
+</div><div class="question">2. What are the differences between StringBuffer and StringBuilder?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >StringBuilder is not synchronized where as StringBuffer is synchronized. StringBuilder is faster than StringBuffer. So unless we are using strings multiple threads, it is better to use stringbuffer. </p></div><hr color='#eee'>
+</div><div class="question">3. What is string pool in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >Java maintains a pool of string literals called string pool.<br><br>JVM  stores only one copy of each literal String in a  pool. This process is called interning.<br><br>When we create a String variable and assign a value to it, the JVM searches the pool for a String of equal value.<br><br>If found, the Java compiler will simply return a reference to its memory address, without allocating additional memory.<br><br>If not found, it'll be added to the pool (interned) and its reference will be returned.</p></div><hr color='#eee'>
+</div><div class="question">4. Write a program to find the square of a number given as command line argument.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>public class StringTest {
     public static void main(String args[]){
          int n = Integer.parseInt(args[0]);
          System.out.println("the square is "+n*n);
     }
 }</pre><p>The method Integer.parseInt() parses the string and returns the integer stored in the string.<br><br>You can also use the method<br><br>Integer.valueOf(str)<br><br>  Integer n = Integer.valueOf(args[0]);<br>         int m= n.intValue();</p></div><hr color='#eee'>
-<p>Write a function to reverse a string.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>static String reverString(String str){
+</div><div class="question">5. Write a function to reverse a string.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>static String reverString(String str){
         int l = str.length();
         char arr[] = str.toCharArray();
         for(int i=0,j=l-1;i&lt;j;i++,j--) {
@@ -19,12 +33,12 @@
         String str2 = new String(arr);
         return str2;
     }</pre><p>The function converts the string to character array. And then it swaps characters from two ends of the string. <br><br>After all characters are swapped, a string is formed using these characters again. <br><br>Please note that the loop should continue only for half the lenght - or until i becomes j. <br></p></div><hr color='#eee'>
-<p>What is the output of the following code?</p><pre class='courier'>String str = "Hello"
+</div><div class="question">6. What is the output of the following code?</p><pre class='courier'>String str = "Hello"
 int l=str.length();
 for(int i=1;i&lt;=l;i++){
      System.out.println(str.substring(0,i);
 </pre><button class='accordion'>Answer</button><div class='panel'><p >H<br>He<br>Hel<br>Hell<br>Hello<br></p><p>The substring function returns the substring <br><br>In the loop, the program prints 1 character , followed 2 characters etc.  So the program prints a pyramid.</p></div><hr color='#eee'>
-<p>Write a program to remove all the characters 'a' from the given string.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
+</div><div class="question">7. Write a program to remove all the characters 'a' from the given string.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 
 public class StringTest {
     static String removeAs(String str){
@@ -41,7 +55,7 @@ public class StringTest {
     }
 }
 </pre></div><hr color='#eee'>
-<p>Write a program to find if a given string is a palindrome.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
+</div><div class="question">8. Write a program to find if a given string is a palindrome.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 public class StringTest {   
 
     boolean isPalindrome(String str){
@@ -66,14 +80,14 @@ public class StringTest {
        
     }
 }
-</pre><p>A palindrome is a string which reads the same both forwards and backwards. <br><br>We are testing 0th character with last character. If they are not matching then we return false - because it will not be palindrome. Next we check first character with last but first character. We continue this process till we reach the middle of the string. If all the characters match with the characters from other end, then the string is a palindrome. </p></div><hr color='#eee'>
-<p>Write a function to print the words of string in reverse order. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>  void printWordsReverse(String str){
+</pre></div><div class="question">A palindrome is a string which reads the same both forwards and backwards. <br><br>We are testing 0th character with last character. If they are not matching then we return false - because it will not be palindrome. Next we check first character with last but first character. We continue this process till we reach the middle of the string. If all the characters match with the characters from other end, then the string is a palindrome. </p></div><hr color='#eee'>
+</div><div class="question">9. Write a function to print the words of string in reverse order. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>  void printWordsReverse(String str){
         String arr[] = str.split(" ");
         int l = arr.length;
         for(int i=l-1;i&gt;=0;i--)
             System.out.print(arr[i]+" ");
     }</pre><p>split() method splits the string into an array of strings dividing at the character given. <br><br>In the function, we are dividing the string at spaces which is the word separator. So we get an array of word of the string. Next we print this array in reverse order. </p></div><hr color='#eee'>
-<p>Write a program to read a string and find out whether it contains the word program in it- ignoring the case of letters while searching. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>class Demo{ 
+</div><div class="question">10. Write a program to read a string and find out whether it contains the word program in it- ignoring the case of letters while searching. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>class Demo{ 
 public static void main(String args[]){
         System.out.println("Enter a string:");
         Scanner scanner = new Scanner(System.in);
@@ -87,7 +101,7 @@ public static void main(String args[]){
 
         }
 }</pre><p>We are converting the string to lower case and searching for the string in lower case, so that the search will ignore case.<br><br>It is also possible to use the method indexOf<br><br>if (str.indexOf(testString)==-1)<br>   //not found<br></p></div><hr color='#eee'>
-<p>Write a program to read a string and determine if these strings are anagrams. Anagrams are strings which contain same set of characters. 
+</div><div class="question">11. Write a program to read a string and determine if these strings are anagrams. Anagrams are strings which contain same set of characters. 
 e.g.
 this is us
 us si isth
@@ -151,7 +165,7 @@ public class Anagram {
     }
 }
 </pre><p>First method isAnagram does not use extra data structures. It takes each character from first string and removes it from second string. At the end of loop, second string should be empty if they are anagrams. The complexity is O(m*n)<br><br>Second method uses a hashmap to store count of each charactes from first string. Then iterating over second string, count of each character is decremented. If the count is zero, the entry is removed. At the end of loop, all the entries in hashmap must have been removed if both strings contain same set of characters. This method has a complexity of O(m+n) where m and n are sizes of first and second string. </p></div><hr color='#eee'>
-<p>Write a program to read a string and reverse each word of a string.
+</div><div class="question">12. Write a program to read a string and reverse each word of a string.
 
 e.g.
 hello, welcome to Java programming
@@ -189,7 +203,7 @@ public class ReverseWords {
         String outStr = obj.reverseWords(str);
         System.out.println(outStr);
     }</pre></div><hr color='#eee'>
-<p>Write a program to read a string and convert first letter of each word into upper case.
+</div><div class="question">13. Write a program to read a string and convert first letter of each word into upper case.
 
 e.g.
 If the sentence is 
@@ -223,7 +237,7 @@ public class ReverseWords {
     }
 }
 </pre></div><hr color='#eee'>
-<p>Write a program to print the count of each character in a given string. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>  
+</div><div class="question">14. Write a program to print the count of each character in a given string. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>  
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -254,9 +268,8 @@ public class Abc {
     }
 }
 </pre><p>We use a hashmap to store count of each charactes from  string. </p></div><hr color='#eee'>
-<p>Write a program to find the first non-repeated character in a given string. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.HashMap;
+</div><div class="question">15. Write a program to find the first non-repeated character in a given string. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.HashMap;
 import java.util.Scanner;
-
 
 public class NonRepeating {
     char firstNonRepeating(String str){
@@ -290,9 +303,9 @@ public class NonRepeating {
     }
 }
 </pre></div><hr color='#eee'>
-<p>How do you check if the first string contains the second string?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >There are two String methods which allow you to perform this operation.<br><br>1) indexOf() method<br><br>   string1.indexOf(string2) returns the index of second string in first string. If first string does not contain second string, the method returns -1<br><br>e.g<br>    String s1 = "Helloworld";<br>    String s2 = "world";<br>    int i1 = s1.indexOf(s2);/* returns 5*/<br>    int i2 = s1.indexOf("Java");/*returns -1*/<br><br>2) contains() method<br>This method returns true if the first string contains second string and false otherwise<br><br>boolean b = s1.contains(s2);//true<br>b = s1.contains("program");//false</p></div><hr color='#eee'>
-<p>How do you find if the string contains only digits?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >import java.util.Scanner;<br><br>public class OnlyDigits {<br>    public static void main(String args[]) {<br>        System.out.println("Enter a string:");<br>        Scanner scanner = new Scanner(System.in);<br>        String str = scanner.nextLine();<br>        boolean onlyDigits =  str.matches("\\d+");<br>        if(onlyDigits==true)<br>            System.out.println("The string contains only digits");<br>        else<br>            System.out.println("no");<br>    }<br>}<br><br>The regular expression \\d+ matches the string for 1 or more digits. If the string has other characters, then the method returns false. </p></div><hr color='#eee'>
-<p>Write a recursive function to reverse a string.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> String reverseString(String s){
+</div><div class="question">16. How do you check if the first string contains the second string?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >There are two String methods which allow you to perform this operation.<br><br>1) indexOf() method<br><br>   string1.indexOf(string2) returns the index of second string in first string. If first string does not contain second string, the method returns -1<br><br>e.g<br>    String s1 = "Helloworld";<br>    String s2 = "world";<br>    int i1 = s1.indexOf(s2);/* returns 5*/<br>    int i2 = s1.indexOf("Java");/*returns -1*/<br><br>2) contains() method<br>This method returns true if the first string contains second string and false otherwise<br><br>boolean b = s1.contains(s2);//true<br>b = s1.contains("program");//false</p></div><hr color='#eee'>
+</div><div class="question">17. How do you find if the string contains only digits?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >import java.util.Scanner;<br><br>public class OnlyDigits {<br>    public static void main(String args[]) {<br>        System.out.println("Enter a string:");<br>        Scanner scanner = new Scanner(System.in);<br>        String str = scanner.nextLine();<br>        boolean onlyDigits =  str.matches("\\d+");<br>        if(onlyDigits==true)<br>            System.out.println("The string contains only digits");<br>        else<br>            System.out.println("no");<br>    }<br>}<br><br>The regular expression \\d+ matches the string for 1 or more digits. If the string has other characters, then the method returns false. </p></div><hr color='#eee'>
+</div><div class="question">18. Write a recursive function to reverse a string.</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> String reverseString(String s){
         if(!s.isEmpty()){
             return  reverseString(s.substring(1))+s.substring(0,1);
         }else
@@ -300,7 +313,7 @@ public class NonRepeating {
     }
 
 Here we are taking substring from 2 character to end of string and adding the first character to the end of it. This is done recursively. </pre></div><hr color='#eee'>
-<p>Write a program to search for a value in an array using binary search. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
+</div><div class="question">19. Write a program to search for a value in an array using binary search. </p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>import java.util.Scanner;
 
 public class BinSearch {
     static boolean binSearch(int searchVal,int [] arr,int start,int end){
@@ -338,7 +351,7 @@ public class BinSearch {
     }
 }
 </pre><p>Remember that binary search works only with sorted arrays. <br><br>And for an array of size n, the maximum number of iterations is log(n), So its complexity is O(logn)</p></div><hr color='#eee'>
-<p>Write a program to convert a string to a integer using the following rules.
+</div><div class="question">20. Write a program to convert a string to a integer using the following rules.
 
 1) discard all the leading spaces
 2) the string may optionally contain leading sign character
@@ -386,4 +399,14 @@ public class Atoi {
     }
 }
 </pre></div><hr color='#eee'>
-<p>What is string pool in Java?</p><pre class='courier'></pre><button class='accordion'>Answer</button><div class='panel'><p >It is a special region in memory where all string constants are stored.<br> <br>    The JVM stores only one copy of a particular String in the pool<br>    When creating a new String, the JVM searches in the pool for a String having the same value<br>    If found, the JVM returns the reference to that String without allocating any additional memory<br>    If not found, then the JVM adds it to the pool (interns it) and returns its reference<br></p></div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+</div><div class="question">21. What is string pool in Java?</p>
+<pre class='courier'></pre><button class='accordion'>Answer</button>
+<div class='panel'><p >It is a special region in memory where all string constants are stored.<br> 
+<br>    The JVM stores only one copy of a particular String in the pool<br> 
+   When creating a new String, the JVM searches in the pool for a String having the same value<br> 
+      If found, the JVM returns the reference to that String without allocating any additional memory<br>
+          If not found, then the JVM adds it to the pool (interns it) and returns its reference<br></p></div>
+          </div>
+          <script>init();</script>
+          </body>
+</html>
