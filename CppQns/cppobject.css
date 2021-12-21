@@ -1,0 +1,230 @@
+@font-face{
+     font-family:'Roboto';
+     src:url('../fonts/Roboto-Light.ttf');
+     font-weight:normal;
+}
+ 
+
+body {
+    background-color: #f7f7f7;
+    font-size:0.9em;
+    font-family: "Roboto";
+    margin: 0;
+    padding: 0;
+}
+
+*{
+	margin:0px;
+	padding:0px;
+} 
+.grid {  
+    width: 60%;  
+    margin: auto; 
+    background-color: #fff; 
+    border-radius:5px;   
+   
+}
+ li{
+    list-style-type:none;
+ }
+  
+ .answerclass{ 
+    font-weight: bolder; 
+  
+    text-align: center;
+ }
+.grid h1 {
+    
+    
+    font-size: 40px;
+    text-align: center;
+    
+    padding: 2px 0px;
+    
+}
+ 
+#score {
+    color: #009688;
+    text-align: right; 
+    margin:8px;
+}
+ button{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width:30%; 
+  background-color:#eee;
+   font-size:0.9em;
+   font-weight: normal;
+   color:#333;
+ 
+   margin:5px auto;
+   text-align:center;  
+   border-radius: 7px;
+   border-style: outset;   
+   word-wrap: break-word; 
+   padding: 5px;
+   display: block;
+ }
+ 
+  
+ 
+ .codetext{
+    font-family:monospace;
+    font-size:12px; 
+    max-height:150px;
+    overflow:scroll;
+    background-color: #eee;
+    margin: 15px;
+    padding: 10px;
+ }
+#nextbutton {
+ 
+    background-color: #389;
+    
+    font-weight: bold;
+    color: #fff;
+    margin:8px auto;
+    padding: 4px;
+    border-radius: 5px;
+    font-size:1.5em;
+     
+}
+ 
+#nextbutton:hover{
+    cursor: pointer;
+    background-color: #009688;
+     border-radius: 5px;
+}
+ 
+#nextbutton:focus {
+    outline: 0;
+}
+.head{
+   background-color: #009688;
+   color:white;
+   font-weight: bolder; 
+   padding:10px;
+}
+.heading{
+   background-color: #389;
+   color: white;
+   font-size: 2em;
+   font-weight: bolder;  
+   text-align:center;
+   padding:10px;
+   margin-bottom: 20px;
+}
+ 
+#progress {
+    color: #009688; 
+    text-align: left; 
+}
+.codestyle{
+    font-family: monospace; 
+    font-size:12px;
+    max-height:150px;
+    margin:25px;
+    overflow:scroll;
+    border:1px;
+    border-color:#bbb;
+    border-style:solid;
+    padding:5px;
+}
+nav ul{
+    list-style:none;
+    display:inline; 
+    float: left;
+    
+}
+ 
+nav ul li{
+	padding:4px;float: left;
+	
+}
+nav ul a{
+   text-decoration:none;
+}
+hr{
+   color:#888; 
+}
+#question,.buttons{
+    padding:10px;
+    margin: 10px;
+}
+ 
+input {
+   margin-left: 24px;
+}
+ 
+.qn{
+   clear: left;
+   border: 1px solid aliceblue;
+   border-radius: 5px;
+   padding: 10px;
+   margin: 20px;
+   box-shadow: 3px 3px 1px grey;
+   
+   
+}
+#choice0{
+   background-color: #FDD9D9;
+   
+}
+#choice1{
+   background-color: #D1E5F7;
+}
+ #choice2{
+   background-color: #ADD8E6;
+}
+#choice3{
+   background-color: #E5CCE5;
+}
+ 
+button:hover{
+   color:red; 
+}
+#answerIndicator{
+   padding: 10px;
+   margin: 10px auto; 
+   }
+#float,#progress{
+   width: 40%;
+   float: left;
+   margin: 10px;
+}
+#score{
+  text-align: right;
+}
+@media screen and (max-width: 481px){
+.grid{
+     width: 100%;
+     padding:5px;
+     margin:5px auto;
+     
+}
+.heading{
+   font-size: 1.4em;
+   padding: 8px;
+}
+table,td{
+	display: block;
+	margin: 3px;
+
+}
+button{ 
+    padding:5px;
+    min-width:150px;
+   
+}
+.codestyle{
+    font-family: monospace; 
+    font-size:12px;
+    max-height:150px;
+    margin:7px;
+    overflow:scroll;
+    border:1px;
+    border-color:#bbb;
+    border-style:solid;
+    padding:3px;
+}
+}
