@@ -1,0 +1,147 @@
+  @font-face{
+     font-family:'Roboto';
+     src:url('fonts/Roboto-Light.ttf');
+     font-weight:normal;
+}
+ 
+
+body { 
+    margin: 0;
+    padding: 0;
+    font-size:1em;
+    font-family: "Roboto";
+}
+ 
+.grid {
+    width: 90%; 
+    margin-left: 200px ;
+    margin-right: 20px; 
+   border-radius: 2px;
+    padding:15px;
+    font-family:'roboto'; 
+     border-radius:5px; 
+ border-style : outset;  
+  border-color: #eef; 
+  
+}
+
+ 
+.grid h1 {
+    background-color: #699;
+    font-size: 1.5em;
+    text-align: center;
+    font-family:'roboto' ; 
+    
+}
+ @media screen and (max-width: 800px){
+.sidenav{
+     width: 80px;
+       font-size:12px;
+     
+}
+.grid{
+   margin-left: 90px;
+   text-align: left;
+   font-size: 14px;
+   
+}
+table,td{
+	display: block;
+	margin: 3px;
+
+}
+}
+.heading{
+   width: 100%;
+   background-color: #389;
+   color: white;
+   padding:20px;
+   font-size: 30px;
+   font-family: sans-serif;
+   font-weight: bolder;
+   text-align: center;
+   margin: 0px;
+   margin-top:0px;
+   margin-bottom: 20px; 
+  border-color: #eef;
+   font-family:'roboto' ; 
+}
+td{
+   border-style: solid;
+   border-color: aliceblue;
+   border-width: 1px;
+   margin: 10px 5px 10px 5px;;
+   padding: 10px;
+   background-color:#eeeeee;
+   
+}
+ul a{
+   text-decoration:none;
+   display:block;
+}
+.content{
+   margin:10px auto;
+    
+   }
+   .s1{
+	   margin: 20px auto;
+	   padding: 10px;
+	   width:70%;
+	   background-color: #fefefe;
+	   border: 1px solid grey;
+	   font-size: 0.9em;
+	   box-shadow: 2px 2px 1px grey;
+   }
+   .container{
+	   width: 90% ; 
+	   margin: 10px auto;
+	   padding: 10px;
+   }
+   .s2,.s3,.s4{
+	   float: left;
+	   width: 45%;
+	   box-sizing: border-box;
+	   padding: 10px;
+	   margin:10px;
+	   background-color: #fefefe;
+	   border: 1px solid grey;
+	   font-size: 0.9em;
+	   box-shadow: 2px 2px 1px grey;
+	   
+   }
+   ul{
+	   list-style-type: none;
+   }
+   .s4{
+        width: 90%;
+		clear: left;
+   }
+   .s3{
+      width: 45%;
+   }
+ @media screen and  (max-width: 600px){
+  .container{
+     width: 95%;
+  }
+  img{
+      max-width: 100%;
+      height: auto; 
+  }
+  h1{
+   
+  padding: 5px; 
+  }
+  .s1,.s2,.s3,.s4{
+	width: 90%;
+	margin: 5px auto;
+	padding: 3px;
+	box-sizing: border-box;
+  }
+  ul{
+  padding:0;
+  }
+  ul li{
+     padding-left: 5px;
+     
+  }
+ }
