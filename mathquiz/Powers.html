@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Powers and Exponents</title> 
+     <link rel="stylesheet" type="text/css" href="style.css">
+    <script  src="Powers.js" ></script>
+    <script src="commonquiz.js"></script>
+    
+<style type="text/css">
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 22px; 
+   padding: 10px;
+   text-align: center;
+}
+button{
+   margin:2%;
+} 
+.inputdiv{
+   text-align: center;
+}
+body{
+  margin: 0%;
+  padding: 0%;
+}
+
+</style>
+</head>
+<body>
+ <div class="heading" >Powers and exponents Quiz</div>
+   
+ <div id="grid">
+ <div id="question"></div>
+  <div  >
+ <button  id = "btn1" class="answerbutton" onclick="validate(this)"></button><button  id="btn2" class="answerbutton" onclick="validate(this)"></button>
+ </div>
+ <div  > 
+ <button   id="btn3" class="answerbutton" onclick="validate(this)"></button><button class="answerbutton" id="btn4" onclick="validate(this)"></button>
+ </div>
+ <div style="margin:10px;">
+  <button  onclick="showPreviousQuestion()">Prev</button>
+ 
+<button   onclick="showNextQuestion()">Next</button>
+ </div>
+ </div>
+  <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message"></p>
+       <p ><button    id="closebtn" >OK</button></p>
+        
+     </div>
+     
+  </div>
+ <script> startQuiz();</script>
+</body>
+</html>
