@@ -7,14 +7,17 @@
 body{
    font-family: 'Roboto';
    font-size: medium;
+   margin: 0;
+   padding: 0;
 }
 #grid{
 	width:70%;
-	margin:auto;
-        margin-top: 3%;
-	background-color: #efefef;
-	 
-	font-size: medium;  
+	margin:10px auto;
+    margin-top: 3%;
+	background-color: #f3f3f3;
+	box-shadow: 3px 3px 1px gray;
+	font-size: 1em;  
+   text-align: center;
 }
 input{
    padding:10px;
@@ -26,11 +29,12 @@ div{
    margin:10px;
 }
 #question{
-	font-size: medium; 
+	font-size: 1em; 
 }
 .inlinequestion{
   display: inline-block;
   text-align: left;
+  
 }
 h1{
    font-size: x-large;
@@ -56,12 +60,25 @@ button{
    background-color: #eee;
    font-size: medium;
    border-radius:5px;
-   
+   min-width: 100px; 
+     margin:2%;
   
 }
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 22px; 
+   padding: 10px;
+   text-align: center;
+}
+ 
+.inputdiv{
+   text-align: center;
+}
+ 
+
 .answerbutton{
-   padding:10px 10px 10px 10px;
-   background-color:#ccddee;
+   padding:10px 10px 10px 10px; 
    font-size: medium;
    
    margin: 20px 20px 20px 20px;
@@ -82,7 +99,7 @@ button{
 .modalwindow{
    margin:20% auto;/*15% from top and centered*/
    text-align:center;
-   width:50%;
+   width:20%;
    
    border-radius:10px;
    border:2px #ccc;
@@ -90,6 +107,11 @@ button{
    color:#555;
    background-color:white;
    border-style:outset;
+ }
+  
+#message{
+    color:#881122;
+    font-weight:bold;
  }
  #replay{
    display:none;
@@ -104,17 +126,25 @@ input{
    margin:0px;
    background-color: #389;
    color:white;
+   font-size:1.3em;
     
    
 }
 #grid{
    width:90%;
+   
 }
 button{
   margin:4px;
+  font-size:0.9em;
+   min-width: 60px;
 }
 .modalwindow{
-  width:70%;
+  width:60%;
  
+ }
+ .answerbutton{
+   margin: 5px 5px 5px 5px;
+   font-size: small;
  }
 }
