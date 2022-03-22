@@ -3,19 +3,20 @@
 <head>
 <meta charset="utf-8" /> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Linear Equations Quiz</title> 
+    <title>Cube Roots of Numbers</title> 
      <link rel="stylesheet" type="text/css" href="style.css">
-    <script  src="lineqn.js" ></script>
-    
+    <script  src="cube.js" ></script>
+    <script src="commonQuizSolution.js"></script>
  
 </head>
 <body>
- <div class="heading" >Linear Equations Quiz
+ <div class="heading" >Cube Roots
  <ul    >
    <li><a href="../index.html">Home</a></li>	  
    <li ><a href="FractionQuiz.html">Fractions </a></li> 
    <li><a href="Percentage.html">Percentage Calculations</a></li> 
 <li><a href="Powers.html">Powers and Exponents</a></li>
+<li><a href="LinearEqns.html">Linear Equations</a></li>
 
 <li><a href="Square.html">Squares and square roots</a></li>
  
@@ -27,7 +28,14 @@
    
  <div id="grid">
  <div id="question"></div>
- <div  class="inputdiv"><input   id="answer" onkeyup="validateAns(event);"></input></div>
+ <div>
+ <button  id = "btn1" class="answerbutton" onclick="validate(this)"></button>
+ <button  id="btn2" class="answerbutton" onclick="validate(this)"></button>
+ </div>
+ <div> 
+ <button   id="btn3" class="answerbutton" onclick="validate(this)"></button>
+ <button class="answerbutton" id="btn4" onclick="validate(this)"></button>
+ </div>
 <div  >
   <button style="float:left;" onclick="showPreviousQuestion()">Prev</button>
   
@@ -36,13 +44,14 @@
 <div>
  </div>
   <div class="modal"  id="dialog">
-     <div class="modalwindow">
+     <div class="modalwindow" id="window" >
         <p  id="message"></p>
        <p ><button    id="closebtn" >OK</button></p>
         
      </div>
      
   </div>
+   
  <script> startQuiz();</script>
 </body>
 </html>

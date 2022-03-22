@@ -14,22 +14,26 @@ body{
 	width:70%;
 	margin:10px auto;
     margin-top: 3%;
+    padding: 10px;
 	background-color: #f3f3f3;
 	box-shadow: 3px 3px 1px gray;
 	font-size: 1em;  
-   text-align: center;
+    text-align: center;
 }
 input{
    padding:10px;
    font-size: medium;
    
 }
-div{
-   padding:10px 10px 10px 10px;
-   margin:10px;
+.list{
+   padding:10px;
+   margin: 3px;
 }
+ 
 #question{
-	font-size: 1em; 
+padding:10px 10px 10px 10px;
+   margin:10px;
+   font-size: 18px; 
 }
 .inlinequestion{
   display: inline-block;
@@ -44,17 +48,42 @@ h1{
    color:white;
    
 }
-.heading{
-   font-size: xx-large;
-   padding: 30px 30px 30px 30px;
-   margin:0px;
-   text-align: center;
+.heading{ 
+width: 100%;
    background-color: #389;
    color: white;
-   margin: 0px;
-   font-weight: bold;
+   padding:20px;
+   font-size: 30px;
    
+   font-weight: bolder;
+   text-align: center; 
+   margin: 0px;
+   margin-top:0px; 
+  border-color: #eef; 
+  padding:8px 3px 3px 3px;
+    
 }
+.heading ul{
+   padding: 0px 0px 0px 0px;
+}
+.heading li{	 
+   color: white;
+   padding:0px; 
+   font-size: small;
+   margin-bottom:0px;
+   text-align: center;
+   margin: 0px;    
+}
+.heading a{
+    text-decoration:none;
+    color:white; 
+}
+li{
+	display:inline; 
+}
+ul{
+	text-align:center;
+} 
 button{
    padding:8px;
    background-color: #eee;
@@ -92,14 +121,26 @@ h2{
    width:100%;
    height:100%;
    margin:0px;
-   background-color:rgba(255,255,255,0.5); 
-    
+   background-color:rgba(255,255,255,0.5);    
    
 }
 .modalwindow{
    margin:20% auto;/*15% from top and centered*/
    text-align:center;
    width:20%;
+   padding:10px;
+   
+   border-radius:10px;
+   border:2px #ccc;
+   font-size: large;
+   color:#555;
+   background-color:white;
+   border-style:outset;
+ }
+ #solutiondialog{
+   margin:10% auto;/*15% from top and centered*/
+   text-align:center;
+   width: 70%;
    
    border-radius:10px;
    border:2px #ccc;
@@ -116,6 +157,25 @@ h2{
  #replay{
    display:none;
 }
+td{
+   border-style: solid;
+   border-color: aliceblue;
+   border-width: 1px;
+   margin: 10px 5px 10px 5px;
+   padding: 10px;
+   background-color:#ddd;
+   
+   
+}
+ 
+  a:hover, a:active{
+	text-decoration:none;
+	background-color:#882277;
+	color:white; 
+	
+}
+    
+ 
  @media only screen and (max-width: 600px){
 input{
 	padding:3px;
@@ -146,5 +206,8 @@ button{
  .answerbutton{
    margin: 5px 5px 5px 5px;
    font-size: small;
+ }
+ td{
+    font-size:small;
  }
 }

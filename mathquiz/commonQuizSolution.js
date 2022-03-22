@@ -1,17 +1,30 @@
-
-
+ 
 /**********************************************/
 class Question {
-   constructor(question,answer,wrong1,wrong2,wrong3)
+   constructor(question,answer,wrong1,wrong2,wrong3,solution)
    {
      this.question = question
      this.answer = answer
      this.wrongans1 = wrong1
      this.wrongans2 = wrong2
      this.wrongans3 = wrong3 
+     this.solution = solution
    }
 }
 /**********************************************/
+function shuffle(arra1) {
+    var ctr = arra1.length, temp, index; 
+    while (ctr > 0) { 
+        index = Math.floor(Math.random() * ctr); 
+        ctr--; 
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
+}
+/**********************************************/
+ 
 let questionArray=[]
 let num=0
 /**********************************************/
@@ -19,19 +32,23 @@ function createObjects()
 {
      for(i=0;i<qnArray.length;i++)
       {
-         let qn = qnArray[i][0]
+          let qn = qnArray[i][0]
          let ans = qnArray[i][1]
          let wrong1 = qnArray[i][2]
          let wrong2 = qnArray[i][3]
          let wrong3 = qnArray[i][4]
-         let obj = new Question(qn,ans,wrong1,wrong2,wrong3)
+         if(i<solnArray.length)
+             solution = solnArray[i]
+         let obj = new Question(qn,ans,wrong1,wrong2,wrong3,solution)
          questionArray.push(obj)
+       
       }
-    
+     // questionArray = shuffle(questionArray)
 }
 /*************************************/
-function printQuestion()
-{ 
+function printQuestion(){ 
+           
+           currSolution = questionArray[num].solution
            let el = document.getElementById("question")
            var qnNum = num+1
            let st = "<p>" + qnNum+". "+questionArray[num].question+"</p>"
@@ -39,7 +56,7 @@ function printQuestion()
            let answers=[questionArray[num].answer,questionArray[num].wrongans1,questionArray[num].wrongans2,questionArray[num].wrongans3]
            answers = shuffle(answers) 
            showAnswers(answers[0],answers[1],answers[2],answers[3])
-        
+           
 }
 /***************************************/
 function startQuiz()
@@ -47,7 +64,21 @@ function startQuiz()
     createObjects()
     printQuestion()
 }
- 
+/*********************************/
+function validateAns(event)
+{
+  if(event.keyCode==13){
+     let el = document.getElementById("answer")     
+     let answerEntered = el.value
+     //console.log("Correct answer is "+answerValue)
+     //console.log("Answer entered is "+answerEntered)
+     if (answerEntered == answerValue)
+        showMessage("CORRECT")
+     else
+        showMessage("WRONG")
+      
+  }
+}
 
 /*********************/
 function showPreviousQuestion()
@@ -64,8 +95,7 @@ function showNextQuestion()
       if(num<questionArray.length)
       {
            num++;
-           	     
-           printQuestion(); 
+           printQuestion();
        }
 }
 /***********************************/
@@ -73,6 +103,8 @@ function showSolution()
 { 
       modalDialog = document.getElementById("dialog")
       modalDialog.style.display = "block"
+      modalWindow = document.getElementById("window")
+      modalWindow.style.width = "50%"
       var grid = document.getElementById("message");
       grid.style.fontSize="medium";
       grid.style.textAlign="left"
@@ -89,12 +121,15 @@ function showMessage(message)
 {
       modalDialog = document.getElementById("dialog")
       modalDialog.style.display = "block"
+        modalWindow = document.getElementById("window")
+      modalWindow.style.width = "20%"
       var grid = document.getElementById("message");
-      grid.innerHTML = message
+      grid.innerHTML = message 
       grid.style.fontSize="x-large"
       var button= document.getElementById("closebtn")
       button.onclick=function(){
           modalDialog.style.display= "none"
+         // showNextQuestion()
          // printQuestion()
      }
 }
@@ -113,26 +148,16 @@ function showMessage(message)
 		ansarr[3].innerHTML = ans4;
 	}
 /******************************************************/
-function shuffle(arra1) {
-    var ctr = arra1.length, temp, index; 
-    while (ctr > 0) { 
-        index = Math.floor(Math.random() * ctr); 
-        ctr--; 
-        temp = arra1[ctr];
-        arra1[ctr] = arra1[index];
-        arra1[index] = temp;
-    }
-    return arra1;
-}
 function validate(element){
 	console.log("this innerHTML is "+this.innerHTML)
 	if(element.innerHTML == questionArray[num].answer)
 	{
 	     showMessage("Correct",false);
-		 score++            
+		 score++
+		 num++               
 	}else{			     
-	 	 showMessage("Wrong",false); 
+	 	 showMessage("Wrong",false);
+		 num++;
 	  }
 			      
 }
- 
