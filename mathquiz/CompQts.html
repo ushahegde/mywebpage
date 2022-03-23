@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comparing Quantities</title> 
+     <link rel="stylesheet" type="text/css" href="style.css">
+    <script  src="CompQts.js" ></script>
+    <script src="commonquiz.js"></script>
+    
+<style type="text/css">
+
+</style>
+</head>
+<body>
+ <div class="heading" >Comparing Quantities
+ <ul    >
+   <li><a href="../index.html">Home</a></li>	  
+   <li ><a href="FractionQuiz.html">Fractions </a></li>
+   <li > <a href="LinearEqns.html">Linear Equations</a></li>
+   <li><a href="Percentage.html">Percentage Calculations</a></li> 
+<li><a href="Powers.html">Powers and Exponents</a></li>
+
+<li><a href="Square.html">Squares and square roots</a></li>
+ 
+<li><a href="CostAndSellingPrice.html">Cost and Selling price</a></li>  
+      
+</ul> 
+ </div>
+   
+ <div id="grid">
+ <div id="question"></div>
+  <div  style="display:flex; flex-direction:row;justify-content:center;">
+ <button  id = "btn1" class="answerbutton" onclick="validate(this)"></button><button  id="btn2" class="answerbutton" onclick="validate(this)"></button>
+ </div>
+<div  style="display:flex; flex-direction:row;justify-content:center;">
+ <button   id="btn3" class="answerbutton" onclick="validate(this)"></button><button class="answerbutton" id="btn4" onclick="validate(this)"></button>
+ </div>
+<div  style="display:flex; flex-direction:row;justify-content:space-between;">
+  <button  id="previous" onclick="showPreviousQuestion()">Prev</button>
+ 
+<button   id="next" onclick="showNextQuestion()">Next</button>
+ </div>
+ </div>
+  <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message"></p>
+       <p ><button    id="closebtn" >OK</button></p>
+        
+     </div>
+     
+  </div>
+ <script> startQuiz();</script>
+</body>
+</html>

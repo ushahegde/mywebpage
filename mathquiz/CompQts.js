@@ -1,0 +1,18 @@
+qnArray=[
+["If Sharada had Rs. 800 left after spending 60% of her money, how much did she have in the beginning?","2000","1000","900","2500"],
+["Karan has read <sup>1</sup>/<sub>8</sub>th of a book and there are still 140 pages to be read. How many pages has he read already?","160","20","10","140"],
+["The list price of a frock is Rs.1100. A discount of 20% is announced on sales. What is the sale price of frock?", 
+"880","220","1100","1330"],
+["Find CI on Rs.12000 for 3 years at 10% per annum compounded annually.","397.2","355.4","360","300"],
+["Find the amount at the end of 1 year on Rs.1,800 at 8% per annum compounded quarterly.","1948.38",
+"1944","2035.88","1900"],
+["A machinery worth Rs. 10,500 depreciated by 5% annually. Find its value after one year.","9475","9500","10000","10500"],
+["Fabina borrows Rs. 12,500 at 12% per annum for 3 years at simple interest and Radha borrows the same amount for the same time period at 10% per annum, compounded annually. Who pays more interest and by how much?","Fabina 362.5","Radha 362.5","Both pay same","Fabina 231.5"],
+["Vasudevan invested Rs. 60,000 at an interest rate of 12% per annum compounded half yearly. What amount would he get after 1 year?","67416","67200","68200","67552"],
+["Maria invested Rs.8,000 in a business. She would be paid interest at 5% per annum compounded annually. Find the interest for the 3rd year.","441","420.40","400","1200"],
+["Find CI on a sum of Rs.7000 for 2 years at 5% per annum compounded half yearly.","726.69","700","713.4","1400"],
+["Find the population of a city after 2 years, which is at present 12 lakh, if the rate of increase is 4%.","1297920",
+"1296000","1301200","1400000"],
+["I borrowed Rs.12,000 from Jamshed at 6% per annum simple interest for 2 years. Had I borrowed this sum at 6% per annum compound interest, what extra amount would I have to pay?","43.2","1483.2","1440","140"],
+["Find the amount which Ram will get on Rs.4096, if he gave it for 18 months at 12 % per annum, interest being compounded half yearly.","4878.40","4800","4930.3","4820.3"],
+]
