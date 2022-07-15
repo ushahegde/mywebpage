@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Financial Calculator</string>
+    <string-array name="period_type">
+        <item>Years</item>
+        <item>Months</item>
+        <item>Days</item>
+    </string-array>
+    <string-array name="period_type_2">
+        <item>Years</item>
+        <item>Months</item>
+    </string-array>
+    <string-array name="type_of_fd">
+        <item>"Reinvestment"</item>
+        <item>"Quarterly Payout"</item>
+        <item>"Monthly Payout"</item>
+    </string-array>
+
+    <!-- Strings related to login -->
+
+    <string-array name="compounding_frequency">
+        <item>Quarterly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+    <!-- TODO: Remov or change this placeholder text -->
+    <string name="ICICI">"ICICI Bank"</string>
+    <string name="SBI">State Bank of India</string>
+    <string name="HDFC">HDFC Bank</string>
+    <string name="BANK_BARODA">Bank of Baroda</string>
+    <string name="IDBI_BANK">IDBI Bank</string>
+    <string name="AXIS">Axis Bank</string>
+    <string name="UNIONBANK">Union Bank</string>
+    <string name="CANARA">Canara Bank</string>
+    <string name="PNB">Punjab National Bank</string>
+    <string name="OTHER">Other</string>
+    <!--//TODO add kotak mahindra?-->
+    <string-array name="bankNames">
+        <item>@string/SBI</item>
+        <item>@string/HDFC</item>
+        <item>@string/ICICI</item>
+        <item>@string/UNIONBANK</item>
+        <item>@string/BANK_BARODA</item>
+        <item>@string/AXIS</item>
+        <item>@string/CANARA</item>
+        <item>@string/IDBI_BANK</item>
+        <item>@string/PNB</item>
+        <item>@string/OTHER</item>
+    </string-array>
+</resources>
