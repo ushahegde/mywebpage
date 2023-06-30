@@ -1,4 +1,4 @@
-var arr=[];
+ var arr=[];
 var targetNum=0;
 function checkAnswer()
 {
@@ -14,6 +14,8 @@ function checkAnswer()
 	}else{
 		mesg.innerHTML= "The answer is wrong";	
 	}
+ var progress = document.getElementById("progress");
+ progress.style.visibility = "hidden"
 }
 function operatorclicked(button){
    var st = button.innerHTML;
@@ -24,15 +26,15 @@ function operatorclicked(button){
 	//disable only numbers
 	if(!(st=='+'||st=='-'||st=='*'||st=='/'||st=='('||st==')')){
 	   button.disabled = true;
-	 //  showProgress();
+	   showProgress();
 	   }
 	   
 }
 function generateCountDownNumbers(){
-	var num = generateRandomNumber(200,2);
+	var num = generateRandomNumber(50,2);//changed from 200 uh 29/6
 	arr[0] = num;
 	for(i=1;i<5;i++){
-		var num = generateRandomNumber(20,2);
+		var num = generateRandomNumber(13,2); //changed from 20 uh 29/6
 		arr[i] = num;
 		/*index = i+1;
 		var btn = document.getElementById("btn"+index)	;
@@ -78,12 +80,10 @@ function generateTargetNumber(){
    	 	var factor = generateRandomNumber(10,2);
    	 	var product = number*factor;
    	 	arr[i-1] = arr[i]*factor;
-   	  
-			   
    	 }
    	 /*don't have too many multi*/
    	 if(prevOp=="*" && operator=="*"){
-			operator="-";   	 
+		     	operator="-";   	 
    	 }
    	 op[i-1]=operator;
    	 
@@ -156,6 +156,7 @@ function showProgress(){
 	var input = document.getElementById("answer");
 	var yourInput = input.value;
 	var answerSoFar = eval(yourInput);
+ progress.style.visibility = "block"
 	progress.innerHTML = answerSoFar;
 }
 function redo(){
