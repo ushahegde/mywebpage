@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Linear Equations</title> 
+     <link rel="stylesheet" type="text/css" href="../style.css">
+    <script type="text/javascript" src="equations.js" ></script>
+    
+ 
+
+<body>
+ <div class="heading">Linear Equations
+  <ul    >
+   <li><a href="../../index.html">Home</a></li>	 
+   <li > <a href="FractionDivide.html">Fractions</a></li> 
+      
+</ul> 
+ </div>
+  <div id="restartScreen" align="center" style="display:none;   margin:20px auto;">
+    <button onclick="restartQuiz()">Quiz again</button>
+    <button><a href="../../index.html">Home</a></button>
+</div>
+ <div align = "center" id="grid">
+
+ <p id="qnnum" align="left" margin="10px"></p>
+ <div id="question"></div>
+  
+ <div>
+ <button  id = "btn1" class="answerbutton"></button><button  id="btn2" class="answerbutton"></button>
+ </div>
+ <div> 
+ <button   id="btn3" class="answerbutton"></button><button class="answerbutton" id="btn4"></button>
+ </div>
+ 
+ </div>
+   <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message" align = "center"></p>
+       <p align="center"><button    id="closebtn" >OK</button></p>
+        
+     </div>
+     
+  </div>
+ </div>
+
+</div>
+ <script> startQuiz();</script>
+</body>
+</html>
