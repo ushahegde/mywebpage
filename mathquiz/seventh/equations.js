@@ -62,9 +62,9 @@ questionArray2=
        /********************************/
 function generateQuestion11()
  {
-       	    n1 = generateRandomNumber(30);
+       	    n1 = generateRandomNumber(30)+2;
        	    n2 = generateRandomNumber(5)+2;
-       	    x = generateRandomNumber(30);
+       	    x = generateRandomNumber(30)+1;
        	    product = x*n2;
        	    sum = product+n1;
        	    str = questionArray1[0][0]+n1+questionArray1[0][1]+n2+questionArray1[0][2]+sum;
@@ -77,7 +77,7 @@ function generateQuestion11()
  	 fractionArray = ["one half","one third","two thirds","one fourth","three fourth","one fifth"];
  	 fractionIndex = generateRandomNumber(fractionArray.length)
  	 
- 	 x = generateRandomNumber(20) 
+ 	 x = generateRandomNumber(20)+1 
  	 switch(fractionIndex)
  	 {
  	 	 case 0: x = x*2;//the number must be divisible by 2
@@ -271,9 +271,9 @@ function restartQuiz()
    function genQuestion21(which)
    {
      
-       let pa = generateRandomNumber(50);
+       let pa = generateRandomNumber(50)+2;
        let x = generateRandomNumber(5)+2
-       let y = generateRandomNumber(20)
+       let y = generateRandomNumber(20)+1
        
        let ir = pa*x + y
        console.log("which is "+which)
@@ -290,7 +290,7 @@ function restartQuiz()
    /**************************************************/ 
    function genQuestion23()    
    {
-       let v = generateRandomNumber(90)
+       let v = generateRandomNumber(90)+1
        if(v%2!=0)//the angle should be even
             v++ ;
        let diff = 180 - v;
