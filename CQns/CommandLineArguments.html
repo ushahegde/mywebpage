@@ -1,4 +1,40 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C CommandLineArguments Questions </h1><div class='main'><div class='question'>1. Write a C program to find the largest of command line arguments.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+ <!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+
+<title>Command line arguments in C</title>
+
+ 
+     <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+ <body  ><h2 class='heading'> Command Line Arguments in C </h1>
+ <div class='main'>
+ <div class="question"><p>1.What are command line arguments in C?</p><button class='accordion'>Answer</button>
+ <div class='panel'>
+ C provides us a method to pass parameters to main function. Instead of specifying main() with no parametes, we can specify
+ <pre>
+ int main(int argc, char *argv[])
+ </pre>
+ Here argc is the argument count. It gives the number of command line arguments. argv is an array of character pointers. argv holds the command line arguments.<br><br>
+ e.g. If we execute a program  using the command<br>
+<pre>
+ myprogram 10 20 30
+ </pre>
+<p> argc will be 4. And argv[0] will be myprogram. argv[1] will be string 10. argv[2] and argv[3] will be strings 20 and 30 respectively.</p>
+<p>argv[0] is always the command name. Which means argc must be at least 1. </p>
+<p> Command line arguments provides an efficient way to pass parameters to programs. Let us say, you write a program to copy a file to another file. Instead of reading these file names using input operation each time, we can provide these two as command line arguments and provide the file names when executing the program.</p>
+<p>On some systems, you can even use a third parameter char *envp[] which is an array of character pointers and  stores the envirnoment variables. The syntax for this is 
+<pre>
+int main(int argc, char *argv[],char *envp[])
+</pre>
+ </div>
+ </div>
+ 
+ <div class='question'>2. Write a C program to find the largest of command line arguments.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
 int main(int argc,char *argv[])
 {
     int i,largest=0;
@@ -16,7 +52,8 @@ int main(int argc,char *argv[])
       printf("Largest number is %d\n",largest);
    }
   return 0;
-}</pre></div></div> <div class='question'>2. Write a program to read command line arguments and find the sum and product of them. If no arguments are given the program should print that.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> <div class='question'>3. Write a program to read command line arguments and find the sum and product of them. If no arguments are given the program should print that.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib,h&gt;
 int main(int argc,char *argv[])
 {
    int arr[20],i,len,sum=0,prod=1;
@@ -34,14 +71,15 @@ int main(int argc,char *argv[])
    }
    printf("Sum is %d and product is %d\n",sum,prod);
    return 0;
-}</pre></div></div> <div class='question'>3. Write a program to print gcd of first two command line arguments provided. Calculate gcd using recursive function.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> <div class='question'>4. Write a program to print gcd of first two command line arguments provided. Calculate gcd using recursive function.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
 int gcd(int a,int b);
 int main(int argc,char *argv[])
 {
    int a,b,answer;
    if(argc&lt;3)
      {
-        printf("No command line arguments\n");
+        printf("Please provide two command line arguments..\n");
         return 0;
       }
 
@@ -49,35 +87,36 @@ int main(int argc,char *argv[])
     b = atoi(argv[2]);
     if(b&gt;a)
     {
-      int t = a;
-      a = b;
-      b = t;
+          int t = a;
+          a = b;
+          b = t;
      }
     answer = gcd(a,b);
-   printf("Gcd of %d and  %d is %d\n",a,b,answer);
-   return 0;
+    printf("Greatest common divisor of %d and  %d is %d\n",a,b,answer);
+    return 0;
 }
 
 int gcd(int a,int b)
 {
    if(a%b &gt;0)
-     return gcd(b,a%b);
+       return gcd(b,a%b);
    else
-     return b;
+       return b;
 }
-</pre></div></div> <div class='question'>4. What will be the output of the program (myprog.c) given below if it is executed from the command line?
-cmd&gt; myprog one two three
-
+</pre></div></div> <div class='question'>5. What will be the output of the program (myprog.c) given below if it is executed from the command line?
+<pre> myprog one two three</pre>
+<pre class="courier">
  /* myprog.c */
 #include&lt;stdio.h&gt;
  int main(int argc, char **argv)
  {
- printf("%c\n", **++argv);
-return 0;
+    printf("%c\n", **++argv);
+   return 0;
  }
-
-</p><button class='accordion'>Answer</button><div class='panel'><p >Output : o</p></div></div> <div class='question'>5. Write a program to implement "cat". The program should accept text file name as command line argument and print the content of the file.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
+</pre>
+</p><button class='accordion'>Answer</button><div class='panel'><p >Output : o</p>
+++argv increments the argument vector and points it to the 1<sup>st</sup> command line argument which is <i>one</i>. ** gives us the character o.
+</div></div> <div class='question'>6. Write a program to implement "cat". The program should accept text file name as command line argument and print the content of the file.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
 void print_file(FILE *fptr)
 {
     int ch;
@@ -86,8 +125,6 @@ void print_file(FILE *fptr)
 }
 int main(int argc,char **argv)
 {
-   int i,num1,num2,ans=0;
-   char operator;
    FILE *fptr;
    if(argc&lt;2)
    {
@@ -102,9 +139,8 @@ int main(int argc,char **argv)
     }
     print_file(fptr);
     fclose(fptr);
-    return 0;
-
-} </pre></div></div> <div class='question'>6. Write a program to accept a number as command line argument and print its cube.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+    return 0; 
+} </pre></div></div> <div class='question'>7. Write a program to accept a number as command line argument and print its cube.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 int main(int argc, char *argv[])
 {
@@ -117,11 +153,11 @@ int main(int argc, char *argv[])
    n = atoi(argv[1]);
    printf("The cube of %d is %d\n",n,n*n*n);
    return 0;
-}</pre></div></div> <div class='question'>7. Write a program to print all command line arguments.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt; 
+}</pre></div></div> <div class='question'>8. Write a program to print all command line arguments.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt; 
 int main(int argc, char *argv[])
 {
    int n;
    for(n=0;n&lt;argc;n++)
      printf("Argument %d is %s\n",n,argv[n]);
    return 0;
-}</pre></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+}</pre></div></div> </div><script  type="text/javascript" src="cqn2.js"> </script></body></html>

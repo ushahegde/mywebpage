@@ -1,8 +1,42 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Arrays Questions </h1><div class='main'><div class='question'>1. WAP to reverse an array in place</p><button class='accordion'>Answer</button><div class='panel'><p >void reverse_array(int array[],int size)<br>{<br>   int i,j;<br>   for(i=0,j=size-1;i&lt;j;i++,j--)<br>   {<br>         int temp = array[i];<br>         array[i]= array[j];<br>         array[j] = temp;<br>   }<br>}<br></p></div></div> <div class='question'>2. Write a program to check if the elements of an integer array are in an arithmetic sequence or arithmetic progression. (AP)
+ <!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
 
-An arithmeitc sequence is a series of numbers where the difference between any two consecutive numbers is a constant d. 
+<title>C Arrays Quiz</title>
+
+ 
+     <link rel="stylesheet" type="text/css" href="style2.css">
+  </head>
+ 
+ <body  >
+ <h2 class="heading"> C Arrays Questions </h2>
+ <div class="main">
+ <div class="question">1. Write a function to reverse an array in place. (Do not use a second array.)</br>
+ <button class="accordion">Answer</button>
+ <div class="panel">
+ We swap every element a[i] with a[l-1-i] where l is the length of the array. We swap until we reach the mid point of the array. That is as long as i is less than j.
+ <pre class = "courier">
+ <p >void reverse_array(int array[],int size)
+ {
+    int i,j;
+    for(i=0,j=size-1;i&lt;j;i++,j--)
+    {
+          int temp = array[i];
+          array[i]= array[j];
+          array[j] = temp;
+    }
+ }
+</pre>
+<br></p>
+</div>
+</div> 
+<div class="question">2. Write a program to check if the elements of an integer array are in an arithmetic sequence or arithmetic progression. (AP)
+<br><br>
+An arithmeitc sequence is a series of numbers where the difference between any two consecutive numbers is a constant d. <br>
 e.g.  1 4 7 10 13 16 19 22 25 ...
-</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 int elements_in_ap(int arr[],int n);
 int main()
 {
@@ -15,10 +49,10 @@ int main()
    for(i=0;i&lt;n;i++)
        scanf("%d",&arr[i]);
    ap = elements_in_ap(arr,n);
-   ap?printf("Elements in AP"):printf("Elements not in AP");
+   ap?printf("Elements are in AP"):printf("Elements are not in AP");
    return 0;
 }
-
+//find the difference between oth and 1st element. And compare consecutive element differences to this.
 int elements_in_ap(int *arr,int n)
 {
 
@@ -32,11 +66,52 @@ int elements_in_ap(int *arr,int n)
       }
     }
     return 1;
-}</pre></div></div> <div class='question'>3. How can you initialize only one element of an array - not the zeroth element but any other element?</p><button class='accordion'>Answer</button><div class='panel'><p >To initialize intermediate element, c99 has introduced syntax where you give element designator with its value. Element designator is index and is given in square brackets.<br><br>e.g.<br>int arr[10]={1,3,[8]=10};<br><br>Here 0th element is 1, first element is 3 and 8th element is 10.</p></div></div> <div class='question'>4. Given an array A[N] containing N numbers. Crate an array Output[N] where Output[i] is equal to the product of all the elements of A[N] except A[i].  For example Output[0] is the product of A[1] to A[N-1] and Output[1] is the product of A[0] and from A[2] to A[N-1]. </p><button class='accordion'>Answer</button><div class='panel'><p >#include&lt;stdio.h&gt;<br>int product(int arr[],int size)<br>{<br>    int product=1;<br>    int i;<br>    for(i=0;i&lt;size;i++)<br>       product *=arr[i];<br>    return product;<br>}<br><br>int main()<br>{<br>   int  arr[50];<br>   int output[50];<br>   int size,i,k;<br>   int pr;<br>   printf("Enter size of array:");<br>   scanf("%d",&size);<br>   printf("Elements of the array:");<br>   for(i=0;i&lt;size;i++)<br>       scanf("%d",&arr[i]);<br>   pr = product(arr,size);<br>   for(i=0;i&lt;size;i++)<br>      output[i] = pr/arr[i];<br>   for(i=0;i&lt;size;i++)<br>     printf("output[%d]=%d\n",i,output[i]);<br>   return 0;<br>}</p></div></div> <div class='question'>5. You have an array of 99 numbers. The array contains the numbers 1 to 100 with one number missing. Write C functions to find the missing number  for speed optimization</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div>
+ <div class="question">3. How can you initialize only one element of an array - not the zeroth element but any other element?</p>
+ 
+ <button class="accordion">Answer</button><div class="panel"><p >To initialize intermediate element, c99 has introduced syntax where you give element designator with its value. Element designator is index and is given in square brackets.<br><br>e.g.<br>int arr[10]={1,3,[8]=10};<br><br>Here 0th element is 1, first element is 3 and 8th element is 10.</p></div></div>
+ 
+  <div class="question">4. Given an array A[N] containing N numbers. Crate an array Output[N] where Output[i] is equal to the product of all the elements of A[N] except A[i].  For example Output[0] is the product of A[1] to A[N-1] and Output[1] is the product of A[0] and from A[2] to A[N-1]. </p><button class="accordion">Answer</button><div class="panel">
+  Find the product of all elements of A and store them this product in each element of Output. Next divide i<sup>th</sup> element of Output array by  i<sup>th</sup> element of A.
+  <pre class = "courier">
+#include&lt;stdio.h&gt;
+ int product(int arr[],int size)
+ {
+     int product=1;
+     int i;
+     for(i=0;i&lt;size;i++)
+        product *=arr[i];
+     return product;
+ }
+ 
+ int main()
+ {
+    int  arr[50];
+    int output[50];
+    int size,i,k;
+    int pr;
+    printf("Enter size of array:");
+    scanf("%d",&size);
+    printf("Elements of the array:");
+    for(i=0;i&lt;size;i++)
+        scanf("%d",&arr[i]);
+    pr = product(arr,size);
+    for(i=0;i&lt;size;i++)
+       output[i] = pr/arr[i];
+    for(i=0;i&lt;size;i++)
+      printf("output[%d]=%d\n",i,output[i]);
+    return 0;
+ }
+</pre>
+</div></div> 
+<div class="question">5. You have an array of 99 numbers. The array contains the numbers 1 to 100 with one number missing. Write C functions to find the missing number  for speed optimization</p>
+<button class="accordion">Answer</button><div class="panel">
+We use a temporary array which is initialized with 0 for all elements. Then for each element of arr[i]=n, temp[n] will be set to 1. e.g. if arr[0] =3, temp[3] will be set to 1. If arr[1]=4, temp[4] will be set to 1. <br>So the only element which will be 0 will be the element missing from array. 
+<pre class="courier">#include&lt;stdio.h&gt;
 int fillSecondArray(int arr[],int temp[],int sz)
 {
    int i;
-   for(i=1;i&lt;=sz;i++)
+   for(i=0;i&lt;=sz;i++)
    {
        int n = arr[i];
        if(n&lt;100)
@@ -47,11 +122,12 @@ int fillSecondArray(int arr[],int temp[],int sz)
 int findMissingElement(int temp[],int sz)
 {
    int i;
-   for(i=1;i&lt;=sz;i++)
+   for(i=0;i&lt;=sz;i++)
       if(temp[i]==0)
-        return i;
+        return i+1;
    return -1;
 }
+/*sample program with one element missing from array*/
 int main()
 {
    int arr[99];
@@ -59,10 +135,10 @@ int main()
    int i,j;
    printf("Enter num:");
    scanf("%d",&num);
-   for(j=i=1;i&lt;=100;i++)
+   for(i=0;i&lt;=100;i++)
    {
       if(i!=num)
-        arr[j++]=i;
+        arr[i]=i+1;
     }
    int temp[101]={0};
    fillSecondArray(arr,temp,100);
@@ -70,26 +146,49 @@ int main()
    printf("The missing element is %d\n",i);
 }
 
-    </pre></div></div> <div class='question'>6.  Write a function for matrix multiplication</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void multiplication(int a[][10],int b[][10],int mult[][10],int r1,int c1,int r2,int c2)
+    </pre></div></div>
+     <div class="question">6.  Write a function for matrix multiplication</p><button class="accordion">Answer</button><div class="panel">
+     When you multiply two matrices A and B, each element of product C will be obtained by
+    C<sub>i,j</sub>= &#931;A<sub>i,k</sub>*B<sub>k,j</sub>
+     <br><br>e.g. C[0,0] = A[0,0]*B[0,0]+A[0,1]*B[1,0]+A[0,2]*B[2,0]+....+A[0,n]*B[n,0]
+     
+     <pre class="courier">void multiplication(int a[][10],int b[][10],int prod[][10],int r1,int c1,int r2,int c2)
 {
     int i,j,k;
 /* Initializing elements of product  matrix  to 0.*/
     for(i=0; i&lt;r1; ++i)
     for(j=0; j&lt;c2; ++j)
     {
-       mult[i][j]=0;
+       prod[i][j]=0;
     }
 /* Multiplying matrix a and b and storing in array mult. */
     for(i=0; i&lt;r1; ++i)
     for(j=0; j&lt;c2; ++j)
     for(k=0; k&lt;c1; ++k)
     {
-        mult[i][j]+=a[i][k]*b[k][j];
+        prod[i][j]+=a[i][k]*b[k][j];
     }
-}</pre></div></div> <div class='question'>7. Given an unsorted array and a number n, find if there exists a pair of elements in the array whose difference is n. Return count of such pairs.
-
-Example k=4 and a[]={7,623,19,10,11,9,3,15}
- Output should be : 6 Pairs can be: 7,11 7,3 6,10 19,23 15,19 15,11  </p><button class='accordion'>Answer</button><div class='panel'><p >int find_pairs(int arr[],int size,int k)<br>{<br>    int i,j;<br>    int count = 0;<br>    for(i=0;i&lt;size;i++)<br>       for(j=i+1;j&lt;size;j++)<br>         {<br>             int diff = arr[i]-arr[j];<br>             if (abs(diff)==k)<br>                 count++;<br>          }<br>    return count;<br>}</p></div></div> <div class='question'>8. Given two sorted arrays, A and B, write a method to merge the elements of B into A in sorted order. Assume A has a large enough buffer at the end to hold all of B’s elements. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> #include&lt;stdio.h&gt;
+}</pre></div></div> <div class="question">7. Given an unsorted array and a number n, find if there exists a pair of elements in the array whose difference is n. Return count of such pairs.
+<br>
+Example k=4 and a[]={7,623,19,10,11,9,3,15}<br>
+ Output should be : 6<br> Pairs can be: 7,11 7,3 6,10 19,23 15,19 15,11  </p><button class="accordion">Answer</button><div class="panel">
+ <p >
+ <pre class="courier">
+ int find_pairs(int arr[],int size,int k)
+ {
+     int i,j;
+     int count = 0;
+     for(i=0;i&lt;size;i++)
+        for(j=i+1;j&lt;size;j++)
+          {
+              int diff = arr[i]-arr[j];
+              if (abs(diff)==k)
+                  count++;
+           }
+     return count;
+ }
+</pre>
+</p></div></div> <div class="question">8. Given two sorted arrays, A and B, write a method to merge the elements of B into A in sorted order. Assume A has a large enough buffer at the end to hold all of B’s elements. </p><button class="accordion">Answer</button><div class="panel"><pre class="courier"> #include&lt;stdio.h&gt;
 void read_array(int arr[],int size)
 {
     int i;
@@ -137,12 +236,43 @@ int main()
      printf("arr1[%d]=%d\n",i,arr1[i]);
    }
    return 0;
-} </pre></div></div> <div class='question'>9. In an array of integers, every element appears twice except for one. Find this element which is not repeated.
+} </pre></div></div> 
+<div class="question">9. In an array of integers, every element appears twice except for one. Find this element which is not repeated.<br>
 
-Note:Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p><button class='accordion'>Answer</button><div class='panel'><p >int find_unique_element(int arr[],int size)<br>{<br>   int exorprod=arr[0];<br>   int i;<br>   for(i=1;i&lt;size;i++)<br>      exorprod = exorprod^arr[i];<br>   return exorprod;<br>}</p></div></div> <div class='question'>10. Find the count k by which array has been rotated in a rotated sorted array.
-
-So for example we have sorted array as 2,3,6,12, 15, 18. Now suppose the array is rotated k times ( we don’t know k), such that array becomes 15, 18,2,3,6,12 We have to find K (in this case k is 4)</p><button class='accordion'>Answer</button><div class='panel'><p >int find_k(int *arr,int sz)<br>{<br>    int i;<br>    for(i=0;i&lt;sz-1;i++)<br>    {<br>       if(arr[i]&gt;arr[i+1])<br>          return i+1;<br>    }<br>    return 0;<br>}</p></div></div> <div class='question'>11. Point out the error/s in the program
-
+Note:Your algorithm should have a linear runtime complexity. O(n) Could you implement it without using extra memory?</p>
+<button class="accordion">Answer</button><div class="panel"><p >
+When you exor and array element a[i] with a[j] when both of them have same value, they cancel out and give a result of 1. Which means that when you exor all the elements, all of them cancel out except for the unique element. So the final result of this exor will be the element which is not a duplicate. </p>
+<pre class="courier">
+int find_unique_element(int arr[],int size)
+ {
+    int exor_prod=arr[0];
+    int i;
+    for(i=1;i&lt;size;i++)
+       exor_prod = exor_prod^arr[i];
+    return exor_prod;
+ }
+</pre></div></div> <div class="question">10. Find the count k by which array has been rotated in a rotated sorted array.
+<br><p>
+For example we have a sorted array as 2,3,6,12, 15, 18. Now suppose the array is rotated k times such that array becomes 15, 18,2,3,6,12 We have to find K (in this case k is 4)</p>
+<button class="accordion">Answer</button>
+<div class="panel"><p >
+Let us the array is rotated once. Then arr[0] will be arr[n-1]- the last element which is also largest element. And arr[1] will become arr[0] - smallest element. So, arr[0]>arr[1]. <br><br>
+If instead the array is rotated twice, last two elements will be moved 0<sup>th</sup> and 1<sup>st</sup> positions, followed previous arr[0], arr[1] etc. In this case, arr[1]>arr[2]. <br> <br>When arr[i]>arr[i+1], i is the number of times array is rotated.<br><br>
+<pre class = "courier">
+int find_k(int *arr,int sz)
+ {
+     int i;
+     for(i=0;i&lt;sz-1;i++)
+     {
+        if(arr[i]&gt;arr[i+1])
+           return i+1;
+     }
+     return 0;
+ </pre>    
+<br>}</div></div>
+ <div class="question">11. Point out the error/s in the program
+<br>
+<pre class="courier">
 #include&lt;stdio.h&gt;
 
 int main()
@@ -155,7 +285,16 @@ int main()
         a++;
     }
     return 0;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Compilation error<br><br>lvalue required for increment operator</p></div></div> <div class='question'>12. What is the difference between &a and &a[0]?</p><button class='accordion'>Answer</button><div class='panel'><p >&a is pointer to the array. &a[0] is the address of first element of array. It is a int pointer if a is array of int, char pointer if a is array of char etc.<br><br>Both give same numerical value. But in expressions they behave differently.<br><br><br>&a + 1 = address of a +(number of elements in a *size of element) . It points to next array.<br><br>&a[0] + 1 = address of a + 1 *size of element. This points to next element in the array  that is &a[1]<br><br> </p></div></div> <div class='question'>13. Write a function to find all pairs in array of integers whose sum is equal to given number n </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int find_pairs(int *arr,int size,int sum,int *arr2)
+}
+</pre>
+</p><button class="accordion">Answer</button><div class="panel"><pre class="courier" >Compilation error
+lvalue required for increment operator<br>
+</pre>
+An array name is a constant pointer to the first element of the array. It is not an lvalue.  Which means it can not be incremented. Hence a++ will throw an error. </p></div></div> 
+
+<div class="question">12. What is the difference between &a and &a[0]?</p><button class="accordion">Answer</button><div class="panel"><p >&a is pointer to the array. &a[0] is the address of first element of array. It is a int pointer if a is array of int, char pointer if a is array of char etc.<br><br>Both give same numerical value. But in expressions they behave differently.<br><br><br>&a + 1 = address of a +(number of elements in a *size of element) . It points to next array.<br><br>&a[0] + 1 = address of a + 1 *size of element. This points to next element in the array  that is &a[1]<br><br> </p></div></div>
+
+ <div class="question">13. Write a function to find all pairs in array of integers whose sum is equal to given number n </p><button class="accordion">Answer</button><div class="panel"><pre class="courier">int find_pairs(int *arr,int size,int sum,int *arr2)
 {
      int i,j;
      int k=0;
@@ -191,8 +330,9 @@ int main()
     for(i=0;i&lt;k;i+=2)
        printf("%d %d\t ",pairs[i],pairs[i+1]);
 }
-</pre></div></div> <div class='question'>14. Write a function to find first element of an array which is not present in second array. Arrays are of different sizes.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+</pre></div></div> <div class="question">14. Write a function to find first element of an array which is not present in second array. Arrays are of different sizes.</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 #define MAX 30
+//returns index of n in the array arr, -1 if n is not present
 int indexOf(int n,int *arr,int len)
 {
    int i;
@@ -206,8 +346,11 @@ len2)
 {
      int i;
      for(i=0;i&lt;len1;i++)
+     {
+     /*if arr1[i] is not present in arr2, return arr1[i]*/
         if(indexOf(arr1[i],arr2,len2)==-1)
              return arr1[i];
+     }       
      return -1;
 }
 int main()
@@ -227,11 +370,12 @@ int main()
 
    el= not_common_element(arr1,len1,arr2,len2);
    if(el==-1)
-      printf("All elements are present");
+      printf("All elements of first array are present in second array");
    else
       printf("%d is not present in second array ",el);
    return 0;
-}</pre></div></div> <div class='question'>15. Write a function to check if an array is in ascending order and return the number of elements which are out of order</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> 
+<div class="question">15. Write a function to check if an array is in ascending order and return the number of elements which are out of order</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 int read_array(int *arr)
 {
    int len;
@@ -264,15 +408,17 @@ int main()
    else
         printf("The number of elements out of order is %d\n",num);
    return 0;
-}</pre></div></div> <div class='question'>16. Given an array, write a program find two elements whose difference is closest to zero.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> 
+<div class="question">16. Given an array, write a program to find two elements whose difference is closest to zero.</p><button class="accordion">Answer</button><div class="panel">
+<pre class="courier">#include&lt;stdio.h&gt;
 int read_array(int *arr);
-void sum_closest_to_0(int *arr,int n,int*aptr,int*bptr);
+void diff_closest_to_0(int *arr,int n,int*aptr,int*bptr);
 int main()
 {
    int arr[30];
    int el1,el2;
    int len = read_array(arr);
-    sum_closest_to_0(arr,len,&el1,&el2);
+    diff_closest_to_0(arr,len,&el1,&el2);
    printf("the elements are %d and %d\n",el1,el2);
    return 0;
 }
@@ -286,7 +432,7 @@ int read_array(int *arr)
       scanf("%d",&arr[i]);
    return len;
 }
-void sum_closest_to_0(int *arr,int n,int *aptr,int *bptr)
+void diff_closest_to_0(int *arr,int n,int *aptr,int *bptr)
 {
       int i,j;
       int zr_sum=10000;
@@ -307,15 +453,24 @@ void sum_closest_to_0(int *arr,int n,int *aptr,int *bptr)
        *aptr = a;
        *bptr = b;
 }
-  </pre></div></div> <div class='question'>17. Write a function has_zero_diagonal which checks if a 5X5 integer matrix has all elements in major diagonal as zero. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int has_zero_diagonal(int arr[][5])
+  </pre>
+  <p>The function diff_closeset_to_0() is unique because, it must return two array elements which produce the difference. As a function can return only one value, we are returning two pointers - aptr and bptr.</p>
+  </div></div> 
+  <div class="question">17. Write a function has_zero_diagonal which checks if a 5X5 integer matrix has all the elements in major diagonal as zero. </p>
+  <button class="accordion">Answer</button><div class="panel">
+  The function checks all diagonal elements for non-zero value and returns 0 if it finds any. If not, the function returns 1 - for true.
+  <pre class="courier">int has_zero_diagonal(int arr[][5])
 {
      int i,j;
      for(i=0;i&lt;5;i++)
          if(arr[i][i]!=0)
            return 0;
-           /* non zero diagonal element*/
+           /* if non zero diagonal element*/
      return 1;
-}</pre></div></div> <div class='question'>18. Write a function to bubble sort an array.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void bubble_sort(int *arr,int n)
+}</pre></div></div> 
+<div class="question">18. Write a function to bubble sort an array.</p><button class="accordion">Answer</button><div class="panel">
+In bubble sort, each element is compared with its next element and if out of order, the elements are swapped. This is continued for all elements. Once the first iteration is completed, the largest element sinks to bottom and smaller elements bubble up to the top. <br> <br>In second iteration, the comparison and swapping is continued for n-1 elements and so on. There are totally n-1 iterations.<br><br>If none of the elements are swapped in an iteration, it indicates that all elements are already in order and does not need any more sorting. In this case, the loop stops. <br>
+<pre class="courier">void bubble_sort(int *arr,int n)
 {
    int i,j;
    int swapped= 1;
@@ -331,7 +486,12 @@ void sum_closest_to_0(int *arr,int n,int *aptr,int *bptr)
                     swapped = 1;
                   }
      }
-}</pre></div></div> <div class='question'>19. Write a function to insert an element in a sorted array.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void insert_element(int *arr,int n,int new_element)
+}</pre></div></div>
+
+ <div class="question">19. Write a function to insert an element in a sorted array.</p><button class="accordion">Answer</button><div class="panel">
+ When we insert an element to a sorted array, we should insert it in the correct location. Which requires us to shift the elements greater than the new element, to the right. 
+
+ <pre class="courier">void insert_element(int *arr,int n,int new_element)
 {
     int i,j,location;
      /*find location where new element gets inserted*/
@@ -345,14 +505,19 @@ void sum_closest_to_0(int *arr,int n,int *aptr,int *bptr)
 
     arr[location] = new_element;
     /*insert new element*/
-}</pre></div></div> <div class='question'>20. Write a function to search an element in an unsorted array using linear search.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int linear_search(int *arr,int size,int n)
+}</pre></div></div> <div class="question">20. Write a function to search an element in an unsorted array using linear search.</p><button class="accordion">Answer</button><div class="panel">
+In linear search, the search-value is compared with all elements in the array from 0<sup>th</sup> to  n-1<sup>th</sup>. When and if a match is found, the search is stopped. <br><br>The complexity of linear search is O(N). <br><br>For an unsorted small sized array, linear search is convenient algorith. 
+<pre class="courier">int linear_search(int *arr,int size,int n)
 {
    int i;
    for(i=0;i&lt;size ;i++)
        if(arr[i]==n)
          return i;
    return -1;
-}</pre></div></div> <div class='question'>21. Write a function to search an element in a sorted array using binary search.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int binary_search(int *arr,int size,int n)
+}</pre></div></div> <div class="question">21. Write a function to search an element in a sorted array using binary search.</p><button class="accordion">Answer</button>
+<div class="panel">
+Binary search is an efficient search algorithm to search a sorted array. It finds the midpoint of the array and compares search value with middle element. Depending on whether the search value is larger than or smaller than the middle element, first half or the second half of the array are searched respectively.<br><br> Next midpoint of this sub-array is found, and its element is compared with search value. <br><br>This procedure is continued until either the value is found or the sub-array is empty - in which case search value is not present in the array. <br><br>Complexity of binary search is O(logn)<br>
+<pre class="courier">int binary_search(int *arr,int size,int n)
 {
     int start = 0;int end=size-1;
     int mid = (end+start)/2;
@@ -368,7 +533,8 @@ void sum_closest_to_0(int *arr,int n,int *aptr,int *bptr)
          }
 
     return -1;
-}</pre></div></div> <div class='question'>22. Write a recursive function to search an element in a sorted array using binary search.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> 
+<div class="question">22. Write a recursive function to search an element in a sorted array using binary search.</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 int binary_search(int *arr,int start,int end,int num)
 {
     if(start&gt;end)
@@ -394,7 +560,8 @@ int main()
        printf("Element not found");
     return 0;
 }
- </pre></div></div> <div class='question'>23. Write code to evaluate a  polynomial</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+ </pre></div></div> 
+ <div class="question">23. Write code to evaluate a  polynomial</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 #include&lt;math.h&gt;
 float evaluate(float x, int *coeffs,int size);
 float power(float x,int i);
@@ -429,7 +596,7 @@ float evaluate(float x, int *coeffs,int size)
      s+= coeffs[i]*pow(x,i);
    return s;
 }
-      </pre></div></div> <div class='question'>24. Write a program to add two polynomials. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+      </pre></div></div> <div class="question">24. Write a program to add two polynomials. </p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt; 
 void print_polynomial(int *coeff,int size);
 int* add_polynomial(int *coeff1,int *coeff2,int order);
@@ -494,7 +661,8 @@ void print_polynomial(int *coeff,int order)
    printf("%d",coeff[0]);
 }
 
-      </pre></div></div> <div class='question'>25. Write a program to find a prime number after a given prime number. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+      </pre></div></div> 
+      <div class="question">25. Write a program to find a prime number after a given prime number. </p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 
 int is_prime(int n,int primearray[])
 {
@@ -524,7 +692,10 @@ int main()
 
      printf("Prime number after %d is %d",l_prime,i-1);
      return 0;
-}</pre></div></div> <div class='question'>26. Write a program to merge two sorted arrays in sorted order avoiding duplicates. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> 
+<div class="question">26. Write a program to merge two sorted arrays in sorted order avoiding duplicates. </p><button class="accordion">Answer</button><div class="panel">
+To merge two sorted arrays A and B, each a[i] is compared with b[j] and smaller of these two is added to C and its index is incremented. This process is continued until we reach the end of one of the arrays. Next all the elements of the remaining array is added to C.<br><br>To avoid duplicates, if both elements are equal, one index is incremented and that value is skipped. <br>
+<pre class="courier">#include&lt;stdio.h&gt;
 void shift_elements(int arr[],int size,int k)
 {
      int i;
@@ -570,7 +741,8 @@ int main()
     print(a1,9);
     return 0;
 }
-</pre></div></div> <div class='question'>27. Write a program to check if a given matrix is an identity matrix. A matrix is identity matrix if all the major diagonal elements are 1 and all other elements are 0</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int is_identity(int arr[][10],int nr)
+</pre></div></div> 
+<div class="question">27. Write a program to check if a given matrix is an identity matrix. <br><br>A matrix is identity matrix if all the major diagonal elements are 1 and all the other elements are 0</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">int is_identity(int arr[][10],int nr)
 {
      int i,j;
 
@@ -585,7 +757,7 @@ int main()
               if(arr[i][j]!=0)
                  return 0;
      return 1;
-}</pre></div></div> <div class='question'>28. Write a function that swaps the first half of an array with the second half. Within each half of the array, keep the elements in their original order.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> <div class="question">28. Write a function that swaps the first half of an array with the second half. Within each half of the array, keep the elements in their original order.<br><br>If the array is [2,3,4,6,7,8] ,after swapping it must become <br>[6,7,8,2,3,4]</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 #define MAX 30
 void swap_elements(int *arr,int size)
 {
@@ -615,8 +787,11 @@ int main()
       printf("%d ",arr[i]);
    return 0;
 }
-</pre></div></div> <div class='question'>29. Write a function to determine if the given 3X3 matrix is  triangular or not. A matrix is upper triangular if every entry below the diagonal is 0. A matrix is lower triangular if every entry above the diagonal is 0. Your program should test whether the matrix is either of these two.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-int islowertri(int arr[][3])
+</pre></div></div> 
+<div class="question">29. Write a function to determine if the given 3X3 matrix is  triangular or not. <br>A matrix is upper triangular if every element below the diagonal is 0. <br>A matrix is lower triangular if every element above the diagonal is 0. Your program should test whether the matrix is either of these two.</p><button class="accordion">Answer</button><div class="panel">
+We are writing two functions is_lower_tri() which checks whether all the elements above the principal diagonal are zero and is_upper_tri() which checks whether all the elements below the principal diagonal are 0. 
+<pre class="courier">#include&lt;stdio.h&gt;
+int is_lower_tri(int arr[][3])
 {
    int i,j;
    for(i=0;i&lt;3;i++)
@@ -625,7 +800,7 @@ int islowertri(int arr[][3])
            return 0;
    return 1;
 }
-int isuppertri(int arr[][3])
+int is_upper_tri(int arr[][3])
 {
    int i,j;
    for(i=0;i&lt;3;i++)
@@ -642,15 +817,15 @@ int main()
     for(j=0;j&lt;3;j++)
      scanf("%d",&mat[i][j]);
 
-   if(isuppertri(mat))
+   if(is_upper_tri(mat))
       printf("The matrix is upper triangular");
-   else if (islowertri(mat))
+   else if (is_lower_tri(mat))
      printf("The matrix is lower triangular matrix");
    else
      printf("The matrix is not triangular matrix");
 
   return 0;
-}</pre></div></div> <div class='question'>30. Write a program to print the frequency of even and odd numbers in a matrix.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> <div class="question">30. Write a program to print the frequency of even and odd numbers in a matrix.</p><button class="accordion">Answer</button><div class="panel"><pre class="courier">#include&lt;stdio.h&gt;
 #define NC 3
 #define NR 3
 void freq(int mat[][NC] )
@@ -677,7 +852,9 @@ int main()
          scanf("%d",&mat[i][j]);
     freq(mat);
     return 0;
-}</pre></div></div> <div class='question'>31. Write a program to find transpose of given square matrix</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> <div class="question">31. Write a program to find transpose of given square matrix</p><button class="accordion">Answer</button><div class="panel">
+Transpose of a matrix is obtained by flipping the matrix over its principal diagonal. Every a[i,j] is swapped with a[j,i].
+<pre class="courier">#include&lt;stdio.h&gt;
 #define N  3 
 void swap(int *p1,int *p2)
 {
@@ -710,7 +887,24 @@ int main()
       printf("\n");
     }
     return 0;
-}</pre></div></div> <div class='question'>32. How do you define an array? </p><button class='accordion'>Answer</button><div class='panel'><p >An array definition must specify its name, type of its elements and its size. The initial values of elements can be specified optionally.<br><br>Syntax<br><br>     data-type   name[size];<br><br>e.g.<br>    int arr[10];<br>    float arr2[5];<br>    char arr3[12];<br><br>Initial values if specified, must be enclosed in curly brackets. If initializers are specified, array size need not be given.<br><br>int a1[4]={11,22,33,44};<br>int a2[]={1,3,4,5};<br><br>Size of a2 is 4.<br><br>Initializer can specify partial values. In which case rest of values are taken as zero.<br><br>int a1[10]={11};<br><br>In the above example, a1[0] is 11 and a1[1] to a1[9] are all 0. </p></div></div> <div class='question'>33. Can an array initializer specify only an intermediate value? If yes, how?</p><button class='accordion'>Answer</button><div class='panel'><p >Yes.<br><br>To initialize a specific element, the index of the element has to be given in square brackets followed by value.<br><br>float arr[10]={[3]=9.1};<br><br>Here arr[3] is initialized to 9.1 and rest of elements are all set to 0</p></div></div> <div class='question'>34. What does the following code print?
-
+}</pre></div></div> <div class="question">32. What is an array? How do you define an array in C? </p><button class="accordion">Answer</button><div class="panel"><p >An array is a collection of similar items with a common name e.g. an array of integers, an array of characters, an array of structures. <br><br>
+Each element of the array is accessed with array name and its index.e.g. num[0], a1[2] <br><br>In C, an array definition must specify its name, type of its elements and its size. Size is enclosed in square brackets. <br><br>The initial values of elements can be specified optionally.<br>Syntax<br> 
+<pre class="courier">    data-type   name[size]; 
+e.g.
+   int arr[10];   
+   float arr2[5];
+   char arr3[12];<br><br></pre>In the above examples, arr is an array of 10 integers. arr2 is an array of 5 floating point numbers. and arr3 is an array of 12 characters. <br><br>Initial values if specified, must be enclosed in curly brackets. If initializers are specified, array size need not be given.<br>
+<pre class="courier">int a1[4]={11,22,33,44};
+int a2[]={1,3,4,5};<br></pre>Size of a2 is 4.<br><br>Initializer can specify partial values. In which case rest of values are taken as zero.<br>
+<pre class="courier">int a1[10]={11};</pre><br>In the above example, a1[0] is 11 and a1[1] to a1[9] are all 0. </p></div></div>
+ <div class="question">33. Can an array initializer specify only an intermediate value? If yes, how?</p><button class="accordion">Answer</button><div class="panel"><p >Yes.<br><br>To initialize a specific element, the index of the element has to be given in square brackets followed by value.<br><br>float arr[10]={[3]=9.1};<br><br>Here arr[3] is initialized to 9.1 and rest of elements are all set to 0</p></div></div> 
+ <div class="question">34. What does the following code print?
+<pre class="courier">
     int arr[10]={1,2,3,4};
-    printf("%d",arr);</p><button class='accordion'>Answer</button><div class='panel'><p >It prints the address of 0th element of the array. Array name always refers to base address of array.</p></div></div> <div class='question'>35. What are the valid indices for an array of size 10?</p><button class='accordion'>Answer</button><div class='panel'><p >Valid indices for array of size 10 are 0 to 9.<br><br>In C, an array index starts with 0 and ends with size-1.</p></div></div> <div class='question'>36. How do you define a two dimensional array of 3 rows and 4 columns and has integer elements?</p><button class='accordion'>Answer</button><div class='panel'><p >A two dimensional array is defined with its number of rows and number of columns in two pairs of square brackets.<br><br> data-type name[nr][nc];<br><br>e.g.<br><br>int mat[4][5];<br><br></p></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+    printf("%d",arr);</pre><button class="accordion">Answer</button><div class="panel"><p >It prints the address of 0th element of the array. Array name always refers to base address of array.</p></div></div> <div class="question">35. What are the valid indices for an array of size 10?</p><button class="accordion">Answer</button><div class="panel"><p >Valid indices for array of size 10 are 0 to 9.<br><br>In C, an array index starts with 0 and ends with size-1.</p></div></div> <div class="question">36. How do you define a two dimensional array of 3 rows and 4 columns and has integer elements?</p><button class="accordion">Answer</button><div class="panel"><p >A two dimensional array is defined with its number of rows and number of columns in two pairs of square brackets.<br><pre class="courier"> 
+    data-type name[nr][nc];
+    e.g.<br><br>int mat[4][5];</pre> 
+       <script type="text/javascript" src = "cqn2.js">
+       </script>
+
+    </body></html>

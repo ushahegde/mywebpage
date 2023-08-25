@@ -1,39 +1,68 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Preprocessor Questions </h1><div class='main'><div class='question'>1. #include &lt;stdio.h&gt;
+ <!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+
+<title>Preprocessor in C</title>
+
+ 
+     <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+
+
+<body  ><body  ><h2 class='heading'> C Preprocessor  </h2>
+<div class='main'><div class='question'>
+1.<pre class="courier">
+#include &lt;stdio.h&gt;
 #define print(x) printf("%d", x)
 int x; 
 void P(int *y)
 {
-int x = *y+2;
-*y=x-1;
-print(x);
+    int x = *y+2;
+    *y=x-1;
+    print(x);
 }
 int main(void)
 {
-x=5;
-P(&x);
-print(x);
+    x=5;
+    P(&x);
+    print(x);
 }
-
-Output of the program is </p><button class='accordion'>Answer</button><div class='panel'><p >Output : 76</p></div></div> <div class='question'>2. Write a macro to find larger of two numbers</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#define LARGER(a,b) ((a)&gt;(b)?(a):(b))</pre></div></div> <div class='question'>3. Consider the statement
-
-double ans = 18.0/squared(2+1)
-
-For the following #define macros, write what will be the answer
-
-#define squared(x) x*x
-#define squared(x) (x)*(x)
-#define squared(x) (x*x)
-#define squared(x) ((x)*(x))</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>First one becomes
-18.0/2+1/2+1 = 10
+</pre>
+<p>What is the output of the program given above? </p>
+<button class='accordion'>Answer</button><div class='panel'><p >Output : 76</p></div></div> 
+<div class='question'>
+2. Write a macro to find larger of two numbers</p><button class='accordion'>Answer</button><div class='panel'><pre >#define LARGER(a,b) ((a)&gt;(b)?(a):(b))</pre>
+   
+</div></div> <div class='question'>3. Consider the statement
+<pre>
+double ans = 18.0/square(2+1)
+</pre>
+For the following #define macros, write what will be the value of  ans.
+<pre>
+#define square(x) x*x
+#define square(x) (x)*(x)
+#define square(x) (x*x)
+#define square(x) ((x)*(x))</pre><button class='accordion'>Answer</button><div class='panel'><ul><li>First one becomes
+18.0/2+1/2+1 = 10</li><li>
 Second macro will be expanded as
-18.0/(2+1)*(2+1) = 18/3*3 = 18
+18.0/(2+1)*(2+1) = 18/3*3 = 18</li><li>
 Third macro expands to
-18.0/(2+1*2+1) = 18.0/5 = 3.6
+18.0/(2+1*2+1) = 18.0/5 = 3.6</li><li>
 Fourth macro is expanded as
-18.0/((2+1)*(2+1)) = 18.0/9 = 2.0
+18.0/((2+1)*(2+1)) = 18.0/9 = 2.0</li></ul>
 
-So only fourth macro is correctly defined. </pre></div></div> <div class='question'>4. What is the difference between #include&lt; &gt; and #include" "</p><button class='accordion'>Answer</button><div class='panel'><p >If include file name is specified in angle brackets &lt;&gt;, the file is searched in standard include directory of C compiler.<br><br>If the include file is specified in double quotes, it is searched in current directory first, if not found, it is then searched in standard include directories as well.<br><br>If the include filename is given with complete path, then it is searched only in that path.<br><br>This the reason, stdio.h and other library header files are written in angle brackets.  </p></div></div> <div class='question'>5. What will be the output of the following program
-
+<p>So only fourth macro is correctly defined.</p>
+<p>Because such unforeseen errors which are not caught by compiler, but produce wrong results, it is a good practice to avoid preprocessor macros as much as possible.</p> </div></div> 
+<div class='question'>
+4. What is the difference between #include&lt; &gt; and #include" "</p><button class='accordion'>Answer</button>
+<div class='panel'>
+<p >If include file name is specified in angle brackets - &lt;&gt;, the file is searched in standard include directory of C compiler first.<br><br>If the include file is specified in double quotes, it is searched in current directory first, if not found, it is then searched in standard include directories as well.</p><p>If the include filename is given with complete path, then it is searched only in that path.</p><p>This the reason, include macro for stdio.h and other library header files are written in angle brackets.  </p>
+<p>When you are including standard header files, you should enclose the file name in angle brackets. If you are including a header file specific to your program, you should enclose the file name in double quotes. </div></div>
+ <div class='question'>5. What will be the output of the following program
+<pre class="courier">
 #include&lt;stdio.h&gt;
 #define square(x) x*x
 int main()
@@ -42,24 +71,77 @@ int main()
    int m=5;
    n = n+square(m+2);
    printf("%d",n);
-}</p><button class='accordion'>Answer</button><div class='panel'><p >17</p></div></div> <div class='question'>6. What will be the output of this program
-
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >17</p>
+<p>The macro square(x) will be expanded as <pre>m+2*m+2</pre></p>
+<p>As multiplication operator has a higher precedence than addition operator, this will be m+2m+2 = 17. Which is a wrong answer.</p></div></div> <div class='question'>6. What will be the output of this program
+<pre class="courier">
 #include&lt;stdio.h&gt;
-#define JOIN(s1, s2) printf("%s=%d %s=%d \n", #s1, s1, #s2, s2);
+#define PRINT(s1, s2) printf("%s=%d %s=%d \n", #s1, s1, #s2, s2);
 int main()
 {
     int n1=4;
     int n2=5;
-    JOIN(n1,n2);
+    PRINT(n1,n2);
     return 0;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >n1=4 n2=5</p></div></div> <div class='question'>7. What is conditional compilation in C? </p><button class='accordion'>Answer</button><div class='panel'><p >Using #if of #ifdef or #ifndef macros, the  preprocessor can include or exclude part of the code. This is called conditional compilation.<br><br>It is used for compiling for different architectures or different standards etc.<br><br>e.g.<br>#include&lt;stdio.h&gt;<br>#define m 10<br>int main()<br>{<br>    printf("Hello world\n");<br>#ifdef m<br>    printf("Good bye world\n");<br>#endif<br>}<br><br>Output will be<br>Hello world<br>Good bye world<br><br>But if "#define m 10" is removed from program, printf("Good bye world\n") omitted from the program by preprocessor. And output will be just <br>Hello world<br><br>Consider another example of conditional compilation. <br><br>sum = 0;<br>for(i=0;i&lt;10;i++)<br>{<br>    int sq = i*i;<br> #ifdef DEBUG<br>    printf("%d is %d\n",i,sq);<br>#endif<br>   sum +=sq;<br>}<br><br>Here for debugging, you need to define macro DEBUG. And the compiler includes printf statement in the loop. If you don't define DEBUG then printf is not included in the for loop<br></p></div></div> <div class='question'>8. What are the differences between #define and typedef? </p><button class='accordion'>Answer</button><div class='panel'><p >#define is just preprocessor macro and is error prone. It just literally replaces one text with another. Where as typedef gives a new name to a type.<br><br>Consider this example<br><br>#define INTPTR int *<br>typedef int * INTPTR2;<br><br>int main()<br>{<br>  INTPTR p1,p2;<br>  INTPTR2 p3,p4;<br><br>}<br><br>line 1 in main() will be preprocessed as<br>int *p1,p2;<br><br>So p2 will be an integer instead of integet pointe.<br><br>But p3 and p4 will be  integer pointers becaue typedef is defining INTPTR2 as int *<br><br>typedef can be used to simplify definition of complex data types.<br><br>e.g.<br>typedef int *INTPTR;<br>typedef INTPTR (*FPTR)(INTPTR);<br><br>Here, FPTR is function pointer which takes an integer pointer as a paramter and also returns an integer pointer.<br><br></p></div></div> <div class='question'>9. Can a macro be redefined? If yes, how?</p><button class='accordion'>Answer</button><div class='panel'><p >Macro can be redefined after undefining it using #undef<br><br>e.g.<br>#define NUM 10<br><br>#undef NUM <br>#define NUM 5<br></p></div></div> <div class='question'>10. What is the output of this program?
+}</pre>
+<button class='accordion'>Answer</button><div class='panel'><p >n1=4 n2=5</p>
+<p>When # is used along with a parameter in macro definition, it stringifies the argument. That is, it adds double quotes to the argument and converts it to a string. </p>
+<p>#s1 and #s2 use stringify operator. <p>
+<p>The macro converts the PRINT(n1,n2) to 
+<pre>printf("%s=%d %s=%d\n","n1",n1,"n2",n2);</pre>
 
+</div></div> <div class='question'>7. What is conditional compilation in C? </p><button class='accordion'>Answer</button><div class='panel'><p >Using #if of #ifdef or #ifndef macros, the  preprocessor can include or exclude part of the code. This is called conditional compilation.<br><br>It is used for compiling for different architectures or different standards etc.<br><br>e.g.<pre class="courier">
+#include&lt;stdio.h&gt;
+#define m 10  
+int main()  
+{
+      printf("Hello world\n");  
+ #ifdef m     
+      printf("Good bye world\n");  
+#endif  
+}</pre><p>
+Output will be<br>Hello world<br>Good bye world<br><br>But if "#define m 10" is removed from program, printf("Good bye world\n") omitted from the program by preprocessor. And output will be just <br>Hello world</p><p>Consider another example of conditional compilation. <pre>
+sum = 0;
+for(i=0;i&lt;10;i++)
+{
+    int sq = i*i;
+#ifdef DEBUG
+    printf("%d is %d\n",i,sq);
+#endif
+   sum +=sq;
+   }</pre><p>Here for debugging, you need to define macro DEBUG. And the compiler includes printf statement in the loop. If you don't define DEBUG then printf is not included in the for loop</p></div></div> 
+   <div class='question'>8. What are the differences between #define and typedef? </p>
+   <button class='accordion'>Answer</button><div class='panel'>
+   <p >#define is just preprocessor macro and is error prone. It just literally replaces one text with another. Where as typedef gives a new name to a type.</p><p>Consider this example<br><pre>#define INTPTR int *
+   typedef int * INTPTR2;
+   int main()
+   {
+        INTPTR p1,p2;
+        INTPTR2 p3,p4;
+        }</pre>
+        <p>line 1 in main() will be preprocessed as<pre>int *p1,p2;</pre></p><p>So p2 will be an integer instead of integet pointer.</p><p>But p3 and p4 will be  integer pointers becaue typedef is defining INTPTR2 as int *</p><p>typedef can be used to simplify definition of complex data types.</p><p>e.g.<pre>typedef int *INTPTR;
+        typedef INTPTR (*FPTR)(INTPTR);</pre><p>Here, FPTR is function pointer which takes an integer pointer as a paramter and also returns an integer pointer.</p></div></div> 
+        <div class='question'>
+        9. Can a macro be redefined? If yes, how?</p><button class='accordion'>Answer</button><div class='panel'>
+        <p >Macro can be redefined after undefining it using #undef<br><br>e.g.<pre>#define NUM 10
+#undef NUM 
+#define NUM 5</pre></p></div></div> <div class='question'>10. What is the output of this program?
+<pre class="courier">
 #include&lt;stdio.h&gt;
 int main()
 {
     printf("%s\n",__DATE__);
     printf("%s",__FILE__);
-}</p><button class='accordion'>Answer</button><div class='panel'><p >It prints the system date and in the next line it prints the filename of the current C program.<br><br>__FILE__, __DATE__, __TIME__ are all predefined macros.<br><br>__FILE__ gives a string which is file name with full path<br><br>__DATE__ gives system date at the time of compilation<br><br>__TIME__ gives system time at the time of compilation</p></div></div> <div class='question'>11. Write a macro to print the name and value of an integer</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#define PRINT(x) printf("%s = %d\n",#x,x)</pre></div></div> <div class='question'>12. How do you define a constant in C? How is a constant better than a macro?</p><button class='accordion'>Answer</button><div class='panel'><p >To define a constant, we use constant name, type, value and const keyword.<br><br>e.g.<br>   const int a = 10;<br><br>Once defined value of a const can not be changed. <br><br>A macro is error prone because compiler does not see the macro - it only sees the expansion. So it is always preferrable to use a constant instead of a macro. </p></div></div> <div class='question'>13. Write a program to print the same file on console. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt; 
+}</pre><button class='accordion'>Answer</button>
+<div class='panel'>
+<p >It prints the system date and in the next line it prints the filename of the current C program.</p><p>__FILE__, __DATE__, __TIME__ are all predefined macros.</p><p>__FILE__ gives a string which is file name with full path</p><p>__DATE__ gives system date at the time of compilation</p><p>__TIME__ gives system time at the time of compilation</p></div></div>
+ <div class='question'><p>11. Write a macro to print the name and value of an integer.</p>
+ <button class='accordion'>Answer</button><div class='panel'>
+ <pre >#define PRINT(x) printf("%s = %d\n",#x,x)</pre>
+ <p>#operator used with a parameter in a macro definition converts the parameter into a double quoted string.</p></div></div> <div class='question'>
+ <p>12. How do you define a constant in C? How is a constant better than a macro?</p>
+ <button class='accordion'>Answer</button><div class='panel'>
+ <p >To define a constant, we use constant name, type, value and <i>const</i> keyword.<br><br>e.g.<pre>   const int a = 10;</pre><p>Once defined, value of a constant can not be changed. </p><p>A macro is error prone because compiler does not see the macro - it only sees the expansion. So it is always preferrable to use a constant (using const keyword) instead of a macro. </p></div></div> <div class='question'>13. Write a program to print the same file on console. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt; 
 int main()
 {
     char *filename = __FILE__;
@@ -69,4 +151,4 @@ int main()
           putchar(c);
     fclose(fptr);
     return 0;
-}</pre></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+}</pre></div></div> </div><script type="text/javascript" src="cqn2.js" >  </script></body></html>

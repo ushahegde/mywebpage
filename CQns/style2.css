@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&display=swap');
+
+body{
+   font-family: "Roboto";
+   font-size: medium;
+   margin: 0;
+   padding: 0;
+}
+.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}
+.active,  .accordion:hover {  background-color: #ccc; }
+.panel {  padding: 10px 10px 10px 18px;  display: none;    background-color: #eee;  overflow: hidden;}
+
+.heading{ 
+position:fixed;
+top:0;
+width: 100%;
+   background-color: #389;
+   color: white;
+   padding:20px;
+   font-size: 30px;
+   
+   font-weight: bolder;
+   text-align: center; 
+   margin: 0px;
+   margin-top:0px; 
+  border-color: #eef;   }
+  
+.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;} 
+.main{
+margin-top:70px;
+padding:10px;
+}
+.courier{
+  padding:5px;
+  font-family:courier, monospace;
+  font-size:12px; 
+  border:1px solid #000000;}

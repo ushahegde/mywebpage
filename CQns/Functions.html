@@ -1,108 +1,149 @@
-<html><head><meta charset='utf-8' /><title></title><style>.accordion {  background-color: #ddd;  color: #333; cursor: pointer;  padding: 10px;  width: auto;  border:inline; border-radius:5px;  text-align: left;  outline: none;  font-size: 15px;  transition: 0.4s;}.active,  .accordion:hover {  background-color: #ccc; }.panel {  padding: 0 18px;  display: none;    background-color: #eee;  overflow: hidden;}.heading{ padding:30px; background-color:#38a8C3; color:white; margin:0; }.question{font-family:'roboto',sans-serif; margin:30px;padding:30px;background-color:#fafafa;}</style> <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap' rel='stylesheet'> </head><body  ><h2 class='heading'> C Functions Questions </h1><div class='main'><div class='question'>1. Write a function which can accept unknown number of integers (variable argument function) and find their sum. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int sum(int n,...)
+ <!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+
+<title>Functions in C</title>
+
+ 
+     <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+
+
+<body  ><h2 class='heading'> Function in C </h2>
+<div class='main'>
+<div class='question'>1. Write a function which can accept unknown number of integers (variable argument function) and find their sum. </p><button class='accordion'>Answer</button><div class='panel'>
+<p>A C function can take variable number of arguments. Such a function is also called variadic function.</p>
+<p>A variable argument function must have at least one mandary argument. Followed by this there can be 0 or more arguments of different types.</p>
+<p>printf() and scanf() library functions are very good examples of variadic functions</p>
+<p>Variadic functions make use a data type va_list which is an argument pointer. And they have to make use of following macros defined in stadarg.h - va_start(), va_arg(),va_end() and optionally va_copy.</p>
+<pre class='courier'>
+int sum(int n,...)
 {
    int m,sum=n;
    va_list lst;
-   va_start(lst,n);
-
+   va_start(lst,n);/*initialises argument pointer*/
    do
    {
-     m = va_arg(lst,int);
-     sum+=m;
-    }while (m!=0);
-    va_end(lst);
+      m = va_arg(lst,int);/*extracts one argument and increment the pointer to next*/
+      sum+=m;
+    }
+    while (m!=0);
+    va_end(lst);/*must be called at the end*/
     printf("%d",sum);
 }</pre></div></div> <div class='question'>2. What is the difference between
-
+<pre>
 int fn(int);
-
+</pre>
 and
-
-extern int fn(int);</p><button class='accordion'>Answer</button><div class='panel'><p >No difference at all</p></div></div> <div class='question'>3. What does stdio.h file contain?</p><button class='accordion'>Answer</button><div class='panel'><p >stdio.h and other standard header files contain  declarations of library functions (not their actual definitions) and macro defintions<br><br>The definitions of library functions are available in library files in object code.</p></div></div> <div class='question'>4. Find out the error in this program? What happens if the return type of function changed to float?
-#include&lt;stdio.h&gt;
-int main()
-{
-    display();
-    return 0;
-}
-int display()
-{
-    printf("Hello world");
-}</p><button class='accordion'>Answer</button><div class='panel'><p >The compiler does not give any errors and program executes correctly.<br><br>But if we change return type of display to float, there will be compiler error.</p></div></div> <div class='question'>5. What does the function  do?
-
+<pre>
+extern int fn(int);</pre><button class='accordion'>Answer</button><div class='panel'>
+<p >No difference at all.</p>
+<p>By default function definitions in C have external linkage. Which means that their identifiers are sent to the linker which resolves them with other occurances in other translation units.</p>
+<p>Where as internal linkage objects are not visible in other translation units because their identifiers are not sent to the linker. By using keyword <i>static</i> a function/variable can be made to have a internal linkage.</p> 
+<p>Variables declared outside of any function also have external linkage by default.</p>
+</div></div> <div class='question'>3. What does stdio.h file contain?</p><button class='accordion'>Answer</button><div class='panel'><p >stdio.h  contains  declarations of  standard library functions such as printf(), scanf(), fgets() etc. (not their actual definitions) and macro defintions.</p>
+<p>In order to use a library function, the program must include the header file which has its declaration.</p>
+<p>Note that actual definitions of library functions are available in library files in object code - normally in .so files.</p></div></div>   <div class='question'>5. What does the function  do?
+<pre class="courier">
 int fun(int n)
 {
    if(n==1)
      return 1;
-  else
+   else
     return n*fun(n-1);
-}</p><button class='accordion'>Answer</button><div class='panel'><p >It calculates and returns the factorial of a number</p></div></div> <div class='question'>6. Write a recursive C function to print a number in binary</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>void print_binary(int n)
+}</pre>
+</p><button class='accordion'>Answer</button><div class='panel'><p >It calculates and returns the factorial of a number.</p>
+<p>It is a recursive function similar to defintion of factorial.</p>
+<p> n! = n*(n-1)!</p></div></div> <div class='question'>6. Write a recursive C function to print a number in binary</p><button class='accordion'>Answer</button><div class='panel'>
+To print a number n in binary, we can use the following algorithm.
+<ul><li>
+print the number n/2 in binary</li>
+<li>print n%2</li>
+</ul>
+That is  - we call the function recursively for n/2 and then we print the remainder of n%2. The recursive call is continued as long as n is greater than 1.
+
+<pre class='courier'>void print_binary(int n)
 {
    if(n&gt;1)
     {
        print_binary(n/2);
      }
-       printf("%d",n%2);
+     printf("%d",n%2);
  }</pre></div></div> <div class='question'>7. Consider the following recursive C function that takes two arguments
 
-unsigned int foo(unsigned int n, unsigned int r)
- {
-      if (n &gt; 0)
-               return (n%r + foo (n/r, r ));
-          else
-              return 0;
+ <pre class="courier">
+unsigned int foo(unsigned int a, unsigned int b)
+{
+   if (a%b==0)
+      return b;
+   else    
+      return (foo(b,a%b));
 }
-
-What is the return value of the function foo when it is called as foo(513, 2)?</p><button class='accordion'>Answer</button><div class='panel'><p >Return value : 2</p></div></div> <div class='question'>8. Determine what the following function does
-
+</pre>
+What is the return value of the function foo when it is called as foo(110, 35)?</p><button class='accordion'>Answer</button><div class='panel'><p >Return value : 5</p>
+<p>The function is recursive gcd (greatest common divisor - also called hcf) function. It returns the gcd of two numbers.</p> </div></div> <div class='question'>8. Determine what the following function does.
+<pre class="courier">
 int func(int n)
 {
    if (n==0)
-     return 0;
-  else
-    return (n+func(n-1));
-}
-Write an iterative function for the same</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>Function finds the sum of all numbers from 1 to n
+      return 0;
+   else
+      return (n+func(n-1));
+}</pre>
+Write an iterative function for the same</p><button class='accordion'>Answer</button><div class='panel'>Function finds the sum of all numbers from 1 to n.<br>
 
 Iterative version of function
+<pre class='courier'>
 int sum(int n)
 {
   int sum=0;
-  for(;n;n--)
-     sum +=n;
+  while(n>0)
+      sum+=n--;
   return sum;
 }
-</pre></div></div> <div class='question'>9. Write a recursive function to return gcd of two numbers. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int gcd(int a,int b)
+</pre></div></div> <div class='question'>9. Write a recursive function to return gcd of two numbers. </p><button class='accordion'>Answer</button><div class='panel'>
+<p>gcd - greatest common divisor of two numbers a and b is a number which is the largest divisor common to both the numbers. It is also called hcf - highest common factor. </p>
+<p>According to Euclidean algorithm, gcd of two numbers A and B is 
+<ul>
+<li>gcd(A,B) = B if A%B = 0 i.e. A is divisible by B</li>
+<li>If not, gcd(A,B) = gcd(B,r) where r = A % B (remainder of A and B)</li>
+</ul>
+<pre >
+int gcd(int a,int b)
 {
      if(a%b==0)
-      return b;
+       return b;
     else
       return gcd(b,a%b);
 }
-
+</pre>
 We can write an iterative version of the function
-
+<pre>
 int gcd1(int a,int b)
 {
      while(a%b)
     {
        int temp;
-
        temp = b;
         b = a%b;
         a = temp;
      }
      return b;
 }
+</pre>
+We can see that in this case, recursive function is much easier to write.  <br><br>
+In both the functions, we are assuming that b is the smaller number. </pre></div></div> <div class='question'>10. Write a recursive function to solve Towers of Hanoi problem.
+<br><br>
+Towers of Hanoi consists of three rods, and a number of disks of different sizes. To start with, all disks are stacked on  first rod, largest one at bottom, smallest at top, in order of diameter.<br><br>
 
-We can see that in this case, recursive function is much easier to write.  Also we are assuming that b is the smaller number. </pre></div></div> <div class='question'>10. Write a recursive function to solve Towers of Hanoi problem.
-
-Towers of Hanoi consists of three rods, and a number of disks of different sizes. To start with all disks are in first rod, largest one at bottom, smallest at top in order of diameter.
-
-The aim is to transfer all the disks to another rod with the following conditons
-
-    Only one disk can be moved at a time.
-    Only the disk at the top can be moved and placed on the top of another rod.
-    No larger disk may be placed on top of a smaller disk.
+The aim of the puzzle  is to transfer all the disks to another rod with the following conditons
+<ul>
+<li>Only one disk can be moved at a time.</li>
+ <li>Only the disk at the top can be moved and placed on the top of another rod.</li>
+  <li>No larger disk may be placed on top of a smaller disk.</li></ul>
 </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
 void towerofhanoi(int num,int frompeg,int topeg,int temppeg)
 {
@@ -127,41 +168,57 @@ int main()
     towerofhanoi(n,from,to,temp);
     return 0;
 }
-</pre></div></div> <div class='question'>11. Write a function to print a string in reverse using recursion.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
-void printrev(char *str)
+</pre></div></div> 
+<div class='question'>11. Write a recursive function to print a string in reverse order.</p><button class='accordion'>Answer</button><div class='panel'><p>
+To print a string in reverse, we must print the n-1 characters in reverse, and then print the n<sup>th</sup> character.</p>
+e.g.<pre> To print Hello in reverse, we have to print ello in reverse and then print H.
+                      ... Print llo in reverse, and then print e
+                  and so on..</pre>
+<pre class='courier'>#include&lt;stdio.h&gt;
+void print_rev(char *str)
 {
    if (*str)
    {
-      printrev(str+1);
+      print_rev(str+1);
       putchar(*str);
    }
 }
 int main()
 {
     char *s = "Hello world";
-    printrev(s);
+    print_rev(s);
     return 0;
 } 
-</pre></div></div> <div class='question'>12. Find error in this function to double a given number
-
+</pre></div></div> <div class='question'>12. Find error in this function. The function is written to double a given number.
+<pre class = "courier">
 void double(int n)
 {
   n*=2;
- }</p><button class='accordion'>Answer</button><div class='panel'><p >1)As the function has no return statement, it does not return double of the number. The assignment statement which needs a return value, instead takes some garbage value. <br><br>2) And the function also produces syntax error, because double is a key word in C and it can not be used as a function name or variable name.</p></div></div> <div class='question'>13. Find the error in this function.
-
+ }</pre><button class='accordion'>Answer</button><div class='panel'><p >There are two errors in the function.
+ <ol><li>And the function  produces syntax error, because <i>double</i> is a key word in C( it is a data type) and it can not be used as a function name or any other identifier.</li>
+ <li>As the function has no return statement, it does not return double of the number. If the function is used in assignment statement,  it takes some garbage value. </li></ol></div></div>
+  <div class='question'>13. Find the error in this function.
+<pre class = "courier">
 int func(void a1)
 {
   return a1-1;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >There can not be a variable of void type. Hence the parameter defintion is wrong.<br><br>Correct method:<br><br>int func(int  a1)<br>{<br>  return a1-1;<br>}<br><br>or<br>int func(void)<br>{<br>    int temp;<br>    temp=10;<br>    return temp;<br>}</p></div></div> <div class='question'>14. How many times the program will print "Hello world"?
-
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >There can not be a variable of void type. Hence the parameter defintion is wrong.<br><br>Correct function would be:
+<pre class="courier">int func(int  a1)
+{
+   return a1-1;
+}
+ </pre>   </div></div> <div class='question'>14. How many times the following program will print "Hello world"?
+<pre class="courier">
 #include&lt;stdio.h&gt;
 int main()
 {
     printf("Hello world");
     main();
     return 0;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Infinte number of times</p></div></div> <div class='question'>15. What will be the output of the program?
-
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >Infinte number of times</p>
+<p>But remember that this program calls the main function recursively. And will execute again and again, until there is stack overflow and the program crashes.</p>
+</div></div> <div class='question'>15. What will be the output of the program?
+<pre class="courier">
 #include&lt;stdio.h&gt;
 void fun(int*, int*);
 int main()
@@ -176,16 +233,20 @@ void fun(int *i, int *j)
     *i = *i**i;
     *j = *j**j;
 }
+</pre>
 
-</p><button class='accordion'>Answer</button><div class='panel'><p >Output: 25 4</p></div></div> <div class='question'>16. Point out the error in the following function
-
-
+ <button class='accordion'>Answer</button><div class='panel'><p >Output: 25 4</p>
+ The function is a call by reference function. i.e. it receives addresses of two variables and modifies them using these addresses - pointers.</div></div> 
+ <div class='question'>16. Point out the error in the following function
+<pre class="courier">
 f(int a, int b)
 {
     int a;
     return a+b;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >a - which is a parameter is redeclared again as a local variable. </p></div></div> <div class='question'>17. Find out the error in this program
-
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >a - which is a parameter is redeclared again as a local variable. </p>
+<p>It is not an error to omit the return type of a function. If omitted, return type defaults to int. </div></div> 
+<div class='question'>17. Find out the error in this program
+<pre class="courier">
 #include&lt;stdio.h&gt;
 int main()
 {
@@ -199,21 +260,42 @@ void f()
 {
     printf("Hi");
 }
-</p><button class='accordion'>Answer</button><div class='panel'><p >We are trying to access the return value of void function. Void function does not return anything. </p></div></div> <div class='question'>18. Why does scanf() needs  address of a variable, where as printf needs just the variable?</p><button class='accordion'>Answer</button><div class='panel'><p >The parameters to a function in C are call by value parameters by default. So a copy of argument is given to function. Even if function modifiets the copy, actual argument is not changed.<br><br>If instead the function takes address of a variable as parameter, it can write a value to that address. This is called call by reference parameter.<br><br>Since scanf needs to read a variable from standard input device and modify that variable, it needs call by reference method. So it needs address of operator.<br><br>In fact any function, which should return more than one value will have to use call by reference parameters and address of operator. </p></div></div> <div class='question'>19. What are the different data types a C function can return? Which is default return type?</p><button class='accordion'>Answer</button><div class='panel'><p >The function can return any data type except for an array or a function. The return type can be int,float, double, char, struct, union, pointer, or even pointer to function.<br><br>If the function returns nothing, the return type should be void.<br><br>The default return type of function in C is int. That is, if you write a function without return type, it is treated as int function. <br><br>add(int a, int b); <br>is same as<br>int add(int a, int b);<br><br></p></div></div> <div class='question'>20. How is a function with variable number of arguments defined? Which header file is needed to be included?</p><button class='accordion'>Answer</button><div class='panel'><p >A variable argument function or variadic function is written with mandatory fixed argument followed by an ellipsis (...). Ellipsis statnds for variable number of arguments of any type.<br><br>Variable argument function needs at least one fixed arguement.<br><br>The header file to be included  here is "stdarg.h"  <br> <br>Macros va_start,va_arg and va_end defined in the header file stdarg.h, are used for accessing the variable arguments.<br><br>e.g.<br><br>void print_numbers(float b,int a,...)<br>{<br>va_list list1;<br>int m;<br>double n;<br>va_start(list1,a); <br>/* start the list after a */<br>m = va_arg(list1,int);<br>/*extract one int from variable list*/<br>n = va_arg(list1,double);<br>/*extract one double from variable list*/<br>va_end(list1;);<br>}<br><br>1) va_start should specify the variable arg list macro and the last fixed argument. This initializes the variable list.<br><br>2)va_arg extracts one argument at a time. It should specify variable arg list and the data type of argument to be  extracted. <br><br>3)The type should be either int or double. All other types will be promoted to these two types.<br><br>4)va_end finalizes the list.<br><br><br></p></div></div> <div class='question'>21. Find out the error in this piece of code
-
+</pre>
+</p><button class='accordion'>Answer</button><div class='panel'><p >The error is - we are trying to access the return value of void function. Void function does not return anything. </p></div></div> 
+<div class='question'>18. Why does scanf() need  address of a variable, where as printf needs just name of the variable?</p><button class='accordion'>Answer</button><div class='panel'><p >The parameters to a function in C are call by value parameters by default. So a copy of argument is given to function. Even if function modifiets this copy, actual argument is not changed.<br><br>If instead the function takes address of a variable as parameter, it can write a value to that address. This is called call by reference parameter.<br><br>Since scanf needs to read a variable from standard input device and modify that variable, it needs call by reference method. So it needs address of variable (using &operator).<br><br>In fact any function, which should return more than one value will have to use call by reference parameters and address of operator. </p></div></div> 
+<div class='question'>19. What are the different data types a C function can return? Which is default return type of a function?</p>
+<button class='accordion'>Answer</button><div class='panel'><p >The function can return any data type except for an array or a function.</p><p> The return type can be int,float, double, char, struct, union, pointer, or even pointer to function.<br><br>If the function returns nothing, the return type should be void.<br><br>
+The default return type of function in C is int. That is, if you write a function without return type, it is treated as int function. <br><pre>add(int a, int b); </pre>is same as<pre>int add(int a, int b);</pre><br></p></div></div> <div class='question'>20. How is a function with variable number of arguments defined? Which header file is needed to be included?</p><button class='accordion'>Answer</button><div class='panel'><p >A variable argument function or variadic function is written with mandatory fixed argument followed by an ellipsis (...). Ellipsis statnds for variable number of arguments of any type.<br><br>Variable argument function needs at least one fixed arguement.<br><br>The header file to be included  here is "stdarg.h"  <br> <br>Macros va_start,va_arg and va_end defined in the header file stdarg.h, are used for accessing the variable arguments.<br><br>e.g.<pre class="courier">
+void print_numbers(float b,int a,...)
+{ 
+       va_list list1; 
+       int m; 
+       double n; 
+       va_start(list1,a);  /* start the list after a */ 
+       m = va_arg(list1,int); /*extract one int from variable list*/ 
+       n = va_arg(list1,double); /*extract one double from variable list*/ 
+       va_end(list1;);
+ }  
+ </pre>
+ <ol><li> va_start should specify the variable arg list macro and the last fixed argument. This initializes the variable list.</li><li>va_arg extracts one argument at a time. It should specify variable arg list and the data type of argument to be  extracted. </li><li>The type should be either int or double. All other types will be promoted to these two types.</li><li>va_end finalizes the list.</li></ol></p></div></div> 
+ <div class='question'>21. Find out the error in this piece of code
+<pre class="courier">
 int add_num(a,b)
 int a;
 int b;
 {
    int c = a+b;
    return c;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >No error</p></div></div> <div class='question'>22. Explain this function.
-
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >No error</p>
+<p>This is the old K&R style of writing a function. It is now deprecated. Don't use it.</div></div> <div class='question'>22. Explain this function.
+<pre class="courier">
 static int square(int num)
 {
    return num*num;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Function finds square of a number and returns it.<br><br>But the function has internal linkage because of the static keyword in function header. It can be called only in current translation unit(current .c file)<br><br>By default  ordinary non-static functions have external linkage - the functions can be called from anywhere in the program. </p></div></div> <div class='question'>23. What is the output of the following program
-
+}</pre><button class='accordion'>Answer</button><div class='panel'>
+<p >Function finds square of a number and returns it.</p><p>But the function has <i>internal linkage</i> because of the static keyword in function header. It can be called only in current translation unit(current .c file)</p><p>By default  ordinary non-static functions have external linkage - the functions can be called from anywhere in the program. </p></div></div>
+ <div class='question'>23. What is the output of the following program
+<pre class="courier">
 #include &lt;stdio.h&gt;
 #include &lt;stdarg.h&gt;
 int fun(int n, ...)
@@ -233,7 +315,9 @@ int main()
 {
     printf("%d\n", fun(3, 1, 2, 3));
     return 0;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Output : 6</p></div></div> <div class='question'>24. Write a recursive function to find the sum of digits of a number.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> #include&lt;stdio.h&gt;
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >Output : 6</p></div></div> 
+<p>The fucntion <pre>fun()</pre> is a variable argument function. It adds n values from the argument list. The value of n is given by the first argument.
+<div class='question'>24. Write a recursive function to find the sum of digits of a number.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'> #include&lt;stdio.h&gt;
 int sum_of_digits(int n)
 {
     if(n&gt;0)
@@ -249,7 +333,7 @@ int main()
    return 0;
 }
 </pre></div></div> <div class='question'>25. What is the output of the program
-
+<pre class="courier">
 #include&lt;stdio.h&gt;
 int foo(int n);
 int main()
@@ -268,8 +352,25 @@ int foo(int n)
    static int sum=0;
    sum +=n*n;
    return sum;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Output : 0 1 5 14 30</p></div></div> <div class='question'>26. Can we use a function as parameter to another function? e.g. int foo(int n,int bar(int));</p><button class='accordion'>Answer</button><div class='panel'><p >No</p></div></div> <div class='question'>27. Can a function have more than one return statement? Can it have no return statement at all? Can a void function have a return statement?</p><button class='accordion'>Answer</button><div class='panel'><p >The answer is YES for all three questions. </p></div></div> <div class='question'>28. What is the output of the following program?
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >Output : 0 1 5 14 30</p>
+<p>sum is a static variable. Which means it is initialized (in this case to 0) only first time it is called and later retains its value. So next time time it is called, the value of sum is 0+1. Next time, it is 1+2*2 and so on.
+</div></div>
 
+ <div class='question'>26. Can we use a function as parameter to another function? e.g.<pre> int foo(int n,int bar(int));</pre><button class='accordion'>Answer</button><div class='panel'><p >No. </p>
+ <p>A function can not be a parameter to another function. But a function pointer can be a parameter to a function.</p></div></div> <div class='question'>27. Can a function have more than one return statement? Can it have no return statement at all? Can a void function have a return statement?</p><button class='accordion'>Answer</button><div class='panel'><p >The answer is YES for all three questions. </p>
+ <p>A <i>return</i> statement of a function serves two purposes. It returns a value back to the caller function. It also stops the execution of the function and contiues the caller function. </p>
+ <p>If a function has no return statement, the execution continues till the last statement of the function. And the return values is some garbage value.<p>
+ <p>return statement in a void function is used for termination of the function. And a return statement of a void function is an empty return statement. e.g.
+ <pre>
+ void printNum(int num)
+ { 
+      if(num&lt;=0)
+          return;
+      printf("The number is positive\n");
+  }    </pre>
+       </div></div> 
+       <div class='question'>28. What is the output of the following program?
+<pre class="courier">
 #include&lt;stdio.h&gt;
 int main()
 {
@@ -282,8 +383,10 @@ int main()
 int square(int n)
 {
    int temp = n*n;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Output : Garabage value</p></div></div> <div class='question'>29. Write output of the following program
-
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >Output : Garabage value</p>
+<p>The function does not print 100 - square of 10. Because the function square does not return temp after calculating it. So a = square(a); assigns some garbage value to a.</p>
+</div></div> <div class='question'>29. Write output of the following program
+<pre class="courier">
         #include &lt;stdio.h&gt;
         int main()
         {
@@ -296,14 +399,21 @@ int square(int n)
             int j = 2;
             p = &j;
             printf("%d ", *p);
-        }</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>2 97</pre></div></div> <div class='question'>30. What will happen when the following program is exectued?
-
+        }</pre><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>2 97</pre>
+        <p>The function foo() takes a pointer as a parameter. So it is a call by reference parameter. But if we assign the pointer p to another address, that change remains local to the function. And *p remains its old value - 97 in main function.</p>
+        </div></div>
+         <div class='question'>30. What will happen when the following program is exectued?
+<pre class="courier">
 #include&lt;stdio.h&gt;
 int main()
 {
    printf("%p",main);
    return 0;
-}</p><button class='accordion'>Answer</button><div class='panel'><p >Prints some address - address of main function</p></div></div> <div class='question'>31. Write a function to reverse the digits of an integer</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int reverse_integer(int n)
+}</pre><button class='accordion'>Answer</button><div class='panel'><p >The program prints some address - address of main function.</p>
+<p>The first statement of the program just prints the address, it does not call the main function again, as we have not used the paranthesis.</p></div></div> 
+<div class='question'>31. Write a function to reverse the digits of an integer</p><button class='accordion'>Answer</button><div class='panel'>
+<pre class='courier'>
+int reverse_integer(int n)
 {
   int rev_num = 0;
   while(n)
@@ -313,7 +423,18 @@ int main()
      rev_num = rev_num*10 + digit;
    }
    return rev_num;
-}</pre></div></div> <div class='question'>32. Write a function to  print all armstrong numbers from 1 to 1000. An armstrong is the one where sum of cubes of digits of the number is equal to number itself. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int is_armstrong(int num)
+}</pre>
+<p><ul><li>When we divide the number by 10, the remainder is the last digit of the number. This is stored in a variable called rev_num</li>
+<li>Next the number is divided by 10 using integer division. So that we get a number excluding the last digit</li>
+<li>Again the number is divided by 10 and the remainder is used.</li>
+<li>The previous remainder is multiplied by 10 (the digits are shifted to the left) and the new remainder is added to it.</li>
+<li>This process is continued until the number becomes zero. Now the remainder is the rev_num.</li>
+</ul> 
+</div></div> <div class='question'>32. Write a function to  print all armstrong numbers from 1 to 1000. </br></br><p>An armstrong is a number whose  sum of cubes of digits  is equal to the number itself. </p><button class='accordion'>Answer</button><div class='panel'>
+<p>The function is_armstrong() takes a number as a paramter and finds the sum of cubes of digits and determines whether this sum is equal to the number (condition for an armstrong number) and returns 0, if it is not an armstrong number. Else returns 1.</p>
+<pre class='courier'>
+#include&lt;stdio.h&gt;
+int is_armstrong(int num)
 {
     int temp = num,sum=0;
     while(temp)
@@ -324,13 +445,14 @@ int main()
     }
     return sum==num;
 }
-void print_armstrong(int n)
+int main()  
 {
     int i;
+    int n=1000;
     for(i=1;i&lt;n;i++)
        if(is_armstrong(i))
           printf("%d\t",i);
-}</pre></div></div> <div class='question'>33. Write a program to print numbers from 1 to 100 without using loops</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> <div class='question'>33. Write a program to print numbers from 1 to 100 without using  any loops.</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
 void print_numbers_rec(int n);
 int main()
 {
@@ -346,24 +468,23 @@ void print_numbers_rec(int n)
    }
 
 }
-
-Second method is to call main function recursively.
-
-#include&lt;stdio.h&gt;
-int main()
-{
-  static int n=1;
-  printf("%d ",n++);
-  if(n&lt;=100)
-    main();
-}</pre></div></div> <div class='question'>34. Write a function to swap two nibbles of a byte. e.g. if the 8 bit number is 0x78, the function should return 0x87</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int swap_nibbles(unsigned char n)
+</pre><p>
+When the function print_numbers_rec() is called with 100, it recursively calls same function with 99 and printf(100) will be stored in stack. This in turn calls print_numbers_rec() with 98 and so on. This process is repeated as long as n is greater than 0. Once n becomes 0, all the printf in stack are unwound and are printed. </p>
+</div></div> 
+<div class='question'>
+34. Write a function to swap two nibbles of a byte. e.g. if the 8 bit number is 0x78, the function should return 0x87</p><button class='accordion'>Answer</button><div class='panel'>
+<pre class='courier'>int swap_nibbles(unsigned char n)
 {
     unsigned char temp = n;
-    n = n&gt;&gt;4;/*most significant 4 bits moved to LSN*/
-    temp = temp&lt;&lt;4;//least significat nibble becomes Most significant*/
-    n = n|temp;/*temp has first nibble and n has second nibble*/
+    n = n&gt;&gt;4;/*most significant 4 bits moved to LS nibble*/
+    temp = temp&lt;&lt;4;//least significat nibble becomes most significant*/
+    n = n|temp;/*temp has first nibble and n has second nibble. When ORed, n becomes the reversed byte*/
     return n;
-}</pre></div></div> <div class='question'>35. Write a function to check if the given number is binary</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int is_binary(int n)
+}</pre></div></div> 
+<div class='question'>35. Write a function to check if the given number is in binary number system.</p><button class='accordion'>Answer</button><div class='panel'>
+<p>The given number will be in the binary number system, if only digits present in the number are 0 and 1</p>
+<p>The function extracts each digit of the number - starting from last. Then it checks if this digit is greater than 1. If yes, it returns a false - a 0. If none of the digits are greater than 1, the function returns a 1 - a true.</p>
+<pre class='courier'>int is_binary(int n)
 {
     while(n)
     {
@@ -373,7 +494,11 @@ int main()
        n/=10;
     }
     return 1;
-}</pre></div></div> <div class='question'>36. Given three sides of a triangle, write a function to find if the triangle is right angled. </p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>int is_rt(int a,int b,int c)
+}</pre></div></div>
+ <div class='question'>36. Given three sides of a triangle, write a function to find if the triangle is right angled. </p><button class='accordion'>Answer</button><div class='panel'>
+ <p>A right angled triangle will have to obey Pythogoros's theorem for its sides - the sum of squares of its two sides will be equal to the square of third  side.</p>
+ <p>The function here checks whether a<sup>2</sup> = b<sup>2</sup>+c<sup>2</sup> or b<sup>2</sup> = a<sup>2</sup>+c<sup>2</sup> or c<sup>2</sup> = a<sup>2</sup>+b<sup>2</sup></p>
+ <pre class='courier'>int is_rt(int a,int b,int c)
 { 
   if(a*a == (b*b+c*c))
             return 1;
@@ -382,7 +507,58 @@ int main()
   if(c*c == (a*a + b*b))
             return 1;
      return 0;
-}</pre></div></div> <div class='question'>37. Calculate the factorial of a number recursively and from that calculate the value of e^x=1+ (X^1/1!) + (X^2 /2!) + (X^3/3!) +...</p><button class='accordion'>Answer</button><div class='panel'><p >#include&lt;stdio.h&gt;<br>#include&lt;math.h&gt;<br>#define NUM_TERMS 30<br>long int factorial(int num)<br>{<br>   if(num==0)<br>      return 1;<br>   else<br>      return num*factorial(num-1);<br>}<br>float epowerx(float x)<br>{<br>    float sum=1.0;<br>    int i;<br>    for(i=1;i&lt;NUM_TERMS;i++)<br>      {<br>         float term = pow(x,i)/factorial(i);<br>         sum+=term;<br>       }<br>}<br>int main()<br>{<br>    float x;<br>    printf("x=");<br>    scanf("%f",&x);<br>    printf("e to power %f is %f\n",x,epowerx(x));<br>    return 0;<br>}</p></div></div> <div class='question'>38. Calculate the factorial of a number recursively. From that calculate the value of COS(X) = 1 - X2/2! + X4 /4! - X6/ 6! +??.</p><button class='accordion'>Answer</button><div class='panel'><p >#define NUM_TERMS 30<br>#define PI 22.0/7<br>long int factorial(int num)<br>{<br>   if(num==0)<br>      return 1;<br>   else<br>      return num*factorial(num-1);<br>}<br>float cosine(float x)<br>{<br><br>     float sum =1.0;<br>     int i;<br>     int sign = -1;<br>     x = x * PI/180;/*convert to radians*/<br>     for(i=2;i&lt;NUM_TERMS;i+=2)<br>      {<br>         float term = pow(x,i)/factorial(i);<br>         sum+=sign*term;<br>         sign *=-1;<br>       }<br>     return sum;<br>}</p></div></div> <div class='question'>39. Write a program to find LCM of two numbers</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> 
+<div class='question'>37. Calculate the factorial of a number recursively and from that, calculate the value of e<sup>x</sup>=1+ (X<sup>1</sup>/1!) + (X<sup>2</sup>/2!) + (X<sup>3</sup>/3!) +...</p><button class='accordion'>Answer</button><div class='panel'><p re class = "courier">#include&lt;stdio.h&gt;
+ #include&lt;math.h&gt;
+ #define NUM_TERMS 30
+ long int factorial(int num)
+ {
+    if(num==0)
+       return 1;
+    else
+       return num*factorial(num-1);
+ }
+ float epowerx(float x)
+ {
+     float sum=1.0;
+     int i;
+     for(i=1;i&lt;NUM_TERMS;i++)
+       {
+          float term = pow(x,i)/factorial(i);
+          sum+=term;
+        }
+ }
+ int main()
+ {
+     float x;
+     printf("x=");
+     scanf("%f",&x);
+     printf("e to power %f is %f\n",x,epowerx(x));
+     return 0;
+ }</pre></div></div> <div class='question'>38. Calculate the factorial of a number recursively. From that calculate the value of COS(X) = 1 - X2/2! + X4 /4! - X6/ 6! +??.</p><button class='accordion'>Answer</button><div class='panel'><pre class="courier" >
+ #define NUM_TERMS 30
+ #define PI 22.0/7
+ long int factorial(int num)
+ {
+    if(num==0)
+       return 1;
+    else
+       return num*factorial(num-1);
+ }
+ float cosine(float x)
+ {
+      float sum =1.0;
+      int i;
+      int sign = -1;
+      x = x * PI/180;/*convert to radians*/
+      for(i=2;i&lt;NUM_TERMS;i+=2)
+       {
+          float term = pow(x,i)/factorial(i);
+          sum+=sign*term;
+          sign *=-1;
+        }
+      return sum;
+ }</pre></div></div> <div class='question'>39. Write a program to find LCM of two numbers</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
 int gcd(int a,int b)
 {
      if(a%b==0)
@@ -401,7 +577,8 @@ int main()
   lcm = (a*b)/gc;
   printf("LCM of two numbers is %d\n",lcm);
   return 0;
-}</pre></div></div> <div class='question'>40. Write a program to read a number and print the number in words. e.g. if the number is 785, the output should be seven eight five</p><button class='accordion'>Answer</button><div class='panel'><pre class='courier'>#include&lt;stdio.h&gt;
+}</pre></div></div> <div class='question'>40. Write a program to read a number and print the number in words. e.g. if the number is 785, the output should be seven eight five</p><button class='accordion'>Answer</button><div class='panel'>
+<pre class='courier'>#include&lt;stdio.h&gt;
 void printDigit(int d)
 { 
    switch(d)
@@ -445,4 +622,43 @@ int main()
   scanf("%d",&n);  
   findDigits(n);
   return 0;
-}</pre></div></div> <div class='question'>41. What is the return type of a function? Can we omit this return type? If yes how?</p><button class='accordion'>Answer</button><div class='panel'><p >The type of return value is the return type of a function. <br><br>Return type is specified before the function name in function declaration and definition.<br><br>e.g. <br>int factorial(int n);/* return type int*/<br><br>void print_sum(int n,int m)<br>/*return type is void*/<br>{<br>   printf("%d",n+m);<br>}<br><br>A return type of a function can be any valid type except for arrays and functions.<br><br>We can omit the return type in C, because default return type is "int".<br><br>product(int a,int b,int c);<br>/*default return type int*/</p></div></div> <div class='question'>42. What is call by value parameter? </p><button class='accordion'>Answer</button><div class='panel'><p >A C function sends parameter by value - a copy of argument is sent to the function.<br><br>The actual argument and function parameter are two different variables stored in different locations. At function call, value of argument is copied to parameter.<br><br>Because of this, if parameter is modified by the function, the argument in caller function is not changed. <br><br>This is called "call by value" mechanism. <br><br>Instead if we send address of a variable to function and function has a pointer parameter, then the called function can change the argument using the pointer. (call by reference)</p></div></div> <div class='question'>43. How do you send an array to the function? How do you return an array from the function?</p><button class='accordion'>Answer</button><div class='panel'><p >An array is sent to the function by specifying its name - but this array parameter gets implicitly converted to base address of the array. And any changes made to array are also available in the caller function. The size of the array must also be sent to function. (But for strings - character arrays, size is not needed because a string ends in a null character).<br><br>void read_array(int arr[],int n);<br><br>An array can not be returned from a function. But we can return a pointer to first element of array from a function. But if this array is not allocated at run time, there will be errors at run time. Because local arrays are destroyed when function exits.<br><br>int *somefn()<br>{<br>    int *arr = (int *)malloc(10*sizeof(int));<br>    return arr;<br>}</p></div></div> <div class='question'>44. What is call by reference parameter? Why do we need such parameters?</p><button class='accordion'>Answer</button><div class='panel'><p >Call by reference parameters are pointers which help the function to modify variables indirectly.<br><br>Functions are like black boxes. All variables and parameters used in the function are not visible outside. Even the parameters sent to function are just copies of actual arguments. <br><br>So only way of sending value back from function is through return values. <br><br>But a function can return only one value. If there is a need to return multiple values from function, we must use call by reference parameter.<br><br>A typical example is a function to swap two varaibles. <br><br>void swap(int *p1,int *p2)<br>{<br>   int temp = *p1;<br>   *p1 = *p2;<br>   *p2 = temp;<br>}<br><br>int main()<br>{<br>   int a = 10,b=3;<br>   swap(&a,&b);<br>}<br><br>Here a and b are sent as reference (pointer) parameter. swap() function changes a and b using the pointers.</p></div></div> </div><script >var acc = document.getElementsByClassName("accordion");var i;for (i = 0; i < acc.length; i++) {  acc[i].addEventListener("click", function() {    /* Toggle between adding and removing the active class,    to highlight the button that controls the panel */    this.classList.toggle("active");    /* Toggle between hiding and showing the active panel */    var panel = this.nextElementSibling;    if (panel.style.display === "block") {      panel.style.display = "none";    } else {      panel.style.display = "block";    }  });} </script></body></html>
+}</pre></div></div> 
+<div class='question'>41. What is the return type of a function? Can we omit this return type? If yes how?</p>
+<button class='accordion'>Answer</button><div class='panel'>
+<p >The type of return value is the return type of a function. <br><br>Return type is specified before the function name in function declaration and definition.<br><br>e.g. 
+<pre>int factorial(int n);/*  return type is int   */
+void print_sum(int n,int m)<br>/* return type is void.   */ 
+{
+   printf("%d",n+m);
+   }</pre>
+   <p>A return type of a function can be any valid type except for arrays and functions.</p><p>It is possible to omit the return type in C. If omitted, the default return type is taken, which is int.<br><pre>product(int a,int b,int c);/*  return type  - int*/</pre>
+   
+   </div></div> <div class='question'>42. What is call by value parameter? </p>
+   <button class='accordion'>Answer</button><div class='panel'>
+   <p >A C function sends parameter by value - a copy of argument is sent to the function.<br><br>The actual argument and function parameter are two different variables stored in two different locations. At function call, value of argument is copied to the parameter.<br><br>Because of this, if parameter is modified by the function, the argument in caller function is not changed. <br><br>This is called "call by value" mechanism. <br><br>Instead if we send address of a variable to function and function has a pointer parameter, then the called function can change the argument using the pointer. (this is known as call by reference)</p></div></div> 
+   <div class='question'>43. How do you send an array to the function? How do you return an array from the function?</p><button class='accordion'>Answer</button>
+   <div class='panel'><p >An array is sent to the function by specifying its name - but this array parameter gets implicitly converted to base address of the array. And any changes made to array are also available in the caller function. </p><p>The size of the array must also be sent to function. (But for strings - which are character arrays, size is not needed because a string ends in a null character).</p>
+   <pre>void read_array(int arr[],int n);</pre>
+   An array can not be returned from a function. But we can return a pointer to first element of array from a function.</p>
+   <p>Remember that,  if this array which is returned using its pointer is not allocated at run time, there will be errors at run time. Because all local variables including arrays are destroyed when function exits.</p>
+   
+   <pre>int *somefn(){
+            int *arr = (int *)malloc(10*sizeof(int));
+            return arr;
+         }</pre></div></div> 
+         <div class='question'>44. What is call by reference parameter? Why do we need such parameters?</p><button class='accordion'>Answer</button><div class='panel'><p >Call by reference parameters are pointers which help the function to modify variables indirectly.<br><br>Functions are like black boxes. All variables and parameters used in the function have local scope and are not visible outside. Even the parameters sent to function are just copies of actual arguments. <br><br>So the only way of sending value back from function is through return values. <br><br>But a function can return only one value. If there is a need to return multiple values from function, we must use call by reference parameter.<br><br>A typical example is a function to swap two varaibles. <br><pre >
+         void swap(int *p1,int *p2)
+         {
+                 int temp = *p1;
+                 *p1 = *p2;
+                 *p2 = temp;
+        }
+        int main(){
+               int a = 10,b=3;
+              swap(&a,&b);
+       }</pre>
+       
+       <br>Here a and b are sent as reference (pointer) parameter. swap() function changes a and b using the pointers.</p></div></div> </div>
+     <script type="text/javascript" src = "cqn2.js">
+       </script>
+       </body></html>
