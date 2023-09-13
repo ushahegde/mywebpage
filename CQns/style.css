@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&display=swap');
 body {
     background-color: #eee;
     font-size:18px;
     font-family: 'roboto',sans-serif;
+    margin:0px;
+    padding:0px;
 }
  
 .grid {
@@ -15,23 +18,19 @@ body {
  
  .answerclass{ 
     font-weight: bolder; 
-    min-height: 40px;
+    min-height: 20px;
     text-align: center;
  }
 .grid h1 {
-    
-    
     font-size: 40px;
-    text-align: center;
-    
+    text-align: center;  
     padding: 2px 0px;
-    
 }
  
 #score {
     color: #009688;
-    text-align: center;
-    font-size: 30px;
+    text-align: right;
+    font-size: 1.0em;
 }
  
 #btn0,.btn1,.btn2,.btn3{
@@ -39,31 +38,32 @@ body {
     padding-bottom: 10px;
     
  }
-.grid #question {
-    
-     
-     
-}
+.codetext{
+  padding:10px;
+  font-family:courier, monospace;
+  font-size:12px; 
+  border:1px solid #ddd;}
  
+ .monotext{
+     font-family:courier;
+     font-size:0.9em;
+}   
 .buttons {
     margin-top: 30px; 
     line-height: 200%; 
     font-size: 16px;
 }
  
- .codetext{
-    font-family:monospace;
-    font-size:12px; 
- }
+ 
 #nextbutton {
  
-    background-color: #009688;
-    width: 250px;
-    font-size: 22px;
+    background-color: #008988;
+     
+    font-size: 1.1em;
     font-weight: bold;
     color: #fff;
     margin:20px auto;
-    padding: 20px 20px 20px 20px;
+    padding: 15px;
     border-radius: 5px;
      
 }
@@ -78,7 +78,7 @@ body {
     outline: 0;
 }
 .head{
-   background-color: #009688;
+   background-color: #389;
    color:white;
    font-weight: bolder; 
    padding:10px;

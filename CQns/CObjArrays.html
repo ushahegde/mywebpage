@@ -1,13 +1,13 @@
-
+<!doctype html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Quiz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet"> 
+   
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="CObjArrays.js" >
-    
-    </script>
+    <script type="text/javascript" src = "ObjectiveCommon.js"></script>
+    <script type="text/javascript" src="CObjArrays.js" ></script> 
+   
 </head>
 <body>
  <header class="head">
@@ -23,11 +23,11 @@
  
             <div class="buttons">
              <menuitem name="group1">
-                 <input type="radio" id="btn0" name="group1" ><span id="choice0"></span></input><br>
+                 <input type="radio" id="btn0" name="group1" ><label for = "btn0" id="choice0"></label></input><br>
               
-                <input type= "radio" id="btn1" name="group1" ><span id="choice1"></span></input><br>
-                <input type="radio"  id="btn2" name="group1" ><span id="choice2"></span></input><br>
-                <input type="radio"  id="btn3" name="group1" ><span id="choice3"></span></input><br>
+                <input type= "radio" id="btn1" name="group1" ><label for="btn1"  id="choice1"></label></input><br>
+                <input type="radio"  id="btn2" name="group1" ><label for="btn2"  id="choice2"></label></input><br>
+                <input type="radio"  id="btn3" name="group1" ><label for="btn3"  id="choice3"></label></input><br>
            </menuitem>    
             </div>
            
@@ -35,13 +35,13 @@
             
             <footer>
              <p class="answerclass" id="answerIndicator"></p>
-                <p id="progress">Question x of y</p>
+                <p align="center" id="progress">Question x of y</p>
                <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
             </footer>
         </div>
     </div>
  <script type="text/javascript" >
-    
+    var quiz = new Quiz(questions);
    populate()
  </script>
  
