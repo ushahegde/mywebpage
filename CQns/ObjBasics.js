@@ -42,7 +42,7 @@ new Question('Write the string in the printf   given below, such that output is<
 new Question('What is the output of this code if 2 is typed on console?<br><br><div class="codetext">int k;<br>k = getchar ( );<br>printf ("%d", k);<br></div>',['2','Syntax error in line 2','50',''],3),
 new Question('What is the output of this code?<br><br><br><div class="codetext">printf("%d",printf("Hello world"));<br></div>',['Syntax error','Run time error','Hello World11',''],3),
 new Question('What is the value of x after this code is executed and two values are entered through console?<br><br><div class="codetext">int m,n;int x;<br>x = scanf("%d %d",&m,&n);<br><br></div>',['Syntax error','0','Garbage','2'],4),
-new Question('How do you print  "Hello world" printing even the quotes?<br><br> ',['Not possible','Depends on compiler','printf('+'"'+'\"'+'Hello world'+'\""'+');'],3),
+new Question('How do you print  "Hello world" printing even the quotes?<br><br> ',['Not possible','Depends on compiler','printf('+'"&bsol;"'+'Hello world'+'&bsol;""'+');'],3),
 new Question('What is the output of the following program?<br><br><div class="codetext">int main()<br>{<br>   int i = 0xff ;<br> printf("%d", i&lt;&lt;2);<br>}<br></div>',['1020','0xff0','512',''],1),
 new Question('What is the output?<br><br><div class="codetext">int main()<br>{<br>&nbsp;int x=10,y=12,z=5;<br>&nbsp;int a=x&lt;y?x&lt;z?x:z:y&lt;z?y:z;<br>printf("%d",a);<br>return 0;<br>}</div>',['5','10','12','Syntax error'],1),
 new Question('What is the output?<br><br><div class="codetext">int main()<br>{<br>&nbsp;int a=011|0x10;<br>&nbsp;printf("%d",a);<br>&nbsp;return 0;<br>}<br></div>',['Syntax error','10','25','None of these'],3),
