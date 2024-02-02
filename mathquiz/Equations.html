@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Equations Quiz</title> 
+     <link rel="stylesheet" type="text/css" href="eqnstyle.css">
+    <script  src="equations.js" ></script>
+    
+ 
+</head>
+<body>
+ <div class="heading" > Equations Quiz
+ <div class="homeheading"><a href="../index.html">Home</a></div>
+ </div>
+   
+ <div id="grid">
+ <div id="heading" class="subheading">Find the value of x in the following equations</div>
+ <div id="q1"> <span class="question"></span>
+ <span  class="inputdiv"><input    class="answer"  ></input></span>
+</div  ><hr style="height:1px;color:#eee;">
+ <div id="q2"> <span class="question"></span>
+ <span  class="inputdiv"><input   class="answer"  ></input></span>
+</div  ><hr style="height:1px;color:#eee;">
+ <div id="q3"> <span class="question"></span>
+ <span  class="inputdiv"><input   class="answer"  ></input></span>
+</div  ><hr style="height:1px;color:#eee;">
+ <div id="q4"> <span class="question"></span>
+ <span  class="inputdiv"><input   class="answer"  ></input></span>
+</div  ><hr style="height:1px;color:#eee;">
+ <div id="q5"> <span class="question"> </span>
+ <span  class="inputdiv"><input   class="answer" ></input></span>
+</div  > 
+   <div>
+   <button  id="next" style=" float:right;" onclick="showNextSet()">Next</button>
+ </div>
+  <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message"></p>
+       <p ><button    id="closebtn" >OK</button></p>
+        
+     </div>
+     
+  </div>
+ <script> startQuiz();</script>
+</body>
+</html>
