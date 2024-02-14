@@ -26,7 +26,7 @@ r = 0
  	var qnEl = document.getElementById("question");
  	 
  	qnEl.innerHTML = qnString;
- answerArray= [question[1],question[2],question[3]];
+    answerArray= [question[1],question[2],question[3]];
  	correctAnswerNumber = question[4];
  	correctAnswer = question[correctAnswerNumber];
  	imageName = question[5];
@@ -44,8 +44,9 @@ r = 0
       for(i=0;i<4;i++)
         { var m = i+1;
           btnArray[i] = document.getElementById("btn"+m);
+          
         }
- 	for (i = 0;i<4;i++)
+ 	for (i = 0;i<mNumAnswers;i++)
 	{ 		
 		  if(answerArray[i].length ==0)
 		  {
