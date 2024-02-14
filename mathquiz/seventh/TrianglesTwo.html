@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+<html>
+ <meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+    <title>Triangles Quiz</title> 
+    
+    <script type="text/javascript" src="trianglesPart2.js" ></script>
+    <script type="text/javascript" src= "completeQnsLib.js"></script>
+     <link rel="stylesheet" type="text/css" href="../style.css">
+    
+ </head>
+
+<body>
+ <div class="heading">Triangles - II
+  <ul    >
+   <li><a href="../../index.html">Home</a></li>	  
+      
+</ul> 
+ </div>
+  <div id="restartScreen" align="center" style="display:none;   margin:20px auto;">
+    <button onclick="restartQuiz()">Quiz again</button>
+    
+</div>
+ <div align = "center" id="grid">
+
+ <span id="qnNum" align="left" margin="10px"></span>
+ <span id="question">
+ </span>
+   
+ <div  >
+ <img id = "image"  width = "200px" height="150px" style="float:left;display:none; padding:0px;border:solid 2px #888;"></img>
+ <button  id = "btn1" class="answerbutton"></button>
+ <button  id="btn2" class="answerbutton"></button>
+ </div>
+ <div> 
+ <button   id="btn3" class="answerbutton"></button>
+ <button class="answerbutton" id="btn4"></button>
+ </div>
+ 
+ 
+   <div class="modal"  id="dialog">
+     <div class="modalwindow">
+        <p  id="message" align = "center"></p>
+       <p align="center"><button    id="closebtn" >OK</button></p>
+        
+     </div> 
+     
+  </div>
+ </div>
+
+</div>
+ <script> startQuiz();</script>
+</body>
+</html>
