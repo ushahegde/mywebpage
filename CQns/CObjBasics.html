@@ -2,6 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <title>C Basics Quiz</title>
      <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="ObjBasics.js" >
@@ -11,34 +13,34 @@
 </head>
 <body>
  <header class="head">
-            <h2 align="center">C Basics</h2></header>
+            <h1 align="center">C Basics</h1>
+             <a href="../index.html">Home</a>><a href="../CQns/c.html">C Quiz</a>>C Basics
+            </header>
     <div class="grid">
         <div id="quiz">
        
              
              
-            <div id="score"  ></div>
-                <hr style="margin-top: 10px">
-            <p id="question"></p>
- 
+          <div> 
+           
+  <span id="progress" >Question x of y</span><span id="score" style="float:right;" > </span> </div>
+   <p id="question"></p>
             <div class="buttons">
-             <menuitem name="group1">
-                 <input type="radio" id="btn0" name="group1" ><label id="choice0" for = "btn0"></label></input><br>
-              
-                <input type= "radio" id="btn1" name="group1" ><label id="choice1" for="btn1"></label></input><br>
-                <input type="radio"  id="btn2" name="group1" ><label id="choice2" for ="btn2"></label></input><br>
-                <input type="radio"  id="btn3" name="group1" ><label id="choice3" for="btn3"></label></input><br>
-           </menuitem>    
+             
+                 <button   id="btn0" > </button><br>
+                <button   id="btn1"  > </button><br>
+                <button    id="btn2"   > </button><br>
+                <button    id="btn3"   > </button><br>
+          
             </div>
            
-            <hr style="margin-top: 30px">
-            
             <footer>
              <p class="answerclass" id="answerIndicator"></p>
-                <p id="progress">Question x of y</p>
+               
                <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
             </footer>
         </div>
+         <div id="msg" style="display:none;"></div>
     </div>
  <script type="text/javascript" >
     

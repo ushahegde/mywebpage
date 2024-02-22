@@ -1,9 +1,11 @@
-<!doctype html>
+ <!doctype html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <title>Quiz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet"> 
+     
     <link rel="stylesheet" type="text/css" href="style.css">
      <script type="text/javascript" src="ObjectiveCommon.js" >
     
@@ -13,35 +15,37 @@
     </script>
 </head>
 <body>
- <header class="head">
-            <h2 align="center">File Handling</h2></header>
+  <header class="head">
+            <h1 align="center">Arrays</h1>
+             <a href="../index.html">Home</a>><a href="../CQns/c.html">C Quiz</a> >File Handling
+  </header>
+          
     <div class="grid">
-        <div id="quiz">
-       
-             
-             
-            <h4 id="score" style="font-size:14px; text-align: right; "></h4>
-                <hr style="margin-top: 50px">
+     
+        <div id="quiz" margin="30px">
+        
+                 <div   >
+            <span style="text-align:left"   id="progress"  >Question x of y</span><span id="score"  style="float:right;"></span></div> 
             <p id="question"></p>
  
-            <div class="buttons">
-             <menuitem name="group1">
-                 <input type="radio" id="btn0" name="group1" ><label id="choice0" for = "btn0" ></label></input><br>
-              
-                <input type= "radio" id="btn1" name="group1" ><label id="choice1"  for = "btn1"></label></input><br>
-                <input type="radio"  id="btn2" name="group1" ><label id="choice2"  for = "btn2"></label></input><br>
-                <input type="radio"  id="btn3" name="group1" ><label id="choice3"  for = "btn3"></label></input><br>
-           </menuitem>    
+            <div class="buttons" align="center">
+             
+                
+                 <button id="btn0"   > </button><br>
+                <button id="btn1"   > </button><br>
+                <button  id="btn2"   ></button><br>
+                <button id="btn3"   > </button><br>
+             
             </div>
-           
-            <hr style="margin-top: 50px">
+          
             
             <footer>
              <p class="answerclass" id="answerIndicator"></p>
-                <p id="progress">Question x of y</p>
+               
                <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
             </footer>
         </div>
+         <div id="msg" style="display:none;"></div>
     </div>
  <script type="text/javascript" >
     

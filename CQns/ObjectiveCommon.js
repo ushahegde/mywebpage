@@ -3,10 +3,10 @@ class Quiz {
 constructor(questions){
     this.score = 0;
     this.questions =  shuffle(questions);
-       this.totalQuestions = 10;
+     //  this.totalQuestions = 10;
    
-    if(this.questions.length<10)
-       this.totalQuestions = questions.length;
+ //   if(this.questions.length<10)
+       this.totalQuestions =  10; 
     this.questionIndex = 0;
     this.answeredThisQuestion=false;
  }
@@ -65,19 +65,20 @@ function populate() {
        
         var choices = quiz.getQuestionIndex().choices;
         for(var i = 0; i < choices.length; i++) {
-            var element = document.getElementById("choice" + i);
-            element.innerHTML = choices[i];
+            //var element = document.getElementById("choice" + i);
+          //  element.innerHTML = choices[i];
             var str2 = choices[i];
             str2 = str2.trim();
             
           
             var bt = document.getElementById("btn"+i);
-            bt.checked = false;
+          //  bt.checked = false;
             if(str2.length ==0){
 					bt.style.display = "none";            
             }else{
 					bt.style.display = "inline";            
             }
+            bt.innerHTML = str2;
             guess("btn" + i, choices[i]);
         }
         quiz.answeredThisQuestion=false;
@@ -102,11 +103,15 @@ function showProgress() {
 };
  
 function showScores() {
-    var gameOverHTML = "<h1>Result</h1>";
+    var gameOverHTML = "<h1 align='center'>Result</h1>";
     gameOverHTML += "<h1>Your score: " + quiz.score + "/"+(quiz.questionIndex)+ "</h1>";
-    var element = document.getElementById("quiz");
+    var element = document.getElementById("msg");
+    element.style.display ="block";
     element.innerHTML = gameOverHTML;
-};
+    var quizThings = document.getElementById("quiz");
+    quizThings.style.display = "none"
+    
+}
 
 function showNextQuestion() { 	
    quiz.questionIndex++;

@@ -24,7 +24,7 @@ new Question("Is the following code correct in verifying pointer is not NULL bef
 new Question("What is the error in following code?<br><br><div class='codetext'>int *ptr;<br>ptr =(int *)malloc(100);<br>------<br>free(ptr);<br>m  = *ptr+1;<br></div>",["No error","Usage of a dangling pointer","",""],2),
 new Question("Which of the following functions will allocate memory and initialize them with 0?<br><br> ",["malloc()","calloc()","free()","Both 1 and 2"],2),
 new Question("How do you define a pointer to an array of 10 integers?<br><br> ",["int *ptr[10];","int (*ptr)[10];","int (*ptr)(10);","None of these"],2),
-new Question("What will be the output of this code?<br><br><div class='codetext'>char *p,q;<br>char ch = 'A';<br>q = &ch;     *q ='B';<br>printf('%c',ch);<br></div>",["B","A","Syntax Error",""],3),
+new Question("What will be the output of this code?<br><br><div class='codetext'>char *p,q;<br>char ch = &#39;A&#39;;<br>q = &ch;     *q=&#39;B&#39;;<br>printf('%c',ch);<br></div>",["B","A","Syntax Error",""],3),
 new Question("Is the following statement true or false?<br><br>Pointers enable a C program to simulate call by value<br><br> ",["true","false","",""],2),
 new Question("The complement of & operator(address of) is --------<br><br> ",["|","&&","*","None of these"],3),
 new Question("What is the output of this C code?<br><br><div class='codetext'> int mul(int a, int b, int c)<br> {<br>return a * b * c;<br>}<br>int main()<br>{<br>  int (*fptr)(int, int, int);&nbsp;&nbsp;&nbsp;fptr  =  mul;<br>  printf('The product is:%d',  fptr(2, 3, 4));<br>}<br></div>",["The product is 24","Run time error","Nothing","Depends on compiler"],1),

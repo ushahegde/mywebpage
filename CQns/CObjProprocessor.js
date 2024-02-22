@@ -8,7 +8,7 @@
     return this.answer === choice;
   }
 } 
-  var questions = [new Question("With the below  statements, what are the types of p1,p2,p3,p4?<br><br><div class='codetext'>#define INTPTR int *<br>typedef int * INTPTR2;<br>INTPTR p1,p2;<br>INTPTR2 p3,p4;<br></div>",["All are integer pointers","All are integers","p2 is integer. Others are integer pointers","None of the above"],3),
+  var questions = [new Question("With the below  statements, what are the types of p1,p2,p3 and p4?<br><br><div class='codetext'>#define INTPTR int *<br>typedef int * INTPTR2;<br>INTPTR p1,p2;<br>INTPTR2 p3,p4;<br></div>",["All are integer pointers","All are integers","p2 is integer. Others are integer pointers","None of the above"],3),
 new Question("What is the output of this code?<br><br><div class='codetext'>#define PI 22/7<br>int main()<br>{<br>&nbsp;&nbsp;printf('The value of pi is %.2f\n',PI);<br> &nbsp;&nbsp;   return 0;<br>}<br></div>",["The value of pi is 3.14","The value of pi is 3.1417","The value of pi is 3.00","None of the above"],3),
 new Question("With the following macro for square, what will be the value of y in the expression?<br><br><div class='codetext'>#define SQUARE(x) x*x<br><br>x=3;<br>y=SQUARE(x+2)<br></div>",["11","13","25","Error as a macro can't use operators"],1),
 new Question("Why does this code produce error?<br><br><div class='codetext'>#define MAX 12;<br>int main()<br>{<br>    int arr[MAX];<br>   .......<br>}<br></div>",["No Error","As there is semicolon in macro, array will be int arr[12;];","You should use const for array size instead of macro",""],2),
