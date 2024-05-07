@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&display=swap');
+
+body{
+   font-family: "Roboto"; 
+   margin: 0;
+   padding: 0;
+}
+#grid{
+	width:90%;
+	margin:10px auto;
+    margin-top: 3%;
+    padding: 10px;
+	background-color:  #ebf5fb ;
+	box-shadow: 3px 3px 1px gray;
+	font-size: 1em;  
+    text-align: center; 
+    overflow:hidden;
+   
+}
+.grid-container {
+  width:300px;
+  margin:20px auto;
+  display: grid;
+  grid-row-gap:2px;
+  grid-column-gap:2px;
+   
+  grid-template-columns: 80px 80px 80px ; 
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: #1891ac;
+  border: 0.5px solid rgb(100, 100, 100);
+  padding: 20px;
+  font-size: 22px;
+  color:white;
+  text-align: center; 
+  box-shadow: 1px 1px 1px gray;
+
+}
+p{
+ text-align:center;
+}
+ 
+ 
+.fatbutton{
+  font-size:28px;
+  background-color:rgba(0,100,100,1.0);
+  border-radius:10px;
+  color:white;
+  padding:10px;
+}
+button{
+   padding:10px;
+   font-size:22px;
+   border-radius:5px;
+   
+}
+.heading{ 
+width: 100%;
+   background-color: #389;
+   color: white;
+   padding:3px;
+   font-size: 1.7em;
+   overflow:hidden;
+   font-weight: bolder;
+   text-align: center; 
+   margin: 0px;
+   margin-top:0px; 
+  border-color: #eef;  
+    
+}
+.heading ul{
+   padding: 0px 0px 0px 0px;
+}
+.heading li{	 
+   color: white;
+   padding:0px; 
+   font-size: 0.6em;
+   margin-bottom:0px;
+   text-align: center;
+   margin: 0px;    
+   display:inline;
+}
+.heading a{
+    text-decoration:none;
+    color:white; 
+}
+.heading h1{
+    font-size:1.6em;
+    padding-top:10px;
+    padding-bottom:4px;
+    
+}
+#dialogscreen{
+    margin:10px auto;
+    width:60%;
+    text-align:center;
+    display:none;
+    background-color: #ebf5fb;
+    font-size:1.8em;
+    color:teal;
+    font-family:Verdana ;
+    overflow=hidden;
+    box-shadow:2px 2px 1px gray;
+}
+#gamearea{
+   display:flex;
+   margin:10px auto;
+   flex-direction:column;
+   background-color:#A0DEFF;
+   width:40%;
+   padding:5px;
+}
+button{
+   background-color:#CAF4FF;
+   box-shadow:1px 1px cyan;
+}
+button:disabled{
+    background-color:#cdd2d5;
+}
+ 

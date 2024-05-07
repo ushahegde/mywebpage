@@ -159,13 +159,17 @@ function showOptions()
   
     shuffle(optionArray,l)
     index = 0
- for(i=0;i<9;i++)
-       if(optionArray[i]==0)
+    for(i=0;i<9;i++)
+    {
+        if(optionArray[i]==" ")
+            optionArray[i]=0;
+       if(optionArray[i]==0 )
           {
               var m = i+1
               var btn = document.getElementById("ans"+m)
-              btn.style.visibility = "hidden"
+              btn.style.display = "none"
           }
+    }     
     for(i=0;i<l;i++)
       showAsOption(i+1,optionArray[i])
 
@@ -176,11 +180,11 @@ function showOptions()
 function showAsOption(index,value)
 {
     
-              
+              console.log("value is"+value)
         var btn = document.getElementById("ans"+index)
         
            btn.innerHTML = value
-           btn.style.visibility = "visible"
+           btn.style.display = "inline"
      
       
 }
@@ -239,15 +243,16 @@ function submitAnswer()
     var message = document.getElementById("message");
     if(isValid())
     {
-      alert("Wonderful!!!!");
-       var startBtn = document.getElementById("startbtn")
-       startBtn.innerHTML = "New Game"
+      showDialog("Wonderful!!!!<br>Level Completed.");
+     
        if(maxshown>=0)
           maxshown--
+        toClear = true;   
     }
     else
     {
-       alert("Wrong ");
+    	showDialog("Solution is wrong!")
+    	 
     }
 }
 /*********************************************************/
@@ -258,7 +263,7 @@ function clearOptions()
          var m = "ans"+i
          var btn = document.getElementById(m)
          btn.innerHTML = ""
-         btn.style.visibility = "visible"
+         btn.style.display = "none"
     }
     index = 0
 }
@@ -285,10 +290,16 @@ function drop(ev)
         return
      ev.target.value = el.innerHTML
      el.innerHTML = " "
-     el.style.visibility= "hidden"
+     el.style.display= "none"
      checkCompletion()
+     stackNum = ev.target.value
+     stackPlace = ev.target.id
+     
+     optionPlace = data
     // ev.target.innerHTML = data
     // document.getElementById(data).innerHTML = ""
+    undobutton = document.getElementById("undo");
+    undobutton.disabled = false;
     
 }
 /*********************************************************/
@@ -312,5 +323,53 @@ function checkCompletion()
      submitAnswer()
 }
 /******************************************************/
- 
- 
+ function showDialog(message)
+ {
+ 	 el = document.getElementById("dialogscreen")
+ 	 el.style.display="block"
+ 	   
+ 	 msgel = document.getElementById("msg")
+ 	  
+ 	 msg.innerHTML = message;
+ 	 
+ 	 gridel = document.getElementById("grid")
+ 	 gridel.style.display = "none"
+ }
+ /******************************************************/
+ function hideDialog()
+ {
+ 	 el = document.getElementById("dialogscreen")
+ 	 el.style.display="none"
+ 	 gridel = document.getElementById("grid")
+ 	 gridel.style.display = "block"
+ 	 console.log("To clear is "+toClear)
+ 	 if(toClear==true){
+ 	 	console.log("Are we here??")
+ 	 	clearArray()
+ 	 	//clearAllArrayElements(x);
+ 	 	showNumbers(x,false)
+ 	 }
+ }
+ /************************************************/
+ function undo()
+ {
+ 	
+ 	console.log( stackNum)
+ 	element = document.getElementById(stackPlace);
+ 	element.value = " ";
+ 	
+ 	optionElement = document.getElementById(optionPlace)
+ 	optionElement.innerHTML = stackNum;
+ 	optionElement.style.display = "inline"
+ 	
+ 	undobutton = document.getElementById("undo")
+ 	undobutton.disabled = true;
+ 	
+ }
+/**********************************/
+ function clearArray()
+ {
+ 	l = x.length
+ 	for(i=0;i<l;i++)
+ 	   x[i]=0;
+ }

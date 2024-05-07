@@ -4,67 +4,41 @@
 <meta charset="utf-8" />
  
 <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+<link rel="stylesheet" href="shataka.css"> 
 <style>
-.grid-container {
-  width:300px;
-  margin:20px auto;
-  display: grid;
-  grid-row-gap:2px;
-  grid-column-gap:2px;
-   
-  grid-template-columns: 80px 80px 80px ; 
-  padding: 10px;
-}
-
-.grid-item {
-  background-color: rgba(10, 150, 230, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 22px;
-  color:white;
-  text-align: center;
-  font-weight:bold;
-}
-p{
- text-align:center;
-}
-h1{
- background-color:#389;
- color:#ffffff;
- text-align:center;
- padding:20px;
- 
-}
-body{
-  margin:0px;
-  padding:0px;
-}
-.fatbutton{
-  font-size:28px;
-  background-color:rgba(0,100,100,1.0);
-  border-radius:10px;
-  color:white;
-  padding:10px;
-}
-button{
-   padding:10px;
-   font-size:22px;
-   border-radius:5px;
-   
-}
  
 </style>
 <script type="text/javascript" src="shataka.js"></script> 
 </head>
 <body>
 
-<h1 align="center" >Shataka - A number game</h1>
-<p align="center" >Drag and drop numbers into the grid so that sum of each row is 100 and sum of each column is 100. </p>
-<div align="center">
+<div class="heading"  ><h1>Shataka - The game of hundreds</h1>
+<ul    >
+   <li><a href="../index.html">Home</a></li>	  
+   <li ><a href="FractionQuiz.html">Fractions </a></li>
+   <li > <a href="LinearEqns.html">Linear Equations</a></li>
+   <li><a href="Percentage.html">Percentage Calculations</a></li> 
+<li><a href="Powers.html">Powers and Exponents</a></li> 
+<li><a href="CostAndSellingPrice.html">Cost and Selling price</a></li> 
+<li><a href="Factorization.html">Factorization of Algebraic terms</a></li>
+      
+</ul> 
+</div>
+<div id="grid">
+<h3 align="center" >Drag and drop numbers into the grid so that sum of each row is 100 and sum of each column is 100. </h3>
+<div id="gamearea">
+<div align="center" id = "buttonbar">
 
-<button id = "startbtn" onclick="startGame();" class="fatbutton" >Start</button>
-<button onclick="restartGame();" class="fatbutton">Restart</button></div>
+<button id = "startbtn" onclick="startGame();"   > 
+  <img src="play.png" width="30px" height="30px"></img>
+</button>
+<button onclick="restartGame();"  >
+<img src="restart.png" width="30px" height="30px"></img>
+</button>
+<button id="undo" >
+<img src="undo.png" width="30px" height="30px" onclick="undo()"></img>
+</button>
+</div>
 <div class="grid-container" align="center"    >
   <input class="grid-item" id="n0" value=""   ondrop="drop(event)" >
 <input class="grid-item" id="n1"   ondrop="drop(event)"  >
@@ -78,20 +52,25 @@ button{
   
 </div>
 <div class="answers" align="center">
-  <button id="ans1"  draggable="true" style="visibility:hidden;" ondragstart="drag(event)"> 0</button>
-  <button id="ans2" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
-  <button id="ans3" draggable="true" style="visibility:hidden;"  ondragstart="drag(event)">0</button>
- <button id="ans4" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
-<button id="ans5"  draggable="true" style="visibility:hidden;" ondragstart="drag(event)"> 80</button>
-  <button id="ans6" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
-  <button id="ans7" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
- <button id="ans8" draggable="true" style="visibility:hidden;" ondragstart="drag(event)">0</button>
-<button id="ans9"  draggable="true" style="visibility:hidden;" ondragstart="drag(event)"> 0</button>
+  <button id="ans1"  draggable="true" style="display:none;" ondragstart="drag(event)"> 0</button>
+  <button id="ans2" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
+  <button id="ans3" draggable="true" style="display:none;"  ondragstart="drag(event)">0</button>
+ <button id="ans4" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
+<button id="ans5"  draggable="true" style="display:none;" ondragstart="drag(event)"> 80</button>
+  <button id="ans6" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
+  <button id="ans7" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
+ <button id="ans8" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
+<button id="ans9"  draggable="true" style="display:none;" ondragstart="drag(event)"> 0</button>
    
 </div>
 <div align="center">
 <button onclick="submitAnswer()" align="center">submit</button></div>
-<div style="font-size:26px; color:red;" id="message" align="center"></div>
+ </div>
+ </div>
+<div id="dialogscreen">
+    <h1 id="msg">hello</h1>
+       <button id="closebutton" onclick="hideDialog()"> Close </button>
+</div>
 </body>
 </html>
 
