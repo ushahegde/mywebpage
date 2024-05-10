@@ -3,111 +3,23 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Countdown game</title>
+<link rel="stylesheet" href="countdown.css" >
+<title>Target</title>
 <script type="text/javascript" src="count.js">
 
 </script>
-<style>
-.numberstyle{ 
-   background-color: #339988;
-   padding: 10px 10px 10px 10px;
-   margin:10px;
-}
-h2{
-   background-color: #389;
-   color: white;
-   font-size: larger;
-   padding: 50px; 
-   margin-top:0px;
-   margin-bottom:0px;
-   color:#ffffff;
-}
-button{
-   font-size: large;
-    padding: 10px 10px 10px 10px;
-   background-color:#ccdddd;
-   border-radius:8px; 
-   margin:3px;
-   min-height: 50px;
-   min-width: 50px;
-}
-body{
-	margin: 0px;
-	padding:0px;
-}
-.main{
-	padding:40px;
-	margin-top: 0px; 
-   font-size:large;
-}
-div{
-   margin:10px;
-}
-.cmd{
-	background-color: #689;
-	color:white;
-	font-size: larger;
-	padding:10px;
-	margin: 10px;
-	border-radius: 8px;
-	font-weight: bold;
-}
-#targetNum{
-	font-size:larger;
-   color: #ee3344;
-   font-weight: bolder; 
-}
-.solu{ 
-   font-size:large;
-}
-.dull{
-   color : #bebebe;
-   font-style: italic;
-}
-#id{
-   font-size:larger;
-   font-weight: bolder;
-}
-input{
-   font-size:larger;
-}
-@media screen and (max-width:1200px){
-h2{
-   background-color: #389;
-   color: white; 
-   padding: 10px; 
-   margin-top:0px;
-   margin-bottom:0px;
-   color:#ffffff;
-}
-.main{
-   font-size:medium;
-   padding:10px;
-}
-button{
-   font-size:16px;
-}
-input{
-   font-size:medium;
-}
- #targetNum{
-	font-size: 18px;
-   color: #ee3344;
-   font-weight: bolder; 
-}  
-}
-</style>
+ 
 </head>
 <body> 
 
-<h2 align="center">Countdown</h2>
-<div class="main" align="center" >
+<h2 align="center">Target</h2>
+<div class="main"  >
  
-<p>Generate the target number using the numbers given below with any of the operators or brackets.<br> Use all the numbers. Each numbers should be used exactly once.</p>
+<p>Generate the target number using the given numbers and any of the operators and brackets. Use all the numbers and use each number exactly once.</p>
 <div align="center" id = "targetNum">Target Number : </div>
 <div align="center">
 <span ><button id="btn1" class="btn" onclick="operatorclicked(this)">  </button>
-<button id="btn2" class="btn" onclick="operatorclicked(this)">  </button><br>
+<button id="btn2" class="btn" onclick="operatorclicked(this)">  </button>
 <button id="btn3" class="btn" onclick="operatorclicked(this)">  </button>
 <button id="btn4" class="btn" onclick="operatorclicked(this)">  </button>
 <button id="btn5" class = "btn" onclick="operatorclicked(this)">  </button></span>
@@ -124,13 +36,14 @@ input{
 
 </span>
 </div>
-<div align="center" class="solu">
-Your solution <input type="text" id="answer" ></input>
+<div class="solu">
+Solution <input type="text" id="answer" autofocus ></input></div>
+<div id="buttonbar">
 <button onclick="checkAnswer()">Submit</button>
 <button onclick="redo()" class="opr">Clear</button>
- 
+ </div>
 <p class="dull" id="progress"></p> 
-</div>
+
 <div align="center"><h3 id="message"></h3></div>
 <div align="center"  id="playagain"  hidden="true" ><button class="cmd" onclick="startQuiz()" >Play Again</button></div>
 </div>

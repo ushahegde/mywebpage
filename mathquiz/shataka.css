@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&display=swap');
-
-body{
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+ body{
    font-family: "Roboto"; 
    margin: 0;
    padding: 0;
 }
 #grid{
-	width:90%;
+	width:80%;
 	margin:10px auto;
     margin-top: 3%;
     padding: 10px;
@@ -19,20 +19,20 @@ body{
 }
 .grid-container {
   width:300px;
-  margin:20px auto;
+  margin:5px auto;
   display: grid;
   grid-row-gap:2px;
   grid-column-gap:2px;
    
   grid-template-columns: 80px 80px 80px ; 
-  padding: 10px;
+  padding: 3px;
 }
 
 .grid-item {
   background-color: #1891ac;
   border: 0.5px solid rgb(100, 100, 100);
   padding: 20px;
-  font-size: 22px;
+  font-size: 1.4em;
   color:white;
   text-align: center; 
   box-shadow: 1px 1px 1px gray;
@@ -42,6 +42,9 @@ p{
  text-align:center;
 }
  
+ .answers button{
+     font-size:1.4em;
+ }
  
 .fatbutton{
   font-size:28px;
@@ -51,47 +54,26 @@ p{
   padding:10px;
 }
 button{
-   padding:10px;
-   font-size:22px;
-   border-radius:5px;
-   
-}
+   padding:5px; 
+   border-radius:5px; 
+   }
 .heading{ 
-width: 100%;
+   width: 100%;
    background-color: #389;
    color: white;
-   padding:3px;
-   font-size: 1.7em;
+   padding:10px;
+   font-size: 3em;
    overflow:hidden;
    font-weight: bolder;
    text-align: center; 
    margin: 0px;
    margin-top:0px; 
-  border-color: #eef;  
+  border-color: #eef;   
+   font-weight:bold;
     
 }
-.heading ul{
-   padding: 0px 0px 0px 0px;
-}
-.heading li{	 
-   color: white;
-   padding:0px; 
-   font-size: 0.6em;
-   margin-bottom:0px;
-   text-align: center;
-   margin: 0px;    
-   display:inline;
-}
-.heading a{
-    text-decoration:none;
-    color:white; 
-}
-.heading h1{
-    font-size:1.6em;
-    padding-top:10px;
-    padding-bottom:4px;
-    
-}
+ 
+ 
 #dialogscreen{
     margin:10px auto;
     width:60%;
@@ -99,18 +81,19 @@ width: 100%;
     display:none;
     background-color: #ebf5fb;
     font-size:1.8em;
-    color:teal;
-    font-family:Verdana ;
+    color:teal; 
     overflow=hidden;
     box-shadow:2px 2px 1px gray;
 }
+
 #gamearea{
    display:flex;
-   margin:10px auto;
+   margin:3px auto;
    flex-direction:column;
-   background-color:#A0DEFF;
-   width:40%;
+   background-color:#d2ecfc ;
+   width:85%;
    padding:5px;
+   box-shadow:1px 1px 1px gray;
 }
 button{
    background-color:#CAF4FF;
@@ -118,5 +101,20 @@ button{
 }
 button:disabled{
     background-color:#cdd2d5;
+}
+@media only screen and (min-width:1025px){
+#gamearea{
+     width:50%;
+     margin:10px auto;
+     padding:10px;
+}
+button{
+   padding:10px;
+   font-size:1.3em;
+}
+.heading{
+   padding:40px;
+   font-size:3em; 
+}
 }
  

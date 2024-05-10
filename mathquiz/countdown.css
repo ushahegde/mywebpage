@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.numberstyle{ 
+   background-color: #339988;
+   padding: 10px 10px 10px 10px;
+   margin:10px;
+}
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 1.4em;
+   padding: 20px; 
+   margin-top:0px;
+   margin-bottom:0px;
+   color:#ffffff;
+}
+button{
+  background-color:white;
+  color:   darkblue  ; 
+  padding: 7px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px; 
+  border-radius:5px; 
+  box-shadow:1px 1px 2px gray;
+  cursor:pointer;
+}
+body{
+	margin: 0px;
+	padding:0px;
+	font-family:Roboto; 
+}
+.main{
+    margin:5px auto;
+	padding:7px;
+	width:95%;
+	background-color:lightcyan;
+	margin-top: 0px; 
+    
+}
+div{
+   margin:10px;
+}
+.cmd{
+	background-color: #689;
+	color:white;
+	font-size: larger;
+	padding:10px;
+	margin: 10px;
+	border-radius: 8px;
+	font-weight: bold;
+}
+#targetNum{
+	font-size:1.4em;
+   color: #ee3344;
+   font-weight: bolder; 
+   padding:10px; 
+}
+.solu{ 
+   text-align:center;
+   font-size:1.1em;
+   padding:10px;
+}
+.dull{
+   color : #bebebe;
+   font-style: italic;
+}
+#id{
+   font-size:larger;
+   font-weight: bolder;
+}
+input{
+   font-size:larger;
+}
+p{
+   font-size:1.1em;
+}
+#buttonbar{
+    font-size:1.1em;
+    padding:7px;
+    text-align:center;
+    
+}
+@media  (min-width:1068px){
+h2{
+   background-color: #389;
+   color: white; 
+   padding: 15px; 
+   margin-top:0px;
+   margin-bottom:0px;
+   color:#ffffff;
+   font-size:1.8em;
+}
+.main{
+   font-size:medium;
+ padding:40px;
+}
+button{
+   font-size:1.2em;
+   padding:15px 32px;
+}
+input{
+   font-size:medium;
+}
+ #targetNum{
+	font-size: 1.4em;
+   color: #ee3344;
+   font-weight: bolder; 
+}  
+p{
+    padding:20px;
+    text-align:center;
+}
+}
