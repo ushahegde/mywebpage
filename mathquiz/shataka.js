@@ -194,6 +194,8 @@ function startGame()
     clearOptions()
     var x = generateNumbers();
     showNumbers(x,false);
+    undobutton = document.getElementById("undo");
+    undobutton.disabled = true;
 }
 /******************************************************/
  function isElementPresentInArray( x,   num,  tillIndex) {
@@ -308,6 +310,8 @@ function restartGame()
     clearOptions()
   //  var x = generateNumbers();
     showNumbers(x,true)
+    undobutton = document.getElementById("undo");
+    undobutton.disabled = true;
 }
 /******************************************************/
 function checkCompletion()
@@ -348,6 +352,7 @@ function checkCompletion()
  	 	clearArray()
  	 	//clearAllArrayElements(x);
  	 	showNumbers(x,false)
+ 	 	startGame();
  	 }
  }
  /************************************************/

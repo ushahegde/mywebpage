@@ -53,6 +53,11 @@ p{
   color:white;
   padding:10px;
 }
+.iconbutton{
+   font-size:0.6em;
+   display:flex;
+   flex-direction:column;
+}
 button{
    padding:5px; 
    border-radius:5px; 
@@ -98,9 +103,16 @@ button{
 button{
    background-color:#CAF4FF;
    box-shadow:1px 1px cyan;
+   cursor:pointer;
 }
 button:disabled{
     background-color:#cdd2d5;
+}
+#buttonbar{
+   justify-content:center;
+   display:flex;
+   flex-direction:horizontal;
+   padding:5px;
 }
 @media only screen and (min-width:1025px){
 #gamearea{

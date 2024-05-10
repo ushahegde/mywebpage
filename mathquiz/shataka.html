@@ -18,13 +18,13 @@
 <div id="gamearea">
 <div align="center" id = "buttonbar">
 
-<button id = "startbtn" onclick="startGame();"   > 
+<button id = "startbtn" onclick="startGame();" class="iconbutton"   >NewGame
   <img src="play.png" width="30px" height="30px"></img>
 </button>
-<button onclick="restartGame();"  >
+<button onclick="restartGame();" class="iconbutton" >Restart
 <img src="restart.png" width="30px" height="30px"></img>
 </button>
-<button id="undo" >
+<button id="undo" class="iconbutton" disabled="true">Undo
 <img src="undo.png" width="30px" height="30px" onclick="undo()"></img>
 </button>
 </div>
@@ -59,6 +59,9 @@
     <h1 id="msg">hello</h1>
        <button id="closebutton" onclick="hideDialog()"> Close </button>
 </div>
+<script type="text/javascript">
+  startGame();
+  </script>
 </body>
 </html>
 
