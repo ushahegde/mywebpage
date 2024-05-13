@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -35,13 +35,22 @@
             </div>
           
             
-            <footer>
-             <p class="answerclass" id="answerIndicator"></p>
+           <footer>
+              <div  class="answerclass" id="answerIndicator" ></div>
                
-               <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
+               <div class="button-container">
+               <button align="left" id="prevbutton" class="navbutton" style="float:left;" onclick="showPrevQuestion();">Previous</button>
+                <button   class="navbutton" id="explain" onclick="showExplanation()" >Hint</button>
+               <button style="float:right;" class="navbutton" id="nextbutton"   onclick="showNextQuestion();" >Next</button> </div>
+     
             </footer>
         </div>
-         <div id="msg" style="display:none;"></div>
+         <p id="msg"></p>
+         <dialog id="dialog"  >
+            <p id="msg2"></p>
+        
+            <button class="navbutton">close</button>
+         </dialog>
     </div>
  <script type="text/javascript" >
     var quiz = new Quiz(questions);

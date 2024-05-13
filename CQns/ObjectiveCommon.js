@@ -2,11 +2,11 @@
 class Quiz {
 constructor(questions){
     this.score = 0;
-    this.questions =  shuffle(questions);
+    this.questions =  questions;// TODO change it back to shuffle(questions);
      //  this.totalQuestions = 10;
    
  //   if(this.questions.length<10)
-       this.totalQuestions =  10; 
+       this.totalQuestions =  questions.length;//10; 
     this.questionIndex = 0;
     this.answeredThisQuestion=false;
  }
@@ -18,7 +18,7 @@ getQuestionIndex = function() {
 }
  guess = function(answer,button) {
 	var nextbutton = document.getElementById('nextbutton');
-	nextbutton.innerHTML = 'Next Question';
+	nextbutton.innerHTML = 'Next';
    var element = document.getElementById("answerIndicator");
     
     if(this.getQuestionIndex().isCorrectAnswer(answer)) {
@@ -59,10 +59,16 @@ function populate() {
        str = str.replace(/'/g,'"');
         element.innerHTML = str;
         
-        var nextButton = document.getElementById('nextbutton');
-        nextButton.innerHTML = "Skip";
-        
-       
+        explainButton = document.getElementById("explain");
+        console.log("explanation is"+quiz.getQuestionIndex().explanation);
+        if(explainButton!=null){
+           
+          if(quiz.getQuestionIndex().explanation==null)
+            explainButton.style.display="none";
+          else
+            explainButton.style.display= "inline";   
+              
+        }
         var choices = quiz.getQuestionIndex().choices;
         for(var i = 0; i < choices.length; i++) {
             //var element = document.getElementById("choice" + i);
@@ -81,6 +87,7 @@ function populate() {
             bt.innerHTML = str2;
             guess("btn" + i, choices[i]);
         }
+        
         quiz.answeredThisQuestion=false;
         showProgress();
     }
@@ -113,9 +120,17 @@ function showScores() {
     
 }
 
+function showPrevQuestion() { 	
+   if(quiz.questionIndex>0){
+       quiz.questionIndex--;
+       populate();
+   }
+ }
 function showNextQuestion() { 	
-   quiz.questionIndex++;
-   populate();
+   if(quiz.questionIndex<quiz.totalQuestions){
+      quiz.questionIndex++;
+      populate();
+   }
  }
   function shuffle(arra1) {
     var ctr = arra1.length, temp, index; 
@@ -127,4 +142,36 @@ function showNextQuestion() {
         arra1[index] = temp;
     }
     return arra1;
+}
+function showExplanation()
+{
+    exp = quiz.getQuestionIndex().explanation;
+    if(exp!=null){
+       // alert(exp);
+         
+   // explain = quiz.questionIndex.explanation ;
+    
+    dialog = document.getElementById("dialog");
+    message = document.getElementById("msg2")
+    message.innerHTML = exp;
+   closebutton = document.querySelector("dialog button")  
+   closebutton.addEventListener("click",()=> {
+       dialog.close()
+      });
+    dialog.showModal();
+    }  
+}
+/**********************/
+function gotoQn(event)
+{
+    console.log("me mere"+event.keyCode);
+    if(event.keyCode == 13){
+        console.log("in if");
+    qnNum = document.getElementById("number");
+    qnNum = qnNum.value;
+    console.log(qnNum)
+    quiz.questionIndex = qnNum - 1;
+    console.log("index is "+quiz.questionIndex);
+    populate();
+    }
 }

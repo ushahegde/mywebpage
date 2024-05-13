@@ -15,9 +15,7 @@ body {
     padding:20px;  
     border-radius:5px;  
     border:1px solid #ddd;
-    box-shadow:7px 7px 5px lightgray;
-     
-   
+    box-shadow:7px 7px 5px lightgray;  
 }
 #question{
     font-size: 1.1em;
@@ -39,20 +37,29 @@ body {
 button{
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left:10px;
     font-size:1em;
-    width:55%;
-    margin:5px;
-    text-align:center;
-    
+    width:35%;
+    margin:5px; 
+    text-align:left;
  }
 .codetext{
   padding:10px;
   font-family:courier, monospace;
-  font-size:12px; 
+  font-size:0.85em; 
+  text-align:left; 
+  margin-left:15px;
+  margin-top:15px;
+  border:1px solid #aaa;
+  }
+  
+ .codetextans{
+  padding:10px;
+  font-family:courier, monospace;
+  font-size:0.85em; 
   text-align:left; 
   margin-left:15px;
   margin-top:15px;}
- 
  .monotext{
      font-family:courier;
      font-size:0.9em;
@@ -61,31 +68,31 @@ button{
     margin-top: 30px; 
     line-height: 200%; 
     font-size: 16px;
-    text-align:center;
+    padding:10px;
 }
  
+  
+.navbutton {
  
-#nextbutton {
- 
-    background-color: #008988;
+    background-color: #7ab;
      
     font-size: 1.1em;
     font-weight: bold;
     color: #fff;
-    margin:10px auto;
+    margin:8px auto;
+    width:auto;
     
-    padding: 15px;
-    border-radius: 5px;
-     
+    padding: 8px;
+    border-radius: 5px; 
 }
  
-#nextbutton:hover{
+.navbutton:hover{
     cursor: pointer;
-    background-color: #009688;
+    background-color: #589;
      border-radius: 5px;
 }
  
-#nextbutton:focus {
+.navbutton:focus {
     outline: 0;
 }
 .head{
@@ -95,9 +102,23 @@ button{
    padding:10px;
    
 }
+.button-container{
+    display: flex;
+    justify-items:right; 
+    }
  
- 
-
+#msg{
+  
+   font-size:1.1em;
+   font-family:Roboto;
+   border:none;
+  } 
+dialog{
+    width:65%;
+    background-color:aliceblue;
+    border:1px solid #eee;
+    box-shadow:3px 3px 3px gray;
+}
 @media screen and (max-width: 800px){
 
 .grid{

@@ -21,6 +21,7 @@
         <div id="quiz" margin="30px">
         
                  <div   >
+                 <input id="number" onkeyup="gotoQn(event)">Question Number</input>
             <span style="text-align:left"   id="progress"  >Question x of y</span><span id="score"  style="float:right;"></span></div> 
             <p id="question"></p>
  
@@ -38,10 +39,22 @@
             <footer>
              <div class="answerclass" id="answerIndicator"></div>
                
-               <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
+               <div  class="button-container">
+               
+               <button align="left" id="prevbutton" class="navbutton" style="float:left;" onclick="showPrevQuestion();">Previous</button>
+                <button   class="navbutton" id="explain" onclick="showExplanation()" >Hint</button>
+               <button style="float:right;" class="navbutton" id="nextbutton"   onclick="showNextQuestion();" >Next</button>  
+     
+             </div>
             </footer>
         </div>
          <div id="msg" style="display:none;"></div>
+         <dialog id="dialog"  >
+            <p id="msg2"></p>
+        
+            <button class="navbutton">close</button>
+         </dialog>
+
     </div>
  <script type="text/javascript" >
     

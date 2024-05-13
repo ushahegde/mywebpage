@@ -1,16 +1,20 @@
  class Question {
- constructor(text, choices, answer){
+ constructor(text, choices, answer,explanation){
     this.text = text;
     this.choices = choices;
     this.answer = choices[answer-1]; 
+     if(explanation!==undefined)
+       this.explanation = explanation;
+    else
+       this.explanation = null; 
   }
   isCorrectAnswer = function(choice) {	 
     return this.answer === choice;
   }
 } 
-var questions = [new Question("What is the output of this code?<br><br><div class='codetext'>int arr[3]={11,34,45};<br>int *ptr = arr;<br>printf('%d',*ptr+2);<br></div>",["13","45","Syntax error in line 2","None of the above"],1),
-new Question("Write output of the code.<br><br><div class='codetext'>int *ptr;<br>*ptr = 12;<br>printf('%d',*ptr);<br></div>",["12","Garbage Value","Syntax error in line 2","Run time error - Segmentation fault"],4),
-new Question("What does this function do?<br><br><div class='codetext'>void foo(char *str1,char *str2)<br>{<br> &nbsp;&nbsp;   while(*str2++=*str1++);<br>}<br></div>",["Syntax error in while loop","While loop repeats 0 times, hence function does nothing","Copies the string str1 to str2","None of the above"],3),
+var questions = [new Question("What is the output of this code?<br><br><div class='codetext'>int arr[3]={11,34,45};<br>int *ptr = arr;<br>printf('%d',*ptr+2);<br></div>",["13","45","Syntax error in line 2","None of the above"],1,"Dereference operator * has a higher precedence than + operator. So *ptr is evaluated first - which gives us 11, then 2 is added to it and giving the answer of 13."),
+new Question("Write output of the code.<br><br><div class='codetext'>int *ptr;<br>*ptr = 12;<br>printf('%d',*ptr);<br></div>",["12","Garbage Value","Syntax error in line 2","Run time error - Segmentation fault"],4,"The program tries to dereference a pointer which is not pointing at a valid location.<br>ptr is uninitialized, so it has some random address. *ptr will try to access the value at that address - which is not allowed. That is why, the program generates a run time error - segmentation fault.<br>A pointer should always be initialized with address of a variable, or it must be allocated using malloc, before it is dereferenced."),
+new Question("What does this function do?<br><br><div class='codetext'>void foo(char *str1,char *str2)<br>{<br> &nbsp;&nbsp;   while(*str2++=*str1++);<br>}<br></div>",["Syntax error in while loop","While loop repeats 0 times, hence function does nothing","Copies the string str1 to str2","None of the above"],3,"Statement to be executed is in the conditional expression of while loop - *str2++=*str1++. This copies *str1 to *str2. Then increments both str1 and str2. This is repeated until it becomes false or 0. When *str1 is 0 or null character (terminating character of a string), it is copied to *str2 so that str2 is also null terminated and the loop ends.<br> So the entire string str1 is copied to str2."),
 new Question("Which statement in this code is incorrect?<br><br><div class='codetext'>int main()<br>{<br>&nbsp;&nbsp;&nbsp; void *ptr;<br>&nbsp;&nbsp;&nbsp; int a = 10;<br>&nbsp;&nbsp;&nbsp; ptr = &a;<br>&nbsp;&nbsp;&nbsp; *ptr = 15;<br>&nbsp;&nbsp;&nbsp; printf('%d',*ptr);<br>}<br></div>",["void *ptr;","ptr = &a;","*ptr=15;","All of these."],3),
 new Question("Which statement correctly defines an array of 10 integer pointers?<br><br> ",["int *ptr;","int *ptr[10];","int (*ptr)[10];","int(*ptr)(int[10]);"],2),
 new Question("What does the following C statement declare?<br><br><div class='codetext'>int(*ptr)(int *);<br></div>",[" A function that takes an integer pointer as argument and returns an<br>integer"," A function that takes an integer as argument and returns an integer<br>pointer","A pointer to a function that takes an integer pointer as argument and returns an integer."," A function that takes an integer pointer as argument and returns a<br>function pointer"],3),
