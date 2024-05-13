@@ -38,7 +38,13 @@
             <footer>
              <div class="answerclass" id="answerIndicator"></div>
                
-               <div align="center"><button id="nextbutton" onclick="showNextQuestion();" >CONTINUE</button> </div>
+                <div  class="button-container">
+               
+               <button align="left" id="prevbutton" class="navbutton" style="float:left;" onclick="showPrevQuestion();">Previous</button>
+                <button   class="navbutton" id="explain" onclick="showExplanation()" >Hint</button>
+               <button style="float:right;" class="navbutton" id="nextbutton"   onclick="showNextQuestion();" >Next</button>  
+     
+             </div>
             </footer>
         </div>
          <div id="msg" style="display:none;"></div>
