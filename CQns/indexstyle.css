@@ -1,0 +1,160 @@
+ 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Roboto:wght@300&display=swap');
+body { 
+    font-size:1em;
+    font-family: "Roboto";
+ 
+	margin:0px;
+	padding:0px;
+} 
+ 
+.list{
+    float:left;
+    width:40%;
+}    
+ 
+ 
+.head{
+   background-color: #009688;
+   color:white;
+   font-weight: bolder; 
+   padding:10px;
+}
+.heading{
+   background-color: #389;
+   color: white;
+   font-size: 30px;
+   font-weight: bolder;  
+   text-align:center;
+   padding:10px;
+}
+ 
+ 
+#question{
+    padding:8px;
+    margin:8px;
+}
+tr:nth-child(odd){
+   background-color:#f7f7f7;
+   
+}
+table{
+  margin:5px auto;
+}
+@media screen and (max-width: 481px){
+
+table,td{
+	display: block;
+	margin: 3px;
+
+}
+button{ 
+    padding:5px;
+    min-width:150px;
+   
+}
+
+
+}
+
+ 
+
+td,th{
+   border-style: solid;
+   border-color: aliceblue;
+   border-width: 1px;
+   margin: 10px;
+   padding: 15px;  
+    
+}
+td a{
+	text-decoration:none;
+}
+ 
+  
+ 
+.grid h2 {
+    background-color: #699; 
+    text-align: center;
+   
+    
+}
+li{
+	display:inline;
+	padding:5px; 
+}
+ul{
+	text-align:center;
+} 
+ 
+.heading{
+   width: 100%;
+   background-color: #389;
+   color: white;
+   padding:20px;
+   font-size: 30px;
+   
+   font-weight: bolder;
+   text-align: center;
+   margin: 0px;
+   margin-top:0px;
+   margin-bottom: 20px; 
+  border-color: #eef; 
+}
+.heading li{	 
+   color: white;
+   padding:8px;
+   font-size: small;
+   margin-bottom:0px;
+   text-align: center;
+   margin: 4px;
+    
+}
+ 
+ a:hover, a:active{
+	text-decoration:none;
+	background-color:#882277;
+	color:white; 
+	
+}
+.heading a{
+    text-decoration:none;
+    color:white; 
+}
+ 
+ @media screen and (max-width: 900px){
+ 
+  table{
+margin: 4px auto;
+}
+td{
+	 padding: 4px;
+	margin: 3px; 
+}
+.heading{
+  font-size:0.9em;
+  padding:5px;
+}
+.heading li{	 
+   color: green;
+   padding:4px;
+   font-size: 0.5em;
+   margin-bottom:0px;
+   text-align: center;
+   margin: 4px;
+    
+}
+tr:nth-child(odd){ 
+    background-color:#fff;
+   
+}
+ .list{
+    float:none;
+    width:80%;
+}  
+ 
+}
+
+ 
+
+ 
