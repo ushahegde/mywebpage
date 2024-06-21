@@ -12,11 +12,19 @@
 </head>
 <body> 
 
-<h2 align="center">Target</h2>
+<h1 align="center">Target</h1>
+<div class="messagecontainer">
+<div class="message" align="center">
+ <h3 id="message"></h3>
+ <button id="retrybutton" onclick="retry()">Retry</button>
+ <button id="playagain"  onclick="newgame()">New target</button>
+ </div>
+
+ </div>
 <div class="main"  >
  
-<p>Generate the target number using the given numbers and any of the operators and brackets. Use all the numbers and use each number exactly once.</p>
-<div align="center" id = "targetNum">Target Number : </div>
+<div id="howto" align="center">Generate the target number using all the given numbers.</div>
+<div align="center" id = "targetNum">Target : </div>
 <div align="center">
 <span ><button id="btn1" class="btn" onclick="operatorclicked(this)">  </button>
 <button id="btn2" class="btn" onclick="operatorclicked(this)">  </button>
@@ -25,11 +33,11 @@
 <button id="btn5" class = "btn" onclick="operatorclicked(this)">  </button></span>
 
 </div>
-<br>
+ 
 <div align="center">
 <button id="plusbutton" class="opr" onclick="operatorclicked(this)">+</button>
 <button id="minusbutton" class="opr" onclick="operatorclicked(this)">-</button>
-<button id="starbutton" class="opr" onclick="operatorclicked(this)">*</button><br>
+<button id="starbutton" class="opr" onclick="operatorclicked(this)">*</button> 
 <button id="slashbutton" class="opr" onclick="operatorclicked(this)">/</button>
 <button id="openbr" class="opr" onclick="operatorclicked(this)">(</button>
 <button id="closebr" class="opr" onclick="operatorclicked(this)">)</button>
@@ -37,15 +45,16 @@
 </span>
 </div>
 <div class="solu">
-Solution <input type="text" id="answer" autofocus ></input></div>
+Solution <input type="text" id="answer" autofocus ></input><span id="progress"></span> </div>
+
 <div id="buttonbar">
 <button onclick="checkAnswer()">Submit</button>
 <button onclick="redo()" class="opr">Clear</button>
  </div>
-<p class="dull" id="progress"></p> 
 
-<div align="center"><h3 id="message"></h3></div>
-<div align="center"  id="playagain"  hidden="true" ><button class="cmd" onclick="startQuiz()" >Play Again</button></div>
+
+
+</div>
 </div>
 <script  type="text/javascript">startQuiz()</script>
 </body>

@@ -4,18 +4,25 @@ function checkAnswer()
 {
 	var ansBox = document.getElementById("answer");
 	var answerString = ansBox.value
-	var answerNum = eval(answerString);
+	var answerNum = evil(answerString);
 	var mesg = document.getElementById("message");
+	var divMesg = document.getElementsByClassName("messagecontainer");
+	var messageBox = divMesg[0];
+	messageBox.style.display="block";
+	 var playagain = document.getElementById("playagain");
+		playagain.style.display ="inline" ;
+		var retry = document.getElementById("retrybutton");
+		retry.style.display ="inline" ;
 	if(answerNum == targetNum){
-		
+		retry.style.display="none";
 		mesg.innerHTML = "Wonderful.<br>That is the correct answer";	
-		var playagain = document.getElementById("playagain");
-		playagain.style.display ="block" ;
+		
 	}else{
-		mesg.innerHTML= "The answer is wrong";	
+		mesg.innerHTML= "The answer is wrong";
+	 
 	}
  var progress = document.getElementById("progress");
- progress.style.visibility = "hidden"
+ progress.style.display = "none"
 }
 function operatorclicked(button){
    var st = button.innerHTML;
@@ -100,7 +107,7 @@ function generateTargetNumber(){
 		 
    }
  //  console.log("Expr is "+expr);
-   var answer = eval(expr);
+   var answer = evil(expr);
    return answer;  
    
 }
@@ -111,7 +118,7 @@ function startQuiz(){
 	targetNum = generateTargetNumber();
 	displayNumbers();
 	var targetLabel = document.getElementById("targetNum");
-	targetLabel.innerHTML = "Target Number: "+targetNum;
+	targetLabel.innerHTML = "Target: "+targetNum;
 	var answerbox = document.getElementById("answer");
 	answerbox.value = "";
 	var playagain = document.getElementById("playagain");
@@ -150,18 +157,37 @@ function enableButtons(){
 function clearMessage(){
 	var messa = document.getElementById("message");
 	messa.innerHTML = "";
+	var progress =document.getElementById("progress");
+	progress.innerHTML="";
 }
 function showProgress(){
 	var progress = document.getElementById("progress");
 	var input = document.getElementById("answer");
 	var yourInput = input.value;
-	var answerSoFar = eval(yourInput);
- progress.style.visibility = "block"
-	progress.innerHTML = answerSoFar;
+	var answerSoFar = evil(yourInput);
+    progress.style.visibility = "inline"
+    
+	progress.innerHTML = "="+answerSoFar;
 }
 function redo(){
 	var input = document.getElementById("answer");
 	input.value = "";
 	enableButtons();
 	clearMessage();
+}
+function closemessage(){
+    var divMesg = document.getElementsByClassName("messagecontainer");
+	var messageBox = divMesg[0];
+	messageBox.style.display="none";
+}
+function retry(){
+    closemessage();
+    redo();
+}
+function newgame(){
+    closemessage();
+    startQuiz();
+}
+function evil(fn) {
+  return new Function('return ' + fn)();
 }
