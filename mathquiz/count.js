@@ -4,7 +4,7 @@ function checkAnswer()
 {
 	var ansBox = document.getElementById("answer");
 	var answerString = ansBox.value
-	var answerNum = evil(answerString);
+	var answerNum = eval(answerString);
 	var mesg = document.getElementById("message");
 	var divMesg = document.getElementsByClassName("messagecontainer");
 	var messageBox = divMesg[0];
@@ -107,7 +107,7 @@ function generateTargetNumber(){
 		 
    }
  //  console.log("Expr is "+expr);
-   var answer = evil(expr);
+   var answer = eval(expr);
    return answer;  
    
 }
@@ -164,7 +164,7 @@ function showProgress(){
 	var progress = document.getElementById("progress");
 	var input = document.getElementById("answer");
 	var yourInput = input.value;
-	var answerSoFar = evil(yourInput);
+	var answerSoFar = eval(yourInput);
     progress.style.visibility = "inline"
     
 	progress.innerHTML = "="+answerSoFar;
@@ -187,7 +187,4 @@ function retry(){
 function newgame(){
     closemessage();
     startQuiz();
-}
-function evil(fn) {
-  return new Function('return ' + fn)();
 }

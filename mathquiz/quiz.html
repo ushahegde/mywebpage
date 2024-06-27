@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+ <link rel="stylesheet" href="quiz.css"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<script type="text/javascript" src="quiz.js">
+
+</script>
+<title>Maths Quiz</title>
+</head>
+<body>
+<div class="heading" align="center">Numbers Quiz 
+ </div>
+ 
+    <div id="time" align="center"> 02:00</div>
+    <div id="grid" align="center"   >
+    <div align ="left" id="qnnum"></div>
+    <div id='question'></div>
+  
+    <input type="text" id="answer" type="text" onkeydown="inputEntered()" autofocus></input>
+    <button onclick="answerclicked()">Submit</button>
+    <div id="result"></div>
+    </div>
+    <script type="text/javascript">
+        startPuzzle();
+    </script>
+</body>
+</html>
