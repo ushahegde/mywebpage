@@ -1,10 +1,12 @@
+
  var arr=[];
 var targetNum=0;
+
 function checkAnswer()
 {
 	var ansBox = document.getElementById("answer");
 	var answerString = ansBox.value
-	var answerNum = eval(answerString);
+	var answerNum = math.evaluate(answerString);
 	var mesg = document.getElementById("message");
 	var divMesg = document.getElementsByClassName("messagecontainer");
 	var messageBox = divMesg[0];
@@ -13,7 +15,7 @@ function checkAnswer()
 		playagain.style.display ="inline" ;
 		var retry = document.getElementById("retrybutton");
 		retry.style.display ="inline" ;
-	if(answerNum == targetNum){
+	if(answerNum == targetNum && allButtonsDisabled()){
 		retry.style.display="none";
 		mesg.innerHTML = "Wonderful.<br>That is the correct answer";	
 		
@@ -38,7 +40,7 @@ function operatorclicked(button){
 	   
 }
 function generateCountDownNumbers(){
-	var num = generateRandomNumber(50,2);//changed from 200 uh 29/6
+	var num = generateRandomNumber(30,2);//changed from 200 uh 29/6
 	arr[0] = num;
 	for(i=1;i<5;i++){
 		var num = generateRandomNumber(13,2); //changed from 20 uh 29/6
@@ -64,7 +66,10 @@ function displayNumbers(){
     for(i=0;i<5;i++){
     	var btnNum = i+1;
 		var btn = document.getElementById("btn"+btnNum)	;
-		btn.innerHTML = arr[i];	    
+	 	
+		btn.innerHTML = String(arr[i]);
+		 
+		  
     }
 }
 function generateTargetNumber(){
@@ -164,9 +169,9 @@ function showProgress(){
 	var progress = document.getElementById("progress");
 	var input = document.getElementById("answer");
 	var yourInput = input.value;
-	var answerSoFar = eval(yourInput);
-    progress.style.visibility = "inline"
-    
+	var answerSoFar = math.evaluate(yourInput);
+	console.log(answerSoFar);
+    progress.style.display = "inline";
 	progress.innerHTML = "="+answerSoFar;
 }
 function redo(){
@@ -187,4 +192,12 @@ function retry(){
 function newgame(){
     closemessage();
     startQuiz();
+}
+function allButtonsDisabled(){
+	for(i=1;i<=5;i++){
+		var btn = document.getElementById("btn"+i);
+		if(btn.disabled == false)
+		  return false;	
+	}
+	return true;
 }

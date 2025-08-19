@@ -8,14 +8,14 @@
 <script type="text/javascript" src="count.js">
 
 </script>
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
 </head>
 <body> 
 
 <h1 align="center">Target</h1>
 <div class="messagecontainer">
-<div class="message" align="center">
- <h3 id="message"></h3>
+<div class="message" align="center" >
+ <h3 id="message" ></h3>
  <button id="retrybutton" onclick="retry()">Retry</button>
  <button id="playagain"  onclick="newgame()">New target</button>
  </div>
@@ -23,33 +23,35 @@
  </div>
 <div class="main"  >
  
-<div id="howto" align="center">Generate the target number using all the given numbers.</div>
+<div id="howto" align="center" >Generate the target number using all the given numbers.</div>
 <div align="center" id = "targetNum">Target : </div>
-<div align="center">
-<span ><button id="btn1" class="btn" onclick="operatorclicked(this)">  </button>
-<button id="btn2" class="btn" onclick="operatorclicked(this)">  </button>
-<button id="btn3" class="btn" onclick="operatorclicked(this)">  </button>
-<button id="btn4" class="btn" onclick="operatorclicked(this)">  </button>
-<button id="btn5" class = "btn" onclick="operatorclicked(this)">  </button></span>
+<table align="center" ><tr>
+<td><button id="btn1" class="button-colored" onclick="operatorclicked(this)">  </button></td>
+<td><button id="btn2" class="button-colored" onclick="operatorclicked(this)">  </button></td>
+<td><button id="btn3" class="button-colored" onclick="operatorclicked(this)">  </button></td>
+</tr>
+<tr align="center">
+<td  ><button id="btn4" class="button-colored" onclick="operatorclicked(this)">  </button></td>
+<td  ><button id="btn5" class = "button-colored" onclick="operatorclicked(this)">  </button></td></tr></table>
 
 </div>
  
-<div align="center">
-<button id="plusbutton" class="opr" onclick="operatorclicked(this)">+</button>
-<button id="minusbutton" class="opr" onclick="operatorclicked(this)">-</button>
-<button id="starbutton" class="opr" onclick="operatorclicked(this)">*</button> 
-<button id="slashbutton" class="opr" onclick="operatorclicked(this)">/</button>
-<button id="openbr" class="opr" onclick="operatorclicked(this)">(</button>
-<button id="closebr" class="opr" onclick="operatorclicked(this)">)</button>
+<div align="center" id="operators">
+<button id="plusbutton" class="button-colored" onclick="operatorclicked(this)">+</button>
+<button id="minusbutton" class="button-colored" onclick="operatorclicked(this)">-</button>
+<button id="starbutton" class="button-colored" onclick="operatorclicked(this)">*</button> 
+<button id="slashbutton" class="button-colored" onclick="operatorclicked(this)">/</button>
+<button id="openbr" class="button-colored" onclick="operatorclicked(this)">(</button>
+<button id="closebr" class="button-colored" onclick="operatorclicked(this)">)</button>
 
 </span>
 </div>
 <div class="solu">
-Solution <input type="text" id="answer" autofocus ></input><span id="progress"></span> </div>
+ <input type="text" id="answer" autofocus placeholder="solution"></input><span id="progress"></span> </div>
 
 <div id="buttonbar">
-<button onclick="checkAnswer()">Submit</button>
-<button onclick="redo()" class="opr">Clear</button>
+<button onclick="checkAnswer()" class="submitbtn">Submit</button>
+<button onclick="redo()" class="submitbtn">Clear</button>
  </div>
 
 

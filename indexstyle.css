@@ -159,11 +159,19 @@ tr:nth-child(odd){
 table{
   margin:5px auto;
 }
+td{
+  font-size:0.85em;
+}
+a{
+   font-size:1.2em;
+   }
 @media screen and (max-width: 481px){
+  
 
 table,td{
 	display: block;
 	margin: 3px;
+	font-size:small;
 
 }
 button{ 
@@ -238,7 +246,7 @@ ul{
    margin: 4px;
     
 }
- 
+
  a:hover, a:active{
 	text-decoration:none;
 	background-color:#882277;

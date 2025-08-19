@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+@font-face{
+   font-family:"supersunkissed";
+   src:url("../fonts/supersunkissed.ttf") format("truetype")
+   }
+   @font-face{
+   font-family:"jekteam";
+   src:url("../fonts/Jekteam.ttf") format("truetype")
+   }
 .numberstyle{ 
    background-color: #339988;
    padding: 10px 10px 10px 10px;
@@ -21,26 +30,37 @@ button{
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1.2em; 
-  border-radius:5px; 
-  box-shadow:1px 1px 2px gray;
+  font-size: 1.4em; 
+  border-radius: 8px;
+  box-shadow:1px 1px 2px rgba(0,0,0,0.2);
   cursor:pointer;
+  min-width: 3em;
 }
 button:disabled{
    color:#ddd;
 }
+#operators button{
+  min-width: 1em;
+  }
 body{
 	margin: 0px;
 	padding:0px;
-	font-family:Roboto; 
-	background-color:lightblue;
+	font-family:"Comic Neue",cursive;
+	background-color:#E6E6FA;
 }
+
 .main{
     margin:5px auto;
 	padding:7px;
 	width:95%;
 	margin-top: 0px; 
     
+}
+.submitbtn{
+  color:white;
+  background-image:linear-gradient(30deg,#005980,#3030F2);
+  border-radius: 5px;
+  padding:10px 20px;
 }
 div{
    margin:10px;
@@ -50,8 +70,7 @@ div{
 	color:white;
 	font-size: larger;
 	padding:10px;
-	margin: 10px;
-	border-radius: 8px;
+	margin: 10px; 
 	font-weight: bold;
 }
 #targetNum{
@@ -60,6 +79,14 @@ div{
    font-weight: bolder; 
    padding:10px; 
    text-shadow: 2px 2px 4px #000000;
+   
+    font-family:jekteam;
+}
+#howto{ 
+    color:white;
+    font-size:1.4em;
+      font-family:"Comic Neue";
+     text-shadow:2px 2px 2px black;
 }
 .solu{ 
    text-align:center;
@@ -76,6 +103,8 @@ div{
 }
 input{
    font-size:larger;
+   box-shadow:1px 1px 2px rgba(0,0,0,0.2);
+   padding:5px;
 }
 p{
    font-size:1.1em;
@@ -83,13 +112,12 @@ p{
 #buttonbar{
     font-size:1.1em;
     padding:7px;
-    text-align:center;
-    
+    text-align:center; 
 }
 .message{
 
-   background-color: #008080;
-   color:white;
+   background-color: #eee;
+   
    font-size:1.3em;
    border:2px solid white;
    width:60%; 
@@ -98,7 +126,7 @@ p{
    border:2px solid gray;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    padding:8%;
-   border-radius:10px;
+   border-radius:5px;
 }
 .messagecontainer{
    margin:0px;
@@ -113,10 +141,61 @@ p{
    left:0;
    top:0;
 }
-#howto{
-   font-size:1.4em;
-   font-style:italic;
+ 
+ 
+
+/* CSS */
+.button-colored{ 
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+  border: 0;
+  border-radius: 25%;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex; 
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 1.3em;
 }
+
+.button-colored:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-colored:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-colored:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
+.button-colored:disabled{
+background-color: #8193AB;
+background-image:none;
+color:light-gray;
+}
+
+
+   
+    
+
 @media  (min-width:1068px){
 h2{
    background-color: #389;
