@@ -15,14 +15,17 @@ function checkAnswer()
 		playagain.style.display ="inline" ;
 		var retry = document.getElementById("retrybutton");
 		retry.style.display ="inline" ;
-	if(answerNum == targetNum && allButtonsDisabled()){
+	if (answerNum!=targetNum){
+		mesg.innerHTML= "The answer is wrong.";
+	}	
+	else if( !allButtonsDisabled()){
+		mesg.innerHTML="Wrong. <br><br>You have not used all numbers!"
+	} else{
 		retry.style.display="none";
-		mesg.innerHTML = "Wonderful.<br>That is the correct answer";	
+		mesg.innerHTML = "Wonderful!!!<br><br>That is the correct answer!";	
 		
-	}else{
-		mesg.innerHTML= "The answer is wrong";
-	 
-	}
+	} 
+	
  var progress = document.getElementById("progress");
  progress.style.display = "none"
 }
@@ -172,7 +175,7 @@ function showProgress(){
 	var answerSoFar = math.evaluate(yourInput);
 	console.log(answerSoFar);
     progress.style.display = "inline";
-	progress.innerHTML = "="+answerSoFar;
+	progress.innerHTML = answerSoFar;
 }
 function redo(){
 	var input = document.getElementById("answer");
