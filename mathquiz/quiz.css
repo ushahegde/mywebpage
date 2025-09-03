@@ -1,21 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&display=swap');
-
-body{
-   font-family: "Roboto";
-   font-size: medium;
+/* body{
+   font-family: "Comic Neue";
+   font-size: 1.0em;
    margin: 0;
    padding: 0;
-  background-color:  #ebf5fb ;
 }
 #grid{
-	width:70%;
+	width:50%;
 	margin:10px auto;
     margin-top: 10%;  
 	font-size: 1em;  
-	color:white
+	background-color:#ebf5fb;
+	border: 15px solid #789;
+	border-radius: 5px;
     text-align: center; 
     overflow:hidden;
+    padding: 30px;
+    min-height: 250px;
     h1{
         background-color:#ebf5fb;
         font-size:1.6em;
@@ -23,39 +25,36 @@ body{
         color:teal;
     }
     
-}
-
+} */
+/* 
 input{
    padding:5px;
-   font-size: medium;
-   width:50px;
-   
-}
+   font-size: 1.4em;
+   box-shadow: 2px 2px 4px gray;
+   min-width:5ch;
+} */
+/*
 .list{
    padding:10px;
    margin: 3px;
 }
- 
+
 #question{
-padding:10px 10px 10px 10px;
+   padding:10px 10px 10px 10px;
    margin:10px;
-   font-size: 18px; 
-}
+   font-size: 1.6em; 
+   text-shadow:2px 2px 4px #ddd;
+}*/
+/*
 .inlinequestion{
   display: inline-block;
   text-align: left;
   
 }
-h1{
-   font-size: x-large;
-   padding: 30px 30px 30px 30px;
-   margin:0px;
-   background-color: #389;
-   color:white; 
-   
-}
+*/
+ /*
 .heading{ 
-width: 100%;
+  width: 100%;
    background-color: #389;
    color: white;
    padding:30px;
@@ -98,25 +97,21 @@ button{
      margin:2%;
   
 }
-h2{
-   background-color: #389;
-   color: white;
-   font-size: 22px; 
-   padding: 10px;
-   text-align: center;
-}
+
  
 .inputdiv{
    text-align: center;
 }
  
-
+*/
+/*
 .answerbutton{
    padding:10px 10px 10px 10px; 
    font-size: medium;
    
    margin: 20px 20px 20px 20px;
-}
+}*/
+/*
 .modal{
    z-index:1;
    position:fixed;
@@ -130,7 +125,7 @@ h2{
    
 }
 .modalwindow{
-   margin:20% auto;/*15% from top and centered*/
+   margin:20% auto;
    text-align:center;
    width:20%;
    padding:10px;
@@ -148,17 +143,8 @@ h2{
 #message{
     color:#881122;
     font-weight:bold;
- }
- #time{
-     width:auto;
-     font-size:1.4em;
-     font-style:bold;
-     padding:5px; 
-     color:white;
-     text-shadow:1px 1px gray;
-     margin:10px;
-     
- }
+ }  */
+ 
  
 .box{ 
    width:20%;
@@ -177,11 +163,211 @@ h2{
      align-items:center; 
      flex:1 1 auto;
  }
- @media only screen and (max-width: 600px){
-input{
-	padding:3px;
-        width:30%;  
+
+
+
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Comic Neue', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(#113156, #070731);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  background-image: radial-gradient(#203462 2px, transparent 2px);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 70%; 
+  margin:30px ;    
+}
+.container-inner {
+  background: #84363e;
+  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 5px 6px   #620d15;
+   
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
   }
+.content{   
+  font-family: "Comic Neue", cursive;
+  background: radial-gradient(#fffbf3, #ffe19e);
+  padding: 24px;
+  box-sizing: border-box;
+  border-radius: 20px 18px 20px 18px;
+  box-shadow: 0px 0px 0px 6px #5e1e21, 0px 0px 8px 6px #84222b,
+    inset 0px 0px 15px 0px #614506, 6px 6px 1px 1px #e66565,
+    -6px 6px 1px 1px #e66565;
+  text-align: center;
+
+  p {
+    font-size: 40px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #461417;
+  }
+}
+
+.timer {
+  background: linear-gradient( #e74c3c,#c74c3c);
+  color: white;
+  padding: 0.9em 0.8em;
+  border-radius: 20px;
+  font-weight: bold;
+  min-width:5em;
+  box-shadow:2px 2px 4px gray;
+   
+}
+
+.question-text {
+  
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  font-family:"Comic Neue",cursive;
+   font-size: 56px;
+   font-weight:bold;
+    padding: 40px;
+     
+    color: #461417;
+    animation: 1s fadeIn;
+}
+
+.answer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.answer-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: x-large;
+  margin:10px;
+  transition: border-color 0.3s;
+}
+
+.answer-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.submitbutton {
+  padding: 10px;
+  font-family: "Comic Neue", cursive;
+    flex: 1;
+    border-radius: 20px;
+    border: 1px solid darkgreen;
+  background-color: #3498db;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  box-shadow:2px 2px 4px black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background: linear-gradient(#ced869, #536d1b);
+   
+}
+
+.submitbutton:hover {
+  background: linear-gradient(#536d1b,#ced869);
+}
+/* Modal Overlay */
+
+/******new code****/
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideIn {
+  from {transform: translateY(-50px);}
+  to {transform: translateY(0);}
+}
+/*************/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:#fff;
+  opacity:0.9;
+   
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  
+}
+
+/* Modal Content */
+.modal-content {
+background: radial-gradient( #e0eff5,#b0d9e8,#6d94cf);
+  padding: 5rem;
+  border-radius: 10px;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 20px 18px 20px 18px;
+ 
+  position: relative;
+  border: 3px solid white;
+  
+}
+
+.modal-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5em;
+}
+
+.modal-content p { 
+  color: #222;
+  font-size:1.3rem;
+  font-family:"Comic Neue";
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 16px; 
+   
+  color: white;
+  text-shadow:2px 2px 4px gray;
+  cursor: pointer; 
+  padding:20px;  
+  
+    font-size:30px; font-weight:bold;
+    font-family:monospace;
+}
+
+.close-button:hover {
+  color:white;
+  font-size:34px;
+  text-shadow: 2px 2px 4px black;  
+}
+ @media only screen and (max-width: 480px){
+     
+ 
+ 
 .heading{
    padding: 10px;
    margin:0px;
@@ -189,15 +375,21 @@ input{
    color:white;
    font-size:1.3em;
 }
-#grid{
-   width:90%;
-   
+.container{
+   background-color:transparent;
+   height:100%;
+   margin:0px;
+   padding:0px;
+   width:100%;
 }
-button{
-  margin:4px;
-  font-size:0.9em;
-   min-width: 60px;
+.container-inner{
+  width:100%; 
+  height:100%;
+  padding:0px;
 }
+ 
+ 
+ 
 .modalwindow{
   width:60%;
  
@@ -206,7 +398,66 @@ button{
    margin: 5px 5px 5px 5px;
    font-size: small;
  }
- td{
-    font-size:small;
+ 
+ .submitbutton{
+     font-size:1.2em;
+     padding:8px;
  }
+ 
+ 
+ .content {
+     height:98%;
+     padding:15px; 
+     font-size:xx-large;
+ }
+}
+
+/****************** last screen buttons***/
+.quiz-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.quiz-buttons button {
+  padding: 12px 24px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow:2px 2px 4px gray;
+  transition: background-color 0.3s ease;
+  font-family: 'Comic Neue', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Button styles */
+#play-again-btn {
+  background-color: #4CAF50; /* green */
+  color: white;
+}
+
+#play-again-btn:hover {
+  background-color: #45a049;
+}
+
+#share-btn {
+  background-color:#007bff;
+  box-shadow: 
+    inset 0 2px 0 rgba(255, 255, 255, 0.4), /* Top highlight */
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2), /* Bottom shadow */
+    0 2px 3px rgba(0, 0, 0, 0.3); /* Outer shadow for depth */
+  color: white; 
+}
+
+#share-btn:hover {
+  background: linear-gradient(#2255ef,#2888ff, #3366f5)
+}
+
+#exit-btn {
+  background-color: #f44336; /* red */    color: white;
+}
+
+#exit-btn:hover {
+  background-color: #da190b;
 }

@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
  <link rel="stylesheet" href="quiz.css"> 
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  
 <script type="text/javascript" src="quiz.js">
@@ -11,6 +12,64 @@
 <title>Maths Quiz</title>
 </head>
 <body>
+<div class="modal-overlay" id="lastscreen">
+   <div class="container-inner"  >
+    <div class="content" >
+       <p id="lastmessage"></p>
+       <div class="quiz-buttons">
+  <button id="play-again-btn"  onclick="startAgain(2)">Play Again</button>
+  <button id="share-btn" onclick="shareResults()">Share</button>
+  <button id="exit-btn" onclick="exitQuiz()">Exit</button>
+</div>
+    </div>
+    </div>
+</div>
+<div class="modal-overlay" id="modal">
+  <div class="container-inner"  >
+    <div class="content" >
+    <span class="close-button" id="closeModal">&times;</span>
+    <h2 id="dialogtitle">title</h2>
+    <p id="result">Thank you! Your answer has been recorded.</p>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="scoreDialog" >
+  <div class="container-inner">
+    <div class="content">
+     
+    
+    <p id="resultscore" style="color:green;">Thank you! Your answer has been recorded.</p>
+    <div class="buttons">
+      <button type="button" class="submitbutton" onclick="startAgain()">Yes</button>
+      <button type="button" onclick="endgame()" class="submitbutton">No</button>
+    </div>
+    </div>
+  </div>
+  </div>
+<div class="container" id="answerdialog">
+<div class="container-inner">
+<div class="content">
+    <div class="top-bar">
+      <span id="qnnum">Question 3 of 10</span>
+       
+      <span id="time" class="timer">02:00</span>     </div>
+
+    <div class="question-box">
+      <p class="question-text" id="question">
+        What is the capital of France?
+      </p>
+    </div>
+
+    <div class="answer-form">
+      <input placeholder="Type your answer here..." class="answer-input" id="answer" onkeydown="inputEntered()" autocomplete="off" autofocus />
+       <button type="submit" onclick="answerclicked()" class="submitbutton">Submit</button>
+    </div>
+  </div>
+  </div>
+ 
+  </div>
+
+<!---
 <div class="heading" align="center">Numbers Quiz 
  </div>
  
@@ -23,6 +82,18 @@
     <button onclick="answerclicked()">Submit</button>
     <div id="result"></div>
     </div>
+    ---->
+    <!------ <div id="endscreen" class="modal-overlay">
+    <div class="modal-content">
+      <h1>
+        Thank you for playing the quiz
+      </h1>
+      <div id="buttons">
+         <button id="homescreen" onclick="gohome()" class="submitbutton">Home</button>
+         <button id="othermaths" onclick="othermaths()" class="submitbutton">Other Maths</button>
+      </div>
+      </div>
+    <div> ----->
     <script type="text/javascript">
         startPuzzle();
     </script>

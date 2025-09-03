@@ -1,7 +1,8 @@
+
 function startPuzzle()
 {
-    var gridEl = document.getElementById("grid");
-    gridEl.style.visibility="visible";
+   // var gridEl = document.getElementById("grid");
+  //  gridEl.style.visibility="visible";
     timeLeft = 120;
     intervalId = setInterval(displayTime,1000);
    // setTimeout(stopQuiz(),60000);
@@ -17,7 +18,10 @@ function startPuzzle()
    "What is x percentage of y",
    "What is one half of",
    "Which is smaller - one half of or one third of",
-   "Which is larger - one half of or one fourth of"
+   "Which is larger - one half of or one fourth of",
+   "What is one third of",
+   "What is one fourth of"
+   
   ];
   var answer = 0;
   var score = 0;
@@ -32,6 +36,9 @@ function startPuzzle()
   	if(timeLeft<=0){		
   		clearInterval(intervalId)
   		showScore();
+  	}else if(questionNum>10){
+  	    clearInterval(intervalId);
+  	    showScore();
   	}else{
   	 clearFields();
   	 
@@ -76,12 +83,20 @@ function startPuzzle()
     }else if(questionPrefix.indexOf("larger") !=-1){
         var numArray = generateLargerQuestion();
         questionPrefix = "Which is larger -<br>a.one third of "+numArray[0]+" or<br> b.one fourth of "+numArray[1];    
+    } else if(questionPrefix.indexOf("third")){
+        var num = generateOneThirdQuestion();
+        questionPrefix += " "+num;
+    }else if(questionPrefix.indexOf("fourth")){
+        var num = generateOneFourthQuestion();
+        questionPrefix += " "+num;
     }
     questionPrefix +="?";
     var questionwid = document.getElementById("question");
     questionwid.innerHTML = questionPrefix;
     questionwid = document.getElementById("qnnum");
     questionwid.innerHTML = "Qn."+questionNum;
+    ansEl = document.getElementById("answer");
+    ansEl.focus();
    }    
   }
   function generateSquareRootQuestion()
@@ -148,38 +163,70 @@ function startPuzzle()
  
   function answerclicked()
   {
+       
+  const modal = document.getElementById('modal');
+  const closeModal = document.getElementById('closeModal');
+  let autoCloseTimeout;
+          // Show modal
+    modal.style.display = 'flex';
+
+    inputfld = document.getElementById("answer");
+    
+  
+    // Auto-close modal after 5 seconds (5000 ms)
+    clearTimeout(autoCloseTimeout); // Clear any previous timeout
+    autoCloseTimeout = setTimeout(() => {
+      modal.style.display = 'none';
+      createQuestion();
+    }, 5000);
+    closeModal.addEventListener('click', function() {
+       modal.style.display = 'none';
+      clearTimeout(autoCloseTimeout);
+      createQuestion();
+      inputfld.focus();
+    });
+      
+      
+      
 	   var inputEl = document.getElementById("answer");
 	   var answerTyped = inputEl.value;
 	   var resEl = document.getElementById("result");
 	   console.log("answer is "+answerTyped);
+	   var title=document.getElementById("dialogtitle");
 	   if(answer==answerTyped)
 	   {
-			resEl.innerHTML = "Wonderful. That is the correct answer";
+	        title.innerHTML="Correct";
+			resEl.innerHTML = " That is  correct.";
 			score = score+1;
 			
 	   }  else {
-			resEl.innerHTML = "Sorry, It is wrong";	   
+	        title.innerHTML="Wrong"
+			resEl.innerHTML = "The correct answer is "+answer;	   
 	   }
 	   console.log("I am out of if");
 	   questionNum++;
-	   //createQuestion();
-	  // if(questionNum<=10){
+	   
+	/*   if(questionNum<=10){
+	       createQuestion();
 	    // sleep(1000);	   
-	     setTimeout(createQuestion,1000);
-	  // }
-	  // else{
-	   //	showScore();
+	     //setTimeout(createQuestion,1000);
+	  }
+	   else{
+	   	showScore();
 	   	
-	  // }   
+	   }  */
+	    
+	    // inputfld.value = '';
+ 
   }
   function clearFields(){
       var qn = document.getElementById("question");
-      var res = document.getElementById("result");
+    //  var res = document.getElementById("result");
       var ans = document.getElementById("answer");
       ans.value = "";
       
       qn.innerHTML = "";
-      res.innerHTML = "";     
+     // res.innerHTML = "";     
       
   }
   function inputEntered()
@@ -191,10 +238,16 @@ function startPuzzle()
   function showScore()
   {   
       clearInterval();
-      var time=document.getElementById("time");
-      time.innerHTML="";
+     
+      var scoreDialog = document.getElementById("scoreDialog")
+      // modal.style.display = 'flex';
+      scoreDialog.style.display = 'flex';
+      scoreDialog.style.fontSize="24px";
       
-      var grid = document.getElementById("grid");
+      var answerScreen = document.getElementById("answerdialog");
+      answerScreen.style.display="none";
+      var resEl = document.getElementById("resultscore");
+      
       var mes = "";
       if(score>=9){
 			mes = "Excellent";      
@@ -202,7 +255,9 @@ function startPuzzle()
       else if(score>=7){
 			mes = "Very Good";      
       }
-			grid.innerHTML="<h1>"+mes+"<br>Your score is "+score+"/"+questionNum+" </h1>";
+      resEl.innerHTML=mes+"<br><br>Your score is "+score+"/10"+" <br>Play again?";
+       
+      
   }
   /*************************/
   function displayTime()
@@ -216,17 +271,17 @@ function startPuzzle()
   	var timeElement = document.getElementById("time");
   	
   	if(timeLeft<10){
-  	    timeElement.style.color="#ff0000";  
-  	    timeElement.style.textShadow="1px 1px #660000";
+  	    timeElement.style.color="#f00";  
+  	    
   	    timeLeftSt="0"+timeLeft; 
   	}else{
-  	    timeElement.style.color="#ffffff"; 
+  	    timeElement.style.color="#000"; 
   	    t1 = Math.floor(timeLeft/60);
   	    t2 = timeLeft%60;
-  	    timeLeftSt = "0"+t1+":"+t2
+  	    timeLeftSt = "0"+t1+":"+String(t2).padStart(2,"0");
   	}
   	
-  	timeElement.innerHTML="00:"+timeLeftSt;
+  	timeElement.innerHTML=timeLeftSt;
   	}
   	
   }
@@ -278,4 +333,77 @@ function generateLargerQuestion()
      else
         answer = "b";
      return [n1,n2]      
-}    
+}   
+function startAgain(){
+    
+   var scoreDialog = document.getElementById("scoreDialog");
+   if(scoreDialog!=null)
+   scoreDialog.style.display="none";
+    
+       var scoreDialog2 = document.getElementById("lastscreen");
+       if(scoreDialog2!=null)
+          scoreDialog2.style.display="none";
+     var answerScreen = document.getElementById("answerdialog");
+      answerScreen.style.display="flex";
+   questionNum=1;
+   timeLeft = 120;
+   startPuzzle();
+} 
+function endgame(){
+  var scoreDialog = document.getElementById("scoreDialog");
+   scoreDialog.style.display="none";
+   var mainContent = document.getElementById("lastscreen");
+   mainContent.style.display="flex";
+   var message = document.getElementById("lastmessage");
+   message.innerHTML = 
+   "Thank you for playing the quiz";
+}
+
+/*********last screen functions */
+function startGame() {
+    // Reset game state and start the quiz
+    console.log("Game restarted");
+}
+
+function shareResults() {
+    const score = 8; // Replace with your dynamic score
+
+    const shareData = {
+        title: 'My Quiz Result',
+        text: `I scored ${score}/10 on this quiz! Try it yourself:`,
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData)
+            .then(() => console.log('Share successful'))
+            .catch((error) => console.error('Share failed:', error));
+    } else {
+        alert("Sharing is not supported on this device.");
+    }
+}
+
+function exitQuiz() {
+    const confirmExit = confirm("Are you sure you want to exit?");
+    if (confirmExit) {
+        window.location.href = '../index.html'; // Change to your actual home or landing page
+    }
+}
+  /**********************/
+  function generateOneThirdQuestion()
+  {
+      var n = generateRandomNumber(100);
+      var n2 = n*3;
+      answer = n;
+      return n2;
+  }
+ /**********************/
+
+  function generateOneFourthQuestion()
+  {
+      var n = generateRandomNumber(100);
+      var n2 = n*4;
+      answer = n;
+      return n2;
+  }
+ /**********************/
