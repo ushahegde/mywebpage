@@ -189,13 +189,13 @@ body {
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   width: 70%; 
-  margin:30px ;    
+  margin:30px auto ;    
 }
 .container-inner {
-  background: #84363e;
+  background: #cddeff;
   padding: 10px;
-  border-radius: 30px;
-  box-shadow: 5px 6px   #620d15;
+  border-radius: 30px; 
+  box-shadow:2px 2px 4px #eee;
    
 }
 
@@ -207,32 +207,34 @@ body {
   }
 .content{   
   font-family: "Comic Neue", cursive;
-  background: radial-gradient(#fffbf3, #ffe19e);
+  background: radial-gradient(#ddeeff, #ccddee);
   padding: 24px;
   box-sizing: border-box;
   border-radius: 20px 18px 20px 18px;
-  box-shadow: 0px 0px 0px 6px #5e1e21, 0px 0px 8px 6px #84222b,
-    inset 0px 0px 15px 0px #614506, 6px 6px 1px 1px #e66565,
-    -6px 6px 1px 1px #e66565;
+ 
   text-align: center;
-
+  
+   
   p {
     font-size: 40px;
     padding: 20px;
     box-sizing: border-box;
     color: #461417;
   }
+  box-shadow: 4px 4px 14px rgb(100,74,100) inset;
 }
 
 .timer {
   background: linear-gradient( #e74c3c,#c74c3c);
   color: white;
-  padding: 0.9em 0.8em;
-  border-radius: 20px;
+  font-size:1.3em;
+  padding: 10px 5px;
+  border-radius: 4px;
+  border:none;
   font-weight: bold;
   min-width:5em;
+  text-shadow:1px 2px 2px black;
   box-shadow:2px 2px 4px gray;
-   
 }
 
 .question-text {
@@ -309,8 +311,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color:#fff;
-  opacity:0.9;
+  background: linear-gradient(#113156, #070731);
    
   display: none; /* Hidden by default */
   align-items: center;
@@ -327,7 +328,7 @@ background: radial-gradient( #e0eff5,#b0d9e8,#6d94cf);
   max-width: 400px;
   text-align: center;
   border-radius: 20px 18px 20px 18px;
- 
+  
   position: relative;
   border: 3px solid white;
   
@@ -346,22 +347,24 @@ background: radial-gradient( #e0eff5,#b0d9e8,#6d94cf);
 
 /* Close Button */
 .close-button {
-  position: absolute;
-  top: 12px;
-  right: 16px; 
    
-  color: white;
-  text-shadow:2px 2px 4px gray;
+  border:none;
+  border-radius:25%;
+   
+  margin:0;
+  padding:0; 
+   
+   
+  text-shadow:2px 2px 2px gray;
   cursor: pointer; 
-  padding:20px;  
   
-    font-size:30px; font-weight:bold;
+    font-size:40px; font-weight:bold;
     font-family:monospace;
+    box-sizing:border-box;
 }
 
 .close-button:hover {
-  color:white;
-  font-size:34px;
+  color:white; 
   text-shadow: 2px 2px 4px black;  
 }
  @media only screen and (max-width: 480px){
@@ -432,12 +435,20 @@ background: radial-gradient( #e0eff5,#b0d9e8,#6d94cf);
 }
 
 /* Button styles */
-#play-again-btn {
-  background-color: #4CAF50; /* green */
+.greenbutton {
+  padding:10px 15px;
+  font-size:1.4rem;
+  box-shadow:2px 2px 4px gray;
+  transition: background-color 0.3s ease;
+  font-family:"Comic Neue",cursive;
+  cursor:pointer;
+  border-radius:8px;
+  border:none;
+  background-color: #4Cbf50; /* green */
   color: white;
 }
 
-#play-again-btn:hover {
+.greenbutton:hover {
   background-color: #45a049;
 }
 
@@ -448,16 +459,67 @@ background: radial-gradient( #e0eff5,#b0d9e8,#6d94cf);
     inset 0 -2px 0 rgba(0, 0, 0, 0.2), /* Bottom shadow */
     0 2px 3px rgba(0, 0, 0, 0.3); /* Outer shadow for depth */
   color: white; 
+  padding: 12px 24px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow:2px 2px 4px gray;
+  transition: background-color 0.3s ease;
+  font-family: 'Comic Neue', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #share-btn:hover {
   background: linear-gradient(#2255ef,#2888ff, #3366f5)
 }
 
-#exit-btn {
+.redbutton {
   background-color: #f44336; /* red */    color: white;
+  padding: 12px 24px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow:2px 2px 4px gray;
+  transition: background-color 0.3s ease;
+  font-family: 'Comic Neue', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#exit-btn:hover {
+.redbutton:hover {
   background-color: #da190b;
 }
+
+.options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+     
+    }
+
+    .option-button {
+      padding: 1em 1.6em 1em 1.6em;
+      font-size: 1.4em;
+      color:white;
+      min-width:6em;
+      /* background-image: linear-gradient(#eee, #ddd,#fff);;*/
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow:2px 2px 4px gray;
+      transition: background-color 0.3s ease;
+       margin:5px;
+    }
+
+    .option-button:hover {
+      background: linear-gradient(rgba(200,0,0,0.3),rgba(0,0,0,0.3));
+    }
+@media only screen and   (max-width:480px){
+  .option-button{
+      padding: 0.5em 0.8em;
+      font-size:x-large;
+  }
+.option-button:hover {
+      background: linear-gradient(rgba(200,0,0,0.3),rgba(0,0,0,0.3));
+    }
+}
+     

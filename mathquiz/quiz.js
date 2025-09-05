@@ -83,20 +83,23 @@ function startPuzzle()
     }else if(questionPrefix.indexOf("larger") !=-1){
         var numArray = generateLargerQuestion();
         questionPrefix = "Which is larger -<br>a.one third of "+numArray[0]+" or<br> b.one fourth of "+numArray[1];    
-    } else if(questionPrefix.indexOf("third")){
+    } else if(questionPrefix.indexOf("third")!=-1){
         var num = generateOneThirdQuestion();
         questionPrefix += " "+num;
-    }else if(questionPrefix.indexOf("fourth")){
+       console.log("number in create question third is "+num); 
+    }else if(questionPrefix.indexOf("fourth")!=-1){
         var num = generateOneFourthQuestion();
         questionPrefix += " "+num;
+        console.log("number in create question is "+num);
     }
     questionPrefix +="?";
     var questionwid = document.getElementById("question");
     questionwid.innerHTML = questionPrefix;
     questionwid = document.getElementById("qnnum");
     questionwid.innerHTML = "Qn."+questionNum;
-    ansEl = document.getElementById("answer");
-    ansEl.focus();
+    displayOptions();
+   // ansEl = document.getElementById("answer");
+    //ansEl.focus();
    }    
   }
   function generateSquareRootQuestion()
@@ -150,9 +153,9 @@ function startPuzzle()
   }
   
   function generatePercentageQuestion(){
-  	   var percentages = [1,5,10,20,25,50]
+  	   var percentages = [1,4,10,20,25,50]
   	   var perc = percentages[generateRandomNumber(percentages.length)];
-  	   var x = (generateRandomNumber(15)+1)*25
+  	   var x = (generateRandomNumber(10)+5)*25
   	   
   	   var perAn = perc*x/100;
   	    
@@ -203,6 +206,8 @@ function startPuzzle()
 	        title.innerHTML="Wrong"
 			resEl.innerHTML = "The correct answer is "+answer;	   
 	   }
+	   var scoreText = document.getElementById("scoretext");
+	   scoreText.innerHTML="Score="+score;
 	   console.log("I am out of if");
 	   questionNum++;
 	   
@@ -222,8 +227,8 @@ function startPuzzle()
   function clearFields(){
       var qn = document.getElementById("question");
     //  var res = document.getElementById("result");
-      var ans = document.getElementById("answer");
-      ans.value = "";
+     // var ans = document.getElementById("answer");
+     // ans.value = "";
       
       qn.innerHTML = "";
      // res.innerHTML = "";     
@@ -255,6 +260,7 @@ function startPuzzle()
       else if(score>=7){
 			mes = "Very Good";      
       }
+      console.log("score in score dialog is"+score);
       resEl.innerHTML=mes+"<br><br>Your score is "+score+"/10"+" <br>Play again?";
        
       
@@ -270,16 +276,12 @@ function startPuzzle()
   	}else{
   	var timeElement = document.getElementById("time");
   	
-  	if(timeLeft<10){
-  	    timeElement.style.color="#f00";  
-  	    
-  	    timeLeftSt="0"+timeLeft; 
-  	}else{
-  	    timeElement.style.color="#000"; 
+  	 
+  	    timeElement.style.color="#fff"; 
   	    t1 = Math.floor(timeLeft/60);
   	    t2 = timeLeft%60;
   	    timeLeftSt = "0"+t1+":"+String(t2).padStart(2,"0");
-  	}
+  	
   	
   	timeElement.innerHTML=timeLeftSt;
   	}
@@ -346,6 +348,7 @@ function startAgain(){
      var answerScreen = document.getElementById("answerdialog");
       answerScreen.style.display="flex";
    questionNum=1;
+   score = 0;
    timeLeft = 120;
    startPuzzle();
 } 
@@ -366,7 +369,7 @@ function startGame() {
 }
 
 function shareResults() {
-    const score = 8; // Replace with your dynamic score
+    //const score = 8; // Replace with your dynamic score
 
     const shareData = {
         title: 'My Quiz Result',
@@ -404,6 +407,104 @@ function exitQuiz() {
       var n = generateRandomNumber(100);
       var n2 = n*4;
       answer = n;
+      console.log("answer is"+answer);
       return n2;
   }
  /**********************/
+ function optionClicked(bt){
+     var answerClicked = bt.innerText;
+     if(String(answerClicked)==answer){
+         showCorrectDialog(true);
+         
+     }else{
+         showCorrectDialog(false);
+     }
+ }
+ /*******************/
+ function showCorrectDialog(b){
+      const modal = document.getElementById('modal');
+  const closeModal = document.getElementById('closeModal');
+  let autoCloseTimeout;
+          // Show modal
+    modal.style.display = 'flex';
+     // Auto-close modal after 5 seconds (5000 ms)
+    clearTimeout(autoCloseTimeout); // Clear any previous timeout
+    autoCloseTimeout = setTimeout(() => {
+      modal.style.display = 'none';
+      createQuestion();
+    }, 5000);
+    closeModal.addEventListener('click', function() {
+       modal.style.display = 'none';
+      clearTimeout(autoCloseTimeout);
+      createQuestion(); 
+    });
+    var resEl = document.getElementById("result");
+    var title=document.getElementById("dialogtitle");
+       if(b==true)
+	   {
+	        title.innerHTML="Correct";
+			resEl.innerHTML = " That is  correct.";
+			score = score+1;
+			
+	   }  else {
+	        title.innerHTML="Wrong"
+			resEl.innerHTML = "The correct answer is "+answer;	   
+	   }
+	   var scoreText = document.getElementById("scoretext");
+	   scoreText.innerHTML="Score="+score;
+	   console.log("I am out of if");
+	   questionNum++;
+
+ }
+ /**********************/
+ function displayOptions(){
+     var option=["","","",""];
+     if(answer=="a"||answer=="b"){
+         option[0]="a";
+         option[1]="b";
+         option[2]="";
+         option[3]="";
+     }else{
+         option[0] = answer+2;
+         if(answer-4>0)
+            option[1] = answer-4;
+         else
+            option[1]=answer+3;
+         if(answer>100){
+             option[2] = answer+10;
+             option[3] = answer-14;
+          }else{
+              option[2] = answer+6;
+              if(option[3]>8)
+              option[3]= answer-8;
+              else
+                option[3] = answer+12;
+          }
+          [option[0],option[3]]=[option[3],option[0]];
+          [option[2],option[1]]=[option[1],option[2]];
+          [option[0],option[2]]=[option[2],option[0]];
+          var r = generateRandomNumber(4)+1;
+          switch(r){
+              case 1: option[0] = answer;
+              break;
+              case 2: option[1] = answer;
+              break;
+              case 3: option[2] = answer;
+              break;
+              case 4: option[3] = answer;
+              break
+          }
+          
+      }
+         for(i=1;i<=4;i++){
+             var butn = document.getElementById("ans"+i);
+             if(option[i-1]==""){
+                 butn.style.display="none";
+             }else{
+                 butn.style.display="inline";
+                 butn.innerText= option[i-1];
+             }
+             
+         }
+     }
+ 
