@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
  body{
-   font-family: "Roboto"; 
+   font-family: "Comic Neue" ; 
    margin: 0;
    padding: 0;
+   
 }
 #grid{
 	width:80%;
@@ -29,21 +29,33 @@
 }
 
 .grid-item {
-  background-color: #1891ac;
-  border: 0.5px solid rgb(100, 100, 100);
+  background: linear-gradient( #1891ac,#38a1ac);
+ /* border: 0.5px solid rgb(100, 100, 100);*/
   padding: 20px;
   font-size: 1.4em;
   color:white;
   text-align: center; 
   box-shadow: 1px 1px 1px gray;
-
+  cursor:pointer;
+  font-family:"Comic Neue";
+  margin:10x;
+  cursor:pointer;
+  min-width:3em;
+  min-height:3em;
 }
+ 
+
 p{
  text-align:center;
 }
  
- .answers button{
+ .ansbutton{
      font-size:1.4em;
+     border:none;
+     padding:12px;
+     color:white;
+      background: linear-gradient(135deg,#1847AC,#1891ac );
+     box-shadow:1px 1px 2px #eee;
  }
  
 .fatbutton{
@@ -52,11 +64,20 @@ p{
   border-radius:10px;
   color:white;
   padding:10px;
+  
 }
 .iconbutton{
    font-size:0.6em;
    display:flex;
    flex-direction:column;
+   box-shadow:1px 1px 2px gray;
+   margin:2px;
+   border:none;
+   width:40px;
+}
+ 
+.iconbutton:active{
+   background:linear-gradient(#189191,#18a2b1);
 }
 button{
    padding:5px; 
@@ -64,32 +85,44 @@ button{
    }
 .heading{ 
    width: 100%;
-   background-color: #389;
-   color: white;
+   background-color: #eee;
+   color: #389;
+   box-shadow:4px 1px 8px #bbb;
    padding:10px;
-   font-size: 3em;
-   overflow:hidden;
-   font-weight: bolder;
-   text-align: center; 
+   text-align: left; 
    margin: 0px;
    margin-top:0px; 
-  border-color: #eef;   
-   font-weight:bold;
-    
+   font-size:1em;
+        
+}
+#title{
+font-size: 1.2em;
+   overflow:hidden;
+   font-weight: bolder;
 }
  
  
 #dialogscreen{
     margin:10px auto;
-    width:60%;
-    text-align:center;
-    display:none;
+        text-align:center;
+    
     background-color: #ebf5fb;
     font-size:1.8em;
-    color:teal; 
+    display:flex;
+    flex-direction:column;
+    margin:15px;
+    padding:10px;
+    line-height:1.3;
     overflow=hidden;
-    box-shadow:2px 2px 1px gray;
-}
+    box-shadow:2px 2px 1px gray;     }
+ #msg{
+     line-height:1.3;
+     padding:10px;
+     margin:10px;
+     font-size:xx-large;
+     
+ }   
+    
 
 #gamearea{
    display:flex;
@@ -97,8 +130,8 @@ button{
    flex-direction:column;
    background-color:#d2ecfc ;
    width:85%;
-   padding:5px;
-   box-shadow:1px 1px 1px gray;
+   padding:15px;
+   box-shadow:3px 3px 5px #8888ff inset;
 }
 button{
    background-color:#CAF4FF;
@@ -109,10 +142,35 @@ button:disabled{
     background-color:#cdd2d5;
 }
 #buttonbar{
-   justify-content:center;
    display:flex;
    flex-direction:horizontal;
+   justify-content:center;
+   
    padding:5px;
+}
+#helpbtn{
+  font-size:xx-large;
+}
+#closebutton{
+   font-size:x-large;
+   border:none;
+}
+dialog { 
+  padding:20px;
+  border:none;
+  background:#eee;
+  
+  box-shadow:5px 5px 10px gray;
+  
+}
+::backdrop {
+  background-image: linear-gradient(
+    45deg,
+    rebeccapurple,
+    dodgerblue
+  );
+  opacity: 0.75;
+  place-items:center;
 }
 @media only screen and (min-width:1025px){
 #gamearea{
@@ -124,8 +182,13 @@ button{
    padding:10px;
    font-size:1.3em;
 }
+#buttonbar{
+   position:fixed;
+   display:flex;
+   flex-direction:column;
+}
 .heading{
-   padding:40px;
+   padding:10px;
    font-size:3em; 
 }
 }

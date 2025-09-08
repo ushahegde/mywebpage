@@ -1,4 +1,5 @@
 index =0
+level=1;
 var x = [0,0,0,0,0,0,0,0,0]
 function generateNumbers()
 {
@@ -138,9 +139,9 @@ function showNumbers(x,restart)
         var qnNum = "n"+i; 
         var el = document.getElementById(qnNum);
         if(arr[i]>0)
-           el.value = arr[i];
+           el.innerHTML = arr[i];
         else{
-           el.value=" "
+           el.innerHTML=" "
            optionArray[index++]=x[i]
          }
       }
@@ -214,7 +215,7 @@ function isValid()
      {
         var elid = "n"+i;
         var element = document.getElementById(elid);
-        var ans = element.value;
+        var ans = element.innerHTML;
         answer[i] = ans;
      }
      var i=0;
@@ -224,36 +225,60 @@ function isValid()
           for(col=0;col<3;col++)
              sum = sum+parseInt(answer[(row*3)+col]);
 	 
-          if(sum!=100)
-             return false;
+          if(sum!=100){
+          	
+          	str="row";
+          	rowcol = row+1;
+          	return [false,str,rowcol];
+          }
+              
        }
      for(col = 0;col<3;col++)
        {
           var sum=0;
           for(row=0;row<3;row++)
              sum = sum+parseInt(answer[(row*3)+col]);
-          console.log("sum is "+sum);
-          if(sum!=100)
-             return false;
+         // console.log("sum is "+sum);
+          if(sum!=100){
+          	str="column";
+          	rowcol = col+1;
+          	return [false,str,rowcol];
+          }
+
        }
-     return true;
+     return [true,"",0];
 
 }
 /***********************************************************/
 function submitAnswer()
 {
     var message = document.getElementById("message");
-    if(isValid())
+    str="";
+    rowcol = 0;
+    var [validAnswer,str,rowcol]=isValid();
+    if(validAnswer)
     {
-      showDialog("Wonderful!!!!<br>Level Completed.");
-     
+    	if(level==7){
+    		showDialog("Excellent!<br>You have completed the last level");
+    	}else{
+      showDialog("Wonderful!<br>Level "+level+ " Completed.");
+      }
+      
        if(maxshown>=0)
-          maxshown--
+         { maxshown--; 
+         level++;}
         toClear = true;   
     }
     else
     {
-    	showDialog("Solution is wrong!")
+    	toClear = false;
+    	var errorMessage="";
+    	if(str==="row"){
+    		errorMessage = "Row "+rowcol+" does not add to 100";
+    	}else if(str==="column"){
+    		errorMessage = "Column "+rowcol+" does not add to 100";
+    	}
+    	showDialog("Wrong solution.<br>"+errorMessage);
     	 
     }
 }
@@ -283,22 +308,25 @@ function drag(ev)
      ev.dataTransfer.setData("text",ev.target.id)
 }
 /*********************************************************/
+var undoStack=[];
 function drop(ev)
 {
      ev.preventDefault()
      var data = ev.dataTransfer.getData("text")
      var el = document.getElementById(data) 
-     if(ev.target.value>0)
-        return
-     ev.target.value = el.innerHTML
+     if(ev.target.innerHTML!=""  && ev.target.innerHTML!=" ")
+       return
+     ev.target.innerHTML = el.innerHTML
      el.innerHTML = " "
      el.style.display= "none"
      checkCompletion()
-     stackNum = ev.target.value
+     stackNum = ev.target.innerHTML
      stackPlace = ev.target.id
-     
-     optionPlace = data
-    // ev.target.innerHTML = data
+      optionPlace = data
+
+     var undoElement = [stackNum,stackPlace,optionPlace];
+     undoStack.push(undoElement);
+        // ev.target.innerHTML = data
     // document.getElementById(data).innerHTML = ""
     undobutton = document.getElementById("undo");
     undobutton.disabled = false;
@@ -309,7 +337,7 @@ function restartGame()
 {
     clearOptions()
   //  var x = generateNumbers();
-    showNumbers(x,true)
+    showNumbers(x,true);
     undobutton = document.getElementById("undo");
     undobutton.disabled = true;
 }
@@ -321,7 +349,7 @@ function checkCompletion()
      {
         var elid = "n"+i;
         var element = document.getElementById(elid);
-        if(element.value==0)
+        if(element.innerHTML==" ")
             return
      }
      submitAnswer()
@@ -329,26 +357,27 @@ function checkCompletion()
 /******************************************************/
  function showDialog(message)
  {
- 	 el = document.getElementById("dialogscreen")
- 	 el.style.display="block"
+ 	 el = document.getElementById("dia")
+ 	 
  	   
  	 msgel = document.getElementById("msg")
  	  
  	 msg.innerHTML = message;
+ 	 el.showModal();
  	 
- 	 gridel = document.getElementById("grid")
- 	 gridel.style.display = "none"
+ 	// gridel = document.getElementById("grid")
+ 	 //gridel.style.display = "none"
  }
  /******************************************************/
- function hideDialog()
+function hideDialog()
  {
- 	 el = document.getElementById("dialogscreen")
- 	 el.style.display="none"
- 	 gridel = document.getElementById("grid")
- 	 gridel.style.display = "block"
- 	 console.log("To clear is "+toClear)
+ 	 el = document.getElementById("dia");
+ 	 el.close();//close dialog
+ 	// gridel = document.getElementById("grid")
+ 	// gridel.style.display = "block"
+ 	 
  	 if(toClear==true){
- 	 	console.log("Are we here??")
+ 	 	 
  	 	clearArray()
  	 	//clearAllArrayElements(x);
  	 	showNumbers(x,false)
@@ -359,16 +388,25 @@ function checkCompletion()
  function undo()
  {
  	
- 	console.log( stackNum)
- 	element = document.getElementById(stackPlace);
- 	element.value = " ";
+ //	console.log( stackNum)
+    
+ 	a = undoStack.pop();
+ 	element = document.getElementById(a[1]);
+ 	element.innerHTML = " ";
  	
- 	optionElement = document.getElementById(optionPlace)
- 	optionElement.innerHTML = stackNum;
- 	optionElement.style.display = "inline"
  	
- 	undobutton = document.getElementById("undo")
- 	undobutton.disabled = true;
+ 
+ 	optionElement = document.getElementById(a[2])
+ 	optionElement.innerHTML = a[0];
+ 	optionElement.style.display = "inline";
+ 	
+ 	
+ 	console.log("undo stack length is "+undoStack.length);
+ 	if(undoStack.length==0){
+ 		undobutton = document.getElementById("undo")
+ 	   undobutton.disabled = true;
+ 	}
+ 	
  	
  }
 /**********************************/
@@ -377,4 +415,13 @@ function checkCompletion()
  	l = x.length
  	for(i=0;i<l;i++)
  	   x[i]=0;
+ }
+ /**************/
+ function dragover(ev){
+ 	ev.preventDefault();
+ }
+ /******************/
+ function showHelp(){
+ 	var mess="Drag and drop numbers into the grid so that sum of each row is 100 and sum of each column is 100. "
+ 	showDialog(mess);
  }

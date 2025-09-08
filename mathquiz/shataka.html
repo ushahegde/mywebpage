@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
- 
+ <title>Shataka</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="shataka.css"> 
  
@@ -10,55 +10,62 @@
 </head>
 <body>
 
-<div class="heading">CENTURY
- 
+<div class="heading"><span id="title">Shataka</span>
+<a href="../index.html">Home</a>
+ <a href="./quiz.html">Maths quiz</a>
 </div>
 <div id="grid">
-<h3 align="center" >Drag and drop numbers into the grid so that sum of each row is 100(shataka) and sum of each column is 100. </h3>
-<div id="gamearea">
-<div align="center" id = "buttonbar">
+ <div align="center" id = "buttonbar">
 
-<button id = "startbtn" onclick="startGame();" class="iconbutton"   >NewGame
+<button id = "startbtn" onclick="startGame();" class="iconbutton" title="New Game"  >
   <img src="play.png" width="30px" height="30px"></img>
 </button>
-<button onclick="restartGame();" class="iconbutton" >Restart
+<button onclick="restartGame();" class="iconbutton" title="Restart">
 <img src="restart.png" width="30px" height="30px"></img>
 </button>
-<button id="undo" class="iconbutton" disabled="true">Undo
+<button id="undo" class="iconbutton" disabled="true" title="Undo">
 <img src="undo.png" width="30px" height="30px" onclick="undo()"></img>
 </button>
+<button id="helpbtn" class="iconbutton" onclick="showHelp()" title="How to play">?</button>
 </div>
+<div id="gamearea">
+
 <div class="grid-container" align="center"    >
-  <input class="grid-item" id="n0" value=""   ondrop="drop(event)" >
-<input class="grid-item" id="n1"   ondrop="drop(event)"  >
-<input class="grid-item" id="n2"   ondrop="drop(event)"   >
-<input class="grid-item" id="n3"      ondrop="drop(event)" >
-<input class="grid-item" id="n4"       ondrop="drop(event)" >
-<input class="grid-item" id="n5"     ondrop="drop(event)" >
-<input class="grid-item" id="n6"       ondrop="drop(event)" >
-<input class="grid-item" id="n7"     ondrop="drop(event)" >
-<input class="grid-item" id="n8"        ondrop="drop(event)" > 
+  <button class="grid-item" id="n0" value=""   ondrop="drop(event)" ondragover="dragover(event)">
+<button class="grid-item" id="n1"   ondrop="drop(event)" ondragover="dragover(event)" >
+<button class="grid-item" id="n2"   ondrop="drop(event)"  ondragover="dragover(event)" >
+<button class="grid-item" id="n3"      ondrop="drop(event)" ondragover="dragover(event)">
+<button class="grid-item" id="n4"       ondrop="drop(event)" ondragover="dragover(event)" >
+<button class="grid-item" id="n5"     ondrop="drop(event)" ondragover="dragover(event)" >
+<button class="grid-item" id="n6"       ondrop="drop(event)" ondragover="dragover(event)">
+<button class="grid-item" id="n7"     ondrop="drop(event)" ondragover="dragover(event)" >
+<button class="grid-item" id="n8"        ondrop="drop(event)" ondragover="dragover(event)"> 
   
 </div>
 <div class="answers" align="center">
-  <button id="ans1"  draggable="true" style="display:none;" ondragstart="drag(event)"> 0</button>
-  <button id="ans2" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
-  <button id="ans3" draggable="true" style="display:none;"  ondragstart="drag(event)">0</button>
- <button id="ans4" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
-<button id="ans5"  draggable="true" style="display:none;" ondragstart="drag(event)"> 80</button>
-  <button id="ans6" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
-  <button id="ans7" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
- <button id="ans8" draggable="true" style="display:none;" ondragstart="drag(event)">0</button>
-<button id="ans9"  draggable="true" style="display:none;" ondragstart="drag(event)"> 0</button>
+  <button id="ans1"  draggable="true" style="display:none;" class="ansbutton" ondragstart="drag(event)" ondragover="dragover(event)"> 0</button>
+  <button id="ans2" draggable="true" style="display:none;" class="ansbutton" ondragstart="drag(event)">0</button>
+  <button id="ans3" draggable="true" style="display:none;"   class="ansbutton" ondragstart="drag(event)">0</button>
+ <button id="ans4" draggable="true" class="ansbutton" style="display:none;" ondragstart="drag(event)">0</button>
+<button id="ans5"  draggable="true" class="ansbutton" style="display:none;" ondragstart="drag(event)"> 80</button>
+  <button id="ans6" draggable="true" class="ansbutton" style="display:none;" ondragstart="drag(event)">0</button>
+  <button id="ans7" draggable="true" class="ansbutton" style="display:none;" ondragstart="drag(event)">0</button>
+ <button id="ans8" draggable="true" class="ansbutton" style="display:none;" ondragstart="drag(event)">0</button>
+<button id="ans9"  draggable="true" class="ansbutton" style="display:none;" ondragstart="drag(event)"> 0</button>
    
 </div>
+</div> <!-- end of game area --->
+
+ 
  
  </div>
- </div>
+ <dialog id="dia">
 <div id="dialogscreen">
-    <h1 id="msg">hello</h1>
-       <button id="closebutton" onclick="hideDialog()"> Close </button>
+ <div align="right"> <button id="closebutton" onclick="hideDialog()"> X </button></div> 
+    <div id="msg">hello<div>
+     
 </div>
+</dialog>
 <script type="text/javascript">
   startGame();
   </script>
