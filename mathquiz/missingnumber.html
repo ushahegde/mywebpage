@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<link rel="stylesheet" href="missingnumber.css">
+
+<title>MissingNumber</title>
+<script type="text/javascript" src="missingnumber.js"></script>
+</head>
+<body>
+
+<div class="heading">
+   <span id="title">Missing Number</span>
+  <button class="dropdown" onclick="showMenu()">&#10247; 
+   <div class="dropdowncontent" id="dropdowncnt">
+   <a href="../index.html">Home</a>
+   <a href="./quiz.html">Maths quiz</a>
+   <a href="./shataka.html">Shataka</a>
+   </button>
+</div>
+</div>
+
+<div class ="grid">
+ <p >Select the value of the missing number.</p>
+
+  
+   <div class="circularNumbers">
+      <p>
+      <button id="num1">7</button>
+      <button id="num2">8</button>
+      
+      </p>
+      <p>
+      <button id="num3">9</button>
+      <button id="num4">10</button>
+      <button id="num5">11</button>
+      </p>
+   </div>
+  
+   <div class="answernumbers">
+      <button id="ans1" onclick="answerClicked(this)">7</button>
+      <button id="ans2" onclick="answerClicked(this)">8</button>
+      <button id="ans3" onclick="answerClicked(this)">7</button>
+      <button id="ans4" onclick="answerClicked(this)">8</button>
+   </div>
+ </div>
+ <dialog id="dia">
+ 
+ <div align="right"> <button id="closebutton" onclick="hideDialog()"> X </button></div> 
+    <div id="msg">hello<div>
+     
+</div>
+</dialog>
+ <script>
+    startGame();
+ </script>
+</body>
+</html>

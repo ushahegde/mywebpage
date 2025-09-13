@@ -1,0 +1,133 @@
+html{
+   font-size:18px;
+}
+body{
+   margin:0px;
+   padding:0px;
+}
+.grid{
+	width:80%;
+	height:69%;
+	margin:20px auto; 
+    padding: 10px;
+	background: radial-gradient(lightskyblue ,steelblue);
+	box-shadow: 0px 0px 16px 8px gray ;
+  /*  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
+    border-radius:10px;
+	font-size: 1.8em;  
+    text-align: center; 
+    overflow:hidden; 
+    color:white;   
+}
+
+.circularNumbers{
+    
+   font-family:sans-serif;
+   padding:8px;
+}
+.circularNumbers button{
+   border-radius:50%;
+   cursor:pointer;
+   padding:10px;
+   font-size:1.3rem;
+   min-width:4rem;
+   min-height:4rem;
+   background-color:aliceblue;
+   box-shadow:2px 2px 4px gray;
+   border:none;
+}
+.answernumbers{
+   padding:10px;
+   margin:10px;
+}
+.answernumbers button{
+   background-color: blanchedalmond;
+   font-size:1.2rem;
+   padding:10px;
+   cursor:pointer;
+   border:none;
+}
+.answernumbers button:hover{
+  background-color: lightskyblue;
+  color:white;
+}
+#dia{ 
+    width:200px;
+    height:200px;
+    background:radial-gradient( white,#eee );
+    border:none;
+    box-shadow:  0px 0px 8px  gray;
+    padding:20px;
+    font-size:20px;  
+        
+}
+#msg{
+   font-size:1.2em; 
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:80%; 
+    }
+.heading{
+   box-shadow:2px 2px 4px gray;
+   font-size:1.3rem;
+   margin:0px;
+   padding:0px;
+   display:flex; 
+   background-color:white; 
+}
+
+.dropdown{
+    text-align:right;
+    font-size:1.2rem;
+    margin-left:auto;
+    position:relative;
+    border:none;
+    background-color: transparent;
+   
+}
+.dropdowncontent{
+    position:absolute;
+    display:none;
+     background-color:#eee;
+    z-index:1;
+    cursor:pointer;
+     min-width:120px; 
+     padding:10px;
+     font-size:1rem; 
+     right:0;
+      
+}
+.dropdowncontent a{
+    display:block;
+    font-size:1rem;
+    color:gray;
+}
+.dropdowncontent a:hover{
+   color:plum;
+}
+@media only screen and (max-width:900px){
+ html{
+     font-size:16px;
+ }
+ body{ 
+     height:100%;
+     flex-direction:column;
+     background: radial-gradient(aliceblue,lightskyblue,steelblue);
+ }
+ .heading{
+     padding: 5px;
+     font-size:1.2rem;
+ }
+ .grid{
+     width:100%;    
+     padding:0px;
+     height:100%;
+     border:none;
+     border-radius:0px;
+     margin: 0px auto;
+     margin-top:3px;
+     box-shadow:none;
+     flex:1;
+ }
+} 
