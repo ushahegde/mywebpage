@@ -4,6 +4,7 @@ html{
 body{
    margin:0px;
    padding:0px;
+   color:black;
 }
 .grid{
 	width:80%;
@@ -31,8 +32,7 @@ body{
    padding:10px;
    font-size:1.3rem;
    min-width:4rem;
-   min-height:4rem;
-   background-color:aliceblue;
+   min-height:4rem; 
    box-shadow:2px 2px 4px gray;
    border:none;
 }
@@ -41,7 +41,7 @@ body{
    margin:10px;
 }
 .answernumbers button{
-   background-color: blanchedalmond;
+   background-color: aliceblue;
    font-size:1.2rem;
    padding:10px;
    cursor:pointer;
@@ -54,7 +54,7 @@ body{
 #dia{ 
     width:200px;
     height:200px;
-    background:radial-gradient( white,#eee );
+    background:radial-gradient( white,aliceblue );
     border:none;
     box-shadow:  0px 0px 8px  gray;
     padding:20px;
@@ -89,7 +89,7 @@ body{
 .dropdowncontent{
     position:absolute;
     display:none;
-     background-color:#eee;
+     background-color:aliceblue;
     z-index:1;
     cursor:pointer;
      min-width:120px; 
@@ -113,11 +113,11 @@ body{
  body{ 
      height:100%;
      flex-direction:column;
-     background: radial-gradient(aliceblue,lightskyblue,steelblue);
+     background: radial-gradient(lightskyblue,steelblue);
  }
  .heading{
      padding: 5px;
-     font-size:1.2rem;
+     font-size:1.3rem;
  }
  .grid{
      width:100%;    
@@ -128,6 +128,7 @@ body{
      margin: 0px auto;
      margin-top:3px;
      box-shadow:none;
+     background:transparent;
      flex:1;
  }
 } 
