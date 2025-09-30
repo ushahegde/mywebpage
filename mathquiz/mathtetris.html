@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tetris </title>
+  <link rel="stylesheet" href="mathtetris.css">
+</head>
+<body>
+  <dialog >
+  <button autofocus>Close</button>
+  <p id="dialogmsg">This modal dialog has a groovy backdrop!</p>
+</dialog>
+  <div class="gamecontainer">
+   <div class="canvasclass">
+  <canvas align="center" id="tetris" width="300" height="480"></canvas>
+  </div>
+  <div class="controls">
+  <div>Score:</div>
+
+    <div id="score">0</div>
+    <div class="arrowbtns">
+    <button class="btn" onclick="showHelp()">How to play</button>
+    <button class="btn" id="startbtn" onclick="startGame()">&#9208;</button>
+  <!-----  <button class="btn" onclick="pauseGame()">&#9208;</button> --->
+      <button class="btn btn-left" onclick="playerMove(-1)">←</button>
+  <button class="btn btn-down" onclick="playerDrop()">↓</button>
+  <button class="btn btn-right" onclick="playerMove(1)">→</button>
+  <button class="btn btn-rotate" onclick="playerRotate(1)">&#8634;</button>
+  </div>
+   <!-- Rotate symbol -->
+  
+</div>
+ 
+
+  </div>
+
+
+  <script src="mathtetris.js"></script>
+</body>
+</html>
