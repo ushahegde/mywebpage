@@ -13,12 +13,12 @@
 </dialog>
   <div class="gamecontainer">
    <div class="canvasclass">
-  <canvas align="center" id="tetris" width="300" height="480"></canvas>
+  <canvas id="tetris" width="300" height="480"></canvas>
   </div>
   <div class="controls">
-  <div>Score:</div>
+  <div>Score:<span id="score">0</span></div>
 
-    <div id="score">0</div>
+    
     <div class="arrowbtns">
     <button class="btn" onclick="showHelp()">How to play</button>
     <button class="btn" id="startbtn" onclick="startGame()">&#9208;</button>

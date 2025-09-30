@@ -4,7 +4,8 @@ body {
     color: white;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  
+  min-height:100vh;
 }
 html{
   font-size:16px;
@@ -30,8 +31,6 @@ canvas {
   align-items: center;
   flex-direction:row;
   
-  height:100%;
-  width:100%;
   gap:0px;
 }
  
@@ -94,20 +93,6 @@ dialog{
   gap: 10px;
   padding:15px;
 }
-
-    .main-buttons,
-    .mobile-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .score {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
     .btn {
       padding: 10px 20px;
       font-size: 1rem;
@@ -115,8 +100,8 @@ dialog{
       border-radius: 5px;
       background: #007bff;
       color: white;
-      cursor: pointer;
-      transition: background 0.3s;
+      cursor: pointer; 
+      touch-action:manipulation;
     }
 
     .btn:hover {
@@ -139,20 +124,39 @@ dialog{
       flex-direction:column;
        justify-content: center;    
        margin:0px;
-      flex-wrap:nowrap;
+      
       font-size:large;
   }
-  .gamecontainer{
+  canvas{
+      margin-top:20px;
+      margin-bottom:3px;
+      margin-left:10px;
+  }
+  .gamecontainer{ 
+      display:flex;
       flex-direction:column;
+      align-items:flex-start;
+      justify-content:flex-start;
+      padding:20px;
+            width:100%;     
   }
   #score{
       padding:4px;
   }
   .arrowbtns{
+      position:absolute;
+      top:0px;
+      left:0px;
+      display:flex;
       flex-direction:row;
-      margin-bottom:5px;
-      justify-content:center;
-   
+      margin-bottom:15px;
+      justify-content: space-around;      
+      align-items: center; 
+      width:100%;
+      margin:3px;
+  }
+  .btn{
+      padding:10px 15px;
   }
 }
 

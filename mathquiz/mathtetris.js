@@ -549,6 +549,5 @@ update();
 
 function showHelp(){
     var str = "If adjacent cells add to 10, they merge and you score.<br> If the cells touch the upper border of grid, game will be over.";
-    showDialog(str);
-    
+    showDialog(str);  
 }
