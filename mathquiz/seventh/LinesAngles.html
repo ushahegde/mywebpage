@@ -8,16 +8,20 @@
     <script type="text/javascript" src = "fnlibrary.js">
        </script>
     <script type="text/javascript" src="angles.js" ></script>
-     <link rel="stylesheet" type="text/css" href="../style.css">
-    
+     <link rel="stylesheet" type="text/css" href="lineangles.css">
+     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
  </head>
 
 <body>
- <div class="heading">Lines and Angles
-  <ul    >
-   <li><a href="../../index.html">Home</a></li>	  
+ <div class="heading">
+ 
+   <span id="homebutton"><a href="../../index.html">Home</a></span>	
+ <span id="hd">Lines and Angles</span>
+
+   
       
-</ul> 
+
  </div>
   <div id="restartScreen" align="center" style="display:none;   margin:20px auto;">
     <button onclick="restartQuiz()">Quiz again</button>
@@ -25,21 +29,22 @@
 </div>
  <div align = "center" id="grid">
 
- <span id="qnnum" align="left" margin="10px"></p>
+ <span id="qnnum" align="left" margin="10px"></span>
  <div id="question">
  
  </div>
    
- <div  >
- <img id = "trimage"  width = "200px" height="150px" style="float:left;display:none; padding:0px;border:solid 2px #888;"></img>
+
+ <div id="options">
  <button  id = "btn1" class="answerbutton"></button>
  <button  id="btn2" class="answerbutton"></button>
- </div>
- <div> 
+ 
  <button   id="btn3" class="answerbutton"></button>
  <button class="answerbutton" id="btn4"></button>
- </div>
  
+ </div>
+ <div align="center" >
+  <img id = "trimage"  width = "200px" height="150px" style="display:none; padding:0px;border:solid 2px #888;"></img> </div>
  
    <div class="modal"  id="dialog">
      <div class="modalwindow">

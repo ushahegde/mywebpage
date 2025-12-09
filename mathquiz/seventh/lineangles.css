@@ -1,0 +1,266 @@
+
+ 
+body{
+    margin: 0;
+    background: #eee; /* darker outer zone */
+    font-family: 'Poppins', sans-serif;
+     
+    height: 100vh;
+}
+#grid{
+	 width: 85%;
+    margin:5px auto;
+    padding: 30px;
+    border-radius: 22px;
+  
+    background-image: radial-gradient( #ffe5d9, #ffd7ba, #fec89a);      
+    backdrop-filter: blur(5px);
+
+    /* Translucent neon border */
+    border: 4px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 
+        0 0 12px rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(255, 0, 128, 0.4);
+
+    animation: popIn 0.5s ease forwards;
+}
+input{
+   padding:10px;
+   font-size: medium;
+   
+}
+.list{
+   padding:10px;
+   margin: 3px;
+}
+ 
+#question{
+   font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+    color: #5a3e36;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+      margin-bottom: 25px;
+}
+.inlinequestion{
+  display: inline-block;
+  text-align: left;
+  
+}
+h1{
+   font-size: x-large;
+   padding: 30px 30px 30px 30px;
+   margin:0px;
+   
+   color:white;
+   
+}
+
+/* https://grabient.com/HQdgLAbANKkwnPAzFAtABmAJnQRhruumpocRsGDiZVtBZGDOgKwsw4g1ZVA?angle=45 */
+
+
+.heading{ 
+width: 100%; 
+   color: white;
+   padding:20px;
+   font-size: 30px;
+   display:flex;
+   font-weight: bolder;
+   text-align: center; 
+   margin: 0px;
+   margin-top:0px; 
+  border-color: #eef; 
+  padding:8px 3px 3px 3px;
+  align-items:center;
+    
+}
+.heading ul{
+   padding: 0px 0px 0px 0px;
+}
+.heading li{	 
+   color: white;
+   padding:0px; 
+   font-size: small;
+   margin-bottom:0px;
+   text-align: center;
+   margin: 0px;    
+}
+.heading a{
+    text-decoration:none;
+    color:white; 
+}
+li{
+	display:inline; 
+}
+ul{
+	text-align:center;
+} 
+button{
+    min-width:100px;
+    padding: 15px 20px;
+     background: #ffffffaa;
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  border:none;
+  color: #6a4a3c;
+  padding: 14px;
+  margin: 8px 0;
+  text-shadow: 1px 1px 2px rgba(80,40,20,0.2);
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  
+}
+button:hover{
+  background: linear-gradient(135deg, #fff173, #ffba70);
+    transform: translateY(-3px) rotate(-1deg);
+}
+button:active {
+    transform: translateY(1px);
+}
+h2{
+   background-color: #389;
+   color: white;
+   font-size: 22px; 
+   padding: 10px;
+   text-align: center;
+}
+ 
+.inputdiv{
+   text-align: center;
+}
+ 
+
+.answerbutton{
+   padding:10px 10px 10px 10px; 
+   font-size: 1.5rem;
+   width:70%;
+   
+}
+#options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+.modal{
+   z-index:1;
+   position:fixed;
+   left:0;
+   top:2%;
+   display:none;
+   width:100%;
+   height:100%;
+   margin:0px;
+   background-color:rgba(255,255,255,0.5);    
+   
+}
+.modalwindow{
+   margin:20% auto;/*15% from top and centered*/
+   text-align:center;
+   width:20%;
+   padding:10px;
+   
+   border-radius:10px;
+   border:2px #ccc;
+   font-size: large;
+   color:#555;
+   background-color:white;
+   border-style:outset;
+ }
+ #solutiondialog{
+   margin:10% auto;/*15% from top and centered*/
+   text-align:center;
+   width: 70%;
+   
+   border-radius:10px;
+   border:2px #ccc;
+   font-size: large;
+   color:#555;
+   background-color:white;
+   border-style:outset;
+ }
+  
+#message{
+    color:#881122;
+    font-weight:bold;
+ }
+ #replay{
+   display:none;
+}
+td{
+   border-style: solid;
+   border-color: aliceblue;
+   border-width: 1px;
+   margin: 10px 5px 10px 5px;
+   padding: 10px;
+   background-color:#ddd;
+   
+   
+}
+ 
+  a:hover, a:active{
+	text-decoration:none;
+	background-color:#882277;
+	color:white; 
+	
+}
+ #homebutton{    
+     font-size:medium;
+  text-shadow: 0 0 1px #ff7fbd;    
+ } 
+ #hd{
+     align-items:center;
+     margin-left:auto;
+     margin-right:auto;
+     text-shadow: 0 0 3px #ff7fbd;
+ }  
+ 
+ @media only screen and (max-width: 600px){
+input{
+	padding:3px;
+        width:30%;  
+  }
+.heading{
+   padding: 4px;
+   margin:0px;
+   background-color: white;
+   
+   font-size:1.3em;
+    
+   
+}
+#grid{
+   width:80%;
+   margin:3px;
+   
+}
+button{
+  margin:4px;
+  font-size:0.9em;
+   min-width: 60px;
+}
+.modalwindow{
+  width:60%;
+ 
+ }
+ .answerbutton{
+   margin: 5px 5px 5px 5px;
+   font-size: small;
+ }
+ td{
+    font-size:small;
+ }
+ .answerbutton:hover{
+  background: linear-gradient(135deg, #fff173, #ffba70);
+    transform: translateY(-3px) rotate(-1deg);
+}
+button:active {
+    transform: translateY(1px);
+}
+}
+@keyframes popIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
