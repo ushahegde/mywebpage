@@ -1,0 +1,113 @@
+let questions = [];
+let selectedQuestions = [];
+let currentIndex = 0;
+let score = 0;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const explanationEl = document.getElementById("explanation");
+const nextBtn = document.getElementById("next-btn");
+const resultBox = document.getElementById("result-box");
+const scoreEl = document.getElementById("score");
+
+const codeEl = document.getElementById("code");
+const explainBtn = document.getElementById("explain-btn");
+ 
+fetch("quiz.json")
+  .then(res => res.json())
+  .then(data => {
+    questions = data;
+    startQuiz();
+  });
+
+function startQuiz() {
+  selectedQuestions = shuffleArray(questions).slice(0, 10);
+  loadQuestion();
+}
+
+function loadQuestion() {
+  resetState();
+
+  let q = selectedQuestions[currentIndex];
+  questionEl.textContent = `${currentIndex + 1}. ${q.question}`;
+  let qncode=q.qncode;
+  if(qncode==null){
+      codeEl.innerHTML="";
+  }else{
+      //add a newline if there is a brace or semicolon. 
+     /* qncode = qncode.replaceAll(';',';<br>');
+      qncode = qncode.replaceAll('{','{<br>');
+      qncode = qncode.replaceAll('}','}<br>');
+      qncode = qncode.replaceAll("<","&lt;");
+      qncode = qncode.replaceAll(">","&gt;");*/
+      codeEl.innerHTML=`<pre>${qncode}</pre>`;
+  }
+
+  q.options.forEach((option, index) => {
+    const btn = document.createElement("button");
+    btn.textContent = option;
+    if(option!=null){
+       btn.onclick = () => selectAnswer(btn, index, q.correct, q.explanation);
+       optionsEl.appendChild(btn);
+    }
+  });
+  explanationString = q.explan
+}
+
+function selectAnswer(button, selected, correct, explanation) {
+  const buttons = optionsEl.children;
+
+  for (let btn of buttons) {
+    btn.disabled = true;
+  }
+  console.log("selected="+selected+"correct="+correct);
+  if (selected === (correct-1)) {
+      console.log("CORRECT");
+    button.classList.add("correct");
+    score++;
+  } else {
+       console.log("WRONG");
+    button.classList.add("wrong");
+    buttons[correct-1].classList.add("correct");
+  }
+
+  explainBtn.classList.remove('hidden');
+ // explanationEl.textContent = explanation;
+ // explanationEl.classList.remove("hidden");
+  nextBtn.classList.remove("hidden");
+  explainBtn.onclick=function(){
+      explanationEl.classList.remove("hidden");
+      explainBtn.classList.add('hidden');
+      explanationEl.textContent=explanation;
+  }
+}
+
+nextBtn.onclick = () => {
+  currentIndex++;
+
+  if (currentIndex < 10) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+};
+
+function showResult() {
+  document.getElementById("quiz-box").classList.add("hidden");
+  resultBox.classList.remove("hidden");
+  scoreEl.textContent = score;
+}
+
+function resetState() {
+  optionsEl.innerHTML = "";
+  explanationEl.classList.add("hidden");
+  explainBtn.classList.add("hidden");
+  nextBtn.classList.add("hidden");
+}
+
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+function showExplanation(){
+   
+}

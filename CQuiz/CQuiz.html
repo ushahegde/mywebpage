@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="quiz-container">
+  <h1>C Quiz</h1>
+
+  <div id="quiz-box">
+    <p id="question"></p>
+    <p id="code"></p>
+    <div id="options"></div>
+    <p id="explanation" class="hidden"></p>
+    <button id="next-btn" class="hidden">Next</button>
+    <button id="explain-btn" class="hidden">Explain</button>
+  </div>
+
+  <div id="result-box" class="hidden">
+    <h2>Your Score: <span id="score"></span>/10</h2>
+    <button onclick="location.reload()">Restart</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

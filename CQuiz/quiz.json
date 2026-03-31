@@ -1,0 +1,2524 @@
+[
+  {
+    "question": "What does sizeof operator do?",
+    "qncode": null,
+    "options": [
+      "Gives size of the program",
+      "Gives size of the variable in bits",
+      "Gives size of variable in bytes",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the size of an int type in C?",
+    "qncode": null,
+    "options": [
+      "2 bytes",
+      "4 bytes",
+      "Depends on compiler",
+      "Same as wordlength of processor"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "What will be the value of a after executing this statement?",
+    "qncode": "float a=10/3;",
+    "options": [
+      "3.33",
+      "3.333333330",
+      "Division Error",
+      "3.0000"
+    ],
+    "correct": "4",
+    "explanation": "In RHS first 10 an integer is divided by 3 an int. Hence answer is truncated to 3. Then the result is set to 3.000.\nTo get correct answer, you can use 10.0/3 or 10/3.0 . If either of operands is non-integer, then both are converted to double and you get double precision answer. ",
+    "topic": "Expressions"
+  },
+  {
+    "question": "Which of these is correct way of declarating a function which prints an array  n integers?",
+    "qncode": null,
+    "options": [
+      "void print_array(int a[n])",
+      "void print_array(int a)",
+      "void print_array(int *a,int n)",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "When a function has array parameter, it is treated as a pointer to first element of array.",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Which of these array declarations is wrong?",
+    "qncode": null,
+    "options": [
+      "int arr[4] = {1};",
+      "int arr[5] = {1,2,3,4,5,6};",
+      "int arr[] = {1,2,3,4,5};",
+      "None of the above"
+    ],
+    "correct": "4",
+    "explanation": "When an array initializer has less elements as in answer 1, the rest of array is filled with 0. If there are excessive elements as in answer 2, these are ignored.\nIf an array is defined without its size, but has  initializer as in example 3, then array size is taken as number of elements in initializer. ",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Which of the following is not a C built in data type",
+    "qncode": null,
+    "options": [
+      "int",
+      "char",
+      "double",
+      "string"
+    ],
+    "correct": "4",
+    "explanation": "In C there is no string data type. A char array is used to represent strings.",
+    "topic": "Data types"
+  },
+  {
+    "question": "Which of the following statements is incorrect?",
+    "qncode": null,
+    "options": [
+      "float m;switch(m){...}",
+      "for(;;) printf(\"Hello\");",
+      "printf(a<10?\"hi\":\"Hello\");",
+      "All of the above"
+    ],
+    "correct": "1",
+    "explanation": "The argument to switch should always be integer type. So m can not be used for switch in option 1.\n\nOption 2 is OK. Because for(;;) is taken as for loop with no initialization, condition or increment. So it is syntactically correct. But print Hello World infinitely.\n\nOption 3 is uses ternary statement and concise form of\n\nif(a<10)\n   printf(\"Hi\");\nelse\n   printf(\"Hello\");",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What are the values of a,b,c after these statements?",
+    "qncode": "int a=10;\nint b=++a;\nint c=a&&b;",
+    "options": [
+      "11 11 11",
+      "10 11 1",
+      "11 11 1",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "c is 1 because the statement uses logical and. a&&b will be true if both a and b are true. Since both are non-zeroes, they are true. C is true - that is 1. ",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the output of the following print statement? Assume 4 byte machine. ",
+    "qncode": "printf(\"%d %d %d %d\",sizeof(2),sizeof(2.0),sizeof(\"2\"),sizeof('2'));",
+    "options": [
+      "4 8 2 4",
+      "4 4 1 1 ",
+      "2 2 1 1",
+      "None of the above"
+    ],
+    "correct": "1",
+    "explanation": "Size of 2 is size of int which is 4. 2.0 is a double, not a float. Hence its size if 8 bytes. \"2\" is a string which is null terminated and hence it has two characters - '2' and '\\0'. Hence its size is 2 bytes. '2' is a character literal and character literals are treated as integers. Hence its size is 4 bytes. ",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the output of the following print statement? ",
+    "qncode": "int a=12;\nif(a=3)\n    printf(\"a is 3\");\nelse\n    printf(\"a is not 3\");",
+    "options": [
+      "a is 3",
+      "a is not 3",
+      "Syntax error in if statement",
+      "None of the above"
+    ],
+    "correct": "1",
+    "explanation": "a=3 is an assignment statement.\n\nif(a=3) becomes if(3). In C language, 0 is false and all non zero values are true.\n\nSo if condition is true and program will print \"a is 3\"",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What does the following loop do?",
+    "qncode": "int a;\nfor(a=0;a<10;a++);\n      printf(\"Hello world\");",
+    "options": [
+      "prints Hello world 10 times",
+      "prints Hello world 9 times",
+      "Prints Hello world once",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "There is a semicolon at the end of \"for\" statement. Hence for statement repeats the empty loop 10 times. printf statement is not part of the loop. So the code prints Hello world only once after completing for loop.",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "int a = 12,b;\nif(a>0)\n    printf(\"a is positive\");\n    b=3;\nelse\n    printf(\"a is negative\");",
+    "options": [
+      "Prints\" a is positive\"",
+      "Prints\" a is negative\"",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "if can have only one statement - simple statement or block. Since there are no braces surrounding if clause, print and assignment are taken as two different statements. So else is not associated with if. Hence syntax error. ",
+    "topic": "Control statements"
+  },
+  {
+    "question": "Find out the correct statement in the following",
+    "qncode": null,
+    "options": [
+      "while(1)  printf(\"Hello\");",
+      "if(0)  printf(\"Hello\");",
+      "for(i=10;i;i--)   printf(\"Hello\");",
+      "All of these"
+    ],
+    "correct": "4",
+    "explanation": "1 is infinite loop, but is syntactially correct.\n\n2 is checking condition with 0. 0 is false in C. Hence printf is not executed.\n\n3 is a loop which repeats the loop until i becomes 0. When i becomes 0, the condition of for statement is false and the for loop terminates",
+    "topic": "Control statements"
+  },
+  {
+    "question": "By default any real number in \u2018C\u2019 is treated as\u2026.......",
+    "qncode": null,
+    "options": [
+      "depends up on the memory model that you are using",
+      "a float",
+      "a double",
+      "a long double"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "What does this code print?",
+    "qncode": "printf(\u201c%d\u201d,10?0?5:1:12);",
+    "options": [
+      "0",
+      "1",
+      "5",
+      "12"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "char ch=66;int m='A';\nprintf(\"%d %c\",m,ch);",
+    "options": [
+      "Syntax error in line 1",
+      "A 66",
+      "65 B",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "In C, char values are stored as integers. Hence chars and ints can be assigned to one another. The output depends just on format specifier - printed as char if %c is used, printed as a number if %d is used",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int a,b,c;\na = 12;b=012;\nc = 0x12;\nprintf(\"%d %d %d\",a,b,c);",
+    "options": [
+      "12 12 12",
+      "Syntax error",
+      "12 10 18",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "If a number starts with 0, it is an octal number. So 012 is octal 12 which is 8+2=10. If a number begins with 0x, it is a hexadecimal number. So 0x12 is 16+2 =18",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What are the values of a,b,c after this statement?",
+    "qncode": "int a=3,b=3,c;\nif (a<3 && b++>3)\n   c = 15;\nelse\n   c = 10;",
+    "options": [
+      "3 4 10",
+      "3 4 15",
+      "3 3 10",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "Due to \"Short circuiting\" of logical operators, b++>3 is not evaluated. In && operator if first operand is already false, irrespective of second operand, result will always be false. Hence if first operand is false,second  operand is not evaluated. So b++ never takes place.\nFor ||, if first operand is true, second operand is not evaluated.",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "float a = 13 ;\nint b = a%4;\nprintf(\"%d\",b);",
+    "options": [
+      "1",
+      "1.0",
+      "Syntax error - \"Invalid operands to binary %\" in line 2",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "The operands to modulo(%) operator should be integral types viz ints and chars. Float and double are not allowed for % operator.",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int a = 10;\nfor(;a;a-=2)\n   printf(\"%d  \",a);",
+    "options": [
+      "1 2 3 4 5 6 7 8 9 10",
+      "10 9 8 7 6 5 4 3 2 1 0",
+      "10 8 6 4 2 ",
+      "Syntax error in for statement"
+    ],
+    "correct": "3",
+    "explanation": "First empty semicolon indicates for has no initialization, a;  indicates as long as a is true. So for statement says repeat for loop as long as a is non-zero. a-=2, decrements a by 2 each time\nSo the for loop repeats from a = 10 to a = 0 in steps of 2. When a becomes 0, the loop is terminated",
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write output of the code",
+    "qncode": "int a=6;\nswitch(a){\n  case 6:printf(\"Six\");\n  case 5:printf(\"Five\");\n  default: printf(\"Less than five\");\n}",
+    "options": [
+      "Six",
+      "SixFiveLess than Five",
+      "Less than five",
+      "None of the above"
+    ],
+    "correct": "2",
+    "explanation": "Each case in switch should be followed by a \"break\". If not, the execution will just seep through to next case, then next case etc. Hence though first case is true, as there are no \"break\" s the program will execute other cases, including \"default\"",
+    "topic": "Control statements"
+  },
+  {
+    "question": "Do these 3 loops produce same output?",
+    "qncode": "int a=10;\nwhile(a<0)   printf(\"%d\",a++);\n---------------------------\nint a;\nfor(a=10;a<0;a++)   printf(\"%d\",a);\n----------------------------\nint a=10;\ndo   printf(\"%d\",a++);while(a<0);",
+    "options": [
+      "Yes",
+      "No",
+      null,
+      null
+    ],
+    "correct": "2",
+    "explanation": "for and while are entry controlled loops. The condition is tested before executing the body of loop. do while is exit controlled loop where condition is tested after executing body of loop. So do while is guarnateed to run at least once.\nIn this case do while will print 10 where as other two loops will not print anything",
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write output of the code.",
+    "qncode": "int arr[10];\narr = {1,2,3,5};\nprintf(\"%d\",a[4]);",
+    "options": [
+      "5",
+      "0",
+      "Garbage value",
+      "Syntax error in line 2"
+    ],
+    "correct": "4",
+    "explanation": " arr = {1,2,3,5} is assignment, not initialization, as arr is already defined. An entire array can not be assigned to set of values.\n Hence syntax error.",
+    "topic": "Arrays"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "char arr[10]=\"Hello\";\nprintf(\"%d %d\",sizeof(arr),strlen(arr));",
+    "options": [
+      "5 5",
+      "10 5",
+      "10 6",
+      "None of the above"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int arr[3]={11,34,45};\nint *ptr = arr;\nprintf(\"%d\",*ptr+2);",
+    "options": [
+      "13",
+      "45",
+      "Syntax error in line 2",
+      "None of the above"
+    ],
+    "correct": "1",
+    "explanation": "ptr is assigned to address of 0th element of array. *ptr+2 will access the 0th element then add 2 to it because * has higher priority than + operator.",
+    "topic": "Pointers"
+  },
+  {
+    "question": "Write output of the program",
+    "qncode": "int *ptr;\n*ptr = 12;\nprintf(\"%d\",*ptr);",
+    "options": [
+      "12",
+      "Garbage Value",
+      "Syntax error in line 2",
+      "Run time error. \"Segmentation fault\""
+    ],
+    "correct": "4",
+    "explanation": "ptr is not initialized, hence it does not point to a valid location. When 12 is assigned *ptr, that is to the location pointed by pointer, a write effort is made to this garbage address and this causes segmentation fault\n\nTo correct error, use\n\nint *ptr = malloc(sizeof(int));",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What does this function do?",
+    "qncode": "void foo(char *str1,char *str2)\n{\n    while(*str2++=*str1++);\n}",
+    "options": [
+      "Syntax error in while loop",
+      "While loop repeats 0 times, hence function does nothing",
+      "Copies str1 to str2",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "The function works as strcpy.\nIt copies one char of str1 to str2. Then increments both pointers. This is repeated until null character ('\\0') is ecnountered and copied.\n Since null character has numerical value of 0, the while condition becomes false, and loop terminates. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What does the following function do?",
+    "qncode": "int foo(int m)\n{\n if(m)\n {\n     return m%10  +foo(m/10);\n  }\n}\n",
+    "options": [
+      "Returns the remainder when m is divided by 10",
+      "Gives run time error",
+      "Returns sum of digits of the number",
+      "None of the the above"
+    ],
+    "correct": "3",
+    "explanation": "The function is recursive. When m is > 0, the function calls itself with m/10, adds the value to m%10 and returns it. When m is 0, it returns 0.\nIf the number is 178, the calls will be\n    fn(178)\n      8 + fn(17)\n       8+7+fn(1)\n      8+7+1+fn(0)\n      8+7+1+0 = 16",
+    "topic": "Functions"
+  },
+  {
+    "question": "What does this function do?",
+    "qncode": "void print(char *str)\n{\n    print(str+1);\n    putchar(*str);\n}",
+    "options": [
+      "Prints the string in reverse order",
+      "Prints the string in correct order. ",
+      "Infinite loop.",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "This recursive function does not have a terminating condition. Hence it calls itself infinitely until stack overflows.\n\nThe correct function should be\n\nvoid fn1(char *str)\n{\n     if(*str)\n    {\n            fn1(str+1);\n            putchar(*str);\n   }\n}\n\nThe function prints the string in reverse.",
+    "topic": "Functions"
+  },
+  {
+    "question": "What does this code print?",
+    "qncode": "int squre(int m)\n{\n     return m*m;\n}\nint main()\n{\n     int z=12;\n    square(z);\n    printf(\"%d\",z);\n} ",
+    "options": [
+      "Prints 144",
+      "Syntax error. The parameter name of function should be z",
+      "Prints 12",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "Even though the function returns squre of number, the returned value is lost as it is not assinged to anything. Hence z remains 12.\nThe right code\nz = square(z);",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a code to return two values from a function, say a and b",
+    "qncode": null,
+    "options": [
+      "return a; return b;",
+      "return a,b;",
+      "A function can not return 2 values",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "A  function can return only one value.\n Answer 1 will terminate the function after return a. Answer 2 will return right most value of comma operator which is b.\nTo return multiple values from a function, you should either use call by reference method with pointers or return a structure",
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of these two functions correctly swaps 2 variables ?",
+    "qncode": "void swap(int a,int b)\n{\n     a=a+b;\n     b=a-b;\n     a = a-b;\n}\n\nvoid swap(int *a,int *b)\n{\n    *a = *a+*b;\n    *b=*a-*b;\n    *a=*a-*b;\n}",
+    "options": [
+      "First function",
+      "Second function",
+      "Neither. You should use exor operator to swap two variables",
+      null
+    ],
+    "correct": "2",
+    "explanation": "Though first function swaps values, it is just swapping copies of original variables. The values of arguments in calling function remain unaltered.\n\nThe correct way is, using call by reference, where address of arguments are sent. And values pointed by these addresses are changed. Hence the second function correctly swaps the arguments.\n\nSecond function must be called using  addressof (&)  operator\n\ne.g. swap(&a,&b)",
+    "topic": "Functions"
+  },
+  {
+    "question": "A function is written to add all elements of the array. Find out the lines containing errors",
+    "qncode": "1   void  sum_of_array(int *arr,int n)\n2    {\n3       int s;\n4        int i;\n5        while(i<n)\n6              s+=arr[i++];\n7        return s;\n8     }",
+    "options": [
+      "1 3 4 6",
+      "1 3 4",
+      "No errors",
+      "Only 6"
+    ],
+    "correct": "2",
+    "explanation": "The function should be of type int not void as it returns an integer. s and i should be initialized to 0. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the following declarations are correct?",
+    "qncode": null,
+    "options": [
+      "void fn1(); ",
+      "void *ptr1;",
+      "int fn2(void);",
+      "All the three"
+    ],
+    "correct": "4",
+    "explanation": "We can write function returning void. We can write a function with empty parameter list as function with void as parameter. We can even have a void pointer which is a generic pointer.\nBut we can not define a void variable. ",
+    "topic": "Expressions"
+  },
+  {
+    "question": "Which statement in this code is incorrect?",
+    "qncode": "int main()\n{\n    void *ptr;\n    int a = 10;\n    ptr = &a;\n    *ptr = 15;\n    printf(\"%d\",*ptr);\n}",
+    "options": [
+      "void *ptr;",
+      "ptr = &a;",
+      "*ptr=15;",
+      "All of these."
+    ],
+    "correct": "3",
+    "explanation": "A void pointer can not be dereferenced unless it is type cast to another type of pointer",
+    "topic": "Pointers"
+  },
+  {
+    "question": "Which statement correctly defines an array of 10 integer pointers?",
+    "qncode": null,
+    "options": [
+      "int *ptr;",
+      "int *ptr[10];",
+      "int (*ptr)[10];",
+      "int(*ptr)(int[10]);"
+    ],
+    "correct": "2",
+    "explanation": "1st answer is an integer pointer.\n3rd  is a pointer to array of 10 integers.\n4th is a pointer to a function which takes an int array as parameter and returns an integer. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is output of following code",
+    "qncode": "main()\n{\n     int a[5]={2,3};\n    printf(\u201d%d%d%d\u201d,a[2],a[3],a[4]);\n}",
+    "options": [
+      "0 0 0",
+      "2 3 3",
+      "Garbage values",
+      "3 2 2"
+    ],
+    "correct": "1",
+    "explanation": "In Partially initialized array, the remaining elements are set to 0",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Which of these can not be the return type of a funciton?",
+    "qncode": null,
+    "options": [
+      "pointer",
+      "array",
+      "structure",
+      "None of these"
+    ],
+    "correct": "2",
+    "explanation": "A function can not return an array.\n\n But most often it is not needed since arrays are sent to function by their base address. Any modifications performed in function, modifies the array argument.\n\nBut if there is a need to return an array, the function can allocate memory, fill values in this newly allocated block and return base address of block as a pointer.\n\ne.g.\nint * foo()\n{\n    int *temp = (int*)malloc(sizeof(int)*10);\n    int i;\n    for(i=0;i<10;i++)\n       scanf(\"%d\",temp+i);\n   return temp;\n}\n\nint main()\n{\n     int *newarray;\n     newarray = foo();\n     for(i=0;i<10;i++)\n         printf(\"%d\",*(newarray+i));\n}",
+    "topic": "Functions"
+  },
+  {
+    "question": "Which specifier should be used, to use a variable defined in a different translation unit, ?",
+    "qncode": null,
+    "options": [
+      "global",
+      "extern",
+      "static",
+      "We can not use variable from other translation unit"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Storage classes"
+  },
+  {
+    "question": "In command line arguments, argv is a/an\u2026.......",
+    "qncode": null,
+    "options": [
+      "pointer to an array of character pointers",
+      "array of strings",
+      "array of character pointers",
+      "none of these"
+    ],
+    "correct": "3",
+    "explanation": "argv is argument vector which is array of char pointers. If your program is called as\n./a hello world\nthen\nargv[0] is \"./a \"\nargv[1] is \"hello\"\nargv[2] is \"world\"",
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "What does the following function do?",
+    "qncode": "int Trial (int a, int b, int c)\n{\nif ((a >= b) && (c < b)) return b;\nelse if (a >= b) return Trial (a,c,b);\nelse return Trial (b,a,c);\n}",
+    "options": [
+      "Finds maximum of a,b,c",
+      "Finds minimum of a,b,c",
+      "Finds middle number of a,b,c",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of these functions prints all the elements of an array?",
+    "qncode": null,
+    "options": [
+      "void foo(int *ptr,int n)\n{\n    int i;\n    for(i=0;i<n;i++,ptr++)\n        printf(\"%d\",*ptr);\n }",
+      "void bar(int arr[],int n)\n{\n      while(n)\n          printf(\"%d\\n\",arr[--n]);\n }",
+      "Neither of these",
+      "Both"
+    ],
+    "correct": "4",
+    "explanation": "An array parameter to function is treated as a pointer. So both funtions print elements of array. But  second function prints elements in reverse order. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Consider the following declaration of a \u2018two dimensional array in C:\n         char a[100][100];\nAssuming that the main memory is byte addressable and that the array is stored starting from memory address 0, the address of a[40][50] is",
+    "qncode": null,
+    "options": [
+      "4040",
+      "4050",
+      "5040",
+      "5050"
+    ],
+    "correct": "2",
+    "explanation": "Address of a[40][50] = Starting Address + 40 x 100 x memorySize + 50\nx memorySize\n= 0 + 40 x 100 x 1 + 50 x 1 = 4050\nNote: Since byte addressable, memorySize = 1",
+    "topic": "Arrays"
+  },
+  {
+    "question": "What does this function do?",
+    "qncode": "int fn1(int x,int y)\n{\n   if(y>0)\n       return x*fn1(x,y-1);\n   else\n       return 1;\n}",
+    "options": [
+      "Returns the product of 2 numbers",
+      "Returns first number",
+      "Returns first number raised to the power of second number",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": "The function is recursive power function to find x^y for integer x and y. Function calls itself until y is 0.",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the value of b and c at the end of this code?",
+    "qncode": "int a =10,b=3,c;\nif(a>b++)\n        c=3;\nif(++b==4)\n         c=2;",
+    "options": [
+      "5 2",
+      "5 3",
+      "4 3",
+      "4 2"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the value of b at the end of this code?",
+    "qncode": "int a=10;\na==10?b=4:b=5;",
+    "options": [
+      "4",
+      "5",
+      "Syntax error",
+      "2"
+    ],
+    "correct": "3",
+    "explanation": "Ternary operator has higher precedence than assignment operator. Hence syntax error. To correct this, you should write\na==10?(b=4):(b=5);",
+    "topic": "Expressions"
+  },
+  {
+    "question": "Recursive functions are executed in ---- order",
+    "qncode": null,
+    "options": [
+      "First In First Out",
+      "Last In First Out",
+      "All of these",
+      null
+    ],
+    "correct": "2",
+    "explanation": "Each function call with its arguments and local variables are stored in the  stack in last-in-first-out order. With each return statement, these stacks are popped.\n\n",
+    "topic": "Functions"
+  },
+  {
+    "question": "In C programming language x-=y+1; means\u2026...",
+    "qncode": null,
+    "options": [
+      "x=x-y+1",
+      "x=-x+y+1",
+      "x = x-y-1",
+      "x = -x-y-1"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is type of s in the following definition?",
+    "qncode": "struct node\n{\n     int i;   float j;\n };\nstruct node *s[10] ; ",
+    "options": [
+      "Array of structures",
+      "Pointer to array of structures",
+      "Array of 10 structuer pointers",
+      "Pointer to structure"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the return value of the function foo when it is called as foo(345,10) ?",
+    "qncode": " int foo( int n,  int r)\n {\n     if (n > 0)\n        return (n%r + foo (n/r, r ));\n    else\n        return 0;\n  }",
+    "options": [
+      "345",
+      "5",
+      "12",
+      "3"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "If short, float and long occupy 2 bytes, 4 bytes and 8 bytes. memory requirement for variable t, ignoring alignment considerations, is----- bytes ",
+    "qncode": "struct\n {\n    short s [5];\n     union\n     {\n         float y\u037elong z\u037e\n       }u\u037e\n } t\u037e  ",
+    "options": [
+      "22",
+      "14",
+      "18",
+      "10"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "If a two dimensional array of integer is sent as paramter to function, it gets implicitly converted to",
+    "qncode": null,
+    "options": [
+      " A pointer to pointer to integer",
+      "A pointer to integer",
+      "A pointer to an array of integers",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "With the following definition of swap function, how should tbe function be called to exchange the values of two variables?",
+    "qncode": "void swap (int a, int b)\n{\n    int temp\u037e\n   temp = a\u037e\n    a = b\u037e\n    b = temp\u037e\n}",
+    "options": [
+      "swap (x, y)",
+      "swap (&x, &y)",
+      "swap (x,y) cannot be used as it does not return any value",
+      " swap (x,y) cannot be used as copies of arguments are sent to function"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "What does the following C statement declare?",
+    "qncode": "int(*ptr)(int *);",
+    "options": [
+      " A function that takes an integer pointer as argument and returns an\ninteger",
+      " A function that takes an integer as argument and returns an integer\npointer",
+      "A pointer to a function that takes an integer pointer as argument and returns an integer.",
+      " A function that takes an integer pointer as argument and returns a\nfunction pointer"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Which of these experssions will  produce compile time errors if used as left hand side of assignment statement in C program if  A and B are declared as below?",
+    "qncode": "int *A [10], B[10][10];",
+    "options": [
+      "A[2]",
+      "A[2][3]",
+      "B[2]",
+      "B[2][3]"
+    ],
+    "correct": "3",
+    "explanation": "B[2] is an one dimensional array of 10 integers. Hence it can not be assigned a value entirely and it can not be placed on lhs.\n Where as A[2] is an int pointer - it can be assigned a value. A[2][3] will be *(a[2]+3*sizeof(int)) which is an integer and it can be assigned a value. ",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Two functions are written to find nth term of fibonacci seris. Which one is correct?",
+    "qncode": "int fib1(int term)\n{\n   if(term>1)    return fib(term-1)+fib(term-2);\n   else\n        if(term==1)\n             return term;\n}\n\nint fib2(int term)\n{    int i=0,n1=0,n2=0,n;\n    while(i<=term)\n   {\n             if(i<2)\n                   n  = i;       else       n = n1+n2;\n            n2 = n1;       n1 = n;       i++;\n      }\n return n\n}",
+    "options": [
+      "fib1",
+      "fib2",
+      "Both",
+      "Neither"
+    ],
+    "correct": "3",
+    "explanation": "fib1 is recursvie function and fib2 is iterative. In this example you can see that recursive is much easier to write",
+    "topic": "Functions"
+  },
+  {
+    "question": "What does the following code print?",
+    "qncode": "int a;\nint main()\n{\n  int b;  printf(\"%d %d\",a,b);\n}",
+    "options": [
+      "0 0 ",
+      "garbage garbage",
+      "0 garbage",
+      "garbage 0"
+    ],
+    "correct": "3",
+    "explanation": "Uninitialized global  variables are set to 0. But uninitialized block variables will contain garbage value. ",
+    "topic": "Expressions"
+  },
+  {
+    "question": "With the below  statements, what are the types of p1,p2,p3,p4?",
+    "qncode": "#define INTPTR int *\ntypedef int * INTPTR2;\nINTPTR p1,p2;\nINTPTR2 p3,p4;",
+    "options": [
+      "int ptr,int ptr, int ptr,int ptr",
+      "int, int, int, int",
+      "int ptr,int, int ptr,int ptr",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "A macro does literal substitution. So INTPTR p1,p2 will be preprocessed as\nint *p1,p2 - which makes p1 as pointer, but p2 as integer.\n\nWhere as typedef is defining INTPTR1 as int *. Any variable with type as INTPTR1 will be int pointer.",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Which of the following library functions is an example of var-arg function?",
+    "qncode": null,
+    "options": [
+      "printf",
+      "scanf",
+      "strcpy",
+      "Both first and second"
+    ],
+    "correct": "4",
+    "explanation": "printf has prototype\nint printf(char *formatspec,...)\n\nand scanf has prototype\nint scanf(char*formatspec,...)\n\nBoth these are variable argument functions. Both of these rely on format specifier to tell them the number and type of arguments",
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the folllowing codes will assign 1 to s  if 'i'th bit of n is set?",
+    "qncode": null,
+    "options": [
+      "int s  = n& (1<<i);",
+      "int s=i&n;",
+      "int s = (1<<i)|n;",
+      "None of these"
+    ],
+    "correct": "1",
+    "explanation": "1<<i will have all other bits as 0 and only ith bit as 1. Bitwise anding it with 'n' will give 1 if ith bit in n is set.Else will give 0",
+    "topic": "Expressions"
+  },
+  {
+    "question": "Which of the following statements produces syntax error and which statement produces run time error?",
+    "qncode": "char arr[]=\"Hello\";\nchar *ptr=\"Hello\";\narr[1]='i';  ptr[1]='i';\narr=\"hi\";   ptr=\"hi\";",
+    "options": [
+      "arr=\"hi\"; and ptr=\"hi\";",
+      "arr[1]='i'; and\nptr[1]='i';",
+      "arr=\"hi\";    and\nptr[1]='i';\n",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": "When a pointer is pointing to a string literal, it is pointing to a constant string stored in read only memory. So modifying str[1] is not possible and hence run time error.\nAn array as a whole, can not be assinged to a value and hence syntax error",
+    "topic": "Pointers"
+  },
+  {
+    "question": "With the following macro for square, what will be the value of y in the expression?",
+    "qncode": "#define SQUARE(x) x*x\n\nx=3;\ny=SQUARE(x+2)",
+    "options": [
+      "11",
+      "13",
+      "25",
+      "Error as a macro can't use operators"
+    ],
+    "correct": "1",
+    "explanation": "The preprocessor will substitue macro like this\n\ny=x+2*x+2 = 3+2*3+2 =11\n\nThe correct macro should be\n#define SQUARE(x) ((x)*(x))",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Which statement about the structure is correct?",
+    "qncode": null,
+    "options": [
+      "A structure can store multiple variables of similar type",
+      "A structure can store multiple variables of different types",
+      "A function can return a structure",
+      "All are correct"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "To access n1 of the structure s1, you should use",
+    "qncode": "struct aa\n{\n  int n1;  float m1;\n};\nstruct aa s1;",
+    "options": [
+      "s1[n1]",
+      "s1.n1",
+      "s1->n1",
+      "None of these"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "Which of these is the difference between array and structure?",
+    "qncode": null,
+    "options": [
+      "Array can contain same type data but structure can contain dissimilar type of data",
+      "A function can return a structure but a function can not return an array",
+      "One structure can be assigned to another structure of same type. An array can not be assigned to another",
+      "All of these"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "A function is written to read a structure. What are the errors in this function?",
+    "qncode": "struct emp\n{    int id;\n      char name[30];\n     double salary;\n};\nvoid read_emp(struct emp s1)\n{\n  scanf(\"%s %d %lf\",s1.name,&s1.id,&s1.salary);\n }",
+    "options": [
+      "A structure is sent to function using call by value. So s1 in calling function is not changed",
+      "A function can not have a structure parameter",
+      "Both 1 and 2",
+      "None of these"
+    ],
+    "correct": "1",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "The function with a prototype given below is --------",
+    "qncode": "void foo(int a,...);",
+    "options": [
+      "Incomplete function",
+      "Syntactically incorrect function",
+      "Variable argument function",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": "A function with ellipsis is a variable argument function. It can take variable number of parameters",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int foo(int m)\n{   static int a = 0;\n     a+=5;\n     return a;\n}\nint main()\n{\n    int s;   foo();foo();\n   s = foo();\n   printf(\"%d\",s);\n}",
+    "options": [
+      "5",
+      "15",
+      "Syntax error",
+      "None of these"
+    ],
+    "correct": "2",
+    "explanation": "A static variable is created first time and lives through out the program, unlike auto variables which are created and destroyed each time a function is called.\n\nHere a is initialized to 0 first time and in subsequent calls, it gets incremented by 5. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "A function is written to find largest of three numbers. Find out the errors. ",
+    "qncode": "int largest(int a,b,c)\n{\n     if   (a>b && a>c)   return a;\n     if   (b>a && b>c)   return b;\n     return c;\n}",
+    "options": [
+      "A function can not have multiple return statements",
+      "The function header should be\nint largest(int a,int b,int c)",
+      "if statement should be followed by else statement",
+      "No errors"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Find out errors in this function",
+    "qncode": "int foo(int a)\n{\nregister int b;\nscanf(\"%d\",&b);\nreturn a+b;\n}",
+    "options": [
+      "register int b; is invalid statement",
+      "You can not add register variable to auto variable",
+      "You can not use address of (&) operator with register variable",
+      "No errors"
+    ],
+    "correct": "3",
+    "explanation": "A register variable may be stored in CPU registers which do not have addresses. So taking address of register variable is invalid operation.",
+    "topic": "Functions"
+  },
+  {
+    "question": "What are the types of a1 and a2?",
+    "qncode": "typedef int ARR[10];\nARR a1,a2;",
+    "options": [
+      "The typedef statement is invalid",
+      "a1 and a2 are integer arrays with 10 elements",
+      "a1 and a2 are integers",
+      "None of the above"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "typedef"
+  },
+  {
+    "question": "What is the error in this code?",
+    "qncode": "char *p;\n*p = malloc(10);",
+    "options": [
+      "No error",
+      "Memory should be allocated to p, not *p",
+      "Memory can not be allocated to char pointers",
+      "None of these"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int array[5], i, *ip;\nfor(i = 0; i < 5; i++)\n      array[i] = i;\nip = array;\nprintf(\"%d\\n\", *(ip + 3 * sizeof(int)));",
+    "options": [
+      "3",
+      "9",
+      "Garbage value",
+      "Syntax error"
+    ],
+    "correct": "3",
+    "explanation": "ip +3 should be used to access arr[3] because pointer arithmetic always gets mutiplied by size of pointee.\nip+3 will in fact be ip+3*sizeof(int)\n\nIf ip was a double pointer then\n\nip+3 = ip + 3*sizeof(double)",
+    "topic": "Pointers"
+  },
+  {
+    "question": "A function is written to initialize an integer pointer. Find out errors if any.",
+    "qncode": "void memory_allocate(int *ptr)\n{\n      ptr = (int*)malloc(sizeof(int)*100);\n}\nint main()\n{\n    int *ptr1 ;\n    memory_allocate(ptr1);\n    *ptr1 = 12;\n    ------\n}",
+    "options": [
+      "Program produces segmentation fault",
+      "No errors",
+      null,
+      null
+    ],
+    "correct": "1",
+    "explanation": "Function allocates memory not to the original pointer, but to its copy. So ptr1 is still unallocated and *ptr1 will crash the program\n\nTo fix the error\n\nint * allocate()\n{\n   int*temp = malloc(sizeof(int)*100);\n   return temp;\n}\nint main()\n{\n    int *ptr1;\n    ptr1 = allocate();\n    *ptr1 = 12;\n     -----\n}",
+    "topic": "Pointers"
+  },
+  {
+    "question": "How do you assign a value to a function pointer? In this case, how do you assign square function to fptr?",
+    "qncode": "int (*fptr)(int);\nint square(int n);",
+    "options": [
+      "fptr = &square;",
+      "fptr = square;",
+      "fptr = square(2);",
+      "Both 1 and 2"
+    ],
+    "correct": "4",
+    "explanation": "If a function name is used in an expression, it is converted into its address. So you can use just function name or address of function name.\n\nBut if it is used with paramter as in answer 3, then function call takes place instead and return value is assinged to function pointer. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What are sizes of a and b in bytes? Assume size of int is 4 bytes. ",
+    "qncode": "union un1\n{\n   int a;   float b;\n};\nstruct st1\n{\n   int a;   float b\n;};\nunion un1 a;\n struct st1 b;",
+    "options": [
+      "8 8",
+      "4 4 ",
+      "4 8",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": "Size of union is size of its largest member",
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of this?",
+    "qncode": "int a=4,b=2,c=1;\nif(a>b>c)\n    printf(\"a\");\nelse\n  printf(\"not a\");",
+    "options": [
+      "a",
+      "not a",
+      "Syntax error",
+      null
+    ],
+    "correct": "2",
+    "explanation": "a>b>c though is wrong, does not produce an error. Instead it is treated as\n\n(a>b)>c   which in this case is 1>c because if a conditon is true, its value is 1. ",
+    "topic": "Expressions"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": null,
+    "options": [
+      "An array is sent to function as call by value parameter",
+      "An structure is sent to function as call by value parameter",
+      "An array is sent to function as call by reference parameter",
+      "Both 2 and 3"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "Find out errors if any.",
+    "qncode": "struct foo{   int a; float b;};\nstruct foo function1(){\n   struct foo temp;\n    scanf(\"%d %f\",&temp.a,&temp.b);\n   return temp;\n}",
+    "options": [
+      "A function can not return a structure",
+      "function1 should have a structure parameter",
+      "No errors",
+      "scanf statement should be\nscanf(\"%d %f\",&temp->a,&temp->b);"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "How do we access \"a\" from using structure pointer \"ptr\"  in the code below?",
+    "qncode": "struct foo\n{\nint a,b;\n} st1;\nstruct foo *ptr;\nptr = (struct foo*)malloc(sizeof(struct foo));",
+    "options": [
+      "(*ptr).a",
+      "ptr->a",
+      "1 or 2",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "How is NULL pointer defined?",
+    "qncode": null,
+    "options": [
+      "(void*)0",
+      "(int*)0",
+      "NULL  is wrong. It is null",
+      "None of these"
+    ],
+    "correct": "1",
+    "explanation": "Null pointer is a pointer with pointing to address 0. This constant is defined in stdio.h, stdlib.h.\n\nNULL pointer is used in functions to return a error value or to indicate end of data in some data structures",
+    "topic": "Pointers"
+  },
+  {
+    "question": "Is the following code correct in verifying pointer is not NULL before dereferncing the pointer?",
+    "qncode": "if(ptr)\n*ptr = 12;",
+    "options": [
+      "Correct",
+      "Incorrect",
+      null,
+      null
+    ],
+    "correct": "1",
+    "explanation": "NULL pointer is having numerical value 0 and 0 is false. Hence if(ptr) is as good as checking if(ptr!=NULL)\n\nRemember that, in C, 0 is false and non-zero is true. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the error in following code?",
+    "qncode": "int *ptr;\nptr =(int *)malloc(100);\n------\nfree(ptr);\nm  = *ptr+1;",
+    "options": [
+      "No error",
+      "Using a dangling pointer",
+      "",
+      null
+    ],
+    "correct": "2",
+    "explanation": "The pointer which is freed becomes dangling pointer. Usign a dangling pointer produces unpredicted result. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What does the following function do?",
+    "qncode": "int sum(int m,...)\n{\n int i;int sum=0;\n va_list lst;\n va_start(lst,m);\nfor(i=0;i<m;i++)\n {\n int a = va_arg(lst,int);\n  sum+=a;\n}\nreturn sum;\n}",
+    "options": [
+      "Finds the sum of n number of parameters where n is given as first parameter",
+      "Gives syntx error in line 1",
+      "Finds the sum of command line arguments",
+      "None of these"
+    ],
+    "correct": "1",
+    "explanation": "The function is a variable argument function. If function is called as\nsum(4,11,22,33,44) then sum of 4 values viz 11,22,33 and 44 is returned from function\nsum(3,111,-22,-45) then sum of 3 values 111,-22 and -45 is returned",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is a self referntial structure?",
+    "qncode": null,
+    "options": [
+      "A structure which points to itself",
+      "A strucuter which has an element of type pointer to same structure",
+      "A structure pointer pointing to itself",
+      "None of the above"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What are the numerical values of c1 and c2 after the following code?",
+    "qncode": "enum color {black,blue=7,white,red,green};\nenum color c1=black,c2 = red;\n",
+    "options": [
+      "1 9",
+      "1 4",
+      "0 9 ",
+      "0 4"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "The following code produces 0 as output. Why?",
+    "qncode": " double m ;\n scanf(\"%f\",&m);\n printf(\"You typed %f\\n\",m);",
+    "options": [
+      "Format specifier for double is %d",
+      "Format specifier of double is %lf",
+      "You can not read double from console",
+      "None of these"
+    ],
+    "correct": "2",
+    "explanation": "The common confusion regarding double is its format specifier is thought to be %f because printf accepts %f for double. The actual format specifer is %lf.\nprintf accepts %f because of variable argument parameter promotion",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "How do you modify the code below so that the m is printed in octal",
+    "qncode": "int m=15;\nprintf(\"%d\",m);",
+    "options": [
+      "printf(\"%0d\",m);",
+      "printf(\"%o\",m);",
+      "You should write your own function to print the number in octal",
+      ""
+    ],
+    "correct": "2",
+    "explanation": "Format specifers for integers are\n%d, %i - number in decimal\n%o - number in octal\n%x - number in hexadecimal\n",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "Which of the following functions will allocate memory and initialize them with 0?",
+    "qncode": null,
+    "options": [
+      "malloc",
+      "calloc",
+      "free",
+      "Both 1 and 2"
+    ],
+    "correct": "2",
+    "explanation": "malloc and calloc allocate memory. Only difference is calloc initializes the allocated locations with 0",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What will be the output of the following code?",
+    "qncode": "int main()\n{\n     int a = 10;\n     if(a>4)     {   int j=2;  }\n     printf(\"%d\",j);\n}",
+    "options": [
+      "2",
+      "Garbage value",
+      "Compilation error",
+      null
+    ],
+    "correct": "3",
+    "explanation": "j is defined in the block and it is an automatic variable. Hence its scope is only inside the block. Hence compilation error.",
+    "topic": "Data types"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "void print_array(int arr[])\n{    int i;\n     for(i=0;i<size;i++)\n           printf(\"%d\",arr[i]);\n}\nint main()\n{\n    int arr[4]={5,6,7,8};\n    int size = 4;\n    print_array(arr);\n    return 0;\n}",
+    "options": [
+      "5 6 7 8",
+      "Error because function is not declared",
+      "Syntax Error. size is not defined in function print_array",
+      null
+    ],
+    "correct": "3",
+    "explanation": "size is a local variable and its scope is only in the block where it is defined, in this case main function. ",
+    "topic": "Data types"
+  },
+  {
+    "question": "How do you define a pointer - ptr, to an array of 10 integers?",
+    "qncode": null,
+    "options": [
+      "int *ptr[10];",
+      "int (*ptr)[10];",
+      "int (*ptr)(10);",
+      "None of these"
+    ],
+    "correct": "2",
+    "explanation": "Answer 1 is an array of 10 integer pointers and 3 is wrong declaration.",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is/are the error/s in the following code?\n\nfloat m=.23f;",
+    "qncode": null,
+    "options": [
+      "Should be\nfloat m=0.23f",
+      "Should be\nfloat m=.23;",
+      "No errors",
+      null
+    ],
+    "correct": "3",
+    "explanation": ".23f indicates it is a float literal, not a double literal.\n m=.23 is correct too, but it takes double value and then coverts to float.",
+    "topic": "Data types"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a=3;\nfloat b=12.4;\nchar c=97;\nprintf(\"%d %e %c\",a,b,c);",
+    "options": [
+      "Syntax error in printf format specifier",
+      "3 1.240000e+01 a\n",
+      "3 12.4 a",
+      "Syntax error in c=97"
+    ],
+    "correct": "2",
+    "explanation": "Format specifier %e prints the number in exponantial notation such as  a.bEc. E here stands for 10 to the power. 1.24e+01 is 1.24X10^1",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a;int b=33,c=12,d=4;\nprintf(\"%d %d %d %n\",b,c,d,&a);\nprintf(\"a is %d\",a);",
+    "options": [
+      "Syntax error in printf",
+      "33 12 4a is 7",
+      "33 12 4a is .....(some garbage value here)",
+      null
+    ],
+    "correct": "2",
+    "explanation": "printf with %n will save the number of characters printed in variable corresponding to %n, in this case a. Hence a will be 7",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "Write the output of this code.",
+    "qncode": "int a=33;\nchar arr[30]=\"Hello\";\nsprintf(arr,\"%d\",a);",
+    "options": [
+      "Hello33",
+      "Hello 33",
+      "No output",
+      null
+    ],
+    "correct": "3",
+    "explanation": "sprintf writes the output to the string, this case to arr. Hence there is no output on console.",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "What do c and v mean in argc and argv of command line arguments?",
+    "qncode": null,
+    "options": [
+      "c is configuration v is visibility",
+      "c is control and v is vertex",
+      "c is count and v is vector",
+      null
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "What is the correct syntax for command line arguments?",
+    "qncode": null,
+    "options": [
+      "int main(int argc, char *argv[])",
+      "int main(char *argc,int argv)",
+      "int main(int argc,char **argv)",
+      "Both 1 and 3"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "What will be the output of the code below?",
+    "qncode": "char arr1[10]=\"Hello\";\nchar arr2[]=\"Hello\";\nchar *ptr = \"Hello\";\nprintf(\"%d %d %d\",sizeof(arr1),sizeof(arr2),sizeof(ptr));",
+    "options": [
+      "6 6 4",
+      "10 6 4",
+      "6 6 6",
+      null
+    ],
+    "correct": "2",
+    "explanation": "arr1 is an array of 10 characters. First five characters are \"Hello\". 5th charcter is null(\\0). And rest are 0.\narr2 has an initializer but does not mention size. So its size will be  6 - 5 + null character\nptr is a pointer and its size is 4 bytes for 32 bit machine. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "What is output of this code?\n",
+    "qncode": "int arr[3][5] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};\nint (*ptr)[5];\nptr = arr;\nprintf(\"%d\",(*++ptr)[1]);",
+    "options": [
+      "2",
+      "3",
+      "7",
+      null
+    ],
+    "correct": "3",
+    "explanation": "*++ptr will give  second row of array. (*++ptr)[1] will get first element of the row.This is same as arr[1][1] ",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Why does this code produce error?",
+    "qncode": "void print_array(int **arr,int r,int c)\n{\n  //code to  print array\n}\nint main()\n{\n   int arr[2][2]={1,2,3,4};\n   print_array(arr,2,2);\n}",
+    "options": [
+      "It produces no error",
+      "2D arrays when passed to function becomes pointer to array like  int(*ptr)[3], not pointer to pointer",
+      "Array initialization should be\nint arr[2][2] = {{1,2},{3,4}};",
+      null
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "How do you find the number of elements in an array arr?",
+    "qncode": null,
+    "options": [
+      "sizeof(arr)",
+      "sizeof(arr)*4",
+      "sizeof(arr)/sizeof(arr[0])",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Which is correct code for checking if str- a character array, is equal to \"Hello\"?",
+    "qncode": null,
+    "options": [
+      "if(str==\"Hello\")",
+      "int ans =( str==\"Hello\");\nif (ans!=0)",
+      "if(strcmp(str,\"Hello\")==0)",
+      null
+    ],
+    "correct": "3",
+    "explanation": "Strings are character arrays. Arrays can not be compared to one another as a whole.\nBut we do have a library function strcmp for comparing two strings.\n\nstrcmp returns zero if the strings are equal",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you find the numerical value of a character entered through keyboard?",
+    "qncode": null,
+    "options": [
+      "ctoi(ch)",
+      "(int)ch",
+      "No conversion is needed. Chars are integers.",
+      null
+    ],
+    "correct": "3",
+    "explanation": "char ch='A';\nprintf(\"%d\",ch);//prints 65\nprintf(\"%c\",ch);//prints A\nm = ch+12;//m will be 77\n\nChars are stored as integers in C. So there is no need to convert",
+    "topic": "Data types"
+  },
+  {
+    "question": "What will be the output of this code, if you type Hello world on console?",
+    "qncode": "char str[40];\nscanf(\"%s\",str);\nprintf(\"Your string is %s\\n\",str);",
+    "options": [
+      "Your string is Hello World",
+      "Your string is Hello",
+      "Syntax error. scanf is not using & operator",
+      null
+    ],
+    "correct": "2",
+    "explanation": "scanf %s reads a string until a white space. Hence only Hello is stored in str. To read an entire line, you can use gets() - which reads until newline character or fgets() which is safer\n\ngets(str)\nfgets(str,100,stdin)\n\n",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you combine - or concat these two strings?",
+    "qncode": "char *str1 = \"Hello\";\nchar *str2 = \" World\";",
+    "options": [
+      "str1 = str1+str2",
+      "strcat(str1,str2)",
+      "char str3[12];\nstrcpy(str3,str1);\nstrcat(str3,str2);",
+      null
+    ],
+    "correct": "3",
+    "explanation": "strcat is a library function which concatenates two strings.\nBut here, if we just strcat the str1 and str2, there will be error, because str1 points to constant string. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Why does this code produce error?",
+    "qncode": "#define MAX 12;\nint main()\n{\n    int arr[MAX];\n   .......\n}",
+    "options": [
+      "No Error",
+      "As there is semicolon in macro, array will be int arr[12;];",
+      "You should use const for array size instead of macro",
+      null
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "#define STRINGIZE(x) #x\n int a = 2;\n printf(\"%s is %d\\n\",STRINGIZE(a),a);",
+    "options": [
+      "Syntax error in line 2",
+      "Preprocessor error",
+      "a is 2",
+      null
+    ],
+    "correct": "3",
+    "explanation": "# is called stringizing operator. It changes macro operand into double quoted string. So STRINGIZE(a) will be converted by preprocessor as \"a\"",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What will be the output of the program ?",
+    "qncode": " char p[] = \"%d\\n\";\n p[1] = 'c';\n printf(p, 65);\n",
+    "options": [
+      "Syntax error",
+      "65",
+      "d",
+      "A"
+    ],
+    "correct": "4",
+    "explanation": "p[1]='c' makes p as \"%c\\n\" and\nprintf(p,65) will become printf(\"%c\",65) and this will print A because ASCII code for A is 65",
+    "topic": "Strings"
+  },
+  {
+    "question": "What will be the output of the code ?",
+    "qncode": "printf(10+\"C Tricky Questions\\n\"); ",
+    "options": [
+      "10C Tricky Questions",
+      "C Tricky Questions10",
+      "Questions",
+      null
+    ],
+    "correct": "3",
+    "explanation": "The code works similar to this\n\nchar *p = \"C Tricky Questions\"+10;\n/*now p points to 10 characters after C which is Q*/\nprintf(p);//printf  will print that string",
+    "topic": "Strings"
+  },
+  {
+    "question": "What will be the output of this code?",
+    "qncode": "char *p,q;\nchar ch = 'A';\nq = &ch;     *q ='B';\nprintf(\"%c\",ch);",
+    "options": [
+      "B",
+      "A",
+      "Syntax Error",
+      null
+    ],
+    "correct": "3",
+    "explanation": "char *p,q  defines p to be character pointer but q to be just a character. Hence dereferencing q will produce an error.\n\nThe correct declaration for both to be pointers is\nchar *p,*q;",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "int a[5] = {1,2,3,4,5};\nint *ptr = (int*)(&a+1);\nprintf(\"%d %d\", *(a+1), *(ptr-1));",
+    "options": [
+      "2 Garbage value",
+      "Run time error",
+      "2 5",
+      null
+    ],
+    "correct": "3",
+    "explanation": "&a is a pointer to entire array. Hence &a+1 will make the pointer point after the last element of a by incrementing it by 5 integers.\nSo *(ptr-1) will point to last element of the array",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write the string in the printf   given below, such that output is\n\n 80% usually means excellent\n\nwhere variable n has value 80.",
+    "qncode": "printf (\" _____ \", n);",
+    "options": [
+      "80% usually means excellant",
+      "%d% usually means excellent",
+      "%d%% usually means excellent",
+      null
+    ],
+    "correct": "3",
+    "explanation": "In printf to print symbol %, you should use %%",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "What is the output of this code if 2 is typed on console?",
+    "qncode": "int k;\nk = getchar ( );\nprintf (\"%d\", k);",
+    "options": [
+      "2",
+      "Syntax error in line 2",
+      "50",
+      null
+    ],
+    "correct": "3",
+    "explanation": "2 is read and is stored as 50 because  its code  is 50",
+    "topic": "Data types"
+  },
+  {
+    "question": "How do you define a string of 49 characters?",
+    "qncode": null,
+    "options": [
+      "char arr[49];",
+      "char *ptr;",
+      "char arr[50];",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "A string should be always terminated by null character '\\0. If we need a string with 49 characters, the array should have a size of 50",
+    "topic": "Strings"
+  },
+  {
+    "question": "What should replace the blank line in the below code for it to work properly?",
+    "qncode": "FILE *fptr;\nfptr = fopen(\"a.c\",\"r\");\nif(---------------)\n    printf(\"File does not exist\");",
+    "options": [
+      "fptr==ERR",
+      "fptr==NULL",
+      "!exists(fptr)",
+      null
+    ],
+    "correct": "2",
+    "explanation": "When fopen() fails, it returns a NULL. ",
+    "topic": "File Handling"
+  },
+  {
+    "question": "Is the following statement true or false?\n\nPointers enable a C program to simulate call by value",
+    "qncode": null,
+    "options": [
+      "true",
+      "false",
+      null,
+      null
+    ],
+    "correct": "2",
+    "explanation": "Parameters in C functions are sent by value - call by value. Hence the arguments themselves are unmodified in the calling function.\nTo simulate call by reference, which allows function to modify the arguments, you should use pointers\ne.g. void double_the_num(int *ptr)\n      {\n         *ptr = *ptr *2;\n       }\nint main()\n{\nint a = 14;\ndouble_the_num(&a);\n}\n\nIn this example, function gets address of a and writes the doubled value in this address. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "The complement of & (address of) operator is --------",
+    "qncode": null,
+    "options": [
+      "|",
+      "&&",
+      "*",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": "& gives address of variable. *  indirection operator gives the value stored in that address.\n\nint a = 10;\nLet us say\n&a = 4000\nint *ptr;\nptr = &a;\n\nHere *ptr will be 10 That is value at address 4000 is 10",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of this C code?",
+    "qncode": " int mul(int a, int b, int c)\n {\nreturn a * b * c;\n}\nint main()\n{\n  int (*fptr)(int, int, int);   fptr  =  mul;\n  printf(\"The product is:%d\",  fptr(2, 3, 4));\n}",
+    "options": [
+      "The product of three numbers is 24",
+      "Run time error",
+      "Nothing",
+      "Depends on compiler"
+    ],
+    "correct": "1",
+    "explanation": "fptr is a function pointer. It is assigned to mul function. Calling fptr calls mul() with given parameters",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What does  the following declaration define?",
+    "qncode": "int (*pf)();",
+    "options": [
+      "pf is a function which returns an integer pointer",
+      "pf is a pointer to a function which return int",
+      "pf is a function  which takes an int pointer parameter.",
+      null
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Find out errors in the code",
+    "qncode": "int a[] = {10, 20, 30, 40, 50, -1};\nint* b = malloc(sizeof(a));\nmemcpy(b, a, sizeof(a));\nif ( a == b )\nprintf(\"Equal\\n\");\nelse printf(\"Not equal\\n\");\nfree(a);\nfree(b); ",
+    "options": [
+      "We can not compare arrays using == operator",
+      "free a is wrong, since a is not allocated memory usiing malloc or calloc",
+      "Both 1 and 2",
+      "No error"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What will be the output of the program?",
+    "qncode": "void fun(char *msg, ...)\n{\n  va_list ptr;\n  int num;\n  va_start(ptr, msg);\n  num = va_arg(ptr, int);\n  num = va_arg(ptr, int);\n  printf(\"%d\", num);\n}\nint main()\n{\n   fun(\"Hello world\", 1, 4, 7, 11, 0);\n   return 0;\n}",
+    "options": [
+      "Hello world1",
+      "1",
+      "4",
+      null
+    ],
+    "correct": "3",
+    "explanation": "variadic function here extracts 2 integers from parameter list but prints only second value. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "What will be the output of this program?",
+    "qncode": "fun(...)\n{\n    va_list ptr;    int num;\n    num = va_arg(ptr, int);\n     printf(\"%d\", num);\n}\nint main()\n{    fun(3, 7, -11.2, 0.66);    return 0;\n}",
+    "options": [
+      "3",
+      "7",
+      "Syntax error ISO C requires a named argument before \u2018...\u2019",
+      null
+    ],
+    "correct": "3",
+    "explanation": "Variadic functions need at least one fixed arguments. Hence the function definition is wrong.",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the error in this code?",
+    "qncode": "void display(char *s, int num1, int num2, ...)\n{\n    double c;    char s;\n    va_list ptr;\n    va_start(ptr, s);\n   c = va_arg(ptr, double);    printf(\"%f\", c);\n}",
+    "options": [
+      "display function must be\nvoid display(char *s,..)",
+      "No error",
+      "va_start(ptr, s);\nmust be replaced by\nva_start(ptr, num2);\nbecause num2 is last fixed argument",
+      null
+    ],
+    "correct": "3",
+    "explanation": "",
+    "topic": "Functions"
+  },
+  {
+    "question": "With every use of a memory allocation function, which function should be used to release allocated memory which is no longer needed?",
+    "qncode": null,
+    "options": [
+      "unalloc()",
+      "dealloc()",
+      "release()",
+      "free()"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the type of foo in the following declaration?\n",
+    "qncode": "void *(*foo)(int *)",
+    "options": [
+      "A function taking integer pointer as argument and returning a void pointer",
+      "A function taking int pointer as argument and returning void",
+      "A pointer to function which takes integer pointer as argument and returns a void pointer",
+      null
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the meant by \u2018a\u2019 in the following operation?\n",
+    "qncode": "fp = fopen(\u201cRandom.txt\u201d, \u201ca\u201d);",
+    "options": [
+      "add",
+      "attach",
+      "append",
+      "aprehend"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "File Handling"
+  },
+  {
+    "question": "Fill in the blank, so that the file \"notes.txt\" is opened for both reading and writing?",
+    "qncode": "FILE *fp;fp = fopen(------------);",
+    "options": [
+      "\"notes.txt\",\"a\"",
+      "\"notes.txt\",\"rw\"",
+      "\"notes.txt\",\"r+\"",
+      "A file can not be opened for both reading and writing simultaneosly"
+    ],
+    "correct": "3",
+    "explanation": "r+ will open existing file and allow both read and write. w+ and a+ will also do the same thing.\n\nDifference is\n    1. r+ will open an existing file for reading and writing.\n    2. w+ will create a new file or delete the contents of the file if it exists. And then lets reading and writing of the file.\n    3. a+ creates a new file or deletes contents of file, takes the file pointer to end of file and lets you read and write to file\n\nAlso note that, when a file is opened for both reading and writing, you should use fflush() or some other file positioning operation between read and write.",
+    "topic": "File Handling"
+  },
+  {
+    "question": "If the file \"source.txt\" contains a line \"Be my friend\" which of the following will be the output of below program?",
+    "qncode": "int main()\n{\n FILE *fs;char c[10];\n fs = fopen(\"source.txt\", \"r\");\n c[0] = getc(fs);\n fseek(fs, 0, SEEK_END);\n fseek(fs, -3L, SEEK_CUR);\n fgets(c, 5, fs);    puts(c);\n return 0;\n}",
+    "options": [
+      "Run time error",
+      "Be my friend",
+      "end",
+      null
+    ],
+    "correct": "3",
+    "explanation": "fseek() with SEEK_END takes file pointer to the end of the file.\nNext fseek() with -3L from SEEK_CUR brings the file pointer to 3 characters before current position. So the file pointer will be now at \"e\". fgets at this position reads \"end\"",
+    "topic": "File Handling"
+  },
+  {
+    "question": "What will be the output of the program if the file abc contains  \"Hello beautiful world \" ?\n",
+    "qncode": "#include<stdio.h>\n#include<stdlib.h>\nint main()\n{\n    FILE *fp;\n    unsigned char ch;\n    fp=fopen(\"abc.c\", \"r\");\n    if(fp == NULL)\n   {        printf(\"Unable to open file\");\n            exit(1);\n    }\n    while((ch=getc(fp)) != EOF)\n           printf(\"%c\", ch);\n    fclose(fp);\n    printf(\"\\n\", ch);\n    return 0;\n}",
+    "options": [
+      "Hello beautiful world",
+      "Hello\nbeautiful\nworld",
+      "Infinite loop",
+      null
+    ],
+    "correct": "3",
+    "explanation": "As the char ch is defined as unsigned, it never becomes EOF which has a value of -1. So the infinite loop.\n\nWhen comparing with EOF, you should define your variable as int.",
+    "topic": "File Handling"
+  },
+  {
+    "question": "What does the program do?\n",
+    "qncode": "int main()\n{\n    FILE *fp;    char ch;\n    int i=1;\n    fp = fopen(\"myfile.c\", \"r\");\n    while((ch=getc(fp))!=EOF)\n         { if(ch == '\\n')\n                 i++; }\n    fclose(fp);\n    return 0;\n}",
+    "options": [
+      "Prints the contents of the file",
+      "Counts all the characters in the file and prints it. ",
+      "Counts the number of lines in the file but does not print it",
+      null
+    ],
+    "correct": "3",
+    "explanation": "The loop checks for \\n - the new line character and if there is a match, increments i. Hence at the end of loop, value of i is the number of lines in the file.",
+    "topic": "File Handling"
+  },
+  {
+    "question": "What is the output of this code?\n",
+    "qncode": "printf(\"%d\",printf(\"Hello world\"));",
+    "options": [
+      "Syntax error",
+      "Run time error",
+      "Hello World11",
+      null
+    ],
+    "correct": "3",
+    "explanation": "Printf returns the number of characters printed by the function. Hence printf(\"Hello world\") returns 11. That is used as argument for outer printf",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "What is the value of x after this code is executed and two values are entered through console?",
+    "qncode": "int m,n;int x;\nx = scanf(\"%d %d\",&m,&n);\n",
+    "options": [
+      "Syntax error",
+      "0",
+      "Garbage",
+      "2"
+    ],
+    "correct": "4",
+    "explanation": "scanf returns the number of values successfully read. Hence 2",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "How do you print  \"Hello world\" printing even the quotes?",
+    "qncode": null,
+    "options": [
+      "Not possible",
+      "Depends on compiler",
+      "printf(\"\\\"Hello world\\\"\");",
+      null
+    ],
+    "correct": "3",
+    "explanation": "The escape sequence for \" is \\\"",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "Regarding the scope of the varibles identify the incorrect statement.",
+    "qncode": null,
+    "options": [
+      "automatic variables are automatically initialized to 0",
+      "static variables are are automatically initialized to 0 ",
+      "The address of a register variable is not accessible",
+      "All are correct"
+    ],
+    "correct": "1",
+    "explanation": null,
+    "topic": "Storage classes"
+  },
+  {
+    "question": "Write the output",
+    "qncode": " int main()\n{\n     int i; float *pf;\n     pf = (float *)&i;\n     *pf = 100.00;\n     printf(\"%d\", i);\n}",
+    "options": [
+      "Run time error",
+      "100",
+      "Some integer not 100",
+      null
+    ],
+    "correct": "3",
+    "explanation": "Float pointer points to i which is an integer. So stroring 100 in location pointed by ptr will store it in floating point representation - which is completely different from integer representation.\nHence i will not have 100, but some other value.\n(A float is represented using 1 bit for the sign, 8 bits for the exponent, 23 bits for the mantissa) ",
+    "topic": "Data types"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int main()\n{\n int i = 0xff ;\n printf(\"%d\", i<<2);\n}",
+    "options": [
+      "1020",
+      "0xff0",
+      "512",
+      null
+    ],
+    "correct": "1",
+    "explanation": "Left shift by 2 will multiply the number by 2^2. Hence 255*4 = 1020",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the output?",
+    "qncode": "int main()\n{\nint x=10,y=12,z=5;\nint a=x<y?x<z?x:z:y<z?y:z;\nprintf(\"%d\",a);return 0;\n}",
+    "options": [
+      "5",
+      "10",
+      "12",
+      "Syntax error"
+    ],
+    "correct": "1",
+    "explanation": "",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is the output?",
+    "qncode": "int main()\n{\nint a=011|0x10;\nprintf(\"%d\",a);\nreturn 0;\n}",
+    "options": [
+      "Syntax error",
+      "10",
+      "25",
+      "None of these"
+    ],
+    "correct": "3",
+    "explanation": "The | operator does bitwise OR operation on 9 and 16, not 11 and 10. The number 011 is octal 11 which is 9 and 0x10 is hexadecimal 10 which is 16. 16|9 is 25",
+    "topic": "Expressions"
+  },
+  {
+    "question": "Find the error/s in this code.   ",
+    "qncode": "void foobar(int *,void *);\nvoid foo()\n{\n   int a; void b;\n   foobar(&a,&b);\n}",
+    "options": [
+      "You can not call a function from another function.",
+      "You can not define a variable of type void",
+      "No errors",
+      null
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "In the code below, what is the value of c printed  if function f() is called ?",
+    "qncode": "void f()\n{\nint a=2;  f1(a++);\n}\nvoid f1(int c)\n{\n    printf(\"%d\", c);\n}",
+    "options": [
+      "3",
+      "2",
+      "Garbage value",
+      null
+    ],
+    "correct": "2",
+    "explanation": "Function f() uses post increment operator. So function f1 receives 2 as parameter",
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is returned by function f(),  if main calls f('B')?",
+    "qncode": "int foo(int ch)\n{\n   if(ch>=65&&ch<=91)\n        ch+=32;\n   else\n        if(ch>=97 && ch<=123)\n            ch-=32;\n   return ch;\n}",
+    "options": [
+      "Syntax error",
+      "98",
+      "66",
+      "None of these"
+    ],
+    "correct": "2",
+    "explanation": "The function converts upper case letters to lower case letters and lower case to upper case.\n",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What does this code print?",
+    "qncode": "int i;\nfor(i = 0; i < 3; i = i + 1)\n        printf(\"a\\n\");\n        printf(\"b\\n\");\n printf(\"c\\n\");",
+    "options": [
+      "abababc",
+      "aaabc",
+      "aaabbbc",
+      null
+    ],
+    "correct": "2",
+    "explanation": "Though wrong indentation indicates print b is in loop, it is not in for loop, as in loop there can be only one statement. Unless you use a braces.\nSo print b and print c are executed only once. ",
+    "topic": "Control statements"
+  },
+  {
+    "question": "Optimize this code,  given that variable  i can take only two values -  (1,0)",
+    "qncode": "int i;\nif i=0 then i:=1;\nif i=1 then i:=0;",
+    "options": [
+      "j = i^1;",
+      "j = !i;",
+      "j = i+1;",
+      "Both 1 and 2"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "What is true about the following C Functions ",
+    "qncode": null,
+    "options": [
+      "Functions Need not return any value ",
+      "Functions  always return an integer ",
+      "Functions Should always return a float",
+      "Functions Should always return more than one value "
+    ],
+    "correct": "1",
+    "explanation": "A function which does not return a value is defined as a void function. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "A memory of 20 bytes is allocated to a string declared as char *s, then the following two statements are executed. what is the value of len?",
+    "qncode": "char *s = malloc(20);\nstrcpy(s,\"Entrance\");\nlen=strlen(s); ",
+    "options": [
+      "20",
+      "8",
+      "9",
+      "21"
+    ],
+    "correct": "2",
+    "explanation": "strlen() counts the number of characters upto and excluding null character",
+    "topic": "Strings"
+  },
+  {
+    "question": "What does this  statement print?  ",
+    "qncode": "struct abcd\n{\n int no;\n char name[25];\n}\nstruct abcd n1[]=\n{{12,\"Fred\"},{15,\"Martin\"},{8,\"Peter\"},{11,Nicholas\"}};\nprintf(\"%d%d\",n1[2].no,(*(n1 + 2).no) + 1); ",
+    "options": [
+      "8 9",
+      "9 9",
+      "8 8",
+      "8 Unpredictable value"
+    ],
+    "correct": "1",
+    "explanation": "n1[2] and *(n1+2) both access 2nd element of structure array which is {8,\"Peter\"}\n *(n1+2).no + 1 will add 1 to 8",
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of the code below?",
+    "qncode": "int i;\nfor(i=0; ;i+=2)\n{\n   if(i=10)\n      break;\n   printf(\"Hi\\n\");\n}",
+    "options": [
+      "HiHiHiHiHi",
+      "HiHiHiHiHiHiHiHiHiHi",
+      "Syntax error ",
+      "Nothing"
+    ],
+    "correct": "4",
+    "explanation": "The condition\nif(i=10)\n\n\nis true in first iteration only  because we are using assignment operator(=) instead of equality operator(==)\n\nSo the loop breaks first time and code does not print anything.",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What is incorrect among the following options about recursive function?\n\nA recursive function ----------",
+    "qncode": null,
+    "options": [
+      "calls itself",
+      " is equivalent to a loop ",
+      "does not have a return value at all ",
+      "has a termination condition"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the following go out of the loop if expn2 becomes false ",
+    "qncode": null,
+    "options": [
+      " while(expn1){...if(expn2)continue;}",
+      " while(!expn1){if(expn2)continue;...} ",
+      "do{..if(expn1)continue;..}while(expn2);",
+      "while(!expn2){if(expn1)continue;..} "
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write the output of the following program",
+    "qncode": "int main()\n{\n  static i=3;\n  printf(\"%d\",i--);\n  return i>0 ? main():0;\n}",
+    "options": [
+      "Error.  main can not be called recursively",
+      "Run time error",
+      "Infinitely prints 3",
+      "321"
+    ],
+    "correct": "4",
+    "explanation": "Ternary operator calls main recursively if static integer i is >0. Each time value of i is printed and then decremented ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write the output of this program.",
+    "qncode": "#define int char\nmain()\n{\nint i=65; printf(\"sizeof(i)=%d\",sizeof(i));\n}\n",
+    "options": [
+      "Syntax error. You can not redefine data types using macro",
+      "4  for 32 bit machine",
+      "1",
+      null
+    ],
+    "correct": "3",
+    "explanation": "Since int is defined to be char, sizeof returns 1 byte",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Declare a pointer to a function that takes a char pointer as argument and returns a void pointer. ",
+    "qncode": null,
+    "options": [
+      "void *(*fptr)(char *)",
+      "void *fptr(char *);",
+      "void *(*fptr,char*);",
+      null
+    ],
+    "correct": "1",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What will be stored in str after this code is run?",
+    "qncode": "char *str;\nchar *str1=\"Hello World\";\nsscanf(str1,\"%s\",str);",
+    "options": [
+      "Hello world",
+      "Syntax error in sscanf",
+      "Hello",
+      "Run time error"
+    ],
+    "correct": "4",
+    "explanation": "Program crashes because str is read from string but str is an uninitialized and unallocated pointer.\n\nNote that sscanf reads values not from console, but from string. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of the code?",
+    "qncode": "int main()\n{\n   int i=3;\n  while(i--)\n     {\n         int i=100;i--;\n         printf(\u201c%d\u201d, i);\n      }\n}",
+    "options": [
+      "321",
+      "1009998..till 1",
+      "Syntax error because i is redefined",
+      "999999"
+    ],
+    "correct": "4",
+    "explanation": "Variables i defined outside and inside block are different.\n\nOuter variable i is changed from 3 to 1 and loop terminates when this i becomes 0.\n\n Inner variable is initialized each time to 100 and and then decremented to 99.",
+    "topic": "Control statements"
+  },
+  {
+    "question": "The first argument in command line arguments is---------",
+    "qncode": null,
+    "options": [
+      "The number of command-line arguments the program was invoked with;",
+      " A pointer to an array of character strings that contain the arguments",
+      "Nothing",
+      ""
+    ],
+    "correct": "1",
+    "explanation": "argc - arguement count gives the number of command line arguments including executable file name.\n\nIf the program is called as\n./a hello universe\n\nthen argc is 3.",
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "What will be output of following program?",
+    "qncode": "int main()\n{\nchar arr[10];\narr = \"world\";\nprintf(\"%s\",arr);\nreturn 0;\n}\n ",
+    "options": [
+      "world ",
+      "w",
+      "nothing",
+      "Compilation error"
+    ],
+    "correct": "4",
+    "explanation": "Initialization of an array should always be with the definition of the array.\nIn this program array which is already defined, is initialized in next statement. So the statement is treated as assignment statement and as an array as a whole can not be assigned to a set of values, the statement produces syntax error",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Which of the following comments about the usage of structures in true?",
+    "qncode": null,
+    "options": [
+      "Storage class can be assigned to individual member",
+      "Individual members can be initialized within a structure type declaration",
+      " The scope of the member name is confined to the particular structure, within which it is defined",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "Which properly declares a variable of type structure foo if foo is defined as ",
+    "qncode": "struct foo\n{\n   int n1;\n};",
+    "options": [
+      "struct foo.var;",
+      "struct  var;",
+      "foo var;",
+      "struct foo var;"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the correct syntax to declare a function foo() which receives an array of structure as parameter?",
+    "qncode": null,
+    "options": [
+      " void foo(struct *abc);",
+      "void foo(struct *abc[]);",
+      "void foo(struct abc);",
+      "None of the above"
+    ],
+    "correct": "1",
+    "explanation": "The parameter is an array of structures. But array is changed to pointer to structure",
+    "topic": "Structures"
+  },
+  {
+    "question": "In C, structure values can be passed as arguments to function by----------?",
+    "qncode": null,
+    "options": [
+      "passing each member of the structure as an argument of function call",
+      "passing the entire structure to the called function",
+      "passing address of the structure",
+      "All of these"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "A -> B is syntactically correct if?",
+    "qncode": null,
+    "options": [
+      "a and b are structures",
+      " a is a structure and b is a pointer to structure",
+      "a is a pointer to structure and b is a structure",
+      "a is a pointer to structure in which b is a field"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "Which of the following return-type cannot be used for a function in C?",
+    "qncode": null,
+    "options": [
+      "char *",
+      "struct",
+      "void",
+      "Array"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the following operations is illegal in structures?",
+    "qncode": null,
+    "options": [
+      " Typecasting of one structure to another",
+      "Pointer to a variable of same structure",
+      "Dynamic allocation of memory for structure",
+      "All of the above"
+    ],
+    "correct": "1",
+    "explanation": "One structure can not be typecast to another even if they have similar fields.\n\nAnother operation which is illegal is comparison for equality",
+    "topic": "Structures"
+  },
+  {
+    "question": "Presence of code like  s.t.b = 10 indicates",
+    "qncode": null,
+    "options": [
+      "Syntax error",
+      "Nested structures",
+      "double data ",
+      "an ordinary value"
+    ],
+    "correct": "2",
+    "explanation": "Here s is a structure which has t as a field which also a structure which has a integer field b",
+    "topic": "Structures"
+  },
+  {
+    "question": "The correct syntax to access the member of the ith structure in the array of structures s  is?",
+    "qncode": " struct temp\n {\n int b;\n } s[50];",
+    "options": [
+      " s.b.[i]",
+      "s.[i].b",
+      " s.b[i]",
+      "s[i].b"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What is (void*)0?\n \t",
+    "qncode": null,
+    "options": [
+      "Representation of NULL pointer",
+      "Representation of void pointer",
+      "Error",
+      "None of above"
+    ],
+    "correct": "1",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What will be the output of the program ?",
+    "qncode": "int main()\n{\n    char *s= \"peace\";\n    printf(\"%s\\n\", s++ +3);\n    return 0;\n}",
+    "options": [
+      "peace",
+      "eace",
+      "ace",
+      "ce"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Size of a union is determined by size of the ---------?",
+    "qncode": null,
+    "options": [
+      "First member of union",
+      "Largest member of union",
+      "Smallest member of union",
+      " Sum of the sizes of all members"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "Which of the following are correctly formed #define statements in C?",
+    "qncode": null,
+    "options": [
+      "#define CUBE(x) (x*x*x)",
+      "#define CUBE(x) ((x)*(x)*(x))",
+      "#define CUBE(x)(x*x*x)",
+      "#define CUBE(X) {x*x*x}"
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What is x in the following program?",
+    "qncode": "int main()\n{\n    typedef char (*(*arrfptr[3])())[10];\n    arrfptr x;\n    return 0;\n}",
+    "options": [
+      "x is a pointer",
+      "x is an array of three pointers",
+      "x is an array of three function pointers which return pointer to an array of 10 characters",
+      "Error in x declaration"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What does this code do?",
+    "qncode": "signed char ch;\nfor(ch=0;ch<255;ch++)\n   printf(\"%d %c\\t\",ch,ch);",
+    "options": [
+      "Syntax error as char can not be signed",
+      "Prints codes and corresponding characters for ASCII 0 to 255",
+      "Infinite loop",
+      null
+    ],
+    "correct": "3",
+    "explanation": "Signed char range is -128 to 127. Hence ch++ will make ch -1 after 127. So for condition is alwyas true and the loop repeats infinitely",
+    "topic": "Data types"
+  },
+  {
+    "question": "To print a number n in octal, hexadecimal and binary you should write",
+    "qncode": null,
+    "options": [
+      "printf(\"%o %x %b\",n,n,n);",
+      "n = 0n; printf(\"%d\",n);n=0xn;printf(\"%d\",n);n = 0bn;printf(\"%d\",n);",
+      "%o and %x for octal and hex. But you can not directly print a number in binary",
+      null
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "What is xyz in this code?",
+    "qncode": "struct foo\n{\nint a,b,c;float d;\n};\nstruct foo xyz();",
+    "options": [
+      "A structure variable of type foo",
+      "A pointer to structure foo",
+      "A function which returns a structure foo",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What are the errors in this code?",
+    "qncode": "struct foo\n{\nint a;float b;\n};\nstruct foo s1={2,3};\nstruct foo s2 = s1;",
+    "options": [
+      "Line 2 is wrong. You can not initialize a structure",
+      "Line 3 is wrong. A structure can not be assigned to another",
+      "No error",
+      null
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What does function fn do in the above code?",
+    "qncode": "struct foo\n{\nint a;float b;\n}\nvoid fn(struct foo*ptr)\n{\n   scanf(\"%d %f\",&ptr->m,&ptr->b);\n}",
+    "options": [
+      "Takes a structure pointer argument, reads structure and modifies it",
+      "Produces error as -> is a wrong operator",
+      "Produces run time error because pointer is not allocated memory",
+      null
+    ],
+    "correct": "1",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "If str is defined as  char str[20], how do you assign the string \"Hello\" to it?",
+    "qncode": null,
+    "options": [
+      "str=\"Hello\";",
+      "str[5]=\"Hello\";",
+      "strcpy(str,\"Hello\");",
+      "Any of the above"
+    ],
+    "correct": "3",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "What does the code below do?",
+    "qncode": "int s=0,i;\nfor(i=0;i<strlen(m);i++)\n    if(m[i]>=48&&m[i]<=57)\n         s= s*10+ m[i]-48;\n    else\n         break;",
+    "options": [
+      "Finds the sum of digits of a number",
+      "Finds the sum digits and then subtracts it by 48",
+      "Converts the string to integer",
+      "None of the above"
+    ],
+    "correct": "3",
+    "explanation": "The code extracts one character at a time. If the string is \"346\", m[0] is character 3. But its numerical code is 51. Hence subtraction by 48. m[1] is 4 and now s is 3*10+4 = 34. And m[2] is 6 and s is 34*10+6. Hence s will be the number at the end of code.\nIf the string has non-numerial characters the loop terminates. Hence if m=\"12aa4\", s is 12.\nThe code is implementation of atoi function",
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the correct method to read one line of input from terminal. ",
+    "qncode": "char str[100];",
+    "options": [
+      "scanf(\"%s\",str);",
+      "gets(str);",
+      "fgets(str,50,stdin);",
+      "Both 2 and 3"
+    ],
+    "correct": "4",
+    "explanation": "fgets is better than gets because there is no risk overflowing",
+    "topic": "Strings"
+  },
+  {
+    "question": "Identify the incorrect statement",
+    "qncode": null,
+    "options": [
+      "static i;",
+      "auto int j;",
+      "Neither of these",
+      "Both 1 and 2"
+    ],
+    "correct": "3",
+    "explanation": "static i stands for static int i;\nauto int i; is also correct. But it is not commonly used becase by default all block variables and function parameters are automatic.",
+    "topic": "Storage classes"
+  },
+  {
+    "question": "What is the value of str after this code is executed?",
+    "qncode": "char str[]=\"Hello World\";\nint i;\nfor(i=0;i<strlen(str);i++)\n   if(islower(str[i]))\n      str[i]=toupper(str[i]);\n   else if(isupper(str[i]))\n       str[i]=tolower(str[i]);",
+    "options": [
+      "HELLO WORLD",
+      "hello world",
+      "Syntax error as there are no braces used in for loop",
+      "hELLO wORLD"
+    ],
+    "correct": "4",
+    "explanation": "The code toggles the cases of all letters in the string",
+    "topic": "Strings"
+  },
+  {
+    "question": "If the two files, file1.c and file2.c  are compiled together and executed, what will be the output?",
+    "qncode": "file1.c------------\nstatic int gl1=12;\nint gl2=13;\nvoid foo();\nint main(){foo();}\n\nfile2.c------------\nextern int gl1,gl2;\nvoid foo()\n{\nprintf(\"%d %d\\n\",gl1,gl2);\n}",
+    "options": [
+      "Compilation error. A program can not be in 2 files",
+      "12 13",
+      "Syntax error gl1 and gl2 not defined",
+      "Linker error for gl1"
+    ],
+    "correct": "4",
+    "explanation": "Since gl1 is defined as static global variable, its scope is limited to file1.c. Though file2 declares it to be extern, file2 can not access it. Hence linker error. ",
+    "topic": "Storage classes"
+  },
+  {
+    "question": "What will be the values of b and c after this code is executed?",
+    "qncode": "int square(int n)\n{\nreturn n*n;\n}\n#define SQUARE(n) ((n)*(n))\nint main()\n{\nfloat a=2.1;\nfloat b,c;\nb=square(a);\nc=SQUARE(a);\n}",
+    "options": [
+      "4.41 4.41",
+      "Syntax error in b = square(a)",
+      "4.0 4.41",
+      null
+    ],
+    "correct": "3",
+    "explanation": "Unlike a macro, a function is type specific. b is a float, but the funciton expects an int. So it impilitly converts b to int and squares it returns wrong answer. ",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What is the output of this  program?",
+    "qncode": "#define DEBUG 1\nint main(){\nint arr[]={1,2,3,4,5};\nint i;int s=0;\nfor(i=0;i<5;i++){\ns+=arr[i];\n#ifdef DEBUG\nprintf(\"s is %d\",s);\n#endif\n}\nprintf(\"sum is %d\\n\",s);\n}",
+    "options": [
+      "Syntax error in line 6",
+      "Sum is 15",
+      "s is 1s is 3s is 6s is 10s is 15sum is 15",
+      "Run time error"
+    ],
+    "correct": "3",
+    "explanation": "Program is using conditional compilation. If DEBUG is defined temporary printing of s each time in loop is compiled. If DEBUG is not defined the printf inside for loop is omitted. ",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a=10,b;\nb=a;\nint *ptr = &a;\n*a=15;\nprintf(\"%d %d\",a,b);",
+    "options": [
+      "10 10",
+      "15 15",
+      "15 10",
+      null
+    ],
+    "correct": "3",
+    "explanation": "a is modified indirectly using the pointer.\nHence * operator is also called indirection operator.",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int arr[]={1,2,3,4,5,6};\nint *ptr = arr;\nint i;\nfor(i=0;i<3;i++,ptr+=2)\n  printf(\"%d\",*ptr);",
+    "options": [
+      "1 2 3 4 5 6",
+      "1 1 1",
+      "1 3 5",
+      "Run time error"
+    ],
+    "correct": "3",
+    "explanation": "Here the array is accessed using ptr. And in for loop, ptr is incremented by 2. Hence it prints alternate elements of the array",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "char *ptr[]={\"char\",\"double\",\"float\",\"int\"};\nint i;\nptr[0]=\"string\";\nptr[1][0]='D';\nfor(i=0;i<4;i++)printf(\"%s  \",ptr[i]);",
+    "options": [
+      "char double float int",
+      "string Double float int",
+      "Syntax error in line\nptr[0]=\"string\";",
+      "Runtime error from line\nptr[1][0]='D';"
+    ],
+    "correct": "4",
+    "explanation": "ptr here is an array of character pointers.\nptr[0]=\"string\"\nassigns a new value to 0th element of array.\nBut\nptr[1][0]='D'\nwill try to modify unnamed constant array, hence produces run time error",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int *ptr;\nint arr[3][3]={1,2,3,4,5,6,7,8,9};\nint i,j;\nfor(i=0;i<3;i++)\n{\n  ptr = arr[i];\n  for(j=0;j<3;j++)\n    printf(\"%d \",*ptr++);\n}",
+    "options": [
+      "Syntax Error. ptr can not point to 2 dimensional array",
+      "1 2 3",
+      "1 2 3 4 5 6 7 8 9",
+      null
+    ],
+    "correct": "3",
+    "explanation": "ptr - an integer poitner points to 0th row, prints its elements, then points to 1st row etc. Hence all elements of 2d array are printed\nEach row of a 2 dimensional array is a one dimensional array\n\nA 2d array can also be accessed using poiner to array as shown below.\n\nint (*ptr)[3];\nint arr[3][3]={1,2,3,4,5,6,7,8,9};\nint i,j;\nfor(i=0;i<3;i++)\n{\n  ptr = &arr[i];\n  for(j=0;j<3;j++)\n    printf(\"%d \",(*ptr)[j]);\n}\n\nHere ptr is a pointer to array of 3 integers. In for loop it is assigned to 0th row and then 1st row etc. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "char *str = \"Hello\";\nwhile(*str)\n   putchar(*str++);",
+    "options": [
+      "Infinite loop ",
+      "Syntax error",
+      "Hello",
+      null
+    ],
+    "correct": "3",
+    "explanation": "while(*str) is similar to while (*str!='\\0') every string terminates with '\\0' and  '\\0' is 0.  The loop stops when it encounters null character. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of the code?",
+    "qncode": "int arr[5]={[3]=12};\nint i;\nfor(i=0;i<10;i++)\n   printf(\"%d \",arr[i]);",
+    "options": [
+      "Syntax error in line 1",
+      "12 0 0 0 0",
+      "3 12 0 0 0",
+      "0 0 0 12 0"
+    ],
+    "correct": "4",
+    "explanation": "Initialization of middle element of array is done using\n{[index]=val}\n in initialization list. Older compilers may not support this.\nHere, only 3rd element is initialized to 12. So other elements become 0.\n\nWe can combine this with initial values without index.\ne.g.\nint arr[7]={1,2,[5]=10,3};\n\nHere arr becomes {1,2,0,0,0,10,3};",
+    "topic": "Arrays"
+  },
+  {
+    "question": "What does this function do?",
+    "qncode": "void string_reverse(char *str)\n{\n   int i,j;i=0;j=strlen(str)-1;\n   for(i=0;i<strlen(str);i++,j--)\n      {\n          char temp=str[i];\n          str[i]=str[j];\n           str[j]=temp;\n       }\n}",
+    "options": [
+      "Reverses the string",
+      "Prints the string in reverse order",
+      "Does not reverse string",
+      null
+    ],
+    "correct": "3",
+    "explanation": "The function does not reverse the string because each character is swapped twice. And we get original string back.\n\nThe for loop should end at i<strlen(str)/2 to work correctly.",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What does stdio.h file contain?",
+    "qncode": null,
+    "options": [
+      "Definition of i/o library functions like printf and scanf",
+      "Declaration of library functions",
+      "Neither",
+      null
+    ],
+    "correct": "2",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Which header file should you include if you are to develop a function that can accept variable number of arguments ?",
+    "qncode": null,
+    "options": [
+      "stdlib.h",
+      "vararg.h",
+      "stdio.h",
+      "stdarg.h"
+    ],
+    "correct": "4",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the following statements are correct about the program?\n",
+    "qncode": "#include<stdio.h>\nint main()\n{\n    printf(\"%p\\n\", main());\n    return 0;\n}",
+    "options": [
+      "It prints garbage values infinitely",
+      "Runs infinitely without printing anything",
+      "Error: main() cannot be called inside printf()",
+      "No Error and prints nothing"
+    ],
+    "correct": "2",
+    "explanation": "main function runs recursively until stack overflows\n\nIf you just want to print the address of main function without calling it recursively, you should write\n\nint main()\n{\n    printf(\"%p\",main);\n}",
+    "topic": "Functions"
+  }
+]
