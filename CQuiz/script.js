@@ -32,15 +32,16 @@ function loadQuestion() {
   questionEl.textContent = `${currentIndex + 1}. ${q.question}`;
   let qncode=q.qncode;
   if(qncode==null){
-      codeEl.innerHTML="";
+      codeEl.innerText="";
   }else{
-      //add a newline if there is a brace or semicolon. 
-     /* qncode = qncode.replaceAll(';',';<br>');
-      qncode = qncode.replaceAll('{','{<br>');
-      qncode = qncode.replaceAll('}','}<br>');
-      qncode = qncode.replaceAll("<","&lt;");
-      qncode = qncode.replaceAll(">","&gt;");*/
-      codeEl.innerHTML=`<pre>${qncode}</pre>`;
+  //take care of < and > tags
+ /* qncode = qncode.replaceAll("<","&lt;");
+  qncode = qncode.replaceAll(">","&gt;");
+  qncode = qncode.replaceAll("&","&amp;");
+  qncode = qncode.replaceAll('"',"&quot;");
+  */
+
+      codeEl.innerText=qncode;
   }
 
   q.options.forEach((option, index) => {
@@ -50,8 +51,7 @@ function loadQuestion() {
        btn.onclick = () => selectAnswer(btn, index, q.correct, q.explanation);
        optionsEl.appendChild(btn);
     }
-  });
-  explanationString = q.explan
+  }); 
 }
 
 function selectAnswer(button, selected, correct, explanation) {
@@ -62,23 +62,30 @@ function selectAnswer(button, selected, correct, explanation) {
   }
   console.log("selected="+selected+"correct="+correct);
   if (selected === (correct-1)) {
-      console.log("CORRECT");
-    button.classList.add("correct");
+    buttons[selected].style.color='green';
+   // button.classList.add("correct");
     score++;
   } else {
-       console.log("WRONG");
+       
     button.classList.add("wrong");
-    buttons[correct-1].classList.add("correct");
+     buttons[selected].style.color='red';
+     
+   // buttons[correct-1].classList.add("correct");
+     buttons[correct-1].style.color='green';
+    
   }
-
+  
+  nextBtn.classList.remove("hidden");
+  if( explanation!=null){
   explainBtn.classList.remove('hidden');
  // explanationEl.textContent = explanation;
  // explanationEl.classList.remove("hidden");
-  nextBtn.classList.remove("hidden");
+  
   explainBtn.onclick=function(){
       explanationEl.classList.remove("hidden");
       explainBtn.classList.add('hidden');
       explanationEl.textContent=explanation;
+  }
   }
 }
 
