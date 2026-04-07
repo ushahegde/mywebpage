@@ -1,0 +1,4084 @@
+[
+  {
+    "question": "What is the type of b in the code?",
+    "qncode": "int main()\n{\n    int a = 44; \n    int &b = a; \n    cout<<a<<endl; \n    cout<<b<<endl; \n }",
+    "options": [
+      "An address",
+      "A  pointer",
+      "A reference",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nint main()\n{\n    int a = 44; \n    int &b ; b =a;\n    cout<<a<<endl; \n    cout<<b<<endl; \n }",
+    "options": [
+      4444,
+      "440",
+      "Compiler error",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "Error because reference is not initialized.",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "Which of the following functions cubes the value of a  in main function?",
+    "qncode": " int main()\n{\n    int a=10;\n    cube_num(a);\n    cout<<a;\n}",
+    "options": [
+      "void cube_num(int n)\n{        n = n*n*n;   }",
+      "void cube_num(int &n)\n{       n = n*n*n;    }",
+      "void cube_num(int *n)\n{       *n = *n* *n* *n;   }",
+      "2 and 3"
+    ],
+    "correct": 2,
+    "explanation": "Functions 2 and 3 modify the argument. But we are not calling function with address of operator in code. So 3 is incorrect.",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "void fn1(int a)\n{        a /=2;     }\nvoid fn2(int &a)\n{        a/=2;    } \nint main()\n{\n    int a=10;\n    fn1(a);        cout<<\"a is \"<<a<<endl;\n    fn2(a);         cout<<\"a is \"<<a<<endl;\n    return 0;\n}",
+    "options": [
+      "a is 5\na is 2",
+      "a is 5\na is 2.5",
+      "a is 10\na is 5",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Function fn1 takes value parameter. So its argument a is unmodified after function execution. \n\n Function fn2 takes reference paramter, so it changes value of a.",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "int sum(int a,int b,int c)\n{    return a+b+c;} \nint sum(int a,int b)\n{   return a+b;}\nint main()\n{\n    int s = sum(2,4,5);   \n    cout<<s;\n    return 0;\n}",
+    "options": [
+      "Error because function sum is redefined",
+      "11",
+      "None of the above",
+      null
+    ],
+    "correct": 2,
+    "explanation": "There is no error. sum function is overloaded for 2 and 3 parameters. ",
+    "topic": "Functions-II"
+  },
+  {
+    "question": "What is the error/output of the program?",
+    "qncode": " int sum(int a,int b=0,int c=0)\n{\n    return a+b+c;\n} \nint main()\n{ \n    cout<< sum(2,4,5); \n    cout<<sum(2,4);   \n    cout<< sum(22);   \n    return 0;\n}",
+    "options": [
+      "Error because assignment is used in parameter declaration",
+      "Error because function expects 3 arguments but is called with less than 3 arguments.",
+      "11622",
+      null
+    ],
+    "correct": 3,
+    "explanation": "Function uses default values for parameters. Because of which, the sum() can be called with 1 or 2 or 3 arguments. ",
+    "topic": "Functions-II"
+  },
+  {
+    "question": "What is the error in this program?",
+    "qncode": "int sum(int a=0,int b,int c=0)\n{\n    return a+b+c;\n} \nint main()\n{ \n    cout<<sum(2,4,5); \n    cout<<sum(2,4); \n    cout<<sum(2);   \n    return 0;\n}",
+    "options": [
+      "can not assign values to parameters in function declaration",
+      "Default paramter value is not assigned to 2nd parameter but is assigned to first parameter",
+      "No error",
+      null
+    ],
+    "correct": 2,
+    "explanation": "Default arguments should provided from trailing end. We can not leave a parameter without value in the middle",
+    "topic": "Functions-II"
+  },
+  {
+    "question": "Complete the line to assign value 23 to data member a of obj1.",
+    "qncode": "#include<iostream>\nusing namespace std;\nclass A\n{\npublic:\n  int a;\n  void print_a()\n  {     cout<<a;  }\n}; \nint main()\n{\n     A obj1;\n     ------- = 23;\n     obj1.print_a();\n}",
+    "options": [
+      "obj1.a = 23;",
+      "obj1::a = 23;",
+      "Not possible",
+      null
+    ],
+    "correct": 1,
+    "explanation": "Even though typically data members are made private, in this example \"a\" is a public member. So it can be accessed from main(). \n\nMembers of an object are accessed using dot operator.",
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nclass A\n{\n  int a;\n  void print_a()\n  {\n     a = 23;\n     cout<<a;\n  }\n}; \nint main()\n{\n     A obj1;\n     obj1.print_a();\n}",
+    "options": [
+      23,
+      "Garbage value",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "print_a() is a private function because by default members are private. Hence it can not be called from outside the class",
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nstruct A\n{\n  int a;\n  void print_a()\n  {\n   cout<<a;\n  }\n}; \nint main()\n{\n     A obj1;\n      obj1.a = 23;\n     obj1.print_a();\n}",
+    "options": [
+      "Error because print_a() is a private function of struct",
+      "23",
+      "Error because main can not access data members of class or struct",
+      null
+    ],
+    "correct": 2,
+    "explanation": "Unlike class, in struct, by default the members are public. So main can access print_a() method as well as data a",
+    "topic": "Struct"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nclass  A\n{\n  int a=88;\npublic:\n  void print_a()\n  {     cout<<a;  }\n}; \nint main()\n{\n     A obj1;\n     obj1.print_a();\n}",
+    "options": [
+      "Compiler Error",
+      "Garbage value",
+      "88",
+      null
+    ],
+    "correct": 1,
+    "explanation": "You can not initialize data members of a class in class body. ",
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nclass  A\n{\n   int a;\npublic:\n  void seta(int m){ a = m;}\n  void print_a()\n  {     cout<<a;  }\n}; \nint main()\n{\n     A obj1;\n     obj1.print_a();\n}",
+    "options": [
+      0,
+      "Garbage value",
+      "Run time error",
+      " "
+    ],
+    "correct": 2,
+    "explanation": "Unassigned values of local objects are garbage.",
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "class  A\n{\n  int a;\npublic:  \n  void print_a(); \n};\nvoid A::print_a() \n {\n     this->a = 88;\n     cout<<a;\n  }\nint main()\n{\n     A obj1;     \n     obj1.print_a();\n}",
+    "options": [
+      "Error in void A::print_a()\n",
+      "Error in line\nthis->a = 88;",
+      "88",
+      null
+    ],
+    "correct": 3,
+    "explanation": "this pointer points to the current object. When a member of object is accessed, it has an implicit operand -  this\n\nthis->a is the member a of the current object",
+    "topic": "Class-II"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class  A\n{\n  int a;\npublic:\n  A(); \n};\nA::A()\n{\n   cout<<\"Constructor \";\n}\nint main()\n{\n     A obj1;      \n     A  obj2;\n}",
+    "options": [
+      "No output",
+      "Constructor",
+      "Constructor Constructor",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class  A\n{\n  int a;\npublic:\n  A(int n);\n  void print_a(); \n};\nA::A(int n)\n{\n   a = n;    cout<<\"Constructor \";\n}\nvoid A::print_a() \n {    \n     cout<<a;\n  }\nint main()\n{\n     A obj1;     \n     obj1.print_a();     \n}",
+    "options": [
+      "Constructor 88 ",
+      "88",
+      "Error because the class has no default constructor",
+      null
+    ],
+    "correct": 3,
+    "explanation": "Compiler provides default constructor only if the class has no constructors\n\nA statement of the type \nA obj;\ncalls default constructor. Since there is no default constructor, compiler gives error",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the error in this program?",
+    "qncode": "class  A\n{\n  int a;\npublic:\n  void A(int n);\n  void print_a(); \n};\n\nvoid A::A(int n)\n{\n    a = n; \n    cout<<\"Constructor\\n\";\n}\nvoid A::print_a() \n {    \n     cout<<a;\n  }\nint main()\n{\n     A obj1(12);  \n     obj1.print_a();     \n}",
+    "options": [
+      "The statement should be\nA obj1 = A(12);",
+      "Constructor can not have a return type",
+      "No error",
+      null
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class  A\n{\n  int a;\npublic:\n  A(int n);\n  A();\n  void print_a(); \n};\nA::A():a(0)\n{\n    cout<<\"Default Constructor\\n\";\n}\nA::A(int n):a(n)\n{\n   cout<<\"Parameterized Constructor\\n\";\n}\nvoid A::print_a() \n {      cout<<a;  }\nint main()\n{\n     A obj1(12); \n     A obj2;        \n     A obj3=5;   \n     obj1.print_a();     \n}",
+    "options": [
+      "Compiler error",
+      "12",
+      "Parameterized Constructor\nDefault Constructor\nParameterized Constructor\n12",
+      null
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Constructor"
+  },
+  {
+    "question": "Which constructor does the  line marked as line 1 use?",
+    "qncode": "class  A\n{\n  int a;\npublic:\n  A(int n);\n};\nA::A(int n):a(n)  \n{\n} \nint main()\n{\n     A obj1(12);   \n     A obj3=obj1;/*line 1*/ \n}",
+    "options": [
+      "Default constructor",
+      "Copy Constructor",
+      "Parameterized constructor",
+      null
+    ],
+    "correct": 2,
+    "explanation": "When an object is created as a copy of another, it is created using copy constructor.\n\nThe class has no user defined copy constructor. But compiler provides copy constructor. ",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "What will be the output of this program?",
+    "qncode": "class  A\n{\n  int a;\npublic:\n  A(int n); \n  void print_a(); \n}; \nA::A(int n):a(n)  \n{\n   cout<<\"Constructor\";\n}\nvoid A::print_a() \n {         cout<<a;  }\nint main()\n{\n     A obj1(12);  \n     A objarr[10];\n     obj1.print_a();     \n}",
+    "options": [
+      "Constructor12",
+      "12",
+      "1210",
+      "Compiler error"
+    ],
+    "correct": 4,
+    "explanation": "An array of objects calls default constructor. Since the class does not have one, there is an error.",
+    "topic": "Constructor"
+  },
+  {
+    "question": "The following program gives the output as \nConstructor1212DestructorDestructor\n\nWhy is there an extra destructor?",
+    "qncode": "class  A\n{\n  int a;\npublic:\n  A(int n);\n  ~A();\n}; \nA::~A()\n{\n    cout<<\"Destructor\";\n}\nA::A(int n):a(n)  \n{\n   cout<<\"Constructor\";\n}\n\nvoid print_num(A obj)\n{\n   obj.print_a();\n}\nint main()\n{\n     A obj1(12);    \n     print_num(obj1);\n}",
+    "options": [
+      "There is an extra destructor because there is a bug in the compiler",
+      "obj1 is constructed twice",
+      "print_num() creates another object for value  parameter using copy constructor",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The parameter obj to the print_num() function is value parameter. It will be a new object and is a copy of argument. That is the reason, it is created  using copy ctor.\n\n And this copied object is destroyed  when the function exits. This calls the extra destructor we see in the output.\n",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "What will be the output of the following program?",
+    "qncode": "class  A\n{\n  int n;\n  int *arr;\npublic:\n  A(int n);\n  ~A(); \n  void print_array(); \n}; \nA::~A()\n{\n    delete []arr;\n}\nA::A(int n):n(n)  \n{\n   arr = new int[n]; \n  for(int i=0;i<n;i++)   \n       arr[i]=i*i;\n}  \nint main()\n{\n     A obj1(4);   \n     if(true) \n        A obj2(obj1);     \n     A obj3 = obj1;    \n}",
+    "options": [
+      "No output",
+      "0",
+      "Program crashes because of shallow copy",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The class does not have a copy ctor. So compiler provides a copy ctor which does shallow copy.\n\nWhen obj2 is copy created, both obj1 and obj2 point to same dynamic memory. When if statement ends, obj2 is destroyed and its destructor is called. Destructor releases memory. \n\nNext when obj3 is created, it tries to copy contents pointed by pointer. But the memory pointed by pointer is released. Hence program crashes.",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "What is the error in the copy constructor in the following program?",
+    "qncode": "class  A\n{\n  int n;\n\npublic:\n  A(int n);\n  A(A obj);/*copy constructor*/\n  ~A();\n};\nA::A(A orig_obj)\n{\n   cout<<\"Copy constructor\";\n}\n/*rest of the code*/",
+    "options": [
+      "No Error",
+      "Copy constructor can not be user defined",
+      "Parameter to copy constructor should be z  reference parameter",
+      null
+    ],
+    "correct": 3,
+    "explanation": "Compiler only allows copy constructor with reference parameter.\n\nIf parameter were to be value parameter, then this will copied using copy constructor - which will cause infinite recursion",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "Which of these is the right copy constructor for a class with two data members viz int n and integer array - int*arr?",
+    "qncode": "class A\n{\n   int n;\n   int *arr;\npublic:\n/** copy constructor decln here*/\n};\n",
+    "options": [
+      "A::A(A obj1)\n{\n    n = obj1.n;\n    arr = obj1.arr;\n}\n",
+      "A::A(const A &obj)\n{\n    n = obj.n;\n    arr = obj.arr;\n}",
+      "A::A(const A &obj)\n{\n   this->n =  obj.n;   arr = new int[n];   \n   for(int i=0;i<n;i++)      arr[i] =  obj.arr[i];   \n}",
+      null
+    ],
+    "correct": 3,
+    "explanation": "When a class has members which are dynamically allocated, the class must have copy constructor which does deep copy.",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "What is the difference between copy constructor and assignment operator?",
+    "qncode": null,
+    "options": [
+      "Copy constructor is used for new objects. Assignment operator is used for existing objects.",
+      "You can write your own copy ctor but not assignment operator",
+      "There are no differences",
+      null
+    ],
+    "correct": 1,
+    "explanation": "When you say \nA obj2=obj1;\nit calls copy constructor\n\nA obj3,obj4;\nobj3 = obj4;\ncalls assignment operator.\n\nCopy ctor is called when a new object is being created. Assignment operator is called when existing object is assigned to another object.",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "class  A\n{\n  int m;\npublic:\n  A(int n);\n  void print_m();\n}; \nA::A(int n=0):m(n)  \n{\n   cout<<\"Constructor\";\n}\nvoid A::print_m()\n{\n   cout<<m;\n}      \nint main()\n{\n     A obj1(8);   \n     A objarr[5];\n}",
+    "options": [
+      "Error. No default constructor",
+      "Error.you can not have array of objects",
+      "Constructor",
+      "ConstructorConstructorConstructorConstructorConstructorConstructor"
+    ],
+    "correct": 4,
+    "explanation": "The paramterized constructor is having a default value. So that is the default constructor. \n\nAnd object array uses this default constructor. ",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class  A\n{\n  int m;\npublic:\n  A(int n);\n  void print_m();\n};\n\nA::A(int n):m(n)  \n{\n   cout<<\"Constructor\";\n   cout<<m<<endl;\n}\nvoid A::print_m()\n{\n   cout<<m;\n}     \nint main()\n{\n     A objarr[3]={A(1),A(8),A(3)};\n}",
+    "options": [
+      "Error because array needs default constructor.",
+      "Error because object array can not be initialized",
+      "Constructor1\nConstructor8\nConstructor3",
+      null
+    ],
+    "correct": 3,
+    "explanation": "An array of objects can be initialized using the syntax given in the code.  \n\nIf the array were to use 2 parameter constructor, it can be initialized such as\nA obj[3] = {A(3,4},A(6,7),A(9,10)};\n",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class B\n{\n  int b_num;\npublic:\n  B() \n  {\n    cout<<\"Constructor of B\";\n  }\n~B()\n{\n   cout<<\"Destructor of B\";\n}\n};\nclass  A\n{\n  int m;\n   B bobj;\npublic:\n  A(int n);\n  ~A();   \n};\nA::~A()\n{\n    cout<<\"Destructor of A\"; \n}\nA::A(int n):m(n)  \n{\n   cout<<\"Constructor of A\"; \n} \nint main()\n{\n     A obj1(8);   \n }",
+    "options": [
+      "Constructor of ADestructor of A",
+      "Constructor of A Constructor of BDestructor of A Destructor of B",
+      "Constructor of BConstructor of ADestructor of ADestructor of B",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Composition"
+  },
+  {
+    "question": "A program given below is not compiling. Why?",
+    "qncode": "class  A\n{\n  int m1;\n  const int m2;\npublic:\n  A(int n1,int n2);  \n};\nA::A(int n1,int n2) \n{\n    m1 = n1;\n    m2 = n2;\n}   \nint main()\n{\n     A obj1(1,5); \n}",
+    "options": [
+      "Class can not have const data.",
+      "const data should be initialized in class definition ",
+      "const data should be initialized with member initializer list",
+      null
+    ],
+    "correct": 3,
+    "explanation": "The correct constructor for this class is\n\nA::A(int n1,int n2) :m2(n2)\n{\n    m1 = n1;\n}",
+    "topic": "Constant"
+  },
+  {
+    "question": "Write output of the following program",
+    "qncode": "class  A\n{\n  int m1;\n  const int m2;\npublic:\n  A(int n1,int n2); \n  void print_m();\n  void set_values(int x,int y);\n};\nA::A(int n1,int n2) :m1(n1),m2(n2)\n{     }\nvoid A::print_m()\n{\n   cout<<m1<<\" \"<<m2;\n}  \nvoid A::set_values(int x,int y)\n{\n   m1 = x;    m2 = y;\n}  \nint main()\n{\n     A obj1(1,5);\n     obj1.set_values(11,22);\n     obj1.print_m();\n}",
+    "options": [
+      15,
+      "1122",
+      "Compiler error because const member is being modified",
+      null
+    ],
+    "correct": 3,
+    "explanation": "m1 is const data of class A. It can not be modified",
+    "topic": "Constant"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class  A\n{\n  int m1;\n  int m2;\npublic:\n  A(int n1,int n2); \n  void print_m() const;\n  void set_values(int x,int y) const;\n};\nA::A(int n1,int n2) :m1(n1),m2(n2)\n{     \n}\nvoid A::print_m() const\n{\n   cout<<m1;\n   cout<<m2;\n}  \nvoid A::set_values(int x,int y) const\n{\n   m1 = x; \n   m2 = y;\n}\n  \nint main()\n{\n     A obj1(1,5);\n     obj1.set_values(11,22);\n     obj1.print_m();\n}",
+    "options": [
+      15,
+      "1122",
+      "Compiler error because const member function set_values is modifying the object",
+      null
+    ],
+    "correct": 3,
+    "explanation": "A const member function should not modify the state of the object.",
+    "topic": "Constant"
+  },
+  {
+    "question": "What is the error in this program?",
+    "qncode": "class  A\n{\n  int m1;\n  int m2;\npublic:\n  A(int n1,int n2); \n  void print_m() const;\n  void set_values(int x,int y) ;\n};\nA::A(int n1,int n2) :m1(n1),m2(n2)\n{     \n}\nvoid A::print_m() const\n{\n   cout<<m1;\n   cout<<m2;\n}  \nvoid A::set_values(int x,int y) \n{\n   m1 = x; \n   m2 = y;\n}\n  \nint main()\n{\n     A obj1(1,5);\n     const A obj2(3,4);\n     obj1.set_values(11,22);\n     obj1.print_m();\n     obj2.set_values(33,44);\n     obj2.print_m();\n}",
+    "options": [
+      "You can not have a const member function",
+      "You can not define a constant object",
+      "A const object can call only const function.",
+      null
+    ],
+    "correct": 3,
+    "explanation": "A non-const object can call both constant and non-constant functions. But a const object can call only const member functions. ",
+    "topic": "Constant"
+  },
+  {
+    "question": "How do you assign a value 12 to the const data member m1 in class A?",
+    "qncode": "class  A\n{\n  const int m1;\n  int m2;\npublic:\n  A(int n1,int n2); \n  void set_values(int x,int y) ;\n}; ",
+    "options": [
+      "const int m1 = 12;   in class declaration",
+      "A::A(int n1,int n2):m1(12),m2(n2)\n{/*code*/}",
+      "m1 = 12;    In the constructor assign",
+      null
+    ],
+    "correct": 2,
+    "explanation": "A constant data should always be initialized using member initializer list",
+    "topic": "Constant"
+  },
+  {
+    "question": "Output of the program is ------",
+    "qncode": "class B\n{\n  int b_num;\npublic:\n  B(int n):b_num(n)\n  {\n    cout<<\"Constructor of B\";\n  }\n};\nclass  A\n{\n  int m;\n   B bobj;\npublic:\n  A(int n);\n  void print_m();\n};\n\nA::A(int n):m(n)  \n{\n   cout<<\"Constructor of A\";\n}\nvoid A::print_m()\n{\n   cout<<m;\n}  \n\n int main()\n{\n     A obj1(8);   \n   }",
+    "options": [
+      "Constructor of AConstructor of B",
+      "Compiler error because class B has no default constructor",
+      "Constructor of BConstructor of A",
+      null
+    ],
+    "correct": 2,
+    "explanation": "Constructor of a class calls constructors of all member objects implicitly. This is possible only if the member objects have default constructors. Since A class has no default constructor, there is compiler error.\n\nThis can be solved by calling the member constructor explicitly in member initialization list\n\nA::A(int n):m(n),bobj(n)\n{\n}",
+    "topic": "Composition"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "class  A\n{\n  int m;\npublic:\n  void print_m();\n  static void print_message();\n};\n void A::print_m()\n{\n   cout<<m;\n}  \nvoid A::print_message()\n{\n   cout<<\"Hello, you are using class A\";\n   m = 200;\n}   \nint main()\n{\n     A obj1(8);  \n     obj1.print_message();\n     A::print_message(); \n   }",
+    "options": [
+      "Error. Class can not have static member",
+      "Error. The function definition is not using keyword static",
+      "Hello, you are using class AHello, you are using class A",
+      "Error. A static function can not access  non-static members of a class"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Static"
+  },
+  {
+    "question": "The output of program is ?",
+    "qncode": "class  A\n{\n  int m;\n  static int count;\npublic: \n  A()\n  {  count++;\n   }\n  void print_num_objects();\n};\n \nvoid A::print_num_objects()\n{\n   cout<<\"Hello, Total number of objects created is\"<<count;\n   }\nint main()\n{\n     A obj1;\n     A obj2;\n     obj1.print_num_objects();   \n  }",
+    "options": [
+      "Hello, Total number of objects created is 2",
+      "No output",
+      "Linker error. Static data member count is declared, but not defined. ",
+      null
+    ],
+    "correct": 3,
+    "explanation": "A static data member  should also be defined outside of class like this\n\nint A::count;\n\nAs it is not defined, linker fails to find count.",
+    "topic": "Static"
+  },
+  {
+    "question": "How do you allocate memory to store 10 integers in C++?",
+    "qncode": null,
+    "options": [
+      "int *ptr = malloc(10*sizeof(int));",
+      "int *ptr = new int;",
+      "int ptr[] = new int[10];",
+      "int *ptr = new int[10];"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "To release memory allocated dynamically, you should use",
+    "qncode": null,
+    "options": [
+      "release ptr;",
+      "delete ptr;",
+      "dealloc ptr;",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "What operation is performed by the program below?",
+    "qncode": "#include<iostream>\nusing namespace std;\nclass Number\n{\n    int n;\n public:\n    Number(int a):n(a){}\n    int getn() {\n        return n;\n    }\n    bool operator >(const Number & obj1);\n};\nbool Number::operator >(const Number &obj1 )\n{\n    return n>obj1.n;\n}\nint main()\n{\n    Number obj1(10),obj2(25);\n    if(obj1>obj2)\n       cout<<obj1.getn()<<\"is greater than \"<<obj2.getn();\n    else\n       cout<<obj1.getn()<<\"is not greater than\"<<obj2.getn();\n}\n       \n    ",
+    "options": [
+      "syntax error in line\n A operator +(A obj1); ",
+      "Returns true if  n of first object is greater than n of second object",
+      "produces run time error",
+      null
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "What are the errors in the following class declaration?",
+    "qncode": "class A\n{\n   int n;\npublic:\n   void set_n(int m);/**1**/\n   A(int num=0);      /**2**/\n   A operator +(A obj1,A obj2);/**3**/\n   int get_n();\n};",
+    "options": [
+      "No errors",
+      "Program produces compiler error in line marked as  2.",
+      "Error in line marked as 1",
+      "The program produces error in line marked 3."
+    ],
+    "correct": 4,
+    "explanation": "A binary overloaded operator function if it is member function, takes only one parameter. And this parameter is treated as second operand. The first operand is the calling object.\n\nIf the operator is non-member function then binary operator function takes 2 parameters. ",
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "Which of the following is the correct declaration of overloading\" - operator\" of class A? 1 or 2?",
+    "qncode": "class A\n{\n   int n;\npublic:\n   void set_n(int m);\n   A(int num=0);   \n   A operator -(A obj1);/**1**/\n   int get_n();\n};\nA operator -(A obj1,A obj2);/**2**/",
+    "options": [
+      1,
+      "2",
+      "Both",
+      "Neither"
+    ],
+    "correct": 3,
+    "explanation": "Most  operators can be overloaded using  either  member or a non-member functions.\n\nCode marked as 1 shows operator overloading using member function and 2 shows non-member function\n\nDO NOT use both togther. If you overload an operator both as member and non-member, there will be ambiguity error. ",
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n  int n;\npublic:\n   int getn(){return n};\n   A(int m=0):n(m){}\n   void print(){cout<<n;}\n}; \nA operator +(A obj1,A obj2)\n{\n    A temp;\n   temp = obj1.getn()+obj2.getn();\n   return temp;\n}\nint main()\n{\n     A ob1(10);\n     A ob2(90);\n     A ob3;\n     ob3 = ob1+ob2;\n     ob3.print();\n     return 0;\n}",
+    "options": [
+      "Error. Operator overloading is not a member function",
+      "Error. Assignment operator is not overloaded",
+      "100",
+      null
+    ],
+    "correct": 3,
+    "explanation": "In this case, + operator is overloaded using a non-member function. The function accesses the data members using getters and setters.\n\nAs the function is non-member, it has two parameters for the binary operator.",
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "What is the output of the program below?",
+    "qncode": "class A\n{\n   int num;\n public:\n    A(int n=0):num(n){}\n    void print() const;\n    void setNum(int n);\n    void  operator+=(const A&obj);\n};\nvoid A::print() const\n{    cout<<num<<\"\\n\";   }\nvoid A:: setNum(int n)\n{    num = n;    }\nvoid  A::operator+=(const A&obj)\n{\n     num +=obj.num;\n}\nint main()\n{\n      A obj1(12);       A obj2(24);\n      A obj3 =obj2+=obj1;\n      obj3.print();\n}",
+    "options": [
+      12,
+      "Compiler error",
+      "36",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "In order to use += in chain form \nobj3 = obj1+=obj2\n\nthe operator funtion must return a reference to A  object. That is it's return type should be A&.\n\nA& operator +=(A &obj1)\n{\n    n +=obj1.n;\n   return *this;\n}",
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "What is the output when the following program is executed?",
+    "qncode": "class A\n{\n   int num;\n public:\n    A(int n=0):num(n){}\n    void print() const;\n    void setNum(int n);   \n    bool operator <(const A& obj);\n};\nvoid A::print() const\n{\n    cout<<num<<\"\\n\";\n}\nvoid A:: setNum(int n)\n{\n    num = n;\n}\nbool  A::operator<(const A&obj)\n{\n     return num<obj.num;\n}\nint main()\n{\n      A obj1(12);\n      A obj2(24);\n     if(obj1<obj2)\n        cout<<\"object 1 is smaller\";\n     else\n        cout<<\"object 2 is smaller\";\n}\n",
+    "options": [
+      "Error. We can not overload relational operators. ",
+      "Error. Operator overload function must return an object",
+      "object1 is smaller",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "Find out the errors in the class definition",
+    "qncode": "class A\n{\n    int len;\n    float *arr;\npublic:\n     A(int sz);  \n     float operator[](int n) const;\n     float & operator[](int n);\n};\nfloat A::operator[](int n)const\n{        return arr[n];\n}\nfloat &A::operator[](int n)\n{            return arr[n];  \n}",
+    "options": [
+      "No errors",
+      "Can not overload [] operator",
+      "Can not have 2 functions for subscript operator",
+      null
+    ],
+    "correct": 1,
+    "explanation": "There are 2 versions of subscript operator because const version of subscript operator can be used for constant objects.",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "Decrement  operator for a class can have two versions - pre-decrement and post decrement. How do you write these two versions for the following class?",
+    "qncode": "class A\n{\n     int num;\npublic:\n     ..........\n};",
+    "options": [
+      "A& operator--(){/*code*/}\nA  operator--(int n){/*code*/}",
+      "There can not be two overloaded functions for one operator",
+      "A&  operator--(){/*code*/}\nfriend A&   operator--(A obj){/*code*/}",
+      null
+    ],
+    "correct": 1,
+    "explanation": "Postfix version of ++ and -- operator overloading takes a dummy int parameter to differentiate between prefix and postfix",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What lines must be used in the program below to overload new operator correctly?",
+    "qncode": "class A\n{\n   int x,y,z;\n public:\n    void * operator new(size_t nbytes);\n    void print() const;\n};\nvoid *A::operator new(size_t nbytes)\n{\n     /* implement new */   }\nint main()\n{\n      A *objptr = new A(); \n}\n",
+    "options": [
+      "void * temp = new A[nbytes];\nreturn temp;",
+      "void *temp = malloc(nbytes);\nreturn temp;",
+      "None of the above",
+      null
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n   int num;\n public:\n    A(int n);\n    int getNum() const;\n    ostream& operator<<(ostream &stream,A obj);\n};\nint A::getNum() const\n{\n   return num;\n}\nostream& A::operator<<(ostream &stream,A obj)\n{\n      stream<<\"Number is\"<<obj.getNum()<<\"\\n\";\n      return stream;\n}\nA::A(int n=1):num(n){     }\nint main()\n{\n      A obj(10);\n      cout<<obj;\n      A obj2 ;\n      cout<<\"Object 2 \"<<obj2;\n}\n",
+    "options": [
+      "Number is 10\nObject 2 Number is 0",
+      "Error in constructor call for obj2 as there is no default constructor",
+      "Error. << operator function should be a non-member function",
+      null
+    ],
+    "correct": 3,
+    "explanation": "Both insertion operator << and extraction operator  >> must be non-member functions, because their syntax uses first operand as iostream object.",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class A\n{\n   int num;\n public:\n    A(int n) ;    \n}; \n A::A(int n):num(n)  \n{     \n    cout<<\"Constructor\";\n} \nint main()\n{ \n      A obj3 (0);\n      obj3 = 25;\n}",
+    "options": [
+      "Constructor",
+      "Constructor",
+      "ConstructorConstructor",
+      null
+    ],
+    "correct": 3,
+    "explanation": "If a class has a constructor with single parameter of a type, say int, then assigning an object to an int will use that  constructor for conversion. ",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class A\n{\n   int num;\n public:\n   explicit A(int n) ;\n    void print() const;     \n    int getNum() const;     \n};\nint A::getNum() const\n{\n   return num;\n}\nA::A(int n):num(n)  { } \nint main()\n{ \n      A obj3 ;\n       obj3 = 25;\n      cout<<obj3.getNum();\n}",
+    "options": [
+      25,
+      "No output",
+      "Compiler error. ",
+      null
+    ],
+    "correct": 3,
+    "explanation": "explicit keyword avoids automatic conversion of int to object of A using constructor. So there will be compiler error saying that int can not be converted to A",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "A::operator float()\n{\n   float m = num;\n   return m;\n}",
+    "options": [
+      "Error. float should be return type",
+      "Defines a function to convert A object to float",
+      "Defines a function to convert a float value to object of class A",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The operator is a conversion operator. Conversion operator do not have return type but name of operator is the return type.",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "Complete the line to specify that class B is derived from class A",
+    "qncode": " class B--------------------\n{/*code*/ \n}\n ",
+    "options": [
+      "class B extends class A{}",
+      "class B. class A{}",
+      "class B:public A{}",
+      "class B:A{}\n"
+    ],
+    "correct": 3,
+    "explanation": "Syntax 4 i s also correct. But it uses private inheritance so that all public and protected members of A becomes private members of B",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "When class B is inherited from class A, which of the following statements is false?\n\nclass B:public A{/*code*/}",
+    "qncode": null,
+    "options": [
+      "All public members of A are accessible from object of B",
+      "All private members of A are accessible from object of B",
+      "All protected members of A are accessible from object of B.",
+      "Class B can define its own data members and functions."
+    ],
+    "correct": 2,
+    "explanation": "class B inherits all members of class A, but it can not access private members. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n    int a;\n};\nclass B:public A\n{\n    int b;\npublic:\n    void print(); \n};\nvoid B::print()\n{\n    cout<<\"a=\"<<a;\n    cout<<\"b=\"<<b;\n} \nint main()\n{\n     B obj2;\n     obj2.print();\n}",
+    "options": [
+      "a=10b=12",
+      "Compiler error",
+      "No output",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "print() function of class B can not access \"a\" of base class, because a is a private member. \n\nprint() should be using\n\ncout<<\"a=\"<<geta();",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What will be the size of obj2 printed by this program assuming that size of int is 4 bytes?",
+    "qncode": "class A\n{\n    int a;\npublic:\n    void seta(int n);\n     int geta();\n};\n/*code */\nclass B:public A\n{\n    int b;\n};\n/*code*/\nint main()\n{\n     B obj2;\n     cout<<\"Size of obj of B is \"<<sizeof(obj2);\n}",
+    "options": [
+      4,
+      "8",
+      "Depends on the size of member functions",
+      null
+    ],
+    "correct": 2,
+    "explanation": "All members of base class are inherited by derived class but private members are not directly accessible. \n\nSo the size of derived class of object = total size of base class members + total size of derived class members ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Write the output of the following program.",
+    "qncode": "class Vehicle\n{\n \npublic: \n     Vehicle();\n    ~Vehicle();\n};\nVehicle::Vehicle()\n{\n    cout<<\"Vehicle constructor \";\n}\nVehicle::~Vehicle()\n{\n     cout<<\"Vehicle destructor  \";\n} \nclass Car:public Vehicle\n{\n \npublic: \n    Car();\n  ~Car();\n};\nCar::Car()\n{\n    cout<<\"Car Constructor \";\n}\nCar::~Car()\n{\n     cout<<\"Car Destructor \";\n} \nint main()\n{\n     Car obj;\n}",
+    "options": [
+      "Car constructor Car destructor",
+      "Vehicle Constructor Car Constructor Car Destructor Vehicle Destructor",
+      "Vehicle Constructor Car Constructor Vehicle Destructor Car Destructor",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "A derived class object creation always calls base class constructor before calling derived class constructor.  A derived class object destruction calls derived class destructor and then base class destructor.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class A\n{\n    int a;\npublic:\n    void seta(int n);\n     int geta();\n  };\nvoid A::seta(int n)\n{\n    a = n;\n}\nint A::geta()\n{\n    return a;\n}\nclass B:public A\n{\n    int b;\npublic:\n    void  setb(int n);\n};\nvoid B::setb(int n)\n{\n    b = n;\n}\nint main()\n{\n      A obj1;\n      obj1.seta(10);\n      obj1.setb(12);\n      B obj2; \n      obj2.seta(10);\n      obj2.setb(12); \n}",
+    "options": [
+      "No output",
+      "Error because obj1 of class A does not have setb() function. ",
+      "None of the above",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "Derived class inherits all members of base class. But base class does not inherit anything from derived class .\n\nObject of class B can use seta() and setb(). But object of class A can not use setb().",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What will be the output of this program?",
+    "qncode": "class A\n{\n    int a;\npublic:\n    void setnum(int n);\n     int getnum(){    return a;}\n  };\n void A::setnum(int n)\n{    a = n;  }\nclass B:public A\n{\n    int b;\npublic:\n    void print();\n    void  setnum(int a,int b);\n }; \nvoid B::print()\n{\n    cout<<\"a=\"<<getnum();\n    cout<<\"b=\"<<b;\n}\nvoid B::setnum(int x,int y)\n{\n   a= b =x+y;\n}\nint main()\n{\n      B obj3;\n      obj3.setnum(22);\n      obj3.print();\n}",
+    "options": [
+      "a=0b=22",
+      "a=22b=22",
+      "Compilation Error",
+      null
+    ],
+    "correct": 3,
+    "explanation": " setnumber function called by obj3 is wrong because base class function with one parameter is hidden by redefining it in B class with 2 parameters. \n",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following members does the derived class not inherit?",
+    "qncode": "",
+    "options": [
+      "protected data members",
+      "It inherits all members",
+      "constructors, destructor and assignment operators ",
+      "private data members"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "How do you call constructor of a class A?",
+    "qncode": null,
+    "options": [
+      "A()",
+      "Constructor is called implicitly when you create an object",
+      "new A()",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "When an object is created using the statement of the form\nA obj;\ndefault constructor of class A is called automatically.\n\nA obj2(10);\nwill call constructor with one int paramter.\n\nIn case of pointer to objects new operator is used like this\n\nA *ptr = new A();\nThis allocates memory, creates object and calls constructor.\n",
+    "topic": "Constructor"
+  },
+  {
+    "question": "Which of the following statements regarding constructors and destructors is false?",
+    "qncode": null,
+    "options": [
+      "Constructor can be overloaded",
+      "Destructor can be overloaded",
+      "Name of constructor is same as class name",
+      "Name of destructor function is ~ followed by class name"
+    ],
+    "correct": 2,
+    "explanation": "As a destructor does not take any parameters, it can not be overloaded. ",
+    "topic": "Destructor"
+  },
+  {
+    "question": "What are the errors in the following program?",
+    "qncode": "class A\n{\n    int a;\npublic:\n    void setnum(int n);\n     int getnum();\n  };\n void A::setnum(int n)\n{\n    a = n;\n}\nint A::getnum()\n{\n    return a;\n}\nclass B:public A\n{\n    int b;\n };\nvoid printA(A &obj)\n{\n    cout<<obj.getnum();\n}\nint main()\n{\n      A obj1;\n      obj1.setnum(10);\n      printA(obj1);\n      B obj2;\n      obj2.setnum(2);\n      printA(obj2);\n}",
+    "options": [
+      "No errors",
+      "printA function can not take B object as argument",
+      "printA() should be a member function of class A",
+      "printA() function can not have a reference parameter"
+    ],
+    "correct": 1,
+    "explanation": "An object of B is an object of class A. So it is correct to send  B object to printA function. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What happens when you use a  syntax  as shown for defining a derived class?",
+    "qncode": "class B:A\n{\n/*code*/\n}",
+    "options": [
+      "Compiler error",
+      "private inheritance",
+      "public inheritance",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The syntax uses default inheritance which is private. \n\npublic and protected members of base class become private members of derived class.\n\n private members of base class are anyway inaccessible in derived class",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "class A\n{\n    int a;\npublic:\n    void setnumber(int n);\n     int getnum();\n  };\n void A::setnumber(int n)\n{    a = n;   }\nint A::getnum()\n{    return a;   }\nclass B\n{\n    int b;\n    A objA;     \n };\n \nint main()\n{       \n      B obj2;\n      obj2.objA.setnumber(10);\n      cout<<\"Number is \"<<obj2.objA.getnum();\n}",
+    "options": [
+      "Number is 10",
+      "Error in the line \nA objA;",
+      "Can not access objA from main because it is private member",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Since objA is private member of B class, it can not be accesseed by main. \n\nBy writing a public function in B class we can still print number of A \nclass B\n{\n/*****/\npublic:\n   void getANumber()\n   {\n       return objA.getNum();\n   }\n};\n\nNow this can be called in main as\n\ncout<<obj2.getANumber();",
+    "topic": "Composition"
+  },
+  {
+    "question": "What is the output of this modified composition program?",
+    "qncode": "class A\n{\n    int a;\npublic:\n    void setnumber(int n);\n     int getnum();\n  };\n void A::setnumber(int n)\n{\n    a = n;\n}\nint A::getnum()\n{\n    return a;\n}\nclass B\n{\n    int b;\n    A objA;    \npublic:\n    void print();\n    A& getA();\n   };\n A& B::getA()\n{\n    return objA;\n}\nvoid B::print()\n{ \n    cout<<\"b=\"<<b;\n}  \nint main()\n{       \n      B obj2;\n      obj2.getA().setnumber(10);\n      cout<<\"Number is \"<<obj2.getA().getnum();\n}",
+    "options": [
+      "Number is 10",
+      "Number is 0",
+      "No output",
+      null
+    ],
+    "correct": 1,
+    "explanation": "Ensure that getA returns a reference to to objA. ",
+    "topic": "Composition"
+  },
+  {
+    "question": "What does the following declaration indicate?",
+    "qncode": "class C:public A,public B\n{/*********/}",
+    "options": [
+      "class C is an inherited class of A and A is inherited class of B",
+      "class C is inherited from both class A and class B",
+      "Syntax error",
+      null
+    ],
+    "correct": 2,
+    "explanation": "C is using multiple inheritance. It has two base classes A and B.",
+    "topic": "Multiple Inheritance"
+  },
+  {
+    "question": "Why is virtual inheritance used?",
+    "qncode": null,
+    "options": [
+      "To achieve runtime polymorphism",
+      "To achieve dynamic binding",
+      "To avoid occurance dreaded diamond problem",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Virtual inheritance is used to avoid dreaded diamond problem when using multiple and multilevel.\n\nWhen a class is included more than once due to multiple inheritance, there will be an ambiguity in accessing member of this class.\n\nVirtual inheritance ensures that only one copy of this class is included regardless of number of paths to the base class.",
+    "topic": "Multiple Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n int num;\npublic:\n    A():num(0)\n    {\n       cout<<\"A constructor \";\n    }\n};\nclass B: public A\n{\n      int numb;\npublic:\n      B()\n      {\n         cout<<\"B constructor \"; \n     }\n};\nclass C:public  A\n{\n       int numc;\npublic:\n      C()\n      {\n         cout<<\"C constructor \"; \n     }\n};\nclass D:public C,public B\n{\n   \n     int numd;\npublic:\n      D()\n      {\n         cout<<\"D constructor \"; \n       }\n};\nint main()\n{\n    D obj;\n}\n",
+    "options": [
+      "A constructorB constructorA constructorC constructorD constructor0",
+      "Compiler Error",
+      "A constructor C constructor A constructor B constructor D constructor",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The A sub-object is present twice in D class object and A constructor is called twice.",
+    "topic": "Multiple Inheritance"
+  },
+  {
+    "question": "Virtual functions in a class are used for",
+    "qncode": null,
+    "options": [
+      "Hiding the data from user",
+      "Providing dynamic polymorphism",
+      "Both ",
+      ""
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": " class polygon\n{\n public:\n    virtual float getArea();\n};\nfloat polygon::getArea()\n{  \n    return 0;\n}\nclass triangle:public polygon\n{\n    float base,height;\n public:\n    triangle(float b,float h);\n    float getArea();\n};\ntriangle::triangle(float b,float h)\n{\n    base = b;\n    height = h;\n}\nfloat triangle::getArea()\n{\n    return 0.5*base*height;\n} \nvoid printArea (polygon& p)\n{\n     cout<<\"Area of polygon is \"<<p.getArea();\n}\nint main()\n{\n     polygon p; \n     triangle t(10,10);\n     printArea(p);\n     printArea (t); \n}",
+    "options": [
+      "Area of polygon is 0Area of polygon is 0",
+      "Area of polygon is 0Area of polygon is 50",
+      "Compiler error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "In printArea() function, the parameter p is a reference to polygon or any of its derived classes. So at run time, the actual type of parameter is obtained using vptr and corresponding getArea() is called.",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "How can a class be made abstract so that objects can not be created from the class?",
+    "qncode": null,
+    "options": [
+      "By using keyword abstract in declaration of the class",
+      "By declaring an empty class with no members",
+      "By declaring at least one pure virtual function in the class. ",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "By writing a function of the form \nvirtual type fn-name(par-list)=0;\n\nin the class declaration makes the function a pure virtual function. \n\nSince this function is not defined, the class is incomplete and it can not be instantiated i.e. objects can not be created from this class.",
+    "topic": "Abstract Class"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class polygon\n{\n public:\n    virtual float getArea()=0;\n};\n\nclass triangle:public polygon\n{\n    float base,height;\n public:\n    float getArea();\n}; \nfloat triangle::getArea()\n{\n   base = height = 10;\n    return 0.5*base*height;\n} \nint main()\n{\n     polygon p;\n     cout<<\"polygon area\"<<p.getArea();\n     triangle t; \n      cout<<\"triangle area\"<<t.getArea();\n\n}",
+    "options": [
+      "polygon area 0triangle area 50",
+      "polygon area 0triangle area 0",
+      "Compilation error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Since polygon has a pure virtual function in it, the class is abstract. So you can not create an object of class polygon. ",
+    "topic": "Abstract Class"
+  },
+  {
+    "question": "Find out the errors in the following code segment.",
+    "qncode": "class Instrument\n{   /*code*/   }\nclass Guitar:public Instrument\n{ /*code*/    }\nvoid tune(Instrument i)\n{ /*code*/  }\nint main()\n{\n    Guitar g1;\n    tune(g1); \n}",
+    "options": [
+      "tune function expects  an  Instrument parameter",
+      "No error",
+      null,
+      null
+    ],
+    "correct": 2,
+    "explanation": "Since a derived class object IS A base class object, the code is correct.\n\nThis method of casting a derived class object to base class object is called upcasting. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of these member functions are automatically provided by  compiler for a class in C++?",
+    "qncode": "",
+    "options": [
+      "Default Constructor and Destructor",
+      "Assignment operator",
+      "Copy Constructor",
+      "All of these "
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Destructor"
+  },
+  {
+    "question": "What is default access level of a struct members?",
+    "qncode": "",
+    "options": [
+      "public",
+      "private",
+      "protected",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Struct"
+  },
+  {
+    "question": "What is the difference between abort() and exit()?",
+    "qncode": "",
+    "options": [
+      "abort() should be used when there recovery is not possible.",
+      "exit() dumps the core",
+      "abort dumps the core",
+      "exit calls destructors of all global objects before ending program"
+    ],
+    "correct": 34,
+    "explanation": "",
+    "topic": "Baiscs"
+  },
+  {
+    "question": "What is an inline function?",
+    "qncode": "",
+    "options": [
+      "A function which instead of being called, is executed as a statement.",
+      "A function which starts with keyword inline",
+      "A function which is defined inside body of a class",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "A function whose definition appears inside class declaration becomes inline function. A function can even be explicitly declared as inline\ninline int getnumber();\n\nNote that inline is just a recommendation to compiler. Compiler may ignore this. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Can we define a member function outside the body of class? If yes, how?",
+    "qncode": "",
+    "options": [
+      "No",
+      "Yes. Using :: operator",
+      "Yes, using . operator",
+      "Depends on the compiler"
+    ],
+    "correct": 2,
+    "explanation": "If a class is \nclass FOO\n{\n   public:\n     void print();\n};\n\nthen to define print function outside the class body, you should use\n\nvoid FOO::print()\n{\n}\n\nThat is we should write\n return-type classname::functionname\n{\n/*function body*/\n}",
+    "topic": "Class-II"
+  },
+  {
+    "question": "Which of the following is the destructor of a class FOO?",
+    "qncode": "",
+    "options": [
+      "FOO::FOO(){/*code*/}",
+      "FOO::FOO~(){/*code*/}",
+      "FOO::~FOO(){/*code*/}",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Destructor"
+  },
+  {
+    "question": "Which of these statements about shallow copy and deep copy is true?",
+    "qncode": "",
+    "options": [
+      "A compiler provided copy constructor uses deep  copy",
+      "Shallow copy is when data are replicated to new object. So here pointers of old object and new object point to same locations",
+      "Shallow copy allocates memory for newly copied objects and then copies the values",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "Which of the following statements is true about static functions of a class?",
+    "qncode": "",
+    "options": [
+      "Static functions can not  be virtual",
+      "Static functions do not have this pointer",
+      "Static function can be called without any object",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Static"
+  },
+  {
+    "question": "Which of the following statements is true regarding const member functions?",
+    "qncode": "",
+    "options": [
+      "A const object can call only const function",
+      "A const function can not modify state of an object",
+      "A non-constant object can call a const function",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Constant"
+  },
+  {
+    "question": "Which of the following is the default constructor of a class FOO?",
+    "qncode": "",
+    "options": [
+      "FOO::FOO(FOO&other){/*code*/}\n",
+      "FOO::FOO(int num){/*code*/}",
+      "FOO::FOO(int num=10,int num2=10)\n{/*code*/}",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A default constructor is a constructor which can be called without parameters. In constructor 3, both parameters have default values.",
+    "topic": "Constructor"
+  },
+  {
+    "question": "Which of the following operators is used with free store?",
+    "qncode": "",
+    "options": [
+      "free",
+      "malloc",
+      "new",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "What is the eror if any, in the following code segment?",
+    "qncode": "int *arr = new int;\nfor(i=0;i<10;i++)\ncin>>arr[i];",
+    "options": [
+      "No errors",
+      "arr is a pointer. You can not use [] operator with a pointer variable",
+      "new operator can not be used with builtin data types",
+      "the allocation should be \nint *arr = new int[10];"
+    ],
+    "correct": 4,
+    "explanation": "ptr = new int;\nallocates memory for one integer\nand \nptr = new int[10] ;\nallocates memory for 10 integers.\n\nThis dynamically allocated array should be released using\ndelete [] ptr;\ninstead of delete ptr;",
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "What does the following statement print?",
+    "qncode": "cout<<endl;",
+    "options": [
+      "endl",
+      "Compilation error",
+      "newline char",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "endl is manipulator which prints \"\\n\" and flushes the stream",
+    "topic": "Introduction"
+  },
+  {
+    "question": "Which of the following is invalid overloaded function of sum() in  the code given below?",
+    "qncode": "int sum(int a,int b)\n{ \n   return a+b;\n}",
+    "options": [
+      "int sum(int a,int b,int c);",
+      "float sum(int a,int b);",
+      "float sum(float a,float b);",
+      "int sum(int a,float b);"
+    ],
+    "correct": 2,
+    "explanation": "Two functions can not be overloaded if they just differ in return types. \n\nThe overloaded functions must differ in number of parameters and/or type of parameters",
+    "topic": "Functions-II"
+  },
+  {
+    "question": "Given the following definition of function product(), which of these function calls are valid?",
+    "qncode": "int  product(int a,int b=1,int c=1,int d=1)\n{\n   return a*b*c*d;\n}",
+    "options": [
+      "m = product(a,b);",
+      "n = product(3,45,11,12);",
+      "p = product(44,66);",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "The function has 2nd,3rd and 4th parameters with default values. So it can be called with 1,2,3 or 4 arguments.\n",
+    "topic": "Functions-II"
+  },
+  {
+    "question": "Which of the following statements about references is false?",
+    "qncode": "",
+    "options": [
+      "A references should always be initialized while defining it.",
+      "A function can have a reference parameter",
+      "A class can have a reference data member",
+      "We can define an array of references."
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the size of bool data type in C++?",
+    "qncode": "",
+    "options": [
+      "There is no built in data type bool",
+      "1 bit",
+      "1 byte",
+      "Same as size of int"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "bool b = 10>0;\ncout<<b;",
+    "options": [
+      "compilation error",
+      "true",
+      "false",
+      "1"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements involving reference variables, is invalid?",
+    "qncode": "",
+    "options": [
+      "int &r;",
+      "int &r = m1;",
+      "int foo(int &n1);",
+      "int&bar(int n1);"
+    ],
+    "correct": 1,
+    "explanation": "A reference should be initialized when it is defined.",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "int main()\n{\n    string s1=\"Hello world\";\n    string s2(\"Hello world\");\n    if(s1==s2)\n       cout<<\"equal\";\n    else\n      cout<<\"not equal\";\n}",
+    "options": [
+      "Compiler error",
+      "Not equal",
+      "equal",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "Two strings can be compared using == operator.",
+    "topic": "Basics"
+  },
+  {
+    "question": "With the code given below, which statement when added to code, will produce compilation error?",
+    "qncode": "string str = \"Hello world\";",
+    "options": [
+      "str = \"bye world\";",
+      "str[0]='h';",
+      "*str='h';",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Unlike character arrays, a string object can not be manipulated by treating it as a character pointer. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is/are the errors in this program?",
+    "qncode": "#include<iostream>\nint main()\n{\n    std::cout<<\"Hello world\"<<std::endl;\n}",
+    "options": [
+      "The code should have \nusing namespace std;",
+      "std::cout is syntactically wrong",
+      "std::endl is wrong",
+      "No error"
+    ],
+    "correct": 4,
+    "explanation": "std::cout indicates that take cout from namespace std so does std::endl\n\nInstead of using the entire namespace, we are taking two objects from there.",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is/are the errors in this program?",
+    "qncode": "#include<iostream>\nusing std::cout;\nint main()\n{\n     cout<<\"Hello world\";\n}",
+    "options": [
+      "using namespace std;\nshould be used",
+      "using namespace cout;\nshould be used",
+      "No error",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the return type of constructor of a class?",
+    "qncode": "",
+    "options": [
+      "int",
+      "void",
+      "Class itself",
+      "nothing"
+    ],
+    "correct": 4,
+    "explanation": "A constructor  has no return type at all. ",
+    "topic": "Constructor"
+  },
+  {
+    "question": "How many times the constructor of class A called in the code below?",
+    "qncode": "class A\n{\n   public:\n      A() {/*code*/}\n};\nvoid printHello()\n{\n   A obj1;\n   cout<<\"Hello\"<<\"\\n\";\n}\nint main()\n{\n   A obj1;\n   printHello();\n   printHello();\n}",
+    "options": [
+      "twice",
+      "thrice",
+      "Compilation error in the program.",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "printHello() function creates an object of class A. As this function is called twice, and an object is created in main() function also, three objects of class A are created totally. So constructor of A class is called thrice.",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What are the errors if any,  in this code?",
+    "qncode": "class A\n{\nint num;\npublic:\nA(int n):num(n){}\nvoid print() const;\n};\nvoid A::print() const\n{\n   cout<<num++;\n}",
+    "options": [
+      "A class can not have const functions",
+      "A const function should be private function",
+      "A const function can not modify data members",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A const function can not modify state of the object",
+    "topic": "Constant"
+  },
+  {
+    "question": "Which statement with new operator is syntactically correct?",
+    "qncode": "",
+    "options": [
+      "int *ptr = new int;",
+      "int *ptr = new int[10];",
+      "A *objptr = new A;",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "What is the difference between new and malloc?",
+    "qncode": "",
+    "options": [
+      "new is used in C++. malloc in C",
+      "new has type safety where as malloc just returns void *",
+      "new allocates memory and  calls constructor. malloc does not call constructor  ",
+      "2 and 3"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing std::cout;\nclass A\n{\n    public:\nA()\n{\n    cout<<\"Constructor\";\n}\n~A()\n{\n   cout<<\"Destructor\";\n}\n};\nint main()\n{\n     A *ptr = new A;\n     delete   ptr;\n}",
+    "options": [
+      "No output",
+      "ConstructorDestructor",
+      "ConstructorConstructorConstructorDestructorDestructorDestructor",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Class-II"
+  },
+  {
+    "question": "What is \"this\" pointer in C++?",
+    "qncode": "",
+    "options": [
+      "A pointer pointing to the class",
+      "A pointer pointing to the object which invoked the function",
+      "Most recently used object pointer.",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Class-II"
+  },
+  {
+    "question": "Which of the following is the declaration of copy ctor for class A?",
+    "qncode": "",
+    "options": [
+      "A(A obj);",
+      "A(A*ptrobj)",
+      "A(A&obj);",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "Copy constructor should take a reference paramter of same class.",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "In which of these situations, copy constructor of a class is called?",
+    "qncode": "",
+    "options": [
+      "When an object is initialized with another object.",
+      "When an object is sent as a value parameter to a function",
+      "When an object is returned from a function as a value",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "If a template class Array is defined, then the following statement is --------",
+    "qncode": "Array<int> myarray;",
+    "options": [
+      "Template specialization",
+      "Template instantiation",
+      "Template definition",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Template instantiation creates a class for a given data type using the template. And from this class objects are  created. \n\nTemplate specialization is the process of creating a different class other than template for a particular data type.",
+    "topic": "Templates"
+  },
+  {
+    "question": "What is the correct way to use the generic function max given below to find maximum of two integers n1 and n2?",
+    "qncode": "template <class t>\nt max(t num1,t num2)\n{\n    if(num1>num2)\n        return num1;\n    else\n       return num2;\n}",
+    "options": [
+      "int ans = max<int>(n1,n2);",
+      "int ans = max(n1,n2);",
+      "Both 1 and 2",
+      "Neither"
+    ],
+    "correct": 3,
+    "explanation": "For calling template function, explicit specification of data type is not necessary( Ans 1). The function can be called like an ordinary function. \n\nWhen a template function is called with a given type, implicitly the type is selected and function for that type is created by compiler. \n\nmax(1.9,4.0) creates and calls max function for double data type.\n\nmax(11,2) creates and calls max function for int   etc.\n\n",
+    "topic": "Templates"
+  },
+  {
+    "question": "Can member functions of a template class be defined outside the class body?",
+    "qncode": "",
+    "options": [
+      "No, they can not.",
+      "Yes, like any other member function",
+      "Yes, but they have to be preceded by template header.",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "e.g.\ntemplate<class T>\nclass Array\n{\n/******/\npublic:\n    T operator [](int index);\n};\ntemplate <class T>\nT Array<T>::operator[](int index)\n{\n-------\n}\n\nBut the template class and the member function should be in the same translation unit i.e. same .cpp file",
+    "topic": "Templates"
+  },
+  {
+    "question": "For the given template class declaration Number, how do you instantiate the class for \"double\" data type?",
+    "qncode": "template <class T>\nclass Number\n{\n   T n;\n \n public:\n    Number(T val);\n    T getn();\n    void setn(T val);\t \n};",
+    "options": [
+      "Number<double> obj1(5.2);",
+      "Number obj(double);",
+      "template <Number,double> obj;",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Syntax for template instantiation is \n\nclass-name<type> var-name;",
+    "topic": "Templates"
+  },
+  {
+    "question": "What happens, if you replace class T with typename T  as shown  below in template header,",
+    "qncode": "template <typename T>\nclass Array\n{\n    T * element;\n    int size;\npublic:\n ---------\n}",
+    "options": [
+      "Run time error",
+      "Throws a compliation error",
+      "No error. Program works fine",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "template <class T> is equivalent to\n\ntemplate<typename T>",
+    "topic": "Templates"
+  },
+  {
+    "question": "With the following declaraction of template class, which of these statements is incorrect?",
+    "qncode": "template<class T,int size>\nclass Vector1\n{\n------\n};",
+    "options": [
+      "Vector1<int,10> obj1;",
+      "int n=4;\nVector1<double,n> obj2;",
+      "const int m=10;\nVector1<float,m> obj3;",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "Non-template argument to the template instantiation should be a constant or a constant expression of integral type.",
+    "topic": "Templates"
+  },
+  {
+    "question": "Can we provide a default type argument to the template class below? If yes, how is it done?",
+    "qncode": "template <class T>\nclass Array\n{\n    T * element;\n    int size;\npublic:\n ---------\n}",
+    "options": [
+      "No, it is not possible",
+      "Yes. By writing specialization of template",
+      "Yes, by writing template header as\ntemplate <class T=datatype>",
+      "2 and 3"
+    ],
+    "correct": 3,
+    "explanation": "By providing a default type for template type, if no type is provided the default type is used.\ne.g.\ntemplate <class T=int>\nclass Array\n{----\n};\n\nHere if instantiation is done as\nArray<> obj1;\n\nthen type int is used in place of T",
+    "topic": "Templates"
+  },
+  {
+    "question": "What is/are the error/s in this code?",
+    "qncode": "template <class T>\nclass A\n{\n   T num1;\n   T num2;\n public:\n   A(T n);\n   T getnum();\n};\nA::(T n)\n{\n   num1=num2 =n;\n}\nT A::getnum()\n{\n   return num1;\n}",
+    "options": [
+      "The class does not have destructor",
+      "Constructor and getnum function definitions do not have template header",
+      "A template class should have one non-template data member",
+      "No errors"
+    ],
+    "correct": 2,
+    "explanation": "When a member function of a template class is defined outside the class, it must use template header as shown\n\ntemplate <class T>\nA::A(T n)\n{\n /*code*/",
+    "topic": "Templates"
+  },
+  {
+    "question": "What are the errors if any, in the following code?",
+    "qncode": "template<class T>\nT add(T num1,T num2)\n{\n    return num1+num2;\n} \ntemplate <>\n char* add( char *s1,char *s2)\n{\n    return strcat(s1,s2);\n}",
+    "options": [
+      "We can not overload a template function",
+      "second template function must start with\n template<class char*>",
+      "No errors as second function is template specialization",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "A template function can be specialized for a given type using the syntax\n\ntemplate <>\nret-type fn-name(type var-name,type var-name)\n{/****/}",
+    "topic": "Templates"
+  },
+  {
+    "question": "What does the following catch handler do?",
+    "qncode": "try\n{\n/******/\n}\ncatch(...)\n{\n/******/\n}",
+    "options": [
+      "Catches default exception",
+      "Catches all exceptions",
+      "Syntax error",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "A catch block with ellipsis instead of error type, catches all types of expception. \n\nThis should be written as the last catch block so as to handle any unhandled exception",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "throw keyword can be used to --------",
+    "qncode": "",
+    "options": [
+      "throw an exception",
+      "Terminate the program",
+      "there is no such keyword.",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "throw followed by basic data or an object can be used to explicitly throw an exception.\n\ne.g.\nif(denr==0)\n    throw 5;",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "int divide(int n1,int n2)\n{\n  try{\n     if(n2==0) throw 8;\n     return  n1/n2;\n    }\n    catch( unsigned int  e)\n    {\n        cout<<\"there was an error in divide\";\t             \t \n     } \n}\nint main()\n{\n    int n1,n2;n1=11;n2=0;\n    cout<<divide(n1,n2);\t \n    return 0;\n}",
+    "options": [
+      "Program crashes",
+      "there was an error in divide",
+      "no output",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "catch block specifies unsigned int, not int. So it is not caught by any catch blocks and program crashes.\n\n catch parameter should match exactly to thrown class or should be direct derived class of thrown  class",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the error in this code?",
+    "qncode": "int divide(int n1,int n2)\n{\n try{\n          if(n2==0) \n               throw 1.8;\t\t \n        return  n1/n2;\n  } \t \n}\nint main()\n{\n      int n1,n2;\n      cout<<divide(n1,n2);\t \n      return 0;\n}",
+    "options": [
+      "Throw can throw only an integer value.",
+      "try block can be used only in main function.",
+      "try is not followed by any catch block",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "try block should always  be followed by one or more catch blocks",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "int divide(int n1,int n2)\n{\n   try{\n      if(n2==0) throw 8;\n      return  n1/n2;\n   }catch(  int  e)\n   {\n       cout<<\"there was an error in divide\";\t\t \n    }\n   cout<<\" still in divide function\";\n   return -1;\t \n}\nint main()\n{\n     int n1,n2;n1=11;n2=0;\n     cout<<divide(n1,n2);\t \n     return 0;\n}",
+    "options": [
+      "there was an error in divide",
+      "there was an error in divide still in divide function-1",
+      "Program crashes",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Once the exception is handled, the code continues with rest of the statements. \n\nBut if the exception is not handled, then program will terminate.",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "Which of the following statements are true regarding exception handling?",
+    "qncode": "",
+    "options": [
+      "Code  which may throw exception should be enclosed in try block.",
+      "A try block should be followed by one or more catch blocks which will handle the exceptions",
+      "If an exception is not caught, current scope is exited and the block higher in calling chain is entered into scope.",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "Which of the following statements is true regarding \nthrow; \nstatement?",
+    "qncode": "",
+    "options": [
+      "It causes the exception to be rethrown",
+      "It throws a void exception",
+      "It throws an exception of type std::exception",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "In a handler, the exception can be rethrown using empty throw statement\n\ntry\n{\n    if(s = 0)\n     throw 12;\n   cout<<10/s;\n}\ncatch (int e)\n{\n   cout<<\"Division by zero tried\"';\n   throw;\n}\n",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the following code if input is 10 0?",
+    "qncode": "class base\n{\n};\nclass derived:public base\n{\n};\n\nint divide(int n1,int n2)\n{\n try{\n     if(n2==0) throw  derived();                 \n          return  n1/n2;\n   }catch(  base e)\n  {\n      cout<<\" Caught base class error\";\n  }\n catch(derived e)\n {\n    cout<<\"Caught derived class error\";\n }\n return -1;\n}\n \n int main(int argc, char **argv)\n{\n   int n1,n2;\n   cin>>n1>>n2;\n   cout<<divide(n1,n2);\t  \n   return 0;\n}",
+    "options": [
+      "Caught base class error-1",
+      "Caught derived class error-1",
+      "-1",
+      "Program crashes"
+    ],
+    "correct": 1,
+    "explanation": "Since handler for base class is placed above that of derived class, base class exception is caught. \n\nAlways the first matching catch block is used for handling the error. So you should place derived class handlers above base class, and you should write catch all at the end.",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What does stack unwinding do?",
+    "qncode": "",
+    "options": [
+      "If an exception is not handled in current function, the scope is changed to next function in the stack and this continues until a matching handler is found",
+      "Properly cleans up all the local objects in the path by calling destructors",
+      "Both 1 and 2",
+      "Neither"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the following program if input is 10 0?",
+    "qncode": "class A\n{\n  int n;\npublic:\n A(int m):n(m)\n {\n    cout<<\"A ctor \"<<n<<\"\\n\";\n  }\n ~A()\n  {\n      cout<<\"A dtor \"<<n<<\"\\n\"; \n }\n};\nint divide(int n1,int n2)  \n{ \n  A obj1(10);\n  if(n2==0) throw 8;  else if(n1==0)\n    throw 11.4;\n     return  n1/n2; \n} \nint div2(int n1,int n2)\n{\n   A obj2(2);\n   divide(n1,n2);\n}  \nint main()\n{\n   int n1,n2;\n   A obj3(8);\n    cin>>n1>>n2;\n    try{ \n          div2(n1,n2); \n      }\n    catch(int error)\n    {\n            cout<<\"There was an int error\";\n     }\n    catch(...)\n   {\n      cout<<\"this is catch all\";\n    } \t\n   return 0;\n}",
+    "options": [
+      "A constructor 2\nA constructor 10\nThere was an int error",
+      "A constructor 2\nA constructor 10\nA destructor 10\nThere was an int error",
+      "A constructor 2\nA constructor 10\nA destructor 10\nA destructor 2\nThere was an int error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "During stack unwinding, the program destroys all local objects along the path. ",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the following program if input is 10 0?",
+    "qncode": "class A\n{\n    int n;\npublic:\n    A(int m):n(m)\n    {\n        cout<<\"A ctor \"<<n<<\"\\n\";\n     }\n     ~A()\n     {\n         cout<<\"A dtor \"<<n<<\"\\n\";\n      }\n};\nint divide(int n1,int n2)  \n{ \n   A obj1(10);\n   if(n2==0) throw 8;\n        else if(n1==0)\n             throw 11.4;\n    return  n1/n2; \n} \n\nint div2(int n1,int n2)\n{\n   A obj2(2);\n   divide(n1,n2);\n}\n  \nint main(int argc, char **argv)\n{\n    int n1,n2;\n    A obj3(8);\n    cin>>n1>>n2;\n    try{ \n        div2(n1,n2); \n    }\n    catch(double error)\n    {\n         cout<<\"There was an exception of type double\";\n     }\n     return 0;\n}",
+    "options": [
+      "A constructor 2\nA constructor 10\nProgram crashes",
+      "A constructor 2\nA constructor 10\nA destructor 10\nA destructor 2",
+      "A constructor 10\nA constructor 2\nThere was an exception of type double",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "If the exception is not handled, then destructors of local objects are not called",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the following program if input is 10 0?",
+    "qncode": "int divide(int n1,int n2)  \n{ \n    try{\n         if(n2==0) throw 8;\n          return  n1/n2; \n         }catch(int e){\n               cout<<\"caught exception in divide function\";\n               throw;\n           } \n} \nint div2(int n1,int n2)\n{\n    try{ \n         divide(n1,n2);\n     }catch(int e)\n    {\n            cout<<\"caught exception in div2 function\";\n    }\n }  \nint main(int argc, char **argv)\n{\n    int n1,n2;\n    cin>>n1>>n2;\n    div2(n1,n2);  \n    return 0;\n}",
+    "options": [
+      "Compilation error",
+      "caught exception in divide function",
+      "caught exception in div2 function",
+      "caught exception in divide function caught exception in div2 function"
+    ],
+    "correct": 4,
+    "explanation": "In divide function, the exception is caught and handled. But it is rethrown using \nthrow;  statement.\n\nIt is then propagated to div2 function, which handles it.",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the following program, if input is 10 and  20?",
+    "qncode": "int & larger(int &a,int &b)\n{\n    return a>b?a:b;\n}\nint main()\n{\n    int a,b;\n    cin>>a>>b; /*line 2*/\n    larger(a,b)=0;  /*line 3*/\n    cout<<\"a is \"<<a<<\" b is\"<<b<<endl;\n    return 0;\n}",
+    "options": [
+      "Compiler error in line 1",
+      "Compiler error in line 2",
+      "a is 10b is 0",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The function returns reference to larger of two parameters. main() function assigns the return variable to 0. So in this case b is assigned to 0.\n\nInstead, if input is 20 10, then a will be assigned to 0.",
+    "topic": "Functions"
+  },
+  {
+    "question": "How do you read variables a and b after the following code?",
+    "qncode": "int a;\nchar b[30];",
+    "options": [
+      "cin>>&a;\nfor(int i=0;i<30;i++)\n  cin>>&b[i];",
+      "cin>>a,b;",
+      "cin>>a>>b;",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "istream object - cin,  can read any type of built in data type including c style strings. When there are multiple values to be read, they are chained instead of using comma operator",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream> \nusing std::cout; \n int main()\n{\n    bool b= -1; \n    if(b){\n     cout<<\"b is true\";\n    }else{\n       cout<<\"b is false\";\n    } \n    return 0;\n}",
+    "options": [
+      "b is true",
+      "b is false",
+      "compiler error",
+      null
+    ],
+    "correct": 1,
+    "explanation": "In C++, bool and int can be converted to each other.\nAny non-zero value including negative numbers  is true \n0 is false.",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements about structs is false in C++?",
+    "qncode": null,
+    "options": [
+      "Structs can contain both data and functions",
+      "structs can have constructors and destructors",
+      "structs can contain only data members where as class can contain both data and functions",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Struct"
+  },
+  {
+    "question": "Which of the following statements is true about classes in C++?",
+    "qncode": null,
+    "options": [
+      "By default members of a class are public",
+      "By default members of a class are private",
+      "Data members of a class are private by default and function members are public by default",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Class-I"
+  },
+  {
+    "question": "Which members of a class  can a friend function access?",
+    "qncode": null,
+    "options": [
+      "public",
+      "public and protected",
+      "all",
+      "none"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Friend"
+  },
+  {
+    "question": "With reference to the code given below, which of the statements are true?",
+    "qncode": "class A;\nclass B\n{\n---------\nfriend class A;\n};",
+    "options": [
+      "class A has access to all members of B",
+      "Class B has access to all members of A",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Friend"
+  },
+  {
+    "question": "Which statement should be used  in setval function so that parameter is assignged to  num.",
+    "qncode": "class A\n{\n   int num;\npublic:\n  void  setval(int num);\n};\nvoid A::setval(int num)\n{\n----------------\n}",
+    "options": [
+      "num =num;",
+      "::num = num;",
+      "this.num = num;",
+      "this->num = num;"
+    ],
+    "correct": 4,
+    "explanation": "this pointer points to the current object. this->num = num; sets num data of current object to the parameter",
+    "topic": "Class-II"
+  },
+  {
+    "question": "How do you assign one object to another object of same class?",
+    "qncode": null,
+    "options": [
+      "Not possible",
+      "Using  =",
+      "copying individual members",
+      "By overloading ="
+    ],
+    "correct": 2,
+    "explanation": "By default, assignment operator (=) is overloaded for classes. So one object can be assigned to another object of same class using = operator. \n\nThis assignment copies  object using bit by bit copy(shallow copy).",
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n    int n;\n public:\n    A(int m);\n    void print();\n};\nA::A(int m):n(m){ }\nvoid A::print()\n{    cout<<n;    }\nint main()\n{\n     A objarray[3]={11,22,3};\n     objarray[0].print();\n}\n",
+    "options": [
+      "Compiler error because there is no default constructor for creating array",
+      "Compiler error because you can not have an array of objects",
+      "11",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "You can initialize the array of objects which takes one int parameter with the syntax shown here.\n\nYou can also initialize this  array using \nA objarray[3] = {A(11),A(22),A(3)};",
+    "topic": "Constructor"
+  },
+  {
+    "question": "Which of the following statements are invalid in the following code?",
+    "qncode": "class A\n{\n}; \nclass B:public A\n{\n};\nint main()\n{\n  A obja;\n  B objb;\n  A *aptr = &obja;\n  B *bptr=&objb;  \n  obja = objb;\n  objb = obja;\n  aptr = bptr;\n}",
+    "options": [
+      "objb = obja;",
+      "aptr = bptr;",
+      "obja = objb;",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "A derived class object is a base class object. Also a derived class pointer is also a base class pointer.\n\nBut the inverse is not true. A base class object is not a derived class object",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of these statements calls copy construtor of a class?",
+    "qncode": null,
+    "options": [
+      "A obj1 = obj2;",
+      "void foo(A obj1)\n{\n---------\n}",
+      "A bar()\n{\n----\n}",
+      "All of these"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "What does the statement\nfoo(bobj);\n\n in the code below demonstrate?",
+    "qncode": "class A\n{\n/*code*/\n};\nclass B:public A\n{\n/*code*/\n}\nvoid foo(A obj)\n{/*code*/} \nint main()\n{ \n  B bobj;\n  foo(bobj);\n}",
+    "options": [
+      "Inheritance",
+      "Polymorphism",
+      "Object slicing",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "When a function which needs base class object, is sent a derived class, the derived class portion of the object is cut off. This is called object slicing.\n\nObject slicing happens only if the object is sent by value. It does not occur, if object is sent as a reference or a pointer. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following operators can not be overloaded?",
+    "qncode": "",
+    "options": [
+      "Dot operator(.)",
+      "sizeof operator",
+      "scope resolution operator(::)",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Along with these, the operator .* and ternary operators can not be overloaded",
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "Which of the following statements are true with respect to the following program?",
+    "qncode": "class Number\n{\n    int n;\npublic:\n   explicit Number(int num):n(num){}\n   operator int();\n   Number operator=(int n);\n  void setval(int val);\t \n};\nvoid Number::setval(int val)\n{\n   n = val;\n}\n/*function one*/\nNumber::operator int() \n{\n    cout<<\"this is type conversion operator\";\n    return n;\n}\n/*function two*/\nNumber Number::operator =( int val)\n{\n   n = val;\n   return Number(val);\n}\nint main()\n{\n    Number obj(10);\n    int m =99;\n    obj = m;\n}",
+    "options": [
+      "Function one converts Number object to integer",
+      "Function two converts integer to Number object",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "Which of the following statements are correct regarding overloading operators in C++?",
+    "qncode": null,
+    "options": [
+      "insertion << and extraction >> operators should always be non-member functions. ",
+      "=,(),[],->,->* operators should always be member functions",
+      "A non-member operator function should be friend function.",
+      "1 and 2"
+    ],
+    "correct": 4,
+    "explanation": "A non-member function can access values using getters and setters too.",
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "class Equation\n{\t \npublic:\n    int operator ()(int n);\t\n};\nint Equation::operator()(int n)\n{\n    return n*n+10*n+25;\n}",
+    "options": [
+      "Defines Equation class, whose object works like equation function",
+      "Syntax error. Two pairs of parantheses in operator function",
+      "The class in invalid because it has no data members",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Overloading of () is used for implementing function objects. These objects behave like function calls. ",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "Which of the following statements is true regarding virtual functions?",
+    "qncode": null,
+    "options": [
+      "A static function can not be virtual",
+      "Derived classes functions which override must have same signature as base class functions",
+      "A class can have a virtual destructor, but no virtual constructor",
+      "All of these"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Shape\n{\t \n public:\n     virtual string getName();\n};\nstring Shape::getName()\n{\n     return \"Shape\";\n}\nclass Circle:public Shape\n{\npublic:\n     string getName();\n};\nstring Circle::getName()\n{\n    return \"Circle\";\n}\nvoid printShape(Shape s)\n{\n     cout<<s.getShapeName();\n}\nint main()\n{\n     Circle c;\n     printShape(c); \n}",
+    "options": [
+      "Shape",
+      "Circle",
+      "Compiler Error",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "A virtual functions exhibits polymorphism only if the object is  a reference or   pointer. Polymorphism is not exhibited if the object is passed by value",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "What is the output of the following program in a 64  bit machine?",
+    "qncode": "class A\n{\n  public:\n   void someFuntion(){}\n};\nclass B\n{\n  public:\n    virtual void someOtherFunction(){};\n};\nint main()\n{\n\tA aObject;\n\tB bObject;\n\tcout<<sizeof(aObject);\n\tcout<<\" \"<<sizeof(bObject);\n}\n",
+    "options": [
+      "0 0",
+      "1 1",
+      "1 8",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "When a class has atleast one virtual function, each object of the class will have one hidden member vptr which is a pointer to vtable. Hence the size of B class is 8  instead of 1 though it has no data members. ",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "In order to make a function virtual which of the following methods should be used?",
+    "qncode": "",
+    "options": [
+      "declare the function as virtual  inside the class",
+      "use virtual keyword in definition of function outside class ",
+      "Either of the two",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "virtual keyword should be used inside the class body, not outside",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "Which of the following statements about abstract classes are true?",
+    "qncode": null,
+    "options": [
+      "A pointer to abstract class can be created",
+      "Objects of abstract class can not be created",
+      "All derived classes of abstract class become abstract, unless they define the pure virtual function",
+      "All of these"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Abstract Class"
+  },
+  {
+    "question": "Which of the marked lines in the following code are syntactically incorrect?",
+    "qncode": " class A\n{\n  public:\n     virtual void someFuntion()=0;\n};\nclass B:public A\n{\n};\n\nint main()\n{\n    A obj1;/*****1******/\n    B obj2;/*****2******/\n    A * obj3;/*****3******/\t \n}\n",
+    "options": [
+      1,
+      "2",
+      "3",
+      "1 and 2"
+    ],
+    "correct": 4,
+    "explanation": "An object of abstract class can not be created. So we can not create object of A class.\n\nA class which inherits an abstract class becomes abstract UNLESS it defines the pure virtual function. B does not define someFunction() function. So we can not create an object of class B too.\n\nBut we can create a pointer to an abstract class with the assumption that it would be pointing to one of non-abstract derived classes. So line 3 is correct",
+    "topic": "Abstract Class"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n  public:\n      ~A();\n       A();\n};\nclass B:public A\n{\npublic:\n       B();\n       ~B();\n};\nA::A()\n{\n    cout<<\"A constructor \";\n}\nA::~A()\n{\n    cout<<\"A destructor \";\n}\nB::B()\n{\n   cout<<\"B constructor \";\n}\nB::~B()\n{\n   cout<<\"B destructor \";\n}\nint main()\n{\n     A *objptr = new B;\n     delete objptr;\t \n}\n",
+    "options": [
+      "B constructor B destructor",
+      "B constructor A destructor",
+      "A constructor B constructor B destructor A destructor",
+      "A constructor B constructor A destructor"
+    ],
+    "correct": 4,
+    "explanation": "A dervied class constructor always calls base class constructor and  derived class destructor always calls base class destructor. \n\nBut here, objptr is a A pointer - that is base class pointer. So when delete objptr is called, it calls only base class destructor. \n\nTo overcome this problem, destructor should be made virtual. ",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": " class A\n{\n   public:\n      virtual   ~A();\n      A();\n};\nclass B:public A\n{\npublic:\n     B();\n    ~B();\n};\n\nA::A()\n{\n    cout<<\"A constructor\";\n}\nA::~A()\n{\n      cout<<\"A destructor\";\n}\nB::B()\n{\n     cout<<\"B constructor\";\n}\nB::~B()\n{\n    cout<<\"B destructor\";\n}\nint main()\n{\n     A *objptr = new B;\n     delete objptr;\t \n}\n",
+    "options": [
+      "B constructorB destructor",
+      "B constructor A destructor",
+      "A constructorB constructorB destructorA destructor",
+      "A constructorB constructorA destructor"
+    ],
+    "correct": 3,
+    "explanation": "Making base class destructor virtual ensures that delete of base class pointer pointing to derived class object, calls both derived class as well as base class destructors",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "Which of the following statements opens a file  myfile.txt, for reading?",
+    "qncode": null,
+    "options": [
+      "ifstream file(\"myfile.txt\");",
+      "ifstream file;\nfile.open(\"myfile.txt\");",
+      "fstream(\"myfile.txt\",ios::in);",
+      "Any of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "File Handling"
+  },
+  {
+    "question": "How do you check if file open operation has failed? ",
+    "qncode": "fstream file(\"myfile.txt\",ios::in);\nif(-----------)\n   cout<<\"file open error\";",
+    "options": [
+      "fstream.fail()",
+      "!fstream",
+      "Either of the above",
+      null
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "File Handling"
+  },
+  {
+    "question": "How do you open a file for both reading and writing?",
+    "qncode": null,
+    "options": [
+      "fstream file(\"a.txt\");",
+      "fstream file(\"a.txt\",ios::in&&ios::out);",
+      "fstream file(\"a.txt\",ios::in|ios::out);",
+      "Not possible"
+    ],
+    "correct": 3,
+    "explanation": "File open mode flags can be bitwise or -ed. ",
+    "topic": "File Handling"
+  },
+  {
+    "question": "What does the following program do?",
+    "qncode": " int main()  \n {  \n      fstream file(\"myfile2.txt\",ios::out);\t \n      for(int i=0;i<10;i++)\n               file<<i;\n      return 0;\n }",
+    "options": [
+      "Compilation error",
+      "Displays the numbers 0 to 9 on screen",
+      "Writes the numbers 0 to 9 to the file myfile2.txt",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Here  file is opened using constructor. And numbers are written to the file using insertion operator.\n\nThere is no explicit close() for file.Destructor of of file stream object closes the file. ",
+    "topic": "File Handling"
+  },
+  {
+    "question": "What is the output of this program, if the file a.txt contains \"Hello world\" and \"Goodbye world\" in two lines?",
+    "qncode": "int main()\n{\n    ifstream file(\"a.txt\");\n   char str[100];\n   while(!file.eof())\n   {\n       file>>str;\n      cout<<str;\n   }\n   return 0;\n }\n ",
+    "options": [
+      "Hello world\nGoodbye world",
+      "HelloworldGoodbyeworld",
+      "HelloworldGoodbyeworldworld",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": " The program opens the file for reading and reads strings from the file until file.eof() is true and prints these strings.\n\neof flag is set only after we try to read beyond end of file. Because of this   reason, last string is printed twice.\n\nTo avoid this repeatition, you can break the loop if eof is encountered.\n\nfile>>str;\nif(file.eof())\n   break;\ncout<<str;",
+    "topic": "File Handling"
+  },
+  {
+    "question": "What does the following program do?",
+    "qncode": "int main()  \n {  \n      fstream file(\"../a.txt\",ios::app);\n      if(!file)\n     {\n           cout<<\"File open error\";\n           exit(1);\n      }\n     char str[100];\n     for(int i=0;i<10;i++)\n     {\n         cin>>str;\n         file<<str;\n      }\n      return 0;\n }",
+    "options": [
+      "Creates a new file a.txt and writes 10 strings to it.",
+      "Opens a file a.txt and reads 10 strings from it",
+      "Opens a file a.txt if it exists. If not, creates the file and then writes 10 strings to the end of file  ",
+      "Produces compliation error"
+    ],
+    "correct": 3,
+    "explanation": "The flag ios::app is used to append to the file if it exists and create a file if it does not. ",
+    "topic": "File Handling"
+  },
+  {
+    "question": "What should be the next line in the code in order to write obj to the binary file?",
+    "qncode": "  fstream file(\"../a.txt\",ios::out|ios::binary);\n   if(!file)\n  {\n       cout<<\"File open error\";\n       exit(1);\n  }\n  char str[100];\n  NumString obj(96); \n  obj.setstr(\"Hello world\");\n ---------------------\n",
+    "options": [
+      "file<<obj;",
+      "file.write(obj,sizeof(obj));",
+      "You can not write an object to binary file directly",
+      "file.write((char*)&obj,sizeof(obj));"
+    ],
+    "correct": 4,
+    "explanation": "In order to write to a binary file, you need to use write method with syntax\n\nfilestream.write( (char*)&obj,sizeof(obj));",
+    "topic": "File Handling"
+  },
+  {
+    "question": "How do you read an object obj from binary file a.txt?",
+    "qncode": "fstream file(\"a.txt\",ios::binary|ios::in);",
+    "options": [
+      "file.read(&obj,sizeof(obj));\n",
+      "file.read((char*)&obj,sizeof(obj));",
+      "file>>obj;",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "File Handling"
+  },
+  {
+    "question": "How do you move the file pointer of file being read to the begining?",
+    "qncode": null,
+    "options": [
+      "Close the file and open it again",
+      "file.seek(0);",
+      "file.seekg(0);",
+      "file.seekp(0);"
+    ],
+    "correct": 3,
+    "explanation": "seekg is used for moving get pointer and seekp for put pointer.\n\nboth of these take first parameter as offset and optional second parameter - position. If not specified, position is taken as beginning of file.",
+    "topic": "File Handling"
+  },
+  {
+    "question": "File a.txt has 3 numbers 11 22 33. What does the following program print with this file?",
+    "qncode": "      fstream file(\"../a.txt\",ios::in);\n      if(!file)\n      {\n           cout<<\"File open error\";\n            exit(1);\n        } \n         int n;\n        file>>n;\n        cout<< n<<\" \";\n        file.seekg(-1*sizeof(int),ios::cur);\n        file>>n;\n        cout<<n;\n",
+    "options": [
+      "11 22",
+      "11 33",
+      "11 11",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "seekg moves back the pointer by 1 integer and reads the same integer",
+    "topic": "File Handling"
+  },
+  {
+    "question": "How do you find the size of a file in C++?",
+    "qncode": null,
+    "options": [
+      "fstream file(\"a.txt\",ios::in);\nint size= sizeof(file);",
+      "fstream file(\"a.txt\",ios::in|ios::ate);\nint size= sizeof(file);",
+      "fstream file(\"a.txt\",ios::in|ios::ate);\nint size= fie.tellg();",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "tellg() gives the get pointer location. And file opened with flag ios::ate takes the file pointer to the end of the file. \n\nAnother method is move the pointer to end of file using seek and then use tell.\n\nfile.seekg(0,ios::end);\nint s = file.tellg();",
+    "topic": "File Handling"
+  },
+  {
+    "question": "Which of the following operators can  be overloaded?",
+    "qncode": null,
+    "options": [
+      ".",
+      "&",
+      "sizeof",
+      "?:(ternary)"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "What are the errors in the following code?",
+    "qncode": "size_t sz = sizeof(something);\nwhile(--sz>=0)\n{\n   do_something;\n    \n}",
+    "options": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "correct": null,
+    "explanation": null,
+    "topic": "TOBEREVISED"
+  },
+  {
+    "question": "What is a mutable member of a class?",
+    "qncode": null,
+    "options": [
+      "A mutable member is a  non-const member",
+      "A mutable member can change its value at any time",
+      "A mutable member can be modified even in a const function",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Constant"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "template <class  T>\nT max(T x, T y)\n{\n    return (x > y)? x : y;\n}\nint main()\n{\n    cout << max(3, 7) << endl;    \n    cout << max(3.2, 7.0) << endl;\n    return 0;\n}",
+    "options": [
+      "7\n7.0",
+      "Compiler error. Template can be used only for classes",
+      "Compiler error. Template function should use\nmax<int>(3,7) etc",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Templates"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include <iostream>\nusing namespace std;\n#include<vector>\nint main()\n{\n\t vector<int> vec1;\n\t for(int i=0;i<5;i++)\n\t {\n\t \n\t\t \n\t\t vec1.push_back(i*i*i);\n\t }\n\t  vec1.pop_back();\n\t  for(unsigned int i=0;i<vec1.size();i++)\n\t  {\n\t \t cout<<vec1[i]<<endl;\n\t  }\n}",
+    "options": [
+      "1\n8\n27\n64\n125",
+      "0\n1\n8\n27\n64",
+      "0\n1\n8\n27",
+      "Compiler error in line vec1.pop_back()"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "STL"
+  },
+  {
+    "question": "Which of the following statements is false for a class in C++?",
+    "qncode": null,
+    "options": [
+      "Data members of a class are shared by all objects of the class",
+      "Only static data are shared by all objects of the class",
+      "A static data member should be defined outside the class.",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Static"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing std::cout;\nclass A\n{\n   int n;\n public:\n   void setn(int m)\n   { n = m; }\n   int getn()\n   {   return n; }\n};\nint main()\n{\n   A obj1; \n   A obj2;\n   obj1.setn(10);\n   cout<<obj2.getn();\n}",
+    "options": [
+      10,
+      "0",
+      "Some garbage value",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Objects of same class do not share the data members. \"n\" for obj1 is assigned to 10. But it is not initialized for obj2.\n\nBut we will see later that if the data member is defined as static, then this data is shared by all objects of a class\n ",
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int main()\n{\n    int a =10;\n    const int b;\n    cout<<b;\n}",
+    "options": [
+      0,
+      "Some random value",
+      "Compiler error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "There is error because const b is not initialized.\n\nAs a constant can not be assigned, it should always be initialized. ",
+    "topic": "Constant"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\npublic:\n   A()\n   {\n      cout<<\"Constructor\";\n   }\n};\nint main()\n{\n      A *ptr;\n}",
+    "options": [
+      "No output",
+      "Constructor",
+      "Compiler error",
+      null
+    ],
+    "correct": 1,
+    "explanation": "The pointer is defined but object of class A  is not yet created using new operator in the program. \nSo constructor is not called and there is no output.\n ",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "class A\n{\n};\nclass B\n{\n public:\n    B(float n)\n   {\n          cout<<n;\n    }\n};\nint main()\n{\n    A obj;\n    B obj2;\n    return 0;\n}",
+    "options": [
+      "No output",
+      "Error in line A obj;",
+      "Error in line B obj2;",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "We are able to construct an object of class A, but not of class B,   because A has no constructors. So compiler provides a trivial default constructor for class A. \n\nBut B has a constructor, and if a class has any constructor, compiler will not provide default constructor.",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "class  A\n{\n  int m;\n\n  ~A(){ cout<<\"destructor\";}\npublic:\n  A()\n  {\n      cout<<\"Constructor\";\n  }\n};\nint main()\n{\n    A *ptr=new A;\n    cout<<\"Hello world\";\n}",
+    "options": [
+      "Compilation error. ",
+      "Constructor Hello world destructor",
+      "Constructor Hello world",
+      null
+    ],
+    "correct": 3,
+    "explanation": "You will expect the program to give compiler error because destructor is private. \n\nThe program does not give errors because, the program has only objects created using new operator and has no delete to destroy them.  \n \nIf the program uses delete operator or has objects instead of pointer to objects, then there will be compilation error.",
+    "topic": "Destructor"
+  },
+  {
+    "question": "What happens when a derived class inherits base class using protected access specifier?",
+    "qncode": null,
+    "options": [
+      "All members of base class become protected in derived class",
+      "All public and protected members become protected in derived class",
+      "All private and protected members of base class become protected in derived class",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Are private members of a base class inherited in derived class?",
+    "qncode": null,
+    "options": [
+      "No",
+      "Yes, but they are not directly accessible",
+      "They are inherited only in public inheritance",
+      null
+    ],
+    "correct": 2,
+    "explanation": "Private members of a base class can not be directly accessed in derived class. But can be accessed using public functions of base class",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nint main()\n{\n   int m=10;\n   float x =9.88f;\n   std::cout<<sizeof(x);\n}",
+    "options": [
+      9.88,
+      "4",
+      "8",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "When must a constructor of a class use initialization list?",
+    "qncode": null,
+    "options": [
+      "When it has a const data member",
+      "When it has a reference member",
+      "When it has a base class/member object with no default constructor",
+      "Any of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class A\n{\n    int n;\npublic:\n   A(int m):n(m){}\n};\nclass B:public A\n{\n public:\n    void print()\n    {       cout<<\"Hi\";    }\n};\nint main()\n{\n    B obj;\n    obj.print();\n}",
+    "options": [
+      "Hi",
+      "No output",
+      "Compiler error ",
+      null
+    ],
+    "correct": 3,
+    "explanation": "B has no constructors. So compiler provides default constructor which tries to call default constructor of base class A. As A has no default constructor, there will be error.\n\nTo fix the error write B constructor as ,\n\nB::B():A(10)\n{/*code*/}  ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements calls copy constructor?",
+    "qncode": "",
+    "options": [
+      "A a; A a2=a;",
+      "A a; A a2; a2=a;",
+      "A a; A a2(a);",
+      "1 and 3"
+    ],
+    "correct": 4,
+    "explanation": "In option 2, a2 is already created. So a2=a is not construction, but assignment. So it calls assignment operator.",
+    "topic": "Copy Constructor"
+  },
+  {
+    "question": "Which of the following statements about destructors is true?",
+    "qncode": null,
+    "options": [
+      "Destructor is called, for static objects, during program termination",
+      "For dynamic objects created using new, destructor is called  when delete is called",
+      "For local objects, destructor is called when the block in which object is created exits",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Destructor is also called during stack unwinding when exception is handled. ",
+    "topic": "Destructor"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int main()\n{\n     int m=0;\n     throw 10;\n     cout<<m;\n     return 0;\n}",
+    "options": [
+      10,
+      "No output",
+      "Abnormal termination of the program",
+      "0"
+    ],
+    "correct": 3,
+    "explanation": "When a program throws an exception, but does not catch it anywhere, the program terminates abnormally.\n\n main() function is throwing an int exception, but is not catching it.",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int fun()\n{\n   int a;\n   cin>>a;\n    try\n    {\n        if(a==0)\n        {\n           throw 12.0; \n        }\n     }\n    catch(int ex)\n    {\n       cout<<\"int exception\";\n     }\n    catch(float ex){\n        cout<<\"float exception\";\n    }\t\n}\nint main()\n{\n     fun();\n     return 0;\n}",
+    "options": [
+      "int exception",
+      "float exception",
+      "no output",
+      "Abnormal termination of program"
+    ],
+    "correct": 4,
+    "explanation": "Though there are two catch blocks, they do not match double. Hence the exception is not handled and program terminates. ",
+    "topic": "Exception Handling"
+  },
+  {
+    "question": "Which of the following funcitons can be overloaded?",
+    "qncode": null,
+    "options": [
+      "Two functions with different types of paramters ",
+      "Two functions with different number of parameters",
+      "Two functions of a class which differ in const ness",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Two member functions of a class with same signature but differing in const can be overloaded.\n\ne..g\n       class A\n    {\n      public:\n         void printA();\n        void printA() const;\n};",
+    "topic": "Functions-II"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Shape\n{\n   public:\n      virtual string name(){return string(\"shape\");}\n};\nclass Circle:public Shape\n{  \n   public:\n      string name(){return string(\"Circle\");}\n};\nvoid printshape(Shapeptr *sptr)\n {  \n    cout<<s->name();\n}\nint main()\n{\n     Shape s;\n     Circle c;\n     printshape(&s);\n     printshape(&c);\n}",
+    "options": [
+      "shapeshape",
+      "shapeCircle",
+      "Compiler error in line printshape(c);",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "As the parameter to printshape function is  pointer, there is polymorphism ",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\t\n  static int n;\npublic:\n  void setn(int a);\n  int getn(); \n};\nint A::n=0;\nvoid A::setn(int a)\n{\n  n = a;\n}\nint A::getn()\n{\n  return n;\n} \nint main()\n{\n  A obj1,obj2;\n  obj2.setn(15);\n  cout<<obj1.getn();\n  return 0;\n}",
+    "options": [
+      15,
+      "0",
+      "Compiler error as class A has no constructors",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "A static data member is shared by all the objects of the class. That is there is only one n for all objects of class A.\n\n So when we set n to 15 in obj2, obj1.getn() will  return 15.",
+    "topic": "Static"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n public:\n   int x;\n   mutable int y;\n   A()\n   {\n       x = y  = 10;\n   }\n};\n\nint main(int argc, char **argv)\n{\n   const A obj;\n   obj.y = 12;\n   cout<<obj.x<<\" \"<<obj.y;\n   return 0;\n}",
+    "options": [
+      "10 12",
+      "Compiler error, because constant object is modified",
+      "10 10",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "There is no error in obj.y = 12 because y is a mutable member of class",
+    "topic": "Constant"
+  },
+  {
+    "question": "The process of grouping together the attributes and methods into a single entity is called ",
+    "qncode": null,
+    "options": [
+      "Data hiding",
+      "Encapsulation",
+      "Inheritance",
+      "Abstraction"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "OOPs"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int main()\n{\n     int a=100; \n     int c = 200;\n     int &b=a;\n     b = c;\n     cout<<a<<\" \"<<b<<\" \"<<c;\n     return 0;\n}",
+    "options": [
+      "100 200 200",
+      "200 200 200",
+      "Compiler error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Once defined, a reference is an alias to referee. So any change to b, changes a also.",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "Can a function call be placed in LHS of an assignment statement? Is the following statement valid?",
+    "qncode": "fun(a,b)=100;",
+    "options": [
+      "Yes",
+      "No",
+      null,
+      null
+    ],
+    "correct": 1,
+    "explanation": "If a function returns reference then, it can be placed on LHS of a statement.\n\ne.g.\nint & max(int &a,int &b)\n{\n    if(a>b) return a;\n    return b;\n}\n\nThis function returns reference to either first argument or second argument.\n\nIf it is called like this,\n\nint x=20,y=10;\nmax(x,y) = 0;\n\nHere max() function returns reference to x, so x will be assigned to 0",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n     string str;\n public:\n     A(string s):str(s){}\n    ~A();\n};\nA::~A()\n{ \n   cout<<\"Destructor of \"<<str<<endl;\n}\nvoid some_function(A obj1)\n{\n     \n}\nint main()\n{\n    A s1(string(\"one\"));\n    string st1,st2;\n    st1=\"two\";\n    st2=\"three\";\n    some_function(s1);\n    A s2(st1),s3(st2);\n    return 0;\n}",
+    "options": [
+      "Destructor of one\nDestructor of two\nDestructor of three",
+      "Destructor of three\nDestructor of two\nDestructor of one",
+      "Destructor of two\nDestructor of three\nDestructor of one",
+      "Destructor of one\nDestructor of three\nDestructor of two\nDestructor of one"
+    ],
+    "correct": 4,
+    "explanation": "The order of destructors is reverse of order of constrctors.\n\nThere is an extra destructor of \"one\", because s1 is copy constructed for \"some_function\" and when the function exits, the copy is destroyed. \n",
+    "topic": "Destructor"
+  },
+  {
+    "question": "For the class given below how do you overload assignment operator so that it takes care of self assignment?",
+    "qncode": "class Array\n{\n  float*element;\n  int size; \npublic:\n  Array(int n=1); \n   ~Array();\n  Array(const Array & obj);\n   T& operator =(const T& other); \n};  \nArray&  operator = (const T &other)\n{\n   if(--------)\n   {\n        ---------\n    }else\n   {\n       delete []element; \n       element = new T[size];\n       for(int i=0;i<size;i++)\n       {     element[i]=other.element[i];    }\n    }\t\n    return *this;\n}   \n\n ",
+    "options": [
+      "if(this ==&other)\n    return *this;\nelse{",
+      "if(this==other)\n   return this;\nelse\n{",
+      "None of the above",
+      null
+    ],
+    "correct": 1,
+    "explanation": "self assignment  may happen when there are many references and pointers.\n\n In cases of self assignment, if the normal code is used, then, memory is released using delete and then contents of this released memory are accessed for copying. (Dangling pointer)",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "Which of the following statements are true regarding inheritance in C++?",
+    "qncode": null,
+    "options": [
+      "A friend of base class is a friend of derived class",
+      "Derived class constructor always calls base class constructor first.",
+      "Base class object can access all public and protected members of derived class",
+      "Base class constructor is always called after derived class constructor "
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of this program if \"a\"  is entered instead of a number?",
+    "qncode": "#include<iostream>\nusing namespace std;\nint main()\n{\n int m;\n while(cin>>m)\n {\n     if(m==-1)\n          break;\n      cout<<endl<<m*m;\n }\n return 0;\n}",
+    "options": [
+      0,
+      "65",
+      "Random value",
+      "Infinite loop"
+    ],
+    "correct": 4,
+    "explanation": "When there is an error in cin, there will be infinite loop. To avoid such situations, the correct code should be\n\nwhile(cin>>m)\n{\n    if(m==-1)\n       break\n   cout<<m*m;\n}\n\nNow if we enter a non-numeric character, while condition becomes false and loop terminates",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What does the following program do?",
+    "qncode": "int main()\n{\n  fstream file;\n  file.open(\"..\\test.dat\", ios::out);\n  if(file.fail())\n  {\n      cout<<\"file open error\";\n      exit(1);\n  }\n  file<<\"Hello world\"; \n}",
+    "options": [
+      "Write Hello world to the file test.dat",
+      "Nothing",
+      "Gives compilation error",
+      "Prints file open error"
+    ],
+    "correct": 4,
+    "explanation": "Program uses \"\\\" as filename separator. But C++ requires \"/\" for file separator. \n\nC++ compiler  takes\"\\t\"  together is taken as tab character instead. So the file open fails. \n\nCorrect method is\nfile.open(\"../test.dat\", ios::out);\n\nWe should not use backslash as separator, instead use / even in Windows systems.",
+    "topic": "File Handling"
+  },
+  {
+    "question": "If a class MyInteger has only one int member, how do you read and write the object of this class using >> and << operators?",
+    "qncode": "class MyInteger\n{\n     int number;\n/* ......*/\n};",
+    "options": [
+      "Not possible",
+      "MyInteger abc; cin>>abc; cout<<abc;",
+      "Overloading >> and << with fstream as first parameter and MyInteger as second parameter",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A class can overload >> operator, so that object can be directly read from file.\n\nifstream& operator>>(ifstream& in,MyInteger & abc)\n{\n       in>>abc.number; \n      return in;\n}\n\nSimilarly by overriding << operator, we can write  MyInteger object directly to file\n\nofstream& operator<<(ofstream& out,MyInteger abc)\n{\n      out<<abc.number; \n      return out;\n}\n",
+    "topic": "File Handling"
+  },
+  {
+    "question": "How should we release the memory allocated to 10 objects of class A using  new[]",
+    "qncode": "A*ptr = new A[10];",
+    "options": [
+      "delete ptr;",
+      "delete ptr[10];",
+      "delete []ptr;",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "What are the errors in the following code?",
+    "qncode": "class A\n{\n    protected:\n      int m;\n  /*.....*/\n};\nclass B:public A\n{\n    public:\n      void print();\n};\nvoid B::print()\n{\n    cout<<m<<\"\\n\";\n}",
+    "options": [
+      "The access specifier for m should be private, not protected",
+      "B class has no data members",
+      "print() function from B can not access m of A",
+      "No Error"
+    ],
+    "correct": 4,
+    "explanation": "A protected member of a class can be accessed by derived classes. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "With the code given, which of the following statements are true?",
+    "qncode": "class A\n{\n    protected:\n      int m;\n    private:\n     int n;\n};",
+    "options": [
+      "m can be accessed by A class and all direct and indirect derived classes and friends",
+      "n can be accessed by A class members and friends",
+      "Both",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements regarding memory allocation are true?",
+    "qncode": null,
+    "options": [
+      "Memory allocated using new can be released using free()",
+      "Memory allocated using malloc() can be released using delete",
+      "Memory allocated using new can be resized using realloc()",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Dynamic Memory"
+  },
+  {
+    "question": "Can a class have private constructor? Can objects be created from such a class?",
+    "qncode": "",
+    "options": [
+      "Yes",
+      "No",
+      null,
+      null
+    ],
+    "correct": 1,
+    "explanation": "A class can have a private constructor and but it must have a static function which creates an object and returns it. This is called named constructor.\n",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": " void printNum(int a)\n    {\n        cout<<\"Integer  =\"<<a<<\"\\n\";\n    }\n    void printNum(float a)\n    {\n        cout<<\"Float  =\"<<a<<\"\\n\";\n    }\n int main()\n{\n     printNum(10);\n     printNum(11.2);\n}",
+    "options": [
+      "Integer = 10\nFloat = 11.2",
+      "Integer = 10\nInteger = 11",
+      "Compiler error . Ambiguous call to printNum(11.2)",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "printNum() has two overloaded functions - with int parameter and with float parameter. 11.2 is double  because default fractional numbers in C/C++ are double. Hence the error.\n\n A float literal should have a suffix of f/F such as \nfloat m=11.3f;\n\nThe right code should be\nprintNum(11.2f);",
+    "topic": "Functions-II"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n    public:\n    void printNum(int a)\n    {\n        cout<<\"Integer  =\"<<a;\n    }\n    void printNum(int a,int b)\n    {\n        cout<<\"Sum of numbers =  \"<<a+b;\n    }\n};\nclass B:public A\n{\n    public:\n    void printNum(int a)\n    {\n        cout<<\"From derived class, Integer  =\"<<a;\n    }\n    \n};\nint main()\n{\n    B obj1;\n    obj1.printNum(10);\n    obj1.printNum(10,11);\n}",
+    "options": [
+      "Integer = 10\nSum of numbers = 21",
+      "Compilation error. ",
+      "None of the above",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "printNum() function with 2 parameters from A class is hidden because B has overridden printNum() function.\n\nYou can still call the function using scope resolution operator\n\nobj1.A::printNum(10,11)",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the use of virtual keyword in C++?",
+    "qncode": null,
+    "options": [
+      "It is used to define virtual functions for polymorphism",
+      "It is used for virtual inheritance",
+      "It is used for defining abstract classes",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Multiple Inheritance"
+  },
+  {
+    "question": "Why are namespaces used in C++?",
+    "qncode": null,
+    "options": [
+      "In order to use standard IO function such as cin, cout",
+      "To limit the scope of global objects",
+      "None of the above",
+      null
+    ],
+    "correct": 2,
+    "explanation": "You can define certain objects, global constants and variables within  a namespace. Scope of these names is only within this namespace. Hence there will be less name collission.\n\ne.g.\nnamespace n1\n{\n    int totalOb = 100;\n}\nnamespace n2\n{\n    int somethingelse;\n    float anotherThing;\n    int totalOb=2;\n}\nint main()\n{\n     int a = n1::totalOb;//a is 100\n     int b = n2::totalOb;//b is 2",
+    "topic": "Advanced"
+  },
+  {
+    "question": "What is the output of the program given below?",
+    "qncode": "class A\n{\n   int num;\npublic:\n   void print();\n};\nvoid print()\n{\n    num=19;\n    cout<<num;\n}\nint main()\n{\n    A obj;\n    obj.print();\n}",
+    "options": [
+      19,
+      "Garbage value",
+      "Compiler Error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "The member function must be  written  with class name and  scope resolution operator. As class name and :: are not used, print_num() function does not belong to class A. \n\nCorrect code\n\nvoid A::print_num()\n{\n/*******code**/\n}",
+    "topic": "Class-II"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n    int a;\npublic: \n     A(int num);\n};\nA::A(int num):a(num)\n{ }\nclass B:public A\n{\n    int b;\npublic: \n    B(int num);\n};\nB::B(int num) :A(num),b(num)\n{  }\nint main()\n{\n      A obj1(5);\n      B obj2(3);      \n}",
+    "options": [
+      "No output",
+      "53",
+      "Compiler error",
+      null
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Base class A has only one parameterized constructor. Derived class B has no constructors. Will the code given here compile? If not, how do you correct it?",
+    "qncode": "class A\n{\n   int a1;\npublic:\n   A(int n1):a1(n1){}\n};\nclass B:public A\n{\n};\nint main()\n{\n     B obj2;\n}",
+    "options": [
+      "It compiles",
+      "Write a constructor for B like this\nB::B(){    A(0);}",
+      "Write a constructor for B like this\nB::B():A(0){}",
+      "Either 2 or 3"
+    ],
+    "correct": 3,
+    "explanation": "When a base class has no default constructor, the derived class constructor should call base class constructor in its initializer list with required arguments.\n\nSo it is necessary for the derived class to have a user defined constructor which calls base class constructor. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What will be the output if the parameter to print() function is A instead of reference to A as shown in the code below?",
+    "qncode": "class A\n{\npublic:\n   virtual void printHello()\n    {\n        cout<<\"Hello world\";\n   }\n};\nclass B:public A\n{\npublic:\n    void printHello()\n    {\n       cout<<\"Hello computer\";\n    }\n};\nvoid print(A ob)\n{\n   ob.printHello();\n}\nint main()\n{\n    A obj1;\n    B obj2;\n    print(obj1);\n    print(obj2);\n}",
+    "options": [
+      "Hello WorldHello Computer",
+      "HelloWorldHelloWorld",
+      "Hello World",
+      "Compiler error"
+    ],
+    "correct": 2,
+    "explanation": "The parameter to print() function is an A object.  Even if the argument is a derived class object, it is converted to base class object using object slicing.\n\nprintHello() function is linked to A class function at compile time only. Hence there is no polymorphism.",
+    "topic": "Polymorphism"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n int num;\npublic:\n      void  print()\n    {\n        cout<<\"Hello!!!\";\n      }\n};\nclass B:  public A\n{ \n};\nclass C:public   A\n{  \n};\nclass D:public C,public B\n{ \n};\nint main()\n{\n    D obj;\n    cout<<obj.print();     \n}\n",
+    "options": [
+      "No output",
+      "Hello!!!",
+      "Compiler error. request for member print is ambiguous",
+      null
+    ],
+    "correct": 3,
+    "explanation": "As D class inherits two sub-objects of A class - one through B and another through A, it inherits all the members of A class twice. Hence accessing A members throws an ambiguity error. This is called dreaded diamond problem. The inheritance diagram resembles a diamond.\n\nTo avoid such errors we should use virtual inheritance. \n\nNote: We can still access A members using ::\nD.A::print();",
+    "topic": "Multiple Inheritance"
+  },
+  {
+    "question": "What will be the output of the program, if \"Hello world\" is entered as input?",
+    "qncode": "#include<iostream>\nusing std::cin;\nusing std::cout;\nint main()\n{\n   char str[30];\n   cin>>str;\n   cout<<\"You typed \"<<str;\n   return 0;\n}",
+    "options": [
+      "You typed H",
+      "You typed Hello world",
+      "You typed Hello",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "cin with extraction operator reads only till it encounters white space. So the str read is only first word which is Hello. To read entire line, use getline function\n\ncin.getline(str,30);",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nint main()\n{\n     int a = 10;int c=2;\n     bool b =a>c?true:false;\n     cout<<b;\n     return 0;\n}",
+    "options": [
+      "true",
+      "false",
+      "1",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Boolean values are printed as 1 for true and 0 for false.\n\nYou can how ever use io manipulator boolalpha to print true/false\n\ncout<<boolalpha<<b;\n\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of these is the correct code to read an integer from keyboard?",
+    "qncode": "int m;",
+    "options": [
+      "cin>>&m;",
+      "cin(m);",
+      "cin>>m;",
+      ""
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Input Output"
+  },
+  {
+    "question": "How do you read a string from the keyboard?",
+    "qncode": "char str[30];",
+    "options": [
+      "cin>>str[30];",
+      "cin>>str[];",
+      "cin>>str;",
+      ""
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Input Output"
+  },
+  {
+    "question": "Write the output of the code shown below. ",
+    "qncode": "int a=10;\ncout<<\"a is\",a;",
+    "options": [
+      "a is 10",
+      "compiler error",
+      "a is\n10",
+      null
+    ],
+    "correct": 2,
+    "explanation": "To print multiple values using cout, we should chain << insertion operator.\ncout<<\"a is\"<<a;",
+    "topic": "Input Output"
+  },
+  {
+    "question": "How do you ensure that the code below does not go into infinite loop if a letter is entered.",
+    "qncode": "while(num>0)\n{\n     cin>>num;\n    -------------------?\n    cout<<num*num;\n}",
+    "options": [
+      "if(cin.fail())   break;",
+      "if(cin.error()) break;",
+      "if(isalpha(num)) break;",
+      null
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Input Output"
+  },
+  {
+    "question": "Write the output of this code if input is Hello World?",
+    "qncode": "char s[50];\ncin.getline(s,50);\ncout<<s;",
+    "options": [
+      "Hello",
+      "Hello World",
+      "Compiler error",
+      null
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "#include<iostream>\nint main()\n{\n     cout<<\"Hello world\";\n}",
+    "options": [
+      "Hello world",
+      "Hello",
+      "Compiler error",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "cout is present in namespace std. You should use\n\nusing namespace std;\nor\nusing std::cout;",
+    "topic": "Introduction"
+  },
+  {
+    "question": "What is the error in this program?",
+    "qncode": "#include<iostream>\nusing std::cin;\nint main()\n{\n     float n;\n     cin>>n;\n}",
+    "options": [
+      "using namespace std;\nis missing",
+      "No error.",
+      "We should include <cin> in the program",
+      null
+    ],
+    "correct": 2,
+    "explanation": "We can either bring one name - in this case cin, in to the scope instead of bringing entire namespace. \n\nusing std::cin;\n\nbrings cin into scope. ",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What are the errors in this code?",
+    "qncode": "int a = 10;\nbool b = a;\nif(a>5)\n   b = true;",
+    "options": [
+      "b = a  is wrong",
+      "use b= TRUE instead of b=true;",
+      "No error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "An int can be assigned to bool and bool can be assigned to int.\n\n0 is treated as false and 1 as true.\n\nIn this example b = a; makes b as true.",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the program if the number 5 is entered?",
+    "qncode": "bool isOdd(int n)\n{\n    if(n%2) return 1; return 0;\n}\nint main()\n{\n    int m;\n    cin>>m;\n    if(isOdd(m))\n        cout<<\"Odd number\";\n    else\n       cout<<\"Even number\";\n}",
+    "options": [
+      "Odd number",
+      "No output",
+      "Error. A function can not return bool value",
+      "Error. There can not to be 2 return statements in a function. "
+    ],
+    "correct": 1,
+    "explanation": "A function returning bool is very useful in conditional expressions. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is string in C++?",
+    "qncode": null,
+    "options": [
+      "Basic data type like int, char etc.",
+      "Library function",
+      "Standard library class",
+      "An array"
+    ],
+    "correct": 3,
+    "explanation": "String a class from standard library. It can be used in place of c-style strings. \nc-style strings are character arrays",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of these lines contain error in the code below?",
+    "qncode": "string str[5];\ncin>>str;\ncout<<\"you entered\"<<str;",
+    "options": [
+      "string str[5];",
+      "cin>>str;",
+      "No error",
+      null
+    ],
+    "correct": 2,
+    "explanation": "You define a string as just an object. -You should use  \nstring str;\n\nstring str[5] creates an array of 5 strings, instead of one string. so reading str gives an error",
+    "topic": "Basics"
+  },
+  {
+    "question": "How do you concat two strings str1 and str2 and store it back in str1?",
+    "qncode": "string str1 = \"Hello\";\nstring str2 = \"World;",
+    "options": [
+      "strcat(str1,str2);",
+      "str1.concat(str2);",
+      "str1 = str1+str2;",
+      null
+    ],
+    "correct": 3,
+    "explanation": "string class uses + operator to concat 2 strings\n\nIt uses = to assign a value to a string. And == to compare 2 strings.",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "string str1=\"Hello world\";\ncout<<str1[0];",
+    "options": [
+      "H",
+      "Compiler error",
+      "Hello",
+      null
+    ],
+    "correct": 1,
+    "explanation": "string class gives ith character of string, if we use str[i].",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write the output of the following program.",
+    "qncode": "#include<iostream>\nint main()\n{\n   string str1 = \"Hello world\";\n   std::cout<<str1;\n}",
+    "options": [
+      "Hello world",
+      "Hello",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "string is declared in namespace std. \n\nSo you should use using std::string. Or using namespace std;",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "int &fn(int a)\n{\n   int m=5;int n=3;\n   if(a>0)       return m;  \n    else     return n;\n}\nint main()\n{\n     int a=10;\n    cout<<fn(a);\n}",
+    "options": [
+      5,
+      "3",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "The function is returning a reference to a local variable. ",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "In the following declaration of a class, which line is invalid?",
+    "qncode": "class A\n{\n   private:/*line 1*/\n        int n;\n   public:\n      int  getn();/*line 2*/\n     void setn(int m)\n     {\n         n = m;/*line 3*/\n     }\n};\n     ",
+    "options": [
+      "line 1",
+      "line 2",
+      "line 3",
+      "No error"
+    ],
+    "correct": 4,
+    "explanation": "There is no error. The class declaration has definition of setn() function inside. getn() has only declaration. But it will be defined outside.",
+    "topic": "Class-II"
+  },
+  {
+    "question": "With the following declaration of the class Num, how do you define two objects and one pointer of class Num?",
+    "qncode": "class Num\n{\n     int n;\npublic:\n    int getn() { return n;}\n    void setn(int m)  { n=m;}\n};",
+    "options": [
+      "Num(obj1); Num(obj2);\nNum *ptr;",
+      "Num obj1, obj2;\nNum *ptr;",
+      "Num obj1, obj2;\nNum *ptr = new Num;",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class B\n{\n}\nint main()\n{\n    B obj1;\n    cout<<\"Hello from classes\";\n}",
+    "options": [
+      "Error. Class B does not have any data members. ",
+      "Error. No objects can be  created from class B because it is empty class.",
+      "Error. No semicolon at the end of class declaration.",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class B\n{\n    int m;\n};\nint main()\n{\n    B obj1;\n    obj1.m = 10;\n    cout<<obj1.m;\n}",
+    "options": [
+      10,
+      "Garbage value",
+      "Error. m is private",
+      null
+    ],
+    "correct": 3,
+    "explanation": "m is private to the class. It can not be accessed from main()",
+    "topic": "Class-I"
+  },
+  {
+    "question": "Data hiding is achieved in C++ by",
+    "qncode": null,
+    "options": [
+      "Making data members as private and methods as public",
+      "Making member functions as private and data members as public.",
+      "Making all members private",
+      null
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Class-I"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "class A\n{\n    public:\n     void print_hello(){ cout<<\"Hello world\";}\n};\nint main()\n{\n    A * ptr = new A;\n   ptr.print_hello();\n}",
+    "options": [
+      "Hello world",
+      "No output",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "To access a member of a class through pointer, you should use -> operator instead of dot operator.",
+    "topic": "Class-I"
+  },
+  {
+    "question": "Complete the blank in the code below.",
+    "qncode": "class A\n{\n   int n;\npublic:\n   int getn(); \n};\nint _______/*getn function*/\n{\n    return n;\n}",
+    "options": [
+      "getn()",
+      "getn(int n)",
+      "A::getn()",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Class-II"
+  },
+  {
+    "question": "Which of the following functions are inline?",
+    "qncode": "class A\n{\n   int n;\npublic:\n   int getn(){ return n;}\n   void setn(int m);\n   void print();\n}\ninline void A::setn(int m)\n{\n    n = m;\n}\nvoid A::print()\n{\n   cout<<n;\n}",
+    "options": [
+      "getn()",
+      "setn()",
+      "Both getn() and setn()",
+      null
+    ],
+    "correct": 3,
+    "explanation": "getn() is inline because it is defined within the class",
+    "topic": "Class-II"
+  },
+  {
+    "question": "What is the correct way to create a dynamic object of A class?",
+    "qncode": "class A\n{\n};",
+    "options": [
+      "A *ptr;",
+      "A *ptr = new A();",
+      "A *ptr();",
+      "A *ptr = new A;"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Class-II"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "class A\n{\npublic:\n   A();\n};\nA::A() { cout<<\"Constructor\";}\nint main()\n{\n     A obj1;\n     A *ptr = &obj1;\n     delete ptr;\n}",
+    "options": [
+      "ConstructorDestructor",
+      "Constructor",
+      "Run time error",
+      "Compiler Error"
+    ],
+    "correct": 2,
+    "explanation": "We have not created an object dynamically using new, but ptr1 points to address of existing object obj1. So we can not release this memory using delete. This causes run time error. ",
+    "topic": "Class-II"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A\n{\n    int n;\npublic:\n   A(int m){ n = m;}\n   void print() { cout<<\"n is \"<<n;}\n};\nint main()\n{\n     A obj1;\n     obj1.print();\n}",
+    "options": [
+      0,
+      "Garbage value",
+      "Compiler Error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "As the class does not have default constructor, object can not be created without arguments. \n",
+    "topic": "Constructor"
+  },
+  {
+    "question": "Which is the correct way to use member initializer list in the constructor below?",
+    "qncode": "class B\n{\n     float num;\npublic:\n   B(float a);\n};\nB::B(float a)\n{\n     num = a;\n}",
+    "options": [
+      "B::B(float a):num(a);",
+      "B::B(float a){num(a);}",
+      "B::B(float a):num(a){}",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nclass P\n{\n   int n1;\n   P(int m);\n};\nP::P(int m):n1(m)\n{\n   cout<<\"constructor\";\n}\nint main()\n{\n   P obj1(2);\n }",
+    "options": [
+      10,
+      "0",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "Object can not be created as the constructor of the class is private",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nclass P\n{\n   int n1;   \n   A(int m);\npublic:\n   static  A  getObject(int s);\n   int getn();  \n     \n};\nA::A(int m):n1(m)\n{\n   cout<<\"constructor\";\n}\nA A::getObject(int s)\n{\n   A obj1(s);\n   return obj1;\n}\nint P::getn()\n{\n   return n1;\n}\nint main()\n{\n   A obj1 = A::getObject(10);  \n   cout<<obj1.getn(); \n }",
+    "options": [
+      "Error - private constructor",
+      "Error - member function can not return object of same class",
+      "constructor10",
+      null
+    ],
+    "correct": 3,
+    "explanation": "This shows the case where class can have private constructor, still objects can be created from that. \n\nNote the function getObject() is called using class name and ::, without any object. ",
+    "topic": "Constructor"
+  },
+  {
+    "question": "What does the following program print?",
+    "qncode": "int main()\n{\n    int a = 10;\n    const  int b = 10;\n    a += b++;\n    cout<<\"a = \"<<a<<\"b=\"<<b;\n}",
+    "options": [
+      "20 11",
+      "21 11",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "The program tries to change a const b using b++",
+    "topic": "Constant"
+  },
+  {
+    "question": "Write the output of this code.",
+    "qncode": "void print(const int &n)\n{\n    cout<<n++<<\" \";\n}\nint main()\n{\n    int num = 12;\n    print(num);print(num);\n}",
+    "options": [
+      "12 13",
+      "13 14",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "print() function has a constant reference parameter. Incrementing this constant parameter n  is error",
+    "topic": "Constant"
+  },
+  {
+    "question": "What is the output of the code below?",
+    "qncode": "{",
+    "options": [
+      "Error because const function is modifying m",
+      "Error as program is trying to change a constant object.",
+      "10",
+      null
+    ],
+    "correct": 3,
+    "explanation": "A mutable member can be changed even within a constant object or a constant function",
+    "topic": "Constant"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": " class Number\n{\n    unsigned char num; \npublic:\n    Number(int n=0); \n    Number operator * (const Number & obj);\n}; \nNumber::Number(int n)\n{    this->num =(char) n; } \nNumber Number::operator *(const Number &obj)\n{\n    cout<<\"The parameter here is \"<<(int)obj.num;\n    cout<<\"And current object is \"<<(int)num;\n    return Number(num*obj.num);    \n}\nint main()\n{\n  Number obj1(12);\n  Number obj2(25);  \n  Number obj3 = obj1*obj2;\n}",
+    "options": [
+      "No output",
+      "300",
+      "The parameter here is 25And current object is 12",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Operator Overloading-I"
+  },
+  {
+    "question": "For the class given below, which of the following is correct the declaration of overloaded subscript operator?",
+    "qncode": "class ABC\n{\n    int size;\n    float *elements;\npublic:\n   /*code*/\n};",
+    "options": [
+      "float operator[int n];",
+      "float & operator[](int n);",
+      "None of the above",
+      ""
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class DbArray\n{\n     int len;\n     double *elements;\npublic:\n    DbArray(int sz):len(sz)\n   {  elements = new double[len];}\n    double  operator [](int i) ;\n};\ndouble DbArray::operator[](int index)\n{\n    return elements[index];\n}\nint main()\n{\n     DbArray obj1(5);\n     for(int i=0;i<5;i++)\n         obj[i] = i*2;\n      for(int i=0;i<5;i++)\n         cout<<obj[i];\n}",
+    "options": [
+      2468,
+      "01234",
+      "Compiler error",
+      null
+    ],
+    "correct": 3,
+    "explanation": "As the operator function is not returning a reference, the operator can not be used in LHS of statement\n \nBecause of this,\n   obj[i] = 2*i;\nwill produce error.\n",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What are the errors in this program?",
+    "qncode": "class Distance\n{\n    int inches;\n    int feet;\npublic:\n    Distance(int inc):feet(inc/12),inches(inc%12){}\n    Distance & operator ++();/*prefix*/\n    Distance operator++(int);/*postfix*/\n};\nDistance & operator++()\n{\n    inches++;\n    if(inches>=12)\n    {\n        inches-=12;\n        feet++;\n    }\n   return *this;\n}\nDistance operator ++(int dummy)\n{\n    Distance temp = *this;\n     inches++;\n    if(inches>=12)\n    {\n        inches-=12;\n        feet++;\n    }\n    return temp;\n}\n",
+    "options": [
+      "Can not overload an operator twice",
+      "++ operator is unary and it does not need a  parameter",
+      "No errors",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "class A\n{\n   int n;\npublic:\n  A(int m);\n  int getn();\n};\nA::A(int m):n(m){}\n\nint A::getn()\n{     return n;     }\n\nostream& operator<< (ostream&out,A &obj)\n{\n     out<<\"n=\"<<obj.getn()<<endl;\n     return out;\n}\n\nint main()\n{\n      A obj(10);\n      cout<<obj;\n}\n  ",
+    "options": [
+      "Error in << operator function",
+      "10",
+      "n= 10",
+      null
+    ],
+    "correct": 3,
+    "explanation": "Here we have overloaded insertion operator without using a friend function.\n\nInstead we are using getn() function to extract private data of class. ",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "How do you write overloaded conversion function for the following class?",
+    "qncode": "class RealNumber\n{\n    double num;\npublic:\n    RealNumber(double m):num(m){ }\n    operator double();\n};\n",
+    "options": [
+      "RealNumber::operator double()\n{\n    return num;\n}\n    ",
+      "double RealNumber::operator double()\n{\n    return num;\n}\n    ",
+      "It is not possible",
+      null
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What is the output of the following this program?",
+    "qncode": "class HexPrint\n{\npublic:\n     void operator()(int num);\n};\nvoid HexPrint::operator ()(int num)\n{\n    char hexDigitArray[]={'0','1','2','3','4','5','6','7','8','9','a','b',\n    'c','d','e','f'};\n    char *st = new char[30];\n    int i=0;\n    while(num)\n    {\n        int rem = num%16;\n        char ch = hexDigitArray[rem];\n        st[i++]=ch;\n        num = num/16;\n    }\n    st[i]=0;\n    for(int j=i-1,k=0;k<j;j--,k++)\n    {\n        char temp = st[j];\n        st[j]=st[k];\n        st[k]=temp;\n    }\n    cout<<\"The number is 0x\"<<st;\n}\n        \nint main()\n{\n    HexPrint hexPrint;\n    int m=31;\n    cout<<\"Number:\"; \n    hexPrint(m);\n}",
+    "options": [
+      "Error. We can not overload paranthesis",
+      "1f",
+      "The number is 0x1f",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "What will be the size of object of D class?",
+    "qncode": "class A\n{\n  char a;\n};\nclass B\n{  \n   char b;\n};\nclass C:public A,public B\n{\n/*****/\n}",
+    "options": [
+      "1 byte",
+      "2 bytes",
+      "Wordlength of system",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "C class object has two sub-objects - A class object and B class object. So its size is total size of both of these , 2 bytes. ",
+    "topic": "Multiple Inheritance"
+  },
+  {
+    "question": "What is the output of the code below?",
+    "qncode": "class Shape\n{\npublic:\n   virtual string getName()=0;\n};\nclass Circle:public Shape\n{\npublic:\n    string getName() \n    {\n        return string(\"Circle\");\n    }\n};\nint main()\n{\n     Shape *sptr;\n     sptr = new Circle;\n     cout<<sptr->getName();\n}",
+    "options": [
+      "Shape",
+      "Circle",
+      "Compiler error",
+      null
+    ],
+    "correct": 2,
+    "explanation": "There is no error. We can create a pointer to abstract class and point it to non-abstract derived class object - in this case, circle object.\n",
+    "topic": "Abstract Class"
+  },
+  {
+    "question": "Fill in the blanks. ",
+    "qncode": "class RealNumber\n{\n    double num;\npublic:\n    RealNumber(double m):num(m){ }\n    friend  istream& operator >>(istream&out,RealNumber &rno);\n    double getn(){ return num;}\n};\nistream& operator >>(----------------)\n{\n    in>>rno.num;\n    return in;\n}\n ",
+    "options": [
+      "istream in,RealNumber obj",
+      "istream& in,RealNumber obj",
+      "istream& in,RealNumber& obj",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The first operand has to be reference parameter because we return this for chaining of extraction operator.\n\nThe second operand must also be reference parameter as we are modifying the object. ",
+    "topic": "Operator Overloading-II"
+  },
+  {
+    "question": "Who invented C++ language?",
+    "qncode": "",
+    "options": [
+      "Dennis Ritchie",
+      "Mark Zuckenberg",
+      "Bjarne Stroustrup",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "C++ is a",
+    "qncode": "",
+    "options": [
+      "Object oriented language",
+      "Procedure oriented language",
+      "Both a and b",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "Every C++ program must contain a function called -------",
+    "qncode": null,
+    "options": [
+      "init()",
+      "start()",
+      "main()",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "In C++, ---- object is used for displaying values on console.",
+    "qncode": "",
+    "options": [
+      "printf()",
+      "print()",
+      "cout",
+      "Both 1 and 3"
+    ],
+    "correct": 4,
+    "explanation": "Though we use cout and cin in C++, we can still use C functions printf() and scanf() in C++",
+    "topic": "Introduction"
+  },
+  {
+    "question": "Every C++ statement must end with a ----",
+    "qncode": "",
+    "options": [
+      "cout",
+      "curly bracket",
+      "semi-colon",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "Is the following statement true?\nC++ is an interpreted language. ",
+    "qncode": null,
+    "options": [
+      "true",
+      "false",
+      "",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "C++ is a compiled language. ",
+    "topic": "Introduction"
+  },
+  {
+    "question": "What is the code to print the string \"Welcome to C++\"?",
+    "qncode": "",
+    "options": [
+      "cout(\"Welcome to C++\");",
+      "cout<<Welcome to C++;",
+      "cout<<\"Welcome to C++\";",
+      "Both 2 and 3"
+    ],
+    "correct": 3,
+    "explanation": "cout uses insertion operator to display values.",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "cout<<\"abc\";\ncout<<\"def\";",
+    "options": [
+      "abc\ndef",
+      "abcdef",
+      "abc def",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "If we do not use newline character or endl, the output will continue on the same line. To get def on next line, we should use\ncout<<abc<<endl;\ncout<<def;",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What are the errors in the following program?",
+    "qncode": "#include<iostream>\nusing std::cout;\nint main()\n{\n    cout<<\"Hello world\";\n    return 0;\n}",
+    "options": [
+      "using namespace std; is not used",
+      "endl is not used",
+      "no errors",
+      null
+    ],
+    "correct": 3,
+    "explanation": "Even though we have not used \"using namespace std\", we have the line \"using std::cout;\" line. So, no errors.",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "int a,b;\na = 10;\nb = a+10;\ncout<<a,b;",
+    "options": [
+      1020,
+      "10 20",
+      "Compiler error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "We must use << operator between values to be printed instead of comma. \ncout<<a<<b;\nmust be used. ",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What are the errors in this code?",
+    "qncode": "#include<iostream>\nusing namespace std;\nint main()\n{\n   int a,b;\n   float c;\n   cout<<\"Enter 3 numbers\";\n   cin>>a,b,c;\n   cout<<\"You have entered \"<<a<<b<<c;\n   return 0;\n}",
+    "options": [
+      "No errors",
+      "Values must be read using 3 different statements",
+      "Instead of comma we must use >> operator",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "For cin, multiple values have to be read by cascading extraction operator.",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nnamespace n1 {int a=100;}\nnamespace n2 {int a=10;}\nint main()\n{\n    cout<<\"a is \"<<a;\n    return 0;\n}",
+    "options": [
+      10,
+      "100",
+      "Compilation error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "a is defined twice in namespaces n1 and n2. \nTo access a, we must prefix namespace.\ncout<<n1::a;\nwill print 100\nand \ncout<<n2::a;\nwill print 10",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nnamespace n1 {int a=100;}\nnamespace n2 {int a=10;}\nusing namespace n2;\nint main()\n{\n    cout<<\"a is \"<<a;\n    return 0;\n}",
+    "options": [
+      10,
+      "100",
+      "Compilation error",
+      "Run time error"
+    ],
+    "correct": 1,
+    "explanation": "We are importing the namespace n2 into our program. So a will be taken as n2::a. That is why our output will be 10",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nnamespace n1 {int a=100;}\nnamespace n2 {int a=10;}\nint main()\n{\n    cout<<n1::a<<endl;\n    cout<<n2::a<<endl;\n    return 0;\n}",
+    "options": [
+      "10\n10",
+      "100\n100",
+      "100\n10",
+      "Compilation error"
+    ],
+    "correct": 3,
+    "explanation": "We are printing a from namespace n1 and then we are printing a from namespace n2",
+    "topic": "Input Output"
+  },
+  {
+    "question": "What is the output of this line of code? Assume that size of an integer is 4 bytes.",
+    "qncode": "cout<<sizeof(2)<<sizeof(2.0);",
+    "options": [
+      44,
+      "48",
+      "42",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "2.0 is a double in C/C++ and its size is 8 bytes\n\nA float literal must have a suffix of f or F\n\ncout<<sizeof(2.0f) will give output as 4\nbut\ncout<<sizeof(2.0) will give output as 8",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following definitions is correct?",
+    "qncode": "",
+    "options": [
+      "int num=10;",
+      "int sum of numbers;",
+      "int for=3;",
+      "int 2ndnum;"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is a C++ data type?",
+    "qncode": "",
+    "options": [
+      "boolean",
+      "bool",
+      "Bool",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements with char variables is correct?",
+    "qncode": "",
+    "options": [
+      "char c = 65;",
+      "char c = a;",
+      "char c = \"a\";",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "A character constant must be enclosed in single quotes.\nBut a character constant can also be an integer. By assigning an integer to it, we are setting it to a character whose code is the given integer. (In answer 1 c is 'A')",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of these following assignments are wrong?",
+    "qncode": "int a; float b; char c;",
+    "options": [
+      "a = '0';",
+      "b=10;",
+      "c=100;",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the statements are correct\n\nIf an integer is assigned to a character constant, then code of the character is assigned. \nIn this case a is assigned to 48\n\nIf a float is assigned an integer, there will be no error. The value will be implicitly converted to a float. \nb will be assigned to 10.0f\n\nIf a character is assigned to an integer, then the character corresponding to the integer is assigned. \nc is assigned to the character 'd'",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a,b;\na = 10;\nb  = 3;\nfloat c = a/b;\ncout<<c;",
+    "options": [
+      3.33,
+      "3.00",
+      "3 1/3",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Whenever an integer is divided by another integer, there will be integer arithmetic and the result is truncated. \n\nSo 10/3 becomes 3 and then it is assigned to c.\n\nTo get correct answer, you should use \nc = (float)10/3;",
+    "topic": "Basics "
+  },
+  {
+    "question": "What is the value of 'a' after this code?",
+    "qncode": "int m = 010;\nint n = 02;\nint a = m/n;",
+    "options": [
+      5,
+      "05",
+      "4",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "An integer literal starting with 0 is an octal number. \n\nSo m is octal 10 = 8.\n\na is 8/2 = 4",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a = 12;\nint b = 0x12;\nif(a==b)\n    cout<<\"Equal\";\nelse\n    cout<<\"Unequal\";\n",
+    "options": [
+      "Equal",
+      "Compiler error",
+      "Unequal",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "An integer which starts with 0x is a hexadecimal number. \n\nSo b is hexadecimal 12 = 18. So a and b are not equal",
+    "topic": "Basics"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "a +=100;",
+    "options": [
+      "Gives syntax error",
+      "Sets a to 100",
+      "Adds 100 to the value of a",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "+= is an assignment operator which adds and then assigns the sum\n\na+=b \nis same as\na = a+b",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "for(int i=3;i<=30;i+=3)\n    cout<<i<<\" \";",
+    "options": [
+      "Prints all numbers from 3 to 30",
+      "Prints all odd numbers from 3 to 30",
+      "Prints all products of 3 from 3 to 30",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Loops"
+  },
+  {
+    "question": "What is the value of b after this code?",
+    "qncode": "int a=10;\nint b = a&1;",
+    "options": [
+      1,
+      "true",
+      "0",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "& is bitwise AND operator. It adds the individual bits of two numbers.\n1010 & 0001 = 0\n",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a=12;\nint b = a++;\ncout<<a<<b;",
+    "options": [
+      1212,
+      "1313",
+      "1312",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the value of \"a\" after this code?",
+    "qncode": "int b = 8;\nint a = b>0?1:0;",
+    "options": [
+      1,
+      "0",
+      "true",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "In the code below, what is \"(float)\" ?",
+    "qncode": "float a = (float)10/3;",
+    "options": [
+      "Data type",
+      "type cast operator",
+      "None of the above",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "Writing a data type in paranthesis before an expression converts the expression to the data type given. This is called type-casting. \n\nIn the question, 10 is converted to float and then divided by 3 and answer will be correctly 3.33\n\n(int)m+10 \nwill convert m to integer and then add 10 to it.",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "Which of the following operators can only be used with integer operands?",
+    "qncode": null,
+    "options": [
+      "*",
+      "/",
+      "%",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "% can be used only with integer operands.\n\nIt gives the remainder of two values.",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a =3;\nint b = -3;\nif(a+b==0)\n    cout<<\"Sum is zero\";\nelse\n    cout<<\"Sum is non-zero\";",
+    "options": [
+      "Sum is zero",
+      "Sum is non-zero",
+      "No output",
+      ""
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a=10;\nif(a=1)\n    cout<<\"a is 1\";\n",
+    "options": [
+      "No output",
+      "a is 1",
+      "a is 10",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "We are wrongly using assignment operator (=) instead of equality operator(==)\n\nif(a=1) sets a to 1 and has the value 1, which is logical TRUE. So condition is true and code prints a is 1.",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the value of asq, if 12 is entered as input?",
+    "qncode": "int a,asq;\ncin>>a;\nif(a<0)\n   a = -a;\n   asq = a*a;\nelse\n   asq = a*a;\n",
+    "options": [
+      144,
+      "-144",
+      "12",
+      "Syntax error"
+    ],
+    "correct": 4,
+    "explanation": "There are two statements in the if part. They are not enclosed in curly brackets.\n\nIf part and else part can contain only one statement each. If there are multiple statements, they have to be enclosed in a block - curly brackets.\n\nBecause of this, code gives a syntax error. ",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the output of this code, if input is 7?",
+    "qncode": "int a;\ncin>>a;\nswitch (a)\n{\n    case 1: cout<<\"one\"; \n                 break;\n    case >1:cout<<\"greater than one\";\n }",
+    "options": [
+      "one",
+      "greater than one",
+      "syntax error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "case labels must be integer literals and we can not use any relational operator with values.\n\ncase >1 is wrong.\n",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the output of this code if a is entered as input?",
+    "qncode": "char m;\ncin>>m;\nswitch(m)\n{\n    case 'a':\n    case 'e':\n    case 'i':\n    case 'o':\n    case 'u':cout<<\"vowel\";\n                 break;\n     default:cout<<\"not a vowel\";\n }",
+    "options": [
+      "Syntax error",
+      "Run time error",
+      "vowel",
+      "vowelnot vowel"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "float b = 1.3;\nswitch(b)\n{\n   case 1: cout<<\"one\";\n           break;\n   default: cout<<\"not one\";\n           break; \n}",
+    "options": [
+      "not one",
+      "one",
+      "syntax error",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "switch expression should always be integer. As b is not integer, we get syntax error.",
+    "topic": "Control Structures"
+  },
+  {
+    "question": "What are the errors in the following code?",
+    "qncode": "int i = 1;\nfor(;i<10;)\n   cout<<i++;",
+    "options": [
+      "There is no initialization",
+      "i is not incremented",
+      "No errors\t",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Loops"
+  },
+  {
+    "question": "Which of the following for loops displays all odd numbers from 1 to 100?",
+    "qncode": "",
+    "options": [
+      "for(int i=1;i<=100;i++)\n   if(i%2)    cout<<i;",
+      "for(int i=1;i<=100;i+=2)\n    cout<<i;",
+      "for(int i=1;i<=100;i++)\n{\n    if(i%2==0)     continue;  cout<<i;\n}",
+      "All the three"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Loops"
+  },
+  {
+    "question": "What does the following code display?",
+    "qncode": "int i=100;\nwhile(i>0)\n   cout<<i--;",
+    "options": [
+      100,
+      "1",
+      "Numbers from 100 to 1",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Loops"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int i=1;\nwhile(i<10)\n    if(i&1)\n       cout<<i;",
+    "options": [
+      123456789,
+      "12345678910",
+      "13579",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Loops"
+  },
+  {
+    "question": "What does this code do?",
+    "qncode": "int i,sum;\ni=sum=0;\nwhile(i<100)\n   sum+=i++;",
+    "options": [
+      "Displays numbers from 1 to 99",
+      "Displays numbers from 1 to 100",
+      "Finds the sum of numbers from 1 to 99",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Loops"
+  },
+  {
+    "question": "What is the value of s after the code below is executed if input is 318?",
+    "qncode": "int n,s=0;\ncin>>n;\nwhile(n)\n{   s+=n%10;n/=10;}",
+    "options": [
+      318,
+      "0",
+      "12",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The code finds sum of digits of the number.",
+    "topic": "Loops"
+  },
+  {
+    "question": "Complete the code to read 3 numbers and find their sum using do--while loop?",
+    "qncode": "int i,s;\ni=s=0;\ndo\n   --------\nwhile(i<3);",
+    "options": [
+      "int n;\ncin>>n;\ns+=n;",
+      "{int n;cin>>n; sum+=n;}",
+      "{int n; cin>>n;\ns+=n;i++;}",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Loops"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "int n;\ndo\n   { \n    cin>>n; \n    if(n>0) cout<<n*n;\n    }\nwhile(n>0);",
+    "options": [
+      "prints the squares of numbers from 1 to 100",
+      "prints the squares of numbers input infinitely",
+      "prints the squares of the numbers until a 0 or negative number is typed",
+      null
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Loops"
+  },
+  {
+    "question": "Define an array of 10 integers",
+    "qncode": "",
+    "options": [
+      "int arr[10];",
+      "int arr(10);",
+      "int array arr;",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the value of a[0] after this code?",
+    "qncode": "float a[10];",
+    "options": [
+      0,
+      "0.00",
+      "Garbage value",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Uninitialized array elements are 0",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "int arr[10];\nfor(int i=0;i<10;i++)\n{\n   cin>>arr[i];\n}\nfor(int i=0;i<10;i++)\n   cout<<arr[i]<<\" \";\n   ",
+    "options": [
+      "Reads 10 integer elements of the array",
+      "Display the array elements",
+      "Reads and then displays 10 array elements",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "int a = 10;\nint *ptr;\n*ptr= &a;\ncout<<*ptr;",
+    "options": [
+      10,
+      "Garbage value",
+      "Compile error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "You must assign ptr to address of a\nptr  = &a;",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "Which of the following will assign 10 to a?",
+    "qncode": "int *p;\nint a;\np = &a;",
+    "options": [
+      "p = 10;",
+      "*p = 10",
+      "&p = 10;",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the error in this code?",
+    "qncode": "int *ptr;\n*ptr = 12;",
+    "options": [
+      "ptr is unassigned",
+      "*ptr can not be assigned to int",
+      "No error",
+      ""
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of this code",
+    "qncode": "int *p1, p2;\nint a = 12;\np2 = &a;\ncout<<*p2;",
+    "options": [
+      12,
+      "Garbage value",
+      "Syntax error",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "There is an error because p2 is not a pointer, but an integer. \n\nThe correct definition should be \nint *p1,*p2;",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nint main()\n{\nint a[5] = {10};\nint *ptr=a; \ncout<<*ptr;\n}",
+    "options": [
+      10,
+      "0",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "ptr points to 0th element of the array",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "int a[5] = {10};\nint *ptr=a; \nint m = *ptr+1;\nint n = *(ptr+1);\ncout<<m<<n; ",
+    "options": [
+      100,
+      "110",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "*ptr+1 = arr[0]+1 = 11\n*(ptr+1) = arr[1] = 0",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the output of this code?",
+    "qncode": "#include<iostream>\nusing namespace std;\nint main()\n{\nfloat a[5] = {1.2,2,3,4,5};\nfloat *ptr=a;  \nfloat *p2 = &a[3];\ncout<<p2-ptr; \n}",
+    "options": [
+      12,
+      "Garbage value",
+      "3",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "When you subtract one pointer from another it gives the distance between them in terms of pointee. \n\nptr and p2 have distance of 3 floats",
+    "topic": "Arrays, Pointers and Reference"
+  },
+  {
+    "question": "What is the return type of function in the code given below?",
+    "qncode": "float aver(int a,int b)\n{\n   return (a+b)/(float)2;\n}",
+    "options": [
+      "float",
+      "int",
+      "void",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Functions"
+  },
+  {
+    "question": "Complete the code below to find sum of a,b and c.",
+    "qncode": "int sum(int x,int y,int z)\n{\n   return x+y+z;\n}\nint main()\n{\n   int a,b,c;\n   a=b=c=10;\n   int s;\n   ---------------;\n   cout<<\"sum is \"<<s;\n}",
+    "options": [
+      "s = sum(x,y,z);",
+      "x = a; y = b; z = c;\ns = sum(x,y,z);",
+      "s = sum(a,b,c);",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of the program here?",
+    "qncode": "#include<iostream>\nusing namespace std;\nvoid square(int a)\n{\n   int sq = a*a;\n}\nint main()\n{\n   int num = 10;\n   square(num);\n   cout<<\"Square of 10 is \"<<sq;\n}",
+    "options": [
+      100,
+      "10",
+      "Compilation error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "Variable \"sq\" is defined in the square function. It is not visible in main(). \n\nBecause of this\ncout<<sq will give variable not found error. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nint square(int a)\n{\n   int sq = a*a;\n   return sq;\n   cout<<sq;\n   \n}\nint main()\n{\n   int num = 10;\n   square(num); \n}",
+    "options": [
+      100,
+      "10",
+      "No output",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "cout<<sq is never executed because return statement will terminate the function. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": "",
+    "options": [
+      "Return type of a function can be void.",
+      "A void function can have a return statement",
+      "A void function can have parameters",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of this program?",
+    "qncode": "#include<iostream>\nusing namespace std;\nvoid square(int a)\n{\n   int sq = a*a;\n   return sq;    \n}\nint main()\n{\n   int num = 10;\n   cout<<square(num); \n}",
+    "options": [
+      100,
+      "No output",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "As the function is void, it can not return a value and value of the function can not be used in an expression. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write the output of the program",
+    "qncode": "#include<iostream>\nusing namespace std;\nvoid square(int a)\n{\n   a = a*a; \n}\nint main()\n{\n   int num = 10;\n   square(num);\n   cout<<num;\n}",
+    "options": [
+      100,
+      "10",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "num is sent to function as call by value parameter. Which means that, any changes to the parameter, will not change the actual argument. So num is still 10 in main()",
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the following functions swaps the two parameters?",
+    "qncode": "void swap1(int a,int b)\n{\n   int t = a; a = b; b=t;\n} \nvoid swap2(int *p1,int *p2)\n{\n   int t = *p1; *p1 = *p2;*p2 = t;\n}\nvoid swap3(int& a,int &b)\n{\n   int t = a; a = b; b=t;\n} ",
+    "options": [
+      "swap1",
+      "swap2",
+      "swap3",
+      "Both 2 and 3"
+    ],
+    "correct": 4,
+    "explanation": "Both swap2 and swap3, swap the actual arguments. \n\nswap2() uses pointer parameters and swap3() uses reference parameters. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Which of the following statements regarding references is false?",
+    "qncode": "",
+    "options": [
+      "A function can have reference parameters",
+      "Modifying a reference parameter changes the actual argument",
+      "A function can return a reference variable",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Functions"
+  }
+]
