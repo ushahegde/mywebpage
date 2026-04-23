@@ -1,0 +1,1328 @@
+[
+  {
+    "question": "WAP to print numbers from 1 to 100, printing fizz if number is divisible by 2, buzz if it is divisible by 3 and fizzbuzz if it it is divisible by both and the number is divisbile by neither. ",
+    "answer": "#include<stdio.h>\nint main()\n{\n   int i;\n   for(i=1;i<100;i++)\n   {\n     if(i%3 && i%2)\n        printf(\"%d \",i);\n    else{\n      if(i%2==0) printf(\"Fizz\");\n      if(i%3==0) printf(\"Buzz\");\n    }\n\n       printf(\"\\t\");\n    }\n    return 0;\n} ",
+    "explanation": "The program prints fizz if the modulo of number with 2 is 0 and buzz if it is divisible by 3.\n Since the ifs are not exclusive, if the number is divisible by both, it prints fizz  first and then buzz.\nLastly if it is not divisibe by 2, nor by 3, program prints the number. ",
+    "topic": "Expressions"
+  },
+  {
+    "question": "WAP to reverse an array in place",
+    "answer": "void reverse_array(int array[],int size)\n{\n   int i,j;\n   for(i=0,j=size-1;i<j;i++,j--)\n   {\n         int temp = array[i];\n         array[i]= array[j];\n         array[j] = temp;\n   }\n}\n",
+    "explanation": "The elements are swapped.\n\nNote that, the swapping should be done size/2 times where size is length of array. ",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a program to reverse the words in  a string. e.g.if the string is \"Write a C program to print words'The output should be \"words print to program C  Write\"",
+    "answer": "#include<stdio.h>\n#include<string.h>\nint convert_to_words(char *s,char words[][20]);\nvoid reverse_words(char words[][20],int nwords);\nvoid print_words(char words[][20],int n);\nint main()\n{\n    char s[100];\n    char words[20][20];\n    int num_of_words;\n    printf(\"Your string:\");\n    gets(s);\n    num_of_words = convert_to_words(s,words);\n    print_words(words,num_of_words);\n    reverse_words(words,num_of_words);\n    print_words(words,num_of_words);\n    return 0;\n}\n\nint convert_to_words(char *s,char words[][20])\n{\n   int nword=0;int j=0;\n   while(*s)\n   {\n      if(*s==' '||*s=='\\t')\n      {\n           words[nword][j]=0;\n           nword++; j=0;\n      }\n      else\n      {\n           words[nword][j++]=*s;\n      }\n      s++;\n    }\n    words[nword][j]=0;\n    nword++;\n    return nword;\n  }\n\nvoid reverse_words(char words[][20],int nwords)\n{\n   int i,j;\n   for(i=0,j=nwords-1;i<j;i++,j--)\n   {\n       char temp[20];\n       strcpy(temp,words[i]);\n       strcpy(words[i],words[j]);\n       strcpy(words[j],temp);\n    }\n}\nvoid print_words(char words[][20],int n)\n{\n   int i;\n   for(i=0;i<n;i++)\n      printf(\"%s\",words[i]);\n}      ",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "What does the following function do?\n\nint func(int num)\n{\n    int count = 0;\n    while (num)    {        count++;        num >>= 1;    }\n    return (count);\n} ",
+    "answer": "Returns total numbers of bits a given number excluding leading zeroes\n\ne.g. if the number is 7, output is 3 and if the number is 16, output is 5",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "A 2-sum is the sum of a list of numbers, but every number that's next to a 2 is counted twice. Given a list of numbers, write  a program print out their 2-sum.\n\nFor example, when given 1 2 3 4 as input, print 14, because  1 and 3 are added twice.\n 1+1+2+3+3+4 = 14",
+    "answer": "#include<stdio.h>\n\nint twos_sum(int *arr,int sz);\nint main()\n{\n   int arr[20];\n   int len,sum;\n   int i=0;\n   int num=0;\n   do\n   {\n      printf(\"Enter number - 0 to terminate:\");\n      scanf(\"%d\",&num);\n      if(num!=0)\n        arr[i++] = num;\n    }while (num!=0);\n    len = i;\n    sum = twos_sum(arr,len);\n    printf(\"The two's sum is %d\\n\",sum);\n    return 0;\n}\n\nint twos_sum(int *arr,int sz)\n{\n    int i=0;\n    int sum=0;\n    for(i=0;i<sz;i++)\n      {\n         sum +=arr[i];\n         if(arr[i]==2)\n         {\n             if( i-1 >=0)\n                 sum+=arr[i-1];\n             if( i+1 <sz)\n                 sum+=arr[i+1];\n          }\n      }\n   return sum;\n}",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a function which can accept unknown number of integers (variable argument function) and find their sum. ",
+    "answer": "int sum(int n,...)\n{\n   int m,sum=n;\n   va_list lst;\n   va_start(lst,n);\n\n   do\n   {\n     m = va_arg(lst,int);\n     sum+=m;\n    }while (m!=0);\n    va_end(lst);\n    printf(\"%d\",sum);\n}",
+    "explanation": "A function with variable number of parameters uses ellipsis to indicate them. This function can take different number of arguments of different types.\nprintf and scanf functions are very good examples of variable argument function.\n\nIn this example, the numbers are assumed to be integers hence m = va_arg(lst,int). And the last argument is supposed to be 0.\n\nTo call this function you can use\ns = sum(n1,n2,n3...0)\ne.g.\ns = sum(4,5,6,7,0)\ns = sum(1,2,3,0) etc.",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the difference between\n\nint fn(int);\n\nand\n\nextern int fn(int);",
+    "answer": "No difference at all",
+    "explanation": "By default the functions in C are extern. They have external linkage - that is they are visible in all the translation units of the program.\n\nTo avoid this visibility the function can be declared as static. A static function has internal linkage. That is, it is available only in the given .c file (called translation unit).",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the difference between++a and a++",
+    "answer": "In ++a or preincrement operator, variable a is first incremented and this incremented value is used in other part of the expression.\n\nWhere as in a++, first variable is used and then it is incremented.\n\ne.g.\nm = a+++b;\nis equivalent to\nm = a+b;\na = a+1; in that order\n\nwhereas\nm= ++a+b;\nis equivalent to 2 statements\na = a+1\nm = a+b in that order",
+    "explanation": null,
+    "topic": "Operators"
+  },
+  {
+    "question": "What is static variable and static function ? Explain with examples",
+    "answer": "A local static variable is common to all instances of the function. And it has static duration. Which means that it is not created each time the function is called. Hence a static variable retains its value across function calls.\n\nint sum(int n)\n{\n    static int a = 0;\n    a+=10;\n    return n+a;\n}\nint main()\n{\n    int x=sum(10);//x is 20\n    x = sum(12);//x is 32 as a in function is now 20\n    x = sum(4);//x is 34\n}\n\nA global static variable is of course have static duration like any other global variable. But it has internal linkage. Which means that this variable is visible only inside the file where it is defined.\n\nA static function has internal linkage too. So unlike other function which by default are extern, a static function is visible inside the file(compilation unit) where it is defined.\n\nfile1.c\n#include<stdio.h>\nstatic void hello()\n{\n    printf(\"Hello world\\n\");\n}\n\nfile2.c\nint main()\n{\n    hello();//produces linker error as hello function is not available here\n}\n",
+    "explanation": null,
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "What does extern storage class specifier mean ?",
+    "answer": "A function with extern specifier has external linkage. It is available to the entire program.\n\nBut the keyword \"extern\" is not needed because by default the functions are extern.\n\nAn variable with extern keyword has external linkage. extern makes the statement a declaration of variable, not the defintion. extern indicates that the defintion of variable is elsewhere in the program either in same file or in a different file. Extern objects remain alive during the entire program.",
+    "explanation": null,
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "What is auto variable? What is register variable? What is a volatile variable?",
+    "answer": "Auto variable is a block variable, it has no linkage and it is created and destroyed each time the block runs.  By default all local variables are auto. Hence you rarely see auto keyword being used.An auto variable is visible only in the block where it is defined.\n\nregister keyword tells the compiler to store the local variable in CPU register for faster execution of code. It has block scope.\n\nOne restriction with register variable is you can not use & (address of) operator with these.\n\nGlobal variables can not be  auto.\n\nKeyword \"volatile\" tells the compiler that the value of the variable may change any time due to external events and compiler should not optimize this variable.\ne.g.\nvolatile int m;\n-----\n-----\nm=0;\nwhile(!m)\n;\nThough the loop looks redundant as it does nothing, compiler will not remove the loop as m may change due to some hardware events. ",
+    "explanation": null,
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "What is the difference between int (*ptr)[10],int *ptr,int (*ptr)(int)?",
+    "answer": "int (*ptr)[10] is a pointer to array of 10 integers.\n\ne.g.\nint arr[10]={1,2,3};\nint (*ptr)[10];\nptr = &arr;//ptr points to array arr\n\nint *ptr is a pointer to an integer\ne.g.\nint a = 12;\nint *b;\nb = &a;\n\nint (*ptr)(int) is a pointer to a function which takes one integer parameter and returns an integer\ne.g.\nint cube(int n);\nint (*ptr2)(int);\nptr2 = cube;\n",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Write C  statement/s to print larger of two numbers without using if statement",
+    "answer": "printf(\"Larger number is %d\",a>b?a:b);",
+    "explanation": "Another variation of the question is\n\nWrite a statement to print larger of two integers without using relational operators.\n\nAnd the solution for integers is\n\nif(a/b)\n    printf(\"%d\",a);\nelse\n    printf(\"%d\",b);\n\nHere if a >b, then integer division of a/b is non-zero. But if a<b, a/b is zero. ",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What is wrong with this statement\ndouble pi = 22/7;",
+    "answer": "In the initialization, 22/7 uses integer arithmetic as both operands are integers. So 22/7 is calculated to 3, then it is type cast to double. pi value becomes 3.0\n\nThe correct statement is\n\ndouble pi = 22.0/7;\n\nIf one of the operands is non-integer, then program uses real arithmetic\n\nAnother method is to use explicit type conversion as,\n\ndouble pi = (double)22/7;",
+    "explanation": null,
+    "topic": "Opearators"
+  },
+  {
+    "question": "What is the difference between malloc and calloc? What is realloc?",
+    "answer": "Both malloc and calloc allocate memory and return a pointer to begining of block.\n But the difference is malloc allocates memory block, but does not initialize the values inside the block.\n\ncalloc initializes these values to zero after allocating the block.\n\nCalloc takes two parameters and malloc takes only one parameter.\n\nint *ptr1,*ptr2;\nptr1 = (int*)malloc(20*sizeof(int));\nptr2 = (int*)calloc(20,sizeof(int));/*the block has all 0 values*/\n\nrealloc is used to change the size of memory block allocated. This function moves the block if necessary.\n\nrealloc(ptr1,40*sizeof(int));\n\nHere the memory block is expanded to hold 40 integers and ptr1 points to begining of block.\n\nNote that\n1. if ptr1 in the above example is NULL, realloc works exactly like malloc.\n2. if second parameter is 0, realloc works like free\n  ",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Find the bug in this program\n\n#include<stdio.h>\nint main()\n{\n   double num;\n   printf(\"enter a double number :\");\n   scanf(\"%f\",&num);\n   printf(\"the number you just entered is %f\\n\",num);\n   return 0;\n}",
+    "answer": "scanf(\"%f\",&num); should be replaced by\n\nscanf(\"%lf\",&num);\n\nFor scanf, format specifier for double is %lf not %f. The confusion is due to the fact that for printf format specifier for double is %f",
+    "explanation": "",
+    "topic": "Data types"
+  },
+  {
+    "question": "What is the difference between\n int a; and\n extern int a;",
+    "answer": "extern int a;\n\ntells the compiler that this is just a declaration and a is defined elsewhere",
+    "explanation": null,
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "What does stdio.h file contain?",
+    "answer": "stdio.h and other standard header files contain  declarations of library functions (not their actual definitions) and macro defintions\n\nThe definitions of library functions are available in library files in object code.",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Find out the error in this program? What happens if the return type of function changed to void?\n#include<stdio.h>\nint main()\n{\n    display();\n    return 0;\n}\nint display()\n{\n    printf(\"Hello world\");\n}",
+    "answer": "The compiler does not give any errors and program executes correctly.",
+    "explanation": "Since the default return type of a function is int, even if you do not declare the function, it is taken to be an int function.\n\nIf we change the return type of the function to float, then there is a compiler error which says \"conflicting types for display function\"",
+    "topic": "Functions"
+  },
+  {
+    "question": "Can we have a void function?A void variable? A void pointer?",
+    "answer": "If a function does not return anything, its return type should be void. Such a function may contain empty return statement.\ne.g.\nvoid print_larger(int a,int b)\n{\n   if(a>b)\n   {\n       printf(\"%d\",a);\n       return;\n   }\n  printf(\"%d\",b);\n}\n\nWe can not have a void variable.\n\nWe can have a void pointer which is a generic pointer. Void pointer can be type cast and used to point at variables. But it is an error to dereference the void pointer directly.\n\ne.g.\n      void *ptr;\n       int a =12;\n      ptr = (int*)&a;//ok\n      a = *ptr+10;//error. typecasting should be used\n",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "How do you assign a float value 12 to a float variable m?",
+    "answer": "float m = 12.0f;\n\nis the correct method.\n\nBy default a non-integer constant is double. You should use suffix \"f\" to make it as float constant.\n\nBut the program works fine, even if we use \"m=12.0\", as the compiler implicitly converts this double constant to float constant.",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "Swap two variables without using third variable and using exor (^)  operator",
+    "answer": "a = a^b;\nb = b^a;\na = a^b;",
+    "explanation": null,
+    "topic": "Opearators"
+  },
+  {
+    "question": "A statement is written to print whether the number is odd or even. Is it correct?\n\nif(n&1) printf(\"%d is odd\",n);\nelse printf(\"%d is even\", n);",
+    "answer": "It is correct",
+    "explanation": "An odd number will have its LSB set. An even number will LSB as 0.\ne.g.\n15 is 1111\n29 is 11101\n12 is 1100\n\nIf number is bitwise anded with 1, the result is 1 if the number has LSB set and 0 if LSB is clear. Hence the result is 1 for odd numbers. And 0 for even numbers.",
+    "topic": "Opearators"
+  },
+  {
+    "question": "Output of the following program\n\n#include<stdio.h>\nint main()\n{\n    char ch;\n    if(ch = printf(\"\"))\n        printf(\"It matters\\n\");\n    else\n        printf(\"It doesn't matters\\n\");\n    return 0;\n}\n",
+    "answer": "Output : It does not matter",
+    "explanation": "The if statement uses assignment. ch is assigned to return value of printf.\n\nprintf returns the total number of characters printed. Hence here it returns 0.\n\nThe value of assignment statement is assigned value. Hence it is 0. So if condition is false. So the program prints \"it does not matter\"",
+    "topic": "Printf and scanf"
+  },
+  {
+    "question": "What is the output of the following program?\n\n#include<stdio.h>\nint main()\n{\n    int x = 10, y = 20;\n    if(!(!x) && x)\n         printf(\"x = %d\\n\", x);\n    else\n         printf(\"y = %d\\n\", y);\n    return 0;\n}",
+    "answer": "Output : x is 10",
+    "explanation": "x = 10. So  x is true. !x is false. !(!x) is again true. true and true is true.\n\nSo the program executes the if clause and prints value of x",
+    "topic": "Operators"
+  },
+  {
+    "question": "Write a program to find second largest number of an array using one iteration",
+    "answer": "#include<stdio.h>\nint second_largest(int arr[],int n);\nint main()\n{\n    int arr[10];\n    int i,la;\n    for(i=0;i<10;i++)\n      scanf(\"%d\",&arr[i]);\n    la = second_largest(arr,10);\n    printf(\"Second largest element of the array is %d\\n\",la);\n    return 0;\n}\n\nint second_largest(int *arr,int n)\n{\n   int lar,sec_lar=0;int i;\n   lar = sec_lar= arr[0];arr++;\n   for(i=1;i<n;i++,arr++)\n   {\n     if(*arr>lar)\n     {\n         sec_lar = lar;\n         lar = *arr;\n      }\n      else if(*arr>sec_lar)\n      {\n         sec_lar = *arr;\n      }\n      else if(lar==sec_lar )\n      {\n         sec_lar =*arr;\n       }\n\n\n    }\n    return sec_lar;\n}   ",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a program to remove duplicate words from a string. ",
+    "answer": "#include<stdio.h>\n#include<string.h>\nint convert_to_words(char *s,char words[][20]);\nvoid remove_duplicates(char words[][20],int nwords);\nvoid print_words(char words[][20],int n);\nvoid pack_string(char words[][20],char *str,int omit_this,int numwords);\nint main()\n{\n    char s[100];\n    char words[20][20];\n    int num_of_words;\n    printf(\"Your string:\");\n    gets(s);\n    num_of_words = convert_to_words(s,words);\n    remove_duplicates(words,num_of_words);\n    puts(\"after duplicates are removed  \");\n    print_words(words,num_of_words);\n    return 0;\n}\n\nint convert_to_words(char *s,char words[][20])\n{\n   int nword=0;int j=0;\n   while(*s)\n   {\n      if(*s==' '||*s=='\\t')\n      {\n           words[nword][j]=0;\n           nword++; j=0;\n      }\n      else\n      {\n           words[nword][j++]=*s;\n      }\n      s++;\n    }\n    words[nword][j]=0;\n    nword++;\n    return nword;\n  }\n\nvoid remove_duplicates(char words[][20],int nwords)\n{\n   int i,j;\n   char tempstr[100];\n   for(i=0;i<nwords;i++)\n   {\n       char temp[20];\n       strcpy(temp,words[i]);\n       for(j=i+1;j<nwords;j++)\n       {\n          if(strcmp(temp,words[j])==0)\n          {\n             pack_string(words,tempstr,j,nwords);\n             nwords = convert_to_words(tempstr,words);\n           }\n        }\n\n    }\n}\nvoid print_words(char words[][20],int n)\n{\n   int i;\n   puts(\"\");\n   for(i=0;i<n;i++)\n      printf(\"%s \",words[i]);\n}\nvoid pack_string(char words[][20],char *str,int omit_this,int num_words)\n{\n    int i;\n    strcpy(str,\"\");\n    for(i=0;i<num_words;i++)\n    {\n        if(i!=omit_this)\n        {\n            strcat(str,words[i]);\n            strcat(str,\" \");\n        }\n     }\n}\n",
+    "explanation": "Here remove_duplicates function compares each word with subsequent words. When there is a match, it calls packstring function.\n\npackstring copies all the words except the word to be removed -  in two dimensional array to one string.\n\npackstring is followed by re-extraction of words again. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to check if the elements of an integer array are in an arithmetic sequence.\nAn arithmeitc sequence is a series of numbers where the difference between two consecutive numbers is a constant.\ne.g.  1 4 7 10 13 16 19 22 25 ...\n",
+    "answer": "#include<stdio.h>\nint elements_in_ap(int arr[],int n);\nint main()\n{\n   int arr[30];\n   int n;\n   int i;\n   int ap;\n   printf(\"size of array:\");\n   scanf(\"%d\",&n);\n   for(i=0;i<n;i++)\n    scanf(\"%d\",&arr[i]);\n   ap = elements_in_ap(arr,n);\n   ap?printf(\"Elements in AP\"):printf(\"Elements not in AP\");\n   return 0;\n}\n\nint elements_in_ap(int *arr,int n)\n{\n\n   int diff = arr[1]-arr[0];\n   int i;\n   for(i=1;i<n;i++)\n   {\n      if(arr[i]-arr[i-1]!=diff)\n      {\n         return 0;\n      }\n    }\n    return 1;\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "How can you initialize only one element of an array - not the zeroth element but any other element?",
+    "answer": "c99 has introduced syntax where you give element designator with value. Element designator is index in square brackets.\n\ne.g.\nint arr[10]={1,3,[8]=10};\n\nHere 0th element is 1, first element is 3 and 8th element is 10.",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Consider the following three C functions :\n\n[P1] int * g (void)\n{\n  int x = 10;\n  return (&x);\n}\n\n[P2] int * g (void)\n{\n  int * px;\n  *px = 10;\n  return px;\n}\n\n[P3] int *g (void)\n{\n  int *px;\n  px = (int *) malloc (sizeof(int));\n  *px = 10;\n  return px;\n}\nWhich of the above three functions are likely to cause problems with pointers?\n\n",
+    "answer": "Both P1 and P2\n\nP1 may not behave correctly because the function returns address of a local automatic variable which will not exist once the function terminates.\n\nP2 causes run time error because px is derefernced without initializing it.\n",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What value is printed by the program?\n\nint incr (int i)\n{\n   static int count = 0;\n   count = count + i;\n   return (count);\n}\nmain ()\n{\n   int i,j;\n   for (i = 0; i <=4; i++)\n      j = incr(i);\n   printf(\"%d\",j);\n}\n\n",
+    "answer": "Output : 10",
+    "explanation": "Since count is a static int in the function, its value is retained across function calls. It is intitialized only the first time the function is called.\nIn first call to function, count becomes 1. In next call it is 1+2 =3, in next call it is 3+3 and last call the function makes count 6+4=10. So the final value of j is 10 and it is printed.",
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "Consider the following C declaration\n\nstruct {\n    short s [5]\n    union {\n         float y;\n         long z;\n    }u;\n} t;\nAssume that objects of the type short, float and long occupy 2 bytes, 4 bytes and 8 bytes, respectively. The memory requirement for variable t, ignoring alignment considerations, is ",
+    "answer": "20",
+    "explanation": "The fields of structure are word aligned. So after short array, the union will be stored after a padding of 2 bytes.\n\nThis can be avoided by using structure packing which is compiler dependant",
+    "topic": "Structures"
+  },
+  {
+    "question": "What will be the output of the following C program segment?\n\nchar inchar = 'A'\u037e\nswitch (inchar)\n{\ncase 'A' :printf (\"choice A \\n\") \u037e\ncase 'B' :printf (\"choice B \") \u037e\ncase 'C' :\ncase 'D' :\ncase 'E' :\ndefault:printf (\"No Choice\") \u037e\n} ",
+    "answer": "choice A\nchoice B No choice",
+    "explanation": "Since there are no break statements after cases, the execution seeps through to next statement until default. And default is also executed.\nCorrect swith should include break after each case.\n\nswitch(inchar)\n{\n     case 'A':printf(\"choice A\\n\");\n                 break;\netc.\n",
+    "topic": "Control statements"
+  },
+  {
+    "question": "What does the function  do?\n\nint fun(int n)\n{\n   if(n==1)\n     return 1;\n  else\n    return n*fun(n-1);\n}",
+    "answer": "It calculates and returns the factorial of a number",
+    "explanation": "The function is a recursive factorial function. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a recursive C function to print a number in binary",
+    "answer": "void print_binary(int n)\n{\n   if(n>1)\n    {\n       print_binary(n/2);\n     }\n       printf(\"%d\",n%2);\n }",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "What does the following program print?\n\n#include<stdio.h>\nvoid f(int *p, int *q)\n{\np = q\u037e\n*p = 2\u037e\n}\n int i=0, j=1\u037e\nint main()\n{\nf(&i, &j)\u037e\nprintf(\"%d %d \\n\", i, j)\u037e\nreturn 0\u037e\n}",
+    "answer": "Output : 0 2",
+    "explanation": "Let us say i and j are at addresses 2000 and 3000.\n\nFunction f gets 2000 and 3000 as parameters ( p and q). Now p is assigned with q. p becomes 3000. *p=2 stores 2 at the location 3000.\n\nWhich means that content of address 2000 is unmodified, and that in address 3000 is set to 2. i remains 0 and j becomes 2.",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What does this printf statement print?\n\nprintf(\"%d %d %d %d\",sizeof(2),sizeof(2.0),sizeof('2'),sizeof(\"2\"));",
+    "answer": "Output : 4 8 4 2",
+    "explanation": "This is for a machine with wordlength of 4 bytes.\n2 is an int. Hence its size is 4 bytes.\n2.0 is a double, not a float.(2.0f is a float constant) Hene its size is 8 bytes.\n '2' is character literal and character literals are treated as integers.\n Hence its size is 4 bytes. And \"2\" is a string literal with 2 characters, '2' and null, so its size is 2",
+    "topic": "Data types"
+  },
+  {
+    "question": " What does the following fragment of C program print?\n\nchar c[] = \"c tricky Questions\";\nchar *p =c;\nprintf(\"%s\", p + p[2] -p[3]) ;\n ",
+    "answer": "Output : tricky Questions",
+    "explanation": "p[2] is 't' and p[3] is 'r', p[2]-p[3] will be 2. p+2 will be pointer pointing to \"tricky Questions\"",
+    "topic": "Pointers"
+  },
+  {
+    "question": "Consider the following recursive C function that takes two arguments\n\nunsigned int foo(unsigned int n, unsigned int r)\n {\n      if (n > 0)\n               return (n%r + foo (n/r, r ));\n          else\n              return 0;\n}\n\nWhat is the return value of the function foo when it is called as foo(513, 2)?",
+    "answer": "Return value : 2",
+    "explanation": "The functions finds sum of digits for the given number system (decimal if second parameter is 10, binary if it is 2 etc.) of the numbers using recursion. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "What does the following program print?\n#include<stdio.h>\nint i = 5;\nint main()\n{\nint i=11;\nprintf(\"%d \\n\", i);\nreturn 0;\n}",
+    "answer": "Output : 11",
+    "explanation": "When there is global variable and block variable of same name, block variable shadows global variable.\n\nIt is also possible to print global variable using a trick.\n{\n   extern int i;\n   printf(\"%d\",i);\n}",
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "What is the output of the program?\n\n#include<stdio.h>\nint i;\nint main()\n{\n    int j;\n    printf(\"%d %d\",i,j);\n    return 0;\n}",
+    "answer": "Output : 0 garbage-value",
+    "explanation": "Global and static variables are automatically initialized to 0. But local variables are not automatically initialized.",
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "#include <stdio.h>\n#define print(x) printf (\"%d\", x)\nint x;\nvoid Q(int z)\n{\nz += x;\nprint(z);\n}\nvoid P(int *y)\n{\nint x = *y+2;\nQ(x);\n*y = x\u20101;\nprint(x);\n}\nmain(void)\n{\nx=5;\nP(&x);\nprint(x);\n}\n\nOutput of the program is ",
+    "answer": "Output : 1277",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Write a macro to find larger of two numbers",
+    "answer": "#define LARGER(a,b) ((a)>(b)?(a):(b))",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Write your own version of strcpy.",
+    "answer": "char * mystrcpy(char*dest,char*src)\n{\n   char *temp = dest;\n     while(*src)\n    {\n      *dest++ = *src++;\n    }\n    *dest = '\\0';\n   return temp;\n}\n\nWe can even write a smaller function like this.\n\nchar *mystrcpy2(char *dest,char *src)\n{\n     char *temp = dest;\n     while(*dest++=*src++);\n     return temp;\n}\n\nIn this function, while loop is using assignment statement to copy each src character to dest character. The assignment becomes false after copying null character to dest. ",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Explain the terms lvalue and rvalue with examples.",
+    "answer": "lvalue is something which has a memory location for it.\n\nAll variables are lvalues.\n\n rvalue is a temporary result of an expression, hence has no memory location for it.\n\nint a;\na = 4;//a is an lvalue\na+5=7; //error. a+5 is not an lvalue.\n\nlvalues can be used on left hand side of an assignment statement. rvalues can not be used on LHS of a statement.",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "Write a function, which given a binary file with n numbers , stores the even items (2nd, 4th,6th..)  in one binary file and odd items (1st, 3rd, 5th...) etc in second binary file.",
+    "answer": "void read_file(FILE *fptr,FILE *fptrout1,FILE *fptrout2)\n{\n    int i=1;\n    int n;\n    while(!feof(fptr))\n    {\n        fread(&n,sizeof(n),1,fptr);//fread used for binary files\n        if(i%2==0)\n        {\n          fwrite(&n,sizeof(n),1,fptrout2);\n        }\n        else\n          {\n             fwrite(&n,sizeof(n),1,fptrout1 );\n          }\n       i++;\n    }\n    fclose(fptr);\n    fclose(fptrout1);\n    fclose(fptrout2);\n}",
+    "explanation": null,
+    "topic": "File Handling"
+  },
+  {
+    "question": "Determine what the following function does\n\nint func(int n)\n{\n   if (n==0)\n     return 0;\n  else\n    return (n+func(n-1));\n}\nWrite an iterative function for the same",
+    "answer": "Function finds the sum of all numbers upto n\n\nIterative version of function\nint sum(int n)\n{\n  int sum=0;\n  for(;n;n--)\n     sum +=n;\n  return sum;\n}\n",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a function which accepts a string and returns 1 if the string is a palindrome and return 0 if it is not.",
+    "answer": "int palindrome(char *s)\n{\n    int l=strlen(s);\n    int i,j;\n    for(i=0,j=l-1;i<j;i++,j--)\n        if(s[i]!=s[j])\n           return 0;\n   return 1;\n}",
+    "explanation": "A palindrome is  a string which spells same forwords and backwords.\n\ne.g.\n\nMOM\nable was i ere i saw elba",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a recursive function to return gcd of two numbers. ",
+    "answer": "int gcd(int a,int b)\n{\n     if(a%b==0)\n      return b;\n    else\n      return gcd(b,a%b);\n}\n\nWe can write an iterative version of the function\n\nint gcd1(int a,int b)\n{\n     while(a%b)\n    {\n       int temp;\n\n       temp = b;\n        b = a%b;\n        a = temp;\n     }\n     return b;\n}\n\nWe can see that in this case, recursive function is much easier to write. ",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "What would be the output of the following program\n\nvoid func(int ( *p)[3]);\nint main(){\n     int x[2][3] = { {4,5,6},{7,8,9}};\n    func(x);\n    func(x+1);\n}\n\nvoid func(int (*p)[3])\n{\n    printf(\"%d %d %d\\n\",(*p)[0],(*p)[1],(*p)[2]);\n}",
+    "answer": "Output:\n4 5 6\n7 8 9",
+    "explanation": "The function takes a pointer to array as parameter. A 2 dimensional array when passed as a paramter to function, becomes pointer to an array - 0th  row of 2d array. Second call to the function mentions x+1. So it gets first row of array as paramter.  ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "Write a recursive function to solve Towers of Hanoi problem.\n\nTowers of Hanoi consists of three rods, and a number of disks of different sizes. To start with all disks are in first rod, largest one at bottom, smallest at top in order of diameter.\n\nThe aim is to transfer all the disks to another rod with the following conditons\n\n    Only one disk can be moved at a time.\n    Only the disk at the top can be moved and placed on the top of another rod.\n    No disk may be placed on top of a smaller disk.\n",
+    "answer": "void towerofhanoi(int num,int frompeg,int topeg,int temppeg)\n{\n    if(num==1)\n       printf(\"Moving disk %d from peg %d to peg %d\n\\n\",num,frompeg,topeg);\n   else\n   {\n      towerofhanoi(num-1,frompeg,temppeg,topeg);\n      printf(\"Moving disk %d from peg %d peg %d\n\\n\",num,frompeg,topeg);\n      towerofhanoi(num-1,temppeg,topeg,frompeg);\n   }\n}",
+    "explanation": "The problem is solved using the following logic\n\n1>Move n-1 discs from first rod to second rod using third rod as intermediate location\n2> Move the largest disc to third rod\n3> Move n-1 discs from second rod to third rod using first rod as intermediate location",
+    "topic": "Functions"
+  },
+  {
+    "question": " What will be output when you will execute following c code?\n\n#include<stdio.h>\nconst enum Alpha{\n      X,\n      Y=5,\n      Z\n}p=10;\nint main(){\n    enum Alpha a,b;\n    a= X;\n    b= Z;\n    printf(\"%d\",a+b-p);\n    return 0;\n}\n",
+    "answer": "-4",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "How to reverse String in C  using  Recursion?",
+    "answer": "char* reverse(char str[])\n{\n   static int j=0;\n   static char arr[90];\n   char ch = *str;\n   if(ch!=0)\n   {\n        reverse(str+1);\n       arr[j++]=ch;\n       return arr;\n    }\n    else\n      return arr;\n\n\n}",
+    "explanation": "You should use a static array or dynamically allocated string for the return value. Otherwise you will be returning a pointer to a variable which no longer exists. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "WAP for inplace removal of vowels from a char string ",
+    "answer": "#include<stdio.h>\n#include<string.h>\nvoid remove_vowels(char *s);\nint is_vowel(char ch);\nvoid shift_letters(char *s);\nint main()\n{\n    char str[40];\n    printf(\"Enter a string\");\n    gets(str);\n    remove_vowels(str);\n    printf(\"The string after removal of vowels is\n%s\",str);\n    return 0;\n}\n\nvoid remove_vowels(char *s)\n{\n    int l = strlen(s);\n    for(;*s!='\\0';s++)\n    {\n      char ch = *s;\n      if(isupper(ch))\n         ch=tolower(ch);\n      if(is_vowel(ch))\n      {\n         shift_letters(s);\n         s--;\n       }\n    }\n}\n\n\nint is_vowel(char ch)\n{\n    if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u')\n      return 1;\n    return 0;\n}\n\nvoid shift_letters(char *s)\n{\n  int i =0; int len = strlen(s);\n  s++;\n  for(i=1;*s;i++,s++)\n  {\n   *(s-1)= *s;\n   }\n   *(s-1) = 0;\n}\n",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is an entry controlled loop and an exit controlled loop?",
+    "answer": "Entry controlled loop is when condition is tested before body of the loop is executed.  Exit controlled loop is when condition is tested after body of the loop is executed.\n\nBoth for and while loops are entry controlled where as do--while is an exit controlled loop.\n\nwhen for(i=0;i<10;i++) statement; is executed, the condition i<10 is tested. If only this contion is true, then statement is executed. If it is false, the loop terminates.\n\nSimilarly while(a<5) do_something; checks condition a<5 first before entering into a loop.\n\nIn do statement; while(a<5); first executes statement and then tests the condition a<5",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a function to set kth bit of a number.",
+    "answer": "#include<stdio.h>\nint set_bit(int n,int k);\nint main()\n{\n   int num,k;\n   printf(\"Number:\");\n   scanf(\"%d\",&num);\n   printf(\"k:\");\n   scanf(\"%d\",&k);\n   num = set_bit(num,k);\n   printf(\"After setting %dth bit number is %d\\n\",k,num);\n   return 0;\n}\n\n/* function sets kth bit from LSB*/\nint set_bit(int num,int k)\n{\n    int temp = 1;\n    temp = temp<<k;\n    num = num | temp;\n    return num;\n}",
+    "explanation": "| operator can be used to set the bit.\n\nWe need to have a temp which has only kth bit set. For that we are taking 1 and left shifting it by k places.\nThen we bitwise or (|) this temp with the number.",
+    "topic": "Operators"
+  },
+  {
+    "question": "Write a function to flip kth bit of a number. If bit is set, it should be cleared and if it is clear, it should be set. ",
+    "answer": "#include<stdio.h>\nint flip_bit(int n,int k);\nint main()\n{\n   int num,k;\n   printf(\"Number:\");\n   scanf(\"%d\",&num);\n   printf(\"k:\");\n   scanf(\"%d\",&k);\n   num = flip_bit(num,k);\n   printf(\"After flipping %dth bit number is %d\\n\",k,num);\n   return 0;\n}\n\n/* function sets kth bit from LSB*/\nint flip_bit(int num,int k)\n{\n    int temp = 1;\n    temp = temp<<k;\n    num = num ^ temp;\n    return num;\n}\n\n",
+    "explanation": "^ operator can be used to change the bit. 1^1 is 0 and 1^0 is 1.\n\nSo the function first creates a temp with kth bit set and all other bits 0. Then xors the number with temp",
+    "topic": "Operators"
+  },
+  {
+    "question": "Write a function to add two numbers using bitwise operators",
+    "answer": " int getSum(int p, int q)\n{\n    int result = p ^ q; // + without carry 0+0=0, 0+1=1+0=1, 1+1=0\n    int carry = (p & q) << 1; // 1+1=2\n    if (carry != 0) {\n        return getSum(result, carry);\n    }\n    return result;\n}",
+    "explanation": null,
+    "topic": "Operators"
+  },
+  {
+    "question": "Write an expression to find if the number is a power of 2",
+    "answer": "if (num && ((num&(num-1)) ==0))  printf(\"power of 2\");\n\n\n\n",
+    "explanation": null,
+    "topic": "Operators"
+  },
+  {
+    "question": "The output of the program is  \"6\"   when input is \"Hello, how are you\"\n\nint main()\n{\n   char str[50];\n   printf(\"Enter a string\");\n   scanf(\"%s\",str);\n   printf(\"The length of the string is %d\\n\",strlen(str));\n   return 0;\n}\n\nFind out the error in the program",
+    "answer": "gets(str) should be used to read a line of characters\ninstead of\nscanf(\"%s\",str);",
+    "explanation": "scanf reads the string till white space. So it will read only first word of the string.\nBut gets will read until newline character.\n\nWe can even use fgets",
+    "topic": "Strings"
+  },
+  {
+    "question": "What are implicit and explicit conversions in C?",
+    "answer": "Some data type conversions are done automatically by C program. This is implicit conversion. If a variable is converted to a type using type casting, that is explicit conversion.\n\nExamples of implicit conversion\n\nThe value of right hand side is converted to type of left hand side operand.\ne.g.\nfloat m = 3;//gets converted to 3.0f\n\nThe arguments of a function is converted to the types of parameters of the function, and return value is converted to return type of function.\n\nfloat larger(float a,float b);\n\n\n larger(4,-12)\n\nthese gets converted to 4.0f and -12.0f\n\nIn an expression, shorts and chars are promoted to ints.\n\nint a = 'a'+2;\nHere character 'a' is converted to integer - to its ASCII code which is 97\n\nIn an expression, if any operand is float, then all values are converted to float. and so on.\n\nfloat pi = 22.0f/7;//this becomes 22.0/7.0\n\n\nExamples of explicit conversion:\n\nchar *ptr = (char *) malloc(10);\nfloat ans = (float)5/10;\n\nmalloc returns a void pointer. It is converted to char pointer in first example.\n5, which is an integer, is converted to float and then divided by 10 in second example. ",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "Write  a function with  find_chars(string1, string2) that returns a string that contains only the characters found in string1 and string2  in the order that they are found in string1.",
+    "answer": "#include<stdio.h>\n#include<string.h>\n#include<stdlib.h>\nchar * find_common_chars(char *string1, char *string2)\n{\n    char *temp = (char*)malloc(100);\n    char *t2 = temp;\n    int i,len;\n    len = strlen(string2);\n    while(*string1)\n    {\n        char ch = *string1;\n        int found = 0;\n\n        for(i=0;i<len;i++)\n        {\n          if(string2[i]==ch)\n             {\n                found = 1;\n                string2[ch]=0;//to avoid finding this char for repeated char in string1\n                break;\n              }\n         }\n         if(found )\n           *temp++ = ch;\n         string1++;\n    }\n    *temp = 0;\n    return t2;\n}\n\nint main()\n{\n     char str1[100],str2[100];\n     char *ptr;\n     printf(\"Enter strings one line at a time\");\n     gets(str1);\n     gets(str2);\n     ptr = find_chars(str1,str2);\n     printf(\"Common characters between %s and %s is %s\",str1,str2,ptr);\n     return 0;\n}",
+    "explanation": "Here the common characters are stored in a dynamically allocated string temp. This temp is returned from function.\n\nUsage of this would be similar to\n\nchar *s1 = \"Hello world\";\nchar *s2=\"low\";\nchar *common = find_common_chars(s1,s2);",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to divide two integers without using the divide operator.",
+    "answer": "int divide(int a, int b)\n{\n     int count=0;\n     while (a>=b)\n     {\n       a -=b;\n       count++;\n     }\n     return count;\n}\n",
+    "explanation": "Division is repeated subtraction.\n\nTo divide a by b, subtract b from a repeatedly until you get 0 or negative number as difference.\n\nNumber of times, subraction could be done is the quotient.\n",
+    "topic": "Operators"
+  },
+  {
+    "question": "Given an array A[N] containing N numbers. Crate an array Output[N] where Output[i] is equal to the product of all the elements of A[N] except A[i].  For example Output[0] is the product of A[1] to A[N-1] and Output[1] is the product of A[0] and from A[2] to A[N-1]. ",
+    "answer": "#include<stdio.h>\nint product(int arr[],int size)\n{\n    int product=1;\n    int i;\n    for(i=0;i<size;i++)\n       product *=arr[i];\n    return product;\n}\n\nint main()\n{\n   int  arr[50];\n   int output[50];\n   int size,i,k;\n   int pr;\n   printf(\"Enter size of array:\");\n   scanf(\"%d\",&size);\n   printf(\"Elements of the array:\");\n   for(i=0;i<size;i++)\n       scanf(\"%d\",&arr[i]);\n   pr = product(arr,size);\n   for(i=0;i<size;i++)\n      output[i] = pr/arr[i];\n   for(i=0;i<size;i++)\n     printf(\"output[%d]=%d\\n\",i,output[i]);\n   return 0;\n}",
+    "explanation": "Here the array is iterated only twice. First time to find the total product. Then to divide kth element by the product for each k from 0 to size.\n\nHence the complexity is O(N) - linear",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Suppose you have an array of 99 numbers. The array contains the numbers 1 to 100 with one number missing. Write C functions to find the missing number  for speed optimization",
+    "answer": "int copy_to_second_array(int arr[],int temp[],int sz)\n{\n   int i;\n   for(i=0;i<sz;i++)\n   {\n       int n = arr[i];\n       temp[n]=1;\n   }\n}\n\nint find_missing_element(int temp[],int sz)\n{\n   int i;\n   for(i=1;i<=sz;i++)\n      if(temp[i]==0)\n        return i;\n   return -1;\n}\n\n\n    ",
+    "explanation": "We are copying the elements to a temporary array such that temp[n] = 1 if a[i] = n. temp is initialized with 0 to start with. So at the end of iteration, all elements of temp would be 1 except for the missing number in the original array.\n\nSo second function returns k where temp[k] is 0.\n\nThere is no need to sort the elements and the complexity is O(N)\n\nBut we need an extra array of 99 elements",
+    "topic": "Arrays"
+  },
+  {
+    "question": "What are the differences between #define and const",
+    "answer": "#define macros get expanded by preprocessor. So compiler has no knowledge about these. If we do not define macro correctly, instead of compiler error, we get unexpected results.\n\nconst is seen by compiler. So any errors with consts are detected by compiler.\n\nSo const is always safer than #define. ",
+    "explanation": null,
+    "topic": "Data types"
+  },
+  {
+    "question": "What is the difference between const char * and char * const?",
+    "answer": "const char *p1;\nchar * const p2;\n\np1 is a pointer to a character constant. Which means character pointed by p1 is constant. But the pointer is not constant.\n\n*p1 = 'z' ;\nwould be wrong.\np1 = \"aaa\" ;\n - is fine\n\np2 is a constant pointer to a character. Here pointer is constant. But character is not. Which means we can not assign another value to p2. But we can change the character pointed by p2\n\np2 = \"mnop\" ;\nis wrong\n\n*p2 = 'a' ;\nis fine\n\nWe can even have\n\nconst char  * const p3 = \"Hello world\";\n\np3 is a constant pointer to constant character. Here neither address nor character can be modified.\n\nAnother point of interest is all pointers assigned to string literal are pointers to char constant.",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Find error in this function to double a given number\n\nvoid double(int n)\n{\n  n*=2;\n }",
+    "answer": "As the function has no return statement, it does not return double of the number. Instead returns some garbage.\n\nAnd the function produces syntax error, because double is a key word in C. ",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "What are Scope and lifetime of variables in C. Explain the terms auto variables and static variables. Local and global variables, and extern variable.",
+    "answer": "Scope of a variable is visibility of variable. And lifetime is how long is the variable alive, and when it will be destroyed.\n\nauto - automatic variables have block scope and their lifetime is as long as the block is running. By default local variables are automatic. You can specify auto keyword - which is not needed. So if the block gets called multiple times, these variables are created and destroyed each time.\n\nA variable declared outside of any functions is a global variable. Its scope is entire program and lifetime is from begining of program to end of program.\n\nstatic variables are created at the begining of the program and are present till the end of the program. The scope depends on where these are defined. Local static variables are visible inside the block and global static variables are visible in the translation unit. Static variable have a default value of 0.\n\nexternal variables are global variables with external linkage. They are visible in the entire program.\ne.g.\n\nfile1.c\nint gl1;/*global variable*/\nstatic int gl2;/*static gloabal.Not accessible in other files*/\nint print_num(int n)\n{\n     int a1;/*auto variable. Only visible in this function*/\n    static int a2;/*retains its value across function calls*/\n     a1 = n;\n     printf(\"%d\",a1);\n}\nint main()\n{\n     int b;/*auto variable*/\n     b = a1;/* error. a1 has block scope*/\n     b = a2 ;/*error. a2 has block scope*/\n     b = gl1+gl2;/*no error gl1 and gl2 are 0*/\n     print_num(b);\n     print_num2(b);\n}\nfile2.c\nextern int gl1;/* no error*/\nexern int gl2;/*linker error. gl2 has file scope*/\nvoid print_num2(int a)\n{\n    a +=gl1;/*no error*/\n   printf(\"%d\",a);\n}\n\n",
+    "explanation": null,
+    "topic": "Storage Classes"
+  },
+  {
+    "question": " Write a function for matrix multiplication",
+    "answer": "void multiplication(int a[][10],int b[][10],int mult[][10],int r1,int c1,int r2,int c2)\n{\n    int i,j,k;\n/* Initializing elements of product  matrix  to 0.*/\n    for(i=0; i<r1; ++i)\n    for(j=0; j<c2; ++j)\n    {\n       mult[i][j]=0;\n    }\n/* Multiplying matrix a and b and storing in array mult. */\n    for(i=0; i<r1; ++i)\n    for(j=0; j<c2; ++j)\n    for(k=0; k<c1; ++k)\n    {\n        mult[i][j]+=a[i][k]*b[k][j];\n    }\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Consider the statement\n\ndouble ans = 18.0/squared(2+1)\n\nFor the following #define macros, write what will be the answer\n\n#define squared(x) x*x\n#define squared(x) (x)*(x)\n#define squared(x) (x*x)\n#define squared(x) ((x)*(x))",
+    "answer": "First one becomes\n18.0/2+1/2+1 = 10\nSecond macro will be expanded as\n18.0/(2+1)*(2+1) = 18/3*3 = 18\nThird macro expands to\n18.0/(2+1*2+1) = 18.0/5 = 3.6\nFourth macro is expanded as\n18.0/((2+1)*(2+1)) = 18.0/9 = 2.0\n\nSo only fourth macro is correctly defined. ",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Find the error in this function.\n\nint func(void arg1)\n{\n  return arg1-1;\n}",
+    "answer": "There can not be a variable of void type. Hence the parameter defintion is wrong.\n\nCorrect method\n\nint func(int  arg1)\n{\n  return arg1-1;\n}\n\nor\nint func(void)\n{\n    int something;\n    something=10;\n    return something;\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write C code to test whether the given character is lowercase letter, uppercase letter, digit or white space (space, tab or newline)",
+    "answer": "if(c>='a' && c<='z' || c>='A' && c<='Z')\n      printf(\"Letter\");\nelse if (c>='0' && c<='9')\n      printf(\"Digit\");\nelse if (c==' ' || c=='\\t' || c=='\\n')\n      printf(\"White space\");\n\nYou can also use builtin functions\n\nif(isalpha(c))\n    printf(\"Letter\");\nelse if(isdigit(c))\n    printf(\"Digit\");\nelse if(isspace(c))\n      printf(\"White space\");",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a C program to test whether atleast 3 of the 4 bits are on of a given number",
+    "answer": "#include<stdio.h>\nint main()\n{\n    int n;\n    printf(\"Enter a number\");\n    scanf(\"%d\",&n);\n    n = n^0xf;\n    n = n&0xf;\n    if(n==0|| n==1 || n==2||n==4||n==8)\n       printf(\"true\");\n    else\n       printf(\"false\");\n    return 0;\n}\n\n",
+    "explanation": "When you exor the number with 0xf, the only bits which clear are remaining.\n\n To remove the other nibbles of the number, the number is anded with 0xf.\n\nNow what you have is a number which has only one bit set or the one which has zero bits set. The set bit could be in 0th, 1st, 2nd or 3rd position. So if the number is 1, 2, 4 or 8 or 0, the condition is true.\n\ne.g.\nIf the number is 12\n\n1100\n1100 ^ 0xf = 1100 ^ 1111 = 0011. false\n\nIf the number is 14 with 3rd bit, 2nd bit and first bit set\n\n1110 ^ 1111 = 0001 true",
+    "topic": "Operators"
+  },
+  {
+    "question": "Write a program to count the number of characters, words and lines present in a file. If filename is not given, it should take from standard input",
+    "answer": "#include<stdio.h>\n#include<string.h>\nvoid readfile(FILE *fptr)\n{\n    int lines = 0,words=0,count=0;\n    char ch;\n    while(!feof(fptr))\n    {\n       ch = fgetc(fptr);\n       count++;\n       if(ch=='\\n')\n         {\n           lines++;words++;\n         }\n       else if (ch==' ' || ch=='\\t')\n          words++;\n      }\n     if(ch!='\\n') lines++;\n     if (ch!=' '||ch!='\\t' ||ch!='\\n') words++;\n    printf(\"words = %d lines=%d chars = %d\",words,lines,count);\n}\nint main(int argc,char *argv[])\n{\n\n    FILE *fptr;\n    char filename[25];\n    if(argc>1)\n       strcpy(filename,argv[1]);\n    else\n     {\n         printf(\"Enter file name:\");\n         scanf(\"%s\",filename);\n     }\n    fptr = fopen(filename,\"r\");\n    if(fptr==NULL)\n    {\n       printf(\"File open error\");\n\n     }\n     else\n     {\n         readfile(fptr);\n         fclose(fptr);\n     }\n     return 0;\n}",
+    "explanation": null,
+    "topic": "File Handling"
+  },
+  {
+    "question": "Write a function to insertion sort of an array using pointers.",
+    "answer": "int insertionsort(int *arr,int n)\n{\n    int i,j,temp;\n    for(i=1;i<n;i++)\n    {\n        temp=*(arr+i);\n        j=i-1;\n       while(temp<*(arr+j)&&j>=0)\n       {\n           *(arr+(j+1))=*(arr+j);\n           j--;\n       }\n      *(arr+(j+1))=temp;\n    }\n  return 0;\n}",
+    "explanation": "In insertion sort, array is divided into two parts. Left part is sorted and right is unsorted.  Each element of the array on right side is inserted into correct position in left side.\n\nTo start with left side of array has only one element and right side has all the remaining elements.\n\ne.g.\nIf the array is\n[11,3,44,67,21,1]\n\n[11 - Now 3 is taken and is inserted in 0th position, shifting 11 to right\n[3 11 - Now 44 is inserted at 2nd position. Shifting is not needed.\n[3 11 44 - 67 is inserted at the 3rd position\n[3 11 44 67 - 21 is inserted in 2nd position. 44 and 67 are shifted to right\n[3 11 21 44 67 - 1 is inserted in the 0th position. Other elements are shifted to right.\n[1 3 11 21 44 67] - Array is sorted",
+    "topic": "Pointers"
+  },
+  {
+    "question": "Given an unsorted array and a number n, find if there exists a pair of elements in the array whose difference is n. Return count of such pairs.\nExample k=4 and a[]={7,623,19,10,11,9,3,15}\n Output should be : 6 Pairs can be: 7,11 7,3 6,10 19,23 15,19 15,11  ",
+    "answer": "int find_pairs(int arr[],int size,int k)\n{\n    int i,j;\n    int count = 0;\n    for(i=0;i<size;i++)\n       for(j=i+1;j<size;j++)\n         {\n             int diff = arr[i]-arr[j];\n             if (abs(diff)==k)\n                 count++;\n          }\n    return count;\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Given two sorted arrays, A and B. Write a method merging the elements of B into A in sorted order. Assume A has a large enough buffer at the end to hold all of B\u2019s elements. ",
+    "answer": " #include<stdio.h>\nvoid read_array(int arr[],int size)\n{\n    int i;\n    for(i=0;i<size;i++)\n      scanf(\"%d\",&arr[i]);\n}\n\nvoid merge_arrays(int arr1[],int s1,int arr2[],int s2)\n{\n     int i,j; i=j=0;\n     int arr3[100];\n     int k=0;\n     while (i<s1 && j<s2)\n     {\n          if(arr1[i]<arr2[j])\n              arr3[k++]=arr1[i++];\n          else\n              arr3[k++]=arr2[j++];\n     }\n     while(i<s1)\n         arr3[k++]=arr1[i++];\n     while(j<s2)\n         arr3[k++]=arr2[j++];\n     /*now copy back to arr1*/\n     for(i=0;i<k;i++)\n        arr1[i]=arr3[i];\n\n}\nint main()\n{\n   int arr1[50],arr2[20];\n   int i,num;\n   int size1,size2;\n   int k;\n\n   printf(\"The size of array 1 is \");\n   scanf(\"%d\",&size1);\n   printf(\"The size of array 2 is \");\n   scanf(\"%d\",&size2);\n   read_array(arr1,size1);\n   read_array(arr2,size2);\n   merge_arrays(arr1,size1,arr2,size2);\n   for(i=0;i<size1+size2;i++)\n   {\n     printf(\"arr1[%d]=%d\\n\",i,arr1[i]);\n   }\n   return 0;\n} ",
+    "explanation": "Here we are using a third temp array which stores the merged elements. Next all elements are third array are copied back to first array.",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Given an array of integers, every element appears twice except for one. Find that single one.\n Note:Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?",
+    "answer": "int find_unique_element(int arr[],int size)\n{\n   int exorprod=arr[0];\n   int i;\n   for(i=1;i<size;i++)\n      exorprod = exorprod^arr[i];\n   return exorprod;\n}",
+    "explanation": "When you exor the elements, the duplicates will cancel each other out and only the unique element will remain.\n\ne.g.\n\nIf array is [12 4 7 9 7 12 4]\n\nthe exor product will be 12^4^7^9^7^12^4\n= 9\n\nThe complexity is O(N)",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write your own atoi and atof functions ",
+    "answer": "int myatoi(char *str)\n{\n   int l,i;\n   int sum=0;\n   int sign=1;\n   i = 0;\n    if(str[0]=='-')\n       {\n           sign = -1;i++;\n      }\n  for(;str[i]!=0;i++)\n   {\n       if( (str[i]>='0' && str[i]<='9'))\n          sum = sum*10 + str[i]-48;\n      else\n         break;\n    }\n    return sum*sign;\n}\nfloat myatof(char *str)\n{\n     int i;\n     float sum=0;\n     int fraction=0;\n     int numerator=0;\n     int denom=1;\n     int sign = 1;\n     i = 0;\n    if(str[0]=='-')\n       {\n           sign = -1;i++;\n      }\n     for(;str[i];i++)\n     {\n          if(isdigit(str[i]))\n           {\n              if(fraction)\n               {\n                  numerator =numerator*10+(str[i]-48);\n                  denom = denom*10;\n                }\n               else\n               {\n                  sum = sum*10 + (str[i]-48);\n               }\n            }\n          else if (str[i]=='.')\n            {\n                 fraction = 1;\n                 numerator = 0;\n             }\n          else\n            break;\n      }\n      sum = sum + (float)numerator/denom;\n      return sum*sign;\n}",
+    "explanation": "atoi converts string to integer and atof converts string to float.\n\ne.g.\n\nchar *str=\"234\";\nint m = atoi(str);/*m will be 234*/\nstr = \"1.34\";\nfloat n = atof(str);\n\nIf there is any non-numeric character then conversion stops. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Find the count k by which array has been rotated in the rotated sorted array.\nSo for example we have sorted array as 2,3,6,12, 15, 18. Now suppose the array is rotated k times ( we don\u2019t know k), such that array becomes 15, 18,2,3,6,12 We have to find K (in this case k is 4)",
+    "answer": "int find_k(int *arr,int sz)\n{\n    int i;\n    for(i=0;i<sz-1;i++)\n    {\n       if(arr[i]>arr[i+1])\n          return i+1;\n    }\n    return 0;\n}",
+    "explanation": "When the element are rotated, the largest element will appear some where in middle and after that comes smallest element.\n\nSo where there is a decrease in value, that is  k.",
+    "topic": "Arrays"
+  },
+  {
+    "question": "How many times the program will print \"Hello world\"?\n\n#include<stdio.h>\nint main()\n{\n    printf(\"Hello world\");\n    main();\n    return 0;\n}",
+    "answer": "Infinte number of times",
+    "explanation": "In this program main calls itself recursively. So the program continues infinitely until stack overflows.",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of this C code?\n\n       #include <stdio.h>\n        int main()\n        {\n            char *str = \"hello, world\\n\";\n            char *strc = \"good morning\\n\";\n            strcpy(strc, str);\n            printf(\"%s\\n\", strc);\n            return 0;\n        }",
+    "answer": "The program crashes with segmentation fault",
+    "explanation": "String literals are stored in an unnamed array in read only memory (text segment). Pointer strc is storing address of this array. By using strcpy to strc, you are trying to modify the contents of this string. Hence there wil be segmentation fault in Unix systems  or access violation in windows.\n\nIf strc were a character array instead, then its contents can be modified. ",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of this C code?\n\n        #include <stdio.h>\n        int main()\n        {\n            char *str = \"hello, world\\n\";\n            str[5] = '.';\n            printf(\"%s\\n\", str);\n            return 0;\n        }",
+    "answer": "Crashes with segmentation fault",
+    "explanation": "Attempt to modify string literal which is stored in read only memory\n",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the output of the following program\n\n       #include <stdio.h>\n        int main()\n        {\n            char *str = \"hello world\";\n            char strary[] = \"hello world\";\n            printf(\"%d %d\\n\", sizeof(str), sizeof(strary));\n            return 0;\n        }\n\n",
+    "answer": "4 and 12 in 32 bit machines. ",
+    "explanation": "Size of str is 4 because str is character pointer. Size of strary is 12 which is size of array with 11+1 characters.\n\n Note that an array name gets converted into pointer normally. But for sizeof operator, this implicit conversion does not happen. (& is another exception where array does not get converted to pointer)",
+    "topic": "Pointers"
+  },
+  {
+    "question": "How will you write a code to print Hello world without using semicolon?",
+    "answer": "int main(void)\n{\n   if (printf(\u201cHello World\u201d))\n   {\n    }\n}",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "What is dangling pointer and what is NULL pointer?",
+    "answer": "A dangling pointer is the one which is used after the memory allocated to it is released using free. Hence it is not pointing to any valid address, the result is unpredictable.\n\nint *ptr = malloc(100*sizeof(int));\n-------\n------\nfree(ptr);\n*ptr = 12;//using ptr after free. dangling pointer\n\nNULL pointer is pointer pointing to location 0. It is defined as (void*)0 in stdio.h and stdlib.h Function which return a pointer, return NULL to indicate failure. Null pointer should never be derefernced. ",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is memory leak? ",
+    "answer": "If memory allocated dynamically in a program (using malloc or calloc) is  not released, your program will run out of heap  memory, in due time. This is called memory leak. ",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is void pointer?",
+    "answer": "A void  pointer is a generic pointer. It is defined as\n\nvoid *ptr;\n\nThis void pointer can be used to store address of any type of data using type casting.\n\nBut if it is deferenced without type casting, compiler gives error.\n\nvoid *ptr;\nint a; float b;\nptr = (int *)&a;\nptr = (float*)&b;\n\n*ptr=5;/*syntax error*/\n\n*(int *)ptr = 5;//correct\n",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What arithmetic operations are allowed with pointers?",
+    "answer": "You can add or subtract an integer to a pointer. You can subtract 2 pointers. Note that when you add/subtract integer to a pointer, it gets scaled by size of the pointed variable.\n\ne.g. if you add 1 to integer pointer in 32 bit machine, the pointer gets incremented by 4 bytes so that it can point to next integer.\n\ne.g\n\nint a;float b;double c; char d;\nint *ptr1 = &a;/* say a is at location 1000 and it is 4 byte machine*/\nfloat *ptr2 = &b;/*say b is at location 3000*/\ndouble *ptr3 = &c;/*say c is at location 4000*/\nchar *ptr4 = &d;\n\nptr1++;/*now ptr1 is 1004*/\nptr1 +=5;/*not ptr1 is 1024*/\nptr2 = ptr2 - 3;/*now ptr2 is 2988 */\npt3++;/* now ptr3 is 4008*/\nptr4+=5;/*ptr4 is 4005*/\n\nptr1*=2;/* error*/\nptr2 = ptr1+ptr2;/*error*/",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Declare x  as  pointer to a function which takes a character pointer as parameter and returns an integer pointer.",
+    "answer": "int *(*x)(char*)",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "When is  an array in an expression is not implicitly converted to a pointer?",
+    "answer": "When using & - address of operator and when using sizeof operator\n\nint arr[3]={1,2,3};\narr[1]=24;/* is converted to *(arr+1) = 24*/\nadd_num(arr,12);/* parameters sent are &arr[0] and 12*/\n\nl = sizeof(arr);/* is 3*sizeof(int) . Not sizeof(&arr[0]) */\nint *ptr = &arr+1;/* if arr is stored at 1000, ptr will be 1012.  no implicit conversion*/",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "What is the error in this program\n#include<stdio.h>\nint main()\n{\n  register int m;\n  scanf(\"%d\",&m);\n  printf(\"%d\",m);\n}",
+    "answer": "Address of a register variable is used in scanf function.",
+    "explanation": "register keyword tells the compiler to store the variable in CPU register if possible. So, this variable may not be in RAM and hence will not have an address.",
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "What is the output of the following program?\n\n#include<stdio.h>\nint main()\n{\n  int a,b,c,d;\n  char *p = ( char *)0;\n  int *q = ( int *)0;\n  float *r = ( float *)0;\n  double *s = 0;\n  a = (int)(p+1);\n  b = (int)(q+1);\n  c = (int)(r+1);\n  d = (int)(s+1);\n  printf(\"%d %d %d %d\",a,b,c,d);\n  return 0;\n}",
+    "answer": "1 4 4 8\nfor 32 bit computer",
+    "explanation": "This is a good example for pointer arithmetic. When you add a constant to a pointer, the addition gets scaled up by size of pointee. All these pointers have initial value of 0. A char pointer added with 1 becomes 1. An int pointer (if size of int is 4) added by 1 becomes 4. And a double pointer becomes 8",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What will be output of following program?\n\n#include<stdio.h>\nint main()\n{\n  int i = 3;\n  int *j;\n  int **k;\n  j = &i;\n  k = &j;\n  printf(\"%u %u %u\",i,*j,**k);\n  return 0;\n}",
+    "answer": "3 3 3",
+    "explanation": "i is an integer. j is an int pointer pointing to i. So *j is i.\nk is a pointer to  pointer, pointing to j. *k is j and **k is i\n\nSo program prints i 3 times",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What error is stopping the program from printing 30? How do you correct it?\n\n# include <stdio.h>\nvoid fun(int x)\n{\n    x = 30;\n}\n\nint main()\n{\n  int y = 20;\n  fun(y);\n  printf(\"%d\", y);\n  return 0;\n}",
+    "answer": "x is a value parameter. So x is another copy of y. So changing x will not change y. Hence program will print 20 instead of 30.\n\nTo fix the problem, you need to send a reference paramter as shown below\n\nvoid fun(int *x)\n{\n   *x = 30;\n}\nint main()\n{\n   int y = 20;\n  fun(&y);/*send address of y to function*/\n  printf(\"%d\",y);\n  return 0;\n}\n\nOther method is by returning a value from function fun\n\nint fun(int x)\n{\n   x = 30; return x;\n}\nint main()\n{\n   int y = 20;\n  y = fun(y);\n  -------\n----\n}",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Assume that float takes 4 bytes, predict the output of following program.\n\n#include <stdio.h>\nint main()\n{\n    float arr[5] = {12.5, 10.0, 13.5, 90.5, 0.5};\n    float *ptr1 = &arr[0];\n    float *ptr2 = ptr1 + 3;\n\n    printf(\"%f \", *ptr2);\n    printf(\"%d\", ptr2 \u2013 ptr1);\n\n   return 0;\n}",
+    "answer": "90.5 3",
+    "explanation": "Subtraction of 2 pointers gives distance between the pointers",
+    "topic": "Pointers"
+  },
+  {
+    "question": "#include<stdio.h>\nint main()\n{\n   int a;\n   char *x;\n   x = (char *) &a;\n   a = 512;\n   x[0] = 1;\n   x[1] = 2;\n   printf(\"%d\\n\",a);\n   return 0;\n}\n\nWhat is the output of above program?",
+    "answer": "513",
+    "explanation": "Byte 0 of the integer is set to 1 by the program. Byte 1 is set to 2. So the value of integer is 2*FF+1 = 513",
+    "topic": "Pointers"
+  },
+  {
+    "question": "Is line number 2 correct. If yes, why?\n\nint arr[3] = {1,22,333};\n2[arr]= 44;",
+    "answer": "Though it looks ridiculous it is correct.\n",
+    "explanation": "C compiler converts array expression  into a pointer expression\n\nSo arr[3] = 3[arr] =*(arr+3)\n",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What do  the following declarations mean?\n\nint* a1[8];\nint (*a2)[8];\nint (*a3)(int[]);",
+    "answer": "a1 is an array of 8 integer pointers.\n\na2 is a pointer to an array of 8 integers.\n\na3 is a pointer to a function which takes integer array as a pointer and returns an integer",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "#include <stdio.h>\n int main()\n{\n     char *a = {\"p\", \"r\", \"o\", \"g\", \"r\", \"a\", \"m\"};\n     printf(\"%s\", a);\n }\n\nWhat is the output of this program?",
+    "answer": "p",
+    "explanation": "Note that the array has strings instead of chars in the initialization (because of \" instead of ').\nSo the program gives warning saying excess initializers and a  points to a null terminated array - \"p\".\n",
+    "topic": "Pointers"
+  },
+  {
+    "question": "What will be the output of the program ?\n\n#include<stdio.h>\nint *check(static int, static int);\nint main()\n{\n    int *c;\n    c = check(10, 20);\n    printf(\"%d\\n\", c);\n    return 0;\n}\nint *check(static int i, static int j)\n{\n    int *p=&i; int *q = &j;\n    if(i >= 45)\n        return (p);\n    else\n        return (q);\n}",
+    "answer": "Compilation error.",
+    "explanation": "The functiion paramters can not be static.\n\nOnly storage class specifiers allowed for function parameters is register",
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "If the size of integer is 4 bytes, What will be the output of the program?\n\n#include<stdio.h>\n\nint main()\n{\n    int arr[] = {12, 13, 14, 15, 16};\n    printf(\"%d, %d, %d\\n\", sizeof(arr), sizeof(*arr), sizeof(arr[0]));\n    return 0;\n}",
+    "answer": "20 4 4",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Point out the error in the program\n\n#include<stdio.h>\n\nint main()\n{\n    int a[] = {10, 20, 30, 40, 50};\n    int j;\n    for(j=0; j<5; j++)\n    {\n        printf(\"%d\\n\", a);\n        a++;\n    }\n    return 0;\n}",
+    "answer": "Compilation error\n\nlvalue required for increment operator",
+    "explanation": "Array name  is a constant pointer. So it can not be modified. a++ in the for loop produces syntax error.\n\nInstead you can try\n\nint *ptr =a;\nfor(j=0; j<5; j++)\n    {\n        printf(\"%d\\n\",*ptr);\n        ptr++;\n    }",
+    "topic": "Arrays"
+  },
+  {
+    "question": "What will be the output of the program?\n\n#include<stdio.h>\nvoid fun(int*, int*);\nint main()\n{\n    int i=5, j=2;\n    fun(&i, &j);\n    printf(\"%d, %d\", i, j);\n    return 0;\n}\nvoid fun(int *i, int *j)\n{\n    *i = *i**i;\n    *j = *j**j;\n}\n\n",
+    "answer": "Output: 25 4",
+    "explanation": "The function takes call by reference parameter and squares them. So main gets squared values",
+    "topic": "Functions"
+  },
+  {
+    "question": "Point out the error in the following function\n\n\nf(int a, int b)\n{\n    int a;\n    return a+b;\n}",
+    "answer": "a is redeclared",
+    "explanation": "Formal parameters of a function are similar to local variables. And they share the same scope. So we can not have a local variable with the same name as parameter.\n",
+    "topic": "Functions"
+  },
+  {
+    "question": "Find out the error in this program\n\n#include<stdio.h>\nint main()\n{\n    int a=10;\n    void f();\n    a = f();\n    printf(\"%d\\n\", a);\n    return 0;\n}\nvoid f()\n{\n    printf(\"Hi\");\n}\n",
+    "answer": "We are trying to assign the return value of void function to a. ",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Why does scanf needs  address of a variable, where as printf needs just the variable?",
+    "answer": "The parameters to a function in C are call by value parameters by default. So a copy of argument is given to function. Even if function modifiets the copy, actual argument is not changed.\n\nIf instead the function takes address of a variable as parameter, it can write a value to that address. This is called call by reference parameter.\n\nSince scanf needs to read a value from standard input device and modify the variable, it needs call by reference parameter. So it needs & operator.",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "What are the different data types a C function can return? Which is default return type?",
+    "answer": "The function can return any object type except for an array or a function. The return type can be int,float, double, char, struct, union, pointer, or even pointer to function.\n\nIf the function returns nothing, the return type should be void.\n\nThe default return type of function in C is int.\n",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "How is a function with variable number of arguments defined? Which header file is needed to be included?",
+    "answer": "A variable argument function or variadic function is written with mandatory fixed arguments followed by ellipsis (...). Ellipsis statnds for variable number of arguments of any type.\n\nSuch a function needs at least one fixed arguement.\n\nThe header file to be included  here is stdarg.h  An object of type va_list must be defined. Macros va_start,va_arg and va_end defined in this header file, are used for accessing the variable arguments.\n\ne.g.\n\nvoid print_numbers(float b,int a,...)\n{\nva_list list1;\nint m;\ndouble n;\nva_start(list1,a);/* a is last fixed argument*/\nm = va_arg(list1,int);\nn = va_arg(list1,double);\nva_end(list1;);\n}\n\nva_start should specify the variable arg list macro and the last fixed argument. This initializes the variable list.\n\nva_arg extracts one argument at a time. It should specify variable arg list and the data type of argument to be  extracted. The type should be either int or double. All other types will be promoted to these two types.\n\nva_end finalizes the list.\n\n\n",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Find out the error in this piece of code\n\nint add_num(a,b)\nint a;\nint b;\n{\n   int c = a+b;\n   return c;\n}",
+    "answer": "No error",
+    "explanation": "This notation of defining parameters of the function is old syntax and is called K&R (Kernighan & Ritchie - the original inventors of C language) notation. It is still accepted. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Explain this function.\n\nstatic int square(int num)\n{\n   return num*num;\n}",
+    "answer": "Function finds square of a number and returns it.\n\nBut the function has internal linkage because of static keyword in function header. It can be called only in current translation unit(current .c file)\n\nNote that by default global variables have internal linkage where as functions have external linkage. ",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of the following program\n#include <stdio.h>\n#include <stdarg.h>\nint fun(int n, ...)\n{\n    int i, j = 1, val = 0;\n    va_list p;\n    va_start(p, n);\n    for (; j < n; ++j)\n    {\n        i = va_arg(p, int);\n        val += i;\n    }\n    va_end(p);\n    return val;\n}\nint main()\n{\n    printf(\"%d\\n\", fun(4, 1, 2, 3));\n    return 0;\n}",
+    "answer": "Output : 6",
+    "explanation": "The var arg function in this program finds the sum of parameters excluding first parameter. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a recursive function to find the sum of digits of a number",
+    "answer": "int sum_of_digits(int n)\n{\n    if(n>0)\n      return n%10+sum_of_digits(n/10);\n}",
+    "explanation": "The function extracts last digit of the number. Then recursively calls itself for rest of the number.\n\nThe terminating condition here is n  greater than 0. And when this condition is false there is no recursive call. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of the program\n\n#include<stdio.h>\nint foo(int n);\nint main()\n{\n  int i;\n  for(i=0;i<5;i++)\n  {\n     int num = foo(i);\n     printf(\"%d  \",num);\n   }\n  return 0;\n}\n\nint foo(int n)\n{\n   static int sum=0;\n   sum +=n*n;\n   return sum;\n}",
+    "answer": "Output : 0 1 5 14 30",
+    "explanation": "sum in the function is static. Hence it is initialized only once. Later its old value gets added with n*n\n\n1, 0+1*1, 1+ 2*2, 5+3*3 etc.",
+    "topic": "Functions"
+  },
+  {
+    "question": "Can we use a function as parameter to another function? e.g. int foo(int n,int bar(int));",
+    "answer": "No",
+    "explanation": "A function  can not have another function as parameter.\nBut it can have a function pointer as parameter\n\ne.g.\nint sort(int (*compare)(int,int),int arr[]);",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the difference between &a and &a[0]?",
+    "answer": "&a is pointer to the array. &a[0] is int pointer if a is array of int, char pointer if a is array of char etc.\n\nThough both give same numerical values, in expressions they behave differently.\n\n\n&a + 1 = address of a +(number of elements in a *size of element) . It points to next array.\n\n&a[0] + 1 = address of a + 1 *size of element. This points to next element in array.\n\ne.g.\nif a[5] - an array of 5 ints  is stored in location 1000, and size of int is 4 bytes\n\nthen\n\n&a+1 = 1020\n&a[0]+1 = 1004",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Can a function have more than one return statement? Can it have no return statement at all? Can a void function have a return statement?",
+    "answer": "The answer is YES for all three questions. ",
+    "explanation": "A function can have multiple return statements based on conditions.\n\nif (a%2==0)\n   return 1;\nelse\n  return 0;\n\nReturn will always terminate the function and go back to caller with the return value.\n\nA function can be written without a return statement. If it is a void function, it does not return anything. But if a function is non-void and the function does not have an explicit return statement, it returns a garbage value.\n\nA void function can have an empty return statement. - return followed by semicolon. It is used to take control out of function. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "What is the output of the following program?\n\n#include<stdio.h>\nint main()\n{\n   int square(int n);/*declaration*/\n   int a = 10;\n   a = square(a);\n   printf(\"%d\",a);\n   return 0;\n}\nint square(int n)\n{\n   int temp = n*n;\n}",
+    "answer": "Output : Garabage value",
+    "explanation": "Even though function is calculating square, it is not returning it. Hence some garbage value is returned from the function. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write output of the following program\n\n        #include <stdio.h>\n        int main()\n        {\n            int i = 97, *p = &i;\n            foo(&i);\n            printf(\"%d \", *p);\n        }\n        void foo(int *p)\n        {\n            int j = 2;\n            p = &j;\n            printf(\"%d \", *p);\n        }",
+    "answer": "2 97",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "What will happen when the following program is exectued?\n\n#include<stdio.h>\nint main()\n{\n   printf(\"%p\",main);\n   return 0;\n}",
+    "answer": "Prints some address - address of main function",
+    "explanation": "printf(\"%p\",main)\n will not call main recursively because there is no paranthesis - so it is not function call. ",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a C program to find the largest of command line parameters",
+    "answer": "#include<stdio.h>\nint main(int argc,char *argv[])\n{\n    int i,largest=0;\n    if(argc<=1)\n       printf(\"No numbers provided\");\n    else\n   {\n        largest = atoi(argv[1]);/*argv[0] is command name*/\n       for(i=2;i<argc;i++)\n       {\n             int n = atoi(argv[i]);\n             if(n>largest)\n                 largest = n;\n       }\n      printf(\"Largest number is %d\\n\",largest);\n   }\n  return 0;\n}",
+    "explanation": null,
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "What is the difference between #include< > and #include\" \"",
+    "answer": "If include file name is specified in angle brackets <>, the file is searched in standard include directory of C compiler.\n\nIf the include file is specified in double quotes, it is searched in current directory first, if not found, it is then searched in standard include directories as well.\n\nIf the include filename is given with complete path, then it is searched only in that path. ",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What will be the output of the following program\n\n#include<stdio.h>\n#define square(x) x*x\nint main()\n{\n   int n=10;\n   int m=5;\n   n = n+square(m+2);\n   printf(\"%d\",n);\n}",
+    "answer": "17",
+    "explanation": "As the macro paramter x does not have brackets, the expansion will be\n\n5+2*5+2\n\nIn C, * has higher priority. So the answer will 5+10+2\n\nThough macros are easy to write than functions, they are often error prone as shown in this example. ",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What will be the output of this program\n\n#include<stdio.h>\n#define JOIN(s1, s2) printf(\"%s=%d %s=%d \\n\", #s1, s1, #s2, s2);\nint main()\n{\n    int n1=4;\n    int n2=5;\n    JOIN(n1,n2);\n    return 0;\n}",
+    "answer": "n1=4 n2=5",
+    "explanation": "# operator in a preprocessor macro is called stringizing operator. It converts the paramter into a quoted string. So\n\nprintf becomes\n\nprintf(\"%s=%d %s=%d \\n\", #n1,n1,#n2,n2);\n\n#n1 will become \"n1\" and #n2 will become \"n2\"\n\nPrintf becomes\nprintf(%s=%d %s=%d \\n\", \"n1\",n1,\"n2\",n2);\n\nThis interesting macro operator can be used to print the name and value of a variable. ",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What is conditional compilation in C? ",
+    "answer": "Using #if of #ifdef or #ifndef macros, the  preprocessor can include or exclude part of the code. This is called conditional compilation.\n\nIt is used for compiling for different architectures or different standards etc.\n\ne.g.\n#include<stdio.h>\n#define m 10\nint main()\n{\n    printf(\"Hello world\\n\");\n#ifdef m\n    printf(\"Good bye world\\n\");\n#endif\n}\n\nOutput will be\nHello world\n Good bye world\n\nBut if #define m 10 is removed from program, printf(\"Good bye world\\n\") omitted from the program by preprocessor. And output will be just Hello world\n",
+    "explanation": "e.g.\n\nsum = 0;\nfor(i=0;i<10;i++)\n{\n    int sq = i*i;\n #ifdef DEBUG\n    printf(\"%d is %d\\n\",i,sq);\n#endif\n   sum +=sq;\n}\n\nHere for debugging, you need to define macro DEBUG. And the compiler includes printf statement in the loop. If you don't define DEBUG then printf is not included in the for loop",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What are the difference between #define and typedef? ",
+    "answer": "#define is just preprocessor macro and is error prone. It just literally replaces one text with another. Where as typedef gives a new name to a type.\n\nConsider this example\n\n#define INTPTR int *\ntypedef int * INTPTR2;\n\nint main()\n{\n  INTPTR p1,p2;\n  INTPTR2 p3,p4;\n\n}\n\nline 1 in main will be preprocessed as\nint *p1,p2;\n\nSo p2 will be an integer instead of int*\n\nBut p3 and p4 will be  integer pointers becaue typedef is defining INTPTR2 as int *\n\ntypedef can be used to simplify definition of complex data types.\n\ne.g.\ntypedef int *INTPTR;\ntypedef INTPTR (*FPTR)(INTPTR);\n\nFPTR is function pointer which takes an integer pointer as a paramter and also returns an integer pointer.\n\n",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Can a macro be redefined? If yes, how?",
+    "answer": "Macro can be redefined after undefining it.\n\ne.g.\n#define NUM_OF_ELS 10\n\n#undef NUM_OF_ELS\n#define NUM_OF_ELS 5\n",
+    "explanation": null,
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "What is the output of this program?\n\n#include<stdio.h>\nint main()\n{\n    printf(\"%s\\n\",__DATE__);\n    printf(\"%s\",__FILE__);\n}",
+    "answer": "It prints the system date and in the next line it prints the filename of the current C program",
+    "explanation": "__FILE__, __DATE__, __TIME__ are all predefined macros.\n__FILE__ gives a string which is file name with full path\n__DATE__ gives system date at the time of compilation\n__TIME__ gives system time at the time of compilation",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Write output of the following program\n\n#include\u2039stdio.h\u203a\nint main()\n{\n    struct st\n    {\n        char name[] = \"hello world\";\n        int num = 200;\n    };\n    struct st *ptr;\n    printf(\"%d \", ptr->num);\n    printf(\"%s\", ptr->name);\n\n    return 0;\n}",
+    "answer": "Compilation error",
+    "explanation": "struct st  is a datatype declaration. Not a variable. Hence we can not initialize the members.",
+    "topic": "Structures"
+  },
+  {
+    "question": "Assume that size of an integer is 32 bit. What is the output of following program?\n\n#include<stdio.h>\nstruct st\n{\n    int x;\n    static int y;\n};\n\nint main()\n{\n    printf(\"%d\", sizeof(struct st));\n    return 0;\n}",
+    "answer": "Compilation error",
+    "explanation": "struct and unions can not have static members in them",
+    "topic": "Structures"
+  },
+  {
+    "question": "struct node\n{\n   int i;\n   float j;\n};\nstruct node *s[10];\n\nWhat is the type of s in the above code?",
+    "answer": "s is an array of pointers to structure node. ",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": " What will be output of following c code?\n\nint  main()\n{\nstruct bitfield\n{\nsigned int a:3;\nunsigned int b:13;\nunsigned int c:1;\n};\nstruct bitfield bit1={2,14,1};\nprintf(\"%d\",sizeof(bit1));\n}",
+    "answer": "4 ",
+    "explanation": "Though the program uses bit fields, the whole structure will be word aligned. Hence the size will be one word viz 4 bytes.",
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of following C code?\n\nmain()\n{\n   struct emp\n   {\n     char name[20];\n     int age;\n     float sal;\n   };\n   struct emp e ={\"Tiger\"}\n   printf(\"%d %f\",e.age,e.sal);\n}",
+    "answer": "0 0.00000",
+    "explanation": "Structure can be initialized partially. The uninitialized elements will be set to 0",
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of this C code?\n\n        #include <stdio.h>\n        struct student\n        {\n            char *name;\n        };\n        struct student s[2], r[2];\n        int  main()\n        {\n            s[0].name = \"alan\";\n            s[1] = s[0];\n            r = s;\n            printf(\"%s%s\", r[0].name, r[1].name);\n        }\n",
+    "answer": "Compilation Error",
+    "explanation": "Array s is assigned to r in line 3 of main funciton, which produces error.\n\nYou can not assign an entire array to another in C",
+    "topic": "Structures"
+  },
+  {
+    "question": "struct p\n{int a;\n  char b;\n};\nint main()\n{\n    struct p p1[] = {1, 92, 3, 94, 5, 96};\n    struct p *ptr1 = p1;\n}\n\nWhat are p1 and ptr in the above program?",
+    "answer": "p1 is an array of 3 structures and ptr is a pointer pointing to p1[0]",
+    "explanation": "The initializer initializes such that p1[0] is set to 1,92. That is p1[0].a is 1 and p1[0].b is 92 .\n\nSimilarly p1[1] is set to 3 and 94 and p1[2] is set to 5 and 96",
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of this C code?\n\n        #include <stdio.h>\n        struct student\n        {\n            char *c;\n        };\n        int  main()\n        {\n            struct student *s;\n            s->c = \"hello\";\n            printf(\"%s\", s->c);\n       }\n",
+    "answer": "Run time error. Segmentation fault",
+    "explanation": "The structure pointer is not allocated memory nor is it assigned to address of a structure. So it is uninitialized pointer.\n\nHence when program tries derefernce this address, you get run time error , segmentation fault",
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of the following program?\n    struct q\n    {\n        int *x;\n    };\n    int main()\n    {\n\n        struct q *ptr;\n        ptr = (struct q*)malloc(sizeof(struct q));\n        *(ptr->x)=15;\n        printf(\"%d\",*(ptr->x));\n        return 0;\n      }",
+    "answer": "Run time error. Segmentation fault",
+    "explanation": "This program allocates memory to the structure, but not to the integer member of structure pointed by x. Hence run time error.\n\nThe write code should be\n  struct q *ptr;\n  ptr = (struct q*)malloc(sizeof(struct q));\n  ptr->x = (int *)malloc(sizeof(int));\n  *(ptr->x)=15;",
+    "topic": "Structures"
+  },
+  {
+    "question": "What is a self referential stucture? Where is it used?",
+    "answer": "The structure with one of the members as pointer to same structure is called self referential structure.\n\nstruct node\n{\n   int val;\n   struct node *ptr;\n};\n\nnode is a self referential structure.\n\nSelf referential structures are building blocks of linked lists, trees, queues etc. Each object in these data structures will be such a structure and address of next structure will be allocated dynamically and stored in node pointer.",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of the following program?\n\n        #include <stdio.h>\n        struct student\n        {\n            char *c;\n            struct student *point;\n        };\n        int  main()\n        {\n            struct student s;\n            struct student m;\n            m.point = &s;\n            (m.point)->c = \"hey\";\n            printf(\"%s\", s.c);\n       }",
+    "answer": "hey",
+    "explanation": "This code shows an example of linked list with 2 nodes. ",
+    "topic": "Structures"
+  },
+  {
+    "question": " #include <stdio.h>\n  union temp\n   {\n      int a;\n      float b;\n      char c;\n    };\n   union temp t1 ; t1.a=66;\n\nWhat will be the value of temp.c after the above statements?",
+    "answer": "66",
+    "explanation": "Unlike a structure, a union has a common memory location for all the members. Only one of the members can be active at a time. Hence if we set a, c will also have same value as a",
+    "topic": "Structures"
+  },
+  {
+    "question": "What's the difference between these two declarations?\n\n\tstruct x1 { ... };\n\ttypedef struct { ... } x2;",
+    "answer": "X1 is a structure tag. So a variable should be declared as\n\nsturct X1 s1;\n\nX2 is a type. Hence a structure using X2 can be defined without using struct keyword\n\nX2 s1;",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the size of\n struct a{int i;char c}?\n\n Why is it not 5 bytes?",
+    "answer": "Because of structure padding.\n\nFor faster access, each member of structure is aligned to word boundaries. This causes padding to be added in between members.\n\nSo after c of the structure 3 bytes are padded  in a 32 bit machine. Hence size of struct is 8 bytes.\n\nAvoidance of padding is implementation dependant. In gcc compiler it is done using\n__attribute__((__packed__))\n",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "Can the members of union be initialized? If yes, how? ",
+    "answer": "In ANSI 89 standard, only first member of union be initialized. But in C99 standard, different members can be initialized using a syntax such as\n\nunion  aaa\n{\nint val;char ch;\n} ;\nunion aaa temp =\n {.ch='P',.val=44};\n\nAnd union will have the value assigned last.",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "Can we initialize members of struct in any order? If yes, how?",
+    "answer": "In C99 standard it is possible using initializer of the type\n\nstruct st s1 = {.val = 600,.ch='A'};",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of the following program?\n\n#include<stdio.h>\nenum m {a=6,b,c,d=3,e};\nint main()\n{\n   enum m temp;\n   temp = e;\n   printf(\"%d\",temp);\n   return 0;\n}",
+    "answer": "4",
+    "explanation": "The enum values start with 0 by default. If any value is assigned, the subsequent members continue from that value.\n\nIn this case\n\nenum m {a=6,b,c,d=3,e};\n\nmakes m.b as 7, m.c as 8\nm.d is assigned to 3\nm.e is 4",
+    "topic": "Structures"
+  },
+  {
+    "question": "What are bit fields? How are they used?",
+    "answer": "A structure or a union may contain small fields which occupy n number of bits. Their usefulness is limited.\n\nstruct aa\n{\n    int a:3;\n    unsigned int b:2;\n    int m;\n};\n\nHere a is occupying 3 bits and b occupies 2 bits.\n\nThe only types allowed for bit fields are signed or unsigned ints. You can not take address of a bit field.",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "What is the output of the program?\n\n#include<stdio.h>\nint main()\n{\n    enum color{red, green, blue};\n    typedef enum color mycolor;\n    mycolor m = red;\n    printf(\"%d\", m);\n    return 0;\n}",
+    "answer": "0",
+    "explanation": "enum values start with 0 unless they are explicitly specified",
+    "topic": "Structures"
+  },
+  {
+    "question": "What will be the output of the program?\n\n#include<stdio.h>\ntypedef struct error\n {\nint warning, err, exception;\n} ERROR;\nint main()\n{\n    ERROR e;\n    e.err=1;\n    printf(\"%d\\n\", e.err);\n    return 0;\n}",
+    "answer": "1",
+    "explanation": null,
+    "topic": "typedef"
+  },
+  {
+    "question": "In the following code snippet can we declare a new typedef named ptr even though struct employee has not been completely declared while using typedef?\n\ntypedef struct employee *ptr;\nstruct employee\n{\n    char name[20];\n    int age;\n    ptr next;\n}",
+    "answer": "yes",
+    "explanation": null,
+    "topic": "typedef"
+  },
+  {
+    "question": "Is the following code valid? If yes what are n and p?\n\ntypedef long no, *ptrtono;\nno n;\nptrtono p;\n",
+    "answer": "n is long integer and p is a pointer to long integer.",
+    "explanation": null,
+    "topic": "typedef"
+  },
+  {
+    "question": "Write a program to read command line arguments and store them in int array and find the sum and product of them. If no arguments are given the program should print that.",
+    "answer": "#include<stdio.h>\nint main(int argc,char *argv[])\n{\n   int arr[20],i,len,sum=0,prod=1;\n   if(argc<2)\n     {\n        printf(\"No command line arguments\\n\");\n        return 0;\n      }\n   len = argc-1; //0th element is program name\n   for(i=0;i<len;i++)\n   {\n       int temp = atoi(argv[i+1]);\n       sum+=temp;\n       prod*=temp;\n   }\n   printf(\"Sum is %d and product is %d\\n\",sum,prod);\n   return 0;\n}",
+    "explanation": null,
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "Write a program to print gcd of first two command line arguments provided. Calculate gcd using recursive function.",
+    "answer": "#include<stdio.h>\nint gcd(int a,int b);\nint main(int argc,char *argv[])\n{\n   int a,b,answer;\n   if(argc<3)\n     {\n        printf(\"No command line arguments\\n\");\n        return 0;\n      }\n\n    a = atoi(argv[1]);\n    b = atoi(argv[2]);\n    if(b>a)\n    {\n      int t = a;\n      a = b;\n      b = t;\n     }\n    answer = gcd(a,b);\n   printf(\"Gcd of %d and  %d is %d\\n\",a,b,answer);\n   return 0;\n}\n\nint gcd(int a,int b)\n{\n   if(a%b >0)\n     return gcd(b,a%b);\n   else\n     return b;\n}\n",
+    "explanation": null,
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "What will be the output of the program (myprog.c) given below if it is executed from the command line?\ncmd> myprog one two three\n\n /* myprog.c */\n#include<stdio.h>\n int main(int argc, char **argv)\n {\n printf(\"%c\\n\", **++argv);\nreturn 0;\n }\n\n",
+    "answer": "Output : o",
+    "explanation": "argv++ will increment the pointer to  argv[1]  which is \"one\". *argv is \"one\" and **argv is o.   ",
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "Write a program to check if a String contains another String and returns its first index or -1",
+    "answer": "int indexof(char *src,char *searchstr)\n{\n    int i=0;\n    int len = strlen(searchstr);\n    while(src[i])\n    {\n       int result=strncmp(src+i,searchstr,len);\n       if(result==0)\n          return i;\n       i++;\n    }\n    return -1;\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to find the highest occuring character of a string.",
+    "answer": "#include<stdio.h>\n#include<string.h>\nchar highest(char *str);\nint largestindex(int arr[],int size);\nint main()\n{\n   char str[50];\n   printf(\"Enter string:\");\n   gets(str);\n   printf(\"The most frequent character in the string is %c\\n\",highest(str));\n   return 0;\n}\n\nchar highest(char *str)\n{\n  int temp[50]={0};\n  int i;\n  for(i=0;str[i];i++)\n  {\n     char ch = str[i];\n     int count =1;\n     int j;\n     for(j=0;str[j];j++)\n        if(str[j]==ch)\n            count++;\n     temp[i]=count;\n  }\n  i = largestindex(temp,strlen(str));\n  return str[i];\n}\n\nint largestindex(int arr[],int size)\n{\n   int i,largestindex = 0;\n   for(i=0;i<size;i++)\n      if(arr[i]>arr[largestindex])\n         largestindex = i;\n   return largestindex;\n}",
+    "explanation": "Here a temporary int array is used which stores frequency of each char.\n\ne.g.\nIf string is \"hello world\" then temp will be\n\n{1,1,3,3,2,1,1,2,1,3,1}\n\nThat is to say\nfrequency of h is 1,\ne is 1,\nl is 3,\nl is 3,\no is 2\netc.\n\nNow the largest element of temp is found and the character in this index is returned.\n\nIn this case 3 is largest element, its first index is 2. So the function returns l-(ell)",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you sort String on their word lengths in C?\n\ne.g.  this is C program\n\nshould become\n\nC is this program\n",
+    "answer": "#include<stdio.h>\n#include<string.h\n#include<stdlib.h>\nint break_into_words(char *str,char *words[20]);\nvoid sort_words(char *words[20],int num);\nvoid print_words(char *words[20],int num);\nint main()\n{\n   char str[100];\n   int num_words;\n   char *words[20];\n   gets(str);\n   num_words = break_into_words(str,words);\n   print_words(words,num_words);\n   sort_words(words,num_words);\n   print_words(words,num_words);\n   return 0;\n}\n\nint break_into_words(char *str,char *words[20])\n{\n     int i=0,j=0;\n     int whitespacestarted = 0;\n     char ch;\n     words[0] = (char*)malloc(20);\n     while(*str)\n     {\n       ch = *str++;\n       if (ch==' '||ch=='\\t'||ch=='\\n')\n         {\n             words[i++][j]=0;\n             j=0;\n             words[i] = (char*)malloc(20);\n         }\n         else\n           {\n               words[i][j++]=ch;\n           }\n      }\n      if(ch!=' '&&ch!='\\n'&&ch!='\\t')\n          words[i++][j]=0;\n      return i;\n}\n\nvoid sort_words(char *words[20],int n)\n{\n     int i,j;\n     char *temp;\n     for(i=1;i<n;i++)\n    {\n        temp=words[i];\n        j=i-1;\n        while(j>=0 && strlen(temp)<strlen(words[j]))\n        {\n             words[j+1] = words[j];\n              j--;\n          }\n          words[j+1]=temp;\n       }\n}\nvoid print_words(char *words[20],int n)\n{\n  int i;\n  for(i=0;i<n;i++)\n     printf(\"%s \",words[i]);\n  puts(\"\");\n}\n",
+    "explanation": "Here the string is broken into an array of char pointers. This array is sorted using insertion sort comparing the string lengths. And then the words are printed.",
+    "topic": "Strings"
+  },
+  {
+    "question": "How to find first non repeated character of a given String?",
+    "answer": "int first_non_repeated_char(char *str)\n{\n  int i;\n  for(i=0;str[i];i++)\n  {\n     char ch = str[i];\n     int j;\n     int repeated = 0;\n     for(j=0;str[j];j++)\n        if(i!=j && str[j]==ch)\n            {\n               repeated = 1;break;\n            }\n     if(!repeated && isalpha(ch))\n          return ch;\n  }\n\n   return -1;\n}",
+    "explanation": " ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to check if given two strings are anagrams",
+    "answer": "#include<stdio.h>\n#include<string.h>\nint check_anagram(char *str1,char *str2);\nvoid delete_char(char *str,char ch);\nint main()\n{\n   char str1[60],str2[60];\n   int angrm=0;\n   printf(\"Enter two strings:\");\n   gets(str1);\n   gets(str2);\n   angrm = check_anagram(str1,str2);\n   printf(\"The strings  are %s\\n\",angrm?\"anagrams\":\"not anagrams\");\n   return 0;\n}\n\n\nint check_anagram(char *str1, char *str2)\n{\n    int i;\n    for(i=0;str1[i];i++)\n     {\n         char ch = str1[i];\n         char *ptr = strchr(str2,ch);\n         if(ptr==NULL)\n           return 0;\n         delete_char(str2,ch);\n     }\n     if(strlen(str2)==0)\n        return 1;\n     return 0;\n}\n\nvoid delete_char(char *str,char ch)\n{\n      char *ptr = strchr(str,ch);\n      if(ptr==NULL)\n         return;//error\n      while(*ptr)\n      {\n          *ptr = *(ptr+1);\n          ptr++;\n      }\n}",
+    "explanation": "We are checking each character in first string, and if found removing it from second string. So if both of them contain same set of characters i.e. they are anagrams. then at the end of iteration, second string will be empty. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to find all pairs in array of integers whose sum is equal to given number? ",
+    "answer": "int find_pairs(int *arr,int size,int sum,int *arr2)\n{\n     int i,j;\n     int k=0;\n     for(i=0;i<size;i++)\n        {\n           int n1 = arr[i];\n           for(j=i+1;j<size;j++)\n               {\n                  if(n1+arr[j]==sum)\n                    {\n                        arr2[k]=n1;\n                        arr2[k+1]=arr[j];\n                        k+=2;\n                        break;\n                     }\n                 }\n           }\n       return k;\n}\n\nint main()\n{\n    int arr[20],pairs[20];\n    int len,sum;\n    int i,k;\n    printf(\"len=\");\n    scanf(\"%d\",&len);\n    for(i=0;i<len;i++)\n       scanf(\"%d\",&arr[i]);\n    printf(\"Sum = \");\n    scanf(\"%d\",&sum);\n    k = find_pairs(arr,len,sum,pairs);\n    for(i=0;i<k;i+=2)\n       printf(\"%d %d\\t \",pairs[i],pairs[i+1]);\n}\n",
+    "explanation": "The function has one extra parameter to store the pairs. Sum of every element with every other element is calculated, and if it is the required sum, the pair is stored in second array.\n\nThe complexity is quadratic - O(N2)",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a function to reverse the digits of an integer",
+    "answer": "int reverse_integer(int n)\n{\n  int rev_num = 0;\n  while(n)\n  {\n     int digit = n%10;\n     n/=10;\n     rev_num = rev_num*10 + digit;\n   }\n   return rev_num;\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a program to print all the prime factors of a number",
+    "answer": "# include <stdio.h>\n# include <math.h>\n// A function to print all prime factors of a given number n\nvoid primeFactors(int n)\n{\n    /* Print the number of 2s that divide n*/\n    while (n%2 == 0)\n    {\n        printf(\"%d \", 2);\n        n = n/2;\n    }\n\n    /* n must be odd at this point.  So we can skip one element*/\n    for (int i = 3; i <= sqrt(n); i = i+2)\n    {\n        /* remove all i-s from the number */\n        while (n%i == 0)\n        {\n            printf(\"%d \", i);\n            n = n/i;\n        }\n    }\n\n\n    if (n > 2)\n        printf (\"%d \", n);\n}\n\n/* Driver program to test above function */\nint main()\n{\n    int n;\n    printf(\"n=\");\n    scanf(\"%d\",&n);\n    primeFactors(n);\n    return 0;\n}\n ",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a function to find first element of an array which is not present in second array. Arrays are of different sizes.",
+    "answer": "#include<stdio.h>\n#define MAX 30\nint indexOf(int n,int *arr,int len)\n{\n   int i;\n   for(i=0;i<len;i++)\n      if(arr[i]==n)\n         return i;\n    return -1;\n}\nint not_common_element(int *arr1,int len1,int *arr2,int\nlen2)\n{\n     int i;\n     for(i=0;i<len1;i++)\n        if(indexOf(arr1[i],arr2,len2)==-1)\n             return arr1[i];\n     return -1;\n}\nint main()\n{\n   int arr1[MAX],arr2[MAX];\n   int el; int len1,len2,i;\n   printf(\"Size of first array:\");\n   scanf(\"%d\",&len1);\n   printf(\"Size of second array:\");\n   scanf(\"%d\",&len2);\n   printf(\"First array elements:\");\n   for(i=0;i<len1;i++)\n     scanf(\"%d\",&arr1[i]);\n   printf(\"Second array elements:\");\n   for(i=0;i<len2;i++)\n     scanf(\"%d\",&arr2[i]);\n\n   el= not_common_element(arr1,len1,arr2,len2);\n   if(el==-1)\n      printf(\"All elements are present\");\n   else\n      printf(\"%d is not present in second array \",el);\n   return 0;\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a function to check if an array is in ascending order and return the number of elements which are out of order",
+    "answer": "#include<stdio.h>\nint read_array(int *arr)\n{\n   int len;\n   int i;\n   printf(\"Enter size of array:\");\n   scanf(\"%d\",&len);\n   for(i=0;i<len;i++)\n      scanf(\"%d\",&arr[i]);\n   return len;\n}\nint out_of_order(int *arr,int len)\n{\n    int i;\n    int count = 0;\n    for(i=0;i<len-1;i++)\n      if(arr[i]>arr[i+1])\n         count++;\n\n    return count;\n}\nint main()\n{\n   int arr[20];\n   int len;\n   int num_of_wrong_cells;\n   len = read_array(arr);\n\n   num_of_wrong_cells= out_of_order(arr,len);\n   if(num_of_wrong_cells==0)\n        printf(\"Array is in ascending order\\n\");\n   else\n        printf(\"The number of elements out of order is %d\\n\",num_of_wrong_cells);\n   return 0;\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a function to remove white spaces at the begining and end of the string. ",
+    "answer": "#include<stdio.h>\n#include<string.h>\n#include<stdlib.h>\nchar *trim_string(char *str);\nint main()\n{\n   char str[60]; char *ptr;\n   gets(str);\n   ptr= trim_string(str);\n   printf(\"After removing the white spaces, the string is |%s|\\n\",ptr);\n   return 0;\n}\n\nchar *trim_string(char *str)\n{\n   int len;\n   char *temp = (char*)malloc(60);\n   while(*str==' ' || *str=='\\t' || *str=='\\n')//find spaces at begining\n     str++;\n\n    len = strlen(str);\n    temp = str+len-1;\n    while(*temp==' ' || *temp=='\\t' || *temp=='\\n')//find spaces at end\n       temp--;\n     temp++;\n     *temp = 0;\n     return str;\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to check if a string begins with another string. e.g. app and apple, app and application etc.",
+    "answer": "int begins_with(char *str1,char *str2)\n{\n      int l = strlen(str2);\n      if  ( strncmp(str1,str2,l)==0)\n         return 1;\n      return 0;\n }",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to test if a string str1 ends with str2. e.g. examination ends with nation. Thesis ends with is",
+    "answer": "#include<stdio.h>\n#include<string.h>\nint ends_with(char *str1, char *str2);//returns 1 if str1 begins with str2\nint main()\n{\n   char str1[100],str2[100];\n   gets(str1);\n   gets(str2);\n   if(ends_with(str1,str2))\n     printf(\"%s ends with %s\\n\",str1,str2);\n   else\n     printf(\"%s does not end with %s\\n\",str1,str2);\n   return 0;\n}\nint ends_with(char *str1,char *str2)\n{\n     int l = strlen(str2);\n     str1 = str1+ (strlen(str1) - l);\n     if(strcmp(str1,str2)==0)\n      return 1;\n     return 0;\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to replace every instance of a character with another charcter. e.g. replace i with j for \"C is a nice language\" will become \"C js njce language\"",
+    "answer": "#include<stdio.h>\n#include<string.h>\nvoid replace(char *str,char ch1,char ch2)\n{\n   while(*str)\n   {\n     if (*str==ch1)\n       *str = ch2;\n     str++;\n    }\n}\nint main()\n{\n   char str[100];\n   char ch1,ch2;\n   gets(str);\n   printf(\"Enter character to replace :\");\n   scanf(\"%c\",&ch1);\n   printf(\"Enter new character in place of %c :\",ch1);\n   scanf(\" %c\",&ch2);\n   replace(str,ch1,ch2);\n   printf(\"After replacing %c with %c the string is %s\\n\",ch1,ch2,str);\n   return 0;\n} ",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to check if all the bits of a number are ones. e.g. 15, 7, 31 etc",
+    "answer": "#include<stdio.h>\nint main()\n{\n   int num;\n   printf(\"num:\");\n   scanf(\"%d\",&num);\n   if( (num>0 && num&(num+1))==0)\n\n       printf(\"number  has all bits set\");\n   else\n       printf(\"number does not have all bits set\");\n   return 0;\n}",
+    "explanation": "If the number has all bits as 1, then the next number will be having MSB+1 set and all other bits 0. . When we bitwise and (&) num and num+1, we should get 0.\n\ne.g.\n\nIf the number is 15,\n\n15 = 1111\n15+1 = 16 = 10000\n\n15&16 = 1111 & 10000 = 0",
+    "topic": "Operators"
+  },
+  {
+    "question": "Given an array, write a program find two elements whose difference is closest to zero.",
+    "answer": "#include<stdio.h>\nint read_array(int *arr);\nvoid sum_closest_to_0(int *arr,int n,int*aptr,int*bptr);\nint main()\n{\n   int arr[30];\n   int el1,el2;\n   int len = read_array(arr);\n    sum_closest_to_0(arr,len,&el1,&el2);\n   printf(\"the elements are %d and %d\\n\",el1,el2);\n   return 0;\n}\nint read_array(int *arr)\n{\n   int len;\n   int i;\n   printf(\"Enter size of array:\");\n   scanf(\"%d\",&len);\n   for(i=0;i<len;i++)\n      scanf(\"%d\",&arr[i]);\n   return len;\n}\nvoid sum_closest_to_0(int *arr,int n,int *aptr,int *bptr)\n{\n      int i,j;\n      int zr_sum=10000;\n      int a,b;\n      for(i=0;i<n;i++)\n         for(j=0;j<n;j++)\n            {\n               if(i==j)\n                 continue;\n               int diff = arr[i]-arr[j];\n               if(abs(diff)<abs(zr_sum))\n                   {\n                      a = arr[i];\n                      b = arr[j];\n                      zr_sum = diff;\n                    }\n              }\n       *aptr = a;\n       *bptr = b;\n}\n  ",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a program to print the size of a text file in bytes where filename is given with command line.",
+    "answer": "#include<stdio.h>\nint main(int argc,char *argv[])\n{\n\n    FILE *fptr;\n    int n;\n    if(argc<=1)\n    {\n          printf(\"Syntax is 'filesize filename'\");\n          return 0;\n     }\n     fptr = fopen(argv[1],\"r\");\n     if(fptr==NULL)\n     {\n        printf(\"Unable to open file\");\n        return 0;\n      }\n      fseek(fptr,0L,SEEK_END);\n      n = ftell(fptr);\n      printf(\"Size of file is %d bytes\\n\",n);\n      return 0;\n}",
+    "explanation": "fseek to SEEK_END takes the file pointer to the end of the file. And ftell at this location gives the position of the file pointer in terms of bytes. Which is the size of the file",
+    "topic": "File Handling"
+  },
+  {
+    "question": "Write a function to print if the number is even or odd without using if statement",
+    "answer": "void even_odd(int n)\n{\n     n&1?printf(\"Odd\"):printf(\"Even\");\n}\n\nvoid even_odd2(int n)\n{\n    swithc(n%2)\n   {\n      case 1:printf(\"even\");break;\n      case 0:printf(\"odd\");break;\n    }\n}",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "How do you modify the below code so that, program prints global variable i  with value -45, not local variable i with value 12.\n\nint i=45;\nint main()\n{\n   int i=12;\n   printf(\"%d\",i);\n}\n   ",
+    "answer": "int i=45;\nint main()\n{\n   int i=12;\n   {\n     extern int i;\n     printf(\"%d\",i);\n   }\n}\n  ",
+    "explanation": "extern int i inside the block declares a variable i, but does not define it. So the variable is searched in global scope. ",
+    "topic": "Storage Classes"
+  },
+  {
+    "question": "Write a program to implement \"cat\". The program should accept text file name as command line argument and print the content of the file.",
+    "answer": "#include<stdio.h>\n#include<stdlib.h>\nvoid print_file(FILE *fptr)\n{\n    int ch;\n    while ( (ch=fgetc(fptr))!=EOF)\n       putchar(ch);\n}\nint main(int argc,char **argv)\n{\n   int i,num1,num2,ans=0;\n   char operator;\n   FILE *fptr;\n   if(argc<2)\n   {\n       printf(\"filename is not given at command line\");\n       return 0;\n   }\n   fptr = fopen(argv[1],\"r\");\n   if(fptr==NULL)\n   {\n      printf(\"Can not open %s\\n\",argv[1]);\n      return 0;\n    }\n    print_file(fptr);\n    return 0;\n\n} ",
+    "explanation": null,
+    "topic": "Command line arguments"
+  },
+  {
+    "question": "Write a macro to print the name and value of an integer",
+    "answer": "#define PRINT(x) printf(\"%s = %d\\n\",#x,x)",
+    "explanation": "By using #operator on macro parameter, converts the parameter to a string.\n\nSo PRINT(a) ---> printf(\"%s =%d\\n\",#x,x) ----> printf(\"%s = %d\\n\",\"n\",2)",
+    "topic": "Preprocessor"
+  },
+  {
+    "question": "Write a function has_zero_diagonal which checks if a 5X5 integer array has all elements in major diagonal as zero. ",
+    "answer": "int has_zero_diagonal(int arr[][5])\n{\n     int i,j;\n     for(i=0;i<5;i++)\n         if(arr[i][i]!=0)\n           return 0;/* non zero diagonal element*/\n     return 1;\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "wc is unix utility which counts number of characters, words and lines in a given file. If no filename is specified it takes input from standard input device. Implement it in C program",
+    "answer": "#include<stdio.h>\n#include<stdlib.h>\nint main(int argc,char *argv[])\n{\n   char *filename;int nch,nwrd,nln,prevchar;\n   FILE *fptr;\n   int ch;\n   nch=nwrd=nln=0;prevchar=1;\n   if(argc==1)//filename is not specified\n   {\n      fptr = stdin;//use standard input device\n   }\n   else\n   {\n      fptr = fopen(argv[1],\"r\");\n   }\n   if(fptr==NULL)\n   {\n     printf(\"Unable to open file\");\n     exit(1);\n   }\n   while ((ch=getc(fptr))!=-1)\n   {\n       nch++;\n       if(ch=='\\n')\n       {\n          nln++;   nwrd++;  prevchar=0;\n        }\n        else if (ch==' '||ch=='\\t' &&  prevchar)\n        {\n            nwrd++; prevchar=0;\n        }else{\n           prevchar=1;\n        }\n     }\n     printf(\"chars = %d\\n words=%d\\n lines=%d\\n\",nch,nwrd,nln);\n     fclose(fptr);\n     return 0;\n}\n\n     ",
+    "explanation": null,
+    "topic": "File Handling"
+  },
+  {
+    "question": "Write function to calculate sum or product of 3 numbers using a function pointer argument. Write also the necessary functions and code to call this function for both these cases.",
+    "answer": "#include<stdio.h>\nint sum(int a,int b,int c)\n{\n    return a+b+c;\n}\nint product(int a,int b,int c)\n{\n    return a*b*c;\n}\nint operate(int(*fptr)(int,int,int),int a,int b,int c)\n{\n     return fptr(a,b,c);\n}\nint main()\n{\n    int x,y,z;\n    x = 2;y=4;z=6;\n    printf(\"product is %d\\n\",operate(product,x,y,z));\n    printf(\"sum is  %d\\n\",operate(sum,x,y,z));\n }",
+    "explanation": null,
+    "topic": "Pointers"
+  },
+  {
+    "question": "Write a program to read a file name and word and print all lines in the file whcih contain that word. ",
+    "answer": "#include<stdio.h>\n#include<string.h>\nvoid searchword(FILE *fptr,char *word)\n{\n\n    while(!feof(fptr))\n    {\n       char str[100];\n       if(fgets(str,99,fptr)==NULL)\n          break;\n       if(strstr(str,word)!=NULL)\n          printf(\"%s\",str);\n      }\n\n}\nint main(int argc,char *argv[])\n{\n\n    FILE *fptr;\n    char filename[25];\n    char word[30];\n    if(argc>1)\n       strcpy(filename,argv[1]);\n    else\n     {\n         printf(\"Enter file name:\");\n         scanf(\"%s\",filename);\n     }\n\n    fptr = fopen(filename,\"r\");\n    if(fptr==NULL)\n    {\n       printf(\"File open error\");\n\n     }\n     else\n     {\n        searchword(fptr,argv[2]);\n         fclose(fptr);\n     }\n     return 0;\n}",
+    "explanation": null,
+    "topic": "File Handling"
+  },
+  {
+    "question": "Write a function to encode a string by replacing each character by its predecessor",
+    "answer": "void encode(char *str)\n{\n    while(*str)\n    {\n       *str = *str -1;\n       str++;\n    }\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to print last 10 lines of a text file.",
+    "answer": "void read_n_lines(FILE *fptr,int num_lines)\n{\n     int count = 0;\n     char str[81];\n     fseek(fptr,-1,SEEK_END);\n     do\n     {\n         char ch ;\n         fseek(fptr,-2,SEEK_CUR);\n         ch = fgetc(fptr);\n         if(ch=='\\n')\n            count++;\n     } while(count<num_lines);\n     while(!feof(fptr))\n     {\n        fgets(str,80,fptr);\n        puts(str);\n      }\n   }\n      ",
+    "explanation": null,
+    "topic": "File Handling"
+  },
+  {
+    "question": "Write a function to bubble sort an array.",
+    "answer": "void bubble_sort(int *arr,int n)\n{\n   int i,j;\n   int swapped= 1;\n   for(i=0;i<n-1  && swapped;i++)\n     {\n        swapped = 0;\n        for(j=0;j<n-i-1 ; j++)\n             if(arr[j+1]<arr[j])\n                 {\n                    int temp=arr[j];\n                    arr[j] = arr[j+1];\n                    arr[j+1] = temp;\n                    swapped = 1;\n                  }\n     }\n}",
+    "explanation": "Bubble sort compares every element with next element. If they are out of order, swaps them. This continues till end of the array. By then, the largest element has sunk to bottom. And smaller elements bubble to top. Hence the name.\n\nThat is one pass. In the next pass, compare and swap is repeated for n-1 elements as last eleement is already in its place.\n\nThis process continues for n-1 passes.\n\nThe boolean swapped is used for almost sorted arrays. If in one pass, no two elements were out of order and no swapping takes place, it would mean that the array is completely sorted. And iteration stops. ",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a function to insert an element in a sorted array.",
+    "answer": "void insert_element(int *arr,int n,int new_element)\n{\n    int i,j,location;\n     /*find location where new element gets inserted*/\n    for(i=0;i<n && arr[i]<new_element; i++)\n    ;\n    location = i;\n    /*move elements to the right*/\n\n       for(j=n;j>location;j--)\n            arr[j]=arr[j-1];\n\n    arr[location] = new_element;/*insert new element*/\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a function to  print all armstrong numbers from 1 to 1000. An armstrong is the one where sum of cubes of digits of the number is equal to number itself. ",
+    "answer": "int is_armstrong(int num)\n{\n    int temp = num,sum=0;\n    while(temp)\n    {\n       int digit = temp%10;\n       temp /=10;\n       sum += digit*digit*digit;\n    }\n    return sum==num;\n}\nvoid print_armstrong(int n)\n{\n    int i;\n    for(i=1;i<n;i++)\n       if(is_armstrong(i))\n          printf(\"%d\\t\",i);\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a program to print the pattern\n     A\n   ABA\n ABCBA\nABCDCBA",
+    "answer": "int main()\n{\n    char arr[] = \"ABCDEFG\";\n    int i,j;\n    for(i=0;i<4;i++)\n      {\n        int num = strlen(arr)-i;\n        int j;\n        for(j=0;j<num;j++)/*print spaces*/\n          printf(\" \");\n        for(j=0;j<i+1;j++)/*ascending*/\n          printf(\"%c\",arr[j]);\n        for(j-=2;j>=0;j--)/*descending*/\n          printf(\"%c\",arr[j]);\n        printf(\"\\n\");\n      }\n    return 0;\n}",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a program to print numbers from 1 to 100 without using loops",
+    "answer": "#include<stdio.h>\nvoid print_numbers_rec(int n);\nint main()\n{\n   print_numbers_rec(100);\n}\n\nvoid print_numbers_rec(int n)\n{\n   if(n>0)\n   {\n      print_numbers_rec(n-1);\n      printf(\"%d \",n);\n   }\n\n}\n\nSecond method is to call main function\n\n#include<stdio.h>\nint main()\n{\n  static int n=1;\n  printf(\"%d \",n++);\n  if(n<=100)\n    main();\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a program to find out if the computer is a little endian or big endian.\nLittle endian systems start storing the number from least significant byte. Big endian systems start storing number from big end - MSB. ",
+    "answer": "#include<stdio.h>\nint main()\n{\n    int num=1;\n    char *ptr = &num;\n    if(*ptr == 1)/* Stores the little end of the number first */\n      printf(\"The system is little endian\");\n    else if(*(ptr+3)==1)/* Stores the big end of the number first */\n      printf(\"The system is big endian\");\n    return 0;\n}",
+    "explanation": "Note that all intel systems are Little Endian",
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a program to store 3  structures to a binary file. ",
+    "answer": "#include<stdio.h>\nstruct book\n{\n    char name[200];\n    char author[100];\n    float price;\n};\nint main()\n{\n    struct book bk_array[]={ {\"C programming language\",\"Kernighan & Ritchie\",214},\n                    {\"Let us C\",\"Yeshawant Kanetkar\",189},\n                    {\"Teach yourself C in 21 days\",\"ABCD\",329} };\n    struct book b2[3];\n    FILE *fptr;\n    char filename[40];\n    int i;\n    printf(\"Filename=\");\n    scanf(\"%s\",filename);\n    fptr = fopen(filename,\"wb\");\n    if(fptr==NULL)\n       {\n          printf(\"File open error\");\n          return 1;\n        }\n\n    fwrite(bk_array,sizeof(bk_array[0]),3,fptr);\n    fclose(fptr);\n    return 0;\n\n}",
+    "explanation": null,
+    "topic": "File handling"
+  },
+  {
+    "question": "Write a function  to print a number in binary",
+    "answer": "void print_binary(int n)\n{\n   if(n>0)\n   {\n      print_binary(n>>1);\n      printf(\"%d\",n&1);\n   }\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a function to search an element in an unsorted array using linear search.",
+    "answer": "int linear_search(int *arr,int size,int n)\n{\n   int i;\n   for(i=0;i<size ;i++)\n       if(arr[i]==n)\n         return i;\n   return -1;\n}",
+    "explanation": "Since the array is unsorted, the searching should be done through the entire array.\n\nThe function returns index of the element with search value. It returns -1 if search value is not found.",
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write a function to search an element in a sorted array using binar search.",
+    "answer": "int binary_search(int *arr,int size,int n)\n{\n    int start = 0;int end=size-1;\n    int mid = (end+start)/2;\n    while( end>=start)\n        {\n           if(arr[mid]>n)\n              end = mid-1;\n           else if (arr[mid]<n)\n              start = mid+1;\n           else\n             return mid;\n           mid = (end+start)/2;\n         }\n\n    return -1;\n}",
+    "explanation": "Binary search uses divide and conquer algorithm.\n\nThe search value is compared to middle element of the array. If middle element is > search value, all subsequent elements will be still larger. So search process can discard second half of the array. Hence end is set mid-1.\n\nUsing similar argument, if search value is < middle element, you need to discard first half of the array. So start is set to mid+1.\n\nIf search value is equal to mid, then mid - which is index is returned.\n\nThis procedure is continued until value is found, or the subset is empty because start is > end. ",
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write a recursive function to search an element in a sorted array using binar search.",
+    "answer": "#include<stdio.h>\nint binary_search_recursive(int *arr,int start,int end,int num)\n{\n    if(start>end)\n      return -1;\n    int mid = (start+end)/2;\n    if(arr[mid]==num)\n      return mid;\n    else if(arr[mid]>num)\n      return binary_search_recursive(arr,start,mid-1,num);\n    else\n      return binary_search_recursive(arr,mid+1,end,num);\n }\nvoid bubble_sort(int *arr,int n)\n{\n   int i,j;\n   int swapped= 1;\n   for(i=0;i<n-1  && swapped;i++)//n-1 passes\n     {\n        swapped = 0;\n        for(j=0;j<n-i-1 ; j++)\n             if(arr[j+1]<arr[j])\n                 {\n                    int temp=arr[j];\n                    arr[j] = arr[j+1];\n                    arr[j+1] = temp;\n                    swapped = 1;\n                  }\n     }\n}\nint main()\n{\n    int num;\n    int array[] = {11,2,334,57,834,111,26,67,89};\n    printf(\"Enter a number\");\n    scanf(\"%d\",&num);\n    bubble_sort(array,9);\n    if(binary_search_recursive(array,0,8,num)!=-1)\n       printf(\"Element found\");\n    else\n       printf(\"Element not found\");\n    return 0;\n}\n ",
+    "explanation": "Binary search uses divide and conquer algorithm.\n\nThe search value is compared to middle element of the array. If middle element is > search value, all subsequent elements will be still larger. So search process can discard second half of the array. Hence end is set mid-1.\n\nUsing similar argument, if search value is < middle element, you need to discard first half of the array. So start is set to mid+1.\n\nIf search value is equal to mid, then mid - which is index is returned.\n\nThis procedure is continued until value is found, or the subset is empty because start is > end. ",
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write code to evaluate a  polynomial",
+    "answer": "#include<stdio.h>\nfloat evaluate(float x, int *coeffs,int size);\nfloat power(float x,int i);\nint main()\n{\n   int coeffs[5]={0};\n   float x,sum=0;\n   int i;\n   printf(\"Enter co-effecients (-1 to end)\");\n   for(i=0;i<5;i++)\n     {\n       printf(\"x^%d * \",i);\n       scanf(\"%d\",&coeffs[i]);\n       if(coeffs[i]==-1)\n        {\n           coeffs[i]=0;\n           break;\n         }\n      }\n   printf(\"What is value of x\");\n   scanf(\"%f\",&x);\n   sum = evaluate(x,coeffs,5);\n   printf(\"for x = %f equation has value %f\\n\",x,sum);\n   return 0;\n}\nfloat power(float x,int i)\n{\n    if(i==0)\n       return 1;\n    else\n       return x* power(x,i-1);\n}\n\nfloat evaluate(float x, int *coeffs,int size)\n{\n   int i;\n   float s = 0;\n   for(i=0;i<size;i++)\n     s+= coeffs[i]*power(x,i);\n   return s;\n}\n      ",
+    "explanation": null,
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write a program to add two polynomials. ",
+    "answer": "#include<stdio.h>\n#include<stdlib.h>\nfloat evaluate(float x, int *coeffs,int size);\nvoid print_polynomial(int *coeff,int size);\nint* add_polynomial(int *coeff1,int *coeff2,int order);\nvoid read_polynomial(int *coeffs,int size)\n{\n   int i;\n   printf(\"Enter co-effecients (-1 to end)\");\n   for(i=0;i<size;i++)\n     {\n       printf(\"x^%d * \",i);\n       scanf(\"%d\",&coeffs[i]);\n       if(coeffs[i]==-1)\n        {\n           coeffs[i]=0;\n           break;\n         }\n      }\n}\nint main()\n{\n   int coeff1[10],coeff2[10];\n   int *coeff3;\n   float x,sum=0;\n   int order;\n   int i;\n   printf(\"What is highest order of eqns\");\n   scanf(\"%d\",&order);\n   printf(\"First equation\");\n   read_polynomial(coeff1,order);\n   printf(\"Second equation\");\n   read_polynomial(coeff2,order);\n   coeff3 = add_polynomial(coeff1,coeff2,order);\n   print_polynomial(coeff3,order);\n   return 0;\n}\nfloat power(float x,int i)\n{\n    if(i==0)\n       return 1;\n    else\n       return x* power(x,i-1);\n}\n\nint* add_polynomial(int *coeff1,int *coeff2,int order)\n{\n    int i;\n    int *temp = (int*)malloc(sizeof(int)*order);\n    for(i=0;i<order;i++)\n      temp[i] = coeff1[i]+coeff2[i];\n    return temp;\n}\n\nvoid print_polynomial(int *coeff,int order)\n{\n   int i;\n   printf(\"The equation is\");\n   for(i=order-1;i>0;i--)\n      if(coeff[i]==0)\n        continue;\n      else if(i>1) printf(\"%dx^%d+\",coeff[i],i);\n      else printf(\"%dx+\",coeff[i]);\n   printf(\"%d\",coeff[0]);\n}\n\n      ",
+    "explanation": null,
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write a function to swap two nibbles of a byte. e.g. if the 8 bit number is 0x78, the function should return 0x87",
+    "answer": "int swap_nibbles(unsigned char n)\n{\n    unsigned char temp = n;\n    n = n>>4;/*most significant 4 bits moved to LSN*/\n    temp = temp<<4;\n    n = n|temp;/*temp has first nibble and n has second nibble*/\n    return n;\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a program to find a prime number after a given prime number. ",
+    "answer": "#include<stdio.h>\n\nint is_prime(int n,int primearray[])\n{\n     int i;\n     for(i=0;i<400 && primearray[i]>0;i++)\n        if((n% primearray[i]) == 0)\n           return 0;\n     printf(\"%d \",n);\n     return 1;\n}\n\nint main()\n{\n     int l_prime;int i;\n     int prime_arr[400]={2};int p=1;\n     printf(\"Prime number after which number:\");\n     scanf(\"%d\",&l_prime);\n     /* fill the prime array */\n\n     for(i=3;i<=l_prime;i+=2)\n       if(is_prime(i,prime_arr))\n           prime_arr[p++]=i;\n\n     while(!is_prime(i++,prime_arr));\n     printf(\"Prime number after %d is %d\",l_prime,i-1);\n     return 0;\n}",
+    "explanation": "This algorithm uses an array to store prime numbers and tests for divisibility only of these numbers. The size of array here is 400. For larger number, the array size should be increased.",
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write your own sqrt function to find square root of a number. ",
+    "answer": "double square_root(double value)\n{\n     assert(value >= 1);\n     double lo = 1.0;\n     double hi = value;\n\n     while( hi - lo > 0.00001)\n     {\n          double mid = lo + (hi - lo) / 2 ;\n          int midint = mid;\n          printf(\"%f %f %f\\n\",lo,hi,mid);\n          if(midint*midint==value)\n                return (float)midint;\n          if( mid * mid - value > 0.00001)    //this is the predictors we are using\n          {\n              hi = mid;\n          } else {\n              lo = mid;\n          }\n\n     }\n\n    return lo;\n }",
+    "explanation": "This algorithm uses successive approximation and uses binary search algorithm.\n\nAlso if the number is a perfect square the method checks integer multiplication of the square root by itself. e.g. if n is 16, the method returns 4.0 instead of 3.999997 etc.",
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write a C function to split a string at separators where separator is  a character parameter to function. ",
+    "answer": "#include<stdio.h>\nint split(char *string,char sepr,char substring[][30])\n{\n       int i=0,j=0;\n       while(*string)\n       {\n            char temp = *string++;\n            if(temp==sepr)\n                {\n                 substring[i++][j]=0;j=0;\n                 }\n            else\n                 substring[i][j++]=temp;\n        }\n        if(substring[i][j]!=0)\n              substring[i++][j]=0;\n        return i;\n}\n\n\nint main()\n{\n   char string[200];\n   char separator;\n   char words[30][30]={0};\n   int nw;\n   printf(\"Enter the string:\");\n   gets(string);\n   printf(\"Separator:\");\n   scanf(\"%c\",&separator);\n   nw = split(string,separator,words);\n   do\n    printf(\"%s\\n\",words[nw]);\n   while(nw--);\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Given two strings A and B, how would you find out if the characters in B were a subset of the characters in A?",
+    "answer": "int indexOf(char *str,char ch)\n{\n    int i,l=strlen(str);\n    for(i=0;i<l;i++)\n       if(str[i]==ch)\n         return i;\n    return -1;\n}\n/* function return 1 if str2 is a subset of str1. Else returns 0*/\nint isSubset(char *str1,char *str2)\n{\n     char ch;\n     while(ch=*str2++)\n       if(indexOf(str1,ch)==-1)\n          return 0;\n     return 1;\n}  ",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to merge two arrays in sorted order, so that if an integer is in both the arrays, it gets added into the final array only once.",
+    "answer": "void shift_elements(int arr[],int size,int k)\n{\n     int i;\n     for(i=size-1;i>=k;i--)\n       arr[i+1]= arr[i];\n}\nint merge_arrays(int arr1[],int s1,int arr2[],int s2)\n{\n     int i,j; i=j=0;\n     while(i<s1 && j<s2)\n     {\n       if(arr2[j]==arr1[i])\n           j++;\n       else if(arr2[j]<arr1[i])\n       {\n          shift_elements(arr1,s1,i);\n          arr1[i]=arr2[j++];s1++;\n       }\n       else{\n           i++;\n       }\n      }\n      if(j<s2)\n      {\n         for(;j<s2;j++)\n           {\n               arr1[i++]=arr2[j];\n            }\n      }\n      return i;/*return final size of array*/\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a function to remove any character from a given string",
+    "answer": "#include<stdio.h>\nvoid shiftele(char str[],int pos);\nvoid remove_char(char *str,char ch);\nint main()\n{\n char str[100];\n char ch;\n printf(\"Enter the string\\n\");\n gets(str);\n printf(\"Enter the character to be deleted\\n\");\n scanf(\" %c\",&ch);\n remove_char(str,ch);\n printf(\"After removing %c string is %s\",ch,str);\n return 0;\n}\nvoid remove_char(char *str,char ch)\n{\n int i;\n for(i=0;i<=str[i]!='\\0';i++)\n {\n  if(str[i] == ch )\n   {\n     shiftele(str,i);\n   }\n }\n}\nvoid shiftele(char str[],int pos)\n{\n int i;\n for(i=pos;str[i]!='\\0';i++)\n {\n   str[i]=str[i+1];\n }\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to check if the given number is binary",
+    "answer": "int is_binary(int n)\n{\n    while(n)\n    {\n       int digit = n%10;\n       if(digit>1)\n           return 0;\n       n/=10;\n    }\n    return 1;\n}",
+    "explanation": "A binary number will have all digits as 1 or 0. If it has other digits the function returns false - 0.",
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a function to count the number of set bits in a given number.\ne.g. 17 has 2 bits set. 15 has 4 bits set ",
+    "answer": "int num_set_bits(int n)\n{\n    int count = 0;\n    for(count=0;n;count+=n&1, n/=2);\n\n     return count;\n}\n\nInstead of for loop, we can use a while loop, like this.\n\n while(n)\n    {\n      if(n&1)\n         count++;\n      n/=2;\n     }",
+    "explanation": "The function can use either a for loop as shown or a while loop which is commented",
+    "topic": "Operators"
+  },
+  {
+    "question": "Write a program to check if two rectangles overlap",
+    "answer": "#include<stdio.h>\nstruct rect\n{\n   int x,y;\n   int len,wid;\n};\nint overlap(struct rect r1,struct rect r2);\nint main()\n{\n    struct rect r1,r2;\n    printf(\"Enter rectangle 1 x,y,length and width:\");\n    scanf(\"%d %d %d %d\",&r1.x,&r1.y,&r1.len,&r1.wid);\n    printf(\"Enter rectangle 2 x,y,length and width:\");\n    scanf(\"%d %d %d %d\",&r2.x,&r2.y,&r2.len,&r2.wid);\n    if(overlap(r1,r2))\n       printf(\"The rectangles overlap\");\n    else\n       printf(\"They don't overlap\");\n    return 0;\n}\n\nint overlap(struct rect r1,struct rect r2)\n{\n    if(r1.x>r2.x  && (r1.x-r2.x) < r1.len)\n       return 1;\n    if(r1.x==r2.x)\n       return 1;\n    if(r2.x >r1.x && (r2.x-r1.x) < r2.len)\n      return 1;\n    if(r1.y>r2.y  && (r1.y-r2.y) < r1.wid)\n       return 1;\n    if(r1.y==r2.y)\n       return 1;\n    if(r2.y >r1.y && (r2.y-r1.y) < r2.wid)\n      return 1;\n   return 0;\n}\n",
+    "explanation": "The rectangles are stored with x,y - co-ordinates of upper left corner of rectangle, len ,wid - length and width of rectangle.\n\nTwo rectangles overlap if the x of these have a difference less than length  of  rectangle with lower x co-ordinate. Or they overlap if x of both are equal.\n\nSimilarly if difference in y is less than width, then the rectangles overlap.",
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write a program to check if a given matrix is an identity matrix. A matrix is identity matrix if all the major diagonal elements are 1 and all other elements are 0",
+    "answer": "int is_identity(int arr[][5],int nr)\n{\n     int i,j;\n\n     for(i=0;i<nr;i++)\n        for(j=0;j<nr;j++)\n           if(i==j)\n             {\n              if(arr[i][j]!=1)\n                 return 0;\n              }\n           else\n              if(arr[i][j]!=0)\n                 return 0;\n     return 1;\n}",
+    "explanation": null,
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a program to find the frequencies of characters in a string. (run length encoding)",
+    "answer": "#include<stdio.h>\nstruct charfreq\n{\n   char ch;\n   int freq;\n};\nint index_of(char ch,struct charfreq  freq_arr[],int count)\n{\n    int i;\n    for(i=0;i<count;i++)\n        if(freq_arr[i].ch==ch)\n           return i;\n    return -1;\n}\nint find_frequencies(char *str,struct charfreq freq_arr[])\n{\n     int count = 0;\n     char ch;\n     while(ch = *str++)\n     {\n         int index ;\n         if((index = index_of(ch,freq_arr,count))==-1)\n              {\n              freq_arr[count].ch = ch;\n              freq_arr[count++].freq=1;\n              }\n         else\n            {\n              freq_arr[index].freq++;\n            }\n       }\n       return count;\n}\n\nint main()\n{\n    char str[100];\n    struct charfreq cf[30];\n    int i,l;\n    printf(\"Enter string:\");\n    gets(str);\n    l = find_frequencies(str,cf);\n    for(i=0;i<l;i++)\n      printf(\"%c %d\\n\",cf[i].ch,cf[i].freq);\n    return 0;\n}\n",
+    "explanation": "Here a structure is used to character and its frequency. And the program use an array of this structure.\n\nThe string is parsed and each character is added to structure array if it is not present. If it is present, its frequency is incremented.",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to check if one string is a rotation of another string",
+    "answer": "#include<stdio.h>\n#include<string.h>\nint main()\n{\n   char str1[100];\n   char str2[100];\n   char str3[200];\n   puts(\"First string\");\n   gets(str1);\n   puts(\"Second string\");\n   gets(str2);\n   strcpy(str3,str1);\n   strcat(str3,str1);\n   if(strstr(str3,str2)!=NULL)\n     printf(\"%s is a rotation of %s\",str1,str2);\n   else\n     printf(\"%s is not a rotation of %s\",str1,str2);\n   return 0;\n}",
+    "explanation": "When we concat a string with itself, it will contain the rotated second string.\n\ne.g. if the string is\n     Hello how are you. and rotated string is\nhow are you.Hello\n\nif we concat first string with itself, it will become\nHello how are you.Hello how are you.\n\nAnd it contains second string now. So strstr returns the pointer to this instead of NULL. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to eliminate pairs from a string. That is if there are two similar consecutive characters, one of them should be removed.\n\n  If string is\n\nSuccess is by product of hard work\n\nOutput should be\n\nSuces is by product of hard work",
+    "answer": "#include<stdio.h>\n#include<string.h>\n/* function deletes the first character of the string and packs it*/\nvoid delete_char(char *str)\n{\n   while(*str)\n     {\n         *str = *(str+1);\n         str++;\n      }\n}\n\nvoid eliminate_pairs(char *str)\n{\n    char ch,prevch;\n    prevch=0;\n    while((ch=*str))\n    {\n      if(ch==prevch)\n         delete_char(str);\n      else\n        str++;\n      prevch = ch;\n     }\n}\nint main()\n{\n   char str1[100];\n   puts(\"First string\");\n   gets(str1);\n   eliminate_pairs(str1);\n   printf(\"After elimination, the result is  %s\",str1);\n   return 0;\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a C program that takes two strings as arguments and removes the characters from first string which are present in second string (called mask string. )\ne.g.\nIf first string is\nC is procedure oriented language\nand second string is\nabcde\n\nthen output should be\nC is  prour orint lngug\n",
+    "answer": "#include<stdio.h>\n#include<string.h>\nint indexOf(char ch,char *str)\n{\n   int i;\n   for(i=0;str[i];i++)\n      if(str[i]==ch)\n         return i;\n\n    return -1;\n}\n/* function deletes the first character of the string and packs it*/\nvoid delete_char(char *str)\n{\n   while(*str)\n     {\n         *str = *(str+1);\n         str++;\n      }\n}\n\n\nvoid eliminate_chars(char *str1,char *str2)\n{\n    char ch,prevch;\n    prevch=0;\n    while((ch=*str1))\n    {\n      if(indexOf(ch,str2)!=-1)\n            delete_char(str1);\n      else\n          str1++;\n     }\n}\nint main()\n{\n   char str1[100]; char str2[100];\n   puts(\"First string\");\n   gets(str1);\n   puts(\"Second string\");\n   gets(str2);\n   eliminate_chars(str1,str2);\n   printf(\"After elimination, the result is  %s\",str1);\n   return 0;\n}",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to print a n by n square divided into quadrants of stars, dots, dollars, and ohs. Take n as command line parameter",
+    "answer": "#include<stdio.h>\nvoid draw_quadrants(int num,char ch1,char ch2,char ch3, char ch4);\nint main(int argc,char *argv[])\n{\n\n   char ch1='*',ch2='.',ch3='$',ch4='o';\n   int n;\n   if(argc<2)\n     {\n     printf(\"The syntax is drawsquares n\");\n     return 0;\n     }\n   n = atoi(argv[1]);/*n is first command line parameter*/\n   draw_quadrants(n,ch1,ch2,ch3,ch4);\n   return 0;\n}\n\nvoid draw_quadrants(int n,char ch1,char ch2,char ch3, char ch4)\n{\n    int i,j;\n    for(i=1;i<=n/2;i++)\n      {\n          for(j=1;j<=n/2;j++)\n              printf(\"%c\",ch1);\n          for(j=1;j<=n/2;j++)\n             printf(\"%c\",ch2);\n          printf(\"\\n\");\n      }\n    for(i=1;i<=n/2;i++)\n      {\n          for(j=1;j<=n/2;j++)\n              printf(\"%c\",ch3);\n          for(j=1;j<=n/2;j++)\n              printf(\"%c\",ch4);\n           printf(\"\\n\");\n      }\n}",
+    "explanation": null,
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a program that prints   3 cycles of a cosine wave down the page.",
+    "answer": "#include<stdio.h>\n#include<math.h>\n#define PI (22.0/7)\nvoid draw_cosine();\nint main()\n{\n\n    draw_cosine();\n    return 0;\n}\nvoid draw_stars(int m)\n{\n\n   int i;\n   if(m<0)\n     for(i=0;i<20+m;i++)\n       putchar(' ');\n   else\n     for(i=0;i<20;i++)\n       putchar(' ');\n   m = abs(m);\n   while(m--)\n     printf(\"*\");\n   printf(\"\\n\");\n}\nvoid draw_cosine()\n{\n    int i,j;\n     for(i=0;i<3;i++)\n       for(j=0;j<=360;j+=10)\n       {\n            float rad = j*PI/180;\n            float y = cos(rad)*20;\n            draw_stars(y);\n        }\n  }\n ",
+    "explanation": "In order to accommodate negative values, all values are multiplied by 20 and offset by 20.\n\n If cos(theta) is 5, 20 spaces are drawn, then 5 stars are drawn. If instead it is -5, 15 spaces are drawn followed by 5 stars.",
+    "topic": "Control statements"
+  },
+  {
+    "question": "Write a function to find if an unsorted array of size N contains all the intergers from 0 to N-1. Return the smallest element absent from the array or -1 if all elements are present in array",
+    "answer": "#include<stdio.h>\nint absent_element(int *arr,int size)\n{\n    int temp[10]={0};//this may need to be changed\n    int i;\n    for(i=0;i<size;i++)\n     {\n       int j= arr[i];\n       if(j<size)\n          temp[j]=1;\n      }\n    for(i=0;i<size;i++)\n      if(temp[i]==0)\n        return i;\n    return -1;\n}\nint main()\n{\n   int arr[10];\n   int i;\n   for(i=0;i<10;i++)\n     scanf(\"%d\",&arr[i]);\n   if((i= absent_element(arr,10))==-1)\n     printf(\"Array has all elements from 1 to n\");\n   else\n     printf(\"The element absent is %d\\n\",i);\n   return 0;\n}",
+    "explanation": "This program is written for time optimization. It uses second array whose jth elements are set to 1 where arr[i]=j. At the end of the loop, in temp array the elements which are still 0 are those who are not present in original array.\n\nFor space optimization, you can sort the array and then find the missing element. ",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Write a function that swaps the first half of an array with the second half. Within each half of the array, keep the elements in their original order.",
+    "answer": "#include<stdio.h>\n#define MAX 30\nvoid swap_elements(int *arr,int size)\n{\n   int i,j;int mid1;\n   int mid = size/2;\n   mid1 = mid;\n   if(size&1) mid1= mid+1;\n   for(i=0,j=mid1;i<mid;i++,j++)\n   {\n      if(i==j) continue;\n      int temp = arr[i];\n      arr[i]=arr[j];\n      arr[j]=temp;\n    }\n}\nint main()\n{\n   int arr[MAX];\n   int i;int len;\n   printf(\"Size of array:\");\n   scanf(\"%d\",&len);\n   printf(\"Array elements:\");\n   for(i=0;i<len;i++)\n     scanf(\"%d\",&arr[i]);\n   swap_elements(arr,len);\n   for(i=0;i<len;i++)\n      printf(\"%d \",arr[i]);\n   return 0;\n}",
+    "explanation": "Here a[i] is swapped with a[mid+i]\n\nIf the array has odd number of elements then\nmid = mid+1\n",
+    "topic": "Arrays"
+  },
+  {
+    "question": "Given three sides of a triangle, write a function to find if the triangle is right angled. ",
+    "answer": "int is_rt(int a,int b,int c)\n{\n    if(a>b && a>c )\n         if(a*a == (b*b+c*c))\n            return 1;\n     if(b>c && b>a )\n         if(b*b == (a*a + c*c))\n            return 1;\n     if(c>a && c>b)\n         if(c*c == (a*a + b*b))\n            return 1;\n     return 0;\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a fucntion to find if two triangles are equal. Two triangles are equal if they have same 3 vertices.",
+    "answer": "#include<stdio.h>\n#include<math.h>\nstruct point\n{\n   int x;\n   int y;\n};\nstruct triangle\n{\n   struct point p1;\n   struct point p2;\n   struct point p3;\n};\nint equal_points(struct point p1,struct point p2)\n{\n    if(p1.x==p2.x && p1.y == p2.y)\n      return 1;\n    return 0;\n}\nint equal_triangles(struct triangle t1, struct triangle t2)\n{\n   if( equal_points(t1.p1,t2.p1)\n       &&  (   (equal_points(t1.p2,t2.p2) &&  equal_points(t1.p3,t2.p3))\n              || (equal_points(t1.p3,t2.p2) &&  equal_points(t1.p2,t2.p3) )\n           )\n       )\n            return 1;\n\n   if( equal_points(t1.p1,t2.p2)\n       &&  (   (equal_points(t1.p2,t2.p3) &&  equal_points(t1.p3,t2.p1))\n              || (equal_points(t1.p2,t2.p1) &&  equal_points(t1.p3,t2.p3) )\n           )\n      )\n           return 1;\n\n if( equal_points(t1.p1,t2.p3)\n       &&  (   (equal_points(t1.p2,t2.p1) &&  equal_points(t1.p3,t2.p2))\n              || (equal_points(t1.p2,t2.p1) &&  equal_points(t1.p3,t2.p2) )\n           )\n     )\n            return 1;\n   return 0;\n}\n\n\nint main()\n{\n    struct triangle t1, t2;\n    printf(\"Enter the points  of the triangle 1:\");\n    scanf(\"%d %d %d %d %d %d\",&t1.p1.x,&t1.p1.y,\n                              &t1.p2.x,&t1.p2.y,\n                              &t1.p3.x,&t1.p3.y);\n    printf(\"Enter the points  of the triangle 2:\");\n    scanf(\"%d %d %d %d %d %d\",&t2.p1.x,&t2.p1.y,\n                              &t2.p2.x,&t2.p2.y,\n                              &t2.p3.x,&t2.p3.y);\n\n     equal_triangles(t1,t2)?printf(\"equal triangles\"):\n                printf(\"not equal triangles\");\n    return 0;\n}",
+    "explanation": null,
+    "topic": "Structures"
+  },
+  {
+    "question": "If the number of bacteria in the container doubles itself everyday. Assuming that the container would be full on the 10th day with 13,312 bacteria, find the number of bacteria that was initially in the container on the first day.",
+    "answer": "#include<stdio.h>\n#include<math.h>\nint main()\n{\n    int bact_count;\n    int num_day;\n    float initial;\n    printf(\"bact_count & num_day\");\n    scanf(\"%d %d\",&bact_count,&num_day);\n    initial = bact_count/pow(2, num_day);\n    printf(\"Initial number of bacteria %f\",initial);\n    return 0;\n}",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "Consider the following number 45*45=2025; 20+25=45.Write a program to generate number between 32 and 99 that satisfies the above property.",
+    "answer": "#include<stdio.h>\nint sum(int num)\n{\n   int a = num%100;\n   int b = num/100;\n   return a+b;\n}\nint main()\n{\n  int i;\n  for(i=32;i<=99;i++)\n   {\n     int square = i*i;\n     int s = sum(square);\n     if(s==i)\n        printf(\"%d   \",i);\n   }\n}",
+    "explanation": null,
+    "topic": "Expressions"
+  },
+  {
+    "question": "Calculate the factorial of a number recursively and from that calculate the value of ex=1+ (X1/1!) + (X2 /2!) + (X3/3!) + ???.",
+    "answer": "#include<stdio.h>\n#include<math.h>\n#define NUM_TERMS 30\nlong int factorial(int num)\n{\n   if(num==0)\n      return 1;\n   else\n      return num*factorial(num-1);\n}\nfloat epowerx(float x)\n{\n    float sum=1.0;\n    int i;\n    for(i=1;i<NUM_TERMS;i++)\n      {\n         float term = pow(x,i)/factorial(i);\n         sum+=term;\n       }\n}\nint main()\n{\n    float x;\n    printf(\"x=\");\n    scanf(\"%f\",&x);\n    printf(\"e to power %f is %f\\n\",x,epowerx(x));\n    return 0;\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Calculate the factorial of a number recursively. From that calculate the value of COS(X) = 1 - X2/2! + X4 /4! - X6/ 6! +??.",
+    "answer": "#define NUM_TERMS 30\n#define PI 22.0/7\nlong int factorial(int num)\n{\n   if(num==0)\n      return 1;\n   else\n      return num*factorial(num-1);\n}\nfloat cosine(float x)\n{\n\n     float sum =1.0;\n     int i;\n     int sign = -1;\n     x = x * PI/180;/*convert to radians*/\n     for(i=2;i<NUM_TERMS;i+=2)\n      {\n         float term = pow(x,i)/factorial(i);\n         sum+=sign*term;\n         sign *=-1;\n       }\n     return sum;\n}",
+    "explanation": null,
+    "topic": "Functions"
+  },
+  {
+    "question": "Write a program to solve simultaneous equation in 2 unknowns.",
+    "answer": "/* program source :www.learningpoint.net*/\n#include<stdio.h>\nint main()\n{\ndouble a,b,c,p,q,r,x,y;\nprintf(\"Enter the coefficents of the first equation of the form ax+by=c\n\\n\");\nscanf(\"%lf%lf%lf\",&a,&b,&c);//The coefficents of the first equation\nprintf(\"Enter the coefficents of the second equation of the form px+qy=r\n\\n\");\nscanf(\"%lf%lf%lf\",&p,&q,&r);//The coefficents of the second equation\nif(((a*q-p*b)!=0)&&((b*p-q*a)!=0))\n{/*we have a unique solution and display x and y*/\nprintf(\"The solution to the equations is unique\\n\");\nx=(c*q-r*b)/(a*q-p*b);\ny=(c*p-r*a)/(b*p-q*a);\nprintf(\"The value of x=%lf\\n\",x);\nprintf(\"The value of y=%lf\\n\",y);\n}\nelse\nif(((a*q-p*b)==0)&&((b*p-q*a)==0)&&((c*q-r*b)==0)&&((c*p-r*a)==0))//In such\ncondition we can have infinitely many solutions to the equation.\n{/*we can choose any one unknown as free and other unknown is calculated using the free variables's value.*/\n\n    printf(\"Infinitely many solutions are possible\\n\");\n    printf(\"The value of x can be varied and y can be calculated using relation\\n\");\n    printf(\"y=%lf+(%lf)x\",(c/b),(-1*a/b));\n}\nelse\nif(((a*q-p*b)==0)&&((b*p-q*a)==0)&&((c*q-r*b)!=0)&&((c*p-r*a)!=0))\n/*In such condition no solutions are possible.*/\nprintf(\"No solutions are possible\\n\");\n\n}\n\n\n\n\n\n\n\n\n\n",
+    "explanation": null,
+    "topic": "Algorithms"
+  },
+  {
+    "question": "Write a function  to implement your own itoa. The function should convert a integer to a string. e.g. if no is 17, the function should return \"17\"",
+    "answer": "#include<stdio.h>\n#include<math.h>\n#include<stdlib.h>\nchar *myitoa(int num)\n{\n   int nd = num_digits(num);\n   int i,j=0;\n   char *temp = malloc(30);\n   char *t2 = temp;\n   for(i=nd;i>=0;i--)\n   {\n       int ipower = pow(10,i);\n       int digit = num/ipower;\n       char ch;\n       num = num %ipower;\n       ch = digit+48;/*code of 0 is 48,1 is 49 etc*/\n       *temp++=ch;\n    }\n    *temp=0;\n    return t2;\n}\nint num_digits(int n)\n{\n   int d = 0;\n   while(n)\n    {\n      n/=10;\n      d++;\n    }\n    return d-1;\n}",
+    "explanation": null,
+    "topic": "Strings"
+  }
+]

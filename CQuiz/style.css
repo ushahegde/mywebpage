@@ -5,20 +5,20 @@
 }
 body {
   font-family: 'roboto-light', sans-serif;
-  background: #001f3f;
+   background: linear-gradient(135deg, #667eea, #764ba2);
   display: flex;
   justify-content: center;
   
-  height: 100vh;
-  color:lightgray;
+  height: 100vh; 
 }
 
 .quiz-container {
-  background: #00336688;
-  margin: 5px;
+  background: white;
+  margin: 10px;
   padding:10px;
   width: 70%;
-  border-radius: 10px;   
+  border-radius: 10px; 
+  word-wrap: wrap;  
 }
 .options{
   align-content:center;
@@ -29,7 +29,7 @@ h1 {
   text-align: center;
 }
 
-#options button { 
+ button { 
   flex-direction:center;
   display: block;
   width: 90%;
@@ -37,19 +37,13 @@ h1 {
   padding: 10px;
   cursor: pointer;   
   font-size:1.1em; 
+  border:none;
+  :active{
+        transform: translateY(-4px);
+       box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+  }
   }
  
-.correct {
-  
-  color:green;
-  
-  
-}
-
-.wrong {
-  color: red;
-}
-
 .hidden {
   display: none;
 }
@@ -70,8 +64,65 @@ h1 {
   font-size:1em; 
   margin-left:15px;
 }
+#answer{
+    padding:10px;
+    overflow:scroll;
+    background:#f8f3ff;
+    margin:5px;
+    font-family:courier; 
+    max-height:55%;
+    }
 @media only screen and (max-width:480px){
 .quiz-container{
-   width:90%;
+   width:75%;
 }
+}
+/* Correct Answer Styling */
+.correct::before {
+    content: "\2714"; /* Unicode for Checkmark */
+    color: green;
+    position: relative;
+    left: -10px;
+    font-weight: bold;
+}
+
+/* Incorrect Answer Styling */
+.wrong::before {
+    content: "\2718"; /* Unicode for Heavy Cross */
+    color: red;
+    position: relative;
+    left: 0;
+    font-weight: bold;
+}
+
+  button:disabled{
+      color:#eee;
+      background-color:gray;
+      cursor:default;
+  }
+ button:active,  button:hover{
+  background:#e3f2fd;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+
+  }
+  select {
+  border: 2px solid #dddddd;
+  background: #eeeeee;
+  padding: 10px;
+  transition: 0.4s;
+}
+/* For styling topic select */
+select:hover,
+select:focus {
+  background: #ccc;
+}
+option {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+
+  border: 2px solid #dddddd; 
+    padding: 10px;
+  transition: 0.4s;
 }
