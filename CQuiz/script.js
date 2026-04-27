@@ -2,17 +2,18 @@ let questions = [];
 let selectedQuestions = [];
 let currentIndex = 0;
 let score = 0;
+let numQuestions=0;
 
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const explanationEl = document.getElementById("explanation");
 const nextBtn = document.getElementById("next-btn");
 const resultBox = document.getElementById("result-box");
-const scoreEl = document.getElementById("score");
+const scoreEl = document.getElementById("score2");
 
 const codeEl = document.getElementById("code");
 const explainBtn = document.getElementById("explain-btn");
-const titleEl = document.getElementById("title")
+//const titleEl = document.getElementById("title")
  
 fetch("quiz.json")
   .then(res => res.json())
@@ -34,50 +35,59 @@ function startQuiz() {
 function loadQuestion() {
   resetState();
 
-  let q = selectedQuestions[currentIndex];
-  questionEl.textContent = `${currentIndex + 1}. ${q.question}`;
+  let q = selectedQuestions[currentIndex]; 
+  document.getElementById("progress").innerText = `Question ${currentIndex+1}/${numQuestions}`;
+ // document.getElementById("score").innerText = `Score: ${score}`;
+
+  questionEl.textContent = ` ${q.question}`;
   let qncode=q.qncode;
   if(qncode==null){
       codeEl.innerText="";
   }else{
-  //take care of < and > tags
- /* qncode = qncode.replaceAll("<","&lt;");
-  qncode = qncode.replaceAll(">","&gt;");
-  qncode = qncode.replaceAll("&","&amp;");
-  qncode = qncode.replaceAll('"',"&quot;");
-  */
-
+  
       codeEl.innerText=qncode;
   }
 
   q.options.forEach((option, index) => {
-    const btn = document.createElement("button");
-    btn.textContent = option;
-    if(option!=null && option!=""){
-       btn.onclick = () => selectAnswer(btn, index, q.correct, q.explanation);
-       optionsEl.appendChild(btn);
+      if(option!=null && option!=""){
+      const div = document.createElement("div");
+      div.classList.add("answer");
+      div.innerText = `${option}`;
+
+     div.addEventListener("click", () => selectAnswer(div, index, q.correct, q.explanation));
+  
+//  handleAnswer(div, opt));
+
+ // answersDiv.appendChild(div);
+      
+    //const btn = document.createElement("button");
+    //btn.textContent = option;
+    
+     //  btn.onclick = () => selectAnswer(btn, index, q.correct, q.explanation);
+       optionsEl.appendChild(div);
     }
   }); 
 }
 
-function selectAnswer(button, selected, correct, explanation) {
+function selectAnswer(div, selected, correct, explanation) {
   const buttons = optionsEl.children;
-
-  for (let btn of buttons) {
+    
+ /* for (let btn of buttons) {
     btn.disabled = true;
-  }
-  console.log("selected="+selected+"correct="+correct);
+  }*/
+  //console.log("selected="+selected+"correct="+correct);
   if (selected === (correct-1)) {
-    //buttons[selected].style.color='green';
-    button.classList.add("correct");
+    buttons[selected].style.color='green';
+    div.classList.add("correct");
+    
     score++;
   } else {
        
-    button.classList.add("wrong");
-     //buttons[selected].style.color='red';
+    div.classList.add("wrong");
+      buttons[selected].style.color='red';
      
-     buttons[correct-1].classList.add("correct");
-   //  buttons[correct-1].style.color='green';
+    // buttons[correct-1].classList.add("correct");
+     buttons[correct-1].style.color='green';
     
   }
   
@@ -106,7 +116,7 @@ nextBtn.onclick = () => {
 };
 
 function showResult() {
-  document.getElementById("quiz-box").classList.add("hidden");
+  document.getElementsByClassName("quiz-container")[0].classList.add("hidden");
   resultBox.classList.remove("hidden");
   scoreText = score+"/"+currentIndex;
   scoreEl.textContent = scoreText;
@@ -142,8 +152,9 @@ function populateTopics(topics) {
   topicSelect.addEventListener("change",(event)=>{
       topic = event.target.value;
       selectedQuestions = getRandomQuestionsByTopic(questions,topic,10);
-      titleEl.textContent="Quiz - "+topic;
+     // titleEl.textContent="Quiz - "+topic;
       event.target.classList.add("hidden");
+      numQuestions = selectedQuestions.length;
       loadQuestion();
   })
 }

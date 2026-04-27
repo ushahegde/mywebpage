@@ -13,12 +13,13 @@ body {
 }
 
 .quiz-container {
-  background: white;
+  
   margin: 10px;
   padding:10px;
   width: 70%;
   border-radius: 10px; 
   word-wrap: wrap;  
+   color: #333;
 }
 .options{
   align-content:center;
@@ -27,6 +28,7 @@ body {
  
 h1 {
   text-align: center;
+  color:white;
 }
 
  button { 
@@ -48,11 +50,14 @@ h1 {
   display: none;
 }
 #question{
-   font-size:1.1em;
+   font-size:1.2em;
+   font-weight:300;
 }
 #explanation{
     font-style:italic;
     padding:10px;
+    color:white;
+    margin:5px;
 }
 #next-btn, #explain-btn {
   margin-top: 10px;
@@ -75,12 +80,15 @@ h1 {
 @media only screen and (max-width:480px){
 .quiz-container{
    width:75%;
+   font-size:normal;
 }
 }
+
+
 /* Correct Answer Styling */
 .correct::before {
     content: "\2714"; /* Unicode for Checkmark */
-    color: green;
+   /* color: green;*/
     position: relative;
     left: -10px;
     font-weight: bold;
@@ -89,7 +97,7 @@ h1 {
 /* Incorrect Answer Styling */
 .wrong::before {
     content: "\2718"; /* Unicode for Heavy Cross */
-    color: red;
+  /*  color: red;*/
     position: relative;
     left: 0;
     font-weight: bold;
@@ -117,12 +125,96 @@ select:hover,
 select:focus {
   background: #ccc;
 }
-option {
+ 
+ .answer {
+  background: #f1f1f1;
+  padding: 14px;
+  border-radius: 12px;
   display: flex;
-  justify-content: flex-start;
-  gap: 20px;
-
-  border: 2px solid #dddddd; 
-    padding: 10px;
-  transition: 0.4s;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.38);
 }
+
+.answer:hover {
+  transform: scale(1.01);
+}
+
+.top-bar{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        margin-bottom: 10px;
+        font-size: large;
+        padding:5px;
+}
+
+/* Card */
+.card {
+  background: rgba(255,255,255,0.2);
+  padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  color: white;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+}
+
+/* Answers */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Bottom buttons */
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actions button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff7e5f, #ff512f);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.icon-mark {
+  font-weight: bold;
+}
+.icon {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  color: white;
+}
+
+/* States */
+.correct {
+  background: #a5d6a7;
+}
+
+.wrong {
+  background: #ef9a9a;
+}
+.result-box{
+   width:70%;
+   height:50%;
+   font-size:large;
+   color:white;
+}
+#progress{ 
+   font-size:x-large;
+   font-weight:400;
+   color:white;
+}
+ 
