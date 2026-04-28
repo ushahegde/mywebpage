@@ -1,0 +1,3486 @@
+[
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "package helloworld;\n\npublic class IntrTest implements Runnable {\n   public void run() {\n        for(int i=0;i<10;i++) {\n              try {\n                 this.wait(100);\n                } catch (InterruptedException e) { \n                    e.printStackTrace(); \n                }\n                System.out.println(\"Hi I am runnable\"+i);  \n          }\n    }\n\n public static void main(String args[]) {\n          IntrTest t = new IntrTest();\n          IntrTest t2 = new IntrTest();\n          t.run();\n          t2.run();\n   }\n}",
+    "options": [
+      "00112233445566778899",
+      "0123456789",
+      "Compilation Error",
+      "Run time error"
+    ],
+    "correct": 4,
+    "explanation": "When wait() is called on a thread, it needs to be in a synchronized block. As we haven't used wait() within synchronized block, we get IllegalMonitorStateException.\n\nThe correct code is\npublic void run() {\n\nfor(int i=0;i<10;i++) {\nsynchronized(this) {\ntry {\n\nthis.wait(100);\n} catch (InterruptedException e) {\n\te.printStackTrace();\n}\nSystem.out.println(\"Hi I am runnable\"+i);\n}\n}\n}",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "In Java, the data types byte, short, long, int are all -----",
+    "qncode": "",
+    "options": [
+      "signed",
+      "unsigned",
+      "both",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Size of a variable of type int in Java language is ----",
+    "qncode": "",
+    "options": [
+      "16 bit",
+      "32 bit",
+      "64 bit",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test {\t\n public static void main(String args[]) {   \n     int x = 10;\n     if (x>10) {\n         int y=5;\n      }\n      System.out.println(\"The values of x and y are \"+x+\"and \"+y);\n }\n}",
+    "options": [
+      "10 5",
+      "10 0",
+      "10 10",
+      "Compilation error"
+    ],
+    "correct": 4,
+    "explanation": "The variable y is defined inside the block and so is not visible outside the block. Hence there will be compilation error. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test {\t\n\tpublic Test(float x) {\n\t\tSystem.out.println(\"Float\");\n\t}\n\tpublic Test(double x) {\n\t\tSystem.out.println(\"Double\");\n\t}\n\tpublic static void main(String args[]) {\n\t\tTest t = new Test(10.2);\t\n\t}\n\n}",
+    "options": [
+      "float",
+      "double",
+      "float double",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "In Java, a non-integer literal is double by default. It is only float if it is suffixed with f or F. \n\ne.g.\n1.4 is double\n1.4f is float.",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test {\t\n\tint FLOAT = 3;\n\tpublic static void main(String args[]) {\n\t\tTest t = new Test();\n\t    System.out.println(\"the variable is \"+t.FLOAT);\t \n\t\n\t}\n}",
+    "options": [
+      "Compiler error",
+      "Runtime error",
+      "variable is 3",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Though float is a keyword in Java, FLOAT is not a keyword. Because Java is case sensitive. \n\nFLOAT is a valid variable name - though not advisable. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "Write the output of the following program. ",
+    "qncode": "public class Test {\t\n\tint m = 3;\n\tpublic static void main(String args[]) {\t\t\n\t    System.out.println(m); \n\t\n\t}\n}",
+    "options": [
+      "3",
+      "0",
+      "Error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "main() function is a static function. A static function can access only static field. But m is an instance variable. main() function can not access it. \n\nTo correct this error, create an object of the Test class in main(), then access m\n\nTest t = new Test();\nSystem.out.println(\"m=\",t.m);",
+    "topic": "Classes"
+  },
+  {
+    "question": "Write the output of the following program. ",
+    "qncode": "public class Test {\t\n     static int m=0;\n     static void print() {\t    \n           System.out.println(String.valueOf(m));\n           m++;\n     }\n     public static void main(String args[]) {\t\n\t   Test t1 = new Test();\n\t   t1.print();\n\t   Test t2 = new Test();\n\t   t2.print(); \n    }\n}",
+    "options": [
+      "0 0",
+      "0 1",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "m is a static or a class variable. It is shared by all objects of the class.\n\nFirst object t1, prints m and increments it to 1. Now second object t2 sees this incremented m which is 1 and prints 1. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following is the correct declaration of an abstract class?",
+    "qncode": "",
+    "options": [
+      "class ab{\n   abstract void unfinished();\n}",
+      "class ab{\n   abstract void unfinished(){}\n}",
+      "abstract class ab{\n   abstract void unfinished();\n}",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "An abstract class must be defined with the keyword abstract.\n\nNote that an abstract class can not be instantiated.\n\n ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements are true about an abstract class?",
+    "qncode": "",
+    "options": [
+      "An abstract class can be instantiated",
+      "An abstract class can be subclassed",
+      "An abstract class can not have a concrete method",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following is the correct declaration of an interface?",
+    "qncode": "",
+    "options": [
+      "interface Test { public void print(){}}",
+      "interface Test { public void print(); }",
+      "interface Test {   int a; void print(){}}",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "An interface can have only unimplemented methods and it can only have final data members which are initialized. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is/are the errors in the following code?",
+    "qncode": "public interface ABC{\n    public void printNum();\n}\n\npublic class DEF implements ABC{}\n",
+    "options": [
+      "DEF must implement the method printNum() ",
+      "ABC interface must implement printNum() function",
+      "It should be DEF extends ABC",
+      "No error"
+    ],
+    "correct": 1,
+    "explanation": "A class implementing an interface must define all the methods in the interface. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": "",
+    "options": [
+      "A final class can not be extended",
+      "An abstract class can not be instantiated",
+      "An interface can not be instantiated",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "The variables, methods and inner classes that are declared \u2026\u2026\u2026\u2026\u2026\u2026\u2026 are accessible to the sub-classes of the class in which they are declared.",
+    "qncode": "",
+    "options": [
+      "public",
+      "private",
+      "protected",
+      "default"
+    ],
+    "correct": 3,
+    "explanation": "A protected keyword makes the member of a class accessible in current class and all its direct and indirect subclasses. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the package in which System class is defined in Java?",
+    "qncode": null,
+    "options": [
+      "java.util",
+      "java.io",
+      "java.lang",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "java.lang contains the classes and interfaces which are essential to Java language. \n\nThe following are some of the classes defined in java.lang package\nObject\nThread\nString\nWrapper classes for primitive types\nMath \nSystem\n\nAs these classes are essential to all Java programs, the java.lang package is imported implicitly by every Java source file.",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following exceptions may be thrown by read() method of Reader class?",
+    "qncode": "",
+    "options": [
+      "IOException",
+      "SystemInputException",
+      "InterruptedException ",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "read() method reads one character from input stream and if there is an input output error, it throws IOException.",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Which of these classes in Java are abstract?",
+    "qncode": "",
+    "options": [
+      "InputStream",
+      "PrintStream",
+      "Reader",
+      "Both 1 and 3"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which of the following classes uses character streams?",
+    "qncode": "",
+    "options": [
+      "FileInputStream",
+      "InputStream",
+      "FileReader",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which of these class is used to read from byte array?",
+    "qncode": null,
+    "options": [
+      " InputStream",
+      "BufferedInputStream",
+      "ByteArrayInputStream",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which of these access specifiers can be used in an interface?",
+    "qncode": "",
+    "options": [
+      "public",
+      "private",
+      "protected",
+      "All of these"
+    ],
+    "correct": 1,
+    "explanation": "Java methods declared in an interface can only be public. By default they are public. \n\nAnd the data members defined in an interface can only be public static and final",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "A class can ------ an interface",
+    "qncode": "",
+    "options": [
+      "extend",
+      "implement",
+      "subclass",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "A class using an interface must use the keyword implements.\n\ne.g.\ninterface NumOperations{\n   int add();\n   int subtract();\n}\nclass Number implements NumOperations{\n    .......\n}",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "A Java interface can contain ---------",
+    "qncode": "",
+    "options": [
+      "public static final variables",
+      "public abstract methods",
+      "both public abstract methods and public static final variables. ",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Prior to Java 8, an interface could contain only abstract methods and final variables.\n\nBut since Java 8, an interface can also contain default methods and static methods. Both of these methods will have implementations in the interface.\n\n",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the correct way of defining a class ABC which uses an interface DEF?",
+    "qncode": null,
+    "options": [
+      "class ABC extends DEF",
+      "class DEF extends ABC",
+      "class ABC implements DEF",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements are correct?",
+    "qncode": "",
+    "options": [
+      "A class can extend multiple classes",
+      "A class can implement multiple interfaces",
+      "An interface can not be extended",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "In Java a class can extend only a single class. But it can implement multiple interfaces. \n\nAnd an interface can extend another interface. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "The default value of a static integer variable of a class in Java is,",
+    "qncode": null,
+    "options": [
+      "0",
+      "1",
+      "Garbage",
+      "-1"
+    ],
+    "correct": 1,
+    "explanation": "Default value for static variables is 0 for numbers and null for objects.\n\nDefault values for instance variables is also 0/null",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which statement is not true in java language?",
+    "qncode": null,
+    "options": [
+      "A public member of a class can be accessed in all the packages.",
+      "A private member of a class can be accessed by all classes in the same package. ",
+      "A private member of a class can not be accessed from its derived class.",
+      "A protected member of a class can be accessed from its derived class."
+    ],
+    "correct": 2,
+    "explanation": "A private member of a class can be accessed by only methods of the same class. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "A method is declared as ---- to stop derived classes from overriding this method.",
+    "qncode": "",
+    "options": [
+      "public",
+      "static",
+      "final",
+      "void"
+    ],
+    "correct": 3,
+    "explanation": "A final method can not be overridden by sub-classes",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following statements is not true about abstract classes in Java ",
+    "qncode": null,
+    "options": [
+      "A class containing abstract methods is called an abstract class.",
+      "Abstract methods should be implemented in the derived class.",
+      "An abstract class cannot have non-abstract methods.",
+      " A class must be qualified as \u2018abstract\u2019 class, if it contains one or more abstract methods."
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following is not true?",
+    "qncode": null,
+    "options": [
+      "An interface can extend another interface.",
+      " A class which is implementing an interface must implement all the methods of the interface.",
+      "An interface can implement another interface.",
+      "An interface is a solution for multiple inheritance in Java."
+    ],
+    "correct": 3,
+    "explanation": "An interface can extend another interface. But it can not implement an interface. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following statements regarding the keyword \"finally\" is true?\n ",
+    "qncode": null,
+    "options": [
+      "A finally block is executed before the catch block but after the try block.",
+      "A finally block is executed, only after the catch block is executed.",
+      "A finally block is executed whether an exception is thrown or not.",
+      "A finally block is executed, only if an exception occurs."
+    ],
+    "correct": 3,
+    "explanation": "A try block which may throw an exception must be followed by one or more catch block and an optional finally block.\n\nIf finally block is present, it will always be executed, even if the exception is not thrown.\n\ne.g.\n   FileReader rd = new FileReader(filename);\n        try{\n             char ch =(char) rd.read();\n             System.out.println(\"ch is\"+ch);\n         }\n         catch (IOException e){\n           e.printStackTrace();\n         } \n         finally{\n            if(rd!=null)\n               rd.close();\n         }\n\nHere the finally block will ensure that the file is closed whether there was an exception or not. ",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Data members of an interface are by default \n ----",
+    "qncode": null,
+    "options": [
+      "public",
+      "static",
+      "public static and final",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Java does not support-----",
+    "qncode": "",
+    "options": [
+      "Multiple inheritance",
+      "Compile time polymorphism",
+      "Encapsulation",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Java language does not support multiple inheritance. Which means a class in Java can inherit from only one base class.\n\nIf there is a need for inheriting from multiple structures, we can use interfaces. A class can implement multiple interfaces. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Run time polymorphism in Java is achieved using ",
+    "qncode": "",
+    "options": [
+      "Method overloading",
+      "Method overriding",
+      "Constructor overloading",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Exposing only the necessary information to the clients is called as -----",
+    "qncode": "",
+    "options": [
+      "Encapsulation",
+      "Abstraction",
+      "Inheritance",
+      "Polymorphism"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "Complete the following code so that class Cat is a sub-class of animal class",
+    "qncode": "class Animal\n {.....}\nclass Cat --------- Animal\n{\n   ....\n}",
+    "options": [
+      "inherits",
+      "subclass",
+      "extends",
+      "implements"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "In object oriented programming, composition is ----",
+    "qncode": "",
+    "options": [
+      "A class composed of objects of other classes\t",
+      "A class extended from another class",
+      "A class extending from multiple classes\t",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Composition is a concept where a class has data members which are objects of other classes.\n\ne.g.\nclass Wheel{}\nclass Vehicle{\n    Wheel varr[4];\n }\n\nHere Vehicle class has an array of objects of Wheel class. So Vehicle is not a subclass of Wheel but is composed of wheel objects. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "The process of defining a methods in terms of itself is called -----",
+    "qncode": "",
+    "options": [
+      "Encapsulation",
+      "Inheritance",
+      "Recursion",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A recursive method calls itself.\n\ne.g.\n    int factorial(int n){\n       if(n==0)\n          return 1;\n       else\n         return n*factorial(n-1);\n    }\n\nHere we are calling the factorial() method inside the factorial method. It is recursion. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What does the following code illustrate?",
+    "qncode": "class Car{\n    Engine e1;\n    Tyres t1,t2,t3,t4;\n    Seats s1,s2;\n}",
+    "options": [
+      "Inheritance",
+      "Polymorphism",
+      "Composition",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": " class Test\n{\n     public void m1 (int i,float f)\n     {\n           System.out.println(\" Method m1 with int float\");\n     }\n     public void m1(float f,int i)\n      {\n          System.out.println(\"Method m1 with float int\");\n\n      }  \n\n      public static void main(String[]args)\n      {\n           Test t=new Test();\n            t.m1(20,20);\n      }\n }",
+    "options": [
+      "Method m1 with int float",
+      "Method m1 with float int",
+      "Compiler error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "Here two overloaded methods in the class have int,float and float, int as parameters. But the actual arguments are both int. \n\nNormally, when type of actual argument supplied is different from parameter, the compiler converts it implicitly (if the conversion does not require narrowing of precision). But in this case, both the overloaded functions are a match for such implicit conversion. \n\nSo there will be an ambiguity error. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Test{\n       private Test(){//line 2\n           System.out.println(\"Hello\");\n      } \n       public static Test(int a){//line 5\n            System.out.println(\"constructor\");\n       }\n      public static void main(String args[]){\n          Test t = new Test(1);\n      }\n}",
+    "options": [
+      "Hello",
+      "Constructor",
+      "Error in line 2",
+      "Error in line 5"
+    ],
+    "correct": 4,
+    "explanation": "Constructor of a class can not be static",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following are not valid constructors of the class Bar?",
+    "qncode": "",
+    "options": [
+      "public Bar(int a)",
+      "private Bar()",
+      "public void Bar()",
+      "Bar(int a, int b);"
+    ],
+    "correct": 3,
+    "explanation": "Constructor does not have a return type\n\nSo public void Bar() would be wrong constructor. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "Where in the memory are method parameters and local variables stored?",
+    "qncode": "",
+    "options": [
+      "Heap",
+      "Stack",
+      "Code area",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "class Animal{\n     Animal(String name){\n        System.out.println(\"Animal\");\n    }\n}\nclass Dog extends Animal{\n    Dog(String name){\n        System.out.println(\"Dog\");\n        super(name );\n   }\n}\npublic class Test{\n   public static void main(String args[]){\n      Dog d = new Dog(\"Tom\");\n  }\n}",
+    "options": [
+      "Compiler error",
+      "AnimalDog",
+      "DogAnimal",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "If we use super() in a constructor, it must be first statement statement in the constructor body. \n\nBy placing the super() as first statement in Dog() constructor, the program will compile and give output as Animal Dog\n",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements about constructor are true?",
+    "qncode": "",
+    "options": [
+      "A constructor can be private",
+      "Constructor is used to create an object",
+      "Constructor has the same name as class",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is Java byte code?",
+    "qncode": "",
+    "options": [
+      "A code generated by Java compiler",
+      "A code generated by JVM",
+      "Another name for java source file",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Java compiler creates machine independant java byte code. \n\nThen Java Virtual Machine translates this to the corresponding machine language instructions and executes them.\n\nJava byte code is the one which makes a Java language architecture independant. ",
+    "topic": "Introduction"
+  },
+  {
+    "question": "Which method is automatically called by Java system before an object is garbage collected?",
+    "qncode": "",
+    "options": [
+      "finally()",
+      "finalize()",
+      "finalizer()",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "If a class has defined finalize() method, then before the object is garbage collected, this method is called. So finalize method can be used to clean up the object. \n\nBut since we are not sure when an object will be garbage collected, we can not rely on this method. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the correct order for specifying differnt parts in a Java program?",
+    "qncode": "",
+    "options": [
+      "Import statement, \npackage declaration, \nclass declaration",
+      "Package declaration,\n import statement, \nclass declaration",
+      "Class declaration,\n import statement, \npackage declaration",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "If a java program file has a package declaration, that must be first statement of the file. \n\nNext we must write import statements. Next will be all class/interface declarations. \n\ne.g.\npackage com.abcd.myfiles\nimport java.io.*;\nclass A{\n ........\n}",
+    "topic": "Basics"
+  },
+  {
+    "question": "An overloaded method is a method with -----",
+    "qncode": "",
+    "options": [
+      "Same name and different return type",
+      "Same name with different number of parameters",
+      "Same name with different types of parameters",
+      "Either 2 or 3"
+    ],
+    "correct": 4,
+    "explanation": "A method is overloaded by another method with same name but different number of parameters OR different types or parameters OR both. \n\ne.g.\n\n     int add(int a,int b, int c){}\n     float add(float a,int b){}\n     int add(int a, int b){}\n\n     double add(float a, int b){}//invalid\n\nLast declaration is wrong because it differs from second function only by its return type. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "All exception types are subclasses of the built-in class  -----",
+    "qncode": null,
+    "options": [
+      "Exception",
+      "Throwable",
+      "RuntimeException",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The Throwable class is the superclass of all errors and exceptions in the Java language. Only objects that are instances of this class (or one of its subclasses) are thrown by the Java Virtual Machine or can be thrown by the Java throw statement. Similarly, only this class or one of its subclasses can be the argument type in a catch clause.\n\n",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "When an overridden method is called from a subclass , it calls -----",
+    "qncode": "",
+    "options": [
+      "Subclass method",
+      "Super class method",
+      "Compiler decides which method to call",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the range of short data type in Java?",
+    "qncode": "",
+    "options": [
+      "-128 to 127",
+      "-32768 to 32767",
+      "0 to 255",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "An expression involving byte, int and short numbers is promoted to ------",
+    "qncode": "",
+    "options": [
+      "int",
+      "long",
+      "float",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "In any arithmetic expressions, byte,short or char values are automatically promoted to an int and the result is also an int. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is Long literal?",
+    "qncode": "",
+    "options": [
+      "1234",
+      "ABCDE",
+      "34L",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "An integer literal suffixed with L or l is a long literal. If there is no L/l suffix, then it is an integer.  ",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements is correct way of initialising an integer array.",
+    "qncode": "",
+    "options": [
+      "int arr[] = {1,2,3,45};",
+      "int arr[] = new int[]{1,2,3,4,5};",
+      "int arr = new int {1,2,3,4,5};",
+      "Both 1 and 2"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "When is method overloading determined?",
+    "qncode": "",
+    "options": [
+      "At compile time",
+      "At run time",
+      "At coding time",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "When we call an overloaded method, Java compiler looks at the type of arguments and selects the appropriate overloaded method. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is not overloaded method of the function given below.",
+    "qncode": "int add(int a,int b);",
+    "options": [
+      "float add(float a, float b);",
+      "float add(int a, int b);",
+      "int add(int a,int b,int c);",
+      "float add(float a, float b, float c);"
+    ],
+    "correct": 2,
+    "explanation": "A method can't be overloaded just by changing the return type of the method but not changing the type and number of parameters. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the name for combining methods and attributes into classes?",
+    "qncode": null,
+    "options": [
+      "abstraction",
+      "encapsulation",
+      "inheritance",
+      "polymorphism"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "Which of the following methods of Thread class waits for a  thread to die?",
+    "qncode": "",
+    "options": [
+      "stop",
+      "pause",
+      "join",
+      "none of the above"
+    ],
+    "correct": 3,
+    "explanation": "When we invoke the join() method on a thread, the calling thread goes into a waiting state until the thread specified ends.\n\ne.g.\n\n  MyThread th1 =new MyThread();\n  th1.start();\n  ..\n  ..\n ..\n  th1.join();//line 1\n\nNow line 1 will pause the main thread, until th1 is terminated. ",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What will happen if we directly call the run method of a thread instead of start() method?",
+    "qncode": "",
+    "options": [
+      "The method will run in separate thread",
+      "The method will run in calling thread",
+      "Compilation error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "If we call start method, a new thread is created and then the run() method is executed in this new thread.\n\nBut if we call run method directly from calling thread, then new thread is not created and method is run from calling thread only",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Which package includes all the standard classes of java?",
+    "qncode": null,
+    "options": [
+      "java.lang",
+      "java.util",
+      "java.math",
+      "java.ref"
+    ],
+    "correct": 1,
+    "explanation": "java.lang contains all standard classes. So every java sourcce file implicitly imports java.lang package. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which keyword is used if a method does not want to handle the exception?",
+    "qncode": "",
+    "options": [
+      "throws",
+      "try",
+      "catch",
+      "final"
+    ],
+    "correct": 1,
+    "explanation": "throws is used to specify a list of unhandled exceptions a method may throw \n\nA method can specify the exception in throw list, instead of using try and catch blocks. This thrown exception is passed on to calling function, which should handle it.\n\ne.g.\n\nvoid printFile() throws IOException{\n    FileReader rd = new FileReader(\"a.txt\");\n    int n = rd.read();\n    rd.close();\n}",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the name for the mechanism in Object oriented languages, where one object acquires all the properties and behaviors of the another object?",
+    "qncode": null,
+    "options": [
+      "Encapsulation",
+      "Inheritance",
+      "Abstraction",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "Java Virtual Machine is machine independant. True or false?",
+    "qncode": "",
+    "options": [
+      "True",
+      "False",
+      null,
+      null
+    ],
+    "correct": 2,
+    "explanation": "JVM is platform dependant.\n\nBut the byte code produced by Java compiler is platform independant. ",
+    "topic": "Introduction"
+  },
+  {
+    "question": "How do you make classes and interfaces of one package available to another package?",
+    "qncode": "",
+    "options": [
+      "Using import statement",
+      "Using implements statement",
+      "Using package statement",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Method overriding is used to implement ------",
+    "qncode": "",
+    "options": [
+      "Inheritance",
+      "Polymorphism",
+      "Encapsulation",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "jar stands for -----",
+    "qncode": "",
+    "options": [
+      "java archieve",
+      "java archieve runner",
+      "java application runner",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "An overriding method in  a subclass must have ----- as the superclass method",
+    "qncode": "",
+    "options": [
+      "Same number but different types of parameter",
+      "Different number or types of parameters",
+      "Same number and same type of parameter",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "An overriding method in a subclass must have the same signature as the super class method. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "If there is no constructor for a class, Java system implicitly generates a constructor which is called as -------",
+    "qncode": "",
+    "options": [
+      "Empty constructor",
+      "Default constructor",
+      "Null constructor",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What are the properties of a constructor?",
+    "qncode": "",
+    "options": [
+      "Has no return type",
+      "Has same name as class",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Java system deletes objects automatically when they are no longer in use. This is called -----",
+    "qncode": "",
+    "options": [
+      "Exception Handling",
+      "System Cleaning",
+      "Garbage collection",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "Which of the following statements are true about constructors?",
+    "qncode": "",
+    "options": [
+      "Constructors can be overloaded ",
+      "For a class with no constructors, system provides a default constructor",
+      "Constructor is called automatically when an object is created.",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "The inventor of Java language is -------",
+    "qncode": "",
+    "options": [
+      "Dennis Ritchie",
+      "James Gosling",
+      "Steve Jobs",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "A collection of method signatures with no implementation is called ----",
+    "qncode": "",
+    "options": [
+      "Interface",
+      "Package",
+      "Class",
+      "Subclass"
+    ],
+    "correct": 1,
+    "explanation": "An interface is a group of abstract methods - methods with no body. \n\ne.g.\n\ninterface ArithmeticOp{\n   int add(int a,int b);\n   int subtract(int a, int b);\n}",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following is not a comment  in Java?",
+    "qncode": "",
+    "options": [
+      "/* comment*/",
+      "//comment",
+      "/**comment*/",
+      "/*comment"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements are correct?\n    a.  A Java program must have a package statement. \n    b.  A package statement if present must be the first statement of the program (barring any comments).\n    c.  If a Java program defines both a package and import statement, then the import statement must come before the package statement. \n    d.  An empty file is a valid source file. \n    e.  A Java file without any class or interface definitions can also be compiled. \n    f.  If an import statement is present, it must appear before any class or interface definitions. ",
+    "qncode": null,
+    "options": [
+      "b, d, e, f ",
+      "a, b, d, f ",
+      "d, e, a, c",
+      " c, d, b, a "
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements about static inner classes is true?",
+    "qncode": "",
+    "options": [
+      " A static inner class does not require an instance of the enclosing class.",
+      " A static inner class cannot be a static member of outer class. ",
+      " It must extend enclosing class. ",
+      "Its variables and methods must be static"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the correct signature of main() method in a standalone Java program?",
+    "qncode": "",
+    "options": [
+      "public static void main(char args[])",
+      "public static void main(String arg)",
+      "public static void main(String args[])",
+      "public static void Main(String args[])"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What does a void function return?",
+    "qncode": "",
+    "options": [
+      "null",
+      "0",
+      "Nothing",
+      "There can not be void functions"
+    ],
+    "correct": 3,
+    "explanation": "A void function does not return anything.\n\nBut a void function may have an empty return statement.\n\nvoid printPositiveNum(int n){\n   if(n<0){\n      return;\n   }\n   System.out.println(n);\n}",
+    "topic": "Basics"
+  },
+  {
+    "question": "Why does the following code does not compile?",
+    "qncode": "int a = 10;\nbyte b = a;\n",
+    "options": [
+      "There is no byte data type in Java",
+      "Implicit conversion from higher precision to lower precision is not allowed",
+      "The code will compile",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Automatic conversion can be done when we are widening the data type or converting to higher precision.\n\n But if we convert from higher precision data type to lower precision, then automatic conversion is not possible because there may be loss of accuracy. There will be a syntax error in such cases. \n\nBut such conversions can be done by using explicit type casting\n\ne.g.\nbyte b = (byte)a;\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is not a primitive data type in Java?",
+    "qncode": "",
+    "options": [
+      "int ",
+      "float ",
+      "bool",
+      "long"
+    ],
+    "correct": 3,
+    "explanation": "The logical data type with true and false as its values is called boolean- not bool\n\ne.g.\n   boolean b = true;\n\n   ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program if it is run as \njava test 10 20",
+    "qncode": "public class test {\n   public static void main(String args[]) { \n      String str = args[1];//line 3\n      int num = Integer.valueOf(str);//line 4\n      System.out.println(num);\n   }\n}\n",
+    "options": [
+      "Syntas error in line 3",
+      "Run time error in line 4",
+      "20",
+      "10"
+    ],
+    "correct": 3,
+    "explanation": "When we run the program as \njava test 10 20, then args[0] will be the string \"20\" and args[1] will be \"10\"",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements are false about objects?",
+    "qncode": "",
+    "options": [
+      "Object is an instance of a class",
+      "An object can access only instance members of a class",
+      "new keyword will create an object",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Java compiler converts Java source code  to ----",
+    "qncode": "",
+    "options": [
+      "Object code",
+      "Machine code",
+      "Byte code",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "String s = \"Java\";\ns.concat(\"coders\");\nSystem.out.println(s);",
+    "options": [
+      "Javacoders",
+      "Java coders",
+      "Java",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "concat method of String class, adds the second string at the end of the given string and returns the resultant string. But it does not modify the original string. \n\ne.g.\nString s1 = \"hello\";\nString s2 = s1.concat(\" world\");\n/* now s1 is hello but s2 is hello world*/",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is a checked exception in Java",
+    "qncode": "",
+    "options": [
+      "ArithmeticException",
+      "ArrayIndexOutOfBoundException",
+      "NullPointerException",
+      "IOException"
+    ],
+    "correct": 4,
+    "explanation": "The other 3 are unchecked runtime exceptions. ",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "float m=2.9f;\nSystem.out.println(\"m is \"+Math.floor(m));\n",
+    "options": [
+      "m is 2.9",
+      "m is 2.0",
+      "m is 3.0",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Why must the main method be static?",
+    "qncode": "",
+    "options": [
+      "It can be accessed easily by class loader",
+      "It can be accessed without creating an object",
+      "It can be accessed by every method in the class",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "A static method can be accessed without an object. That is the reason main method is a static method. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "A final class is a class which can not be -------",
+    "qncode": "",
+    "options": [
+      "Instantiated",
+      "Subclassed",
+      "Accessed",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "How do you continue a suspeneded thread?",
+    "qncode": "",
+    "options": [
+      "Using start()",
+      "Using resume()",
+      "Using yield",
+      "Using suspend()"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Which collection class in Java orders the keys according their natural order?",
+    "qncode": "",
+    "options": [
+      "HashSet",
+      "LinkedList",
+      "TreeMap",
+      "SortedSet"
+    ],
+    "correct": 3,
+    "explanation": "Both TreeMap and TreeSet are sorted collections in Java. ",
+    "topic": "Collections"
+  },
+  {
+    "question": "A lower precision variable can be assigned to a higher precision value in Java. \n\nTrue or false?",
+    "qncode": "",
+    "options": [
+      "True",
+      "False",
+      "",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is a keyword in Java?",
+    "qncode": "",
+    "options": [
+      "NULL",
+      "synchronized",
+      "implement",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "The keyword used for implementing an interface is \"implements\"\n\nThe null value used is lower case null, not NULL\n\nsynchronized is a keyword used in multithreaded programs when a block of code or a method can be accessed by only one thread at a time. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "The operands of arithmetic operators must be -----",
+    "qncode": "",
+    "options": [
+      "Numeric",
+      "Boolean",
+      "Character",
+      "Either numeric or boolean"
+    ],
+    "correct": 4,
+    "explanation": "Characters are essentially numbers in Java\n\nSo we can say statements like\n\n   char ch = 'a';\n   char ch2 =(char)( ch+3);//ch2 will be letter d",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements about modulus operators is true?",
+    "qncode": "",
+    "options": [
+      "Modulus operator gives remainder when first number is divided by second",
+      "Modulus operator can not be applied to non-integers",
+      "Symbol of modulus operator is ^",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "% operator - called modulo operator gives the remainder when first number is divided by 2nd number.\n\nBut unlike C and C++, in Java, modulo operator  can also be used with float and double operands.\n\ne.g.\n   float m=4.2f;\n   float n = (float) (m%2); \n   //n will be 0.2\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements make the value of m to 10",
+    "qncode": "int m = 9;",
+    "options": [
+      "m+=1;",
+      "m++;",
+      "++m;",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Test {\npublic static void main(String args[]) \n{    \n  int x , y;\n  x = 25;\n  x++;\n  --x;\n  y = x++;\n  System.out.println(x + \" \" + y);\n} \n}",
+    "options": [
+      "26 26",
+      "25 25",
+      "26 25",
+      "25 26"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following operators is used to complement a number - i.e. invert all the bits of a number?",
+    "qncode": "",
+    "options": [
+      "^",
+      "~",
+      "!",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Complement operator inverts the bits of the number. It can be used with integer types.\n\ne.g.\n    int m = 10;\n    int n = ~m;\n    // n will be -11\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which type of operators returns a boolean answer?",
+    "qncode": "",
+    "options": [
+      "Arithmetic",
+      "Bitwise",
+      "Relational",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "int a = 10;\na = a<<2;\nSystem.out.println(String.valueOf(a));\n",
+    "options": [
+      "2",
+      "40",
+      "10",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Left shift operator shifts all the bits of the number to the left by 2nd argument.\n\nIn this case the number is shifted to the left by 2 places padding the rightmost bits with 0. So the value becomes \n\n   1010\n   10100 \n   101000 - 40",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of these operators can be used on boolean operands?",
+    "qncode": "",
+    "options": [
+      "==",
+      "&&",
+      "?:",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "int a = 10;\nint b = 2;\nif ( a++>30 && b++>0)\n    System.out.println(\"true\");\nelse\n    System.out.println(\"false);\nSystem.out.println(a+\" \"+b);\n",
+    "options": [
+      "false\n11 3",
+      "true\n10 2",
+      "false\n11 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "In an && operator, if the first operand is already false, then the second operand is not evaluated - because the result will be false. \n\nSo in this case b++ is not evaluated and b remains 2.",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test{\n    public Test(){\n       System.out.println(\"10\");\n    }\n    private Test(int n){\n        System.out.println(n);\n    }\n    public static void main(String args[]){\n          Test t = new Test(-9);\n      }\n}",
+    "options": [
+      "10",
+      "-9",
+      "Compiler error because constructor is private",
+      "Compiler error because n is negative"
+    ],
+    "correct": 2,
+    "explanation": "private constructor is not a problem here because main function is within the class and it can call the private method. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test{\n    public Test(){\n       System.out.println(\"Constructor\");\n    }\n     static Test(int n){\n      this();\n      System.out.println(\"the parameter is \"+n);\n    }\n    public static void main(String args[])\n    {\n      Test obj = new Test(10);\n    }\n}",
+    "options": [
+      "Error because constructor can not be static",
+      "Error because of the call this()",
+      "Constructor\nThe parameter is 10",
+      "No output"
+    ],
+    "correct": 1,
+    "explanation": "Constructor can not be static\n\nBut constructor can call another constructor using this(). This call must be the first statement of the constructor.\n",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Ran{\n    public static void main(String args[]){\n        System.out.println(Math.floor(Math.random()));\n    }\n}",
+    "options": [
+      "1.0",
+      "0.0",
+      "Can not predict",
+      "10.0"
+    ],
+    "correct": 2,
+    "explanation": "random() generates a random number between 0 and 1.\n\n And Math.floor will round it to lower integer which in this case is 0.",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write the output of the following program. ",
+    "qncode": "public class Test{\n    void method(int n){\n         System.out.println(\"method1\");\n    }\n   void method(String n){\n         System.out.println(\"method2\");\n    }\n    public static void main(String args[]){\n         Test obj = new Test();\n         obj.method(10);\n    }\n}",
+    "options": [
+      "method1",
+      "method2",
+      "Compiler error",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "When is the finalize() method called?",
+    "qncode": "",
+    "options": [
+      "Just before an object or a variable goes out of scope",
+      "Just before the program execution ends",
+      "Just before garbage collector destroys the object",
+      "There is no finalize() method"
+    ],
+    "correct": 3,
+    "explanation": "Garbage collector destroys the object when it determines there are no more references to the object. Before destroying, the finalize method of the object is called.",
+    "topic": "Advanced"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test{\n    Test(){\n         System.out.println(\"Constructor\");\n    }\n    void method(int n){\n         this();\n         System.out.println(\"method\");\n    }\n    \n    public static void main(String args[]){\n         Test obj = new Test();\n         obj.method(10);\n    }\n}",
+    "options": [
+      "Constructor\nConstructor\nmethod",
+      "Constructor\nmethod",
+      "Compiler error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "this() is called explicit constructor invocation. It can not be used in other methods. It can only be used in a constructor (if present it must be the first statement).  \ne.g.\nclass Test{\n   Test(){\n       System.out.println(\"Default\");\n   }\n   Test(String s){\n       this();\n       System.out.println(\"Parameterized\");\n   }\n}\n\nHere Test with one string parameter uses this() call and it will explicitly call default constructor.",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the implicit return type of a constructor?",
+    "qncode": "",
+    "options": [
+      "Object of that class",
+      "void",
+      "int ",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following is the deault constructor for the given class?",
+    "qncode": "class MyClass{}",
+    "options": [
+      "public MyClass(int n){}",
+      "public void  MyClass(){}",
+      "public MyClass(){}",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Default constructor takes no parameters.\n\nA constructor does not have a return type\n",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following statements are true about the code given below. ",
+    "qncode": "public class Test{\n    Test(int a, int b){\n         System.out.println(\"Constructor\");\n    }\n    void method(int n){          \n         System.out.println(\"method\");\n    }\n    \n    public static void main(String args[]){\n         Test obj = new Test();//line 1\n         obj.method(10);//line 2\n    }\n}",
+    "options": [
+      "There is an error in line 1",
+      "There is an error in line2",
+      "There are no errors in the program.",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "As the class does not have a default constructor and has a parameterized constructor, calling Test with no parameters gives compilation error. \n\nThe compiler provides default (0 parameter) constructor for a class ONLY IF the class has no other constructors. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Numbers{\n    \n    int add(int n,int m){\n         return n+m;\n    }\n    \n    public static void main(String args[]){\n         Numbers obj = new Numbers();\n         short s = 9;//line 1\n       \n         int m =  obj.add(10,s);//line 2\n         System.out.println(\"sum  is \"+m);\n    }\n}",
+    "options": [
+      "Error in line 1",
+      "Error in line 2",
+      "19",
+      ""
+    ],
+    "correct": 3,
+    "explanation": "When a smaller value is assigned to a more precise variable, the implicit conversion takes place. (widening conversion). \n\nBut if we assign a larger value to a less precise variable there will be a compilation error.\n\n  You can use explicit casting to avoid this error.\n\nshort s = 2;\nint m = 10;\ns = m;//error\ns = (int)m;//no error",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test{\n    void changeString(String s){\n       s = \"xyz\";\n    }\n     \n    public static void main(String args[])\n    {\n      Test obj = new Test();\n      String s = \"abc\";\n      obj.changeString(s);\n      System.out.println(\"String is \"+s);\n    }\n}\n",
+    "options": [
+      "abc",
+      "xyz",
+      "Compilation error",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "Parameters to methods are sent by value. When an object is passed to a method, its reference is passed and the method can change its value, if it is not an immutable object. \n\nIn this case string is a mutable object, so the string remains abc only.\n\nLet us look at another example where we send a mutable object as a parameter to a method.\n\ne.g.\nclass N{\n   int n;\n   }\nclass Test{\nvoid changeNum(N obj){\n    obj.n+=10;\n}\n   public static void main(String s[]){\n      N obj = new N();\n      obj.n = 100;\n      System.out.println(obj.n);\n      Test t1 = new Test();\n      t1.changeNum(obj);\n      System.out.println(obj.n);\n  }\n}\n\nThe output of this program 100 and 110\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write the output of the following program.",
+    "qncode": "public class Test{\n     int n;\n     Test(int n){\n\tthis.n = n;//line 1\n    }\n    public static void main(String args[])\n    {\n      Test obj = new Test(10);\n      System.out.println(\"Hello world \");\n    }\n}\n",
+    "options": [
+      "Compiler error in line 1",
+      "Run time error",
+      "Hello world",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "this.n stands for instance variable n. \n\nthis.n = n statement assigns parameter to  instance variable. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "Write the output of the following program.",
+    "qncode": "public class Test{\n     int n;\n     Test(int n){\n\tthis.n = n;//line 1\n    }\n    void printNumbers(byte ...b){\n       for(int i=0;i<b.length;i++)\n          System.out.println(\"The number is \"+b[i]);\n    }\n    public static void main(String args[])\n    {\n      Test obj = new Test(10);\n      byte b1 = 10,b2=20,b3=40;\n      obj.printNumbers(b1,b2,b3);\n    }\n}\n",
+    "options": [
+      "Compiler error",
+      "The number is 10 20 40",
+      "The number is 10\nThe number is 20\nThe number is 40",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The syntax \n   data-type function-name(data-type ...name){}\n\nis used for variable argument function. The function can take flexible type of arguments of the given type. These are accessed in the function using array syntax. \n\nIn this case, the function can take one or more parameters of the type byte.\n\nIn the code, b is used to accept one, two or three etc. parameters of type byte. And within the function these parameters are accessed as b[0], b[1], b[2] and so on.\n\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the  program given below.",
+    "qncode": "class A{\n    A(String s){ \n       System.out.println(\"A constructor 1 \");\n    }\n}\nclass B extends A{\n    B(){ \n       System.out.println(\"B constructor 1 \");\n    }\n    B(String s){ \n       super(s);\n       System.out.println(\"B constructor 2  \");\n   }\n}\nclass Inhr{\n   public static void main(String args[]){\n     B obj2 = new B(\"Hello\");\n   }\n}\n",
+    "options": [
+      "Compiler error",
+      "A constructor 1\nB constructor2 ",
+      "B constructor 2",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "The no parameter constructor of B class tries to call default constructor of A class. (A sub class constructor should always call super class constructor implicitly or explicitly). But as A class does not have default constructor, there will be a syntax error.\n\nThe error can be fixed by calling super in no parameter constructor also.\n\nB(){\n    super(\"\");\n    System.out.println(\"B constructor 1\");\n}\n",
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following statements about constructors are false?",
+    "qncode": "",
+    "options": [
+      "A constructor has no return typ",
+      "Its name must be the same as the class name",
+      "There can be only one constructor per class",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "In an instance method, keyword ---- refers to the current object.",
+    "qncode": null,
+    "options": [
+      "this",
+      "super",
+      "object",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "In Java, garbage collection is a manual process. True or false?",
+    "qncode": "",
+    "options": [
+      "true",
+      "false",
+      "",
+      ""
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "Which of these statements about constructors is true?",
+    "qncode": "",
+    "options": [
+      "A constructor can be overloaded",
+      "A constructor can call another constructor using this()",
+      "A constructor can not be static",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "qncode": "",
+    "options": [
+      "A class can be instantiated",
+      "An interface can be instantiated",
+      "Both a class and interface can be instantiated",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What type of file does a Java compiler produce?\t",
+    "qncode": "",
+    "options": [
+      ".obj",
+      ".class",
+      ".exe",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Java compiler produces java byte code which is a file of type .class. This byte code is executed by Java virtual machine. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is the difference between overloading and overriding?",
+    "qncode": "",
+    "options": [
+      "Overloading is a dynamic or runtime binding and overriding is a static or compile time binding.",
+      "Overloading is a static or compile time binding and overriding is dynamic or runtime binding.",
+      "Redefining a function in a friend class is called overloading, while redefining a function in a derived class is called as overridden function.",
+      "Redefining a function in a derived class is called function overloading, while redefining a function in a friend class is called function overriding."
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "An overridden method must have ------",
+    "qncode": "",
+    "options": [
+      "Same name and same type and number of parameters",
+      "Same name but different type or number of parameters",
+      "Different name and same type and number of parameters",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which keyword is used to inherit a class?",
+    "qncode": "",
+    "options": [
+      "inherits",
+      "inheritance",
+      "extends",
+      "implements"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which method can be used to copy an array?",
+    "qncode": "",
+    "options": [
+      "arrayCopy",
+      "copyArray",
+      "copy",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "System.arraycopy() method can be used to copy from one array to another.\n\nint arr[] = {1,2,3,4,5,6];\nint arr2[] = new int[6];\nSystem.arrayCopy(arr,0,arr2,0,6);\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "How do you represent the number 13 in binary in Java?",
+    "qncode": "",
+    "options": [
+      "0b1101",
+      "b1101",
+      "01101B",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Starting from Java 7, you can use binary numbers by adding  a prefix 0b to integer literal.",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Equal{\n  public static void main(String args[]){\n     String s1 = \"abc\";\n     String s2 = \"abc\";\n     boolean b = s1==s2;\n     System.out.println(\"s1 == s2 is  \"+s1==s2);\n  }\n}\n",
+    "options": [
+      "s1 == s2 is true",
+      "s1 == s2 is false",
+      "false",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "+ has higher priority than ==.\n\nSo the code is read by compiler as \nSystem.out.println((\"s1==s2 is\"+s1)==s2)\n\nAs the strings are unequal, we get false as output. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "In the following code, what can be the type of n?",
+    "qncode": "switch(n){/*code*/}",
+    "options": [
+      "int",
+      "char",
+      "float",
+      "both 1 and 2"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "abstract class Writer {\npublic static void write() {\nSystem.out.println(\"Writing...\");\n}\n}\nclass Author extends Writer {\npublic static void write() {\nSystem.out.println(\"Writing book\");\n}\n}\npublic class Programmer extends Writer {\npublic static void write() {\nSystem.out.println(\"Writing code\");\n}\npublic static void main(String[] args) {\nWriter w = new Programmer();\nw.write();\n}\n}",
+    "options": [
+      "Writing...",
+      "Writing book",
+      "Writing code",
+      "Compilation fails"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inhertiance"
+  },
+  {
+    "question": "In order for the following code to compile correctly, what must be inserted in line 1?",
+    "qncode": "class AA {\nAA(int x) {\nSystem.out.println(\"Super\");\n}\n}\npublic class BB extends AA {\nBB() {\n// Line n1\nSystem.out.println(\"Sub  \");\n}\n}",
+    "options": [
+      "this(1)",
+      "super(1)",
+      "AA(1)",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "BB class constructor calls AA class constructor first implicitly. But as there is no default constructor in AA class, we have to explicitly call super class constructor using super(1) call. ",
+    "topic": "Inhertiance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Test {\n public static void main(String[] args) {\n   List<String> items = new ArrayList<>();\n   items.add(\"Book\");\n   items.add(\"Large Book\");\n   items.add(\"Text Book\");\n   for (String i : items) {\n       if (i.indexOf(\"B\") == 0) {\n          continue;\n       } else {\n            System.out.print(i+\" \");\n   }\n  }\n}\n}",
+    "options": [
+      "Book",
+      "Book\nLarge Book\nText Book\n",
+      "Large Book\nText Book",
+      "No output"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class MultiConst{\n    public MultiConst(){\n       System.out.println(\"Constructor 1\");\n    }\n    public MultiConst(int n){\n       this();\n       System.out.println(\"Constructor 2\");\n    }\n    public MultiConst(int a, int b){\n      this(a);\n      System.out.println(\"Constructor 3\");\n    }\n    public static void main(String args[]){\n      MultiConst obj = new MultiConst(1,2);\n   }\n}\n",
+    "options": [
+      "Constructor 3",
+      "Constructor 1",
+      "Syntax error",
+      "Constructor 1\nConstructor 2\nConstructor 3\n"
+    ],
+    "correct": 4,
+    "explanation": "The object creation calls 2 parameter constructor. But constructor with 2 int parameter calls 1 parameter constructor which in turn calls 0 parameter construcor using this(). So all three constructors are called. \n\nA constructor can all another constructor using this()\n",
+    "topic": "Classes"
+  },
+  {
+    "question": "Can a constructor call another constructor of the same class in Java?",
+    "qncode": "",
+    "options": [
+      "Yes",
+      "No",
+      "",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "A constructor can call another constructor of the same clas using this(). But it must be the first statement in constructor. s",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Number{\n   int n;\n   Number(int n){\n      this.n = n;\n      System.out.println(\"value of n is \"+n);\n   }\n   public static void main(String args[]){\n       Number obj = new Number();\n   }\n}",
+    "options": [
+      "value of n is 0",
+      "value of n is -1",
+      "Syntax error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "We are calling a 0 parameter constructor. \n\nThere is no such constructor. As the class already has a constructor, default constructor is not provided by compiler. Hence there will be an error.",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is/are the errors in the code below?",
+    "qncode": "interface timer{\n      void printTime(){\n             System.out.println(\"in the interface\");\n    }\n}",
+    "options": [
+      "keyword is Interface",
+      "Interface method should be public",
+      "Interface method should not have implementation",
+      "No error"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Can an interface have a constructor?",
+    "qncode": "",
+    "options": [
+      "Yes",
+      "No",
+      "",
+      ""
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Can a class implement multiple interfaces",
+    "qncode": "",
+    "options": [
+      "Yes",
+      "No",
+      "",
+      ""
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements will print all elements of arrray myarr?",
+    "qncode": "",
+    "options": [
+      "for(int i=0;i<n;i++) System.out.println(arr[i]);",
+      "for(int i:arr)System.out.println(i);",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The second answer has for each loop which is used to iterate over all elements of an array. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "An anonymous inner class ------",
+    "qncode": "",
+    "options": [
+      "Has no name",
+      "Has no constructor",
+      "Is an expression",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "An anonymous inner class is a nameless inner class without any name which is given in the form of an expression. Such a class is implemented and instantiated together. There can be only one object of such a class. \nAs it has no name, it can not have any constructor. \n\ne.g.\nclass Test{\nclass Polygon{\n     int area(){}\n}\n\npublic void abc(){\n      final int len=3;\n      Polygon square = new Polygon(){\n              int area(){\n                    return len*len;\n              };\n}\n}\n\nSo here we have a defined a class Polygon and a class which extends this class in the second statment of abc() function. This extended class has no name, but just has implementation and instantiation. \n",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "qncode": "",
+    "options": [
+      "A static inner class object can not be created without outer class object",
+      "An anonymous inner class can have a constructor",
+      "A local class is defined within a method",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "A local class can access a variable within the method if ----",
+    "qncode": "",
+    "options": [
+      "the variable is static",
+      "the variable in integer",
+      "the variable is final",
+      "Not possible"
+    ],
+    "correct": 3,
+    "explanation": "A local can access a variable of the enclosing method, only if that variable is final variable.  ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "A lambda expression can also be used to implement a  --------",
+    "qncode": "",
+    "options": [
+      "A static class",
+      "A local class",
+      "An anonymous class",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Since Java 8, an anonymous class can be written as a lambda expression. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "qncode": "",
+    "options": [
+      "A class can be defined within another class",
+      "A class can be defined within a method",
+      "An outer class can access all variables of inner class.",
+      "Both 1 and 2"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Can a static inner class access instance variables of the outer class?",
+    "qncode": "",
+    "options": [
+      "Yes",
+      "No",
+      "",
+      ""
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "With reference to these two statements which of the following answer is true?\n\na) this() is used in a constructor to invoke another constructor of the same class. \nb) super() is used to invoke the base class constructor.",
+    "qncode": null,
+    "options": [
+      "Only a is true",
+      "Only b is true",
+      "Both are true",
+      "Both are false"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of these is used to call the constructor of the base class?",
+    "qncode": "",
+    "options": [
+      "this()",
+      "base()",
+      "super()",
+      "Not possible"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "The process of defining a method with the same name and different parameter types in a class is called ----",
+    "qncode": "",
+    "options": [
+      "Overloading",
+      "Overriding",
+      "Name Hiding",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Which of these keywords can be used to avoid method overriding?",
+    "qncode": "",
+    "options": [
+      "static",
+      "abstract",
+      "final",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A method which is defined as final can not be overridden by sub-class. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "final class A{\n   A(){\n      System.out.println(\"A);\n   }\n}\nclass B extends A{\n   B(){\n      System.out.println(\"B\");\n   }\n   public static void main(String args[]){\n       B obj = new B();\n   }\n}",
+    "options": [
+      "B",
+      "A\nB",
+      "B\nA",
+      "Syntax error"
+    ],
+    "correct": 4,
+    "explanation": "Class A is final. So it can not be extended. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What will be the output of the following program?",
+    "qncode": "public class A {\n    A(int m){\n    }\n    void display(){\n        System.out.println(\"Hello world\");\n    }\n}\nclass B extends A{\n    B(){\n        super(0);\n    }\n    void display(){\n        System.out.println(\"Goodbye world\");\n    }\n}\nclass OverTest{\n    public static void main(String args[]){\n        A obj = new B();\n        obj.display();\n    }\n\n}\n",
+    "options": [
+      "Hello world",
+      "Goodbye world",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The display() method is overridden. \n\nobj is an object of A class referring to subclass B. When the method display is called, there is dynamic binding and the sub-class display method is called. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "How do you access the variable m from class A in the println statement shown in the code below?",
+    "qncode": "class A{\n   int m;\n}\nclass B extends A{\n    int m;\n    public void display(){\n         System.out.println(\"\"+--------);\n   }\n}",
+    "options": [
+      "this.m",
+      "A.m",
+      "super.m",
+      "Not possible"
+    ],
+    "correct": 3,
+    "explanation": "super.m will access the field from the base class A.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class A {\n    int m;\n    A(int m){\n        this.m=m;\n    }\n    void display(){\n        System.out.println(\"Hello world\");\n    }\n}\nclass B extends A{\n    int m;\n    B(){\n        super(0);\n        m=100;\n    }\n    void display(){\n        System.out.println(super.m);\n    }\n}\nclass OverTest{\n    public static void main(String args[]){\n        B obj = new B();\n        obj.display();\n    }\n\n}\n",
+    "options": [
+      "0",
+      "100",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "How does Java enable multiple inheritance?",
+    "qncode": "",
+    "options": [
+      "Using overriding",
+      "Using interfaces",
+      "Using abstract classes",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "A class in Java can inherit from only one super class. But it can implement multiple interfaces. So interface allows Java to have multiple inheritance. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Static methods are not inherited by the derived class. True or false.",
+    "qncode": "",
+    "options": [
+      "true",
+      "false",
+      "",
+      ""
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements are true regarding final keyword?",
+    "qncode": "",
+    "options": [
+      "final variable can not be modified",
+      "final method can not be over ridden",
+      "final classes can not be extended",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which is the base class for all other classes in Java?",
+    "qncode": null,
+    "options": [
+      "Integer",
+      "Object",
+      "Program",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "All classes in Java inherit implicitly from Object class. ",
+    "topic": "Advanced"
+  },
+  {
+    "question": "A class is made abstract by ------",
+    "qncode": "",
+    "options": [
+      "Writing an abstract method in the class",
+      "Using the keyword final in the class declaration",
+      "Using keyword abstract in class declaration",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "An abstract classs is written with keyword abstract as a prefix to class declaration.\n\ne.g.\n\nabstract class animal{.........}",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program",
+    "qncode": "abstract class Base1{\n    abstract public void display();\n}\n\n\npublic class AbstTest  extends Base1{\n    public static void main(String args[]){\n        System.out.println(\"Hello world\");\n    }\n}",
+    "options": [
+      "Hello world",
+      "No output",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The derived class of an abstract class must implement all abstract methods of base class or else it must be declared abstract. If not, we get compilation error.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Abcd{\n    abstract public void display();\n}\n\n\npublic class AbstTest  extends Abcd{\n    public static void main(String args[]){\n        Abcd obj = new Abcd();\n        System.out.println(\"Hello world\");\n    }\n}",
+    "options": [
+      "Hello world",
+      "No output",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A class which has an abstract method must be declared abstract. If not, we will get a syntax error.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Write the output of the following program?",
+    "qncode": "class Base{\n    private int i,j;\n}\nclass Derived extends Base{\n    public void setNumbers(int m){\n        i=j=m;\n    }\n    public void printNumbers(){\n        System.out.println(\"i is\"+i+\"and j is \"+j);\n    }\n}\npublic class Demo  {\n    public static void main(String args[]){\n       Derived d1 = new Derived();\n       d1.setNumbers(10);\n       d1.printNumbers();\n    }\n}\n",
+    "options": [
+      "i is 10 and j is 10",
+      "i is 0 and j is 0",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The variables i and j in class Base are private. They are not accessible from the derived class. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of these IO classes can be used to handling bytes ?",
+    "qncode": "",
+    "options": [
+      "InputStream",
+      "Writer",
+      "Reader",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Reader and Writer are used for character stream. InputStream and OutputStream are used for byte streams.",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which method is used to read a byte from a byte stream?",
+    "qncode": "",
+    "options": [
+      "read()",
+      "readLine()",
+      "readByte()",
+      "Any of the above"
+    ],
+    "correct": 1,
+    "explanation": "read() method of InputStream class reads one byte at a time. ",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What does the following code do?",
+    "qncode": "public static void main(String args[]) throws IOException {\n        InputStream stream = new FileInputStream(\"a.txt\");\n        while(stream.read()!=-1){\n            int b =  stream.read();\n            System.out.print(b);\n        }\n        if(stream!=null){\n            stream.close();\n        }\n    }",
+    "options": [
+      "Displays the contents of a file.",
+      "Displays the bytes in a file",
+      "Gives syntax error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The method read() reads one byte at a time. And this is converted to int and displayed by the program. The loop continues till EOF (-1) is read. ",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Except for Object class, every class has one and only one --------",
+    "qncode": "",
+    "options": [
+      "method",
+      "field",
+      "super class",
+      "sub class"
+    ],
+    "correct": 3,
+    "explanation": "Java has single inheritance. A class can be inherited from only one super class.\n\nAny class which does not use \"extends\" in its declaration has Object class as implicit superclass. \n\nSo every class except for Object class has one super class. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements regarding subclass are true?",
+    "qncode": "",
+    "options": [
+      "A sub class inherits all members of super class",
+      "A sub class can override a method of superclass",
+      "A subclass can define its own methods and fields",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements are valid with respect to the code given below?",
+    "qncode": "class Animal{\n   int age;\n   String name;\n}\nclass Cat extends Animal{\n    void mews(){\n        }\n}\nclass Demo{\n     public static void main(String args[]){\n           Animal a = new Animal();\n           Cat c = new Cat();\n  }\n}",
+    "options": [
+      "c = a;",
+      "a = c;",
+      "Both 1 and 2",
+      "Neither 1 and 2"
+    ],
+    "correct": 2,
+    "explanation": "A Cat object is an Animal object. So we can assign \n     a = c;\n\nBut an Animal object need not be a Cat object. So assigning \n     c =a;\n\ngives a syntax error.\n\nA sub class object is a super class object. But the reverse is not true.  ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Referring to the code below, which of the following statements are valid?",
+    "qncode": "class A{/*code*/\n}\ninterface B{/*code*/\n}\n ",
+    "options": [
+      "A obj = new A();",
+      "B obj = new B();",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "We can not create an object from an interface. We can only create objects from a class.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class Ba {\n    private int n1;\n    int n2;\n    protected int n3;\n    void printBase(){\n        System.out.println(\"n1 =\"+n1+\"n2=\"+n2+\"n3=\"+n3);\n    }\n    Ba (int a){\n        n1 = n2 = n3=a;\n    }\n}\npublic class Inh extends Ba  {\n    public Inh(){\n        super(0);\n    }\n    void printDerived(){\n        System.out.println(\"n1 =\"+n1+\"n2=\"+n2+\"n3=\"+n3);\n    }\n}\nclass TestInh{\n    public static void main(String args[]){\n        Inh obj = new Inh();\n        obj.printDerived();\n    }\n}\n",
+    "options": [
+      "n1=0 n2=0 n3=0",
+      "n1=1 n2 = 1 n3=1",
+      "Syntax error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "As the field n1 is private in the super class, it can not be accessed from the method printDerived() in the sub class. So we get a compilation error.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": " public class Shape {\n    public float area(){\n        return 0;\n    }\n}\nclass Rectangle extends Shape{\n    int len,wid;\n    Rectangle(int l,int w){\n        len = l;\n        wid =w;\n    }\n    public float area(){\n        return len*wid;\n    }\n}\n\nclass Demo{\n    public static void main(String args[]){\n        Shape  r = new Rectangle (5,5);\n        System.out.println(\"Area  is \"+r.area());\n    }\n}",
+    "options": [
+      "area is 0",
+      "area is 25",
+      "Syntax error",
+      "Run time error"
+    ],
+    "correct": 2,
+    "explanation": "The area() method of Shape class is overridden by the Rectangle class. When the Rectangle object r calls area() method, the subclass area method gets called and we get len*wid which is 25. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "When we write a static method in subclass with the same signature as a static method in super class, it is called ------",
+    "qncode": "",
+    "options": [
+      "Overriding",
+      "Overloading",
+      "Polymorphism",
+      "Method hiding"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "When we override a method in subclass, we can optionally use the annotation -----",
+    "qncode": "",
+    "options": [
+      "@override",
+      "@Override",
+      "@overrides",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "A protected method in super class can have an overriding method in sub-class which is ------",
+    "qncode": "",
+    "options": [
+      "public",
+      "private",
+      "static",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "The overriding method can have an access specifier which has more or equal access than super class method. \n\nSo a protected method in super class can be protected in sub class or it can be public. It can not be private in sub-class.\n\nIf we provide a weaker access specifier, we get a compiler error. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A{\n    int n;\n    protected void print(){\n        System.out.println(\" n is\"+n);\n    }\n    static void printHello(){\n        System.out.println(\"Hello coder!!\");\n    }\n}\nclass B extends A{\n\n     void printHello(){\n        System.out.println(\"Hello Java\");\n    }\n}\nclass Test{\n    public static void main(String args[]){\n        B obj = new B();\n        obj.print();\n        obj.printHello();\n    }\n}\n\n",
+    "options": [
+      "Hello Coder",
+      "Hello Java",
+      "Syntax error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A static method can not be overridden in a sub-class using an instance method. If overridden, we get a syntax error.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": "",
+    "options": [
+      "In a sub class, we can overload methods from superclass",
+      "In a sub class we can override static methods from super class",
+      "In a sub class we can override instance methods of super class",
+      "Both 1 and 3"
+    ],
+    "correct": 4,
+    "explanation": "We can overload super class method in sub-class. They do not hide, nor do they override super class method.\n\ne.g.\n\nclass A{\n    void print(){\n       System.out.println(\"Hello world\");\n    }\n}\nclass B extends A{\n    void print(int m){\n       System.out.println(\"m is \"+m);\n  }\n}\n\nprint(int m) in B class is overloading print() in A class. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "With the following code, which of these statements are valid?",
+    "qncode": "class A{\n    int a1;\n    void printA(){\n        System.out.println(\" A\");\n    }\n\n}\nclass B extends A{\n    int b1;\n    void printB(){\n        System.out.println(\" B\");\n    }\n\n}\nclass Demo{\n   public static void main(String args[]){\n      A obja = new A();\n      B objb = new B();\n  }\n}\n \n\n",
+    "options": [
+      "obja.b1 = 10",
+      "obja.printB();",
+      "objb.printA();",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "sub class object is a super class object.\n\nObjects of class B can access all non-private members of class A. But objects of class A can not access members of class B.\n ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class Animal {\n    public void talk(){\n        System.out.println(\"talk\");\n    }\n}\nclass Cat extends Animal{\n    public void talk(){\n        System.out.println(\"mews\");\n    }\n}\nclass Dog extends Animal{\n    public void talk(){\n        System.out.println(\"barks\");\n    }\n}\nclass Cow extends Animal{\n    public void talk(){\n        System.out.println(\"moos\");\n    }\n}\nclass Polytest{\n    public static void main(String args[]){\n        Animal arr[] = new Animal[3];\n        arr[0] = new Cat();\n        arr[1] = new Dog();\n        arr[2] = new Cow();\n        for(int i=0;i<3;i++)\n            arr[i].talk();\n    }\n\n}\n",
+    "options": [
+      "talk\ntalk\ntalk",
+      "Syntax error",
+      "mews\nbarks\nmoos\n",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Here the method talk() is overridden in the derived classes.\n\nThe JVM uses late binding for the method. At run time, looking at the class arr[i] is referring to, the corresponding sub class method is called. This is called polymorphism",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "In order to use the clone() method defined in Object class, your class must implement ----- interface.",
+    "qncode": "",
+    "options": [
+      "Object",
+      "Clonable",
+      "Clone",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following methods of Object class are inherited by all classes in Java?",
+    "qncode": "",
+    "options": [
+      "equals()",
+      "hashCode()",
+      "getClass()",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All classes are direct or indirect sub classes of Object class and they inherit all these methods",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the error of the following code?",
+    "qncode": "public class Animal {\n    public final void talk(){\n        System.out.println(\"talktalktalk\");\n    }\n}\nclass Cat extends Animal{\n    public void talk(){\n        System.out.println(\"mews\");\n    }\n}",
+    "options": [
+      "class Animal can not be extended",
+      "Method talk() can not be overridden",
+      "No errors",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "A final method in a super class can not be overridden in a sub-class.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the error in the code given below?",
+    "qncode": "public final class Animal {\n    public  void talk(){\n        System.out.println(\"talktalktalk\");\n    }\n}\nclass Cat extends Animal{\n    public void talk(){\n        System.out.println(\"mews\");\n    }\n}",
+    "options": [
+      "Final class can not be subclassed",
+      "Final class can have only final methods",
+      "Subclass of final class must also be final",
+      "No error"
+    ],
+    "correct": 1,
+    "explanation": "A final class can not be inherited. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which statement regarding abstract methods is not true?",
+    "qncode": null,
+    "options": [
+      "An abstract method should not have implementation",
+      "class with abstract method must be defined as abstract class",
+      "Methods in an interface can not be abstract.",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "A method in an interface is by default an abstract method - you need not use abstract keyword.\n\n If you do not want it to be abstract, you should use keyword default or static with it. defaylt or static methods of an interface must have implementations. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": "",
+    "options": [
+      "An interface can contain default, abstract and static methods",
+      "abstract methods end with a semi-colon but no braces",
+      "default methods use the keyword default and have implementation",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "A method without any specifier is an abstract method in an interface and it has no implementation",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What are the errors in the following code?",
+    "qncode": "interface A extends E1,E2,E3{\n       int m=10;\n       void doSomething(int n);\n       abstract int calculateSomething(int a,int b);\n}",
+    "options": [
+      "doSomething() has to be declared abstract",
+      "An interface can not have data members",
+      "An interface can not extend other interfaces",
+      "No error"
+    ],
+    "correct": 4,
+    "explanation": "An interface can extend multiple interfaces unlike a class which can extend only one class.\n",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the error in the following code?",
+    "qncode": "interface Compute{\n    int add(int a,int b);\n    default findSq(int a){\n          return a*a;\n    }\n}",
+    "options": [
+      "method add must be defined as abstract",
+      "Method findSq can not have implementation",
+      "Interface can not have two methods",
+      "No error"
+    ],
+    "correct": 4,
+    "explanation": "Method findSq() is a default method. A method defined with keyword default in an interface can have an implementation. \n\nSuch a method need not be implemented in a class implementing the interface. \n\ndefault methods were introduced in Java 8. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What are the errors in the following program?",
+    "qncode": "import java.util.Scanner;\n\ninterface Compute{\n    static int cubeNum(int n){\n        return n*n*n;\n    }\n}\npublic class Demo implements Compute{\n \n    public static void main(String args[]){\n        int n=10;\n        int cube = Compute.cubeNum(n);\n        System.out.println(\"Cube of \"+n+\" is \"+cube);\n   }\n}\n       ",
+    "options": [
+      "class Demo must implement cubeNum method",
+      "cubeNum should be used with an object of Demo class",
+      "An interface can not define a static method",
+      "No error"
+    ],
+    "correct": 4,
+    "explanation": "A static method in an interface has an implementation.  ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "public class StringTest {\n    public static void main(String args[]){\n        String str = \"Hello\";\n        System.out.println(str.length());//line 1\n        System.out.format(\"The length of %s is %d\",str,str.length());//line 2\n\n    }\n}\n",
+    "options": [
+      "Error in line 1. should be str.length",
+      "Error in line 2. Should be System.out.println",
+      "5\nThe length of Hello is 5",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "System.out.format()  is a method in PrintStream class which allows you to display formatted output\n\nlength() method in String class gives the number of characters in a string. Note that array.length is a field not a method.\n\ne.g.\n   int arr[] = {1,2,3,4,5};\n   int len = arr.length;//len is 5\n   String s = \"Hello world\";\n   int slen = s.length();//slen is 11 ",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you combine two strings?",
+    "qncode": "",
+    "options": [
+      "Using + operator",
+      "Using concat method",
+      "Either 1 or 2",
+      "It is not possibe"
+    ],
+    "correct": 3,
+    "explanation": "Two strings can be joined using + operator.\n\ne.g.\nString s1 = \"hello\";\nString s2 = s1+\" world\";//s2 is hello world\n\nStrings can also be joined using .concat method\n\nString s3 = s1.concat(\" world\");//s3 is hello world",
+    "topic": "Strings"
+  },
+  {
+    "question": "Fill the code used to find the length of the string.",
+    "qncode": "String str = \"hello world\";\nint len = --------;",
+    "options": [
+      "str.length",
+      "str.length()",
+      "str.len()",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "length() method gives the number of characters in a string. \n\nRemember that .length is an attribute of an array which gives the length of an array.\n",
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class StringTest {\n    public static void main(String args[]){\n        String str = \"Hello, Welcome to Java World\";\n        int ind = str.indexOf(\"el\");     \n        System.out.println(ind ); \n\n    }\n}",
+    "options": [
+      "1",
+      "8",
+      "1 8",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "indexOf() returns the index of first occurance of the substring in the given string. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class StringTest {\n    public static void main(String args[]){\n        String str = \"  Hello,   User  \";\n        String str2 = str.trim(); \n        System.out.println(\"|\"+str2+\"|\" ); \n    }\n}\n",
+    "options": [
+      "|  Hello,   User|",
+      "|Hello,   User  |",
+      "|Hello,User|",
+      "|Hello,   User|"
+    ],
+    "correct": 4,
+    "explanation": "trim() method removes spaces from both the begining and end of string. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "What will be the value of str2 after the code given below?",
+    "qncode": "String str = \"hello user\";\nString str2 = str.replace('e','E');",
+    "options": [
+      "hEllo user",
+      "hEllo usEr",
+      "Hello User",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "replace() replaces all the occurances of the first character with second character. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you convert a string to an integer?",
+    "qncode": "",
+    "options": [
+      "Using Integer.parseInt() method",
+      "Using Integer.valueOf followed by intValue() method",
+      "Both 1 and 2",
+      "Not possible"
+    ],
+    "correct": 3,
+    "explanation": "Integer.valueOf(string) converts a string to an Integer object. This object can be converted to an int using intValue() method of Integer object.\n\ne.g.\nString str = \"123\";\nInteger o1 = Integer.valueOf(str);\nint n = o1.intValue();\n\nAnother method is to use parseInt() method\n\nint n = Integer.parseInt(str);\n",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you convert a floating point number to a string?",
+    "qncode": "",
+    "options": [
+      "Using Float.valueOf() method",
+      "By concatting number with an empty string",
+      "Using Float.toString() method",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "A number can be converted to string using numerous methods.\n\n float m = 1.2f;\n         String s1 = \"\"+m;\n         String s2 = String.valueOf(m);\n         String str = Float.toString(m);\n\nThere are corresponding methods for all the primitive numbers. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Which method converts all the letters of a string to upper case?",
+    "qncode": "",
+    "options": [
+      "upperCase()",
+      "toUpperCase()",
+      "write your functions",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "toUpperCase() method of String class converts the letters of a string to uppercase. \n\ne.g\n String s = \"Hello World\";\n s = s.toUpperCase();\n\nNow s will be changed to HELLO WORLD\n",
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "interface A{}\nclass B {}\nclass C extends B implements A{}\n\npublic class IntrSubn {\n    public static void main(String args[]){\n        C obj = new C();\n        if (obj instanceof A)\n            System.out.println(\"obj is an instance of A\");\n        if (obj instanceof B)\n            System.out.println(\"obj is an instance of B \");\n\n    }\n}",
+    "options": [
+      "obj is an instance of A\nobj is an instance of B\n",
+      "obj is an instance of A",
+      "obj is an instance of B",
+      "Compiler error"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "public class Abc {\n    public static void main(String args[]){\n        String s1 = \"Hello\";\n        String s3 = new String(\"Hello\");\n        if(s1==s3)\n            System.out.println(\"s1 = s3\");\n        else\n            System.out.println(\"s1 Not equal to s3\");\n    }\n}\n",
+    "options": [
+      "s1 = s3 ",
+      "s1 not equal to s3",
+      "compiler error",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "== operator checks if the two strings refer to the same object. That is the reason the == returns false.\n\nBut equals() method returns true if two strings are equal.\n\ns1.equals(s3) will be true\n",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you convert an integer to binary?",
+    "qncode": "",
+    "options": [
+      "Write your own function",
+      "By adding 0b as prefix",
+      "Integer.toBinaryString() method",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following is a binary literal in Java?",
+    "qncode": "",
+    "options": [
+      "110011",
+      "b110011",
+      "0b110011",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "A binary literal must have a prefix of 0b\ne.g.\nint a = 0b111 ; //a is 7",
+    "topic": "Basics"
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "qncode": "",
+    "options": [
+      "A package statement if present must be the first statement of a java source file",
+      "Every file must have a package statement",
+      "import statement is used to import a type or entire package",
+      "Both 1 and 3"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "Packages"
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "qncode": null,
+    "options": [
+      "A java source file can contain only one public class or interface",
+      "The name of public class/interface must be the name of file",
+      "A file can contain multiple non-public classes",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "The file name of java source file must be same as the public class name in the file. \n\nBut the file may contain other non-public java classes or interfaces",
+    "topic": "Packages"
+  },
+  {
+    "question": "According to naming convention, the package name created by a developer in a company dev.com is ",
+    "qncode": "",
+    "options": [
+      "dev.com.mathoperations",
+      "com.dev.mathoperations",
+      "Either 1 or 2",
+      "mathoperations"
+    ],
+    "correct": 2,
+    "explanation": "The naming convention used by companies is to use  reversed Internet domain name to begin their package name\n\ne.g.\ngoogle will have package names like\n\ncom.google.abcd",
+    "topic": "Packages"
+  },
+  {
+    "question": "To find the square root of a number in a Java program, you should do the following.",
+    "qncode": null,
+    "options": [
+      "use\nimport static java.lang.Math.sqrt;",
+      "use Math.sqrt() function",
+      "Use \nimport static java.lang.Math.*",
+      "Any of the above"
+    ],
+    "correct": 4,
+    "explanation": "To use a method from another package, you can either use a fully qualified name or you can import the required package. \n\nUsing Math.sqrt() indicates that use the static sqrt() method from the package Math.\n\nYou can import the sqrt() method using import static java.lang.Math.sqrt;\n\nYou can import the entire Math class also. ",
+    "topic": "Packages"
+  },
+  {
+    "question": "What access specifier should be used to allow the class to be accessed by methods in other package?",
+    "qncode": "",
+    "options": [
+      "default",
+      "public ",
+      "protected",
+      "No access specifier"
+    ],
+    "correct": 2,
+    "explanation": "A public class can be accessed by methods in other packages",
+    "topic": "Packages"
+  },
+  {
+    "question": "How do you import all the classes from a package?",
+    "qncode": "",
+    "options": [
+      "import pkg;",
+      "import pkg.*;",
+      "Either 1 or 2",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Packages"
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "qncode": null,
+    "options": [
+      "If package name is not specified, the classes to unnamed package",
+      "If package is not specified, classes go to java.lang package. ",
+      "If package is not specified,  there will be compiler error",
+      ""
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Packages"
+  },
+  {
+    "question": "Which of the following statements are true regarding exceptions?",
+    "qncode": "",
+    "options": [
+      "Checked exceptions must be caught or specified",
+      "The code which may throw an exception is wrapped in a try block",
+      "try block is followed by one or more catch blocks.",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Which of the following statemetns regarding exceptions are true?",
+    "qncode": "",
+    "options": [
+      "Each try block should be followed by one or more catch blocks. ",
+      "Each try block can have an optional finally block",
+      "Finally block is executed irrespective of exception being thrown or not",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Which of the following statemetns regarding exceptions are true?",
+    "qncode": null,
+    "options": [
+      "Checked exceptions must be either handled or specified",
+      "ArrayIndexOutOfBounds is an unchecked exception",
+      "IOException is a checked exception",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "public class A{\n   public static void main(String args[]){\n        try{\n           int n = 10;\n           int m= 20;\n           if(m/n>0){\n              throw 5;\n           System.out.println(m/n);\n      }\n      catch(Exception e){\n         System.out.println(\"Caught an exception\");\n    }\n    }\n}",
+    "options": [
+      "2",
+      "Caught an exception",
+      "Compiler error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Throw can throw only a object of Throwable class or its sub-classes. It can not throw an integer. ",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Can a try block be written without any catch blocks but only finally block?",
+    "qncode": "",
+    "options": [
+      "Yes",
+      "No",
+      "",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "It is possible to write a try block followed by just a finally block.",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "When writing multiple catch blocks,------",
+    "qncode": "",
+    "options": [
+      "Catch block with specific exceptions must be written first",
+      "catch block with generic exceptions must be written first",
+      "Order of catch blocks does not matter",
+      "It is not possible to write multiple catch blocks"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "class NumberException extends Exception{\n    NumberException(String description){\n        super(description);\n    }\n}\npublic class Exc1 {\n    void findQuotient(int n1,int n2)   {\n        try {\n               if(n2==0)\n                   throw new NumberException(\"Denom zero\");\n               int ans = n1/n2;\n               System.out.println(\"The quotient is \"+ans);\n        }\n        catch (Exception e){\n            e.printStackTrace();\n        }\n        catch (NumberException e) {\n          \n            System.out.println(\"The exeption is \"+e.getMessage());\n        }\n    }\n \n    public static void main(String args[]){\n        int arr[]=new int[]{1,2,3,4,5};\n        Exc1 obj = new Exc1(); \n        obj.findQuotient(10,0);\n    }\n\n}\n",
+    "options": [
+      "The quotient is 0",
+      "The exception is Denom is zero",
+      "Compiler error",
+      "Run time error"
+    ],
+    "correct": 3,
+    "explanation": "The class Exception is super class of NumberException. Because of this, NumberException will also be caught by Exception catch block and more specific information about NumberException will be lost. \n\nThat is the reason, when a generic exception handler is written above specific exception handler, there will be compiler error. \n\n",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following program? Assume that the input provided at console are 10 and 20",
+    "qncode": "public class ConTest\n{\n    int readNumber(){\n        Console console = System.console();\n        if(console==null){\n            System.out.println(\"no console\");\n            return -1;\n        }\n        String s = console.readLine();\n        return Integer.valueOf(s);\n    }\n    void printNumber(int a){\n        Console c = System.console();\n        c.printf(\"======%d======\",a);\n    }\n    public static void main(String args[]){\n        ConTest obj = new ConTest();\n        int n1 = obj.readNumber();\n        int n2 = obj.readNumber();\n        if(n1!=-1 &&n2!=-1)\n            obj.printNumber(n1*n2);\n    }\n}",
+    "options": [
+      "Compiler error",
+      "=====200=====",
+      "None of the above",
+      null
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which of the following lines in the code below read a number from console correctly?",
+    "qncode": "import java.io.BufferedReader;\nimport java.io.Console;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.nio.CharBuffer;\nimport java.util.Scanner;\n\npublic class ReadNumbers {\n    public static void main(String args[]) throws IOException {\n        Console console = System.console();\n        int n = 0;\n        n = Integer.parseInt(console.readLine());//line 1\n        System.out.println(\" n is \"+n);\n        Scanner scanner = new Scanner(System.in);\n        n=scanner.nextInt();//line 2\n        System.out.println(\" n is \"+n);\n        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));\n        n = Integer.valueOf(reader.readLine());//line 3\n        System.out.println(\" n is \"+n);\n\n    }\n}\n",
+    "options": [
+      "line 1",
+      "line 2",
+      "line 3",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "To read a value from console, you can use Scanner object with its constructor as System.in.\n\nBut historically a bufferedreader wrapped with InputStreamReader of System.in was used for reading values from keyboard.\n\nEven a console class can be used to read values. ",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What does the method readAllBytes() do?",
+    "qncode": "",
+    "options": [
+      "Reads the bytes from console",
+      "Reads the entire file to a byte array",
+      "There is no such method",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "readAllBytes() function reads the entire file and stores them in a byte array. \n\ne.g.\nPath p = Paths.get(\"a.txt\");\nbyte []data = Files.readAllBytes(p);\n\nThe above code reads the content of the file a.txt to the array data.\n",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What does the following function do?",
+    "qncode": "      void readFileToArray(String abc) throws IOException {        \n        byte arr[] = new byte[500];\n        Path path = Paths.get(srcFileName);\n        arr = Files.readAllBytes(path);       \n    }",
+    "options": [
+      "Converts string abc to byte array",
+      "Converts string abc to Path",
+      "Reads the content of the file abc into byte array",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class A{\n  int i,j;\n  public A(){\n    i = j = 100;\n  }\n}\nclass B extends A{\n    public B(){\n       super();\n   }\n}\nclass Demo{\n    public static void main(String args[]){\n         B obj = new B();\n         System.out.println(\"i=\"+i);\n   }\n}\n",
+    "options": [
+      "compiler error",
+      "i=0",
+      "i=100",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "super() in B constructor calls super class constructor which initializes i and j to 100",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "How do you restrict a variable from being accessed by subclasses?",
+    "qncode": "",
+    "options": [
+      "Declaring it final",
+      "Declaring it protected",
+      "Declaring it as private",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A private member of a class can be accessed only by the methods of the same class. It can not be accessed by sub-classses or classes from same package. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "In the following code, how do you print the variable num from super class A?",
+    "qncode": "class A1{\n    int num=10;\n}\nclass B1 extends A1{\n    int num=100;\n    void printNumber(){\n        -------------------//how do you print num from A\n    }\n}\n\npublic class SameName {\n    public static void main(String args[]) {\n        B1 obj = new B1();\n        obj.printNumber();\n    }\n}\n",
+    "options": [
+      "System.out.println(num)",
+      "System.out.println(super.num)",
+      "System.out.println(A.num);",
+      "Not possible"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What will be the value of s1 after the following code is executed?",
+    "qncode": "String s1 = \"hello\";\nString s2 = s1.concat(\"world\");",
+    "options": [
+      "hello",
+      "helloworld",
+      "worldhello",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "concat method does not change the source string. It adds the string and returns the concatenated string. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "What does trim() method do?",
+    "qncode": "",
+    "options": [
+      "Removes both leading and trailing spaces",
+      "Removes leading spaces",
+      "Removes trailing spaces",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "public class StringFunctions {\n    public static void main(String args[]){\n        String s1 = \"Java Programming\";\n        s1 = s1.replace(\"a\",\"A\");\n        System.out.println(s1);\n\n    }\n}\n",
+    "options": [
+      "JAva programming",
+      "JAvA progrAmming",
+      "Java programming",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Which  interface is implemented by Thread class?",
+    "qncode": null,
+    "options": [
+      "Runnable",
+      "Collections",
+      "Handler",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Which method do you use to pause a thread for a while?",
+    "qncode": "",
+    "options": [
+      "suspend()",
+      "pause()",
+      "sleep()",
+      "stop()"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Complete the following code to start the thread.",
+    "qncode": "class MyThread implements Runnable{\n    public void run(){\n        while(true){\n            System.out.println(\"Hello world\");\n         }\n}\n\nclass Demo{\n    public static void main(String args[]){\n          MyThread obj = new MyThread();\n           -------------\n    }\n}\n",
+    "options": [
+      "obj.run()",
+      "obj.start()",
+      "new Thread(obj).run()",
+      "new Thread(obj).start()"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class MyThread implements Runnable{\n     public MyThread(){\n          System.out.println(\"starting thread\");\n          this.start();\n      }\n}\npublic class Demo{\n   public static void main(String args[]){\n       MyThread obj = new MyThread();\n  }\n}",
+    "options": [
+      "No output",
+      "thread starting",
+      "Compiler error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "As the class implements Runnable interface, it must implement the run() method from the interface. As the class is not implementing this method, there will be a compiler error.",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Which of the following exceptions is thrown when there is division by zero?",
+    "qncode": "",
+    "options": [
+      "IllegalArgumentException",
+      "ArithmeticException",
+      "MathException",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class ExceptFinally {\n    public static void main(String args[]){\n        int m = 10;\n        int arr[] = new int[]{1,2,3,4,5};\n        int n = 0;\n        try{\n            int ans1 = m/n;\n            int ans2 = arr[n];\n            System.out.println(ans1+\" \"+ans2);\n        }\n        catch(ArithmeticException e){\n            System.out.println(\"Arithmetic exception\");\n        }\n        catch(ArrayIndexOutOfBoundsException e){\n            System.out.println(\"ArrayIndexOutOfBounds exception\");\n        }\n        finally{\n            System.out.println(\"finally.....\");\n        }\n\n    }\n}\n",
+    "options": [
+      "Arithmetic Exception",
+      "Arithmetic exception\nfinally ....",
+      "Arithmetic exception\nArrayIndexOutofBounds exception\nfinally...",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "As the denominator n is 0, we get a division by 0 error, which throws the Arithmetic exception.\n\nAnd finally block is always executed whether there is an exception thrown or not. ",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Why does the following code  does not compile?\t",
+    "qncode": " try {\n          ................\n        } catch (IOException e) {\n            e.printStackTrace();\n        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n        } ",
+    "options": [
+      "FileNotFoundException must come earlier than IO Exception",
+      "try block can't be followed by multiple catch blocks",
+      "try block should always be followed by a catch and a finally blocks",
+      "Faulty compiler"
+    ],
+    "correct": 1,
+    "explanation": "FileNotFoundException is a subclass of IOException. If we write IOException handler earlier, that handler will catch FileNotFoundException too.  \n\nThat is why the java compiler prevents you from writing superclass exception before subclass exception.",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Which method is used to determine if a thread is still running or not?",
+    "qncode": "",
+    "options": [
+      "isRunning()",
+      "isAlive()",
+      "alive()",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Which of these is a type of stream in Java? ",
+    "qncode": null,
+    "options": [
+      " Integer stream",
+      "Byte Stream",
+      "Short Stream",
+      "Long Stream"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which of these classes contains the methods print() & println()? ",
+    "qncode": null,
+    "options": [
+      "System",
+      "System.out",
+      "PrintStream",
+      "BufferedOutputStream"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which of the following statements creates a String object with value Hello?",
+    "qncode": "",
+    "options": [
+      "String str = \"Hello\"",
+      "String str = new String(\"Hello\");",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "String s1 = \"Hello\";\nString s2 =new String(\"Hello\");\nif(s1==s2){\n    System.out.println(\"they are ==\");\n }\nif(s1.equals(s2)){\n    System.out.println(\"they are equal\");\n }",
+    "options": [
+      "they are ==\nthey are eqaul",
+      "they are ==",
+      "they are eqaul",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "== operator checks if the two variables refer to same object. But equals() method for string checks if the strings - the contents, are the same. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Which of the following statements splits the string str into words?",
+    "qncode": "",
+    "options": [
+      "String arr[] = String.split(str)",
+      "String arr[] = str.split(\" \");",
+      "String arr[] = split(str,\" \");",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "split() method of String class splits the string at the regular expression given. If we give split(\" \"), the string is split at every white space - and we get all words of the string",
+    "topic": "Strings"
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "qncode": "",
+    "options": [
+      "Integer.valueOf(str) converts string to integer",
+      "Integer.toString(num) converts number to string",
+      "Integer.parseInt(Str) converts string to integer.",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "String str = \"Hello\"\nchar[]arr = str.toCharArray();\n        for(char ch:arr){\n            if(Character.isAlphabetic(ch)){\n                System.out.print((char)(ch+1));\n            }else{\n                System.out.print(ch);\n            }\n\n        }",
+    "options": [
+      "hello",
+      "HELLO",
+      "compiler error",
+      "ifmmp"
+    ],
+    "correct": 4,
+    "explanation": "We are printing next character for the alphabets. So we get output as ifmmp",
+    "topic": "Strings"
+  },
+  {
+    "question": "Which of the following statements are true with respect to the code given below.",
+    "qncode": "public class MyClass{\n    public abstract double getNum();\n}",
+    "options": [
+      "We have to write implementation of getNum() method.",
+      "The class MyClass should be abstract",
+      "Both 1 and 2",
+      "public and abstract keywords can not be used together. "
+    ],
+    "correct": 2,
+    "explanation": "A class which contains an abstract method must be declared as an abstract class. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following is correct declaration of abstract method?",
+    "qncode": "",
+    "options": [
+      "public abstract void method1();",
+      "public void abstract method1();",
+      "public void method1(){}",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "If A is an abstract super class and B is a concrete subclass of A, and if both A and B have constructors, which of the following statements are valid?\n\n1. A a = new B();\n2. A a= new A();\n3. B b = new B();\n4. B b = new A();",
+    "qncode": "",
+    "options": [
+      "1 and 2",
+      "1 and 3",
+      "2 and 4",
+      "All are invalid."
+    ],
+    "correct": 2,
+    "explanation": "As A is an abstract class, we can not create an object of class A. \n\n",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "In which package does the class Exception exist?",
+    "qncode": "",
+    "options": [
+      "java.util",
+      "java.lang",
+      "java.io",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "When a class extends Thread class, it must override --- method to start the thread.",
+    "qncode": "",
+    "options": [
+      "run()",
+      "start() ",
+      "both start() and run()",
+      "init()"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "With reference to the code below, which of the following statements are true?",
+    "qncode": "public class MyClass implements Runnable{\n    public void run(){\n       System.out.println(\"Hello world\");\n    }\n    public static void main(String args[]){\n           Thread cl = new Thread(new MyClass());\n           cl.start();\n    }\n}",
+    "options": [
+      "The program does not compile, because start() method is not implemented",
+      "The program gives a run time error",
+      "Program compiles runs and gives Hello world as output",
+      "Program does not output anything because run() method is not called. "
+    ],
+    "correct": 3,
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "The priority of a newly created thread is -----",
+    "qncode": "",
+    "options": [
+      "Always equal to MIN_PRIORITY",
+      "Same as priority of parent thread",
+      "specified as parameter to constructor of Thread",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "A newly created thread has the priority of parent thread. Priority of a thread can be changed by using setpriority() method.",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class ThreadSub extends Thread{  \n    public void start(){\n        System.out.println(\"Hello thread\"); \n    }\n    public void run(){\n        for(int i=0;i<10;i++)\n          System.out.print(i);\n    }\n}\npublic class Demo{\n    public static void main(String args[]){\n          ThreadSub th = new ThreadSub();\n          th.start();\n    }\n}",
+    "options": [
+      "0123456789",
+      "Hello thread\n0123456789",
+      "Hello thread",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "start() method of Thread class is responsible for starting the run() method. As we have overridden start() method, and not called run() method, run()  method is never executed.\n\nWe always override the run() method. Wee should not override the start() method of a thread. ",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "System.out is a ------",
+    "qncode": "",
+    "options": [
+      "PrintStream",
+      "OutputStream",
+      "InputStream",
+      "FileOutputStream"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "The PrintStream is flushed automatically when --------",
+    "qncode": "",
+    "options": [
+      "println() method is used",
+      "\\n is written",
+      "when a bytearray is written",
+      "Any of the above"
+    ],
+    "correct": 4,
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Which of the following is a correct interface?",
+    "qncode": "",
+    "options": [
+      "abstract interface A{ void print();}",
+      "interface A{ void print();}",
+      "interface A{ abstract void print(){}}",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "qncode": "interface A{\n    void doYourJob();\n} \nabstract class C implements A{}\n\npublic class IntrSubn {\n    public static void main(String args[]){\n \n    }\n}\n",
+    "options": [
+      "The code does not compile because class C does not implement doYourThing() method",
+      "The code compiles fine",
+      "The code does not compile because class C must say class C extends A",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Though the class C does not implement the method of the interface, as it is abstract class, it compiles. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "interface A3{\n    void doYourJob();\n}\nclass B3 {\n    void doYourJob(){\n        System.out.println(\"Doing my job\");\n    }\n}\n \n  class C3 extends B3 implements A3{\n    void doYourJob(){\n        System.out.println(\"Not Doing my job\");\n    }\n}\n\npublic class Demo {\n    public static void main(String args[]){\n         C3 c3 = new C3();\n         c3.doYourJob();\n    }\n}\n",
+    "options": [
+      "Doing my job",
+      "Not doing my job",
+      "No output",
+      "Compiler error"
+    ],
+    "correct": 4,
+    "explanation": "As the method name doYourJob() of C3 clashes with that of superclass and interface, class C3 gives compiler error.",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which keyword is used to specify exceptions which may be thrown by a method?",
+    "qncode": "",
+    "options": [
+      "throw",
+      "throws",
+      "catch",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Example\n\nclass MyClass{\n     void printFile() throws IOException{\n        ......\n    }\n}",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "If there are multiple catch blocks, then -----",
+    "qncode": "",
+    "options": [
+      "super class exception must be caught first",
+      "subclass exception must be caught first",
+      "order of super and subclass exceptions does not matter",
+      "There can not be multiple catch blocks for a try block. "
+    ],
+    "correct": 2,
+    "explanation": "If we give superclass exception above subclass exception, that subclass exception will be caught by super class exception handler itself.  That is why the compiler will give error in such situations. ",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Given the following code, what will be the output?",
+    "qncode": "int [][]array2D = {{0,1,1},{1,0},{5,1,0};\nSystem.out.println(array2D[0].length);\n",
+    "options": [
+      "8",
+      "3",
+      "Compiler error",
+      "10"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class MyClass{\n    int num;\n    public static void main(String args[]){\n            MyClass obj = new MyClass;\n             num=10;\n            System.out.println(obj.num);\n    }\n}",
+    "options": [
+      "10",
+      "Compiler error",
+      "0",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Given the following classes, which of the following is a valid subclass of A?",
+    "qncode": "class A{\n    public void doSomething() throws IOException{\n       ....\n   }\n}",
+    "options": [
+      "class B extends A{\n    public void doSomething() throws FileNotFoundException{\n       ....\n   }\n}",
+      "class C extends A{\n    public void doSomething() throws ArithmeticException  {\n       ....\n   }\n}",
+      "class D extends A{\n    public void doSomething() throws Exception{\n       ....\n   }\n}",
+      "All of the above\t"
+    ],
+    "correct": 1,
+    "explanation": "An overriding method can throw lesser or equal exceptions or subclasses of exception thrown by superclass method.\n\nAs Exception or ArithmeticException are not subclasses of IOException, classes C and D are invalid subclasses of A.",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": " class A{\n    static String getBB(){\n        return \"BB\";  \n     }\n    String getAA(){\n       return \"AA\"; \n    }\n }\n class B extends A{\n    static String getBB(){\n      return \"BB1\";\n     }\n     String getAA(){\n         return \"AA1\";\n    }\n }\n \n class Demo{\n    public static void main(String args[]){\n \t  A obj = new B();\n \t  System.out.println(obj.getAA());\n \t System.out.println(obj.getBB());\n \t}\n }\n",
+    "options": [
+      "AA1\nBB1",
+      "AA\nBB",
+      "AA1\nBB",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A static method can not be overridden. So the method getBB() from class A is not overridden in class B. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What type of exception is caught by the following handler?",
+    "qncode": "try{\n\n   ....\n}catch (Exception e){\n      .....\n}",
+    "options": [
+      "Exception ",
+      "IOException",
+      "All exceptions",
+      "No exceptions"
+    ],
+    "correct": 3,
+    "explanation": "Exception is the super class of all Exception classes. So catch Exception will catch all types of exceptions",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following code.",
+    "qncode": "int [] arr;\narr[0] =0;\nSystem.out.println(arr[0]);",
+    "options": [
+      "0",
+      "Garbage value",
+      "Compile error",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "As the array is not initialized, assigning value to it will produce an error",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the folllowing program?",
+    "qncode": "import java.util.ArrayList;\nimport java.util.List;\npublic class Demo {\npublic static void main(String[] args) {\nList<Integer> elements = new ArrayList<>();\nelements.add(10);\nint firstElmnt = elements.get(1);\nSystem.out.println(firstElmnt);\n}\n}\n",
+    "options": [
+      "10",
+      "0",
+      "null",
+      "IndexOutOfBounds exception"
+    ],
+    "correct": 4,
+    "explanation": "Size of list is only 1. There is no eleements[1]. That is the reason we get index out of bounds error. ",
+    "topic": "Collections"
+  },
+  {
+    "question": "Which statement can be inserted in place of line n1, so that the output is Stand?",
+    "qncode": "// Line n1\nswitch (cardVal) {\ncase 4: case 5: case 6:\ncase 7: case 8:\nSystem.out.println(\"Hit\");\nbreak;\ncase 9: case 10: case 11:\nSystem.out.println(\"Double\");\nbreak;\ncase 15: case 16:\nSystem.out.println(\"Surrender\");\nbreak;\ndefault:\nSystem.out.println(\"Stand\");\n}",
+    "options": [
+      "cardVal=6",
+      "cardVal=14",
+      "cardVal=8\t",
+      "Any of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write the output of the following program.",
+    "qncode": "abstract class writer{\n     void write(){\n         System.out.println(\"writing.....\");\n   }\n}\nclass author extends writer{\n     void write(){\n         System.out.println(\"writing book\");\n   }\n}\nclass coder extends writer{\n     void write(){\n         System.out.println(\"writing code\");\n   }\n}\nclass Demo {\n    public static void main(String args[]){\n           Writer person = new coder();\n           person.write();\n    }\n}",
+    "options": [
+      "Writing",
+      "Writing code",
+      "Writing book",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "The code given does not compile. Which statement should be added in line n, to make the code compile?",
+    "qncode": "class A{\n    public A(int n){\n        System.out.println(\"hi\");\n   }\n}\nclass B extends A{\n    public B(){\n      //line n\n       System.out.println(\"hello\");\n   }\n}\n",
+    "options": [
+      "this(0)",
+      "super(0)",
+      "A(0)",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "import java.util.List;\nimport java.util.ArrayList;\npublic class TestClass {\npublic static void main(String[] args) {\nList<String> items = new ArrayList<>();\nitems.add(\"Pen\");\nitems.add(\"Pencil\");\nitems.add(\"Box\");\nfor (String i : items) {\nif (i.indexOf(\"P\") == 0) {\ncontinue;\n} else {\nSystem.out.print(i+\" \");\n}\n}\n}\n}\n",
+    "options": [
+      "Pen Pencil Box",
+      "Pen Pencil",
+      "Box",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Both Pen and Pencil have first letter as P. So they return indexOf(\"P\") =0 which will skip the iteration.",
+    "topic": "Strings"
+  },
+  {
+    "question": "Which access modifier can be used with a class to make its members available only in the package or sub-classes?",
+    "qncode": "",
+    "options": [
+      "public",
+      "private",
+      "protected",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Which collection interface does not allow duplicate elements?",
+    "qncode": "",
+    "options": [
+      "List",
+      "Set",
+      "Queue",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "Consider the following code.\n\nWhich statements are executed if exception occurs in statement2?",
+    "qncode": "try{\n   statemen1;\n   statement2;\n   statement3;\n }catch (Exception1 ex1){\n      statement4;\n  }\n",
+    "options": [
+      "statement1 statement2 statement3 statement4",
+      "statement1 statement2 statement3",
+      "statement1 statement2 statement4\t",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "public class sw{\n   public static void main(String args[]){\n      float n=1.2f;\n      switch((int)n){\n           case 1.2:System.out.println(\"true\");\n                    break;\n           case 1.0:System.out.println(\"false\");\n                   break;\n      }\n   }\n}",
+    "options": [
+      "true",
+      "false",
+      "compiler error",
+      "run time error"
+    ],
+    "correct": 3,
+    "explanation": "Java case labels in switch statement can only be integer type like short, byte, int and char, and string. We can not use float or double as switch expression or as case labels. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "qncode": "class demo{\n   public static void main(String args[]){\n        for(int i=1;i<=10;i++){\n           if(i%3==0)\n              continue;\n           System.out.print(i);\n                   break;\n      }\n   }\n}\n",
+    "options": [
+      "12345678910",
+      "1",
+      "12457810",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Basics"
+  }
+]

@@ -1,0 +1,1454 @@
+[
+  {
+    "question": "What is Java?",
+    "answer": "Java is a high-level programming language which is  object-oriented, robust and secure. \n\nIt is also platform-independent, high performance, Multithreaded, and portable.\n\n Java language was developed by James Gosling in June 1991. ",
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "What is JVM?",
+    "answer": "Java Virtual Machine (JVM) is an engine machine that interprets Java byte code and executes them. \n\nJava compiler creates a byte code which is platform independant. This byte code is executed by JVM. ",
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "What are the differences between C++ and Java?",
+    "answer": "Java and C++ are both object oriented languages and have many similar syntaxes. \n\nThe differences between the two languages are\n\n1.  Java is platform independant, but C++ is platform dependant. \n2.  In Java memory management is controlled by system. In  C++ memory management is accessible to programmer\n3.  C++ support multiple inheritance. Java does not support multiple inheritance but a class can implement multiple interfaces.\n4.  In Java polymorphism is automatic. But in C++ it has to be explicitly defined using virtual keyword.\n5.  Java programs are portable because of its Java virtual machine. But C++ programs need to be recompiled for different platforms.\n6.  In Java run time error control is system controlled. But in C++, run time error control is programmer's responsibilty.\n",
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "What is JIT - just in time compiler in Java?",
+    "answer": "Java compiler produces bytecode.\n\nInterpreting the bytecode makes execution of programs slow. To improve performance, JIT - (just in time) compiler interacts with the JVM at run time and compiles appropriate bytecode sequences into native machine code.\n\n This way, JIT improves the performance of Java program to a large extent. ",
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "What are the different access specifiers in Java?",
+    "answer": "4 Access specifiers in Java are\n1) public, - these class/methods/variables can be accessed by any class or method.\n\n2)private - class, methods, or variables defined as private can be accessed within the class only.\n\n3) protected -  these can be accessed by the classes of the same package, or by the sub-class of this class in other packages also. \n\n4) default - members  are accessible by classes within the package only.  Note that there is no \"default\" specifier. If no specifier is given, the class will have default access specifier. ",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the output of the following program?\n",
+    "answer": "Hello world\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is an object?",
+    "answer": "Object is an entity which has a state and behavior. \n\nObject is an instance of a class. Object has fields and methods. \n\nWhenever the JVM reads the \u201cnew()\u201d keyword, it will create an instance of that class.\n\ne.g.\n\nclass A{\n    int n;\n    void print(){\n       System.out.println(n);\n     }\n}\n\nclass Demo{\n   public static void main(String args[]){\n      A obj = new A();\n     }\n}\n\nHere we are creating an object called obj. T",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is a constructor?",
+    "answer": "Constructor is a special method in a class which is used to initialize the object. It is implicitly invoked when an object is created.\n\nName of the constructor must be same as class name. And constructor must not have an explicit return type. \n\ne.g.\nclass A{\n     A(){}//constructor\n     A(int n){}//constructor\n}\n\nHere A class has two constructors. First one with no parameters is a default constructor. ",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Can a constructor be final? Is the constructor inherited?",
+    "answer": "No. The constructor can not be final. \n\nConstructor of a class can not be static. \n\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Write a class with a 2 parameter constructor and a default constructor. ",
+    "answer": "public class Test {\n  Test(int a,int b){\n    System.out.println(\"I am a constructor with \"+a+b);\n }\n Test( ){//default constructor\n     System.out.println(\"I am default constructor \");\n }\n public static void main(String args[]) {\n      Test c1 = new Test(10,20);\n      Test c2 = new Test();\n  }\n}",
+    "explanation": "The class has two constructors - one default and another with 2 parameters. \n\nThe main() function first calls parameterized constructor by instantiating the class with 2 integers. Then it calls default constructor by instantiating the class with 0 values.\n\nThe output of the program is\nI am a constructor with 1020\nI am default constructor ",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the output of the following program?\n ",
+    "answer": 0.0,
+    "explanation": "Instance variable are initialized to 0 automatically. So the output is 0. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the output of the following program?",
+    "answer": "Compiler error",
+    "explanation": "The class has only a parameterized constructor. It has no default constructor. \n\nThe class instantiation with default constructor gives an error.",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is a class?",
+    "answer": "A class is a blue print of an object.\n\n A class is  a user defined data type similar to structures. A class has data members and methods. Data members  define the state of the object and methods define behavior of the object.  \n\ne.g.\nclass Test\n{\n     int num;\n     void printNum(){\n        .....\n    }\n}\n\nHere class Test has an instance variable called num. It also has a method printNum()\n",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the significance of main() method in Java program?",
+    "answer": "main() method is the entry point of execution of a stand alone Java program.\n\n Java main() method has to be public and static because Java run time should be able to call it.\n\nThis method takes an array of Strings as a parameter.\n\n\nclass Test\n{\n      public static void main(String s[]){\n           .....\n     }\n}",
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "What is inheritance?",
+    "answer": "Inheritance is the mechanism by which a class is created as an extension of another class, retaining all its properties. The original class is called base class or super class and new class is called derived class. \n\ne.g. If you have a class called human, you can create another class called student based on human class. \n\nInheritance is one of the basic concepts of object oriented languages. \n\ne.g.\n\nclass Number{}\nclass PositiveNumber extends Number{}",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is Java package?",
+    "answer": "A package is a namespace that organizes a set of related classes and interfaces. Conceptually you can think of packages as being similar to different folders on your computer. \n\nBecause software written in the Java programming language can be composed of hundreds or thousands of individual classes, it makes sense to keep things organized by placing related classes and interfaces into packages.\n\nThe package a class/classes belong to are determined by using package statement as the first statement in a java source file.\n\ne.g.\n\npackage pkg;\nclass A{\n}\nclass B{\n}\nclass C{\n}\n\nNow the three classes belong to package allfiles.\n\nIf a package is not specified, then the classes belong to default package. ",
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "What is the keyword \"final\" used for?",
+    "answer": "final keyword can be used in different contexts.\n\nA final variable is the one which can not be modified. Its value is set either using an initializer or using an assignment statement. Once assigned, its value can not be changed. \n\ne.g.\nfinal int m=10;\n\nNow m can not be changed. Changing m results in syntax error.\n\nA final object can not change its reference. its fields can change. But it can not refer to another object. \n\nfinal A obj = new A();\nobj.m=10;//ok\nobj = new A();//error\n\n\nA final method can not be overridden. The derived classes can not re-define a final method.\ne.g.\nclass A{\n    final void print(){}\n}\nclass B extends A{\n    final void print(){//error\n   }\n}\n\n\nA final class can not be inherited - it can not be subclassed.\n\nfinal class A{}\nclass B extends A{}//error\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is static keyword?",
+    "answer": "A static variable of a class is common to all objects of the class unlike an instance variable.\ne.g.\nclass A{\n   static int m;\n }\n\nNow m is shared between all objects of the class A. \n\nA static method of a class can be invoked without using object of a class. And a static method can access only static variables of a class and it can call only static methods of that class. \n\ne.g.\nclass A{\n   static int m;\n   int n;\n   static void printHello(){\n       System.out.println(\"Hello world\");\n       System.out.println(\"m is \"+m);\n       System.out.println(\"n is \"+n);//error\n  }\n}\nclass Test{\n   public static void main(String args[]){\n       A.printHello();//no error\n   }\n}\n\nAs printHello() is a static method, we can call this method without creating any object of A class. \n\nAnd this method is not able to access the instance variable n. ",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "Can a class be defined as static?",
+    "answer": "A top level class can not be static. \n\nBut an inner class - a nested class can be static in Java.\n\ne.g.\n\n  class A{\n      static class B{}\n  }\n\nHere B is the static inner class of class A. Which means B can be created without an outer class object. ",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is static block in Java?",
+    "answer": "Java static block or static initializer block is the group of statements that gets executed when the class is loaded  by Java class loader.\n\nSo a static block is executed even before main method. \n\nStatic block is used to initialize static variables of the class. \n\nA class can have multiple static blocks which are executed in the same order they are defined in the class. \n\ne.g.\n   class A{\n       static int m;\n        int n;\n        static{\n          m = 1;\n       }\n       A(int num){\n           n = num;\n      }\n   }\nHere the block static { m = 1;} is the static initializer block. \n\nUnlike the constructor, this block gets executed only once.\n\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is an interface in Java?",
+    "answer": "Interface is a group of methods with empty body. A class implementing an interface has to define these methods.\n\ne.g.\nOnClickListener is an interface with a method onClick()\n\ninterface OnClickListener(){\n     public void onClick();\n}\n\nNow any class which defines this interface has to define onClick() method.\n\nclass MyClass implements OnClickListener{\n   ....\n   public void onClick()\n   {\n      ....\n   }\n}",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is encapsulation?",
+    "answer": "Encapsulation is the mechanism of wrapping the data  and code acting on the data   together as a single unit.\n\n In encapsulation, the variables of a class are hidden from other classes, and they can be accessed only through the methods of their current class. So it is also called data hiding. ",
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "What are overloading and overriding?",
+    "answer": "When multiple methods in the same class have same name but different type/number of parameters, the methods are said to be overloaded.\n\nWhen a method of a base class is redefined in a derived class with same signature, it is said to be overriding the base class method.\n\ne.g.\nclass A{\n   int sum(int a,int b){.....}\n   float sum(float a,float b){....}\n   int sum(int a,int b,int c, int d){....}\n}\n\nHere sum() methods are overloaded. \n \nclass A{\n    void print(int a){.....}\n}\nclass B extends A{\n    void print(int a){.....}\n}\n\nIn B class print() method is overridden. ",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What are the basic data types in Java? ",
+    "answer": "8 basic data types in Java are\n\n1) byte: The byte data type is an 8-bit signed two's complement integer.\n2)short: The short data type is a 16-bit signed two's complement integer.\n3)int: By default, the int data type is a 32-bit signed two's complement integer, which has a minimum value of -2^31 and a maximum value of 2^31  -1.\n4) long: The long data type is a 64-bit two's complement integer. The signed long has a minimum value of -2^63 and a maximum value of 2^63  -1\n5) float: The float data type is a single-precision 32-bit   floating point. \n6) double: The double data type is a double-precision 64-bit IEEE 754 floating point.\n7)boolean: The boolean data type has only two possible values: true and false.\n8)char: The char data type is a single 16-bit Unicode character. It has a minimum value of '\\u0000' (or 0) and a maximum value of '\\uffff' (or 65,535 inclusive).\n\n\n",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What are sets?\n",
+    "answer": "Set is a collection that contains no duplicate elements.\n\nSet interface in Java implements mathematical sets. \n\nSet interface extends Collection interface. Classes which implement set interface have to define add, equals and hashCode methods.",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to convert an array list to hashset.",
+    "answer": "import java.util.ArrayList;\nimport java.util.HashSet;\nimport java.util.Set;\n\npublic class ListToSet {\n public static void main(String[] args) {\n  \n  ArrayList<String> arrList= new ArrayList<>();\n  arrList.add(\"Java\");\n  arrList.add(\"List to String\");\n  arrList.add(\"Example Program\");\n  \n  Set<String> strSet = new HashSet<String>(arrList);\n  \n  System.out.println(strSet);\n\n }\n}\n",
+    "explanation": "We use the constructor with arraylist as a parameter. \n\nBut remember that a set will have only unique elements. So if the list had duplicates, they would be removed in the list. ",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are exceptions? What are different types of exceptions in Java?",
+    "answer": "An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program's instructions. \nWhen an error occurs within a method, the method creates an object and hands it off to the runtime system. The object, called an exception object, contains information about the error.\nThe runtime system searches the call stack for a method that contains a block of code that can handle the exception. This block of code is called an exception handler. The search begins with the method in which the error occurred and proceeds through the call stack in the reverse order in which the methods were called. When an appropriate handler is found, the runtime system passes the exception to the handler.\nIf no exception handlers are found then the run time system terminates. ",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is a thread? How do you create a thread in Java?",
+    "answer": "A thread is a path of program execution.\n\nAll Java programs at least one thread called main thread which is started by JVM.\n\nA thread can be created by extending thread class or by implementing runnable interface. \n\ne.g.\n\npackage helloworld;\n\npublic class ThreadTest extends Thread {\n\n\tint m;\n\n\t@Override\n\tpublic void run() {\n\n\t\tsuper.run();\n\t\tfor (int i = 0; i < 100; i++) {\n\t\t\tSystem.out.println(\"m is \" + m);\n\t\t\tSystem.out.println(\"My name is \" + this.toString());\n\t\t\tsynchronized (this) {\n\t\t\t\ttry {\n\t\t\t\t\tthis.wait(100);\n\t\t\t\t} catch (InterruptedException e) {\n\t\t\t\t\t// TODO Auto-generated catch block\n\t\t\t\t\te.printStackTrace();\n\t\t\t\t}\n\t\t\t}\n\t\t\tm++;\n\t\t}\n\t}\n\n}\n\nThe program which creates these threads is\npublic class ThreadTestMain {\n\tpublic static void main(String args[]) {\n\t\tThreadTest t1,t2,t3;\n\t\tt1 = new ThreadTest();\n\t\tt2 = new ThreadTest();\n\t\tt3 = new ThreadTest();\n\t\t\n\t\tt1.start();\n\t\tt2.start();\n\t\tt3.start();\n\t}\n\n}\n\nAnd to create a thread using runnable interface, you can use a code like this\n\n  public class IntrTest implements Runnable {\n\t@Override\n\tpublic void run() {\n\t\tSystem.out.println(\"Hi I am runnable\");\n\t}\n\n\tpublic static void main(String args[]) {\n\t\tIntrTest t = new IntrTest();\n\t\tt.run();\n\t}\n}",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is the differences between a thread and a process?",
+    "answer": "Both processes and threads are independent sequences of execution. The difference is that threads (of the same process) run in a shared memory space, while processes run in separate memory spaces.\n\n A process can have multiple threads running in it. All threads of a process share its virtual address space and system resources.  \n\nSince the threads of a process share the same memory, synchronizing the access to the shared data between threads is very important. \n\nThere are the following differences between the process and thread.\n\n    A Program in the execution is called the process whereas; A thread is a subset of the process\n    Processes are independent whereas threads are the subset of process.\n    Process have different address space in memory, while threads contain a shared address space.\n    Context switching is faster between the threads as compared to processes.\n    Inter-process communication is slower and expensive than inter-thread communication.\n    Any change in Parent process doesn't affect the child process whereas changes in parent thread can affect the child thread.\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Explain life cycle of a thread. ",
+    "answer": "The java.lang.Thread class contains a static State enum \u2013 which defines its potential states. During any given point of time, the thread can only be in one of these states:\n\n    NEW \u2013 newly created thread that has not yet started the execution\n    RUNNABLE \u2013 either running or ready for execution but it's waiting for resource allocation\n    BLOCKED \u2013 waiting to acquire a monitor lock to enter or re-enter a synchronized block/method\n    WAITING \u2013 waiting for some other thread to perform a particular action without any time limit\n    TIMED_WAITING \u2013 waiting for some other thread to perform a specific action for a specified period\n    TERMINATED \u2013 has completed its execution\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is auto boxing and unboxing?",
+    "answer": " Autoboxing is the automatic conversion that the Java compiler performs between the primitive types and their corresponding object wrapper classes. \n\nFor example, converting an int to an Integer, a double to a Double, and so on. The conversion of wrapper class objects to primitive types is called unboxing.\n\nHere is the simplest example of autoboxing:\n\nCharacter ch = 'a';\n\nHere primitive value a char is converted to an object of Character class. \n",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is constructor overloading in Java? What is copy constructor?",
+    "answer": "Defining multiple constructors is called constructor overloading. \n\ne.g.\n\npublic class Test\n{\n     Test(int n){\n         ...\n    }\n    Test(){\n        ...\n    }\n   public static void main(String arg[]){\n      Test t1 = new Test(10);\n      Test t2 = new Test();\n      ....\n   }\n}\n\nHere Test class has two constructors Test(int n), Test(). t1 calls first constructor with one parameter and t2 calls second constructor.\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is the difference between byte stream and character streams?",
+    "answer": "A stream is a sequence of data that is available over time. A source generates data as a stream. Destination consumes or read data are available as a stream.\n\nA byte stream consists of 8 bit data. And character stream consists of 16 bit unicode character data.\n\nA java program can use either byte stream or character stream input/output.\n\nFileReader and FileWriter classes make use of character streams. FileInputStream and FileOutputStream make use of byte streams. ",
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What are FileInputStream and FileOutputStream ? Explain with an example to read and write into files.",
+    "answer": "FileInputStream and FileOutputStream are classes for reading and writing to a file.\n\nFileInputStream reads the content of a file.\n\ne.g.\nFileInputStream stream = new FileInputStream(new File(\"a.txt\")); \n while ((content = stream.read()) != -1) {\n      System.out.print((char) content);\n }\n\nFileOutputStream write bytes to a file.\n\ttry {\n\t\t\tFileOutputStream stream = new FileOutputStream(new File(\"a.txt\"));\t\n\t\t\t \n                        int i = 0;byte b;\n\t        while ( i<10){\n\t\t  b =(byte) i++;\n\t\t  stream.write(b);\n                                  if (b==-1)\n                                                break; \n\t\t }\n                        stream.close();\n\t       } catch (IOException e) {\n\t\t\t \n                                  e.printStackTrace();\n\t }\n",
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Explain the difference between iterator and enumerator with examples.",
+    "answer": "Both iterators and enumerators are interfaces in Java used to traverse the elements of a collection. \n\nIterators differ from enumerations in two ways:\n\n        Iterators allow the caller to remove elements from the underlying collection where as enumerators do not allow deletion. \n        Method names in iterators are shorter have been improved.\n\n \nJava Specification recommends new implementations to consider using Iterator in preference to Enumeration",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "What is the difference between Throw and Throws in Java Exception Handling.",
+    "answer": "Throw keyword is used to throw an exception. Any method can throw an exception.\n\nThrow has one parameter - a throwable objects.\n\nTypes of throwable objects are errors, exceptions and their descendants. \n\ne.g.\n\npublic Object pop() {\n    Object obj;\n\n    if (size == 0) {\n        throw new EmptyStackException();\n    }\n   .....\n\n}\n\n\n\nBut throws keyword is used to specify that the method may throw an unhandled exception. It gives an information to the programmer that there may occur an exception so programmer has to provide the exception handling code. ",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the use of the \u2018SimpleDateFormat\u2019 and how can you use it to display the current system date in \u2018yyyy/MM/DD HH:mm:ss\u2019 format",
+    "answer": "SimpleDateFormat is a concrete class for formatting and parsing dates in a locale-sensitive manner.\n\ne.g.\nimport java.text.SimpleDateFormat;  \nimport java.util.Date;  \nclass SimpleDate{\n   public static void main(String args[]){\nString pattern = \"yyyy/MM/dd hh:mm:ss\";\nSimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);\n\nString date = simpleDateFormat.format(new Date());\nSystem.out.println(date);\n   }\n}\n\n",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "What are differences between Sleep and wait in java?\n",
+    "answer": "sleep is a static method which will pause the thread. It can be called from any context. \n\nBut wait is an instance method and it can be called only in synchronized block. It releases the lock on the object so that other threads can acquire the lock. \n\nWhen we use the sleep() method, a thread gets started after a specified time interval, unless it is interrupted.\n\nFor wait(), we can wake the thread by calling either the notify() or notifyAll() methods on the monitor that is being waited on.\n\nUse notifyAll() instead of notify() when you want to wake all threads that are in the waiting state. Similarly to the wait() method itself, notify(), and notifyAll() have to be called from the synchronized context.",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is Covariant return type in java?",
+    "answer": "Normally overriding method must have the same parameter types and return type as base class method. But covariant method allows us to have a different return type for overriding method.\n\nCovariant return type refers to return type of an overriding method. From Java 5 onwards, we can override a method by changing its return type only by abiding the condition that return type is a subclass of that of overridden method return type.\n\nclass Number{\n    Number(int n)\n    {\n      this.n = n;\n    }\n    int n;\n}\nclass SmallNumber extends Number{\n   byte  n;\n   SmallNumber(byte  n)\n   {\n       super(n);            \n       this.n = n;\n   }\n}\nclass Covar {\n    Number findSquare(int n)\n   {\n      int s = n*n;\n      Number obj = new Number(s);\n      return obj;\n   }\n}\nclass CovarSub extends Covar{\n    SmallNumber findSquare(int n)\n    {\n        SmallNumber obj = new SmallNumber((byte)(n*n));\n        return obj           ;\n    }\n    public static void main(String args[]){\n      CovarSub cs1 = new CovarSub();\n      SmallNumber sn = cs1.findSquare(10);\n      System.out.println(\"Ouput is \"+sn.n);\n      }\n}\n\n",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is garbage Collection?",
+    "answer": "Java does not have destructors for classes. Instead it has automatic garbage collection.\n\nAutomatic garbage collection is the process of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects.\n\n An in use object, or a referenced object, means that some part of your program still maintains a pointer to that object. \n\n",
+    "explanation": null,
+    "topic": "GarbageCollection"
+  },
+  {
+    "question": "What is RunTime exception in java?",
+    "answer": "Exceptions in Java can be of two types - checked and unchecked.\n\n Runtime exceptions are unchecked exceptions.\n\n Unchecked exceptions do not need to be declared in a method or  use a throw clause in the method's declaration. They do not give compilation error if not caught or thrown unlike checked exceptions. \n \nSome common examples of runtime exceptions are \n\nArithmeticException which is thrown when there is divide by zero\nIndexOutOfBoundsException when we access an array beyond its length\nClassCastException when we are trying to from one to another class \n\n",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What are checked exception or compile time exception?",
+    "answer": "CheckedExceptions are those exceptions which are caught at compile time. These exceptions must be either handled in the current method or they must be thrown. If they are neither handled, nor thrown, the compiler will give an error.\n\nUnchecked exception or Runtime exception need not be handled or thrown.\n\n ",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Can you override final methods?",
+    "answer": "No. Final methods can not be overridden.  \n\nIt is advisable to make the methods called by constructor as final. ",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "ArrayList, LinkedList, and Vector are all implementations of the List interface. Which of them is most efficient for adding and removing elements from the list?",
+    "answer": "ArrayList is an implementation of the List interface that is based on an array. ArrayList internally handles resizing of this array when the elements are added or removed. You can access its elements in constant time by their index in the array. However, inserting or removing an element infers shifting all consequent elements which may be quite slow.\n\nLinkedList is a doubly-linked list: single elements are put into Node objects that have references to previous and next Node. This implementation may appear more efficient than ArrayList if you have lots of insertions or deletions in different parts of the list, especially if the list is large.\n\nAdding and deleting elements need constant time for a linked list unlike arraylist.\n\nBut linkedlist needs more memory when compared to arraylist.\n\nAlso accessing an element is only sequential in linkedlist. If you need to access nth element, it needs O(n) time. \n",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "List and explain the purpose of the three types of class loaders.",
+    "answer": "Class loaders are of three types - bootstrap class loaders, extension class loaders and system class loaders.\n\nClass loaders  are loaded by bootstrap class loader. Bootstrap class loader serves as a parent of all the other ClassLoader instances.\n\nThis bootstrap class loader is part of the core JVM and is written in native code\n\nExtension class loader is a child of the bootstrap class loader and takes care of loading the extensions of the standard core Java classes \n\nThe system or application class loader, on the other hand, takes care of loading all the application level classes into the JVM. It loads files found in the classpath environment variable, -classpath or -cp command line option. Also, it's a child of Extensions classloader.",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "What are the differences between hashset and treeset?",
+    "answer": "Both hashset and treeset are implementations of set interface. And both of them allow no duplicates. They are not synchronized and they use fail-fast iterator.\n\nFirst difference between the two sets is hashset is much faster than treeset. The reason is hashset uses hash table as underlying data structure, and tree set uses red-black tree.\n\nHashset guarantees no order in the data values but tree set gives values in sorted order. \n\nHashset allows null object and treeset does not allow null object. ",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a Java program to copy a file a.txt to another file b.txt. ",
+    "answer": "import java.io.*;\npublic class filecopy {\n\n   public static void main(String args[]) throws IOException {       \n      String filename1 = args[0];\n      String filename2 = args[1]; \n      FileInputStream in = null;\n      FileOutputStream out = null;\n\n      try {\n         in = new FileInputStream(filename1);\n         out = new FileOutputStream(filename2);\n         int c;\n         while ((c = in.read()) != -1) {\n            out.write(c);\n         }\n      }finally {\n         if (in != null) {\n            in.close();\n         }\n         if (out != null) {\n            out.close();\n         }\n      }\n   }\n}\n",
+    "explanation": "File operations throw IO exceptions. So main methods throws IOException.\n\nAlso we are using a finally block to close both the streams. So that if there is an exception or there is no exception, the files are always closed after operation. \n",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Write a Java program to display the content of a file. Filename has to be given as command line argument. ",
+    "answer": "import java.io.*;\npublic class filedisplay {\n   public static void main(String args[]) throws IOException {       \n      String filename1 = args[0];\n      if (args[0]==null){\n         System.out.println(\"Provide filename as command line argument\");\n     }else{\n      FileReader in = null;\n      try {\n         in = new FileReader(filename1);\n         int c;\n         while ((c = in.read()) != -1) {\n            System.out.print((char)c);\n         }\n       }finally {\n         if (in != null) {\n            in.close();\n         }\n      }\n   }\n   }\n}\n",
+    "explanation": "If we invoke the program as \n\njava filedisplay a.txt, then a.txt will be args[0]. The content of this file will be displayed. ",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Write a program to read two numbers and print their sum.",
+    "answer": "import java.util.Scanner;\npublic class ReadNumber {\t\n\tpublic static void main(String args[]) {\n\t\tint num;\n\t\tScanner sc = new Scanner(System.in);\n\t\tnum = sc.nextInt();\n\t\tint num2 = sc.nextInt();\n\t\tSystem.out.println(\"The sum is \"+(num+num2)); \n\t}\n}",
+    "explanation": "Scanner is a class which allows us to read data from a stream. The other method is to use BufferedReader.\n\nScanner sc = new Scanner(System.in) \n \nis for reading from console.\n\nAnother program but using BufferedReader is\n ;\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\n \n\npublic class ReadNumber {\n\t\n\tpublic static void main(String args[]) {\n\t\tint num;\n\t\tBufferedReader reader = new BufferedReader(new InputStreamReader(System.in));\n\t\tString str;\n\t\ttry {\n\t\t\tstr = reader.readLine();\n\t\t\tnum = Integer.parseInt(str);\n            str = reader.readLine();\t\t\n\t\t\tint num2 = Integer.parseInt(str);\n\t\t\tSystem.out.println(\"The sum is \"+(num+num2)); \n\t\t} catch (IOException e) {\n\t\t\t// TODO Auto-generated catch block\n\t\t\te.printStackTrace();\n\t\t}\n\t\t\n\t}\n\n}",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a program to iterate a string list using iterator.",
+    "answer": "import java.util.ArrayList;\nimport java.util.Iterator;\nimport java.util.List;\npublic class ItrTest {\t\n     public static void main(String args[] ) {\n                List<String> lst  = new ArrayList<String>();\n\t lst.add(\"Hello\");\n\t lst.add(\"Java\");\n\t lst.add(\"world\");\n\t Iterator<String> itr = lst.iterator();\n\t while(itr.hasNext()) {\n\t     String st = (String) itr.next();\n\t      System.out.println(\"The string is \"+st);\n\t  }\n     }\n \n}\n",
+    "explanation": "A list can be iterated using an iterator interface or a for each loop. \n\nAn iterator uses hasNext() and next() methods. hasNext() is true as long as we have not reached the end of the collection. ",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are the two ways in which you can create a thread? Give examples.",
+    "answer": "A thread can be created by either implementing Runnable interface or subclassing Thread class.\n \n\nIn both cases, you need to override run() method.\n\nAnd to start the thread of execution, you have to call start() method in both cases. \n\ne.g.\n\npublic class MyTh implements Runnable {\n   public void run() {      \n   System.out.println(\"this is run method\");\n\t\t}\n\t\n      public static void main(String args[]) {\n         new Thread(new MyTh()).start();\n     }\n\n}\n\nNotice that we need to create a thread by wrapping our class inside thread class here. \n\nHere is the example of subclassing Thread class\n\npublic class ThreadTest  extends Thread{\n  public void run() {\n      System.out.println(\"Hello from run of thread \");  \n}\n   public static void main(String args[]) {\n      ThreadTest th = new ThreadTest();\n      th.start();\n   }\t \n}",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What are daemon threads in Java? How are they different from user threads?",
+    "answer": "Daemon threads are low priority threads created by system. e.g. Garbage collector. These threads help the user threads and they run in the background. When all the user threads are completed, JVM stops the daemon threads. If a user thread is running, the program can't stop where as if a daemon thread is running, program can still end. \n\nA user thread can be made as daemon thread by using the method\n\nsetDaemon(boolean )\n\nsetDaemon can only be called before the thread is started. If it is called after the thread starts running, there will be a illegal state exception.\n\nDaemon thread inherits its daemon state from the parent. If parent is a daemon, then child will also be implicitly daemon.\n\nTo check if a thread is daemon or not, we can use isDaemon() method. ",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What are the differences between abstract classes and interfaces?",
+    "answer": "An interface is a collection of methods without implementations. The methods of an interface by default are public and its fields if any are static, public and final.\n\nAn abstract class is a class which can not be instantiated. An abstract class contains one or more abstract methods. But it can contain ordinary fields and non-abstract methods also. \n\nAn abstract class is defined with keyword abstract. ",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Write a Java program to display the contents of a file, one line at a time and also count the number of lines in the file. ",
+    "answer": "import java.io.BufferedReader; \nimport java.io.FileReader;\nimport java.io.IOException; \npublic class Files {\n   public static void main(String args[]) throws IOException {\n       int num;\t\t\n       int content;\n       BufferedReader stream = null;\n       try {\n           stream = new BufferedReader(new FileReader(\"ReadNumber.java\"));\n           String str;int line=0;\n            while ((str = stream.readLine()) != null) { \n                line++;\n                System.out.println(str);\n            }\n            System.out.println(\"Number of lines in the file is \"+line);\n       }  finally {\n               if(stream!=null) {\n                   stream.close();\n              }\n        } \t\n    }\n\n}",
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Write a Java program where a class has a method called  print which is overloaded for integer and float parameters. ",
+    "answer": "public class OverloadedPrint{\n     void print(int num)\n     {\n        System.out.println(\"intger number is \"+num);\n     }\n     void print(float num)\n     {\n        System.out.println(\"float number is \"+num);\n     }\n     public static void main(String a[])\n    {\n        OverloadedPrint obj = new OverloadedPrint();\n        obj.print(10);  \n        obj.print(1.2f);\n    }\n}\n",
+    "explanation": "Note that the second call to print method in main() has 1.2f as parameter. If instead we call the method as \nobj.print(1.2);\nwe will get a compilation error.\n\nBecause 1.2 is a double literal, not a float literal. A float literal must have a suffix of f or F. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a class A which has a constructor with one int parameter. Write class B which is a subclass of A with a default constructor. ",
+    "answer": "class A\n{\n   public A(int num)\n   {\n      n = num;\n      System.out.println(\"A constructor\");\n   }\n   int n;\n}\nclass B extends A\n{\n    public B()\n   {\n     super(0);\n     System.out.println(\"B constructor\");\n   }\n}\npublic class Test\n{\n   public static void main(String a[])\n  {\n    B obj = new B();\n    A obj2 = new A(10);\n  }\n}\n",
+    "explanation": "If we omit the line super(0) in B class constructor, we get a syntax error. Because implicitly a subclass constructor calls default constructor of super class. As A class does not have a default constructor, there will be error.\n\nBy adding the line super(0), we are calling base class constructor - A(int num) with 0 as parameter.\n\nThe super() call if present, must be the first statement in derived class constructor. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "Write a Java program to read 10 numbers, store them in an array and find their sum and product.",
+    "answer": "import java.util.Scanner;\npublic class ArraySum\n{\n    public static void main(String args[])\n   {\n     int arr[] = new int[10];\n     Scanner sc = new Scanner(System.in);\n     for(int i=0;i<10;i++)\n       arr[i]=sc.nextInt();\n\n     int s = 0;\n     int p = 1;\n     for(int i=0;i<10;i++)\n     {\n       s+=arr[i];\n       p*=arr[i];\n     }\n     System.out.println(\"The sum of array is \"+s);\n     System.out.println(\"The product of array is \"+p);\n    }\n}",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a Java program to find the largest element in 3X3 matrix.",
+    "answer": "import java.util.Scanner;\npublic class MatrixSum\n{\n  int mat[][]=new int[3][3];\n  public static void main(String args[])\n  {\n     MatrixSum obj = new MatrixSum();\n     Scanner sc = new Scanner(System.in);\n     for(int i=0;i<3;i++)\n\n       for(int j=0;j<3;j++)\n          obj.mat[i][j]= sc.nextInt();\n \n      int max = obj.mat[0][0];\n      for(int i=0;i<3;i++)\n        for(int j=0;j<3;j++)\n          {\n              if (obj.mat[i][j]>max)\n                max = obj.mat[i][j];\n         }\n     System.out.println(\"The largest element is \"+max);\n   }\n}\n",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a program to read names and times taken by n runners and find the fastest runner. ",
+    "answer": "import java.util.Scanner;\nclass Runner{\n     String name;\n     int runTime;\n     Runner(String n, int t){\n         name = n;\n         runTime = t;\n     }\n     int getTime(){\n         return runTime;\n     }\n     String getName(){\n         return name;\n     }\n}\nclass Demo{\n     public static void main(String args[]){\n            int n;\n            System.out.println(\"Number of runners \");\n            Scanner scanner = new Scanner(System.in);\n            n = scanner.nextInt();\n            Runner arr[] = new Runner[n];\n            for(int i=0;i<n;i++)\n            {\n                System.out.println(\"Name and time taken\");\n                String name = scanner.next();\n                int time = scanner.nextInt();\n                arr[i] = new Runner(name,time);\n            }\n            int fastest = 0;\n            for(int i=1;i<n;i++){\n                 int time = arr[i].getTime();\n                 if(time<arr[fastest].getTime()) \n                        fastest = i;\n            }\n            System.out.println(\"the fastest runner is \"+arr[fastest].getName());      }\n}\n",
+    "explanation": "We are using a class Runner with 2 fields- name and time taken. Next we create an array of Runner objects. \n\nFind the smallest element in the array. And then find the corresponding Name.\n\nWe could even use a comparator or comparable interfaces. ",
+    "topic": "Classes"
+  },
+  {
+    "question": "A magic square of order n is an arrangement of n \u00d7 n numbers in a square, such that the n numbers in all rows, all columns, and both diagonals add to the same constant.\n\nWrite a program to read nXn numbers and find if these numbers form a magic square. ",
+    "answer": "import java.util.Scanner;\nclass maginsquare{\n    public static void main(String args[]){\n        int n;\n        System.out.println(\"n=\");\n        Scanner scanner = new Scanner(System.in);\n        n = scanner.nextInt();\n        int matrix[][] = new int[n][n];\n        for(int i=0;i<n;i++){\n            System.out.println(\"Enter the elements of row\"+i);\n            for(int j=0;j<n;j++)\n            {\n                matrix[i][j]=scanner.nextInt();\n            }\n        }\n        if(isMagicSquare(matrix,n))\n            System.out.println(\"It is a magic square\");\n        else\n            System.out.println(\"It is not a magic square\");\n    }\n\n    static boolean isMagicSquare(int mat[][],int n){\n        int rowsum,prevrowsum=0;\n        for(int i=0;i<n;i++){\n            rowsum= 0;\n            for(int j=0;j<n;j++)\n                rowsum+=mat[i][j];\n            if(prevrowsum==0)\n                prevrowsum=rowsum;\n            if( rowsum!=prevrowsum)\n                return false;\n        }\n        int prevcolsum=0,colsum=0;\n        for(int col=0;col<n;col++){\n            colsum=0;\n            for(int row=0;row<n;row++)\n                colsum=colsum+mat[row][col];\n            if(prevcolsum==0)\n                prevcolsum=colsum;\n            if(prevcolsum!=colsum)\n                return false;\n        }\n        if(prevcolsum!=prevrowsum)\n            return false;\n        int diasum=0;\n        for(int i=0;i<n;i++)\n            diasum+=mat[i][i];\n        if(diasum!=prevrowsum)\n            return false;\n        return true;\n    }\n}\n",
+    "explanation": "We have defined a two dimensional array matrix and read its elements. We have used a function called isMagicSquare which returns false whenever any of the conditions is false - if rowsums are not equal, if column sums are not equal or if diagonal sums are not equal.\n\nThe program is a good example for the use of 2d arrays and functions with 2d array parameters.\n",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is Java Byte Code?",
+    "answer": "As soon as a java program is compiled, java bytecode is generated in a .class file. \n\nThis byte code is interpreted by JVM and the program is executed.\n\nJava byte code is machine independant. ",
+    "explanation": null,
+    "topic": "Introduction"
+  },
+  {
+    "question": "Explain the following words with examples : final , finally",
+    "answer": "final keyword is used with a class, method or a field. A final class can not be sub-classed. A final method can not be over ridden. A final field can not be modified (final field is like a constant)\n\ne.g.\nfinal int a = 10;\n\nFinally is a block used in exception handling. This block is always executed irrespective of whether the exception is handled or not. \ntry{\n...........\n}catch(....){}\ncatch(...){}\nfinally{\n  .....\n}",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is an exception? Explain how Java handles exceptions.",
+    "answer": "Exception is an event during a program execution which disrupts the normal execution of the program.\n \n\nException handling attempts to gracefully handle these situations so that a program (or worse, an entire system) does not crash.\n\nIn Java, when a code may throw an exception, it should be wrapped in a try block. Try block must be followed by one or more catch blocks. Catch blocks specify the type of exceptions as parameter. The catch block which matches the type of thrown object is executed whenever an exception is thrown. \ne.g.\n\ntry{\n    file.read(m);\n    System.out.println(m);\n}\ncatch(IOException e){\n    System.out.println(\"IO error\");\n}\n\nHere the read() method may throw an IOException. If there is an exception, the execution jumps to catch block and execute the code in catch block, instead of crashing the program. ",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the difference between these keywords.\n\nthrow\nthrows",
+    "answer": "throw is used to throw an exception. But throws is used to specify what types of unhandled exceptions a function may throw. \n\ne.g.\n   int readFile(String filename) throws IOException,MyException{\n        if(filename==null)\n             throw MyException;\n   }\n\n\nThrows specifier says that the function may throw IOException if there is an error in file operation.\n\nIn a function if the filename is null, then we are throwing an exception of the type MyException",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is multithreading?",
+    "answer": "Multithreading is a process of executing multiple threads simultaneously. Multithreading is used to achieve multitasking. It consumes less memory and gives the fast and efficient performance.\n\n Its main advantages are:\n\n    Threads share the same address space.\n    The thread is lightweight.\n    The cost of communication between the processes is low.",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is the output of this code?",
+    "answer": "Output is 1",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Explain static methods with an example. ",
+    "answer": "A static method can be accessed without creating an object of the class. But a static method can not access instance variables, it can only access static variable and only call other static methods.\n\nclass AB{\n    int m;\n    static int sm;\n    static void printNum(int n){\n          System.out.println(\"n is \"+n);\n      //    System.out.println(\"m is\"+m);//error\n          System.out.println(\"sm is \"+sm);//no error\n    }\n}\n\nclass Demo{\n    public static void main(String args[]){\n       int a = 10;\n       AB.printNum(a);\n   }\n} \n\nAs the method printNum is a static method, we are calling it directly without creating any object of AB class.\n\nAlso note that main method of the program will be static, because the JVM will be able to call it directly,           \n",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is an abstract class? How does it differ from an interface?",
+    "answer": "An abstract class is a class which can not be instantiated - no objects can be created from an abstract class. An abstract class is defined with keyword abstract. \n\nBut a sub-class of an abstract can be instantiated. \n\nAn abstract class can have fields, methods. The methods can be abstract or non-abstract. \n\ne.g.\n\nabstract class Vehicle{\n     int speed;\n     void start(){}\n     abstract void accelerate();\n}\n\nIf you define an abstract method in a class, then the class must be declared as abstract. Otherwise you will get a syntax error.\n\nAn interface can only have final fields and abstract methods. No method in an interface can have an implementation. And an interface can have only final, static, public fields. \n\nA class can extend one abstract class. But a class can implement multiple interfaces. ",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the output of the program?",
+    "answer": "The output is Constructor and n is 10. \n\nThough the constructor is private, it is accessible from methods of the same class. So there will not be any errors\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "What is finalize method?",
+    "answer": "finalize method is a deprected method used to clean up resoures used by an object before the object is garbage collected. \n\nYou can define finalize method in a class. But as we are not certain when the object will be garbage collected, this method is deprecated since Java 9. \n\nclass A{\n      void finalize(){\n            //* close files*/\n           /* release other resources*/\n      }\n}\n",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "What is thread synchronization? Explain with examples.",
+    "answer": "Threads communicate primarily by sharing access to fields and the objects .  But such communication may produce  thread interference errors and memory consistency errors. \n\nThe tool needed to prevent these errors is synchronization.\n \nLet us say we have a counter class with increment and decrement methods - to increase and decrease the counter by 1. Now if these methods are accessed by multiple threads, the methods of different threads may overlap - which may result in inconsistent values. \n\nThread synchronization is achieved using either a synchronized method or a synchronized block. \n\nSynchronized method: A method is prefixed with the keyword synchronized.\n\ne.g.\n     synchronized void increment(){\n        num++;\n     }\n     synchronized void decrement(){\n        num--;\n     }\n\n When one thread is executing a synchronized method for an object, all other threads that invoke synchronized methods for the same object will block (suspend execution) until the first thread is done with the object. When a synchronized method exits, it automatically establishes a happens-before relationship \n\nSynchronized blocks:\n\nSynchronization is built around an internal entity known as the intrinsic lock or monitor lock. \n\nEvery object has an intrinsic lock associated with it. By convention, a thread that needs exclusive and consistent access to an object's fields has to acquire the object's intrinsic lock before accessing them, and then release the intrinsic lock when it's done with them. A thread is said to own the intrinsic lock between the time it has acquired the lock and released the lock. As long as a thread owns an intrinsic lock, no other thread can acquire the same lock. The other thread will block when it attempts to acquire the lock.\n\nFor synchronized methods, the current object provides the lock.\n\nUnlike synchronized methods, synchronized statements must specify the object that provides the intrinsic lock:\n\ne.g.\n\npublic void addName(String name) {\n    synchronized(this) {\n        lastName = name;\n        nameCount++;\n    }\n    nameList.add(name);\n}\n\nNow as long as one thread is executinng the synchronized block, the other threads trying to access this block will have to wait. \n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is inheritance? Explain with an example.",
+    "answer": "Inheritance is the process of creating new classes extending existing classes. The new class is called sub-class or derived class and the original class is called base class. \nThe inherited class inherits all the methods and fields of the base class. It can also its own members.\n\nEvery object of a derived class is an object of base class.\n\n",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is collection in Java? Explain the difference between Hashmap and hashtable.",
+    "answer": "The Collection in Java is a framework that provides an architecture to store and manipulate the group of objects. These objects can be inserted, deleted, sorted, searched efficiently. \n\nJava collections framework has various data structures such as list, vector, stack queue and sets etc.\n",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "What is the difference between multithreading and multiprocessing?",
+    "answer": "Multiprocessing is running multiple processes simultaneously. \n\nA process is a program under execution. So when we are multiprocessing, we are running many programs simultaneuosly.\n\nA thread is path of execution within a program. A program can have multiple threads and these threads can run simultaneously - this is called multithreading. \n\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "With an example describe how we can read  a text file in Java.",
+    "answer": "Reader and Writer are abstract classes in Java used to read and write to a file. But you can use FileReader and FileWriter classes or InputStreamReader/OutputStreamWriter classes and also BufferedReader and BufferedWriter classes.\n\nInputStreamReader converts input stream into characters. We can also specify character encoding. OutputStreamWriter is a similar class for writing.\n\nBufferedReader and BufferedWriters are used for efficient reading and reading and writing one line at a time.\n\nLet us look at an example.\nimport java.io.*;\n\npublic class FileReadTest {\n    public static void main(String args[]) {\n        String filename = \"/home/usha/eclipse-workspace/Array.java\";\n        InputStreamReader rdr = null;\n        try {\n            rdr = new InputStreamReader(new FileInputStream(filename));\n            int ch;\n            while ((ch = rdr.read()) != -1) {\n                System.out.print((char)ch);\n            }\n            rdr.close();\n        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}\n",
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What are the differences between String and StringBuffer classes",
+    "answer": "length: The length of the String object is fixed.\tThe length of the StringBuffer can be increased.\n\nModification:\tString object is immutable.\tStringBuffer object is mutable.\n\nPerformance:\tString  is slower during concatenation.\tStringBuffer is faster during concatenation. \n\nMemory: \tString Consumes more memory.  StringBuffer Consumes less memory.\n\nStorage: String uses string constant pool. String buffere uses heap Memory.",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "What are the rules for variable names in Java?",
+    "answer": "1) Begin with alphabet or underscore\n2) can contain only alphabets, digits and _\n3) can not be a keyword\n\nAlso note that variable names are case sensitive. And Java names follow camel case - capitalizing first letter of each word.\n\n1) class Names begin with upper case letter\n2) method names and field names begin with lower case. ",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a Java  program to display first n Fibonacci numbers.",
+    "answer": "import java.util.Scanner;\nclass Demo{\n    public static void main(String args[]){\n       Demo obj = new Demo();\n       int n;\n       System.out.println(\"n=\");\n       Scanner scanner  = new Scanner(System.in);\n       n = scanner.nextInt(); \n       obj.printFib(n);\t\n    }\n    void printFib(int n){\n        int fn1 = 0;\n        int fn2 = 1;\n        int fn;\n        for(int i=0;i<n;i++)\n        {\n            if(i==0)\n               System.out.println(\" \"+fn1);\n            else if(i==1)\n               System.out.println(\" \"+fn2);\n            else\n             {\n                fn = fn1+fn2;\n                fn2 = fn1;\n                fn1 = fn;\n                System.out.println(\" \"+fn);\n             }\n         }\n     }\n   }\n",
+    "explanation": "A Fibonacci number fn is equal to fn-1 + fn-2. The first two fibonacci numbers are are 0 and 1.",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a Java program to implement area method in Shape class which is overridden in Rectangle and Triangle - two derived classes of Shape.  ",
+    "answer": "import static java.lang.Math.PI;\n\npublic class Shape {\n    public float area(){\n        return 0;\n    }\n}\nclass Rectangle extends Shape{\n    int len,wid;\n    Rectangle(int l,int w){\n        len = l;\n        wid =w;\n    }\n    public float area(){\n        return len*wid;\n    }\n}\nclass Circle extends Shape{\n    int radius;\n    Circle(int r){\n        radius = r;\n    }\n    public float area(){\n        return (float) (PI*radius*radius);\n    }\n}\nclass Demo{\n    public static void main(String args[]){\n        Shape s = new Shape();\n        System.out.println(\"Area of shape is \"+s.area());\n        Rectangle r = new Rectangle(5,5);\n        System.out.println(\"Area of rectangle is \"+r.area());\n        Circle c = new Circle(7);\n        System.out.println(\"Area of Circle is \"+c.area());\n    }\n}",
+    "explanation": "As it does not make sense to define area method for Shape class, we can also make area method as abstract. And then we will have to make Shape class as abstract. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Explain garbage collection mechanism in Java",
+    "answer": "Objects are created using new operator and they are stored in heap memory in Java. It is essential for Java program to deallocate memory of objects which are not needed, in order to avoid memory leakage. This releasing of memory is done automatically in Java and is called garbage collection.\n\nWhen ever an object is no longer referred in the program, it is ready for garbage collection. \n\nIf an object is assigned to null or if the variable is assigned to another object, the object is ready for garbage collection. \n\nPlease note that the JVM will start garbage collection automatically and we can not predict when this will happen. There is an explicit call the garbage collection System.gc() which is not advisable.\n",
+    "explanation": null,
+    "topic": "GarbageCollection"
+  },
+  {
+    "question": "What is overloading of functions? Explain with the help of an example.",
+    "answer": "Overloading is the process where  two functions will have same name but different number of parameters or different types of parameters.\n\n During compilation, the compiler will select the correct method based on the parameters passed to method.\n\ne.g.\nint sumNumbers(int n1,int n2)\n{\n   return n1+n2;\n}\nfloat sumNumbers(int n1,float n2,int n3)\n{\n    return n1+n2+n3;\n}\n\nNow if we call the method as\n\nint s = sumNumbers(10,20)\nfirst method will be called.\n\nAnd if we call it as\nint s2 = sumNumbers(10,1.4,88) \nsecond method will be called.",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "How is a package created in Java program? ",
+    "answer": "To create a package, you choose a name for the package and put a package statement with that name at the top of every source file that contains the types (classes, interfaces, enumerations, and annotation types) \n\ne.g.\npackage calc;\npublic class ABC{\n    ....\n}\n\n\n\nIf you do not use a package statement, your type ends up in an unnamed package.\n\nThe standard practice is to use inverted company name in the begining of package. \n\ne.g.\n package com.google.somepackage;",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Can a constructor of a class be private? Write an example. ",
+    "answer": "Constructor can be private. If a class has a private constructor, then it can only be called by the same class, not by other classes.\n \nclass Const\n{\n    private Const(){\n        System.out.println(\"Constructor\");\n   }\n   private Const(int n)\n  {\n     System.out.println(\"Constructor and n is\"+n);\n  }\n}\nclass Test{\n\n  public static void main(String args[]){\n      Const obj = new Const(10);\n  }\n}\n\nWhen we compile the above program, we get an error while creating obj in main() funciton.\n\n$javac Const.java\nConst.java:14: error: Const(int) has private access in Const\n      Const obj = new Const(10);\n                  ^\n1 error\n\nConst obj = new Const(10) calls the one parameter constructor of the Cost class. But main() function is in a separate class and it does not have access to constructor of Const class. So we get an error. \n\nWe can have a static method in such a class which will create an object and return that object. \n\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Write a Java program to find the median of an array. ",
+    "answer": "import java.util.Arrays;\nimport java.util.Scanner;\n\npublic class ArrayMedian {\n    public static void main(String args[]){\n        int n ;\n        System.out.println(\"Size of array=\");\n        Scanner scanner = new Scanner(System.in);\n        n = scanner.nextInt();\n        int arr[] = new int[n];\n        System.out.println(\"Enter array elements:\");\n        for(int i=0;i<n;i++)\n            arr[i] = scanner.nextInt();\n\n        Arrays.sort(arr);\n        double median;\n        if(n%2==0){\n            median =( arr[n/2]+arr[n/2-1])/2.0;\n        }else{\n            median = arr[n/2];\n        }\n        System.out.println(\"Median of the array=\"+median);\n    }\n}\n",
+    "explanation": "A median is an element of an array which as equal number of values which are greater and smaller than itself.  \n\nFor a sorted array median is just the middle element. But if the array has even number of elements the median is half of sum of two middle elements. ",
+    "topic": "Basics"
+  },
+  {
+    "question": "With an example explain the keyword super. ",
+    "answer": "super keyword is used to call the super class method.\n\nWhen a method is overridden by a derived class, the base class method is hidden. To call the base class method, we have to use super. followed by method name.\n\ne.g.\nclass B1{\n   void print(){\n      System.out.println(\"B1\");\n   }\n}\nclass D1 extends B1{\n    void print(){\n       System.out.println(\"D1\");\n       super.print();\n   }\n}\nclass Test{\n   public static void main(String args[]){\n      D1 obj = new D1();\n      obj.print();\n  }\n}\n\nNow print() method in D1 class calls the super class print method.\n\nOutput of the program\nD1\nB1\n\nsuper keyword is also used to call the super class constructor in a derived class constructor. \n\nsuper() call in a constructor must be first statement of the constructor.\n\nclass B1{\n    B1(){\n      System.out.println(\"Constructor of B1\");\n    }\n}\nclass D1 extends B1{\n    D1(){\n      super();\n      System.out.println(\"Constructor of D1\");\n   }\n}\n\nNow if we create an object of D1 class, then it will call D1 constructor which also calls B1 constructor. \n\nIf we do not explicitly call super class constructor, compiler implicitly calls super class constuctor always. (which calls its super class constructor and so on. It is called constructor chaining. )\n\n",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Write a Java program to generate and handle division by zero arithmetic exception",
+    "answer": " import java.util.Scanner;\n\n\npublic class ExceptionTest {\n    public static void main(String args[]){\n        int n1,n2;\n        Scanner scanner = new Scanner(System.in);\n        System.out.println(\"Enter two numbers :\");\n        n1 = scanner.nextInt();\n        n2 = scanner.nextInt();\n        if(n2==0){\n            try {\n                throw new ArithmeticException();\n            } catch (ArithmeticException e) {\n                System.out.println(\"Divide by zero. Arithmetic exception...\");\n                e.printStackTrace();\n            }\n        }else{\n            System.out.println(\"The quotient is \"+n1/n2);\n        }\n    }\n\n\n}\n",
+    "explanation": "Note : ArithmeticException is an unchecked exception. So it is not compulsory to throw or handle it. ",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What are the differences between == and equals() in a String class?",
+    "answer": "The == operator compares if the objects are the same instance. The equals() oerator compares the state of the objects (e.g. if all attributes are equal). \n\nString s1 = \"Program\";\nString s2 = \"Program\";\nString s3 = new string (\"Program\");\nif(s1 == s2) {    //true\n    System.out.println(\"equal\");\n}\n\nif(sl == s3) {    //false\n    System.out.println(\"equal\");\n}",
+    "explanation": "",
+    "topic": "Strings"
+  },
+  {
+    "question": "What are the differences between default and protected access specifiers.",
+    "answer": "If no access specifier is used, the default access is used - which is package private. That is - the fields are accessible from within the same package. \n\nclass A\n{\n    int m;//default access\n}\n\nProtected access specifier makes the fields accessible only from the same class and its derived classes. \n\nclass A{\n   protected int m;\n}\nclass B extends B{\n    void printM(){\n         System.out.println(m+\"\");//no error\n   }\n}\nclass Demo{\n    public static void main(String args[]){\n         A obj = new A();\n         A.m=10;//error\n   }\n}\n\nm here is protected variable and accessible by class B. But not by Demo class.",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "Does Java have destructors for class? Why?",
+    "answer": "Java does not have destructors. \n\nAs Java has automatic garbage collection, we can not predict when exactly an object will be destroyed.\n\nBut there is an equivalent method to destructor called finalize which is called before an object is garbage collected. This method is deprecated. It is advisable that classes write a close method to clean up and explicitly call such a method.",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "With an example, explain inner class in Java",
+    "answer": "A class which is defined inside another class is called Inner class. This inner class can access all the members of the outer class. Inner class object must be created as a part of outer class. \n\ne.g.\n\nclass LinkedList{\n   class Node{\n     int num;\n     Node next;\n   }\n   Node head;\n   void append();\n}\n\nHere the class Node is an inner class of LinkedList class. \n",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "Write a class named Rectangle  with  width  and height and with these  methods:\n \nA no-arg constructor that creates a default rectangle.\nA constructor that creates a rectangle with the specified width and height.\nA method named getArea() that returns the area of this rectangle.\nA method named getPerimeter() that returns the perimeter.",
+    "answer": "public class Rectangle{\n    int len,wid;\n    Rectangle(int l,int w){\n        len = l;\n        wid = w;\n    }\n    Rectangle(){\n        len=wid=1;\n    }\n    int getPerimeter(){\n        return 2*(len+wid);\n    }\n    int getArea(){\n        return len*wid;\n    }\n    public static void main(String args[]){\n        Rectangle r1 = new Rectangle(10,20);\n        System.out.println(\"Area is \"+r1.getArea());\n        System.out.println(\"Perimeter is \"+r1.getPerimeter());\n    }\n}\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Write a program to create two threads - one to display numbers from 1 to 100 and the other to display alphabets. Both these threads must run in a loop. ",
+    "answer": "class NumThread extends Thread{\n     public void run(){\n         for(int i=0;i<100;i++){\n             System.out.println(\"\"+(i+1));\n             try {\n                 Thread.sleep(1000);\n             } catch (InterruptedException e) {\n                 e.printStackTrace();\n             }\n         }\n     }\n}\nclass AlphaThread extends Thread{\n    public void run(){\n        for(char ch='a';ch<='z';ch++){\n            System.out.println(ch);\n            try {\n                Thread.sleep(1000);\n            } catch (InterruptedException e) {\n                e.printStackTrace();\n            }\n        }\n    }\n}\n\npublic class TwoThreads {\n    public static void main(String args[]){\n        NumThread nth = new NumThread();\n        nth.start();\n        AlphaThread ath = new AlphaThread();\n        ath.start();\n    }\n}\n",
+    "explanation": "You can create a thread either by subclassing Thread class or by implementing Runnable interface.\n",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What are wrapper classes and auto-boxing?",
+    "answer": "Wrapper classes are 8 classes corresponding to 8 primitive data types which are object forms of these types. \n\ne.g. an int variable can be converted to an Integer object and a float can be converted to Float object. \n\nSome classes like collections can be formed only with objects as members. In such cases you can wrap primitive types in these wrapper classes.\n\nThe automatic conversion of primitive types to their wrapper class objects is called autoboxing. \n\ne.g.\nInteger obj = 3;//autoboxing\n\nUnboxing is the opposite process - converting wrapper objects to primitive types.\n\nInteger i1 = 12;\nint m1 = i1;//unboxing",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "Differentiate between checked and unchecked exceptions",
+    "answer": "A checked exception is verified at compile time. If there is a possibility of checked exception thrown, then the code must either catch this exception and handle it or mention it in exception specifier of the method. If not, there will be a compilation error. \n\ne.g.\nIOException\n\nAn uncheked exception is a run time exception. This exception need not be handled, nor specified in the throws specifier of the method. All run time exceptions are unchecked exception.\ne.g.\nArrayIndexOutofBoundException\nArithmeticException",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "How is text IO different from binay IO? ",
+    "answer": "Text IO stream is a stream of characters - normally of unicode. \n\nBinary IO is a stream of raw bytes. \n\nThe Java platform stores character values using Unicode conventions. Character stream I/O automatically translates this internal format to and from the local character set. \n\n",
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What are the methods available for Iterator interface?",
+    "answer": "Methods available in Iterator interface are hasNext(), next and forEachRemaining()\n",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "Can you define a class within another class in Java? Can you define a method within another method?",
+    "answer": "We can define a class within another class. These inner classes can be static or non-static. We can even define a class within a method - these are called local classes. \n\nBut we can define a method within a method. But we can define a lambda within a method which is almost like a method. ",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "What are the differences between break and continue statements?",
+    "answer": "break and continue are two statements used within loops.\n\nbreak will stop the loop and exit it. But continue will skip the current iteration of the loop and go to next iteration. \n\nfor(int i=0;i<10;i++){\n    if(i==2)\n       continue;\n    if(i==5)\n        break;\n    System.out.println(i);\n}\n\nThe code will print 0 1 3 4. continue will skip the i value of 2. And break will terminate the loop when i is 5.\n\n\nbreak is also used to exit a case in switch statement.\n\ne.g.\n   switch(m){\n      case 1: System.out.println(\"one\");\n                   break;\n       case 2: System.out.println(\"two\");\n                   break;\n   }\n\nIf we omit break, then for m = 1, the output will be both one and two. ",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "What are the errors if any, in the program given. ",
+    "answer": "This code does not work for strings with even number of characters. If there are even characters i will never be equal to j and at some point our index goes beyond the length of string and program will crash.\n\nThe correct condition should be\n\nwhile (i < j && s.charAt(i) == s.charAt(j))",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Why there are no destructors in Java?",
+    "answer": "As Java is garbage collected language, we can not predict accurately when an object will be destroyed. Because of this there are no destructors in Java.\n\nHowever we can do cleaning up in a finalize method which will be called just before an object is destroyed. \n\nSince Java 8, we can use try with resources which will automatically close the resource when the statement ends.\n",
+    "explanation": "",
+    "topic": "GarbageCollection"
+  },
+  {
+    "question": "What is abstraction?",
+    "answer": "Data Abstraction may be defined as the process of identifying only the required characteristics of an object ignoring the irrelevant details\n",
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "What are the differences between Array and ArrayList",
+    "answer": " An array is static and arraylist can grow dynamically.\n\nArray can be used with primitive types, arraylist can not.\n\nArraylist is part of collection framework and uses add() delete()  methods. Array can not grow or shrink and has no such methods.\n\nNumber of elements of an array is available using length attribute but Arraylist has size() method for this.\n\nPerformance is better for primitives with array when compared to arraylist\n",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are static binding and dynamic binding in Java?",
+    "answer": "The binding of a function call which can be resolved at compile time is called static binding. \n\nIf the compiler does not decide the method to be called, but it is decided at run time, then it is called dynamic binding. When an overridden method is called, the JVM decides at run time which method to call based on the type of object. \n\nprivate, static and final methods always use static binding\n\n",
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "How can you pause a thread for a specific duration in Java?",
+    "answer": "Thread.sleep(ms) can be used to pause a thread for given number of milliseconds. This method throws InterruptedException. \n\ne.g.\nimport java.util.Scanner;\n\nclass MyThread implements Runnable{\n    public void run() {\n        while (true) {\n            System.out.println(\"Hello usha\");\n            try {\n                Thread.sleep(1000);\n            } catch (InterruptedException e) {\n                System.out.println(\"Thread was interrupted....\");\n                e.printStackTrace();\n            }\n        }\n    }\n}\npublic class ThreadDemo {\n    public static void main(String args[]) throws InterruptedException {\n        Scanner sc = new Scanner(System.in);\n        Thread th2 = new Thread(){\n            public void run(){\n                while(true){\n                    System.out.println(\"Enter a number\");\n                    int a = sc.nextInt();\n                }\n            }\n        };\n        Thread t1 = new Thread(new MyThread());\n        t1.start();\n        th2.start();\n        th2.join();\n\n    }\n}\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is the use of Thread.join() method?",
+    "answer": "When we invoke the join() method on a thread, the calling thread goes into a waiting state. It remains in a waiting state until the referenced child thread terminates.\n\ne.g.\n\n    Thread t = new Thread();\n     ...\n    ...\n    t.join();\n\nHere the main thread waits for t to terminate.\n\nTo avoid indefinite waiting by join method, we can use overloaded join() with time out period.\n\nt.join(5000);\n\nHere the main thread waits for maximum of 5 seconds for t to terminate. 0 as a parameter indicates wait indefinitely.",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What does Thread.yield method do?",
+    "answer": "The yield() method causes the currently executing thread  to temporarily pause and allow other threads to execute.\n\nclass A implements Runnable{\n\n   public void run() {\n      for (int i = 0; i < 5; i++) {\n         // yields control to another thread every 5 iterations\n         if ((i % 5) == 0) {\n            System.out.println(Thread.currentThread().getName() + \"\n            yielding control...\");\n            /* causes the currently executing thread object to temporarily \n            pause and allow other threads to execute */\n            Thread.yield();\n         }\n      }\n}\n\nHere for each value of i divisible by 5, we are pausing the thread and allowing other thread to execute. ",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is the difference between synchronized method and synchronized block?",
+    "answer": "Synchronized blocks:\nSynchronized blocks in Java are marked with the synchronized keyword. A synchronized block in Java is synchronized on some object. All synchronized blocks synchronized on the same object can only have one thread executing inside them at the same time. All other threads attempting to enter the synchronized block are blocked until the thread inside the synchronized block exits the block. \n\nSynchronized method:\n\nWhen a thread invokes a synchronized method, it automatically acquires the intrinsic lock for that method's object and releases it when the method returns. The lock release occurs even if the return was caused by an uncaught exception.\n\nIf the synchronized method is static method, the thread acquires the intrinsic lock for the Class object associated with the class. Thus access to class's static fields is controlled by a lock  ",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "How do you create a daemon thread in Java?",
+    "answer": "Java has two types of threads - user threads and daemon threads. \n\nUser threads are high-priority threads. The JVM will wait for any user thread to complete its task before terminating it.\n\nOn the other hand, daemon threads are low-priority threads whose only role is to provide services to user threads.\n\nSince daemon threads are meant to serve user threads and are only needed while user threads are running, they won't prevent the JVM from exiting once all user threads have finished their execution.\n\nTo create a daemon thread, we have to use setDaemon(true)\n\ne.g.\nNewThread daemonThread = new NewThread();\ndaemonThread.setDaemon(true);\ndaemonThread.start();",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is a deadlock?",
+    "answer": "Deadlock describes a situation where two or more threads are blocked forever, waiting for each other.  \n\n A Java multithreaded program may suffer from the deadlock condition because the synchronized keyword causes the executing thread to block while waiting for the lock, or monitor, associated with the specified object. \n\ne.g.\n\npublic class TestThread {\n   public static Object Lock1 = new Object();\n   public static Object Lock2 = new Object();\n   \n   public static void main(String args[]) {\n      ThreadDemo1 T1 = new ThreadDemo1();\n      ThreadDemo2 T2 = new ThreadDemo2();\n      T1.start();\n      T2.start();\n   }\n   \n   private static class ThreadDemo1 extends Thread {\n      public void run() {\n         synchronized (Lock1) {\n            System.out.println(\"Thread 1: Holding lock 1...\");\n            \n            try { Thread.sleep(10); }\n            catch (InterruptedException e) {}\n            System.out.println(\"Thread 1: Waiting for lock 2...\");\n            \n            synchronized (Lock2) {\n               System.out.println(\"Thread 1: Holding lock 1 & 2...\");\n            }\n         }\n      }\n   }\n   private static class ThreadDemo2 extends Thread {\n      public void run() {\n         synchronized (Lock2) {\n            System.out.println(\"Thread 2: Holding lock 2...\");\n            \n            try { Thread.sleep(10); }\n            catch (InterruptedException e) {}\n            System.out.println(\"Thread 2: Waiting for lock 1...\");\n            \n            synchronized (Lock1) {\n               System.out.println(\"Thread 2: Holding lock 1 & 2...\");\n            }\n         }\n      }\n   } \n}\n\n\nThe above code causes a deadlock. Thread 1 holds lock 1 and waits for lock2 to be released and Thread2 holds lock2 and waits for lock1 to be released. ",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What are hashCode() and equals() methods in Collections",
+    "answer": "equals() and hashCode() are two methods available in Object class. \n\nequals() method returns true if the two objects are same. Classes can override this method from Object class to check of equality of content.\n\ne.g.\nclass Num{\n      int n;\n      boolean equals(Num other){\n           if(this==other)\n               return true;\n           if (this.n==other.n)\n               return true;      \n           return false;\n    }\n}\n\nhashCode() method returns a unique integer for each object. The contract says that if we override equals() method we have to override hashCode() method so that if two objects return true on equals() method, they return same hashCode. \n\nMany IDEs have option to  generate hashCode and equals() method for a class. ",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are the differences between HashMap and HashTable?",
+    "answer": "HashMap is non synchronized. It is not-thread safe and can\u2019t be shared between many threads without proper synchronization code whereas Hashtable is synchronized. It is thread-safe and can be shared with many threads.\n\nHashMap allows one null key and multiple null values whereas Hashtable doesn\u2019t allow any null key or value.\n\nHashMap is generally preferred over HashTable if thread synchronization is not needed",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are the differences between Comparable and Comparator interfaces?",
+    "answer": "The differences between comparable and comparator interfaces are \n\n1) Comparable provides a single sorting sequence. \n\nThe Comparator provides multiple sorting sequences. In other words, we can sort the collection on the basis of multiple elements such as id, name, and price etc.\n\n2) Comparable affects the original class, i.e., the actual class is modified.\t\n\nComparator doesn't affect the original class, i.e., the actual class is not modified.\n\n3) Comparable provides compareTo() method to sort elements.\n\nComparator provides compare() method to sort elements.\n\n4) Comparable is present in java.lang package.\t\n\nA Comparator is present in the java.util package.\n\n5) We can sort the list elements of Comparable type by Collections.sort(List) method.\n\nWe can sort the list elements of Comparator type by Collections.sort(List, Comparator) method.",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are the differences between LinkedList and ArrayList?",
+    "answer": "The differences between ArrayList and LinkedList are as follows\n\nArrayList internally uses a dynamic array to store the elements.\n\nManipulation with ArrayList is slow because it internally uses an array. If any element is removed from the array, all the bits are shifted in memory.\n\n An ArrayList class can act as a list only because it implements List only.\n\nArrayList is better for storing and accessing data.\t\n\n\n\nLinkedList internally uses a doubly linked list to store the elements.\n\nManipulation with LinkedList is faster than ArrayList because it uses a doubly linked list, so no bit shifting is required in memory.\nLinkedList class can act as a list and queue both because it implements List and Deque interfaces.\n\nLinkedList is better for manipulating data.",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What does System.gc() do?",
+    "answer": "System.gc() call simply SUGGESTS that the VM do a garbage collection\n\nAs garbage collection in Java is automatic, it may not do anything. It is no quite useful method. ",
+    "explanation": "",
+    "topic": "GarbageCollection"
+  },
+  {
+    "question": "When does an object become eligible for garbage collection?",
+    "answer": "An object becomes eligible for garbage collection if and only if it is unreachable.\n\ne.g.\nIf it is assigned to null\n\nobj=null\nOr if a variable is assigned to a different reference\n\nobj = new SomeClass()\n\nor if the method which created the object exits\n",
+    "explanation": "",
+    "topic": "GarbageCollection"
+  },
+  {
+    "question": "Which is the base class in Java for all other classes",
+    "answer": "Object is the base class of all other classes in Java.\n\nAll classes in Java are either directly or indirectly derived from Object class.\n\nObject class provides the following methods - toString(), equals(),  hashCode(), finalize, clone() and getClass() methods. ",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is the difference between exception and error?",
+    "answer": "Errors and Exceptions are both subclasses of Throwable class. Errors are normally caused by enviroment - like memory  error. Exceptions are caused by application itself. \n\nRecovering from errors is not possible but you can recover from exceptions using try-catch blocks or throwing the exception back to calling function.\n \n\nErrors are always unchecked. Exceptions can be either checked or unchecked. ",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What will happen to exception object after exception handling?",
+    "answer": "Like other objects, even exception objects will be garbage collected after exception handling.",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is the meaning of the statement - Java is platform independent?",
+    "answer": "Java program written will run on all machines irrespective of the operating system. \n\nThat is because, the java compiler translates the java source program into .class files (Java byte code) which are common for all platforms.\n\nThen these class files are run using JVM of that particular machine. \n \n ",
+    "explanation": "",
+    "topic": "Introduction"
+  },
+  {
+    "question": "What are the differences between StringBuffer and StringBuilder?",
+    "answer": "StringBuilder is not synchronized where as StringBuffer is synchronized. StringBuilder is faster than StringBuffer. So unless we are using strings multiple threads, it is better to use stringbuffer. ",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you create your own exceptions in Java?",
+    "answer": "To create our own exceptions, we have to extend the Exception class with a constructor with a string parameter. When a program throws such an exception, it must be either handled or propated.\n\ne.g.\nclass NumberException extends Exception{\n    NumberException(String description){\n        super(description);\n    }\n}\npublic class Number1 {\n    void findQuotient(int n1,int n2)   {\n        try {\n               if(n2==0)\n                   throw new NumberException(\"Denom zero\");\n               int ans = n1/n2;\n               System.out.println(\"The quotient is \"+ans);\n        }\n        catch (NumberException e) {\n            e.printStackTrace();\n            System.out.println(\"The exeption is \"+e.getMessage());\n        }\n    }\n \n    public static void main(String args[]){\n        int arr[]=new int[]{1,2,3,4,5};\n        Number1 obj = new Number1(); \n        obj.findQuotient(10,0);\n    }\n\n}\n\nHere the class NumberException is an Exception class.\n",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is polymorphism?",
+    "answer": "Polymorphism is the corner stone of object oriented programming languages. It is the feature where in entity behaves differently at different times. \n\nA Base class object will behave as any of its derived class objects depending on what it is referring to. \n\nPolymorphism is achieved in Java using overriding of methods. When a base class variable refers to a derived class object, it will invoke the derived class method.\n\ne.g.\n    Shape s = new Triangle();\n    s.draw();\n\nNow if Trianlge class has redefined - overridden draw() method, s.draw() will invoke the Triangle class  draw() method instead of Shape class draw method.\n\nThis will greatly help in code reuse - and is particularly useful in graphical applications. ",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "With an example, explain static block.",
+    "answer": "A static block or static initializer block is executed only once when the class is loaded. It is a block of code used to initialize static variables. \n\nA static block is written in a class with the keyword static. \n\ne.g.\nclass A{\n   static int m;\n   static {\n     m = 100;\n   }\n  int getM(){\n     return m;\n  }\n}\nclass Demo{\n    public static void main(String args[]){\n       A obj = new A();\n       System.out.println(obj.getM());\n   }\n}\n\nIn the above class, static block is used to initialize static variable m. \n\nAlso note that you can also have instance block in a class. It is written similar to static block, but without static keyword. And an instance block is added by the compiler to all the constructors of the class. ",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "What is final class?",
+    "answer": "A class which can not be subclassed is a final class. A class is made final by add the keyword final to the definition of the class. \n\nfinal class A{\n    int m;\n  }\nclass B extends A{\n..\n}\n\nDefintion of class B gives an error. \n\ne.g.\nString library class is a final class. ",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "How do you start the execution of a thread?",
+    "answer": "A thread starts execution by calling its start() method. \n\nIt is wrong to call run method instead of start method because run() will start execution of the thread within the current thread whereas start() method will create a new thread and then starts the execution of run method.",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is a Vector? Why is it used?",
+    "answer": "Vector is a legacy class which is an which can grow and shrink. \n\nVector is a dynamic array. It is similar to ArrayList and implements List interface.\n\nimport java.util.Vector;\nclass Demo{\n   public static void main(String args[]){\n        Vector<Integer> v1 = new Vector<Integer>();\n        for(int i=0;i<10;i++)\n           v1.add(i);\n \n        for(int n:v1)\n           System.out.println(n+\"  \");\n   }\n}\n\n\nHere we are creating a vector and adding 10 elements to it. Note that we have not specified initial capacity unlike array. \n\nVector is rarely used. Instead ArrayList is used. ",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are wrapper classes?",
+    "answer": "Wrappers are classes which enclose primitive data types into objects. \n\nThese are Integer, Float, Double etc. They can be typecast to their primitive counterparts. \n\ne.g.\n  Integer m = 1;\n  \nHere m is not a primitive variable but an object of Integer class.\n\nMany classes - e.g. collection frame work, do not work with primitive data types. In such cases, we can use wrapper classes which are compatible with primitive types. \n",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "How are Reader/Writer classes different from InputStream/OutputStream classes?",
+    "answer": "An InputStream/OutputStream are  raw streams used for getting information from a resource. They send/receive data byte by byte without performing any kind of translation. \n\nA Reader/Writer are designed for character streams. If the information you are reading/writing is all text, then the Reader/Writer will take care of the character decoding for you and give you unicode characters from the raw input stream. \n\nYou can create a Reader or Writer from InputStream/OutputStream classes",
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What is serialization?",
+    "answer": "Serialization is a method of writing state of an object into byte stream. It is mainly used in  Hibernate, RMI, JPA, EJB and JMS technologies.\n\nDeserialization is the method of converting byte stream back into an object. \n\nTo serialize, writeObject() method of  ObjectOutputStream is called.\n\nFor deserialization we call the readObject() method of ObjectInputStream class. \n\n",
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Can you call one constructor from constructor of the same class?",
+    "answer": "Yes, it is possible to call one constructor from another constructor of the same class using keyword \"this\" with required parameters.\n\n But if this() call is used, it must be first statement of the constructor.\n\ne.g.\nclass A{\n   int num;\n   A(){\n     num = 0;\n     System.out.println(\"default constructor\");\n   }\n   A(int m){\n    this();\n    num = m;\n    System.out.println(\"parameterized constructor\");\n  }\n}\nclass Demo{\n   public static void main(String args[]){\n       A obj = new A(10);\n   }\n}\n\nNow if we make a change and move the call to constructor to end of second construtor, the program does not compile.\n\n   A(int m){    \n    num = m;\n    System.out.println(\"parameterized constructor\");\n    this();//gives error\n  }",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "A class has one string field - name. Write a code to sort the objects of this class based on last names. \n\nclass Student\n{\n   String name;\n}\n \n",
+    "answer": " class Name implements Comparable<Name> {\n   String name;\n   Name(String name){\n \t this.name = name;\n  }\n    public\tint compareTo(Name s){\n       String arr[] = s.name.split(\" \");\n       String myArr[] = name.split(\" \");\n       if(arr.length<2 || myArr.length<2)\n \t  return 0;\n       return myArr[1].compareTo(arr[1]);\n \t\t\n    }\n \n }\n class Demo{\n      public static void main(String args[]){\n            Name obj1 = new Name(\"Usha Ratnakar\");\n            Name obj2 = new Name(\"Asha Stuvwy\");\n            if(obj1.compareTo(obj2)>0){\n                System.out.println(\"obj1 is larger\");\n             }else\n                 System.out.println(\"obj2 is larger\");\n         }\n }\n\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Is finalize() method the last step in the life-cycle of an object?",
+    "answer": "No, it is not. Deallocation is the last step in the object life cycle. \n\n\nThere are 7 states in life cycle of an object.\n\n1) Created\n2) In use\n3) Invisible\n4) Unreachable\n5) Marked for garbage collection\n6) Finalized\n7) De-allocated",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "Write a program to read a line and find out how many vowels and consonants are present in the line.",
+    "answer": "import java.util.Scanner;\n\npublic class StringTest {\n    void printVowelConsonants(String str){\n        char arr[] = str.toCharArray();\n        int vowCount=0,consCount=0;\n        for(char ch:arr){\n            if(Character.isAlphabetic(ch)){\n                ch = Character.toLowerCase(ch);\n                if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u'){\n                    vowCount++;\n                }else{\n                    consCount++;\n                }\n            }\n        }\n        System.out.println(\"The String has \"+vowCount+\" vowels and \"+consCount+\" consonants\");\n    }   \n\n  public static void main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        StringTest obj = new StringTest();\n        obj.printVowelConsonants(str);\n    }\n}\n",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "When can a Java program use a return statement with no values? What is the use of such a statement?",
+    "answer": "A return statement without values cab be used within void functions.\n\nSuch a statement is used for exiting the function.\n\ne.g.\n      void printSquareRoot(int num){\n           if(num<0)\n             return;\n          ....\n    }",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "The following code does not compile. Why?",
+    "answer": "main() method which is the starting point of execution of Java program requires an array of String objects. But as the String class is redefined, the program tries to use main function with this new String class. That is the reason the program does not compile. ",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is a recursion? What is tail call recursion?",
+    "answer": "Recursion is the process in which a function calls itself. \n\nA typical example of recursion in Mathemetics is factorial function.\n  \n    n! = n * n-1!\n\nA recursive method has a statement which calls itself. \n\nInfinite loop : If there is no base condition where there is no recursive call in a recursive method, then the execution never ends. At some point, there will be a crash because of stack overflow. \n\nEvery recursive method must have a base condition which if true, there is no recursive call.\n\ne.g.\nint factorial(){\n     if(n==0)//base condition\n        return 1;\n    else\n       return n* factorial(n-1);\n}\n\nTail call recursion is a method where recursive call is the last statement in the method. \n",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a program with static inner class.",
+    "answer": "class Outer\n{\n   int n1;\n   static class Inner{\n      int n2;\n      public void print(){\n          System.out.println(\"n2=\"+n2);\n      }\n      Inner(int m){\n         n2 = m;\n         System.out.println(\"Creating an object of inner class\");\n     }\n   }\n   void create(int m){\n          Inner obj = new Inner(m);\n   }\n   public static void main(String args[]){\n      Outer obj = new Outer();\n      Outer.Inner obj2 = new Outer.Inner(10);\n      obj2.print();\n      obj.create(10);\n   }\n}\n",
+    "explanation": "Remember that this inner class can access only static members of outer class. \n\nAlso an object of static inner class can be created independantly of outer class. ",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "How is local inner class different from nested inner class? Write an example.",
+    "answer": "A local inner class is defined within a method and is visible only inside a method. But a nested inner class is visible throughout the class. \n\nclass Outer\n{\n   int n1;\n   void fn(){\n   class Inner{\n      int n2;\n      public void print(){\n          System.out.println(\"n1 = \"+n1);\n          System.out.println(\"n2=\"+n2);\n      }\n      Inner(int m){\n         n1 = m;\n         n2 = m;\n         System.out.println(\"Creating an object of inner class\");\n     }\n   }\n   Inner obj = new Inner(10);\n   obj.print();\n    }\n   public static void main(String args[]){\n      Outer obj = new Outer();\n      obj.fn();\n   }\n}\n",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What are the differences between notify and notifyAll methods?",
+    "answer": "The notify() method is used for sending a signal to wake up a single thread in the waiting pool. But notifyAll() method is used for sending a signal to wake up all threads in a waiting pool.",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "When do you prefer to use Runnable interface instead of extending Thread class?",
+    "answer": "A Thread can be created by using two ways.\n\n    By extending the Thread class\n    By implementing the Thread class\n\nHowever, the primary differences between both the ways are given below:\n\n    By extending the Thread class, we cannot extend any other class, as Java does not allow multiple inheritances. But implementing the Runnable interface; we can also extend other base class if required.\n \n\n\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What are the different types of maps in Java?",
+    "answer": "Map is an object that maps keys to values. Java has 3 main types of maps viz HashMap, LinkedHashMap and TreeMap.\n\nA HashMap is similar to HashTable. It allows nulls and is not ordered - the order of elements in unpredictable. It uses hashtable as underlying data structure.\n\nA LinkedHashMap uses HashTable and LinkedList as underlying data structure. Here the elements are ordered according to insertion. This map also allows null values.\n\nA TreeMap is an map ordered on natural order of elements. It uses a Red Black Tree as underlying data structure. A TreeMap does not allow nulls. \n",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "Explain a volatile variable in Java",
+    "answer": "Java compiler and JVM may optimize a variable and store it in a cache. In a multi-threaded program, when multiple threads access the variable they may access the copy in cache which may not be the latest value. Or the separate threads may store the variables in cache of different CPUs. This causes data inconsistency. \n\nTo avoid all these, you can declare a variable as volatile. \n\nA volatile variable is always read from main memory, not from cache. And a voltile variable is never optimized. \n\ne.g.\n\nvolatile int count = 2;",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "What is the difference between ordered and sorted collections.",
+    "answer": "An ordered collection is the one where the elements are stored in a particular order. A list is such a collection.\n\nA sorted collection is the one the elements are not only ordered but also sorted. A SortedSet is an example of sorted collection. ",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What is a singleton class? How do you write a singleton class in Java?",
+    "answer": "A singleton is a design pattern where only one object can be created from a class.\n\nIn Java, a singleton can be implemented by making the constructor private so that objects can not be created using new operator, defining a static object field and defining a static method like getInstance() which returns the reference to the object.\n\nThe object can be constructed in the static initializer block or directly using initialization statement. \n\nclass singleton{\n     String name;\n     static singleton object;\n     static {\n          object = new singleton();\n    }\n     private singleton(){\n         name = \"HelloWorld\";\n     }\n     static singleton getInstance(){\n         return object;\n     }\n     String getName(){\n        return name;\n    }\n}\nclass Demo{\n   public static void main(String args[]){\n        singleton s = singleton.getInstance();\n        System.out.println(s.getName());\n        singleton s2 = singleton.getInstance();\n        s2.name = \"hiworld\";\n        System.out.println(s.getName());\n       // singleton s3 = new singleton();//gives error\n   }\n}\n\nHere the constructor is private. And getInstance() method returns the one and only object of the class. The object is created in the static initializer block.",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "What is string pool in Java?",
+    "answer": "Java maintains a pool of string literals called string pool.\n\nJVM  stores only one copy of each literal String in a  pool. This process is called interning.\n\nWhen we create a String variable and assign a value to it, the JVM searches the pool for a String of equal value.\n\nIf found, the Java compiler will simply return a reference to its memory address, without allocating additional memory.\n\nIf not found, it'll be added to the pool (interned) and its reference will be returned.",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Explain throw keyword with an example.",
+    "answer": "throw keyword is used in Java to throw an exception. throw can be used to throw either a checked or an unchecked exception. \n\nthrow IOException;\n\nIf it is a checked exception, then the code must either handle the exception using try-catch block or the function must specify this exception in the exception specification. ",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Write a program to find nth node from end of a linked list.",
+    "answer": "import java.util.Scanner;\nclass LinkedList{\n    class Node{\n       int num;\n       Node next;\n       public Node(int n){\n           num = n;\n       }\n       Node getNext(){\n          return next;\n       }\n       int getNum(){\n          return num;\n       }\n    }\n    public LinkedList(){\n       createList();\n    }\n    public void createList()\n    {\n       int n;\n       Scanner scanner = new Scanner(System.in);\n       System.out.println(\"First node=\");\n       n = scanner.nextInt();\n       head = new Node(n);\n       head.next = null;\n       last = head;//only one node. \n    }\n    Node head = null;\n    Node last = null;\n    void append(int n){\n         Node newNode = new Node(n);\n         last.next = newNode;\n         last = newNode;\n    }\n    void print(){\n       for(Node nd = head; nd.getNext()!=null;nd=nd.getNext()){\n            System.out.println(nd.getNum()+\" \");\n       }\n    }\n    Node findLastFromN(int n){\n        Node nd1 = head;\n        Node nd2 = head;\n        for(int i=0;i<n && nd1!=null;i++)\n              nd1 = nd1.next;\n        if(nd1==null)\n           return null;\n        while (nd1.next!=null){\n            nd1 = nd1.next;\n            nd2 = nd2.next;\n        }\n        return nd2;\n    }    \n\n          \n  }\n  class Demo{\n      public static void main(String args[]){\n             Scanner scanner = new Scanner(System.in);\n             LinkedList list = new LinkedList();\n             for(int i=0;i<10;i++){\n                 System.out.println(\"num=\");\n                 int a = scanner.nextInt();\n                 list.append(a);\n             }\n             list.print();\n             System.out.println(\"n=\");\n             int n = scanner.nextInt();\n             LinkedList.Node nd = list.findLastFromN(n);\n             System.out.println(\"The nth node from last is \"+nd.getNum());\n      }\n}\n",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What are the conditions for a class to be serializable?",
+    "answer": "Serializing an object in Java is converting the state of the object into a byte stream.\n\nThe conditions for serialization are \n   1) The class or one of its super classes must implement serializable interface\n\n  2) All the member objects of the class must be serializable too.\n \n3) If a field of the class is not serializable, it must be marked as transient. \n",
+    "explanation": "",
+    "topic": "Advanced"
+  },
+  {
+    "question": "Write a program to read file and count the number of occurances of the word \"the\" in it. The search should be case insensitive. ",
+    "answer": "import java.nio.file.Files;\nimport java.nio.file.Paths;\nimport java.nio.file.Path;\nimport java.io.IOException;\npublic class ReadFiletoString{\n   public static int countWordInString(String str,String word){\n       str = str.toLowerCase();\n       int i = 0;\n       int c = 0;\n       while(true){\n         int index = str.indexOf(\"the\",i);         \n         if(index==-1)\n            break;\n         c++;\n         i = index+1;/*search for next occurance*/\n      }\n      return c;\n    }\n          \n   public static void main(String args[]){\n      if(args.length<1)\n         return;\n      String filename = args[0];\n    Path filepath = Paths.get(filename);\n\n    try {\n      byte[] byteArray = Files.readAllBytes(filepath);\n         String str = new String(byteArray);\n         int c = countWordInString(str,\"the\");\n      System.out.println(\"The number of occurances of the in the string is \"+c);\n      }catch(IOException e){\n          System.out.println(e.getMessage());\n       }\n  }\n}\n",
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Write  a function to copy the contents of a file to another file using nio API\n",
+    "answer": "private static void fileCopyUsingNIOFilesClass() throws IOException \n{\n    Path source = Paths.get(\"c:/temp/testoriginal.txt\");\n    Path destination = Paths.get(\"c:/temp/testcopied.txt\");\n \n    Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);\n}",
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "What is thread priority? Write a program to create two threads - one with high priority and the other with low priority. The high priority thread must print values from 0 to 10 and low priority thread must print A to Z.",
+    "answer": "Each thread has a priority. JVM runs threads with higher priorities before threads with lower priorities. When a thread is created, it will have the same priority as its parent thread.\n\ngetPriority() returns the priority of the current thread\n\nsetPriority(int pr) will set the priority of the thread. \n\nPriority values are in the range of Thread.MAX_PRIORITY to Thread.MIN_PRIORITY\n\nclass T1 implements Runnable{\n    public  void run(){\n        while(true){\n            for(int i=0;i<100;i++)\n               System.out.println(i);\n         }\n   }\n}\n\nclass T2 implements Runnable{\n    public void run(){\n        while(true){\n            for(char ch = 'A'; ch<='Z'; ch++)\n               System.out.println(ch);\n         }\n    }\n}\n\nclass ThrPri{\n   public static void main(String args[]){\n       Thread thread1 = new Thread(new T1());\n       thread1.setPriority(thread1.getPriority()+1);\n       Thread thread2 = new Thread(new T2());\n       thread2.setPriority(thread2.getPriority()-1);\n       thread1.start();\n       thread2.start();\n    }\n}\n\nHere thread1 will have a higher priority than thread2. Because of which, thread1 will be executed continuously and thread2 is under starvation.",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Write a program to read 10 numbers and store these numbers along with their squares in a file",
+    "answer": "import java.io.*;\nimport java.util.Scanner;\nimport java.io.IOException;\nclass WriteFile{\n    public static void main(String args[]) throws IOException{\n       FileWriter writer = new FileWriter(new File(\"a.txt\"));\n       Scanner scanner = new Scanner(System.in);\n       for(int i=0;i<10;i++){\n           int n = scanner.nextInt();\n           writer.write(n+\" \"+(n*n)+\" \");\n       }\n       writer.close();\n   }\n}\n",
+    "explanation": "",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Write a program with an interface which has a method to find perimeter. Write two classes circle and rectangle which implement this interface\n",
+    "answer": "interface Calc{ \n    public int findPerimeter();\n}\nclass Circle implements Calc{\n    int radius;\n    final double PI=22.0/7;\n    Circle(int n){\n      radius=n;\n    }\n    public int findPerimeter(){\n       return (int)(2*PI*radius);\n    }\n}\nclass Rectangle implements Calc{\n   int len,wid;\n   Rectangle(int l,int w){\n      len=l;\n      wid = w;\n   }\n   public int findPerimeter(){\n      return 2*(len+wid);\n   }\n}\n\nclass Demo{\n     public static void main(String args[]){\n          Circle c = new Circle(7);\n          Rectangle r = new Rectangle(10,5);\n          System.out.println(\"Perimeter of circle is \"+c.findPerimeter());\n          System.out.println(\"Perimeter of rectangle is \"+r.findPerimeter());\n    }\n}",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What are pre-emptive scheduling and time slicing?",
+    "answer": "Under preemptive scheduling, the highest priority task executes until it enters the waiting or dead states or a higher priority task comes into existence.\n\n Under time slicing, a task executes for a predefined slice of time and then reenters the pool of ready tasks. The scheduler then determines which task should execute next, based on priority and other factors. \n\nBut also note that Java does not force a VM to schedule threads in a specific manner or contain a thread scheduler. That implies JVM uses platform-dependent thread scheduling.",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What happens if we call run method instead of start method of a thread?",
+    "answer": "If we call a run method instead of start method of a thread, then a new thread is not created. The run method of thread is executed within the existing thread itself. \n\nSo we must always call start() method of a thread. This will create a thread and start execution of this thread using run method. ",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is shutdown hook?",
+    "answer": "Shutdown Hooks are a special construct that allows developers to plug in a piece of code to be executed when the JVM is shutting down. This comes in handy in cases where we need to do special clean up operations in case the VM is shutting down.\n\npublic class ShutDownHook \n{ \n    public static void main(String[] args) \n    { \n         Runtime.getRuntime().addShutdownHook(new Thread({         \n            public void run()\n            {\n                System.out.println(\"Shutdown Hook is running !\"); \n             } \n          }); \n         System.out.println(\"Application Terminating ...\"); \n} \n} \n\nWhen we run this code, the shutdown hook will be executed when the JVM finishes execution of main method.\n\nPlease note the following\n1. The shutdown hook may not get called at all - if OS gives SIGKILL or if there is an internal error which crashes the JVM, the shutdown hook code may not get executed.\n2. The code of shutdown hook can be stopped in the middle only by using Runtime.halt() method is called.\n3. There can be multiple shutdown hooks, but their execution order is not pre-determined.\n4.If we are using Java Security Managers, then the code which performs adding/removing of shutdown hooks need to have the shutdownHooks permission at runtime.\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Why do we need synchronization of methods?",
+    "answer": "If your code is executing in a multi-threaded environment, you need synchronization for objects which are shared among multiple threads, to avoid any corruption of state or any kind of unexpected behavior. \n\nSynchronization in Java will only be needed if a shared object is mutable\n\nIf your shared object is an either read-only or immutable object, then you don't need synchronization, despite running multiple threads.\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Explain sleep() method of a thread.",
+    "answer": "Sleep method is used to pause the execution of the current thread for a given duration.\n\ne.g.\n \npublic class Demo {\n    public static void main(String[] args) throws InterruptedException {         \n        Thread.sleep(2000);         \n    }\n}\n\nPlease note that\n1) Thread sleep doesn\u2019t lose any monitors or locks current thread has acquired.\n2) Any other thread can interrupt the current thread in sleep, in that case InterruptedException is thrown.\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is static synchronization of threads.",
+    "answer": "When synchronizing on a static method , the monitor belongs to the class. \n That means while execution of a static method the whole class is blocked. So other static synchronized methods are also blocked. If one thread is executing a static synchronized method, all other threads trying to execute any static synchronized methods will be blocked.\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "How do you inherit from a class in Java? ",
+    "answer": "A class is inherited by using the keyword extends. \n\ne.g.\nclass B extends A{\n   /****\n}\n\nA class can inherit only from one super class. \n\nThe inherited class inherits all the instance members of the super class. The sub class can access all the default, public and protected members of super class. But it can not access the private members of the super class. ",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What is method overriding? What are the rules for overridden methods?",
+    "answer": "Overriding a method is redefining a super class method in the sub class. \n\nThe overriding method must have the exact same signature as the super class method. ",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Is it possible to override a static method in Java?",
+    "answer": "No. It is not possible to override a static method. If we write a static method in subclass with the same signature as super class, then the super class method is hidden. And more importantly there is no late binding or polymorphism.\n\nclass A{\n     int n;\n     void print(){\n      System.out.println(\" n is\"+n);\n    }\n    static void printHello(){\n       System.out.println(\"Hello coder!!\");\n   }\n}\nclass B extends A{\n     static void printHello(){\n         System.out.println(\"Hello Java\");\n     }\n}\nclass Test{\n    public static void main(String args[]){\n         B obj = new B();\n         obj.print();\n         obj.printHello();\n   }\n}\n\nOutput is\n n is0\nHello Java\n\nHere we are not able to call the base class printHello() method as it is hidden.\n\n\n         ",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Can an interface extend another interface? Can an interface extend multiple interfaces?",
+    "answer": "Yes. An interface can extend one or more interfaces.\n\ninterface car extends vehicle, fourwheeler{\n/****/\n}",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Write a program with an interface compute with two methods add and subtract. Define PI as constant member of this interface. Write a class which implements this interface ",
+    "answer": "import java.util.Scanner;\n\ninterface Compute{\n    int add(int a,int b);\n    int subtract(int a,int b);\n    double PI=(double)22/7;\n}\npublic class InterfaceTest implements Compute{\n    public int add(int a, int b) {\n        return a+b;\n    }\n\n    public int subtract(int a, int b) {\n        return a-b;\n    }\n    public static void main(String args[]){\n        int m,n;\n        InterfaceTest obj = new InterfaceTest();\n        Scanner scanner = new Scanner(System.in);\n        System.out.println(\"Enter two numbers\");\n        m = scanner.nextInt();\n        n = scanner.nextInt();\n        System.out.println(\"The sum is \"+obj.add(m,n));\n        System.out.println(\"Enter radius of circle\");\n        int r = scanner.nextInt();\n        System.out.println(\"The area of circle is \"+obj.PI*r*r);\n    }\n}\n",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What are default methods? How do you define them?",
+    "answer": "Methods declared in an interface with the keyword default are default methods. Such methods must have implementation.\n\n Normal methods in an interface do not have implementation and are abstract. Default methods are not abstract. \n\ne.g.\ninterface MyInterface{\n     void aMethod();\n     default void defMethod(){\n        System.out.println(\"Hello user\");\n    }\n}",
+    "explanation": "",
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Write a program to find the square of a number given as command line argument.",
+    "answer": "public class StringTest {\n    public static void main(String args[]){\n         int n = Integer.parseInt(args[0]);\n         System.out.println(\"the square is \"+n*n);\n    }\n}",
+    "explanation": "The method Integer.parseInt() parses the string and returns the integer stored in the string.\n\nYou can also use the method\n\nInteger.valueOf(str)\n\n  Integer n = Integer.valueOf(args[0]);\n         int m= n.intValue();",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to reverse a string.",
+    "answer": "static String reverString(String str){\n        int l = str.length();\n        char arr[] = str.toCharArray();\n        for(int i=0,j=l-1;i<j;i++,j--) {\n            char temp = arr[i];\n            arr[i] = arr[j];\n            arr[j] = temp;\n        }\n        String str2 = new String(arr);\n        return str2;\n    }",
+    "explanation": "The function converts the string to character array. And then it swaps characters from two ends of the string. \n\nAfter all characters are swapped, a string is formed using these characters again. \n\nPlease note that the loop should continue only for half the lenght - or until i becomes j. \n",
+    "topic": "Strings"
+  },
+  {
+    "question": "What is the output of the following code?",
+    "answer": "H\nHe\nHel\nHell\nHello\n",
+    "explanation": "The substring function returns the substring \n\nIn the loop, the program prints 1 character , followed 2 characters etc.  So the program prints a pyramid.",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to remove all the characters 'a' from the given string.",
+    "answer": "import java.util.Scanner;\n\npublic class StringTest {\n    static String removeAs(String str){\n        String str1 = str.replace(\"a\",\"\");\n        str1 = str1.replace(\"A\",\"\");\n        return str1;\n    }\n    public static void main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        str = removeAs(str);\n        System.out.println(\"The string after removing \\'a\\' \"+str);\n    }\n}\n",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to find if a given string is a palindrome.",
+    "answer": "import java.util.Scanner;\npublic class StringTest {   \n\n    boolean isPalindrome(String str){\n        int l = str.length();\n        for(int i=0,j=l-1;i<j;i++,j--){\n            char ch = str.charAt(i);\n            char ch2 = str.charAt(j);\n            if(ch!=ch2)\n                return false;\n        }\n        return true;\n    }\n    public static void main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        StringTest obj = new StringTest(); \n        if(obj.isPalindrome(str))\n            System.out.println(str+\" is a palindrome\");\n        else\n            System.out.println(str+\" is not a palindrome\");\n       \n    }\n}\n",
+    "explanation": "A palindrome is a string which reads the same both forwards and backwards. \n\nWe are testing 0th character with last character. If they are not matching then we return false - because it will not be palindrome. Next we check first character with last but first character. We continue this process till we reach the middle of the string. If all the characters match with the characters from other end, then the string is a palindrome. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a function to print the words of string in reverse order. ",
+    "answer": "  void printWordsReverse(String str){\n        String arr[] = str.split(\" \");\n        int l = arr.length;\n        for(int i=l-1;i>=0;i--)\n            System.out.print(arr[i]+\" \");\n    }",
+    "explanation": "split() method splits the string into an array of strings dividing at the character given. \n\nIn the function, we are dividing the string at spaces which is the word separator. So we get an array of word of the string. Next we print this array in reverse order. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to read a string and find out whether it contains the word program in it- ignoring the case of letters while searching. ",
+    "answer": "class Demo{ \npublic static void main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        String testString = \"program\";\n        str = str.toLowerCase();\n        if(str.contains(testString)/*str.indexOf(testString)==-1*/){\n            System.out.println(str+\"  contains the word \"+testString);\n        }else{\n            System.out.println(str+\" does not contain the word \"+testString);\n\n        }\n}",
+    "explanation": "We are converting the string to lower case and searching for the string in lower case, so that the search will ignore case.\n\nIt is also possible to use the method indexOf\n\nif (str.indexOf(testString)==-1)\n   //not found\n",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to read a string and determine if these strings are anagrams. Anagrams are strings which contain same set of characters. \ne.g.\nthis is us\nus si isth\n \n",
+    "answer": "import java.util.HashMap;\nimport java.util.Scanner;\npublic class Anagram {\n\n    static boolean isAnagram2(String s1,String s2){\n        if(s1.length()!=s2.length())\n            return false;\n        HashMap<Character,Integer> chMap = new HashMap<Character,Integer>();\n        char[]arr = s1.toCharArray();\n        for(char ch:arr){\n            if(chMap.containsKey(ch)){\n                int count = chMap.get(ch);\n                chMap.replace(ch,count+1);\n            }else\n                chMap.put(ch,1);\n        }\n        char[]arr2 = s2.toCharArray();\n        for(char ch:arr2){\n            if(chMap.containsKey(ch)){\n                int count = chMap.get(ch);\n                if(count==1){\n                    chMap.remove(ch);\n                }else {\n                    chMap.replace(ch, count - 1);\n                }\n\n            }else\n                return false;\n        }\n        if(chMap.size()==0)\n            return true;\n        else\n            return false;\n    }\n    static boolean isAnagram(String s1,String s2){\n        if(s1.length()!=s2.length())\n            return false;\n        for(char ch:s1.toCharArray()){             \n            s2 =s2.replaceFirst(new String(new char[]{ch}),\"\");\n        }\n        if(s2.isEmpty())\n            return true;\n        else\n            return false;\n    }\n    public static void  main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str1 = scanner.nextLine();\n        String str2 = scanner.nextLine();\n        boolean isAn = isAnagram2(str1,str2);\n        if(isAn)\n            System.out.println(\"Strings \"+str1+\" and \"+str2+\" are anagrams\");\n        else\n            System.out.println(\"Strings \"+str1+\" and \"+str2+\"are not anagrams\");\n\n    }\n}\n",
+    "explanation": "First method isAnagram does not use extra data structures. It takes each character from first string and removes it from second string. At the end of loop, second string should be empty if they are anagrams. The complexity is O(m*n)\n\nSecond method uses a hashmap to store count of each charactes from first string. Then iterating over second string, count of each character is decremented. If the count is zero, the entry is removed. At the end of loop, all the entries in hashmap must have been removed if both strings contain same set of characters. This method has a complexity of O(m+n) where m and n are sizes of first and second string. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to read a string and reverse each word of a string.\n\ne.g.\nhello, welcome to Java programming\n\noutput should be\n\nolleh, emoclew ot avaJ gnimmargorp\n",
+    "answer": "import java.util.Scanner;\n\npublic class ReverseWords {\n    String reverseWords(String str){\n        String arr[] = str.split(\"[ \\n\\t]\");\n        for(String st:arr){\n            String st2 = reverString(st);\n            str = str.replaceFirst(st,st2);\n        }\n        return str;\n    }\n  String reverString(String str){\n        int l = str.length();\n        char arr[] = str.toCharArray();\n        for(int i=0,j=l-1;i<j;i++,j--) {\n            char temp = arr[i];\n            arr[i] = arr[j];\n            arr[j] = temp;\n        }\n        String str2 = new String(arr);\n        return str2;\n    }\n    public static void main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        ReverseWords obj = new ReverseWords();\n        String outStr = obj.reverseWords(str);\n        System.out.println(outStr);\n    }",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to read a string and convert first letter of each word into upper case.\n\ne.g.\nIf the sentence is \nJava is an object oriented language\n\nthe output should be\nJava Is An Object Oriented Language. ",
+    "answer": "import java.util.Scanner;\n\npublic class ReverseWords {\n    String capitalizeFirstLetter(String st){\n        char ch = st.charAt(0);\n        ch = Character.toUpperCase(ch);\n        String outStr = ch+st.substring(1);\n        return outStr;\n    }\n    String wordCapitalize(String str){\n        String arr[] = str.split(\"[ \\n\\t]\");\n        for(String st:arr){\n            String st2 = capitalizeFirstLetter(st);\n            str = str.replaceFirst(st,st2);\n        }\n        return str;\n    }\n    public static void main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        ReverseWords obj = new ReverseWords();\n        String outStr = obj.wordCapitalize(str);\n        System.out.println(outStr);\n    }\n}\n",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to print the count of each character in a given string. ",
+    "answer": "  \nimport java.util.HashMap;\nimport java.util.Scanner;\n\npublic class Abc {\n    public void printCount(String str){\n        char []arr = str.toCharArray();\n        HashMap<Character,Integer> map = new HashMap<Character,Integer>();\n        for(char ch:arr){\n            if(map.containsKey(ch)){\n                map.replace(ch,map.get(ch)+1);\n            }else{\n                map.put(ch,1);\n            }\n        }\n        int s = map.size();\n        for(char ch:map.keySet()){\n            int count = map.get(ch);\n            System.out.println(ch+\":\"+count);\n        }\n    }\n    public static void main(String args[]){\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        Abc obj = new Abc();\n        System.out.println(\"The count of characters in the string are :\");\n        obj.printCount(str);\n    }\n}\n",
+    "explanation": "We use a hashmap to store count of each charactes from  string. ",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to find the first non-repeated character in a given string. ",
+    "answer": "import java.util.HashMap;\nimport java.util.Scanner;\n\n\npublic class NonRepeating {\n    char firstNonRepeating(String str){\n        char [] arr = str.toCharArray();\n        HashMap<Character,Integer> map = new HashMap<>();\n        for (char ch :arr){/*create a map of characters and frequencies*/\n            if(map.containsKey(ch)){\n                int count = map.get(ch);\n                map.replace(ch,count,count+1);\n            }else{\n                map.put(ch,1);\n            }\n        }\n        for(char ch:arr){\n            int frequency = map.get(ch);\n            if(frequency==1)\n                return ch;\n        }\n        return (char) -1;\n    }\n    public static void main(String args[]){\n        Scanner scanner = new Scanner(System.in);\n        System.out.println(\"Enter the string:\");\n        String str = scanner.nextLine();\n        NonRepeating obj = new NonRepeating();\n        char nonRepChr = obj.firstNonRepeating(str);\n        if((int)nonRepChr!=-1)\n            System.out.println(\"The first non-repeating character is \"+nonRepChr);\n        else\n            System.out.println(\"There are no such characters\");\n    }\n}\n",
+    "explanation": "",
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you check if the first string contains the second string?",
+    "answer": "There are two String methods which allow you to perform this operation.\n\n1) indexOf() method\n\n   string1.indexOf(string2) returns the index of second string in first string. If first string does not contain second string, the method returns -1\n\ne.g\n    String s1 = \"Helloworld\";\n    String s2 = \"world\";\n    int i1 = s1.indexOf(s2);/* returns 5*/\n    int i2 = s1.indexOf(\"Java\");/*returns -1*/\n\n2) contains() method\nThis method returns true if the first string contains second string and false otherwise\n\nboolean b = s1.contains(s2);//true\nb = s1.contains(\"program\");//false",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "How do you find if the string contains only digits?",
+    "answer": "import java.util.Scanner;\n\npublic class OnlyDigits {\n    public static void main(String args[]) {\n        System.out.println(\"Enter a string:\");\n        Scanner scanner = new Scanner(System.in);\n        String str = scanner.nextLine();\n        boolean onlyDigits =  str.matches(\"\\\\d+\");\n        if(onlyDigits==true)\n            System.out.println(\"The string contains only digits\");\n        else\n            System.out.println(\"no\");\n    }\n}\n\nThe regular expression \\\\d+ matches the string for 1 or more digits. If the string has other characters, then the method returns false. ",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to add two binary numbers in Java. ",
+    "answer": "public class OnlyDigits {\n    public static void main(String args[]) {\n       int m = 0b110011;\n       int n = 0b101100;\n       int ans = m+n;\n       System.out.println(\"The sum of two numbers is \"+Integer.toBinaryString(ans));\n\n    }\n}\n\nIn Java 7, a binary number is written by prefixing it with 0b. We have defined two binary numbers m and n. Then we add these using simple integer addition. Next the answer is printed using toBinaryString() method of integer class. ",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a recursive function to find the factorial of a number.",
+    "answer": " int factorial(int n){\n        if(n==0)\n            return 1;\n        return n*factorial(n-1);\n    }\n\nAccording to definition, a factorial of a number \n\nn! = n* (n-1)!\n\nand 0! = 1\n\nSo if n is greater than 1, we are recursively calling factorial function with n-1. The base condition is n=0. If n=0, we are returning 1. ",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a recursive function to reverse a string.",
+    "answer": " String reverseString(String s){\n        if(!s.isEmpty()){\n            return  reverseString(s.substring(1))+s.substring(0,1);\n        }else\n            return \"\";\n    }\n\nHere we are taking substring from 2 character to end of string and adding the first character to the end of it. This is done recursively. ",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to search for a value in an array using binary search. ",
+    "answer": "import java.util.Scanner;\n\npublic class BinSearch {\n    static boolean binSearch(int searchVal,int [] arr,int start,int end){\n        if(start>end)\n            return false;\n        int mid = (start+end)/2;\n        if(arr[mid]==searchVal)\n            return true;\n        else if(arr[mid]>searchVal){\n            return binSearch(searchVal,arr,start,mid-1);\n        }else{\n            return binSearch(searchVal,arr,mid+1,end);\n        }\n\n    }\n    public static void main(String args[]){\n        int len;\n        System.out.println(\"Enter the size of the array\");\n        Scanner scanner = new Scanner(System.in);\n        len = scanner.nextInt();\n        int arr[] = new int[len];\n        for(int i=0;i<len;i++){\n            System.out.println(\"arr[\"+i+\"]=\");\n            arr[i] = scanner.nextInt();\n        }\n        System.out.println(\"Enter value to be searched:\");\n        int sv = scanner.nextInt();\n        boolean found = binSearch(sv,arr,0,len-1);\n        if(found){\n            System.out.println(\"the value is found in array\");\n        }else{\n            System.out.println(\"the value is not found in array\");\n        }\n\n    }\n}\n",
+    "explanation": "Remember that binary search works only with sorted arrays. \n\nAnd for an array of size n, the maximum number of iterations is log(n), So its complexity is O(logn)",
+    "topic": "Strings"
+  },
+  {
+    "question": "Write a program to convert a string to a integer using the following rules.\n\n1) discard all the leading spaces\n2) the string may optionally contain leading sign character\n     -12\n    +998\nare valid\n3) After these, if the next character is not a digit, then the return value must be 0\n4) If there are alphabets or other characters after digits, the conversion should stop.\n\ne.g.\n     -12ab89 = -12\n    ab129 = 0\n    890jkl = 890",
+    "answer": "import java.util.Scanner;\n\npublic class Atoi {\n    int stringToInteger(String str){\n        str = str.trim();\n        char arr[] = str.toCharArray();\n        int len = arr.length;\n        int sum = 0;\n        boolean isNegative = false;\n        int i=0;\n         if(arr[0]=='-' ){\n            isNegative = true;i++;\n        }else if(arr[0]=='+'){\n            i++;\n        }\n        for(;i<len;i++){\n            if(!Character.isDigit(arr[i])){\n                break;/* we have a non-digit. stop conversion*/\n            }\n            sum = sum*10+(arr[i]-48);/*unicode value of 0 is 48*/\n        }\n        if(isNegative)\n            return -1*sum;\n        return sum;\n    }\n    public static void main(String args[]){\n        String str;\n        System.out.println(\"Enter a string\");\n        Scanner scanner = new Scanner(System.in);\n        str = scanner.nextLine();\n        Atoi obj = new Atoi();\n        System.out.println(\"THe number is \"+obj.stringToInteger(str));\n    }\n}\n",
+    "explanation": null,
+    "topic": "Strings"
+  },
+  {
+    "question": "Is it possible to specify more than one type of exception in a catch block? If yes, how is it done?",
+    "answer": "Yes. Since Java 7, a catch block can specify multiple exception types. And it is done using | operator (OR operator)\n\n\ne.g.\n\ntry{\n    FileReader reader = new FileReader(\"a.txt\");\n    if(reader!=null){\n         int m = reader.read();\n         int n = reader.read();\n         int ans = m/n;\n}\ncatch(IOException|ArithmeticException e){\n    System.out.println(\"Exception\");\n}\n         ",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is try with resources statement?",
+    "answer": "The try-with-resources statement is a try statement that declares one or more resources. A resource is an object that must be closed after the program is finished with it. \n\nThe try-with-resources statement ensures that each resource is closed at the end of the statement. Any object that implements java.lang.AutoCloseable,  can be used as a resource.\n\nstatic String readFirstLineFromFile(String path) throws IOException {\n    try (BufferedReader br =\n                   new BufferedReader(new FileReader(path))) {\n        return br.readLine();\n    }\n}\n\nHere br the BufferedReader is automatically closed when try block is completed normally or due to error. \n\n Prior to Java 7, this was accomplished using finally block\n",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What Are the Rules We Need to Follow When overriding a method which throws an Exception?",
+    "answer": "If a parent class method throws no exception, then the overriding method can not throw any checked exceptions. It can throw unchecked exceptions.\n\nIf the parent class method throws checked exceptions, then the overriding method can throw same exception or child exceptions(narrower) of the super class exceptions or no exceptions at all.\n\n",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Write a program to read a file a line at a time and count the number of lines and number of characters in the file. ",
+    "answer": "import java.io.*;\n\npublic class FileReadLines {\n    public static void main(String args[]) throws IOException {\n        String filename;\n        System.out.println(\"Filename\");\n        Console c = System.console();\n        filename = c.readLine();\n        BufferedReader reader = null;\n        try {\n            reader = new BufferedReader(new FileReader(filename));\n            int fileLength = 0;\n            int numLines = 0;\n            String str = null;\n            while ((str = reader.readLine()) != null) {\n                int l = str.length();\n                fileLength += l;\n                System.out.println(str);\n                numLines++;\n            }\n            System.out.println(\"Number of lines:\"+numLines);\n            System.out.println(\"number of characters:\"+fileLength);\n        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n        } catch (IOException e) {\n            e.printStackTrace();\n        } finally {\n            if (reader != null) {\n                reader.close();\n            }\n        }\n\n    }\n}\n",
+    "explanation": "The classes FileReader and FileWriter are character streams. But they have methods to read only one character at a time.\n\nFor methods like reading one line at a time and for buffering of IO - there by reducing the number of disk read/socket reads, you can use BufferedReader class.  BufferedReader has to be used as a wrapper class. ",
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Write a program to read a filename with complete path and determine whether the file exists and whether it is readable and writable.",
+    "answer": "import java.io.File; \nimport java.util.Scanner;\n\npublic class FileOperation {\n    public static void main(String args[]){\n        System.out.println(\"Enter file name:\");\n        String filename;\n        Scanner scanner = new Scanner(System.in);\n        filename = scanner.nextLine();\n        File file = new File(filename);\n\n        if(file.exists( )==true) {\n            System.out.println(\"File exists\");\n        }else{\n            System.out.println(\"file does not exist\");\n\n        }\n        if(file.canRead( )==true) {\n            System.out.println(\"File is readable\");\n        }else{\n            System.out.println(\"file is not readable\");\n\n        }\n        if(file.canWrite()==true){\n            System.out.println(\"File is writable\");\n        }else{\n            System.out.println(\"file is not writable\");\n\n        }\n\n\n\n    }\n}\n",
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Write a program to read a filename and delete that file.",
+    "answer": " import java.io.File;\nimport java.io.IOException;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.nio.file.Paths;\nimport java.util.Scanner;\n\npublic class FileOperation {\n    public static void main(String args[]) throws IOException {\n        System.out.println(\"Enter file name:\");\n        String filename;\n        Scanner scanner = new Scanner(System.in);\n        filename = scanner.nextLine();\n\n        Path path = Paths.get(filename);\n         \n        if(Files.isWritable(path)==true) {\n            System.out.println(\"File is writable\");\n\n            System.out.println(\"Do you want to delete this file?\");\n            String confirm = scanner.next();\n            confirm = confirm.toLowerCase();\n            if (confirm.equals(\"yes\")) {\n                Files.delete(path);\n            }\n        }\n\n\n    }\n}\n",
+    "explanation": null,
+    "topic": "FileHandling"
+  },
+  {
+    "question": "Does Java send arguments to functions using call by value method or call by reference method?",
+    "answer": "Arguments are sent to functions using call by value method. \n\nWhich means that if the parameters are modified in the function, the arguments in caller will not be modified. \n\ne.g.\nclass Demo{\n    static void changeNumber(int n){\n         n = n+100;\n         System.out.println(n);\n    }\n    public static void main(String args[]){ \n       int a= 10;\n       changeNumber(a);\n       System.out.println(a);\n   }\n}\n\nThe output is 110 10 \n\nAs a is passed using call by value, a is not changed in main function and remains 10 only. ",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a Java program which uses a hashtable to store employee ids and their names. ",
+    "answer": "\nimport java.util.Hashtable;\nimport java.util.Scanner;\n\npublic class HashTableDemo {\n    public static void main(String args[]){\n        Hashtable table = new Hashtable<Integer,String>();\n        Scanner scanner = new Scanner(System.in);\n        for(int i=0;i<4;i++){\n            System.out.println(\"id\");\n            int id = scanner.nextInt();scanner.skip(\"\\n\");\n            System.out.println(\"Full name\");\n            String name = scanner.nextLine();\n            table.put(id,name);\n        }\n\n        System.out.println(\"id of employee =\");\n        int id = scanner.nextInt();\n        String name = (String) table.get(id);\n        System.out.println(\"Name of employee with id \"+id+\" is \"+name);\n\n\n    }\n}\n",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "Create two thread classes - one which implements Runnable interface and the other which extends Thread class. First thread must continuosly print values from 1 to 100 and second thread must print values continuously from -1 to -100.",
+    "answer": "class NumThread extends Thread{\n     public void run(){\n         for(int i=0;i<100;i++){\n             System.out.println(\"\"+(i+1));\n             try {\n                 Thread.sleep(1000);\n             } catch (InterruptedException e) {\n                 e.printStackTrace();\n             }\n         }\n     }\n}\nclass NumThread2 implements Runnable {\n    public void run(){\n        for(int i=-1;i>-100;i--){\n            System.out.println(i);\n            try {\n                Thread.sleep(1000);\n            } catch (InterruptedException e) {\n                e.printStackTrace();\n            }\n        }\n    }\n}\n\npublic class TwoThreads {\n    public static void main(String args[]){\n        NumThread nth = new NumThread();\n        nth.start();\n        Thread ath = new Thread(new NumThread2());\n        ath.start();\n    }\n}\n",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is string pool in Java?",
+    "answer": "It is a special region in memory where all string constants are stored.\n \n    The JVM stores only one copy of a particular String in the pool\n    When creating a new String, the JVM searches in the pool for a String having the same value\n    If found, the JVM returns the reference to that String without allocating any additional memory\n    If not found, then the JVM adds it to the pool (interns it) and returns its reference\n",
+    "explanation": "",
+    "topic": "Strings"
+  },
+  {
+    "question": "How are exceptions handled in Java?",
+    "answer": "A code which may throw an exception is enclosed in try block. This try block is followed by one or more catch blocks. When and if an exception is thrown, the catch block whose type matches with the thrown exception type is executed - the code inside this catch block is executed.\n\nA try block may have an optional finally block at the end. This finally block is executed irrespective of whether the exception is thrown or not. \n\ne.g.\n \ntry{\n\n\n}\ncatch (type1 e){\n   ...\n}\ncatch (type2 e){\n\n}\n...\nfinally{\n\n}\n",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is exception chaining?",
+    "answer": "When we throw another exception as a response to an exception, it is called exception chaining. \n\ne.g.\ntry{\n     File f1 = new File(\"myfile\");\n}catch(FileNotFoundException e){\n     throw new Exception(\"file error\");\n}\n",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Can we throw an exception from a lambda expression?",
+    "answer": "From a regular lambda function, we can only throw unchecked exception. \n\nBut if we use a FunctionInterface, then we can throw a checked exception also.",
+    "explanation": "",
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "Will the following code compile?",
+    "answer": "Yes it does.\n\nWhen we use the exception chaining, JVM is only bothered about outermost exception type. In this case, it is unchecked exception - which need not be handled. So the program compiles OK",
+    "explanation": null,
+    "topic": "ExceptionHandling"
+  },
+  {
+    "question": "What is \"stop the world\" garbage collection in Java?",
+    "answer": "Stopping all other threads while running the garbage collector thread is called \"Stop the world\" garbage collection. There are other types of gc which need not run this STW collection. \n",
+    "explanation": null,
+    "topic": "GarbageCollection"
+  },
+  {
+    "question": "Write a program to add 10 strings to an arraylist and then nth element of the list. ",
+    "answer": "import java.util.ArrayList;\nimport java.util.List;\nimport java.util.Scanner;\n\npublic class List1 {\n    ArrayList<String> createList(int n){\n        ArrayList list = new ArrayList<String>();\n        for(int i=0;i<n;i++){\n            System.out.println(\"enter a string\");\n            String str = scanner.nextLine();\n            list.add(str);\n        }\n        return list;\n    }\n    Scanner scanner;\n    List<String> list;\n    public static void main(String args[]){\n        List1 obj = new List1();\n        obj.scanner = new Scanner(System.in);\n        obj.list = obj.createList(5);\n        System.out.println(\"Enter value to delete:\");\n        int m = obj.scanner.nextInt();\n        obj.list.remove(m);\n        System.out.println(\"Now the list is \");\n        System.out.println(obj.list);\n    }\n}\n",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to sort a list in reverse order.",
+    "answer": "import java.util.ArrayList;\nimport java.util.Comparator;\nimport java.util.List;\nimport java.util.Scanner;\n\npublic class List1 {\n    ArrayList<String> createList(int n){\n        ArrayList list = new ArrayList<String>();\n        for(int i=0;i<n;i++){\n            System.out.println(\"enter a string\");\n            String str = scanner.nextLine();\n            list.add(str);\n        }\n        return list;\n    }\n    Scanner scanner;\n    List<String> list;\n    public static void main(String args[]){\n        List1 obj = new List1();\n        obj.scanner = new Scanner(System.in);\n        obj.list = obj.createList(5);\n        obj.list.sort(Comparator.reverseOrder());\n \n        System.out.println(\"Now the list is \");\n        System.out.println(obj.list);\n    }\n}\n",
+    "explanation": "sort() with Comparator.reverseOrder() will sort the elements of the list in descending order.\n\nTo sort in ascending order, we can use\nComparator.naturualOrder\n",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to reverse an arraylist.",
+    "answer": "import java.util.ArrayList;\nimport java.util.List;\nimport java.util.Scanner;\n\npublic class List1 {\n    ArrayList<String> createList(int n){\n        ArrayList list = new ArrayList<String>();\n        for(int i=0;i<n;i++){\n            System.out.println(\"enter a string\");\n            String str = scanner.nextLine();\n            list.add(str);\n        }\n        return list;\n    }\n    Scanner scanner;\n    List<String> list;\n    public static void main(String args[]){\n        List1 obj = new List1();\n        obj.scanner = new Scanner(System.in);\n        obj.list = obj.createList(6);\n        int s = obj.list.size();\n        int i=0,j=s-1;\n        for( ;i<j;i++,j--){\n            String temp = obj.list.get(i);\n            obj.list.set(i,obj.list.get(j));\n            obj.list.set(j,temp);\n        }\n        System.out.println(\"The reversed list is \"+obj.list);\n   \n    }\n}\n",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to iterate through all elements of a linked list. ",
+    "answer": "import java.util.Iterator;\nimport java.util.LinkedList;\nimport java.util.Scanner;\n\npublic class LinkedList1 {\n    public static void main(String args[]){\n        Scanner scanner = new Scanner(System.in);\n        LinkedList<Integer> list = new LinkedList<>();\n        for(int i=0;i<10;i++){\n            System.out.println(\"n=\");\n            int n = scanner.nextInt();\n            list.addFirst(n);\n        }\n        Iterator<Integer> iterator = list.iterator();\n        System.out.println(\"The list is\");\n        while(iterator.hasNext()){\n            System.out.println(iterator.next());\n        }\n        System.out.println(\"The list is \");\n        for(int m:list){\n            System.out.println(m);\n        }\n\n    }\n\n}\n",
+    "explanation": "To traverse a linked list, we can use an iterator. Or we can use for each construct.\n\nWe create an iterator we use\n\nlist.iterator()\n\nTo get reverse order iterator, we can use\nlist.descendingIterator()\n\nIterator has a method hasNext() which returns true as long as there are elements available. \n\nnext() method of the iterator returns the next item in the list. ",
+    "topic": "Collections"
+  },
+  {
+    "question": " Write a Java program to iterate a linked list in reverse order. ",
+    "answer": "import java.util.Iterator;\nimport java.util.LinkedList;\nimport java.util.Scanner;\n\npublic class LinkedList1 {\n    public static void main(String args[]){\n        Scanner scanner = new Scanner(System.in);\n        LinkedList<Integer> list = new LinkedList<>();\n        for(int i=0;i<10;i++){\n            System.out.println(\"n=\");\n            int n = scanner.nextInt();\n            list.add(n);\n        }\n        Iterator<Integer> iterator = list.descendingIterator();\n        System.out.println(\"The list is\");\n        while(iterator.hasNext()){\n            System.out.println(iterator.next());\n        }\n        System.out.println(\"The list is \");\n        for(int i=list.size()-1;i>=0;i--){\n            System.out.println(list.get(i));\n        }\n\n    }\n\n}\n",
+    "explanation": "To traverse a linked list, we can use an descendingIterator. Or we can use for loop from size-1 to 0.",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a java program to clone a linked list.",
+    "answer": "clone methd",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to search for a value in a LinkedList and if found, replace it with 100. ",
+    "answer": "import java.util.Iterator;\nimport java.util.LinkedList;\nimport java.util.Scanner;\n\npublic class LinkedList1 {\n    public static void main(String args[]) {\n        Scanner scanner = new Scanner(System.in);\n        LinkedList<Integer> list = new LinkedList<>();\n        for (int i = 0; i < 5; i++) {\n            System.out.println(\"n=\");\n            int n = scanner.nextInt();\n            list.add(n);\n        }\n        System.out.println(\"Enter value to be searched:\");\n        int n = scanner.nextInt();\n        if (list.contains(n)) {\n            int index = list.indexOf(n);\n            list.set(index, 100);\n        }\n        System.out.println(list);\n    }\n}",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": " Write a Java program to append the specified element to the end of a hash set. ",
+    "answer": "import java.util.HashSet;\nimport java.util.LinkedHashSet;\nimport java.util.Scanner;\n\npublic class Set1 {\n    public static void main(String args[]){\n        LinkedHashSet<String> set = new LinkedHashSet<>();\n        Scanner scanner = new Scanner(System.in);\n        for(int i=0;i<5;i++){\n            System.out.println(\"Enter a string\");\n            String str = scanner.nextLine();\n            if(set.add(str)==false){\n                System.out.println(\"Not able to add the string to set\");\n            }\n        }\n        System.out.println(\"Now the set is \"+set);\n        System.out.println(\"Enter a string to be appended:\");\n        String str = scanner.nextLine();\n        set.add(str);\n        \n        System.out.println(\"Now the set is \"+set);\n\n        //for (String str:set){\n            System.out.println(set);\n       // }\n    }\n}\n",
+    "explanation": "A hashset does not guarantee the order of elements at all. So we can not actually append an element at the end of the set.\n\nInstead a linkedhashset maintains the order of elements. So we are using linkedhashset. ",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to compare two hashsets.",
+    "answer": "import java.util.HashSet;\nimport java.util.LinkedHashSet;\nimport java.util.Scanner;\n\n\npublic class Set2 {\n    static HashSet<String> createSet(int n){\n        System.out.println(\"Enter the set elements\");\n        HashSet set = new HashSet<String>();\n        for(int i=0;i<n;i++){\n            Scanner scanner = new Scanner(System.in);\n\n            System.out.println(\"Enter a string\");\n            String str = scanner.nextLine();\n            if(set.add(str)==false){\n                System.out.println(\"Not able to add the string to set\");\n            }\n        }\n        return set;\n    }\n    static boolean compareSets(HashSet<String> s1,HashSet<String> s2){\n        for(String str:s1){\n            if(s2.contains(str))\n                continue;\n            return false;\n        }\n        return true;\n    }\n    public static void main(String args[]){\n        HashSet<String> set1 = createSet(5);\n        HashSet<String> set2 =createSet(5);\n\n        if(compareSets(set1,set2)==true){\n            System.out.println(\"sets are same\");\n        }else{\n            System.out.println(\"sets are not same\");\n        }\n\n    }\n}\n",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a Java program to find the numbers less than n in a tree set.",
+    "answer": "import java.io.Console;\nimport java.util.Scanner;\nimport java.util.SortedSet;\nimport java.util.TreeSet;\n\npublic class TreeSetDemo {\n\n    public TreeSet<Integer> createSet(int n){\n        TreeSet<Integer> set = new TreeSet<>();\n        Scanner scanner = new Scanner(System.in);\n        for(int i=0;i<n;i++){\n            int num  = scanner.nextInt();\n            set.add(num);\n        }\n        return set;\n    }\n    public static void main(String args[]){\n        TreeSetDemo obj = new TreeSetDemo();\n        TreeSet<Integer> s1 = obj.createSet(5);\n        System.out.println(\"Enter n:\");\n        Scanner scanner = new Scanner(System.in);\n        int n = scanner.nextInt();\n        SortedSet<Integer> subset = s1.headSet(n);\n        System.out.println(\"The elements smaller than \"+n+\" are\"+subset);\n\n\n    }\n}\n",
+    "explanation": "headset() method returns a subset of type sortedset which contains all the elements smaller than given n",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a Java program to count the number of key-value (size) mappings in a map.",
+    "answer": "size() ",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": " Write a Java program to get the least key greater than or equal to the given key. Returns null if there is no such key.",
+    "answer": "Treemap\nceilingKey() method\n",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to find the values in a map, with keys ranging from m to n.",
+    "answer": "submap()",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What Is the Thread\u2019s Interrupt Flag? How Can You Set and Check It? How Does It Relate to the Interruptedexception?",
+    "answer": "The interrupt mechanism is implemented using an internal flag known as the interrupt status. Invoking Thread.interrupt sets this flag. When a thread checks for an interrupt by invoking the static method Thread.interrupted, interrupt status is cleared. The non-static isInterrupted method, which is used by one thread to query the interrupt status of another, does not change the interrupt status flag.\n\nBy convention, any method that exits by throwing an InterruptedException clears interrupt status when it does so. However, it's always possible that interrupt status will immediately be set again, by another thread invoking interrupt.",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What are atomic operations?",
+    "answer": "In programming, an atomic action is one that effectively happens all at once. An atomic action cannot stop in the middle: it either happens completely, or it doesn't happen at all. No side effects of an atomic action are visible until the action is complete.\n\nAtomic actions cannot be interleaved, so they can be used without fear of thread interference. \n\nIf a thread performs a non-atomic operation on  an object which is shared by other objects, there will be inconsistency in the state of that object. To avoid that, we need to use synchronization. ",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What does synchronized mean for a method, for a block and for a static method?",
+    "answer": "The synchronized keyword before a block means that any thread entering this block has to acquire the lock.  If the lok is already acquired by another thread, the former thread will enter the BLOCKED state and wait until the lock is released.\n\nsynchronized(object) {\n    // ...\n}\n\nA synchronized  method has the same semantics, but the instance itself acts as a lock object.\n\nsynchronized void instanceMethod() {\n    // ...\n}\n\nFor a static synchronized method, the lock is the Class object representing the declaring class.\n\nstatic synchronized void staticMethod() {\n    // ...\n}",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "If two threads from different objects of the same class call a synchronized method, will one of them gets blocked?",
+    "answer": "No",
+    "explanation": null,
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "Explain wait, notify and notifyall methods in Object class.",
+    "answer": "These 3 methods defined in Object class are used for thread synchronization.\n\nwait() method pauses the current thread and waits for some other thread to invoke notify() or notifyAll() method.\n\nThe thread must own the monitor of this object.\n\nwait() has two other variants\nwait(long millisecs)\nwait(long millisecs,long nanosecs)\n\nThese two variants will resume the thread after the given time has elapsed if no other thread invokes notify.\n\nnotify() : Wakes up a single thread that is waiting on this object's monitor.The choice is arbitrary.\n\nnotifyAll : Wakes up all threads that are waiting on this object's monitor. A thread waits on an object's monitor by calling one of the wait methods.\n\nThe awakened threads will not be able to proceed until the current thread relinquishes the lock on this object. The awakened threads will compete in the usual manner with any other threads that might be actively competing to synchronize on this object;\n\n",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What is a deadlock? What is a livelock? And what is starvation?",
+    "answer": "In concurrent computing, a deadlock is a state in which each member of a group of actions, is waiting for some other member to release a lock\n\nA livelock is similar to a deadlock, except that the states of the processes involved in the livelock constantly change with regard to one another, none progressing. Livelock is a special case of resource starvation; the general definition only states that a specific process is not progressing.\n\nA real-world example of livelock occurs when two people meet in a narrow corridor, and each tries to be polite by moving aside to let the other pass, but they end up swaying from side to side without making any progress because they both repeatedly move the same way at the same time.\n\n \nStarvation is a situation in which a runnable process is overlooked indefinitely by the scheduler; although it is able to proceed, it is never chosen.",
+    "explanation": "",
+    "topic": "ThreadHandling"
+  },
+  {
+    "question": "What are the difference between failfast and failsafe iterators?",
+    "answer": "Fail-Fast systems abort operation as-fast-as-possible exposing failures immediately and stopping the whole operation.\n\nWhereas, Fail-Safe systems don't abort an operation in the case of a failure. Such systems try to avoid raising failures as much as possible.\n\nFail-fast iterators in Java don't play along when the underlying collection gets modified.\n\nCollections maintain an internal counter called modCount. Each time an item is added or removed from the Collection, this counter gets incremented.\n\nWhen iterating, on each next() call, the current value of modCount gets compared with the initial value. If there's a mismatch, it throws ConcurrentModificationException which aborts the entire operation.\n\nDefault iterators for Collections from java.util package such as ArrayList, HashMap, etc. are Fail-Fast.\n\ne.g.\nimport java.util.ArrayList;\nimport java.util.Iterator;\nclass ConcurrentExc{\n     public static void main(String args[]){\n   ArrayList<Integer> numbers = new ArrayList<Integer>();\n   for(int i=0;i<10;i++)\n      numbers.add(i*i);\n \nIterator<Integer> iterator = numbers.iterator();\nwhile (iterator.hasNext()) {\n    Integer number = iterator.next();\n    numbers.add(50);\n}\n}\n}\n\nThe statement numbers.add(50) throws ConcurrentModificationException because of failfast\n\n\nFail-Safe iterators favor lack of failures over the inconvenience of exception handling.\n\nThose iterators create a clone of the actual Collection and iterate over it. If any modification happens after the iterator is created, the copy still remains untouched. Hence, these Iterators continue looping over the Collection even if it's modified.\n\nHowever, it's important to remember that there's no such thing as a truly Fail-Safe iterator. The correct term is Weakly Consistent.\n\nThe Fail-Safe Iterators have a few disadvantages, though. One disadvantage is that the Iterator isn't guaranteed to return updated data from the Collection, as it's working on the clone instead of the actual Collection.\n\nAnother disadvantage is the overhead of creating a copy of the Collection, both regarding time and memory.",
+    "explanation": "",
+    "topic": "Collections"
+  },
+  {
+    "question": "What Is a Functional Interface? What Are the Rules of Defining a Functional Interface?",
+    "answer": "An interface which has only one abstract method is known as functional interface. It may have multiple static or abstract methods, but it can have exactly one abstract method. \n\nA functional interface is also called Single Abstract Method Interface SAM interface. \n\nFunctional interface is a new feature in Java 8.\n\nSuch an interface can have an optional annotation- @FunctionalInterface . \n\nLambda expressions can be used to represent the instance of a functional interface. \n\ne.g.\n   @FunctionalInterface\n   interface MathOp {\n        public int add(int a, int b); \n  }\n\n   class Demo{\n         public static void main(String args[]){            \n            int n1 =5;\n            int n2 = 11;\n            MathOp d1 = (a,b)->{return a+b;};\n            System.out.println(d1.add(n1,n2));\n        }\n  }\n",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "Explain the Syntax and Characteristics of a Lambda Expression",
+    "answer": "Synax of lambda expression is \n\n   (argument-list) -> {body}\n\ne.g.\n   interface ABC{\n        public String fun();\n   }\n\n   interface DEF {\n        public int add(int a, int b); \n  }\n\n   class Demo{\n         public static void main(String args[]){\n            ABC a1 =() ->{ return \"Hello world\";};//line 1\n            System.out.println(a1.fun());\n            int n1 =5;\n            int n2 = 11;\n            DEF d1 = (a,b)->{return a+b;};//line 2\n            System.out.println(d1.add(n1,n2));\n        }\n  }\n\nIn the code, line 1 and line 2 are lambda expressions for anonymous classes which implement the interfaces ABC and DEF respectively.\n\nline 1 takes no arguments and line 2 takes two arguments.\n\nIn the println() calls these lamda expressions are invoked. \n\n\n\n\n\n",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "What Is an Immutable Class, and How Can You Create One?",
+    "answer": "An immutable class is a class, objects of which can not  be modified after they are created. \n\nString class of Java library is an immutable class , so are Integer, Float, Double and other wrapper classes.\n\nTo create our own immutable class, we have to make the class as final and its data members as final. The class must have a parameterized constructor, and must have getters for each of its data members and no setters methods.\n\ne.g.\nfinal class Student{\n    final String name;\n    final int id;\n    Student(String s,int n){\n       name = s;\n       id = n;  \n    }\n    String getName(){\n      return name;\n    }\n    int getId(){\n       return id;\n    }\n}\nclass Demo{\n    public static void main(String args[]){\n         Student s1 = new Student(\"John\",1);\n       //  s1.name = \"Jane\";//error\n         System.out.println(s1.name);\n    }\n}\n\n",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "What is a marker interface? Give some examples. ",
+    "answer": "A marker interface is an interface without any methods. It is usually implemented by a class or extended by another interface to signify a certain property. \n\nExamples of marker interfaces are \nSerializable\nCloneable\nRemote\n",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "How do you access overridden method of a superclass? Can you similarly access overridden method of a super-super class?",
+    "answer": "An overridden super class method can be called by using the keyword super followed by dot operator and the method name,\n\ne.g.\n   super.print(10);\n\nSimilarly you can use super.super.method() to invoke super super class method.\n\nclass B1\n{\n    public void print(int num)\n    {\n       System.out.println(\"Printing the number \"+num);\n    }\n}\nclass D1 extends B1\n{\n    public void print(int num)\n    {\n      super.print(num);\n     \n      System.out.println(\"Printing the square of the number \"+(num*num));\n    }\n}\n\nHere D1 print() method is calling super class print() method by using super.print(num)\n",
+    "explanation": "",
+    "topic": "Classes"
+  },
+  {
+    "question": "Write a program to find LCM of two numbers.",
+    "answer": "import java.util.Scanner;\nclass Demo{\n  int gcd(int n1,int n2){\n   if(n1%n2==0)\n      return n2;\n   return gcd(n2,n1%n2);   \n  }\n  public static void main(String args[]){\n   int num1,num2;\n   Demo obj = new Demo();\n   Scanner scanner = new Scanner(System.in);\n   num1 = scanner.nextInt();\n   num2 = scanner.nextInt();\n   if(num1<num2){\n    int t = num1;\n    num1 = num2;\n    num2 = t;\n   }\n   int gcd = obj.gcd(num1,num2);\n   int lcm = (num1*num2)/gcd; \n   System.out.println(\"LCM of \"+num1+\" and \"+num2+\"is \"+lcm);\n   \n  }\n }\n\n\nLCM is least common multiple of two numbers. You can find LCM by finding the GCD (greatest common divisor - the largest number which divides both given numbers) and then dividing the product by this GCD. \n\nBecause n1 * n2 = LCM *GCD\n\nGCD can be found using recursive algorithm\n\ngcd of n1, n2 = n2 if n1 is divisible by n2\n                     = gcd of n2, n1%n2 if not divisible\n\n",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a program to find all the prime factors of a given number.",
+    "answer": "import java.util.Scanner;\nimport java.lang.Math;\nclass PrimeFactors{\n     void printFactors(int num){\n          if(num%2==0){\n            System.out.println(\"2 \");\n            while (num%2==0)\n             num = num/2;\n          }\n          int s = (int)Math.sqrt(num);\n          for(int i=3;i<=num;i+=2){\n               if(num%i==0){\n                    System.out.println(i);\n                  while(num%i==0)\n                     num = num/i;\n               } \n          }\n\n     }\n\n     public static void main(String args[]){\n         PrimeFactors pf = new PrimeFactors();\n         int n;\n         Scanner scanner = new Scanner(System.in);\n         n  = scanner.nextInt();\n         pf.printFactors(n);\n     }\n}\n           \n",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a program that prints its arguments in random order.",
+    "answer": "import java.util.*;\npublic class Ran {\n    public static void main(String[] args) {        \n        // Get and shuffle the list of arguments\n        List<String> argList = Arrays.asList(args);\n        Collections.shuffle(argList);\n        // Print out the elements using JDK 8 Streams\n        argList.stream()\n        .forEach(e->System.out.format(\"%s \",e));\n        // Print out the elements using for-each\n        for (String arg: argList) {\n            System.out.format(\"%s \", arg);\n        }\n        System.out.println();\n    }\n}\n",
+    "explanation": "We are using Arrays.asList() to convert the command line arguments array into list. And Collections.shuffle() to shuffle the list. ",
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to display unique words from command line arguments. ",
+    "answer": "import java.util.*;\n\npublic class FindDups {\n    public static void main(String[] args) {\n        Set<String> s = new HashSet<String>();\n        for (String a : args)\n               s.add(a);\n               System.out.println(s.size() + \" distinct words: \" + s);\n    }\n}",
+    "explanation": null,
+    "topic": "Collections"
+  },
+  {
+    "question": "Write a program to find the maximum of the given n command line arguments. ",
+    "answer": "class Demo{\n     public static void main(String args[]){\n         int l = args.length;\n         int max = Integer.valueOf(args[0]);\n         for(int i=1;i<l;i++){\n              int n = Integer.valueOf(args[i]);\n              if(n>max)\n                  max = n;\n         }\n         System.out.println(\"the largest numeber is \"+max);\n         \n    }\n}\n \n",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a program to demonstrate the serialization process. ",
+    "answer": "import java.io.*;\nclass A implements java.io.Serializable{\n    String name;\n    int num;\n    A(String name,int num){\n       this.name = name;\n       this.num = num;\n    }\n    String getName(){\n      return name;\n    }\n}\nclass Serialize {\n\n      static void deserialize(){\n          A obj = null;\n          try{\n          FileInputStream instream = new FileInputStream(\"employee.ser\");\n          ObjectInputStream objStream = new ObjectInputStream(instream);\n          obj = (A ) objStream.readObject();\n          System.out.println(\"name is\"+obj.getName());\n          objStream.close();\n          instream.close();\n          }\n          catch(IOException e){\n               e.printStackTrace();\n               return;\n          }\n          catch(ClassNotFoundException e){\n              e.printStackTrace();\n              return;\n          }\n      }\n      public static void main(String args[]){\n           A obj = new A(\"Mark\",100);\n             try {\n               FileOutputStream fileOut =\n                   new FileOutputStream(\"employee.ser\");\n               ObjectOutputStream out = new ObjectOutputStream(fileOut);\n               out.writeObject(obj);\n               out.close();\n               fileOut.close();\n               System.out.printf(\"Serialized data is saved in employee.ser\");\n      } catch (IOException i) {\n         i.printStackTrace();\n      }\n      deserialize();\n     }\n}\n\n\nObjectOutputStream class has a writeObject() method which serializes the object.\n\nObjectInputStream has a readObject() method which deserializes the object",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "Write a program to read a number and print whether the number is prime or not.",
+    "answer": "import java.util.Scanner;\nclass prime{\n   boolean isPrime(int n){\n     if(n%2==0)\n       return false;\n     int sqn = (int)Math.sqrt(n);\n     for(int i=3;i<sqn;i+=2)\n        if(n%i==0)\n           return false;\n\n     return true;\n   }\n   public static void main(String args[]){\n       Scanner scanner = new Scanner(System.in);\n       System.out.println(\"n=\");\n       int num = scanner.nextInt();\n       prime p1 = new prime();\n       if(p1.isPrime(num))\n          System.out.println(\"The number is prime\");\n       else\n          System.out.println(\"The number is not prime\");\n   }\n}\n",
+    "explanation": "",
+    "topic": "Basics"
+  },
+  {
+    "question": "Write a class TwoWheeler which in inherited from class Vehicle. ",
+    "answer": "class Vehicle{\n     int speed;\n     void start(){}\n     void stop(){}\n}\nclass TwoWheeler extends Vehicle{}\n\npublic class Demo{\n   public static void main(String args[]){\n       TwoWheeler t = new TwoWheeler;\n       t.speed = 40;\n       t.start();\n  }\n}\n\nThe TwoWheeler class has inherited all fields and methods of Vehicle class.",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Which of the following lines of code will produce syntax error? Why?",
+    "answer": "Lines 4 and 6 produce error.\n\nb1 is an object of class B. B class has two fields - num1 which is inherited from A class and num2 which is a field from B class. b1 can access both of them. \n\nIf num1 was a private field, then b1 will not be able to access num1. But as there is no access speicifer - num1 is having default access - which means it is accessible in the package where it is defined. \n\nBut a1 is an object of A class. And as A class is a super class object, it has only one field num1. It does not have the field num2. So line 4 produces error.\n\nA derived class object can be assigned to a base class object. But the reverse is not true.\n\nAny object of B class is also an object of A class. But an object of A class is not an object of B class. ",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "Explain final classes with an example.",
+    "answer": "If a class is defined as final, it can not be extended. Final classes are useful in creating immutable classes - String library class is a final class. \n\nIf you extend a final class, you will get a syntax error.\n\ne.g.\nfinal class A{\n   int n;\n    void print(){\n        System.out.println(\"Hello world\");\n    }\n}\nclass B extends A{//syntax error\n   int m;\n}",
+    "explanation": null,
+    "topic": "Inheritance"
+  },
+  {
+    "question": "What are class/instance and local variables?",
+    "answer": " Local variables \u2212 Variables defined inside methods, constructors or blocks are called local variables. The variable will be declared and initialized within the method and the variable will be destroyed when the method has completed.\n\n    Instance variables \u2212 Instance variables are variables within a class but outside any method. These variables are initialized when the class is instantiated. Instance variables can be accessed from inside any method, constructor or blocks of that particular class.\n\n    Class variables \u2212 Class variables are variables declared within a class, outside any method, with the static keyword.\n",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Can we declare main() method as private?",
+    "answer": "No.\n\nmain() method is the starting point of execution of java program. So JVM needs to have access to the main method. If it is private, outside programs can not access the method. That is the reason, main() method should be public.\n\nIf we make the method as private, there won't be any compile timer error - there will be a run time error. ",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "When is the constructor of a class invoked in Java?",
+    "answer": "A constructor is invoked whenever an object is being created using new operator. \n\nIf there are multiple constructor, the constructor being called depends on the arguments we send to new statement. \n\nA obj = new A(10);\n\nnew A(10) calls one int parameter constructor of A class. ",
+    "explanation": null,
+    "topic": "Classes"
+  },
+  {
+    "question": "Is String a primitive data type in Java?",
+    "answer": "No.\n\nString is not a primitive data type. But it is a library class java.lang.String.\n\nJava has char as primitive data type, which stores one character. You can use an array of chars to store a string. ",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Why Strings in Java are called immutable?",
+    "answer": "Because once defined, a String object can not be changed. If the String variable is changed, a new object is created. ",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "Explain break statement in Java program.",
+    "answer": "break is used after each case in a switch so that code breaks after the matching case and doesn't continue the execution of subsequent cases as well. \n\ne.g.\n   switch(option){\n       case 1: ans = num1+num2;\n                    break;\n       case 2: ans = num1 - num2;\n                    break;\n   }\n\nbreak in a loop: In for loop, while loop or do-while loop, break statement will terminate the loop. It is used for stopping the loop execution in the middle when certain condition is met. \n\nfor(int i=0;i<10;i++){\n     int n = scanner.nextInt();\n     if(n==-1)\n       break;\n     sum+=n;\n}",
+    "explanation": null,
+    "topic": "Basics"
+  },
+  {
+    "question": "What is a native method?",
+    "answer": "A native method is a method which is written in non-Java language such as C or C++. \n\nSuch a method is declared with keyword native. \n",
+    "explanation": null,
+    "topic": "Advanced"
+  },
+  {
+    "question": "What is import statement? How is it used?",
+    "answer": "The types(classes etc) that comprise a package are known as the package members.\n\nTo use a public package member from outside its package, you must do one of the following:\n\n    Refer to the member by its fully qualified name\n    Import the package member\n    Import the member's entire package\n\nBy importing a package or member of a package, or complete package is done using import statement.\n\nAn import statement should be written after package statement (if present) and before the java classes. \n\ne.g.\nimport java.util.Scanner;\n\n\nNow the imported class Scanner can be used in the program without using its fully qualified name (java.util.Scanner)\n\n\n",
+    "explanation": null,
+    "topic": "Packages"
+  }
+]

@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #e5e7eb;
+}
+
+/* App Container */
+.app {
+  max-width: 95%;
+  height: 100vh;
+  margin: auto;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+/* Top Bar */
+.app-bar {
+  background: #4f46e5;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+/* Search */
+ .search-box {
+  padding: 10px;
+  background: #fff;
+}
+
+.search-box input {
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Cards */
+.qa-item {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+select{
+  width: 30%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd; 
+}
+.question {
+  padding: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.answer {
+  display: none;
+  padding: 15px;
+  border-top: 1px solid #eee;
+}
+
+pre {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #ddd;
+}
+
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 15px;
+  margin: 5px;
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #aaa;
+}
+
+.bottom-nav .active {
+  color: #4f46e5;
+}
