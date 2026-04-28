@@ -17,7 +17,9 @@ fetch("quizcpp.json")
   .then(res => res.json())
   .then(data => {
     questions = data;
-    startQuiz();
+    topics = [...new Set(questions.map(item => item.topic))];
+    populateTopics(topics)
+    //startQuiz();
   });
 
 function startQuiz() {
@@ -47,7 +49,7 @@ function loadQuestion() {
   q.options.forEach((option, index) => {
     const btn = document.createElement("button");
     btn.textContent = option;
-    if(option!=null){
+    if(option!=null && option!=""){
        btn.onclick = () => selectAnswer(btn, index, q.correct, q.explanation);
        optionsEl.appendChild(btn);
     }
@@ -91,8 +93,8 @@ function selectAnswer(button, selected, correct, explanation) {
 
 nextBtn.onclick = () => {
   currentIndex++;
-
-  if (currentIndex < 10) {
+  l = selectedQuestions.length;
+  if (currentIndex < 10 && currentIndex<l) {
     loadQuestion();
   } else {
     showResult();
@@ -102,7 +104,7 @@ nextBtn.onclick = () => {
 function showResult() {
   document.getElementById("quiz-box").classList.add("hidden");
   resultBox.classList.remove("hidden");
-  scoreEl.textContent = score;
+  scoreEl.textContent = score+"/"+currentIndex;
 }
 
 function resetState() {
@@ -114,4 +116,36 @@ function resetState() {
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
+}
+function populateTopics(topics) {
+  const topicSelect = document.getElementById("topicSelect");
+  
+  // Optional: add "All" option
+  const allOption = document.createElement("option");
+  allOption.value = "All";
+  allOption.textContent = "All Topics";
+  topicSelect.appendChild(allOption);
+
+  // topics = new Set(data.map(q => q.topic));
+
+  topics.forEach(topic => {
+    const option = document.createElement("option");
+    option.value = topic;
+    option.textContent = topic;
+    topicSelect.appendChild(option);
+  });
+  topicSelect.addEventListener("change",(event)=>{
+      
+      selectedQuestions = getRandomQuestionsByTopic(questions,event.target.value,10);
+      event.target.classList.add("hidden");
+      loadQuestion();
+  })
+}
+ 
+function getRandomQuestionsByTopic(data, topic, count = 10) {
+   
+  const filtered = data.filter(q => q.topic === topic);
+  const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+   
 }
