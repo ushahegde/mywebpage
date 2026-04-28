@@ -15,7 +15,7 @@ const codeEl = document.getElementById("code");
 const explainBtn = document.getElementById("explain-btn");
 //const titleEl = document.getElementById("title")
  
-fetch("quiz.json")
+fetch("quizlinux.json")
   .then(res => res.json())
   .then(data => {
        

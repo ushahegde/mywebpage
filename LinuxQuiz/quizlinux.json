@@ -1,0 +1,3174 @@
+[
+  {
+    "question": "Which of the following are true about BASH",
+    "qncode": "",
+    "options": [
+      "Bash is a command interpreter",
+      "Bash commands are case sensitive",
+      "Bash is a type of Linux kernel",
+      "Both 1 and 2"
+    ],
+    "correct": 4,
+    "explanation": "bash is most popular Linux shell. A shell is a command interpreter. \n\nbash is an acronym for born again shell.\n\nAll shell commands and file names in Linux are case sensitive.",
+    "topic": "Shell"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": "",
+    "options": [
+      "Any one create and delete a user account.",
+      "Only root can create and delete user account",
+      "Command to create a new user account is createuser",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "A user account can be created or deleted only by the root user.  \n ",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Identify the wrong statement.",
+    "qncode": "",
+    "options": [
+      ".. in a file path indicates parent directory",
+      "~ in file path indicates home directory of user",
+      ". indicates working directory",
+      "No wrong statements"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Is the file a.txt physically deleted after the following set of commands",
+    "qncode": "ln a.txt b.txt\nrm a.txt",
+    "options": [
+      "Yes",
+      "No",
+      "",
+      null
+    ],
+    "correct": 2,
+    "explanation": "When rm command is used to delete a file, only the hard link is deleted. A file will be physically deleted only after all its links are deleted. \n\nIn this case as the file has two links, after ln command, rm command only removes one link. \n\nln a.txt b.txt   - Both a.txt and b.txt show two links\n\nrm a.txt - Now link a.txt is removed and b.txt shows only one link ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What does the following command do?",
+    "qncode": "chmod u+x a.txt",
+    "options": [
+      "Changes the name of file a.txt to u+x",
+      "Changes the file write-protected",
+      "Makes the file executable",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Only a file which has execute permission can be executed in Linux. Using chmod with +x will give execute permission to the file. \nu+x gives execute permission to user\na+x to all\ng+x to group\no+x to others",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command is used to hide a file a.txt in Linux?",
+    "qncode": "",
+    "options": [
+      "chmod a+h a.txt",
+      "hide a.txt",
+      "mv a.txt .a.txt",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "In Linux, files whose names start with . will be hidden.\n\nSo if we rename the file and add . to begining of filename, it becomes hidden.\n\nHidden files can be displayed by using ls -a command (a for all)",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What is Linux Kernel",
+    "qncode": "",
+    "options": [
+      "A linux distribution",
+      "Command interpreter for Linux",
+      "Core of Linux operating system",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Core of the OS is the kernel. Command interpreter is shell. Along with kernel and shell there are also applications and utilites in Linux operating system",
+    "topic": "Kernel"
+  },
+  {
+    "question": "Which command creates a file called a.txt",
+    "qncode": "",
+    "options": [
+      "cat a.txt",
+      "touch a.txt",
+      "create a.txt",
+      "mk a.txt"
+    ],
+    "correct": 2,
+    "explanation": "touch command creates a file if the file does not exist. It modifies the time stamps of the file, if it exists. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What are the contents of /etc/passwd?",
+    "qncode": "",
+    "options": [
+      "User names and passwords",
+      "User names, their home directories, login shells",
+      "User names and encrypted passwords",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "passwd file contains user name, user id, group id, user's home directory and default shell of the user.\n\nWhen ever a user account is created, /etc/passwd file is updated. \n\nIn modern linux versions, passwd file does not contain user passwords. ",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Which command gives a description about Linux commands?",
+    "qncode": "",
+    "options": [
+      "man",
+      "info ",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Both man and info give description about commands and various options. whatis command gives very short description of the command. ",
+    "topic": "Help"
+  },
+  {
+    "question": "What does who command do?",
+    "qncode": "",
+    "options": [
+      "Gives the user name",
+      "Gives all users currently logged in",
+      "Gives more information about the website owner",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "who command displays all users logged to the system. whoami displays user name of current user.",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Which environment variable gives exit status of previous command?",
+    "qncode": "",
+    "options": [
+      "$?",
+      "$$",
+      "$!",
+      "$#"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which vi command displays line numbers?",
+    "qncode": "",
+    "options": [
+      ":set lineno",
+      ":set number",
+      ":set ln",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ViEditor"
+  },
+  {
+    "question": "How do you save and exit the vi editor?",
+    "qncode": "",
+    "options": [
+      ":wq",
+      ":q!",
+      ":w",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "In command mode\n:w - saves the file\n:wq - saves and quits\n:q! - quits without saving",
+    "topic": "ViEditor"
+  },
+  {
+    "question": "The name of linux kernel is ----",
+    "qncode": "",
+    "options": [
+      "vmlinux",
+      "vmlinuz",
+      "linuxkrnl",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The linux kernel vmlinuz will be stored in /boot directory. ",
+    "topic": "Kernel"
+  },
+  {
+    "question": "The command to change password of a user in Linux is -----",
+    "qncode": "",
+    "options": [
+      "password",
+      "changepasswd",
+      "passwd",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "passwd command can be used by a normal user to change his/her password. the command can be used by root user(or using su or sudo) to change password of any user\n\npasswd\nor \npasswd username\n",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you display hidden files in Linux",
+    "qncode": "",
+    "options": [
+      "ls -h",
+      "ls -a",
+      "ls -l",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command is used to list the processes running ?",
+    "qncode": "",
+    "options": [
+      "process",
+      "list",
+      "ps",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which command is used to count the lines and words of a file?",
+    "qncode": null,
+    "options": [
+      "cat",
+      "wordcount",
+      "wc",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command used to display the name of working directory is ---",
+    "qncode": "",
+    "options": [
+      "dir",
+      "wd",
+      "pwd",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command to search for  a pattern within a file is -----",
+    "qncode": "",
+    "options": [
+      "search",
+      "find",
+      "locate",
+      "grep"
+    ],
+    "correct": 4,
+    "explanation": "grep or globally search a regular expression and print is used for searching pattern in files. \n\ngrep \"NoDisplay\" /etc/xdg/autostart/*\nshows lines from all files in the directory /etc/xdg/autostart which contain the regular expression \"NoDisplay\"\t",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "When a new user is created the files and directories in ------ are copied automatically.",
+    "qncode": "",
+    "options": [
+      "/var/newuser",
+      "/etc/newuser",
+      "/etc/skel",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "System administrator can store the common structure for new users in this directory. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which command deletes all the contents of working directory including the sub-directories?",
+    "qncode": "",
+    "options": [
+      "rm *",
+      "rmdir",
+      "rm * -r",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The flag -r (recursive) removes the sub-directories and their contents as well.",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command in vi editor deletes a single charcter",
+    "qncode": "",
+    "options": [
+      "dd",
+      "d",
+      "x",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "x - delete a single character\ndd - delete one line\n:q! quit the editor without saving",
+    "topic": "ViEditor"
+  },
+  {
+    "question": "Which command in vi editor cuts one or multiple lines?",
+    "qncode": "",
+    "options": [
+      "cc",
+      "dd",
+      "ee",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "dd cuts the lines and places them in a buffer. These can be pasted using p command",
+    "topic": "ViEditor"
+  },
+  {
+    "question": "Which command in vi editor pastes one or multiple lines?",
+    "qncode": null,
+    "options": [
+      "yy",
+      "p",
+      "pp",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "yy yanks the lines (copies the lines without cutting them) and p pastes these lines.  \nyy\n3yy\nyw - yank to the start of next word ",
+    "topic": "ViEditor"
+  },
+  {
+    "question": "Which of these commands is not a directory command?",
+    "qncode": "",
+    "options": [
+      "mkdir",
+      "rmdir",
+      "pwd",
+      "ps"
+    ],
+    "correct": 4,
+    "explanation": "ps lists the running processes",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which directory contains configurations files in Linux",
+    "qncode": null,
+    "options": [
+      "/var",
+      "/etc",
+      "/sbin",
+      "/bin"
+    ],
+    "correct": 2,
+    "explanation": "/bin and /sbin contain executable files. /var contains the third party applications and library files",
+    "topic": "Kernel"
+  },
+  {
+    "question": "Which keys will close the terminal?",
+    "qncode": "",
+    "options": [
+      "ctrl+t",
+      "ctrl+x",
+      "ctrl+c",
+      "ctrl+d"
+    ],
+    "correct": 4,
+    "explanation": "ctrl d terminates any command. ",
+    "topic": "Shell"
+  },
+  {
+    "question": "What does whatis command do?",
+    "qncode": "",
+    "options": [
+      "Browses the web for given key word",
+      "Displays one line information about a linux command",
+      "There is no such command",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "man and info commands give complete description of given commands. whatis gives a very short description of a command",
+    "topic": "Help"
+  },
+  {
+    "question": "The three permissions for a file are",
+    "qncode": "",
+    "options": [
+      "r w and x",
+      "r w and a",
+      "None of the above",
+      null
+    ],
+    "correct": 1,
+    "explanation": "A file can have a total 9 permissions - read , write and execute permissions for owner of the file, group he belongs to and others. \n\nThe permissions can be modified by using chmod command.\n\nSyntax is \nchmod ugoa+-rwx filename\n\nAny   of u(user owner), g(group), o(others) and a(all) can be used with any of three permissions.\n\nSome examples are\n\nchmod g-rw myfile.txt\nchmod og+r abc.1\nchmod u+x myscript.sh\nchmod a+x myscript.sh\n",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The executable files in Linux have -----",
+    "qncode": "",
+    "options": [
+      ".exe extension",
+      ".sh extension",
+      "have execute permission",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Unlike in Windows operating system, in Linux OS the file name extension for executable files is not necessary. Any file can be made by giving execute permission to it.",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command which starts a basic calculator in Linux is ",
+    "qncode": "",
+    "options": [
+      "cal",
+      "calc",
+      "bc",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The command chmod a-w a.txt -----",
+    "qncode": "",
+    "options": [
+      "Makes the file read only",
+      "Makes the file read and append only",
+      "Removes write permission to others",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "a - all\n-w = remove write permission\n\nSo the command removes write permission for all users. And thus makes the file read only",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command to search for string \"if\" in vi editor is -------",
+    "qncode": "",
+    "options": [
+      "/s if",
+      "/if",
+      "/search if",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "/followed by text will search for that text in vi editor forwards\nn will search for the next occurance of search text forwards.\n\n?followed by search string will search text in backwards. N will search next occurance of search text backwards",
+    "topic": "ViEditor"
+  },
+  {
+    "question": "The command to display the lines of a file in ascending order is ----",
+    "qncode": "",
+    "options": [
+      "sort",
+      "qsort",
+      "sort -l",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "sort command sorts the lines of a file in alphabetical order. The command does not modify the original file - but just displays sorted text on screen",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command uname ------",
+    "qncode": "",
+    "options": [
+      "Gives the user name",
+      "Gives the system information",
+      "Gives the name of working directory\n",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "uname command gives the os name. uname -a gives linux kernel version, processor architecture, the machine name ",
+    "topic": "Kernel"
+  },
+  {
+    "question": "The command used to terminate a process is ---",
+    "qncode": "",
+    "options": [
+      "kill -9 pid",
+      "term -9 pid",
+      "kill -a pid",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "kill -9 followed by process id terminates the process. -9 is for force terminate.\n\nkill is used to send any signal to the process \nAnother way to terminate a process is to give the command pkill process-name",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The command ls>myfile -------",
+    "qncode": "",
+    "options": [
+      "lists the file myfile",
+      "lists all files in directory myfile",
+      "copies the output of ls command to myfile",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "> is a redirection operator. It sends the output of a comamnd to the file specified. (< is used for input redirection and >> is used for append)",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "The command ls>>myfile -------",
+    "qncode": null,
+    "options": [
+      "copies the output of ls command to myfile",
+      "Appends the output of ls command to myfile\t\n",
+      "Gives error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "What does the command ls|sort do?",
+    "qncode": "",
+    "options": [
+      "Copies output of ls command to a file called sort",
+      "Sorts the output of ls command",
+      "Gives error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "| is a pipe operator. It sends the output of one command as input to another command. \n\nIn this case output of ls command is sent as input to sort command. And the file list is displayed sorted. ",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "The command to display first 10 lines of a file a.txt is -----",
+    "qncode": "",
+    "options": [
+      "head a.txt",
+      "head -n 10 a.txt",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "head will display first 10 lines of a file. head followed b -n will display first n lines of a file.\nTo display last n lines, you can use tail command. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What does environment variable $HOME contain?",
+    "qncode": "",
+    "options": [
+      "The contents of /home directory",
+      "Path of home directory of user",
+      "There is no such variable",
+      ""
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "All the commands and file names in Linux are case sensitive. True or false?",
+    "qncode": "",
+    "options": [
+      "True",
+      "False",
+      "",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "In Linux OS, commands and filenames are case sensitive.\ne.g.\n a.txt, A.txt, A.TXT, a.TXT are all different files. The command to display file list is ls , not LS or Ls. ",
+    "topic": "Kernel"
+  },
+  {
+    "question": "What does the command file do?",
+    "qncode": "",
+    "options": [
+      "Displays the content of a file",
+      "Displays the type of file e.g. executable, directory, socket, device etc.",
+      "Copies the file to parent directory\n",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "file command is used to display type of file. \n\ne.g.\n\nfile aapt\naapt: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.24, not stripped\n",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which of the following is not a shell initialization file?",
+    "qncode": null,
+    "options": [
+      "/etc/profile",
+      "~/.profile",
+      "~/.bashrc",
+      "/etc/conf"
+    ],
+    "correct": 4,
+    "explanation": ".profile and .bashrc are user specific initial scripts for the bash. They are stored in user's home directory.\n/etc/profile and /etc/bash.bashrc are generic initial scripts for all users.",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "To create an alias \"dir\" for ls command, we have to use------",
+    "qncode": "",
+    "options": [
+      "alias dir=ls",
+      "alias dir='ls'",
+      "alias dir \"ls\" ",
+      "Any of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The command to print all enviroment variables is -----",
+    "qncode": "",
+    "options": [
+      "env",
+      "printenv",
+      "echo $ENV",
+      "Both 1 and 2"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "In a shell script the variable $1 is -----",
+    "qncode": "",
+    "options": [
+      "one",
+      "first positional parameter  ",
+      "$1 does not exist",
+      null
+    ],
+    "correct": 2,
+    "explanation": "In a shell script $1,$2 etc are called positional parameters and are first, second etc parameters supplied to the shell script.\n\ne.g.\n./myshellscript 10 22\n\nIn this script file $1 will be taken as 10 and $2 as 22\n\n$# will be total number of parameters\n$@ will be the complete set of parameters. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which character in the file path represents the home directory of user?",
+    "qncode": "",
+    "options": [
+      "$h",
+      "..",
+      "~",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "~ represents user's home directory\n\n~/mycodes/a.java\n\nwill be /home/username/mycodes/a.java\n\nwhere username is the name of current user.\n",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which files does the command \n\nrm a[123].txt\n\ndelete?",
+    "qncode": null,
+    "options": [
+      "a1.txt",
+      "a[123].txt",
+      "a1.txt,a2.txt and a3.txt",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "In the command the regular expression [123] means any of 3 characters 1,2 or 3",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What does the command \n\nsort abc.txt\n\ndo?\n",
+    "qncode": null,
+    "options": [
+      "Sorts the file and saves it back",
+      "Only displays the file in sorted order",
+      "None of the above",
+      null
+    ],
+    "correct": 2,
+    "explanation": "sort command sorts the lines of file and displays it. To save this sorted content, you need to use -o option and output file name\n\ne.g.\nsort one.c -o onesorted.c\n\n",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The character > is used to ------",
+    "qncode": "",
+    "options": [
+      "Redirect the output of a command to a file",
+      "Redirect output of a command to input of another command",
+      "Display environment variable",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "> redirects output to file\n< redirects input from a file\n| pipes output of one command as input to another command",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "The character >> is used to ------",
+    "qncode": null,
+    "options": [
+      "Redirect the output of a command to a file",
+      "Redirect output of a command to input of another command",
+      "Append the output of a command to a file ",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "To run a command in background, you need to-----",
+    "qncode": "",
+    "options": [
+      "Add a & to the end of command",
+      "Add # to the end of command ",
+      "Not possible",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "A command followed by & will run the command in the background. \n\nTo bring the process to foreground again, we have to use the command fg followed by optional task name.\ne.g.\nfirefox&\nFirefox is running in background and your command prompt is ready for you.\nfg\n\nNow firefox is running in foreground and command prompt is waiting for it to terminate. ",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "To send output of one command as input to another command, we have to use -----",
+    "qncode": "",
+    "options": [
+      ">",
+      ">>",
+      "|",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "| (pipe) takes output of first command and sends it as input to second command. \n\ne.g.\n\nls -l|sort\n\nps|wc",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "To auto complete a command in bash, you can use --- key",
+    "qncode": "",
+    "options": [
+      "enter",
+      "esc",
+      "tab",
+      "ctrl"
+    ],
+    "correct": 3,
+    "explanation": "tab key completes commands and filenames. If there are multiple options, it shows us\n\n ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which of the following is not a valid run level?",
+    "qncode": "",
+    "options": [
+      "S",
+      "0",
+      "3",
+      "8"
+    ],
+    "correct": 4,
+    "explanation": "Linux system can start in the following 7 run levels.\n\n0 - halt\n1 - single user text mode\n2 - not used (user definable)\n3 - multi user text mode(CLI)\n4 - not used (user definable)\n5 - multiuser graphical mode (GUI)\n6 - reboot\n\nTo find what run level you are logged on to, you can use the command \nrunlevel",
+    "topic": "BootProcess"
+  },
+  {
+    "question": "When the linux system is booted, which file is loaded into memory?",
+    "qncode": "",
+    "options": [
+      "Kernel",
+      "Shell",
+      "Commands",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "kernel file which is named vmlinuz is loaded when a linux system boots. This file is located in /boot directory",
+    "topic": "BootProcess"
+  },
+  {
+    "question": "Single user mode in booting runs in ----- mode",
+    "qncode": "",
+    "options": [
+      "Admin",
+      "Root",
+      "User",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Using recovery options, you can boot into single user mode. This will log you into root user. ",
+    "topic": "BootProcess"
+  },
+  {
+    "question": "Which process has the process id of 1?",
+    "qncode": "",
+    "options": [
+      "boot",
+      "Shell",
+      "init",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "init process has the process id of 1. This is the ancestor of all processes. ",
+    "topic": "BootProcess"
+  },
+  {
+    "question": "How do you bring a background process to foreground?",
+    "qncode": "",
+    "options": [
+      "Not possible",
+      "Foreground command",
+      "fg command",
+      "& command"
+    ],
+    "correct": 3,
+    "explanation": "The process which is in background can be brought to foreground using fg command. ",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How does a user run a command as a root user?",
+    "qncode": "",
+    "options": [
+      "Using su",
+      "Using root",
+      "Not possible",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "Using su or sudo, one can run a command as root user. \n\nWhen you use su command, you are prompted for root password. Once it is provided, you will switch to root's shell. You can run the sequence of commands needed and terminate root shell by using \"exit\" command. \n\nsu can also be used for switching to some other user. \n\ne.g.\nsu John\nwill ask John's password and switch to John's shell.\n\nsudo prompts for user's own password and executes one single command with root privileges.",
+    "topic": "Shell"
+  },
+  {
+    "question": "To send a signal to a process, you must use ------",
+    "qncode": "",
+    "options": [
+      "kill signum pid",
+      "kill -signum pid",
+      "send -signum pid",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "kill command is used to send signal to a running process.\n\nsyntax is\nkill -signalnumber processid\n\nkill -SIGTERM 1599\n\nwill send signal sigterm to the process id 1599\n\nTo forcibally kill a process, you should use kill -9 processid. \n-9 is SIGKILL",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "To terminate a process, you should use ---",
+    "qncode": "",
+    "options": [
+      "kill -9 pid",
+      "kill -SIGTERM pid",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "SIGTERM signal sent to a process may immediately terminate the process or terminate the process after cleaning up the resources.\nIn some cases, the process may ignore SIGTERM and continue to run indefinitely.\n\nSIGKILL can never be ignored. Sending SIGKILL will terminate the process immediately. \n\nIf the process is zombie or in uninterruptible sleep, then sending SIGKILL may not kill it. ",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The /proc directory is a virtual directory which contains -----",
+    "qncode": "",
+    "options": [
+      "process informations",
+      "new file system where you can store processes",
+      "Configuration files",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "/proc is a virtual file system which has process information. Each running process has an subdirectory entry in the /proc directory. Each sub-directory of these processes has process informations like command, memory, ",
+    "topic": "Kernel"
+  },
+  {
+    "question": "The nice values assigned to processes are in the range",
+    "qncode": "",
+    "options": [
+      "0 to 10",
+      "0 to 20 ",
+      "-20 to 19",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The NICENESS of a process is its priority. Higher the nice value, lower is the priority.\n\nThe NICE value of a process can be changed using \nrenice -n nicevalue pid\n\nNicevalue can be from -20 to 19. \n\nTo start a new command with a nice value, you can use \nnice nicevalue command\ne.g.\nnice -1 gedit\n\nThe default nice value of processes is 0",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The command ps displays",
+    "qncode": "",
+    "options": [
+      "All processes by current user",
+      "All processes running currently",
+      "All prcoesses belonging to current terminal and current EUID",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "ps without any parameters displays only to processes running in the current terminal/virtual terminal\n\nps -e \nor \nps -A\ndisplays all running processes.\n\nps -ef displays running processes in full format",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "To dispay every process running in the system, we have to add the option  -----  to ps command",
+    "qncode": null,
+    "options": [
+      "-a",
+      "-f",
+      "-e",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which of the following file systems allows fast file system recovery?",
+    "qncode": "",
+    "options": [
+      "ext2",
+      "journalling",
+      "ntfs",
+      "ext4"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "FileSystem"
+  },
+  {
+    "question": "Which file system is automatically mounted during boot?",
+    "qncode": "",
+    "options": [
+      "devices shown in  /etc/fstab",
+      "devices shown in /etc/boot",
+      "devices shown in /etc/mounttab",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "the entries found in /etc/fstab are automatically mounted after boot. \n\nEach entry has information about file system, its mount point, its type etc.",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "The command used to mount a file read only is ----",
+    "qncode": "",
+    "options": [
+      "mount -a",
+      "mount -v",
+      "mount -f",
+      "mount -r"
+    ],
+    "correct": 4,
+    "explanation": "A file system is also mounted in read only mode by giving option ro as \nmount -o ro\n",
+    "topic": "BootProcess"
+  },
+  {
+    "question": "How do you remove read, write and execute permission to others to a file a.txt",
+    "qncode": "",
+    "options": [
+      "chmod o-rwx",
+      "chmod -rwx",
+      "chmod o rwx",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "In chmod + grants permission, - removes permissions.\n\nThe letters o,g and u stand for others, group and user(owner) of the file.\n\ne.g.\nTo add execute permission to user and group, you can use \nchmod ug+x file.sh\n\nTo remove write permissions to group and others, you can use\n\nchmod go-w file.sh\n\n",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command to change the owner of a file a.txt to alex, the command is -----",
+    "qncode": null,
+    "options": [
+      "chmod alex a.txt",
+      "chown alex a.txt",
+      "chowner alex a.txt",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "chown can modify the group of a file too.\n\ne.g.\nchown alex::alex myfile\n\nSets the owner and group of the file myfile to alex.",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What does the command chmod +t do?",
+    "qncode": "",
+    "options": [
+      "Makes the file read only",
+      "Adds suid to file",
+      "Adds sticky bit to file",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What permissions are given to the group after the command chmod 0644 a.txt?",
+    "qncode": null,
+    "options": [
+      "read and write",
+      "read",
+      "no permissions",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "chmod followed by an number specifies permissions as bits in the number. The bits are as follows.\n\ntype user group others\n-       rwx    rwx   rwx\n\nr, w and x represent read, write and execute permssion. The first group of rwx represents permissions for the user owner of the file. Second rwx represents permissions for group the user belongs to. And the third rwx is for permission for others. \n\ne.g.\n\nchmod 0777 a.txt\nindicates the permission \n0111 111 111\nSo the file a.txt has read,write and execute permission for everyone. \n\nchmod 0640 b.txt\nmeans 0110 100 100\nSo b.txt has read and write permission to user owner. Read permission for the group and no permission for others. \n\nThe permissions of a file can also be changed using \nu/g/o/a+/-r/w/x\n\nchmod u+x filename\nchmod u+rwx filename\nchmod o-rwx filename\nchmod g-r filename\n\netc.",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Hard link increases the link count of a file. True or false?",
+    "qncode": "",
+    "options": [
+      "True",
+      "False",
+      null,
+      null
+    ],
+    "correct": 1,
+    "explanation": "A hard link is filename refererring to an inode. There can be multiple file names referrring to a single inode. Each such filename is a link to the file. \n\nWhen we list files using -l flag, we see number of links to the file in second column. \n\nA file will be physically deleted when all its hard links are deleted. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which directory contains device special files?",
+    "qncode": "",
+    "options": [
+      "/etc/dev",
+      "/bin",
+      "/dev",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "In linux every thing is a file. Devices are also files.\n\n/dev/input/mouse0 is mouse device. \n\n/dev/sda1 is your disk device\n\n",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "Which of the following is not a valid file type in Linux?",
+    "qncode": "",
+    "options": [
+      "Socket",
+      "FIFO",
+      "Soft link",
+      "inode"
+    ],
+    "correct": 4,
+    "explanation": "inode is a structure which has all information about a file, except for filename. ",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "The two types of device files are -----",
+    "qncode": "",
+    "options": [
+      "Character and block",
+      "Block and FIFO",
+      "Character and socket",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "In fact, there are 5 types of files in Linux - character, block, pipe, symbolic link and socket files.",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "Which of the following is an example of block device file?",
+    "qncode": "",
+    "options": [
+      "Hard disk",
+      "CD ROM",
+      "Memory",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "FileSystem"
+  },
+  {
+    "question": "How many links are created when a directory is created?",
+    "qncode": "",
+    "options": [
+      2,
+      "3",
+      "1",
+      "4"
+    ],
+    "correct": 1,
+    "explanation": "When a directory is created, it has two links - one to its parent directory and another to itself. ",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "Which command is used to rename a file?",
+    "qncode": "",
+    "options": [
+      "ren",
+      "cp",
+      "mv",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command cd .. changes the working directory to ------",
+    "qncode": "",
+    "options": [
+      "Child directory",
+      "Parent directory",
+      "Does not change",
+      "Root directory"
+    ],
+    "correct": 2,
+    "explanation": ".. in  a file path indicates parent directory.\n\n",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command to display a file, one page at a time is --------",
+    "qncode": null,
+    "options": [
+      "cat a.txt|more",
+      "cat a.txt|less",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Both more or less display the file conents one page at a time. less command lets you to scroll backwards and forwards. But more lets you to scroll only forwards.\n\nYou can even give the command\nmore filename\nor\nless filename\n\nto show the contents of a file one page at a time. ",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "How do you execute pwd command within vi editor",
+    "qncode": "",
+    "options": [
+      ":pwd",
+      "/pwd",
+      "pwd",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "ViEditor"
+  },
+  {
+    "question": "How do you determine the path of an executable file?",
+    "qncode": "",
+    "options": [
+      "where file",
+      "which file",
+      "what file",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "which followed by executable command shows you which version of the file is being executed.\n\ne.g. which ls\n/bin/ls",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The character used to comment a line in shell script is ------",
+    "qncode": "",
+    "options": [
+      "$",
+      "#",
+      "!",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does the following script do?\n",
+    "qncode": "#!/bin/bash\necho \"Hello $USER\"",
+    "options": [
+      "Prints Hello USER",
+      "Prints Hello followed by current user name.",
+      "Gives an error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "$USER is an environment variable which gives the user name of current user.\n\nWhen we use an environment variable in a echo statement, its value is printed. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "In the script below\n   #!/bin/bash\n   a = 10\n   ---------\n\nto print the value of \"a\" using echo statement, you must use ",
+    "qncode": null,
+    "options": [
+      "echo $a",
+      "echo a",
+      "echo 10",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "echo a \nwill display a character a.\n\n$a stands for the variable a and hence it must be used in echo statement here. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "In a script file, $1 and $2 are ------",
+    "qncode": "",
+    "options": [
+      "Environment variables one and two",
+      "Positional parameters one and two",
+      "First and second local variables",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "$1, $2, $3 etc are called positional parameters and they represent the first, second, third etc parameters sent to the script when running it.\n\ne.g.\n./myscript.sh 10 3 Janice\n\nHere 10 is first parameter i.e. $1, 3 is $2 and Janice is $3\n\n@# gives the total number of positional parameters and $@ gives the complete set of parameters. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "The command\n\n  echo {D,Dr}avid\nwill print ----",
+    "qncode": null,
+    "options": [
+      "DDravid",
+      "David Dravid",
+      "Gives error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "TODO check info and add here\n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "The command \necho $@\nin  a shell script will print -----",
+    "qncode": null,
+    "options": [
+      "First positional parameter",
+      "Count of positional parameters",
+      "All positional parameters",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "$@ gives the complete set of all positional parameters\n\n#!/bin/bash\necho \"$1 is \\$1\"\necho \"$2 is \\$2\"\necho \"all parameters is $@\"\n\n\nIf we run this script as\n\n./myscript.sh   Hello Henry Welcome\n\nthe output will be\nHello is $1\nHenry is $2\nall parmaeters is Hello Henry Welcome",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "The characters back ticks (`) are used in a script for",
+    "qncode": "",
+    "options": [
+      "For parameter substitution",
+      "Command substitution",
+      "Arithmetic expansion ",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Any command between backticks is evaluated and its output is used in the command\n\n#!/bin/bash\nb=1\na=`echo $b`\necho \"a is $a\"\n\nThe output will be a is 1\n\nthe command echo $b is evaluated and its output which is 1 is set to a. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "The command \n    echo `ls` \nwill display",
+    "qncode": null,
+    "options": [
+      "ls",
+      "List of all files in current directory",
+      "Working directory name",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "As ls is in back ticks, it is evaluated and its output is displayed by echo command. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does the following script display?\n\n",
+    "qncode": "#!/bin/bash\na=10\nb=$(($a+12))\necho $b\n",
+    "options": [
+      "Gives error",
+      "a+12",
+      "22",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "An arithmetic expression can be written within two pairs of brackets preceded by $ sign.\n\nHere $(($a+12)) will evaluate a+12 and return 22",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does the following script print?\n",
+    "qncode": "#!/bin/bash\na=10\nb=30\nif [ $a > $b ]; then\n  echo \"$a is greater\"\nelse\n  echo \"$b is greater\"\nfi",
+    "options": [
+      "$b is greater",
+      "$a is greater",
+      "30 is greater ",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "A test is written within square brackets and uses different operators. \n\nIn this case as a is not greater than b, else part is executed and b is printed.\n\nDo not forget to add a semicolon after test condition.\n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does the following script print?\n",
+    "qncode": "#!/bin/bash\na=10\nb=30\nif [$a > $b]; then\n  echo \"$a is greater\"\nelse\n  echo \"$b is greater\"\nfi",
+    "options": [
+      "Gives error\n",
+      "$a is greater",
+      "30 is greater",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "For [] in testing conditions, there must be a space after [ and a space before ]\n\nAs the script does not have spaces adjacent to square brackets, it produces an error.",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does the script given below do?",
+    "qncode": "#!/bin/bash\na=10\nb=30\nif [ -a \"four.sh\" ]; then\n  echo \"TRU\"\nfi\n",
+    "options": [
+      "Tests whether the file is appendable",
+      "Tests whether the file exists",
+      "Tests whether the file is read only",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "-a or -e before file name can be used to test whether the file exists. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does the script shown do?",
+    "qncode": "#!/bin/bash\nfor file in `ls`\ndo\n   cat $file\ndone",
+    "options": [
+      "Displays names of all files in working directory",
+      "Displays contents of all files in working directory",
+      "Executes ls command",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "`ls` does the command substitution and returns list of all files. This list as taken for for loop and for loop prints the content of each file by executing cat $file command. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Complete the following code to print numbers from 1 to 9",
+    "qncode": "#!/bin/bash\ni=1\nwhile [ $i -lt 10 ]; do\n  echo $i\n  --------------\ndone\n",
+    "options": [
+      "i++",
+      "i=i+1",
+      "i=$((i+1))",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Complete the script to test whether the file is executable. The file must be given as command line parameter",
+    "qncode": "#!/bin/bash\n-----------------\n   echo \"It is executable  file\"\nelse\n   echo \"It is not executable\"\nfi\n",
+    "options": [
+      "if (file -x) then",
+      "if [ $1 -x ];",
+      "if [ -x $1 ]; then",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "-x tests whether the file has execute permission or not.\n\nAs we need the file to be given as parameter, we should use $1 for filename - which will be the parameter we send while executing the script.\n\ne.g.\n\n./filetest.sh one.c\n\nNow the script checks if one.c has execute permission. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What character is used to redirect the output of a command to a file?",
+    "qncode": "",
+    "options": [
+      "|",
+      ":",
+      ">>",
+      ">"
+    ],
+    "correct": 4,
+    "explanation": "> is used for redirection of output to a file. \n< is used for redirecting input\n>> is used for appending output of a command to a file.",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "The command used to display inode number of a file \"a.txt\" is ---",
+    "qncode": null,
+    "options": [
+      "ls -l",
+      "ls a.txt",
+      "ls -i a.txt",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "-i flag in ls command displays the inode number",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "The command\n\nfind ~/ -name \"*.png\"\nwill",
+    "qncode": null,
+    "options": [
+      "Search for all png files in working directory.",
+      "Search for png files in user's home directory",
+      "Search for png file in users home directory and all sub-directories recursively",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "find command searches for filename patterns hierarchically.\ne.g.\n\nfind / -name *.sh\n\nwill search for filenames with extension sh in root directory and all subdirectories recursively.",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "During linux boot process, what happens immediately after loading kernel?",
+    "qncode": "",
+    "options": [
+      "Load initial ramdisk",
+      "Run init",
+      "Mount root file system ",
+      "Load modules"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "BootProcess"
+  },
+  {
+    "question": "What command is used to copy a directory along with all its child contents?",
+    "qncode": "",
+    "options": [
+      "cp -r olddir newdir",
+      "cp -d olddir newdir",
+      "cp -e olddir newdir",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "cp with flag -r or -R will copy subdirectories also recursively. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command uname -r displays",
+    "qncode": "",
+    "options": [
+      "User name",
+      "Working directory name",
+      "Kernel version",
+      "Hardware architecture"
+    ],
+    "correct": 3,
+    "explanation": "uname command displays various informations about the system. \n\nuname -s will print kernel name\n\nuname -m will print machine hardware name\nuname -v will print kernel version\n\nuname -a\nwill print all informations about the system. ",
+    "topic": "Kernel"
+  },
+  {
+    "question": "The command to display the groups you are member of is -----",
+    "qncode": "",
+    "options": [
+      "cat /etc/passwd",
+      "groups",
+      "cat /etc/group",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "groups will display your groups.\n\nThe command groups followed by username will print the groups of that user.\n\nThe group names and its member names are stored in the file /etc/group",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "To continue to run a command in background even after logging out, you should use ----",
+    "qncode": "",
+    "options": [
+      "command &",
+      "hup command&",
+      "nohup command&",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "nohup is a command to ignore the hup(hangup) signal. Hangup signal is given by tty to child processes when it is being closed.\n\nTo run a command, let us say gedit and continue to use it even after the terminal is closed, you can use the command \n\nnohup gedit\n",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "To know if two files are hardlinked, we can use ---",
+    "qncode": "",
+    "options": [
+      "ls -l",
+      "ls -a",
+      "ls -i",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "ls -i shows file names with inode numbers. Two hard linked files have the same inode number. ",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "The environment variable $SHELL gives ----",
+    "qncode": "",
+    "options": [
+      "All the shells available in the system",
+      "Your current login shell",
+      "The list of shell commands",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "If we give the command \necho $SHELL\nwe will get the current shell name (most often bash)\n\nTo know the shells available in the system, you can display /etc/shells",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "The command to delete a non-empty directory is -----",
+    "qncode": "",
+    "options": [
+      "rmdir -r",
+      "rmdir",
+      "rm -r",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "rm -r dir-name\n\nwill remove the files, subdirectories within the directory and then remove the directory itself.\n\ne.g.\nTo delete the directory /home/David/Downloads/AllPhotos with all its contents, you can give the command\n\nrm -r /home/David/Downloads/AllPhots",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command pstree displays",
+    "qncode": "",
+    "options": [
+      "All running processes",
+      "All running process in  a tree structure",
+      "All files in directory in a tree structure",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The command ctrl+alt+F4 -----",
+    "qncode": "",
+    "options": [
+      "Switches to virtual terminal 4",
+      "Closes the current shell",
+      "Increases brightness",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "The first 6 virtual terminals tty1 to tty6 can be opened using the key combinations\nctr+alt+f1 to f6\n\nctrl+alt+f7 is used to switch to GUI terminal",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "The directory /proc/200 is",
+    "qncode": "",
+    "options": [
+      "The home directory of user with uid 200",
+      "Virtual directory with information of process 200",
+      "Home directory of root user\n",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "To execute commands one after another, they can be written in same line separated by ----- character",
+    "qncode": "",
+    "options": [
+      "&",
+      ";",
+      "Space",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "To given multiple commands in the same line, you should separate these commands using semicolon.\n\ne.g.\n\ncd ~/myscripts;cat a.sh;chmod u+x a.sh\n\nThis will execute the 3 commands specified one after another. \n",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "To give read,write and execute permission to owner-user and no permission to group and others for a file temp, we should use the command",
+    "qncode": null,
+    "options": [
+      "perm +rwx temp",
+      "chmod 0700 temp",
+      "chmod a+rwx temp",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The permission bits are as follows\n\nuser      group   other \nrwx         rwx      rwx\n\n1 for each bit indicates permission and 0 indicates no permission\n\nSo in the example below\n\n111 000 000\n\nwill mean read, write and execute permission to user and no permission to group and others. \n\nWriting the value in octal, we have 0700\n",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What does the following command do?\nls>/dev/null",
+    "qncode": null,
+    "options": [
+      "Displays the list of all files in working directory",
+      "Appends the listing of working directory to device null",
+      "Discards the output of ls command",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "By sending the output of any command /dev/null, it is completely discarded",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "What does the operator >> do?",
+    "qncode": "",
+    "options": [
+      "It sends the output of a command to a file",
+      "It takes input of a command from a file",
+      "It appends output of a command to a file",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "Which of the following commands take us to our home directory",
+    "qncode": null,
+    "options": [
+      "cd ~",
+      "cd",
+      "cd $HOME",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "The environment variable $HOME is the path of the home directory.\n\n~ symbol in path indicates home directory\n\nAlso cd without any parameters takes us to our home directory. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How do we exit from shell?",
+    "qncode": "",
+    "options": [
+      "ctrl D",
+      "exit ",
+      "Both 1 and 2",
+      "quit "
+    ],
+    "correct": 3,
+    "explanation": "ctrl D closes the shell. So does the exit command. Of course you can press the close command of the shell window too.\n",
+    "topic": "Shell"
+  },
+  {
+    "question": "The command to unmount a file system is ",
+    "qncode": "",
+    "options": [
+      "mount -r",
+      "unmount",
+      "umount",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The command to unmount a drive is umount, not unmount",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The command to display last 10 commands used is ",
+    "qncode": "",
+    "options": [
+      "history 10",
+      "history -10",
+      "last 10",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "History command displays all commands in the history.\n\nhistory n will display last n previous commands given to the bash",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "If two files are hardlinked, then they have same inode number. \nTrue or false?",
+    "qncode": "",
+    "options": [
+      "True",
+      "False",
+      "Depends on kernel version",
+      ""
+    ],
+    "correct": 1,
+    "explanation": "A hardlink is a file that points to the same underlying inode, as another file. So when a hard link is created this link points to the same physical file. \n\nls -l shows the number of links to a file. When a hard link is removed, the number of links to the file is reduced by 1. When the number of links is zero, then the file is physically deleted. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you list all processes which are running bash command?",
+    "qncode": "",
+    "options": [
+      "ps -d bash",
+      "ps -C bash",
+      "ps -c bash",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "ps -C command\n\ndisplays all processes which are running the command\n\ne.g.\n\nps -C gedit\ndisplays all processes which are running the gedit editor.",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you find what is your current shell?",
+    "qncode": "",
+    "options": [
+      "cat /etc/shells",
+      "echo SHELL",
+      "cat $SHELL",
+      "echo $SHELL"
+    ],
+    "correct": 4,
+    "explanation": "The environment variable $SHELL gives the name of current shell.\n ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Where is the history of commands you have used stored?",
+    "qncode": "",
+    "options": [
+      "/etc/.history",
+      "~/.bash_history",
+      "~/.history",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The history of commands are stored in the home directory as a hidden file .bash_history.\n\nYou can cat it or use history command to see the history. up arrow command also browses through the previous commands. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What command can be used to stop a running process?",
+    "qncode": "",
+    "options": [
+      "kill -SIGKILL processid",
+      "kill -9 processid",
+      "kill -SIGSTOP processid",
+      "Both 1 and 2"
+    ],
+    "correct": 4,
+    "explanation": "SIGKILL will kill a process with force :)\n\n9 is the signal number of SIGKILL\n\nAnd kill command is used to send a signal to a process. ",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The address http://127.0.0.1 is the address of",
+    "qncode": "",
+    "options": [
+      "ISP",
+      "Own machine",
+      "Linux",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "Bash scripts start with a line called shebang which is ",
+    "qncode": "",
+    "options": [
+      "#!/bin/bash",
+      "#/bin/bash",
+      "/bin/bash",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "shebang is number sign followed by exclamatory sign.\n\nMost shell scripts begin with shebang followed by /bin/bash\n\nIt gives the absolute path of bash interpreter. The script is executed using this command. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "The full form of GNU is -----------",
+    "qncode": "",
+    "options": [
+      "GNU is not Unix",
+      "General Unix",
+      "Gnome Unix",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "Which command displays who is logged in and what they are doing?",
+    "qncode": "",
+    "options": [
+      "who",
+      "w",
+      "who -l",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "who command gives a list of people logged to the system.\n\nw gives more information. It gives the user name, the terminal they are logged from, what command they are executing and the login time",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Which of the following is not a valid command in Linux?",
+    "qncode": "",
+    "options": [
+      "w",
+      "X",
+      "t",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "w is a command which give the users logged in and what they are doing.\n\nX starts the X server (display server)",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "A script file can only be run, after using this command.",
+    "qncode": "",
+    "options": [
+      "chmod u+x filename",
+      "execute filename",
+      "chmod +w filename",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "In order for any file to be executed, it must have execute permission for the current user. So after writing the script, you must use\n\nchmod u+x script-file-name\n\nIf you want the script to be executable by all users, you can also give the command\n\nchmod a+x script-file-name",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "The command which gives a short description of a command is -----",
+    "qncode": "",
+    "options": [
+      "what command",
+      "whatis command",
+      "which command",
+      "man command"
+    ],
+    "correct": 2,
+    "explanation": "whatis gives a short description of command or program. \n\nwhich displays the path of a command \n\ne.g.\n$whatis firefox\nfirefox (1)          - a free and open source web browser from Mozilla\n $ which firefox\n/usr/bin/firefox\n\n",
+    "topic": "Help"
+  },
+  {
+    "question": "What does which command do?",
+    "qncode": "",
+    "options": [
+      "Gives description of command",
+      "Gives path of executable",
+      "Gives user's home directory",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Help"
+  },
+  {
+    "question": "Which process is having the process id of 1?",
+    "qncode": "",
+    "options": [
+      "init process",
+      "initram process",
+      "bash process",
+      "daemon process"
+    ],
+    "correct": 1,
+    "explanation": "Init is a daemon process that continues running until the system is shut down.\n\n It is the direct or indirect ancestor of all other processes and automatically adopts all orphaned processes.\n\n Init is started by the kernel during the booting process; a kernel panic will occur if the kernel is unable to start it.",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which command shows the running processes in a hierarchical tree format?",
+    "qncode": "",
+    "options": [
+      "ps",
+      "pstree",
+      "ps -tree",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The command ---- will execute the third command in your command history",
+    "qncode": "",
+    "options": [
+      "history -3",
+      "!-3",
+      "!!",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "! followed by - followed by n will execute the previous nth command from history.\n\ne.g.\n\nls\ncat a.txt\ndate\n!-2\n\nNow last command will execute -2nd command which is cat a.txt\n",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which command displays exit status of previous command?",
+    "qncode": "",
+    "options": [
+      "echo $$",
+      "echo $?",
+      "echo $!",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which command copies the entire directory including sub-directories?",
+    "qncode": "",
+    "options": [
+      "cp -d",
+      "cp -s",
+      "cp -r",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "cp -r will copy the directory content recursively including subdirectories and their subdirectories",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "If I am in /bin directory and I want to go to my home directory. Which command should I use?",
+    "qncode": "",
+    "options": [
+      "cd",
+      "cd ~",
+      "cd $HOME",
+      "Any of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "In which directory is Linux Kernel file vmlinuz file present?",
+    "qncode": "",
+    "options": [
+      "/bin",
+      "/",
+      "/sbin",
+      "/boot"
+    ],
+    "correct": 4,
+    "explanation": "/boot directory contains all boot related data and info files including the kernel. The kernel file will have a name vmlinuz followed by version number.",
+    "topic": "Kernel"
+  },
+  {
+    "question": "What does the following command do?",
+    "qncode": "od -x five.sh",
+    "options": [
+      "Displays the contents of the file",
+      "Deletes the file permenently",
+      "Displays the file in octal form",
+      "Displays the file in hexadecimal form"
+    ],
+    "correct": 4,
+    "explanation": "od command dumps the file in octal or other formats.\n\nod -x dumps it in hex\nod -b dumps the file in bytes. \nod -a shows the file as named characters. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which of the following operating systems is not based on Linux?",
+    "qncode": "",
+    "options": [
+      "Ubuntu",
+      "Red Hat",
+      "CentOs",
+      "BSD"
+    ],
+    "correct": 4,
+    "explanation": "BSD is a unix operating system developed by Berkeley Software designs. It is not a Linux version. ",
+    "topic": "Kernel"
+  },
+  {
+    "question": "How do you hide a file in Linux?",
+    "qncode": "",
+    "options": [
+      "hide filename",
+      "mv filename .filename",
+      "cp -h filename",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "In Linux, any file whose name starts with a period is hidden. \n\nIn order to hide a file, you just need to add a dot at the begining of the file. \n\nTo display all files including hidden files, you should use -a option with ls command.",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command can be used in place of echo command?",
+    "qncode": "",
+    "options": [
+      "print",
+      "printf",
+      "printe",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "printf is used for displaying information in scripts. But the difference is printf needs format specifier similar to printf of C language. \n\nprintf \"Hello world\"\nprintf \"%d\" 12",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "How do you list all files with u or v in the third letter of filename?",
+    "qncode": null,
+    "options": [
+      "ls uv*",
+      "ls uv",
+      "ls ??uv*",
+      "ls ??[uv]*"
+    ],
+    "correct": 4,
+    "explanation": "? in a file name stands for one unknown character. And set of characters in square brackets is a regular expression which takes any one of them\n\ne.g.\n$ls\none.c  ong.sh  other.sh b.sh ond.c\n$ls ??on[eg].*\none.c ong.sh ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The command\ntouch a.txt -------",
+    "qncode": null,
+    "options": [
+      "creates the file",
+      "deletes the file",
+      "creates file or changes its timestamp if it already exists.",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": " The touch command is used to create new, empty files. It is also used to change the timestamps   on existing files and directories. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which of the following statements is false?",
+    "qncode": null,
+    "options": [
+      "cd ~ takes you to user's home directory",
+      "cd .. takes you to parent directory",
+      "cd takes you to user's home directory",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command shows the user name?",
+    "qncode": "",
+    "options": [
+      "me",
+      "i",
+      "whoami",
+      "who"
+    ],
+    "correct": 3,
+    "explanation": "The envirnoment variable $USER also has current user name.\n\necho $USER\ncan also be used to display current user name",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you send errors of a command to a file?",
+    "qncode": "",
+    "options": [
+      "command >filename",
+      "command 2>filename",
+      "command filename",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "command > filename sends the output of the command to file.\n\ncommand 2>filename sends errors to file.\n\ne.g.\nls absentfile 2>errfile\n cat errfile\nls: cannot access 'absentfile': No such file or directory\n",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "How do you display only empty lines of a file using grep command?",
+    "qncode": "",
+    "options": [
+      "grep \"$$\" filename",
+      "grep \"^$\" filename",
+      "grep \" \" filename",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What does the variable $# contain in a shell script?",
+    "qncode": "",
+    "options": [
+      "The first command line argument",
+      "All command line arguments",
+      "Number of command line arguments",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "$@ gives the complete list of command line parameters and $# gives the count. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does the folloing command do?",
+    "qncode": "less a.txt",
+    "options": [
+      "Reduces the size of the file",
+      "Displays the file ",
+      "Displays the file one page at a time",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Both \"less\" and \"more\" commands display the contents of a file one page at a time.\n\nmore lets us scroll down only. But less lets us scroll the file both up and down. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How do you make a file readable to everyone, writeable to owner and executable to owner and group?",
+    "qncode": "",
+    "options": [
+      "change +rx filename",
+      "chmod 0754 filename",
+      "chmod a+rwx filename",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "You can even write multiple commands like this\n\nchmod +r filename;chmod u+w  filename;chmod ug+x filename",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "To know the type of file - whether it is a device file, text file, executable file etc., you should use ---- command.",
+    "qncode": "",
+    "options": [
+      "type filename",
+      "file filename",
+      "tof filename",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "file command determines the type of file.\n\ne.g.\n\n$file one.c\none.c: C source, ASCII text\n $ file pos.sh\npos.sh: Bourne-Again shell script, ASCII text executable\n",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command is used to see the contents of a file?",
+    "qncode": "",
+    "options": [
+      "more",
+      "less",
+      "cat",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "cat displays content of file. more and less display the content of a file one page at a time. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "#! is called ----",
+    "qncode": "",
+    "options": [
+      "shebang",
+      "hash prompt",
+      "begin script",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Most of shell scripts begin with shebang. Shebang tells the system to use the file specified in the line for running the script.",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which of the following is a Linux shell?",
+    "qncode": "",
+    "options": [
+      "bash",
+      "csh",
+      "ksh",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "To test a condition in  a script, the condition has to be enclosed in a -----",
+    "qncode": "",
+    "options": [
+      "paranthesis",
+      "square brackets",
+      "curly brackets",
+      "double quotes"
+    ],
+    "correct": 2,
+    "explanation": "The conditions in a shell script are to be written in square brackets and there must be spaces between brackets and conditions.\n\ne.g.\n\n#!/bin/bash\na=12\nif [ $a -eq 10 ]; then\n   echo \"equal to 10\"\nelse\n   echo \"not equal to 10\"\nfi\n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which of the statements is correct?",
+    "qncode": "",
+    "options": [
+      "echo prints the content followed by a newline character",
+      "printf prints the content followed by a newline",
+      "Both echo and printf print content followed by newline",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "printf can be used in a script to print formatted output. But printf does not print a newline character automatically. You should add \\n in the string to print a newline character. \n\n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "We have written a script. Complete it to print the value of variable a.",
+    "qncode": "#!/bin/bash\na=10\n---------",
+    "options": [
+      "echo a",
+      "echo \"a\"",
+      "echo $a",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "A variable can be bare only we are defining it. In all other uses, it has to be preceeded by a $ sign. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "How do you write a comment in a script?",
+    "qncode": "",
+    "options": [
+      "Begin line with !",
+      "Begin line with #",
+      "Begin line with /*",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "A comment in script is written by starting the line with #",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": null,
+    "options": [
+      "Comments in script begin with !",
+      "Every line in script must end with a ;",
+      "Every variable in script must be defined with its data type",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "How do you list only the file abc.txt?",
+    "qncode": "",
+    "options": [
+      "ls a*",
+      "ls *.txt",
+      "ls abc.txt",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What does the command tty do?",
+    "qncode": "",
+    "options": [
+      "Starts a new virtual terminal",
+      "Displays the type of terminal in use",
+      "Changes the terminal to the next one",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is the command to display only hidden files?",
+    "qncode": "",
+    "options": [
+      "ls -a",
+      "ls -a|grep \"^.\"",
+      "Either 1 or 2",
+      ""
+    ],
+    "correct": 2,
+    "explanation": "regular expression with ^ searches for lines which begin with pattern given after ^.\n\nBy giving ^. we are searching for files which begin with . - so only hidden files are searched. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The difference betwen cmp and diff commands is",
+    "qncode": "",
+    "options": [
+      "diff compares the files line by line and cmp compares the files byte by byte",
+      "diff compares the files byte by byte and cmp compares the files line by line",
+      "There is no difference between the two commands",
+      null
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command copies the input from standard input device to both standard output and files?",
+    "qncode": null,
+    "options": [
+      "cat",
+      "make",
+      "tee",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "By giving tee command, input from console is copied to standard output as well as file.\n\ne.g.\ntee one.txt\nhello world\nhello world\ngoodbye world\ngoodbye world\nctrl d\n\nNow the two lines hello world and goodbye world are copied to file one.txt and they are also displayed on screen. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What is the command to print all elements of an array?",
+    "qncode": "",
+    "options": [
+      "for loop",
+      "echo ${arr[0]}",
+      "echo ${arr[@]}",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which command can be used to find how long the system has been running?",
+    "qncode": "",
+    "options": [
+      "time",
+      "uptime",
+      "datetime",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you define an array in a shell script",
+    "qncode": "",
+    "options": [
+      "arr={a b c d}",
+      "arr=[a b c d]",
+      "arr=(a,b,c,d)",
+      "arr=(a b c d)"
+    ],
+    "correct": 3,
+    "explanation": "Array elements are defined within brackets.\n\na[0]=11\na[1]=20\n\nLike other variables, there is no need to define the array beforehand.\n\nAnother way of defining arrays is we can assign individual elements. \n\na={11 12 13}\n\nTo access individual elements of an array, we can use syntax shown below\n\n${a[0]}\n${a[1]} etc.\n\n${a[@]} gives entire array",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What is the output of this shell script?",
+    "qncode": "#!/bin/bash\narr=(\"sunil anil\" anitha)\necho ${arr[1]}",
+    "options": [
+      "anil",
+      "anitha",
+      "syntax error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Core of the Linux operating system is called ----",
+    "qncode": "",
+    "options": [
+      "Shell",
+      "Kernel",
+      "Application Layer ",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "Command interpreter in Linux is ----",
+    "qncode": "",
+    "options": [
+      "Kernel",
+      "Shell",
+      "DOS",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "A zombie process is the one   -------",
+    "qncode": "",
+    "options": [
+      "Dead process",
+      "Init process",
+      "Dead but not reaped process",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "A dead process is cleaned up by its parent. \n\nWhen a process is dead, but the parent is busy, then the process becomes zombie until the parent reaps it. ",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What does fork() system call return in parent process",
+    "qncode": "",
+    "options": [
+      0,
+      "-1",
+      "child process id",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "fork() system call creates a child process which is a replica of parent. fork() returns child process id in parent and 0 in child process.\n",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which of the following statements are true?",
+    "qncode": null,
+    "options": [
+      "chown command creates a process",
+      "chown command changes the permissions of a file",
+      "chown command changes the owner and/or group of the file",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "chown command changes the owner of a file. \n\ne.g.\n\nchown Drew ~/abc.txt\n\nNow Drew is the new owner of the file abc.txt\n\nchown Drew:Drew ~/scripts/*\n\nAll files in scripts folder are owned by Drew and belong to group Drew. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command in vi editor copies current line to the buffer?",
+    "qncode": "",
+    "options": [
+      "x",
+      "yy",
+      "p",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "yy yanks a line or multiple lines and saves them in buffer. \n\nThese lines can be pasted to cursor location by p",
+    "topic": "ViEditor"
+  },
+  {
+    "question": "Command to delete the current line in vi editor is ----",
+    "qncode": "",
+    "options": [
+      "yy",
+      "x",
+      "dd",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ViEditor"
+  },
+  {
+    "question": "Which of the following statements are true for vi editor?",
+    "qncode": null,
+    "options": [
+      "vi editor commands are not case sensitive",
+      "esc key toggles between insert mode and command mode",
+      ":s command is used to save the current file",
+      "All are correct"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ViEditor"
+  },
+  {
+    "question": "Which command is used to set terminal characterstics?",
+    "qncode": "",
+    "options": [
+      "atty",
+      "stty",
+      "ptty",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The permission bits of a file noname. can be set to _rws_  _x_  _x  by the command --------",
+    "qncode": null,
+    "options": [
+      "chmod 711 noname",
+      "chmod go -rw noname",
+      "chmod 2711 noname",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "s in permission  is suid bit. When a program has suid bit set, then the user who executes the program will have same permssion as the owner of the file. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The permission bits of /usr/bin/passwd has s bit set because ----",
+    "qncode": "",
+    "options": [
+      "it should allow users to execute it without sudo",
+      "it should allow ordinary users to write to it",
+      "the file is write protected",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "s in permission  is suid bit. When a program has suid bit set, then the user who executes the program will have same permssion as the owner of the file. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What does chmod +t do?",
+    "qncode": "",
+    "options": [
+      "It sets the effective userid for execution",
+      "It sets effective group id on execution",
+      "It sets sticky bit",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Sticky Bit is mainly used on folders in order to avoid deletion of a folder and it\u2019s content by other users though they having write permissions on the folder contents. \n\nIf Sticky bit is enabled on a folder, the folder contents are deleted by only owner who created them. No one else can delete other users data in this folder.\n\nsticky bit is set using +t in chmod command",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which of the following commands changes the modification date of a file?",
+    "qncode": "",
+    "options": [
+      "modify",
+      "update",
+      "touch ",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "The command to extract a column from a text file is ----",
+    "qncode": "",
+    "options": [
+      "tar",
+      "cat",
+      "cut",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "cut cuts the columns from a given file and displays it. It takes tab as the delimiter. You can specify other delimiters by using -d option. \n\ne.g.\n\ncut -d \" \" -f 2 myfile.txt\ncuts the 2nd column of myfile.txt\n\nIf myfile.txt is \none two three four five\nnine eight seven six\n\nthen the output of cut command is \ntwo\neight",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "In which programming language are the system calls in Linux are written?",
+    "qncode": "",
+    "options": [
+      "C",
+      "C++",
+      "Java",
+      "Python"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "lp0 is the device file used to access ------",
+    "qncode": "",
+    "options": [
+      "printer",
+      "mouse",
+      "hard disk",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "If two files have the same inode number, and are on the same drive, they are called ---",
+    "qncode": "",
+    "options": [
+      "soft links",
+      "hard links",
+      "copies",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "FileSystem"
+  },
+  {
+    "question": "Write the command to display inode numbers of all files in the working directory",
+    "qncode": "",
+    "options": [
+      "ls -l",
+      "ls -a",
+      "ls -i",
+      "Any of the above"
+    ],
+    "correct": 3,
+    "explanation": "-i in ls command displays the inode numbes. ",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "When a new directory is created, how many links does it have?",
+    "qncode": "",
+    "options": [
+      1,
+      "2",
+      "10",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "It has a link to the parent and to itself. ",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What does the command du do?",
+    "qncode": "",
+    "options": [
+      "Displays the content of current directory",
+      "Displays the disk usage of a directory",
+      "Deletes a file",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "du - disk usage command shows the number of blocks used by directories and files\n\ne.g.\n\ndu ~/scripts\n52\n\n\ndu ~/scripts\n52K\n\n-h flag is for human readable form. \n \ndu ~/scripts/onesorted.c  -h\n4.0K\t/home/usha/scripts/onesorted.c\n",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "The command to display the operating system is -----",
+    "qncode": "",
+    "options": [
+      "uname -n",
+      "uname -s",
+      "uname -a",
+      "uname -o"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "The command to search the content of a file is -----",
+    "qncode": "",
+    "options": [
+      "find",
+      "cat",
+      "grep",
+      "search"
+    ],
+    "correct": 3,
+    "explanation": "grep is used to display the lines in a file/files which contain the pattern.\n\ne.g.\n\ngrep echo one.sh\necho ${a[1]}\necho ${b[0]}\necho \"All elements of b are ${b[@]}\"\n\ngrep is displaying all lines in one.sh file which contain the text echo",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "The command to specify  permissions for newly created files is -----",
+    "qncode": null,
+    "options": [
+      "chmod",
+      "chgrp",
+      "umask",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is the process id of init process?",
+    "qncode": "",
+    "options": [
+      0,
+      "1",
+      "-1",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "In Linux init (short for initialization) is the first process started during booting of the computer system. Init is a daemon process that continues running until the system is shut down. \n\nIt is the direct or indirect ancestor of all other processes and automatically adopts all orphaned processes. \n\nInit is started by the kernel during the booting process",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you display last five lines of a file?",
+    "qncode": "",
+    "options": [
+      "cat a.txt >5",
+      "tail -5 a.txt",
+      "less -5 a.txt",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "head and tail commands are used to display the first 10 lines and last 10 lines of a file respectively.\n\n-n number\ncan be used in these to specify the number of lines to be displayed. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which command can be used to display all the processes by a user?",
+    "qncode": null,
+    "options": [
+      "ps -ef",
+      "ps -u user",
+      "ps user",
+      "ps -a"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which of the following is kernel file located in /boot directory?",
+    "qncode": "",
+    "options": [
+      "kernel",
+      "vmlinuz",
+      "initrd",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "How do you list all the groups in your system?",
+    "qncode": null,
+    "options": [
+      "groups ",
+      "cat /etc/group",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "/etc/group file contains the groups in the system and the users in each group.\n\n",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "The file which has the list of groups and its members is ",
+    "qncode": "",
+    "options": [
+      "/etc/groups",
+      "/etc/passwd",
+      "/etc/group",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "PID stands for --------------",
+    "qncode": "",
+    "options": [
+      "port id",
+      "process id",
+      "priority id",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The command to display the pid of a command is --",
+    "qncode": "",
+    "options": [
+      "ps -i",
+      "top",
+      "pgrep command ",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "To autocomplete commands in a linux terminal, you should use the following key.",
+    "qncode": "",
+    "options": [
+      "space",
+      "return",
+      "tab",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Shell"
+  },
+  {
+    "question": "Command id shows ---",
+    "qncode": "",
+    "options": [
+      "uid",
+      "gid",
+      "groups",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "In the /proc file system, each of the numbered sub-directories correspond to ----",
+    "qncode": "",
+    "options": [
+      "Each user in the system",
+      "Each running process in the system",
+      "Each device in the system",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "In /proc, there is a sub-directory corresponding to each running process. The subdirectory name is the process id. In this sub-directory information about the process is present - like command line, open files, memory etc. ",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What is the total number of signals available to be used?",
+    "qncode": "",
+    "options": [
+      255,
+      "10",
+      "32",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "There are 32 signals. These can be listed using the command \n\nkill -l",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "The command ps -t ? will display ----",
+    "qncode": "",
+    "options": [
+      "All processes",
+      "All process of current user",
+      "All daemon processes",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "ps -t terminal \ndisplays all processes belonging to a terminal. But ps -t ? displays all processes not belonging to any terminal - i.e. daemon processes.",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which of the following statements is correct?\n\n1) /sbin directory has admin binaries\n\n2) /etc has configuration files\n\n3) /boot has kernel and boot files",
+    "qncode": null,
+    "options": [
+      1,
+      "2",
+      "3",
+      "All are correct"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "FileSystem"
+  },
+  {
+    "question": "Which of the following statements are false?",
+    "qncode": null,
+    "options": [
+      "Only root can add new users.",
+      "A user can be added using adduser command",
+      "Password of himself can be modified by any user without knowing previous password",
+      "All are correct."
+    ],
+    "correct": 3,
+    "explanation": "A user can change his/her password after providing the current password.\n\nBut root user can change anyone's password without knowing the current password. ",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "The shell name bash stand for ----",
+    "qncode": "",
+    "options": [
+      "Bourne shell",
+      "Basic shell",
+      "born again shell",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Shell"
+  },
+  {
+    "question": "The system wide commands and environmental variables are stored in the file-----",
+    "qncode": "",
+    "options": [
+      "/etc/profile",
+      "~/.profile",
+      "/etc/bashrc",
+      "Both 1 and 3"
+    ],
+    "correct": 4,
+    "explanation": ".profile and .bashrc are used for initializing individual users. These are stored in users' home directories. Systme wide settings like aliases, environment variables etc. are available in /etc/profile and /etc/bash.bashrc",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Command umask is used for ----",
+    "qncode": "",
+    "options": [
+      "Using the permissions specified in mask  ",
+      "unsetting the permissions in mask command ",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "If umask is 0022 then, the newly created files will have permissions 0755 i.e. there will r,w and x permission for owner, r and x for group and others. \n\nSo the bits specified in umask are unset in the permission. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What will kill -SIGTERM -1 command do?",
+    "qncode": "",
+    "options": [
+      "Gives error",
+      "Kills the first process",
+      "Kills all processes with your UID\n",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "An inode of a file contains all file information except for -----",
+    "qncode": "",
+    "options": [
+      "File path",
+      "Number of links",
+      "File name",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileSystem"
+  },
+  {
+    "question": "How can you change the priority of already running process?",
+    "qncode": "",
+    "options": [
+      "nice",
+      "renice",
+      "chnice",
+      "Any of the above"
+    ],
+    "correct": 2,
+    "explanation": "renice is used for changing the priority of running process.\n\ne.g. \nrenice 12 1608\n\nNow the process with pid 1608 will have a new priority of 12\n\n",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What are the different ways of quitting a vi session?",
+    "qncode": "",
+    "options": [
+      ":wq",
+      ":q!",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "1 saves and quits. 2 quits without saving",
+    "topic": "ViEditor"
+  },
+  {
+    "question": "Which of the following commands reboots a linux system?",
+    "qncode": "",
+    "options": [
+      "shutdown -r now",
+      "reboot",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "What does the following command do?",
+    "qncode": "ln a.txt b.txt",
+    "options": [
+      "It creates a hard link to file a.txt",
+      "It copies a.txt to b.txt",
+      "It creates a symbolic link to a.txt",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "If the umask is set to 0077, then the newly created file will have the following permission -----",
+    "qncode": "",
+    "options": [
+      "-rw-r--r--",
+      "-rw-r-xr-x",
+      "-rw-------",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The newly created file will have no permissions to others and groups",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you list all the links in /etc directory",
+    "qncode": "",
+    "options": [
+      "ls -l",
+      "ls -ln",
+      "ls -l|grep \"^l\"",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "grep \"^l\" selects the lines which begin with l - links",
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command gives you the network interfaces and their configurations in your system?",
+    "qncode": null,
+    "options": [
+      "ifconfig -a",
+      "ip addr",
+      "Both 1 and 2",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "ifconfig is dated command. The newer command is ip addr\n\nip addr show eth0 \nfor example displays setting of ethernet connection",
+    "topic": "Networking"
+  },
+  {
+    "question": "What does  ./ signify while running a shell script?",
+    "qncode": "",
+    "options": [
+      "parent directory",
+      "current directory",
+      "Either 1 or 2",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "After writing a shell script, it has to be ------",
+    "qncode": "",
+    "options": [
+      "compiled before running",
+      "given execute permission before running",
+      "compiled and linked ",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which command is used to create a file system in Linux?",
+    "qncode": "",
+    "options": [
+      "createfs",
+      "mkfs",
+      "mkfile",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "e.g. \nmkfs -t ext2 /dev/hda5 102400",
+    "topic": "FileSystem"
+  },
+  {
+    "question": "Which of the following is not a valid command related to user groups??",
+    "qncode": "",
+    "options": [
+      "groupadd",
+      "groupmod",
+      "groupdel",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you display the content of a file in octal representation?",
+    "qncode": "",
+    "options": [
+      "cat -o",
+      "ls -o",
+      "od ",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command creates an empty file if it does not exist?",
+    "qncode": "",
+    "options": [
+      "cat",
+      "touch",
+      "ed",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which command can be used to copy files across the systems?",
+    "qncode": "",
+    "options": [
+      "telnet",
+      "ssh",
+      "ftp",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "The command which can be used to display the available routes is -----",
+    "qncode": null,
+    "options": [
+      "route --status",
+      "netstat -r",
+      "route -a",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What does alias command do?",
+    "qncode": "",
+    "options": [
+      "Gives an alias to user ",
+      "Gives an alias to a command",
+      "Displays all aliases defined in system",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "alias command lets you define your own name for a command or sequence of commands.\n\ne.g.\n\nalias dir=ls\n\nNow you can use dir command to list the files. \n\nOften the aliases are defined .bashrc in users' home directory. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What does echo command do?",
+    "qncode": "",
+    "options": [
+      "It echoes a sound file",
+      "It prints a string of text",
+      "It shows all files in the current directory",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "echo command is used in shell script to display a variable\n\ne.g.\n\na=1\necho \"a is $a\"\n\nNow the output is \na is 1",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "What does ping command do?",
+    "qncode": "",
+    "options": [
+      "It produces a ping sound",
+      "It verifies network connectivity to destination address",
+      "It gets a file from a URL",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "ping command ",
+    "topic": "Networking"
+  },
+  {
+    "question": "What does the following command do?\n\nshutdown -h +10\n",
+    "qncode": null,
+    "options": [
+      "It shuts down the system immediately",
+      "It reboots the system after 10 minutes",
+      "It shuts down the system after 10 minutes",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "shutdown with option -h shuts down the system. shutdown with option -r reboots the system.\n\n+n will shutdown after n minutes",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What command do you use to search for a file in linux system?",
+    "qncode": "",
+    "options": [
+      "grep filename",
+      "find filename",
+      "locate filename",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is the output of the following script?\n\nIf it is run as \n./abc.sh one \"two three\" four",
+    "qncode": "#!/bin/bash\necho $3\n",
+    "options": [
+      "three",
+      "four",
+      "Error",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "two three which is enclosed in quotes is the second positional parameter $2 and four is $3",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which of the following command lists only abc.txt?",
+    "qncode": "",
+    "options": [
+      "ls a*.txt",
+      "ls a??.txt",
+      "ls abc.*",
+      "ls abc.txt"
+    ],
+    "correct": 4,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Which of these commands can be used to create a file if it does not exist?",
+    "qncode": "",
+    "options": [
+      "tee",
+      "touch",
+      "make",
+      "makefile"
+    ],
+    "correct": 2,
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "[ in a script is equivalent to",
+    "qncode": "",
+    "options": [
+      "test",
+      "for",
+      "while",
+      "then"
+    ],
+    "correct": 1,
+    "explanation": "",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Which of the following is used as a prefix to access variable in a script?",
+    "qncode": "",
+    "options": [
+      "#",
+      "$",
+      "?",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Variable names are prefixed with $ in a script except when defining them\n\ne.g.\na = 1\necho \"a is $a\"\n$((a=$a+10))\necho \"a is now $a\"\n\n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": null,
+    "qncode": null,
+    "options": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "correct": null,
+    "explanation": null,
+    "topic": null
+  }
+]

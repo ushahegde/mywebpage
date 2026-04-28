@@ -1,0 +1,956 @@
+[
+  {
+    "question": "What is Linux?",
+    "answer": "Linux is an open source, unix based operating system.\n\nAn operating system is a powerful,   large, program that controls and manages the hardware and other software on a computer. Windows is another popular operating system. \n\nBut Linux is different from other OS because it is an open source.   The code used to create Linux is free and available to the public to view, edit, and\u2014for users with the appropriate skills\u2014to contribute to.\n\n",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "How do you execute the ls command and append its output to the file list.txt?",
+    "answer": "ls >a.txt\n",
+    "explanation": "The output of a command executed will be displayed on standard output device - display. \n\nBy using redirection operator >, we are sending the output to the file specified. ",
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "What are pipes in Linux?",
+    "answer": "Piping is the mechanism where we send data from one program to another. \n\nPiping is done using  operator |. This sends the output of command on left as input to command on right.\n\ne.g. \ncat a.sh|grep echo\n\nHere the output of cat command is used as input to grep command using the pipe |",
+    "explanation": null,
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "How do you mount a drive in Linux?",
+    "answer": "You need to create a mount point using the mkdir command. This will be the location from which you will access the mounted drive e.g.  /dev/sdb1 drive.\n\n$ sudo mkdir /media/newhd\n\nNexy, to mount the drive, enter:\n$ sudo mount /dev/sdb1 /media/newhd\n\n\nTo view files cd to /media/newhd, enter:\n$ cd /media/newhd\n$ ls -l",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is a process?",
+    "answer": "Process is a program under execution. It contains the porgram code and its activity. \n\nWhen we run a program, a process is created and when the program is completed, the process is terminated. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which are the process management system calls?",
+    "answer": "fork() and exec(), wait() and waitpid() are the process related system calls.\n \nFork() creates a new process which is a copy of parent process.\n\n exec() over writes the parent process with the process created by executing a command. \n\nWhen you run a command from a shell, fork() is used to create a copy of shell, and then exec() is used to execute the command in child process. \n\nwait() is a function which waits for the first child process to terminate.\n\nwaitpid() function takes pid of child process as parameter and waits for that child to terminate.",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What are the differences between hard links and soft links?",
+    "answer": "Hard link to a file is another directory entry pointing to the same physical file.\n\n If a file a.txt and b.txt are hard linked, then they point at same file content (and same inode), but have two different entries in the directory. \n\nBut soft link is an actual pointer to another file. So it will be much smaller in size and has a different directory entry. \n\nTwo files can be soft linked even if they are in different file systems, unlike hard links.  \n\nWhen you list the files using ls -l command, the output displays the number of hardlinks for each file.",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Why shouldn't you use root login in Linux?",
+    "answer": "Because root has complete access to all files, all devices and other resources. \n\n\nSo the chances of corrupting or losing the data are very high. \n\nYou should log in as an ordinary user and when needed use su or sudo to get root privileges. ",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Define shell and kernel.",
+    "answer": "Kernel is core of an operating system.\n\nShell is command interpreter - shell takes users commands and gives them to the kernel.\n\nLinux has other software along with shell and kernel - which are Graphical user interface, device drivers and other application programs. ",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "What are the differences between Unix and Linux?",
+    "answer": "Unix is a propriety software developed by Bell Labs for its own use.\n\nLinux is a free software. It is based on Unix and is developed by Linus Torvalds. \n\nUnix is not as flexible as Linux.  \n\nAnd Unix source code is not available to general public where as Linux source code is available for users to use and modify and distribute. \n\nDifferent versions of Unix are  \n    AIX (IBM)\n    BSD\n    HP \u2013 UX\n    Solaris\n    Iris\n\nDifferent versions of Linux are\n    Redhat\n    Kali\n    Slackware\n    Debian\n    ArchLinux\n    Solaris\n    Ubuntu\n    CentOS\n    Fedora",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "What are differences between command interpreters of Windows and Linux?",
+    "answer": "Shell of Linux OS is different from command interpreter of Windows in the following aspects.\n\na) Linux commands are Case sensitive unlike Windows commands\nb) Linux paths use of / instead of \\ for directory separation. Windows uses \\ for directory separation. \n\nc) In Linux there is no rule for filename extension unlike Windows which must have 3 letter extensions for filenames\nd) In Linux shell an executable file can have any extension as long as its execute permission is on. Whereas in Windows, the files with extension exe and com are executable. \n \n ",
+    "explanation": null,
+    "topic": "Shell"
+  },
+  {
+    "question": "What are the permissions for files in Linux and how do you change them?",
+    "answer": "Each file in a Linux OS has 3 permissions - read, write and execute (r,w,x). \n\nThe permissions of a file can be changed using chmod command. \n\nThis command can take either a numeric permission or a alphabetic permission. \n\nSyntax of the command is\n\nchmod permission filename\n\nHere permission can be granted using + and removed using -.\n\nPermissions can be given to the user-owner of the file, his group and others using the letters u, g and o respectively. Letter a can be used to specify everyone(all). \n\ne.g. \nchmod u+x a.sh\n\ngives the execute permission to the file a.sh to the owner of the file. \n\nchmod go-w a.sh\n\nremoves write premission of a.sh for group and others. \n\nOther way of specifying permission is using numeric bits as shown below\n\nuser - group - others\nrwx    rwx       rwx\n000    000       000\n\n\n0 for a bit indicates no permission and 1 for a bit indicates permission.\n\ne.g.\n\n110 100 100 = 644 in octal indicates read, write permission to owner, only read permission to group and only read permission to others. \n\nchmod 644 a.txt \nGives this permission to the file a.txt\n\n",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What is stored in the directory /usr/local?",
+    "answer": "The /usr/local directory is for use by the system administrator when installing software locally. \n\nIt needs to be safe from being overwritten when the system software is updated. It may be used for programs and data that are shareable amongst a group of hosts",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "Is it possible to append one file to another using commands? How ?",
+    "answer": "Yes\n\nOne method of appending two files is - use cat to display the contents of file and redirect it to second file using >> operator. >> operator appends the output of command to the file.\n\ne.g.\ncat one.txt>>two.txt\n\nNow one.txt is appended to two.txt\n",
+    "explanation": null,
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "What is swap space in Linux?",
+    "answer": "If a memory page of a process has not been accessed for a while,it may be copied out onto a special area of disk called the swap area, allowing the physical memory to be used by other processes. When it is accessed again, if the page is not found in RAM, a page fault occurs, which will fetch the page. Such an area in the disk is called swap space. Using swap space improves the performance of a system. \n\nA swap area in Linux can be either a separate partition in disk. Or it can be a file in existing file system. ",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "How you access a Linux computer remotely? Explain. ",
+    "answer": "A linux system can be acccessed using telnet or ssh. ssh is a more secure version because ssh uses encryption.\n\n",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What is chage command in Linux? How is it used?",
+    "answer": "chage (change age) command is used to modify password expiry information  \n\ne.g.\nsudo chage Robert -M 10\n\nsets the maximum passward age to 10 days. After 10 days the password expires and user will be prompted to change the password.  ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Explain crontab",
+    "answer": "crontab file contains the commands to be executed regularly. It has entries specifying environment variables, and commands. \n\nEach line of cron activity has minute, hour, month, day of month, day of week and command.\n\n/etc/crontab is for all users. There are user's individual crontabs ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is root account in Linux? What is sudo command?",
+    "answer": "Root account is an administrator account. It has all privilages. A person logged as root can access and modify all files and execute all commands. \n\nBut for new users, it is advisable not to use root accounts as they may inadvertently delete needed files.\n\nIn  Linux, su will change to root account after prompting for root password.\n\nIn some   versions like Ubuntu, any user who is in sudoers list can temporarily work as root by using sudo command. The command should be preceded by sudo and user will be prompted to provide his/her own password. ",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "What is the maximum length of filename in Linux?",
+    "answer": "The maximum length of a filename is 255 characters.\n\nThis length does not include the path. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What is the difference between cron and anacron?",
+    "answer": "Differences between cron and anacron:\n\nCron works on the system that are running continuously that means it is designed for the system that is running24*7. While anacron is used for the systems that are not running continuously.\n \n   Other difference between the two is cron jobs can run every minute, but anacron jobs can be run only once a day.\n  \n  Any normal user can do the scheduling of cron jobs, but the scheduling of anacron jobs can be done by the superuser only.\n    Cron should be used when you need to execute the job at a specific time as per the given time in cron, but anacron should be used in when there is no any restriction for the timing and can be executed at any time.\n  \n",
+    "explanation": "",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is an ext3 file system?",
+    "answer": "ext3 is an extended file system with journalling. It is backward compatible with ext2 file system. ",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is inode in Linux file system?",
+    "answer": "An inode is a data structure which describes a file or a directory in Unix operating system. It stores the attributes and disk block locations of the file/directory. It   stores last modifiction date, user and group permission data. \n\nIn fact in Linux an inode stores all information of the file except for filename. \n\nls -i command display inode numbers of files. ",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is fdisk command? How do you use it?",
+    "answer": "fdisk is a command line partition editor that allows you to create, edit, and manage the partitions on your computer's hard drives from the command line. \n \n\n",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is /etc/skel directory?",
+    "answer": "The /etc/skel directory contains files and directories that are automatically copied over to a new user's home directory when such a user is created by the useradd command. \n\nSeveral user configuration files are placed in /etc/skel by default when the operating system is installed. Typically they might include .bash_profile, .bashrc, .bash_logout, dircolors, .inputrc and .vimrc.  ",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "What are the run levels in Linux operating sytem?",
+    "answer": "Run Levels in Linux are as follows\n\n\nLevel     Mode  \t \n0           Halt    -   Shuts down system\n1           Single-User Mode \t \n2           Multi-User Mode \t \n3           Multi-User Mode with Networking \t \n4           Undefined \t \n5           X11 -\tAs runlevel 3 + display manager(X)\n6            Reboot - Reboots the system",
+    "explanation": null,
+    "topic": "BootProcess"
+  },
+  {
+    "question": "Can we give multiple commands in single line in bash? If so, how is it done?",
+    "answer": "Yes. We can give multiple commands in Linux shell.\n\nEach command has to be seperated by semi-colon. (;)\n\ne.g.\ncp a.1 b.1;ls *.1;cat b.1\n\nNow all the above commands will be executed one after another. ",
+    "explanation": null,
+    "topic": "Shell"
+  },
+  {
+    "question": "Where do you find the log files in Linux system?",
+    "answer": "The log files are located in /var/log directory. /var/log/syslog has all system log entries.",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is the minimum number of partitions a Linux system must have?",
+    "answer": "Minimum 2 partitions are needed for installing Linux. \n\nThe first one is \"/ or root\" which contains all the files and the other one is swap. \n\nLinux file system is function specific which means that files and folders are organized according to their functionality. For example, all executables are in one folder, all devices in another, all libraries in another and so on. \"/ or root\" is the base of this file system. All the other folders are under this one. \"/\" can be consider as \"C:\".\n\n Swap is a partition that will be used as virtual memory. If there is no more available RAM a Linux computer will use an area of the hard disk, called swap, to temporarily store data. In other words it is a way of expanding your computers RAM.",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is the command to view boot messages?",
+    "answer": "dmesg command displays all the boot messages. \n\nIt is a good tool for trouble shooting. ",
+    "explanation": null,
+    "topic": "BootProcess"
+  },
+  {
+    "question": "What informations are stored in /etc/passwd file?",
+    "answer": " The main fields of /etc/passwd file are:\n\n1. Username: Should be between 1 and 32 characters \n\n2. Password: An x character for  encrypted password  \n\n3. User ID (UID): Each user must be assigned a user ID (UID). UID 0 (zero) is reserved for root and UIDs 1-99 are reserved for other predefined accounts. Further UID 100-999 are reserved by system for administrative and system accounts/groups.\n\n4. Group ID (GID): The primary group ID (stored in /etc/group file)\n\n5. User ID Info: The comment field. It allow you to add extra information about the users such as user's full name, phone number etc \n\n6. Home directory: The absolute path to the users' home directory.\n\n7. Command/shell: The absolute path of a shell used by user. ",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Which file stores the min. UID, max. UID, password expiration settings, password encryption method being used etc.?",
+    "answer": "/etc/login.defs\n\nThis file has default configuration info for user acct parameters. It has settings for password aging, minimum uid, max uid for normal users and system users, min and max gids, default umask etc. ",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Which files are automatically copied to a new user's account?",
+    "answer": "The files present in this skeleton directory are automatically copied to a new user's home directory.\n\n/etc/skel\n\nNormally this directory has files such .bashrc, .profile etc. \n\n",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you lock a user's account",
+    "answer": "This can be done using either passwd comamnd or usermod command. \n\npasswd -l username\n\nBy using -l with passwd command, you are locking the password of the user. \n\nusermod -l username\nor\nusermod -L username\n\nwill lock the user account\n",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you lock a user's account using chsh command?",
+    "answer": "sudo chsh -s /bin/false username\n\nchsh command is used to change the default shell for the user. By setting it to false, user can not use a shell and he can not login\n",
+    "explanation": "",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you determine if a user's account has been locked?",
+    "answer": "By using -S option in passwd command you can check if the account has been locked.\n\ne.g.\npasswd -S David\nDavid P 01/19/2020 0 5 1 -1\n\nIf the account has been locked then, your output will display\n\nDavid L 01/19/2020 0 5 1 -1",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you unlock a user's account?",
+    "answer": "sudo usermod -U username\n\nUsing this command you can unlock a user. \n\nThe other method is to use passwd command with -u option\n\nsudo passwd -u username\n",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "What is swap space?",
+    "answer": "A computer has sufficient RAM but some times it needs more. Swap space is space on hard disk which is substitute for physical memory. It is used to store process memory image.\n\nWhen the computer runs out of memory, some of the processes which are less frequently used are moved to swap space.\n",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is the typical size of swap partition in a linux system?",
+    "answer": "Twice the amount of phycical memory",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "Why should you avoid telnet from accessing a system remotely?",
+    "answer": "telnet uses plain text for transmitting all data - including passwords. So telnet is not secure at all.  So one should not use telnet or ftp and use ssh instead.\n",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What is YUM?",
+    "answer": "Yellowdog Updater Modifed (YUM) is command line software package management tool using RPM package manager",
+    "explanation": null,
+    "topic": "PackageManagement"
+  },
+  {
+    "question": "What is a proc file system?",
+    "answer": "proc file system is a virtual file system which stores information about running processes. It also stores informations about memory, partitions, cpu etc.\n\nproc has a directory for each running process. This directory has all informations about the process. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What are the states of a process?",
+    "answer": "The different states of a process are\nrunning,zombie,interruptible, uninterruptible,stopped\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What command is used to find network ports being used and their connections?",
+    "answer": "netstat command gives various informations about network statistics. \n",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "How do you run a command in background?",
+    "answer": "A command is run in background by suffixing the command with &.\n\ne.g.\nfirefox&\n\nNow firefox browser will run in background and the shell is ready to accept your next command.\n\nTo bring back a command runnning in background, you can give fg command. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you redirect input, output and error?",
+    "answer": "To redirect output of a command to a file, you should use > operator.\n\ne.g.\nls -l >a.txt\n\nNow long listing of files will be sent to the file called a.txt\n\nTo redirect input to a command from a file, you can use < operator.\n\ngrep if  <~/scripts/one.c \n\nNow the grep command input is taken from the file one.c \n\nTo redirect error to a file we should use 2> \n\ne.g.\nls absentfilename 2>err.txt\n\nNow if the filename specified is not present in the current directory, then the error message is sent to the file err.txt\n\n",
+    "explanation": null,
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "What are the  stages in booting a Linux system?",
+    "answer": "The six stages of the linux boot process are:\n\n    BIOS\n    MBR\n    GRUB\n    Kernel\n    Init\n    Runlevel\n\n    BIOS - BIOS stands for Basic input/output system. It performs system integrity checks and searches for the boot loader program in CD-rom or hard drive to load and execute it.Once the boot loader program is detected and loaded into memory BIOS gives control to it.So , in short BIOS loads and executes the MBR(Master Boot Record) bootloader.\n\n    MBR - MBR stands for Master Boot Record. It is located in the first sector of the bootable disk. Typically in dev/hda, or dev/sda. It contains information about GRUB(Grand unified Bootloader). So , in short MBR loads and executes the GRUB boot loader.     \n\n    GRUB - GRUB stands for Grand Unified Loader. It loads the default kernel image as specified in the grub configuration file. The grub configuration file is located at /boot/grub/grub.conf. It basically contains the kernel and initrd(initial ram disk - a scheme for loading a temporary root file system into memory) image.So , in short GRUB loads and executes kernel and initrd images.\n\n    Kernel - Kernel mounts the root file system and executes the /sbin/init program. As init is the first program to be executedby the kernel it has a process id of 1. We can do a ps -ef | grep init to verify.\n\n    Init - Init looks at the /etc/inittab file to decide the linux run level.The run levels available in linux are : 0 -> halt , 1 -> Single user mode , 2 -> Multiuser , 3 -> Full multiuser mode , 4 -> Unused ,5 -> X11 , 6 ->reboot\n\n    Runlevel Programs - When the linux system in booting up , we can see various services booting up.\n\nThese are the runlevel programs, executed from the run level directory as defined by the run level.\n\n",
+    "explanation": "",
+    "topic": "BootProcess"
+  },
+  {
+    "question": "What is df command in Linux?",
+    "answer": "df command displays disk usage by various file systems and free memory available.\n \ndf\nFilesystem     1K-blocks     Used Available Use% Mounted on\nudev             1941580        0   1941580   0% /dev\ntmpfs             394208     1616    392592   1% /run\n/dev/sda1      479668904 15593416 439639880   4% /\n \n",
+    "explanation": "",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which file has information about mounted file systems?",
+    "answer": "The file /proc/mounts has the information about all mounted volumes.\n\nmount command without any parameters also displays the mounted volumes\n\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What are the basic features of Linux operating system?",
+    "answer": "    Portable \u2013  Runs on any kind of hardware platform.\n    Open Source \u2013 Linux source code is freely available to use, modify and distribute\n    Multi-User \u2013  multiple users can access system resources at same time.\n    Multiprogramming \u2013 multiple applications can run at same time.\n    Hierarchical File System \u2013 provides a standard file structure in which system files/ user files are arranged.  \n    Security \u2013 Linux provides user security using authentication features like password protection, controlled access to specific files,  encryption of data.",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "What are the most commonly used Linux distributions?",
+    "answer": "A Linux distribution is an operating system made using Linux kernel. The most commonly used Linux distros are\n\nUbuntu \nopenSUSE \nManjaro \nFedora   \nRedHat\nElementary  \nCentOS  \nArch Linux  ",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "Explain change directory command (cd)",
+    "answer": "cd command is used to change the working directory. The syntax is \n\nSyntax is\n cd directory-path\n\nThe path can use the following characters\n   .. - parent directory\n  ~ - user's home directory\n  . -current directory\n\ncd without any parameters will take you to user's home directory.\n\ncd .. will take you to parent directory of current directory. \n\n\ncd ~/Downloads/abcd\n\nwill take you to abcd sub-directory in Downloads directory in user's home directory. \n\nRemember there is no drive letter in directory path because linux uses hireachical path and every path including other drives start from path /\n\ne.g.\ncd /media/cdrom/abcd\nwill change the directory to abcd in CD-ROM. \n\nTo find out the current directory you are in, you can use the command pwd.",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Write grep command to search for the text net in all files in /etc directory. ",
+    "answer": "grep -n net /etc/* ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How will you check your hardware in Linux system?",
+    "answer": "1) lscpu command displays the cpu information.\n\n\n2) cat /proc/cpuinfo\nThe file cpuinfo in /proc directory has cpu information. You can display that file. \n \n3) To display the memory (RAM) details like available and used memory you can display meminfo in /proc directory. \n\ncat /proc/meminfo\n \n4) free \nfree command also displays total memory available, and memory used etc.\n\n",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "What are the differences between telnet and ssh?",
+    "answer": "Differences between SSH and Telnet\n\n    SSH is more secure compared to Telnet\n    SSH encrypts the data while Telnet sends data in plain text\n    SSH uses a public key for authentication while Telnet does not use any authentication\n    SSH adds a bit more overhead to the bandwidth compared to Telnet\n ",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "How do you mount dvd drive in Linux?",
+    "answer": "The steps to be followed in Ubuntu are as follows\n\nsudo mkdir /media/mydvd\n\nsudo mount /dev/sr0 /media/mydvd \n\nAfter inserting your dvd, give an ls command and see where is your dvd listed. You will be observe that the dvd/cd-rom will be listed as /dev/sr0.\n\nTo unmount the cd-rom or dvd, you can give the command \numount /dev/sr0\n\nTo eject the dvd/cd-rom, you can use the command \neject /dev/sr0\n",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What are the activities of a Kernel?",
+    "answer": "When the computer starts, kernel is loaded to the memory and it is responsible for running the computer. \n\nThe kernel provides services so programs can request the use of the network card, the disk or other pieces of hardware. \nThe kernel forwards the request to special programs called device drivers which control the hardware. It also manages the file system and sets interrupts for the CPU to enable multitasking. \nMany kernels are also responsible for ensuring that faulty programs do not interfere with the operation of others by denying access to memory that has not been allocated to them and restricting the amount of CPU time they can consume. ",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "What are pipes?",
+    "answer": "Pipes redirect the standard output, input, or error of one process to another for further processing.",
+    "explanation": null,
+    "topic": "RedirectionPipes"
+  },
+  {
+    "question": "What is trap command?",
+    "answer": "trap defines and activates handlers to be run when the shell receives signals  \n\ne.g.\ntrap 'echo HelloWorld' SIGINT\n\nNow we are trapping SIGINT. And we have defined echo command to be executed, whenever the shell receives the SIGINT signal.\n\n Now if you press ctrl+c or kill -SIGINT to the shell, you will see the message HelloWorld, instead of the regular behaviour. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is shift command?",
+    "answer": "shift command in a shell script moves the positional parameters by one place to the left. i.e. second argument becomes $1,  third will be $2 and so on. first argument will be lost. \n\n#!/bin/bash\necho \"Now the first argument is $1\"\necho \"Now the second argument is $2\"\nshift\necho \"Now the first argument is $1\"\n\n\nNow if you run this script myscript.sh as follows\n\n./myscript.sh hello world\n\nthe output will be\nNow the first argument is hello\nNow the second argument is world\nNow the first argument is world\n\nWhen shift is executed, the second arguent (world) becomes first argument $1. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is a zombie process?",
+    "answer": "A zombie process or defunct process is a process that has completed its execution (via the exit system call) but still has an entry in the process table: it is a process in the \"Terminated state\".\n\nThis occurs when the parent process is busy and had yet to read  child's exit status.  Once the exit status is read via the wait system call, the zombie's entry is removed from the process table and it is said to be \"reaped\". ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Explain fork and exec system calls",
+    "answer": "Using fork() system call the Linux will create a new process . The new pocess is exact a replica of old process. The process state of old process(called parent process) is copied to child process. \n \n The return value of fork() in the parent process will be the Process ID (PID) of the child, whilst return value of fork() in child process is 0. \n\n exec()  system call will replace the contents of the currently running process with the information from command being executed. \n\nThe standard way a program is run by a shell is call fork() to create a new process (which is a copy of shell) - then call exec() and run the program in this new process. \n\n\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Explain getpid and getppid system calls.",
+    "answer": "getpid() system call returns the process id of the process.\n\ngetppid() system call returns the pid of the parent process of the given process. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What are kill and killall commands?",
+    "answer": "kill command is used to send a signal to a running process. Its syntax is \n\nkill -SIGNUM processid\n\ne.g. to send SIGINT (interrupt signal - which is equivalent of ctrl - c), to process with pid 1200, you can use the kill command as follows\n\nkill -SIGINT 1200\n\nkillall is used to send a signal to all processes running the given command. \n\nkillall -SIGNUM command\n\ne.g.\nkillall -SIGKILL firefox\nwill kill all processes running firefox command\n\n\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you list the contents of a directory sorted by modification time?",
+    "answer": "ls -c\n\nthis command will list the files in the order of last modification date/time. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Explain who and whoami command?",
+    "answer": "who command lists all the users currently logged onto the system.\n\nwhoami displays the name of current user. \n\n\ne.g.\nwhoami\nusha",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "What is last command?",
+    "answer": "last command displays users login and logout informations as follows. It displays multiple lines where each line contains:\n\n 1)   The username of the person who logged in.\n2)    The terminal they were logged into. A terminal entry of :0 means they were logged in on the Linux computer itself.\n3)    The IP address of the machine they were logged into.\n 4)   The login time and date stamp.\n 5)   The duration of the session.\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What command is used to shut down the Linux system?",
+    "answer": "Shutdown command is used to shutdown or reboot the system.\n\nSome example uses are\n\nshutdown -h now\nwill shutdown the computer\n\nshutdown -r now\nwill reboot the computer\n\nshutdown +10 -h\n will shutdown the computer after 10 minutes.\n\nhalt and reboot and poweroff are other commands which are used to shutdown the computer. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Write a command to create an account Jones and add him to the group accounting.",
+    "answer": "sudo useradd -g Accounting Jones\n",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you disable an account without using deluser command?",
+    "answer": "It can be done by setting the expiry date to an earlier date",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "How do you change home directory of a user?",
+    "answer": "sudo usermod username --home /home/newhome\n\nMake sure that the new home directory exists and the user is not logged in.\n\nThe other way to change the home directory is to modify the /etc/passwd entry for the user. ",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "What are the commands chmod, chown, chgrp and chage?",
+    "answer": "chmod command changes the permissions of a file - read, write, execute permissions for owner, group and others.\n\nchown command changes the owner of a file.\n\nchgrp changes the group of a file.\n\ne.g.\n\nchmod a+x myscr.sh\nchown Jones myscr.sh\nchgrp Jones myscr.sh\n\nAfter executing these commands, everyone has execute permission to the file myscr.sh. \nThe new owner of the file myscr.sh is Jones and group is Jones. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How do you use umask command? What does it do?",
+    "answer": "In Linux, new files will have permissions by applying a permissions \"mask\" called the umask.\n\n The umask command is used to set this mask, or to show you its current value.\n\n umask 022\n\nIf the mask is 022, then the newly created files will have 644 i.e. rw-r--r--",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Write a command to deny read and write permissions to others to the contents of your home directory and its subdirectories ",
+    "answer": "chmod o-rw ~/* -R\n\nchmod o-rw indicates remove read and write permission(-), to others (o)\n\n~/* is for all files in user's home directory (~)\n\n-R flag indicates do this operation recursively - that is for all subdirectories \n",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What do read, write and execute permissions mean for a directory?",
+    "answer": "read permission  to a directory means user can read the content of the directory. i.e. he can list the contents. \n\nwrite permission to a directory indicates, user can create and delete files in the directory.\n\nexecute permission to a directory indicates that the user can traverse to that directory using cd command. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How do you display all active services ?",
+    "answer": "Active services can be displayed by giving command\n\nsystemctl -t service\n\nSystemd is an init system and system manager. It uses systemctl to start, stop and manage services. \n\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you start and stop a systemd service",
+    "answer": "The commands to be used are \n\nsystemctl start servicename\n\nsystemctl stop servicename\n\nTo enable/disable  a service from automatically starting at boot time, you can give command\n\nsystemctl enable servicename\nsystemctl disable servicename",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What does masking of a service do? How do you use it?",
+    "answer": "By masking a service, it can not be started at all. Masking a service links the service file to null\n\nTo mask a service, you can use\n\nsystemctl mask servicename\n\nTo unmask you use\nsystemctl unmask servicename",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Explain the ps command with various options",
+    "answer": "ps command displays the process status of all the running processes.\n\nps - shows only the processes running on current terminal/virtual terminal\n\nps -e  shows all running processes\nps -ef shows all running processes in full format\nps -u username\nshows all processes owned by the given user\n\npstree commands shows the running processes in tree format\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What are nohup, fg and bg commands?",
+    "answer": "nohup (no hangup) is a command used to ignore the hup(hangup) signal. Hangup signal is given by terminal to child processes when it is being closed.\n\ne.g.\nTo run  gedit and continue to use it even after the terminal is closed, you can use the command \n\nnohup gedit\n\nfg command brings a task running in background to foreground.\n\nfg taskid\nbrings the process with taskid to foreground\n\nbg also continues the stopped process, but it continues this process in background\n\ne.g.\nusha@usha-Dell:~$ firefox&\n[1] 1891\n \nusha@usha-Dell:~$ gedit&\n[2] 2100\nusha@usha-Dell:~$ fg 1\nfirefox\n\nNow firefox which was running in background has been brought to foreground\n\nnohup gedit&\n\nNow gedit is running in background \n\nctrl D\n\nTerminal is closed. But gedit will still be running. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you display the process in hierarchical structure?",
+    "answer": "pstree command shows the running processes as a tree. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What is top command?",
+    "answer": "top command lists the processes running in the descending order of their cpu usage. \n\nThe command can be used to analyze which processes are eating up the resources. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What is kill command? ",
+    "answer": "The command kill sends the specified signal to the specified process or process group.\n\n If no signal is specified, the TERM signal is sent. The TERM signal will kill processes which do not catch this signal. \n\nSIGKILL can be sent to processes to terminate a process immediately as it can not be handled. ",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you display all the signals which are available?",
+    "answer": "kill -l\n\nwill display the names and numbers of all the signals which can be sent (total of 32)",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you kill a process by mentioning its command instead of pid?",
+    "answer": "pkill\ncommand kills a process by specifying its name instead of process id. \n\ne.g.\npkill firefox \nwill terminate firefox\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you decrease the priority of a process?",
+    "answer": "renice command can be used to decrease the priority of a process.\n\ne.g.\nrenice 12 1400\n\nwill change the process with pid 1400 to 12\n\nTo start a process with a given priority, you can use the command\n\nnice command priority\ne.g.\nnice   gedit 10\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you send a message to another user who is logged in?",
+    "answer": "write command can be used to send a message to another user who is logged in. \n\ne.g.\nwrite Sam\n-----text-----\nctrl d\n\nNow the message will be sent to Sam\n\nTo write to all users, you can use wall command. ",
+    "explanation": "Works if and only if the other user is logged in",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is the difference between write and mesg?",
+    "answer": "mesg determines whether you can receive messages from other users with write talk etc.\n\ne.g.\nmesg y\nenables the user to receive the message from other user.\n\nmesg n\ndisables the user from receiving the message. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you start a chat session with another user?",
+    "answer": "talk command",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you send a message to everyone?",
+    "answer": "wall (write all) command is used to send messages to all users who are logged in \n\ne.g.\nwall\nmessage\nmessage\nctrl d\n\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is the command prompt for root user?",
+    "answer": "# is the command prompt for root user.\n\nFor normal users command prompt is $\n",
+    "explanation": "",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "Write a command to find all the directories which are owned by Henry",
+    "answer": "find / -type d -user John\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What does the command strings display?",
+    "answer": "Command strings displays a list of printable characters in a file.\n\ne.g.\nstrings /bin/rm\n/lib64/ld-linux-x86-64.so.2\nMB#F-\nlibc.so.6\nfflush\n__printf_chk\nreaddir\nsetlocale\n.......",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What are the contents of /etc/default directory?",
+    "answer": "Default values for commands",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is a process?",
+    "answer": "Process is a program under execution. it is running instance of a program. It consists of program instructions, data read from files, other programs etc. \n\nA process is created when a program starts execution and is terminated when program execution ends. ",
+    "explanation": "",
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What is effective user id(EUID)?",
+    "answer": "The real user id is who you really are. The effective user id is UID the operating system looks at to make a decision whether or not you are allowed to do something.\n\nSome commands allow you to run them by taking the credentials of owner of the command. In such cases, the effective user id is UID of owner of the command.\n\nA very good example is passwd command. When you are running passwd command, your effective user id is that  of root (which is 0). But your real user id has not changed. \n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Which directory contains device special files? How do you recognise a device file from ordinary files from ls output?",
+    "answer": "Devices special files are stored in /dev directory.\n\nDevice special files can be either character device files or block device files. \n\nCharacter device files read/write one character at a time. And block files read/write one block at a time.\n\nWhen you look at the output of ls -l, character device files begin with \"c\" and block device files begin with \"b\"\n",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What is the significance of a sticky bit in a directory?",
+    "answer": "Can be deleted by only owner",
+    "explanation": null,
+    "topic": "FileSystems"
+  },
+  {
+    "question": "What happens when rm command is used on a file having 3 hard links?",
+    "answer": "Whenever a rm is used to delete a file, its number of links is reduced by 1. In this case, the file entry is removed, but the other two linked files will have 2 links. \n\nWhen the number of links is 0, only then the file is physically deleted.  ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How can a new group be added? How can a group be modified? Which file has group information?",
+    "answer": "To add a new group, you can use groupadd command\n\nsudo groupadd accounts\n\nTo delete a group, you can use groupdel command\n\nsudo groupdel accounts\n\nTo view the groups and its members, you can view the file\n\n/etc/group",
+    "explanation": "",
+    "topic": "UserManagement"
+  },
+  {
+    "question": "What is the command used to send signal to a process? What is its syntax?",
+    "answer": "kill command is used to send a signal to a  process. It takes signal number as parameter followed by process id to which signal must be sent. \n\ne.g.\nkill -SIGINT 1022\n\nWe are sending a signal SIGINT (interrupt) signal to the process with pid 1022\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you send the signal stop to a running process using keyboard?",
+    "answer": "ctrl c, ctrl z or ctrl \\",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "How do you create a symbolic link to a file? ",
+    "answer": "You can use the ln command with option -s to create a soft link or symbolic link \n\nln -s file target",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Where are the kernel modules located in a Linux system?",
+    "answer": "A kernel modules is an object file that contains code to extend the running kernel,   of an operating system.\n\nThe kernel modules in Linux are located in the directory /lib/modules/kernel-version-number\n\nThe installed modules are displayed using the command lsmod\n",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "What is tail command?",
+    "answer": "tail command is a command which displays last n lines of data. \n\nn has a default value of 10.\n\ntail a.txt\nprints last 10 lines of a.txt\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which command lists all open files?",
+    "answer": "lsof command",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you set suid bit for a file? What is the use of this bit?",
+    "answer": "If a suid bit is set for an executable, then the program is run with permissions of owner of the file - not of the user. \n\nVery typical example is passwd program. All users must have the permission to modify the password and their shadow encrypted file. But shadow file in /etc has permissions for only root. As passwd program has suid bit set, it is run as root and it can change password and shadow file when an ordinary user runs the program.\n\nTo set a suid bit, you should use\n    chmod u+s filename\n\nor \n    chmod 6755 filename\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How will you fix the problem if you have only one account and have forgotten the password?",
+    "answer": "You should login using single user mode. Single user mode will log into root user. Next you can set the password and reboot again. \n\nLogging into single user mode differs for different versions of Linux. e.g. in Ubuntu you should use Advanced options and then select root user. Next you have to mount the file system into read write mode and change password. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "If every newly created file must have read write permission for user and group but no permissions for other, what must be the umask value?",
+    "answer": "The umask value must be 0006\n\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which command is used to identify the type of file?",
+    "answer": "To know the type of a file - whether it is a text file, binary executable, a shell script, or a directory etc., you can use the file command. \n\nfile filename\n\ne.g.\nfile /bin/nano\n/bin/nano: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=eb84a2a7aac5a24a9365b0ebf822cddf3c491602, stripped\n\nfile /dev/tty\n/dev/tty: character special (5/0)",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How do you kill a running process?",
+    "answer": "To kill a running process you can give a command\n\nkill -9 pid\n\nwhere pid is the process id of the process to be killed. \n\nIf the process is not owned by you, then you may need to use sudo",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What does su command do?",
+    "answer": "su command is used to switch user. You can switch other user or root user by providing their user name and password. \n\ne.g.\n\nsu Jane\n\n\nOnce su command is given, you are prompted to provide password of the user. After typing correct password, you are logged in as that user.",
+    "explanation": null,
+    "topic": "UserManagement"
+  },
+  {
+    "question": "What does ping command do?",
+    "answer": "The ping command is used to test the ability of the source computer to reach a specified destination computer. \n\ne.g.\n\nping www.google.com\n\nIf your computer is able to establish connection to google server, you get a response. If not, you get an error message. ",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What is DNS?",
+    "answer": "DNS - Domain Name System is a hierarchical and decentralized naming system for computers, services, or other resources connected to the Internet or a private network. It translates domain names to the numerical IP addresses.\n\nWhen you try to connect to say www.google.com, DNS translates this into an IP address. ",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What are IPV4 and IP V6 addresses?",
+    "answer": "IPv4 is a 32 bit numeric representation of devices over Internet,  It supports upto 4.3 billion (4,300,000,000) unique IP addresses.  An IP address is of the form \n\nx.y.z.p\n\nwhere x,y,z and p are numbers from 0 to 255\n\nAn example of IPv4 address is \n192.168.1.1\n\nIP v6 is a 128 bit address. And it supports  340 trillion, trillion, trillion (340,000,000,000,000,000,000,000,000,000,000,000,000) unique IP address.\n\nAn example of IPv6 address is\n 2005:3200:230:7e:35dl:2874:2190",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What is a router?",
+    "answer": " A router is a physical device which acts as a gateway and connects two networks.\n\n It forwards the packets of data/information from one network to another.\n\n It acts as an interconnection   between two networks.",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What is a MAC address?",
+    "answer": " MAC stands for Media Access Control. It is the address of the device identified at Media Access Control Layer of Network Architecture. Each network device has a unique mac adress. ",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "What is the typical size of a swap partition in Linux?",
+    "answer": "The ideal size of swap partition is twice the size of physical memory available.\n\nIf your system has 4 GB RAM, then the swap partition should be 8GB",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What are files whose names start with a dot in Linux?",
+    "answer": "The files and directories whose name start with a dot are hidden.\n\nThey are not listed when ls command is used. \n\nThey can be displayed only using option -a in ls command. \n\ne.g.\n\nls\n Documents    scripts         Videos\n  Downloads  Pictures       Desktop  Music       \n\nls -a\n      .gphoto     .cache        scripts\n        candcpp    .ICEauthority  .ssh\n          .config    .java   Desktop    .local         \n  Documents  .mozilla       .thumbnails\n           Downloads  Music        .bash_history  \n.bash_logout       .gnome     Pictures       \n.bashrc            .gnupg     .profile\n",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Write a command to list all files with extension .txt with their sizes and permissions.",
+    "answer": "The command is \n\nls -l *.txt\n\nls -l gives long listing of the files including their permissions, sizes, owner, group etc. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Write a command to display the contents of three files a.txt, b.txt and c.txt",
+    "answer": "cat a.txt b.txt c.txt\n\ncat displays the contents of the files on the screen. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Write a command to create a folder called myfiles",
+    "answer": "mkdir command is used to create a directory(folder).\n\nmkdir myfiles\n\nNow the directory called myfiles is created in the current directory. \n",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "What are the commonly used shells in Linux?",
+    "answer": "The commonly used shells are\n    sh \u2013 Bourne shell\n    csh \u2013 C SHell\n    bash \u2013 Bourne Again Shell\n    tcsh \u2013 enhanced C Shell\n    zsh \u2013 Z SHell\n    ksh \u2013 Korn SHell\n",
+    "explanation": null,
+    "topic": "Shell"
+  },
+  {
+    "question": "What does  a tee command do?",
+    "answer": "A tee command reads the standard input device and sends the text to both standard output device and a file.\n\ntee one.txt\nhello\nhello\nworld\nworld\nctrl d\n\nNow one.txt has the following content\nhello\nworld",
+    "explanation": null,
+    "topic": "Advanced Commands"
+  },
+  {
+    "question": "What is a pid?",
+    "answer": "pid is process id. Every running process has a unique id which is called pid. When you list processes using ps command, each process is displayed with its pid.\n\npid 1 is that of init process.\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "Write a command to sort the lines of a file a.txt and save it in a file called b.txt",
+    "answer": "The command is \n\nsort a.txt>b.txt\n\nsort command with a filename sorts the lines of the file, but displays the output on screen. \n\nTo save it in a file, you need to use > operator",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Write a command to reboot the system after 5 minutes.",
+    "answer": "The command to be used is\n\nshutdown -r +15\n\n-r tells the system to reboot\n+15 tells to reboot after 15 minutes\n\nTo halt the sytem immediately, you can use the command\n\nshutdown -h now",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is chown command? How is it used?",
+    "answer": "chown command changes the owner and group of the file. \n\ne.g.\n\nchown Patrick:Patrick myfile.sh\n\nNow the owner and group of file myfile.sh is Patrick. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How do you exit vi editor?",
+    "answer": "VI editor can be exited using the following commands. \n\n\n:wq    - save the file and exit\n:q!      - quit without saving\n",
+    "explanation": null,
+    "topic": "ViEditor"
+  },
+  {
+    "question": "What command can be used to get kernel version of Linux?",
+    "answer": "The command which displays kernel version is \nuname -r\n\nThe output will be something like\nuname -r\n4.15.0-29-generic\n\n\nThe other method is to display the file /proc/version\n\n cat /proc/version\nLinux version 4.15.0-29-generic (buildd@lgw01-amd64-057) (gcc version 7.3.0 (Ubuntu 7.3.0-16ubuntu3)) #31-Ubuntu SMP Tue Jul 17 15:39:52 UTC 2018\n\nYou can also get kernel version using \n\ndmesg|grep Linux",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "How can you display all information about network interfaces?",
+    "answer": "ifconfig -a\ndisplays all interfaces which are present in the system.\n\n",
+    "explanation": null,
+    "topic": "Networking"
+  },
+  {
+    "question": "How do you install packages using apt package manager",
+    "answer": "sudo apt install packagename \n\ncan be used to install a package.\n\n\nsudo apt remove packagename\nis used for uninstalling a package. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you create an empty file in Linux?",
+    "answer": "The command touch creates an empty file\n\ntouch myfile\n\nNow an empty file with name myfile is created in working directory.\n\nIf the file already exists, touch command , changes its time stamp. ",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "How do you delete a directory, when you get an error saying directory is not empty?",
+    "answer": "Easiest way of deleting a non-empty directory is \n\nrm directory -r\n\nThis command will remove the directory by removing all files and sub-directories in the directory. Here -r flag is used for recursive deletion.",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Write a script to print \"Hello\" followed by name given as command line parameter. ",
+    "answer": "#!/bin/bash\necho \"Hello $1\"\n",
+    "explanation": "Here echo will display Hello followed by first command line parameter.\n\nIn a shell script, $1 represents first parameter sent to command, $2 is second parameter and so on. \n\nIf our script filename is myscr.sh and \n if we type\n./myscr.sh John\n\nthe output will be \nHello John\n\n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a script to add and multiply two numbers which are given as command line arguments and print the sum and the product",
+    "answer": "#!/bin/bash\n((sum=$1+$2))\nlet product=$1*$2\nsq=`expr $1 \\* $1`\necho \"The sum is $sum\"\necho \"The product is $product\"\necho \"the square of $1 is $sq\"\n",
+    "explanation": "The command line parameters are $1 and $2.\n\nWe see three different ways of writing arithmetic expressions in a script.using double paranthesis, using let and Using expr followed by back ticked expression.\n\nTo add two numbers using (())\nwe have to write\n((sum=$a+$b))\n\nAlso notice that multiplication operator in expr is escaped (prefixed with \\). And the keyword expr and the expression are enclosed in a pair of back ticks - not single quotes. \n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a script to read a number and print its square",
+    "answer": "#!/bin/bash\nread num\nlet sq=$num*$num\necho \"THe square is $sq\"\n",
+    "explanation": "read command is used to read a variable from standard input device.\n\n Here read num - reads a value from keyboard and stores it in num.",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a shell script to find the product of two numbers entered as command line arguments. The script must print error message if two numbers are not entered. ",
+    "answer": "#!/bin/bash\nif [[ $# -ne 2 ]]; then\n   echo \"Enter two numbers with command line e.g. prodCmdLine 10 15\"\nelse\n   ((a=$1*$2))\n   echo \"The prodcut is $a\"\nfi\n",
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a shell script to print user name and date and time.",
+    "answer": "#!/bin/bash\necho \"Date is `date`\"\necho \"User name is `whoami`\"\n",
+    "explanation": "The command within back ticks or back quotes is called command substitution. \n\nWhen command substitution is used , output of the command is used in place of the command.\n\ne.g.\n\necho `date`\n\nNow the date command is executed and its output is used in echo command.\n\nIn the code both date and whoami are enclosed in back quotes and are substituted. ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Define a function to find square of parameter and display it",
+    "answer": "#!/bin/bash\nsquare(){      \n   let sq=$1*$1\n   echo \"Square is $sq\"\n}\n\nsquare 2\nsquare 12\nsquare 134\n",
+    "explanation": "Function is written with optional keyword function and name of the function followed by pair of paranthesis. The body of function should be enclosed in braces.\n\nHere sq is the name of function and it is followed by () to indicate it is function defintion.\n\nThe function is called with the parameter2, 12 and 134.\n\nFunction parameters are accessed using $1, $2 etc. similar to command line parameters,. \n\nIn the code given, $1 is the parameter sent to function call (2 and 12 and 134)",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a script to read two numbers and print the larger number.",
+    "answer": "#!/bin/bash\nread num1\nread num2\nif [ $num1 -gt $num2 ]; then\n  echo \"$num1 is greater\"\nelse\n  echo \"$num2 is greater\"\nfi\n",
+    "explanation": "To test a condition, we need to use if command and the condition has to be written in pair of square brackets. And there must be space between brackets, operators and operands. And the condition must be followed by a semi-colon and \"then\" keyword.\n\ne.g.\nTo compare if variable $a is equal to $b, then we should use\n\nif [ $a -eq $b]; then\n   echo \"equal\"\nelse\n   echo \"not equal\"\nfi\n\nThe comparision operators are\n-gt, -lt, -eq, -ne, -ge, -le ",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a command to list all files with the extension sh in user's home directory and sub-directories",
+    "answer": "find ~ -name *.sh",
+    "explanation": "find command searches for filenames with a given pattern in the path given and its child directories. \n\n-name followed by pattern tells what file must be searched for.\n\nIn this case we are searching for all files with any name and extension sh starting from user's home directory. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Write a command to compare two files and display if they are identical.",
+    "answer": "diff one.txt two.txt -s",
+    "explanation": "diff command compares two files, line by line and displays the differences. \n\nThere is another command cmp. \n\ncmp command compares two files byte by byte.\n\n-s to diff command displays a message if the files are identical. \n\nBy default if the files are identical, there will be no output. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Write a command to search for \"echo\" in a file a.txt. The command should also display line numbers. ",
+    "answer": "grep \"echo\" a.txt -n",
+    "explanation": "grep is used for searching for text in file/s.\n\nThe option -n is used to display the line numbers. ",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is the difference between at and cron?",
+    "answer": "The command at is used for a scheduling a command to be executed at some time.\n\nBut cron is used for periodically executing a command - hourly or daily etc.\n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "What is tar command?",
+    "answer": "tar command is a utility used for compressing and uncompressing files.\n\ntar -cvf outputfile files_to_becompressed\n\ncreates a tar file\n\ntar xvf tarfile -C directory\n\nextracts tarfile to the directory specified.\n\ne.g.\nTo compress all files in scripts directory, you can give the command\n\ntar -cvf allscripts.tar scripts/*\n\nThis command will create allscripts.tar which contains all files in ~/scripts directory.\n\ntar -xvf allscripts.tar  -C .\n\nWill extract files in allscripts in the tar file and store them in current directory. \n",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you find out the memory usage by your system?",
+    "answer": "The file in /proc file system /proc/meminfo contains information about memory usage. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Which command is used to search and replace text in files? How is it used?",
+    "answer": "sed - stream editor is used for filtering and transforming text files. \n\nTo replace a text with another we can use the command as follows\n\nsed 's/prevtext/newtext/g' filename\n\nThis will replace the text throughout the file and display it on standard output. But will not modify the original text.\n\nTo perform in place editing and modify the original file, you can use the option -i\n\nsed -i 's/oldtext/newtext/g' filename\n\nreplaces old text to newtext throughout the file. ",
+    "explanation": null,
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "How do you get help on any command?",
+    "answer": "You can get help on a command by using man, info and whatis commands.\n\nman and info give lengthy description of a command and its syntax. whatis gives a single line description of the command.\n\ne.g.\nman cp\nopens manual page\n\nwhatis cp\ncp (1)               - copy files and directories\n\n",
+    "explanation": null,
+    "topic": "Help"
+  },
+  {
+    "question": "How do you search for a command when you are not sure about the command name?",
+    "answer": "You can use apropos command for that.\n\ne.g.\n If you are searching for a network command to  see all interface, you can give \n\napropos network \n\nThis will display all commands related to networking.\n\napropos searches for keywords in the description of manual pages. ",
+    "explanation": null,
+    "topic": "Help"
+  },
+  {
+    "question": "What are daemons?",
+    "answer": "Daemons are processes which support system services. These run in the background and normally start up at system boot and end only when the system shuts down.\n\nNormal processes are stopped when the terminal which started them is closed. But daemons do not have a tty associcated with them. \n\nTo list daemon processes you can use the command \nps -t ?",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What are nice and renice commands?",
+    "answer": "nice command is used to run a program with a given niceness. Niceness values can be -19 to 20\n\ne.g.\nnice -3 firefox\n\nNow we are starting firefox with niceness value of 3\n\nrenice command is used to change the nice value of a running process.\n\n sudo renice -7 -p 1770\nNow we are setting a priority to 7 for the process with process id 1770\n",
+    "explanation": null,
+    "topic": "ProcessManagement"
+  },
+  {
+    "question": "What are the differences between a thread and a process?",
+    "answer": "A process is an executing instance of an application. \n A thread is a path of execution within a process. Also, a process can contain multiple threads.\nProcesses are independent of each other.  Threads within a process, since they share the same address space are interdependent.",
+    "explanation": null,
+    "topic": "Kernel"
+  },
+  {
+    "question": "Write a script to print the numbers 1 to 10",
+    "answer": "#!/bin/bash\nfor i in {1..10}; do\n echo $i\ndone\n",
+    "explanation": "for loop is used to repeat execution multiple times. \n\nIts syntax is\n\nfor var in value-list \ndo\n    statements\ndone\n\n\nThe statements between do and done are repeated multiple times by assigning variable var with values given in the list.\n\nvalue-list can be space separated list or a list in braces\n\ne.g.\nfor i in 1 2 3 4 5 ; do\n  echo $i\ndone\n\nor \nfor i in {1..5}; do\n echo $i\ndone\n\n\nIn both these examples - i takes the values from 1 to 5 and  these loops print the numbers from 1 to 5\n\n",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a command to replace all text \"echo\" to \"print\" in the file a.sh",
+    "answer": " sed 's/echo/print/g' for.sh -n",
+    "explanation": "sed commanad (stream editor) is very useful for searching and replacing the text in a file/s\n\nsed 's/oldtext/newtext/g' file \n\nwill replaces all \"oldtext\" with \"newtext\" in the file specified.  g option mentioned at the end is used for global - that is replace all occurances.\n\nBut this will replace the text only for output. The original file is unchanged. For inplace replacement, you should use the option -n \n\nsed 's/echo/print/g' -n a.txt\n\nwill replace echo with print throught the file a.txt. \n\nNote sed can be used to modify multiple files using wildcards in filename\n\nsed 's/echo/print/g' -n *.txt\n\nwill change echo to print in all files with extenstion txt\n\n",
+    "topic": "AdvancedCommands"
+  },
+  {
+    "question": "Write a script to read a  name and compare it with user name",
+    "answer": "#!/bin/bash\necho \"Enter your name\"\nread name\nif [ $name == `whoami`  ]\nthen\n   echo \"That is your name\"\nelse\n   echo \"That is not your name\"\nfi\n",
+    "explanation": "read command is used to accept user's input. After reading the name we are comparing it with user-name by command substituting whoami command. \n\nThe syntax of if command is \n\nif [ condition ]\nthen\n    statements\nelse\n   statements\nfi",
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a command to set te default permissions for files to 744",
+    "answer": "The command is \numask 033",
+    "explanation": null,
+    "topic": "FileManagement"
+  },
+  {
+    "question": "Write a shell script to read the name of a directory and create a directory",
+    "answer": "#!/bin/bash\nread dirname\n mkdir $dirname  ",
+    "explanation": null,
+    "topic": "ShellScript"
+  },
+  {
+    "question": "Write a script to read a filename and display whether the file exists and if it exists display the contents of the file",
+    "answer": "#!/bin/bash\nread filename\nif [ -a $filename ]\nthen\necho \"The file exists and its contents are \"\nwhile read line\ndo\necho $line\ndone<$filename\nelse\necho \"the file does not exist\"\nfi\n",
+    "explanation": null,
+    "topic": "ShellScript"
+  }
+]

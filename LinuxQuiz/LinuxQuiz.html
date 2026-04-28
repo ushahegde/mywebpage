@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Quiz </title>
+  <link rel="stylesheet" href="linuxstyle.css">
+</head>
+<body>
+
+<div class="quiz-container">
+ 
+ <div class="topicSelectionScreen" >
+    <select id="topicSelect"></select>
+</div> 
+ <div class="top-bar">
+            <span id="progress"></span>
+            
+        </div>
+  <div id="quiz-box">
+  <div class="card">
+    <p id="question"></p>
+    <p id="code"></p>
+    </div>
+   
+    
+    <div id="options" class="answers"></div>
+     <div   id="explanation" class="hidden" ></div>
+     
+    <div class="actions">
+    <button id="next-btn" class="hidden">Next</button>
+    <button id="explain-btn" class="hidden">Explain</button>
+    </div>
+  </div>  
+  </div>
+
+  <div id="result-box" class="hidden">
+    <h2>Your Score: <span id="score2"></span></h2>
+    <button onclick="location.reload()">Restart</button>
+  </div>
+</div>
+
+<script src="linuxscript.js"></script>
+</body>
+</html>
