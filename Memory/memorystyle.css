@@ -3,23 +3,26 @@ body{
     padding:0px;
     
     height:100vh;
+    background: radial-gradient(circle at top left, #2563eb, transparent 30%),
+    radial-gradient(circle at bottom right, #9333ea, transparent 30%),
+    #0f172a;
 }
 .grid-container{
    margin:40px auto; 
-      background:#f4f3f5;
+      background:#f4f3f505;
    display:grid;
    width:65%;   
    align-items:center;
     
    grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); 
             gap:10px;
-   padding:10px;;
+   padding:20px;;
 }
  
 .card { 
   aspect-ratio:1/1;   border-radius:10px; 
   background:white;
-  box-shadow: 2px 4px 8px gray; /* Subtle depth */
+  
   overflow: hidden; /* Keeps image within rounded corners */
   transition: transform 0.3s ease; /* Smooth hover effect */
    
@@ -66,28 +69,41 @@ body{
   backface-visibility: hidden;
 }
 
+ 
 .card-front {
-  background: #474; /* card background */
-}
-
-.card-back {
+  background:linear-gradient(135deg, #e6f0fa 0%, #cce0f5 100%);
+  
+  background-size:cover;
+  }
+.card-back { 
   transform: rotateY(180deg);
+   background-size:contain;
+    background-repeat:no-repeat;
+   background-position:center; 
+   filter: drop-shadow(1px 2px 2px gray);
 }
 
 .card-back img {
   width: 100%;
   height: 100%;
-  object-fit:  contain;
+  object-fit:  cover;
 } 
 
 #header{
     height:100px;
     width:100%;
     padding-top:15px;
-    padding-bottom:15px;
-    background-color:darkcyan;
+    padding-bottom:15px; 
+    background:#5552;
     display:flex;
     justify-content:space-between;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+ 
+}
+ 
+img{
+    padding:5px;
+    filter: drop-shadow(1px 2px 2px gray);
 }
 #timer, #moves {  
     padding:10px; 
@@ -104,7 +120,7 @@ dialog {
   padding: 20px;
   width: 60%;
   font-size: clamp(1.5rem, 5vw, 3rem);
-  background:linear-gradient(45deg, silver,#f1ffff,white);
+  background:white;
   text-align: center;
   font-family: sans-serif;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);

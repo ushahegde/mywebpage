@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Memory Game Launcher</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+     
+      color:#444;
+    }
+
+  body {
+  margin: 0;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(circle at top left, #2563eb, transparent 30%),
+    radial-gradient(circle at bottom right, #9333ea, transparent 30%),
+    #0f172a;
+
+  font-family: Inter, sans-serif;
+}
+
+    .launcher {
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 450px;
+      margin:10px;
+    }
+
+    .launcher h1 {
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 32px;
+       text-shadow:1px 2px 2px gray;
+    }
+
+    .game-btn {
+      width: 100%;
+      padding: 18px;
+      margin: 15px 0;
+      border: none;
+      border-radius: 16px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+      color: white;
+       box-shadow: 2px 4px 8px gray; /* Subtle depth */
+    }
+    
+   .cards {
+  display: flex;
+  flex-direction:column;
+  gap: 24px;
+    justify-content: center;
+  align-items: center;
+}
+
+.card {
+  
+  padding: 24px;
+  border-radius: 24px;
+
+  /* GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  color: white;
+
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.25);
+
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+
+  background: rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.35);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.card p {
+  opacity: 0.75;
+  font-size:large;
+  font-weight:400;
+}
+     
+
+    #animals:hover { 
+      transform: scale(1.03);
+    }
+
+    
+    #cards:hover { 
+      transform: scale(1.03);
+    }
+
+    .subtitle {
+      margin-bottom: 25px;
+      color: #666;
+      font-size: 16px;
+       text-shadow:1px 2px 2px gray;
+    }
+     
+  </style>
+</head>
+<body>
+
+  <div class="launcher">
+    <h1>Game Launcher</h1>
+    <div class="subtitle">Choose a game to play</div>
+    <div class="cards">
+    <button id="animals" class="card" onclick="startAnimalGame()">
+     <p> 🐈 Animal Matching </p>
+    </button>
+
+    <button id="cards" class="card" onclick="startMemoryGame()">
+    <p>  ♠️ Cards Memory </p>
+    </button>
+    </div>
+  </div>
+
+  <script>
+    function startAnimalGame() {
+      // Redirect to animal matching game page
+      window.location.href = "Memory.html";
+
+       
+    }
+
+    function startMemoryGame() {
+      // Redirect to cards memory game page
+      window.location.href = "MemoryCards.html";
+
+      
+    }
+  </script>
+
+</body>
+</html>

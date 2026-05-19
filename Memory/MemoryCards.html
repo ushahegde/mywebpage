@@ -1,0 +1,31 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory game </title>
+<link rel="stylesheet" href="memorycards.css">
+</head>
+<body>
+<dialog id="gameDialog">
+  <h2 id="dialogTitle"></h2>
+  <img id="image1" src = "images/star.png"  height="50px" width="50px"></img><img id="image2" src = "images/star.png"  height="80px" width="80px"></img><img id="image3" src = "images/star.png"  height="50px" width="50px"></img> 
+  <p id="dialogMessage"></p>
+
+  <div class="dialog-actions">
+    <button id="dialogRestart" onclick="restartGame()">Restart</button>
+    <button id="dialogNext" onClick="startNextLevel()">Next Level</button>
+  </div>
+</dialog>
+<div id="game-area">
+<div id="header">
+    
+       <span id="time">Time Left: </span>
+       <span id="moves"> Moves:  </span>
+
+</div>
+   <div id="cardGrid" class="grid-container"></div>
+</div>   
+   <script src="MemoryCards.js"></script>
+</body>
+</html>
